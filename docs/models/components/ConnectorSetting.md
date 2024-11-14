@@ -1,0 +1,10 @@
+# ConnectorSetting
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `id`                                                                               | *Optional\<String>*                                                                | :heavy_minus_sign:                                                                 | N/A                                                                                | pipeline_id                                                                        |
+| `label`                                                                            | *Optional\<String>*                                                                | :heavy_minus_sign:                                                                 | N/A                                                                                | Pipeline                                                                           |
+| `type`                                                                             | [Optional\<ConnectorSettingType>](../../models/components/ConnectorSettingType.md) | :heavy_minus_sign:                                                                 | N/A                                                                                | select                                                                             |

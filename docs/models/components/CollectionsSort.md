@@ -1,0 +1,9 @@
+# CollectionsSort
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  | Example                                                                      |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `by`                                                                         | [Optional\<CollectionsSortBy>](../../models/components/CollectionsSortBy.md) | :heavy_minus_sign:                                                           | The field on which to sort the Collections                                   | name                                                                         |
+| `direction`                                                                  | [Optional\<SortDirection>](../../models/components/SortDirection.md)         | :heavy_minus_sign:                                                           | The direction in which to sort the results                                   |                                                                              |

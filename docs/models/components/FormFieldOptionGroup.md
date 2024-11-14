@@ -1,0 +1,10 @@
+# FormFieldOptionGroup
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `id`                                                                             | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | N/A                                                                              | 1234                                                                             |
+| `label`                                                                          | *Optional\<String>*                                                              | :heavy_minus_sign:                                                               | N/A                                                                              | General Channel                                                                  |
+| `options`                                                                        | List\<[SimpleFormFieldOption](../../models/components/SimpleFormFieldOption.md)> | :heavy_minus_sign:                                                               | N/A                                                                              |                                                                                  |

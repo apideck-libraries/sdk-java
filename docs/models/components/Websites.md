@@ -1,0 +1,10 @@
+# Websites
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              | Example                                                                  |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *JsonNullable\<String>*                                                  | :heavy_minus_sign:                                                       | Unique identifier for the website                                        | 12345                                                                    |
+| `url`                                                                    | *String*                                                                 | :heavy_check_mark:                                                       | The website URL                                                          | http://example.com                                                       |
+| `type`                                                                   | [JsonNullable\<ApplicantType>](../../models/components/ApplicantType.md) | :heavy_minus_sign:                                                       | The type of website                                                      | primary                                                                  |

@@ -1,0 +1,12 @@
+# Recipient
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `customerId`                                                     | *Optional\<String>*                                              | :heavy_minus_sign:                                               | N/A                                                              | 12345                                                            |
+| `displayName`                                                    | *Optional\<String>*                                              | :heavy_minus_sign:                                               | N/A                                                              | Elon Musk                                                        |
+| `address`                                                        | [Optional\<Address>](../../models/components/Address.md)         | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `phoneNumber`                                                    | [Optional\<PhoneNumber>](../../models/components/PhoneNumber.md) | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `email`                                                          | [Optional\<Email>](../../models/components/Email.md)             | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |

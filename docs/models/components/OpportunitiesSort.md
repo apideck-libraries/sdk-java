@@ -1,0 +1,9 @@
+# OpportunitiesSort
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      | Example                                                                          |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `by`                                                                             | [Optional\<OpportunitiesSortBy>](../../models/components/OpportunitiesSortBy.md) | :heavy_minus_sign:                                                               | The field on which to sort the Opportunities                                     | created_at                                                                       |
+| `direction`                                                                      | [Optional\<SortDirection>](../../models/components/SortDirection.md)             | :heavy_minus_sign:                                                               | The direction in which to sort the results                                       |                                                                                  |

@@ -1,0 +1,9 @@
+# PurchaseOrdersSort
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `by`                                                                               | [Optional\<PurchaseOrdersSortBy>](../../models/components/PurchaseOrdersSortBy.md) | :heavy_minus_sign:                                                                 | The field on which to sort the Purchase Orders                                     | updated_at                                                                         |
+| `direction`                                                                        | [Optional\<SortDirection>](../../models/components/SortDirection.md)               | :heavy_minus_sign:                                                                 | The direction in which to sort the results                                         |                                                                                    |

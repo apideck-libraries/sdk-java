@@ -40,5 +40,5 @@ java:
     url: https://mit-license.org/
   maxMethodParams: 4
   outputModelSuffix: output
-  projectName: openapi
+  projectName: Apideck Java SDK
   templateVersion: v2

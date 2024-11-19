@@ -2,7 +2,7 @@ speakeasyVersion: 1.441.0
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:3d0d21934c3bc9101b4e11f8dfc4e3d8d583e09e6db3fc7c01f7826d4ccb27b9
+        sourceRevisionDigest: sha256:5fcaa50362e00458a47896573a3fedbb08302396202324d487d4a3363e77a713
         sourceBlobDigest: sha256:1c38d5aab858a76916059a1957fa9342d82404952a32ae0f1920967230d9558b
         tags:
             - latest
@@ -10,10 +10,10 @@ targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:3d0d21934c3bc9101b4e11f8dfc4e3d8d583e09e6db3fc7c01f7826d4ccb27b9
+        sourceRevisionDigest: sha256:5fcaa50362e00458a47896573a3fedbb08302396202324d487d4a3363e77a713
         sourceBlobDigest: sha256:1c38d5aab858a76916059a1957fa9342d82404952a32ae0f1920967230d9558b
         codeSamplesNamespace: apideck-oas-code-samples
-        codeSamplesRevisionDigest: sha256:fe8a3b1426163fca23e90c3b0f59cb7360010914035afbbaf7fd4c7649a3ed28
+        codeSamplesRevisionDigest: sha256:796a5d54dec125b34eb65ea70de6e3c49232b324c1989593ecd4a18b576a6e3d
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -27,6 +27,12 @@ workflow:
         apideck:
             target: java
             source: Apideck-OAS
+            publish:
+                java:
+                    ossrhUsername: WQZzlTg7
+                    ossrhPassword: $ossrh_password
+                    gpgSecretKey: $java_gpg_secret_key
+                    gpgPassPhrase: $java_gpg_passphrase
             codeSamples:
                 registry:
                     location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-code-samples

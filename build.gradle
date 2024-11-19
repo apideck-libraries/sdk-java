@@ -14,6 +14,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'signing'
+    id 'cl.franciscosolis.sonatype-central-upload' version '1.0.3'
 }
 
 compileJava.options.encoding = "UTF-8"
@@ -40,6 +41,7 @@ model {
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
+    archiveBaseName = "unify"
 
     into("META-INF/maven/com.apideck/unify") {
         from("$buildDir/pom.xml")
@@ -61,7 +63,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.apideck"
-version = "0.1.7"
+version = "0.1.9"
 
 sourcesJar {
     archiveBaseName = "unify"
@@ -69,6 +71,27 @@ sourcesJar {
 
 javadocJar {
     archiveBaseName = "unify"
+}
+sonatypeCentralUpload {
+    // This is your Sonatype generated username
+    username = System.getenv("SONATYPE_USERNAME")
+    // This is your sonatype generated password
+    password = System.getenv("SONATYPE_PASSWORD")
+
+    // This is a list of files to upload. Ideally you would point to your jar file, source and javadoc jar (required by central)
+    archives = files(
+      "$buildDir/libs/unify-${version}.jar",
+      "$buildDir/libs/unify-${version}-sources.jar",
+      "$buildDir/libs/unify-${version}-javadoc.jar"
+    )
+
+    // This is the pom file to upload. This is required by central
+    pom = file("$buildDir/pom.xml")
+
+    // This is your PGP private key. This is required to sign your files
+    signingKey = System.getenv("SONATYPE_SIGNING_KEY")
+    // This is your PGP private key passphrase to decrypt your private key
+    signingKeyPassphrase = System.getenv("SIGNING_KEY_PASSPHRASE")
 }
 
 
@@ -78,7 +101,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.apideck'
             artifactId = 'unify'
-            version = '0.1.7'
+            version = '0.1.9'
 
             from components.java
 

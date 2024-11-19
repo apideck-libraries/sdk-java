@@ -5,8 +5,9 @@ management:
   docVersion: 10.8.1
   speakeasyVersion: 1.441.0
   generationVersion: 2.460.1
-  releaseVersion: 0.1.7
-  configChecksum: ec1dcf500e6f43536fa5917c20bb0dcb
+  releaseVersion: 0.1.9
+  configChecksum: 8ed7b47c94c387a18700e47d4c1289f1
+  published: true
 features:
   java:
     acceptHeaders: 2.81.2

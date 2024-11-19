@@ -61,7 +61,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.apideck"
-version = "0.1.6"
+version = "0.1.7"
 
 sourcesJar {
     archiveBaseName = "unify"
@@ -78,34 +78,34 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.apideck'
             artifactId = 'unify'
-            version = '0.1.6'
+            version = '0.1.7'
 
             from components.java
 
             pom {
-                name = 'My Company Java SDK'
-                description = 'SDK enabling Java developers to easily integrate with the My Company API.'
-                url = 'https://github.com/owner/repo'
+                name = 'Apideck Java SDK'
+                description = 'SDK enabling Java developers to easily integrate with the Apideck API.'
+                url = 'https://github.com/apideck-libraries/sdk-java'
                 scm {
-                    url = 'github.com/owner/repo'
-                    connection = 'scm:git:ssh://git@github.com/owner/repo.git'
+                    url = 'github.com/apideck-libraries/sdk-java'
+                    connection = 'scm:git:ssh://git@github.com/apideck-libraries/sdk-java.git'
                 }
                 licenses {
                     license {
-                        name = 'The MIT License (MIT)'
-                        url = 'https://mit-license.org/'
+                        name = 'Apache 2.0'
+                        url = 'https://www.apache.org/licenses/LICENSE-2.0.html'
                     }
                 }
                 developers {
                     developer {
-                        name = 'My Company'
-                        organization = 'My Company'
-                        email = 'info@mycompany.com'
+                        name = 'Apideck'
+                        organization = 'Apideck'
+                        email = 'support@apideck.com'
                     }
                 }
                 organization {
-                    name = 'My Company'
-                    url = 'www.mycompany.com'
+                    name = 'Apideck'
+                    url = 'www.apideck.com'
                 }
             }
         }

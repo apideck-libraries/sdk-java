@@ -10,6 +10,12 @@ targets:
     apideck:
         target: java
         source: Apideck-OAS
+        publish:
+            java:
+                ossrhUsername: WQZzlTg7
+                ossrhPassword: $ossrh_password
+                gpgSecretKey: $java_gpg_secret_key
+                gpgPassPhrase: $java_gpg_passphrase
         codeSamples:
             registry:
                 location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas-code-samples

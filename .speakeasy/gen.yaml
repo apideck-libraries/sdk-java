@@ -13,17 +13,17 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.1.6
+  version: 0.1.7
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
   clientServerStatusCodesAsErrors: true
-  companyEmail: info@mycompany.com
-  companyName: My Company
-  companyURL: www.mycompany.com
+  companyEmail: support@apideck.com
+  companyName: Apideck
+  companyURL: www.apideck.com
   defaultErrorName: APIException
   flattenGlobalSecurity: true
-  githubURL: github.com/owner/repo
+  githubURL: github.com/apideck-libraries/sdk-java
   groupID: com.apideck
   imports:
     option: openapi
@@ -35,9 +35,8 @@ java:
       webhooks: models/webhooks
   inputModelSuffix: input
   license:
-    name: The MIT License (MIT)
-    shortName: MIT
-    url: https://mit-license.org/
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
   maxMethodParams: 4
   outputModelSuffix: output
   projectName: Apideck

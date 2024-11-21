@@ -105,7 +105,7 @@ public class CreateCallback implements
                 new TypeReference<VaultCreateCallbackStateRequest>() {});
         SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
                 _convertedRequest, 
-                "createCallbackStateData",
+                "createCallbackState",
                 "json",
                 false);
         if (_serializedRequestBody == null) {

@@ -18,7 +18,7 @@ This endpoint creates a callback state that can be used to issue requests to the
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreateCallbackStateData;
+import com.apideck.unify.models.components.CreateCallbackState;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -41,7 +41,7 @@ public class Application {
         VaultCreateCallbackStateRequest req = VaultCreateCallbackStateRequest.builder()
                 .serviceId("pipedrive")
                 .unifiedApi("crm")
-                .createCallbackStateData(CreateCallbackStateData.builder()
+                .createCallbackState(CreateCallbackState.builder()
                     .redirectUri("https://example.com/callback")
                     .build())
                 .build();

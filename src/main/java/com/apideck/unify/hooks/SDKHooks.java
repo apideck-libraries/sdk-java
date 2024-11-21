@@ -19,6 +19,13 @@ public final class SDKHooks {
         // https://www.speakeasy.com/docs/additional-features/sdk-hooks
         AuthHook authHook = new AuthHook();
         hooks.registerBeforeRequest(authHook);
+
+        // Register telemetry hooks
+        Telemetry telemetryHook = new Telemetry();
+        hooks.registerBeforeRequest(telemetryHook);
+        hooks.registerAfterSuccess(telemetryHook);
+        hooks.registerAfterError(telemetryHook);
+        hooks.registerSdkInit(telemetryHook);
     }
     
 }

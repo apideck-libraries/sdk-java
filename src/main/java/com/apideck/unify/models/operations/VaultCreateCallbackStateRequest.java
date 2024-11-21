@@ -5,7 +5,7 @@
 package com.apideck.unify.models.operations;
 
 
-import com.apideck.unify.models.components.CreateCallbackStateData;
+import com.apideck.unify.models.components.CreateCallbackState;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -46,7 +46,7 @@ public class VaultCreateCallbackStateRequest {
      * Callback state data
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CreateCallbackStateData createCallbackStateData;
+    private CreateCallbackState createCallbackState;
 
     @JsonCreator
     public VaultCreateCallbackStateRequest(
@@ -54,24 +54,24 @@ public class VaultCreateCallbackStateRequest {
             Optional<String> appId,
             String serviceId,
             String unifiedApi,
-            CreateCallbackStateData createCallbackStateData) {
+            CreateCallbackState createCallbackState) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(createCallbackStateData, "createCallbackStateData");
+        Utils.checkNotNull(createCallbackState, "createCallbackState");
         this.customerId = customerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.unifiedApi = unifiedApi;
-        this.createCallbackStateData = createCallbackStateData;
+        this.createCallbackState = createCallbackState;
     }
     
     public VaultCreateCallbackStateRequest(
             String serviceId,
             String unifiedApi,
-            CreateCallbackStateData createCallbackStateData) {
-        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi, createCallbackStateData);
+            CreateCallbackState createCallbackState) {
+        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi, createCallbackState);
     }
 
     /**
@@ -110,8 +110,8 @@ public class VaultCreateCallbackStateRequest {
      * Callback state data
      */
     @JsonIgnore
-    public CreateCallbackStateData createCallbackStateData() {
-        return createCallbackStateData;
+    public CreateCallbackState createCallbackState() {
+        return createCallbackState;
     }
 
     public final static Builder builder() {
@@ -175,9 +175,9 @@ public class VaultCreateCallbackStateRequest {
     /**
      * Callback state data
      */
-    public VaultCreateCallbackStateRequest withCreateCallbackStateData(CreateCallbackStateData createCallbackStateData) {
-        Utils.checkNotNull(createCallbackStateData, "createCallbackStateData");
-        this.createCallbackStateData = createCallbackStateData;
+    public VaultCreateCallbackStateRequest withCreateCallbackState(CreateCallbackState createCallbackState) {
+        Utils.checkNotNull(createCallbackState, "createCallbackState");
+        this.createCallbackState = createCallbackState;
         return this;
     }
     
@@ -195,7 +195,7 @@ public class VaultCreateCallbackStateRequest {
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.createCallbackStateData, other.createCallbackStateData);
+            Objects.deepEquals(this.createCallbackState, other.createCallbackState);
     }
     
     @Override
@@ -205,7 +205,7 @@ public class VaultCreateCallbackStateRequest {
             appId,
             serviceId,
             unifiedApi,
-            createCallbackStateData);
+            createCallbackState);
     }
     
     @Override
@@ -215,7 +215,7 @@ public class VaultCreateCallbackStateRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "unifiedApi", unifiedApi,
-                "createCallbackStateData", createCallbackStateData);
+                "createCallbackState", createCallbackState);
     }
     
     public final static class Builder {
@@ -228,7 +228,7 @@ public class VaultCreateCallbackStateRequest {
  
         private String unifiedApi;
  
-        private CreateCallbackStateData createCallbackStateData;  
+        private CreateCallbackState createCallbackState;  
         
         private Builder() {
           // force use of static builder() method
@@ -291,9 +291,9 @@ public class VaultCreateCallbackStateRequest {
         /**
          * Callback state data
          */
-        public Builder createCallbackStateData(CreateCallbackStateData createCallbackStateData) {
-            Utils.checkNotNull(createCallbackStateData, "createCallbackStateData");
-            this.createCallbackStateData = createCallbackStateData;
+        public Builder createCallbackState(CreateCallbackState createCallbackState) {
+            Utils.checkNotNull(createCallbackState, "createCallbackState");
+            this.createCallbackState = createCallbackState;
             return this;
         }
         
@@ -303,7 +303,7 @@ public class VaultCreateCallbackStateRequest {
                 appId,
                 serviceId,
                 unifiedApi,
-                createCallbackStateData);
+                createCallbackState);
         }
     }
 }

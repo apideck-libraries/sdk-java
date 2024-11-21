@@ -1,19 +1,20 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 1fa9ac07d9488b4560106fd276a96436
+  docChecksum: 4334ffef2795f1c48280e812833dd9d6
   docVersion: 10.8.1
-  speakeasyVersion: 1.441.0
-  generationVersion: 2.460.1
-  releaseVersion: 0.1.10
-  configChecksum: c529a8b519a52d33d918c75b01ebc58e
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 0.1.11
+  configChecksum: 0d394cc616383dc04582e7feca08cdf8
+  repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.0
+    core: 3.32.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -179,7 +180,7 @@ generatedFiles:
   - docs/models/components/CreateApplicationResponse.md
   - docs/models/components/CreateBillPaymentResponse.md
   - docs/models/components/CreateBillResponse.md
-  - docs/models/components/CreateCallbackStateData.md
+  - docs/models/components/CreateCallbackState.md
   - docs/models/components/CreateCallbackStateResponse.md
   - docs/models/components/CreateCallbackStateResponseData.md
   - docs/models/components/CreateCommentResponse.md
@@ -1876,7 +1877,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CreateApplicationResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateBillPaymentResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateBillResponse.java
-  - src/main/java/com/apideck/unify/models/components/CreateCallbackStateData.java
+  - src/main/java/com/apideck/unify/models/components/CreateCallbackState.java
   - src/main/java/com/apideck/unify/models/components/CreateCallbackStateResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateCallbackStateResponseData.java
   - src/main/java/com/apideck/unify/models/components/CreateCommentResponse.java

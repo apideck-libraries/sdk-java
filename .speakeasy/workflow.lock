@@ -1,26 +1,27 @@
-speakeasyVersion: 1.441.0
+speakeasyVersion: 1.441.1
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:35808afc5f844ae2e41376c099e4c3a8814d758138546c8b94477abb687f0658
-        sourceBlobDigest: sha256:1c38d5aab858a76916059a1957fa9342d82404952a32ae0f1920967230d9558b
+        sourceRevisionDigest: sha256:785baf18a95e4ada6d6fd933c1693d8dc6ed51965dddd46c0d266e1f36c864f3
+        sourceBlobDigest: sha256:a248ccbdea4f8606afcaed86823f9e6e528a382fba0f616317d16ebda61acf5a
         tags:
             - latest
+            - speakeasy-sdk-regen-1732113447
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:35808afc5f844ae2e41376c099e4c3a8814d758138546c8b94477abb687f0658
-        sourceBlobDigest: sha256:1c38d5aab858a76916059a1957fa9342d82404952a32ae0f1920967230d9558b
+        sourceRevisionDigest: sha256:785baf18a95e4ada6d6fd933c1693d8dc6ed51965dddd46c0d266e1f36c864f3
+        sourceBlobDigest: sha256:a248ccbdea4f8606afcaed86823f9e6e528a382fba0f616317d16ebda61acf5a
         codeSamplesNamespace: apideck-oas-code-samples
-        codeSamplesRevisionDigest: sha256:cf1812157192f7c1de5cb8339d40947a0461d451d708cd0456cb55ce3755c6db
+        codeSamplesRevisionDigest: sha256:dccf01e89633bc1e21a30a5c930237861d8d74d047c7b03114537c926f6841f3
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
         Apideck-OAS:
             inputs:
-                - location: ../unify/speakeasy-spec.yml
+                - location: https://ci-spec-unify.s3.eu-central-1.amazonaws.com/speakeasy-spec.yml
             registry:
                 location: registry.speakeasyapi.dev/apideck-k2o/apideck/apideck-oas
     targets:

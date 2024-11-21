@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-public class CreateCallbackStateData {
+public class CreateCallbackState {
 
     /**
      * The redirect URI to be used after the connection is created.
@@ -27,13 +27,13 @@ public class CreateCallbackStateData {
     private Optional<String> redirectUri;
 
     @JsonCreator
-    public CreateCallbackStateData(
+    public CreateCallbackState(
             @JsonProperty("redirect_uri") Optional<String> redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
         this.redirectUri = redirectUri;
     }
     
-    public CreateCallbackStateData() {
+    public CreateCallbackState() {
         this(Optional.empty());
     }
 
@@ -52,7 +52,7 @@ public class CreateCallbackStateData {
     /**
      * The redirect URI to be used after the connection is created.
      */
-    public CreateCallbackStateData withRedirectUri(String redirectUri) {
+    public CreateCallbackState withRedirectUri(String redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
         this.redirectUri = Optional.ofNullable(redirectUri);
         return this;
@@ -61,7 +61,7 @@ public class CreateCallbackStateData {
     /**
      * The redirect URI to be used after the connection is created.
      */
-    public CreateCallbackStateData withRedirectUri(Optional<String> redirectUri) {
+    public CreateCallbackState withRedirectUri(Optional<String> redirectUri) {
         Utils.checkNotNull(redirectUri, "redirectUri");
         this.redirectUri = redirectUri;
         return this;
@@ -75,7 +75,7 @@ public class CreateCallbackStateData {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCallbackStateData other = (CreateCallbackStateData) o;
+        CreateCallbackState other = (CreateCallbackState) o;
         return 
             Objects.deepEquals(this.redirectUri, other.redirectUri);
     }
@@ -88,7 +88,7 @@ public class CreateCallbackStateData {
     
     @Override
     public String toString() {
-        return Utils.toString(CreateCallbackStateData.class,
+        return Utils.toString(CreateCallbackState.class,
                 "redirectUri", redirectUri);
     }
     
@@ -118,8 +118,8 @@ public class CreateCallbackStateData {
             return this;
         }
         
-        public CreateCallbackStateData build() {
-            return new CreateCallbackStateData(
+        public CreateCallbackState build() {
+            return new CreateCallbackState(
                 redirectUri);
         }
     }

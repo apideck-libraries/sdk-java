@@ -31,7 +31,7 @@ public class AccountingPaymentsAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -51,17 +51,17 @@ public class AccountingPaymentsAddRequest {
     @JsonCreator
     public AccountingPaymentsAddRequest(
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             PaymentInput payment) {
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(payment, "payment");
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.payment = payment;
@@ -84,8 +84,8 @@ public class AccountingPaymentsAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -134,18 +134,18 @@ public class AccountingPaymentsAddRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingPaymentsAddRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public AccountingPaymentsAddRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingPaymentsAddRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public AccountingPaymentsAddRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -202,7 +202,7 @@ public class AccountingPaymentsAddRequest {
         AccountingPaymentsAddRequest other = (AccountingPaymentsAddRequest) o;
         return 
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.payment, other.payment);
@@ -212,7 +212,7 @@ public class AccountingPaymentsAddRequest {
     public int hashCode() {
         return Objects.hash(
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             payment);
@@ -222,7 +222,7 @@ public class AccountingPaymentsAddRequest {
     public String toString() {
         return Utils.toString(AccountingPaymentsAddRequest.class,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "payment", payment);
@@ -232,7 +232,7 @@ public class AccountingPaymentsAddRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -265,18 +265,18 @@ public class AccountingPaymentsAddRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -327,7 +327,7 @@ public class AccountingPaymentsAddRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new AccountingPaymentsAddRequest(
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 payment);

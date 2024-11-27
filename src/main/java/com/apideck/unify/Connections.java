@@ -107,7 +107,7 @@ public class Connections implements
      * to build an integrations page where your users can install integrations.
      * OAuth2 supported integrations will contain authorize and revoke links to handle the authentication flows.
      * 
-     * @param customerId ID of the consumer which you want to get or push data from
+     * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param api Scope results to Unified API
      * @param configured Scopes results to connections that have been configured or not
@@ -116,7 +116,7 @@ public class Connections implements
      * @throws Exception if the API call fails
      */
     public VaultConnectionsAllResponse list(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> api,
             Optional<Boolean> configured,
@@ -128,7 +128,7 @@ public class Connections implements
         VaultConnectionsAllRequest request =
             VaultConnectionsAllRequest
                 .builder()
-                .customerId(customerId)
+                .consumerId(consumerId)
                 .appId(appId)
                 .api(api)
                 .configured(configured)
@@ -366,7 +366,7 @@ public class Connections implements
     /**
      * Get connection
      * Get a connection
-     * @param customerId ID of the consumer which you want to get or push data from
+     * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
@@ -375,7 +375,7 @@ public class Connections implements
      * @throws Exception if the API call fails
      */
     public VaultConnectionsOneResponse get(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String serviceId,
             String unifiedApi,
@@ -387,7 +387,7 @@ public class Connections implements
         VaultConnectionsOneRequest request =
             VaultConnectionsOneRequest
                 .builder()
-                .customerId(customerId)
+                .consumerId(consumerId)
                 .appId(appId)
                 .serviceId(serviceId)
                 .unifiedApi(unifiedApi)
@@ -874,7 +874,7 @@ public class Connections implements
     /**
      * Deletes a connection
      * Deletes a connection
-     * @param customerId ID of the consumer which you want to get or push data from
+     * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param serviceId Service ID of the resource to return
      * @param unifiedApi Unified API
@@ -883,7 +883,7 @@ public class Connections implements
      * @throws Exception if the API call fails
      */
     public VaultConnectionsDeleteResponse delete(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String serviceId,
             String unifiedApi,
@@ -895,7 +895,7 @@ public class Connections implements
         VaultConnectionsDeleteRequest request =
             VaultConnectionsDeleteRequest
                 .builder()
-                .customerId(customerId)
+                .consumerId(consumerId)
                 .appId(appId)
                 .serviceId(serviceId)
                 .unifiedApi(unifiedApi)
@@ -1099,7 +1099,7 @@ public class Connections implements
      * 
      * @return The call builder
      */
-    public VaultConnectionsImportRequestBuilder import_() {
+    public VaultConnectionsImportRequestBuilder imports() {
         return new VaultConnectionsImportRequestBuilder(this);
     }
 
@@ -1111,9 +1111,9 @@ public class Connections implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsImportResponse import_(
+    public VaultConnectionsImportResponse imports(
             VaultConnectionsImportRequest request) throws Exception {
-        return import_(request, Optional.empty());
+        return imports(request, Optional.empty());
     }
     
     /**
@@ -1125,7 +1125,7 @@ public class Connections implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsImportResponse import_(
+    public VaultConnectionsImportResponse imports(
             VaultConnectionsImportRequest request,
             Optional<Options> options) throws Exception {
 

@@ -30,7 +30,7 @@ public class FileStorageFilesSearchRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -79,7 +79,7 @@ public class FileStorageFilesSearchRequest {
 
     @JsonCreator
     public FileStorageFilesSearchRequest(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<? extends Map<String, Object>> passThrough,
@@ -88,7 +88,7 @@ public class FileStorageFilesSearchRequest {
             Optional<Long> limit,
             Optional<? extends FilesFilter> filter,
             FilesSearch filesSearch) {
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(passThrough, "passThrough");
@@ -97,7 +97,7 @@ public class FileStorageFilesSearchRequest {
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(filesSearch, "filesSearch");
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.passThrough = passThrough;
@@ -117,8 +117,8 @@ public class FileStorageFilesSearchRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -191,18 +191,18 @@ public class FileStorageFilesSearchRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFilesSearchRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public FileStorageFilesSearchRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFilesSearchRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public FileStorageFilesSearchRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -348,7 +348,7 @@ public class FileStorageFilesSearchRequest {
         }
         FileStorageFilesSearchRequest other = (FileStorageFilesSearchRequest) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
@@ -362,7 +362,7 @@ public class FileStorageFilesSearchRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            customerId,
+            consumerId,
             appId,
             serviceId,
             passThrough,
@@ -376,7 +376,7 @@ public class FileStorageFilesSearchRequest {
     @Override
     public String toString() {
         return Utils.toString(FileStorageFilesSearchRequest.class,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "passThrough", passThrough,
@@ -389,7 +389,7 @@ public class FileStorageFilesSearchRequest {
     
     public final static class Builder {
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -414,18 +414,18 @@ public class FileStorageFilesSearchRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -565,7 +565,7 @@ public class FileStorageFilesSearchRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }            return new FileStorageFilesSearchRequest(
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 passThrough,

@@ -37,7 +37,7 @@ public class IssueTrackingCollectionUsersOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -67,21 +67,21 @@ public class IssueTrackingCollectionUsersOneRequest {
     public IssueTrackingCollectionUsersOneRequest(
             String collectionId,
             String id,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
             JsonNullable<String> fields) {
         Utils.checkNotNull(collectionId, "collectionId");
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         this.collectionId = collectionId;
         this.id = id;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
@@ -114,8 +114,8 @@ public class IssueTrackingCollectionUsersOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -175,18 +175,18 @@ public class IssueTrackingCollectionUsersOneRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionUsersOneRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public IssueTrackingCollectionUsersOneRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionUsersOneRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public IssueTrackingCollectionUsersOneRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -274,7 +274,7 @@ public class IssueTrackingCollectionUsersOneRequest {
         return 
             Objects.deepEquals(this.collectionId, other.collectionId) &&
             Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.raw, other.raw) &&
@@ -286,7 +286,7 @@ public class IssueTrackingCollectionUsersOneRequest {
         return Objects.hash(
             collectionId,
             id,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             raw,
@@ -298,7 +298,7 @@ public class IssueTrackingCollectionUsersOneRequest {
         return Utils.toString(IssueTrackingCollectionUsersOneRequest.class,
                 "collectionId", collectionId,
                 "id", id,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
@@ -311,7 +311,7 @@ public class IssueTrackingCollectionUsersOneRequest {
  
         private String id;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -346,18 +346,18 @@ public class IssueTrackingCollectionUsersOneRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -439,7 +439,7 @@ public class IssueTrackingCollectionUsersOneRequest {
             }            return new IssueTrackingCollectionUsersOneRequest(
                 collectionId,
                 id,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 raw,

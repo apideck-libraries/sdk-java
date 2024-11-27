@@ -32,7 +32,7 @@ public class FileStorageFoldersAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -58,19 +58,19 @@ public class FileStorageFoldersAddRequest {
     @JsonCreator
     public FileStorageFoldersAddRequest(
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             JsonNullable<String> fields,
             CreateFolderRequest createFolderRequest) {
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(createFolderRequest, "createFolderRequest");
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.fields = fields;
@@ -94,8 +94,8 @@ public class FileStorageFoldersAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -152,18 +152,18 @@ public class FileStorageFoldersAddRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFoldersAddRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public FileStorageFoldersAddRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFoldersAddRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public FileStorageFoldersAddRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -238,7 +238,7 @@ public class FileStorageFoldersAddRequest {
         FileStorageFoldersAddRequest other = (FileStorageFoldersAddRequest) o;
         return 
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.fields, other.fields) &&
@@ -249,7 +249,7 @@ public class FileStorageFoldersAddRequest {
     public int hashCode() {
         return Objects.hash(
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             fields,
@@ -260,7 +260,7 @@ public class FileStorageFoldersAddRequest {
     public String toString() {
         return Utils.toString(FileStorageFoldersAddRequest.class,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "fields", fields,
@@ -271,7 +271,7 @@ public class FileStorageFoldersAddRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -306,18 +306,18 @@ public class FileStorageFoldersAddRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -386,7 +386,7 @@ public class FileStorageFoldersAddRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new FileStorageFoldersAddRequest(
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 fields,

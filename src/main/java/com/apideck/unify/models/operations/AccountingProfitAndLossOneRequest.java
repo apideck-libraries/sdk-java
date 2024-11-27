@@ -35,7 +35,7 @@ public class AccountingProfitAndLossOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -70,21 +70,21 @@ public class AccountingProfitAndLossOneRequest {
     @JsonCreator
     public AccountingProfitAndLossOneRequest(
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<? extends ProfitAndLossFilter> filter,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.filter = filter;
@@ -108,8 +108,8 @@ public class AccountingProfitAndLossOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -179,18 +179,18 @@ public class AccountingProfitAndLossOneRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingProfitAndLossOneRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public AccountingProfitAndLossOneRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingProfitAndLossOneRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public AccountingProfitAndLossOneRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -295,7 +295,7 @@ public class AccountingProfitAndLossOneRequest {
         AccountingProfitAndLossOneRequest other = (AccountingProfitAndLossOneRequest) o;
         return 
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.filter, other.filter) &&
@@ -307,7 +307,7 @@ public class AccountingProfitAndLossOneRequest {
     public int hashCode() {
         return Objects.hash(
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             filter,
@@ -319,7 +319,7 @@ public class AccountingProfitAndLossOneRequest {
     public String toString() {
         return Utils.toString(AccountingProfitAndLossOneRequest.class,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "filter", filter,
@@ -331,7 +331,7 @@ public class AccountingProfitAndLossOneRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -368,18 +368,18 @@ public class AccountingProfitAndLossOneRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -478,7 +478,7 @@ public class AccountingProfitAndLossOneRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new AccountingProfitAndLossOneRequest(
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 filter,

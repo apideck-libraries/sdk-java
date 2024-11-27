@@ -75,7 +75,7 @@ public class CustomMappings implements
     /**
      * List custom mappings
      * This endpoint returns a list of custom mappings.
-     * @param customerId ID of the consumer which you want to get or push data from
+     * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param unifiedApi Unified API
      * @param serviceId Service ID of the resource to return
@@ -84,7 +84,7 @@ public class CustomMappings implements
      * @throws Exception if the API call fails
      */
     public VaultCustomMappingsAllResponse list(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String unifiedApi,
             String serviceId,
@@ -96,7 +96,7 @@ public class CustomMappings implements
         VaultCustomMappingsAllRequest request =
             VaultCustomMappingsAllRequest
                 .builder()
-                .customerId(customerId)
+                .consumerId(consumerId)
                 .appId(appId)
                 .unifiedApi(unifiedApi)
                 .serviceId(serviceId)

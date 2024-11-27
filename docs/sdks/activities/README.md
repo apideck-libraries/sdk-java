@@ -42,18 +42,14 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         CrmActivitiesAllRequest req = CrmActivitiesAllRequest.builder()
                 .serviceId("salesforce")
                 .filter(ActivitiesFilter.builder()
-                    .companyId("1234")
-                    .ownerId("1234")
-                    .contactId("1234")
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .type("Task")
                     .build())
                 .sort(ActivitiesSort.builder()
                     .by(ActivitiesSortBy.CREATED_AT)
@@ -134,7 +130,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -295,7 +291,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -376,7 +372,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -540,7 +536,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

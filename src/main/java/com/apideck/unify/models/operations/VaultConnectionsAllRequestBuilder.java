@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class VaultConnectionsAllRequestBuilder {
 
-    private Optional<String> customerId = Optional.empty();
+    private Optional<String> consumerId = Optional.empty();
     private Optional<String> appId = Optional.empty();
     private Optional<String> api = Optional.empty();
     private Optional<Boolean> configured = Optional.empty();
@@ -24,15 +24,15 @@ public class VaultConnectionsAllRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public VaultConnectionsAllRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.of(customerId);
+    public VaultConnectionsAllRequestBuilder consumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.of(consumerId);
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder customerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultConnectionsAllRequestBuilder consumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
                 
@@ -89,7 +89,7 @@ public class VaultConnectionsAllRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
-            customerId,
+            consumerId,
             appId,
             api,
             configured,

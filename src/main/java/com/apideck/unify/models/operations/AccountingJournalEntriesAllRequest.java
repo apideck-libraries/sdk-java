@@ -37,7 +37,7 @@ public class AccountingJournalEntriesAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -90,7 +90,7 @@ public class AccountingJournalEntriesAllRequest {
     @JsonCreator
     public AccountingJournalEntriesAllRequest(
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             JsonNullable<String> cursor,
@@ -100,7 +100,7 @@ public class AccountingJournalEntriesAllRequest {
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(cursor, "cursor");
@@ -110,7 +110,7 @@ public class AccountingJournalEntriesAllRequest {
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.cursor = cursor;
@@ -137,8 +137,8 @@ public class AccountingJournalEntriesAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -233,18 +233,18 @@ public class AccountingJournalEntriesAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingJournalEntriesAllRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public AccountingJournalEntriesAllRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingJournalEntriesAllRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public AccountingJournalEntriesAllRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -403,7 +403,7 @@ public class AccountingJournalEntriesAllRequest {
         AccountingJournalEntriesAllRequest other = (AccountingJournalEntriesAllRequest) o;
         return 
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.cursor, other.cursor) &&
@@ -418,7 +418,7 @@ public class AccountingJournalEntriesAllRequest {
     public int hashCode() {
         return Objects.hash(
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             cursor,
@@ -433,7 +433,7 @@ public class AccountingJournalEntriesAllRequest {
     public String toString() {
         return Utils.toString(AccountingJournalEntriesAllRequest.class,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "cursor", cursor,
@@ -448,7 +448,7 @@ public class AccountingJournalEntriesAllRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -491,18 +491,18 @@ public class AccountingJournalEntriesAllRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -658,7 +658,7 @@ public class AccountingJournalEntriesAllRequest {
                 limit = _SINGLETON_VALUE_Limit.value();
             }            return new AccountingJournalEntriesAllRequest(
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 cursor,

@@ -40,7 +40,7 @@ public class HrisEmployeeSchedulesAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -70,21 +70,21 @@ public class HrisEmployeeSchedulesAllRequest {
     public HrisEmployeeSchedulesAllRequest(
             String employeeId,
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(employeeId, "employeeId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
         this.employeeId = employeeId;
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.passThrough = passThrough;
@@ -116,8 +116,8 @@ public class HrisEmployeeSchedulesAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -187,18 +187,18 @@ public class HrisEmployeeSchedulesAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeeSchedulesAllRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public HrisEmployeeSchedulesAllRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeeSchedulesAllRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public HrisEmployeeSchedulesAllRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -286,7 +286,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return 
             Objects.deepEquals(this.employeeId, other.employeeId) &&
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
@@ -298,7 +298,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return Objects.hash(
             employeeId,
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             passThrough,
@@ -310,7 +310,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return Utils.toString(HrisEmployeeSchedulesAllRequest.class,
                 "employeeId", employeeId,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "passThrough", passThrough,
@@ -323,7 +323,7 @@ public class HrisEmployeeSchedulesAllRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -367,18 +367,18 @@ public class HrisEmployeeSchedulesAllRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -460,7 +460,7 @@ public class HrisEmployeeSchedulesAllRequest {
             }            return new HrisEmployeeSchedulesAllRequest(
                 employeeId,
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 passThrough,

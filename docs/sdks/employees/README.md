@@ -42,7 +42,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -128,7 +128,6 @@ import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -156,7 +155,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -269,10 +268,8 @@ public class Application {
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(
@@ -429,7 +426,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -504,7 +501,6 @@ import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -533,7 +529,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -647,10 +643,8 @@ public class Application {
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(
@@ -807,7 +801,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

@@ -18,6 +18,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.BalanceSheetFilter;
+import com.apideck.unify.models.components.PeriodType;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -34,7 +35,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -45,6 +46,8 @@ public class Application {
                 .filter(BalanceSheetFilter.builder()
                     .startDate("2021-01-01")
                     .endDate("2021-12-31")
+                    .periodCount(3L)
+                    .periodType(PeriodType.MONTH)
                     .build())
                 .build();
 

@@ -33,7 +33,7 @@ public class VaultLogsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * Filter results
@@ -56,17 +56,17 @@ public class VaultLogsAllRequest {
     @JsonCreator
     public VaultLogsAllRequest(
             Optional<String> appId,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<? extends LogsFilter> filter,
             JsonNullable<String> cursor,
             Optional<Long> limit) {
         Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         this.appId = appId;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.filter = filter;
         this.cursor = cursor;
         this.limit = limit;
@@ -88,8 +88,8 @@ public class VaultLogsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -142,18 +142,18 @@ public class VaultLogsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultLogsAllRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public VaultLogsAllRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultLogsAllRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultLogsAllRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -222,7 +222,7 @@ public class VaultLogsAllRequest {
         VaultLogsAllRequest other = (VaultLogsAllRequest) o;
         return 
             Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.filter, other.filter) &&
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit);
@@ -232,7 +232,7 @@ public class VaultLogsAllRequest {
     public int hashCode() {
         return Objects.hash(
             appId,
-            customerId,
+            consumerId,
             filter,
             cursor,
             limit);
@@ -242,7 +242,7 @@ public class VaultLogsAllRequest {
     public String toString() {
         return Utils.toString(VaultLogsAllRequest.class,
                 "appId", appId,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "filter", filter,
                 "cursor", cursor,
                 "limit", limit);
@@ -252,7 +252,7 @@ public class VaultLogsAllRequest {
  
         private Optional<String> appId = Optional.empty();
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<? extends LogsFilter> filter = Optional.empty();
  
@@ -285,18 +285,18 @@ public class VaultLogsAllRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -359,7 +359,7 @@ public class VaultLogsAllRequest {
                 limit = _SINGLETON_VALUE_Limit.value();
             }            return new VaultLogsAllRequest(
                 appId,
-                customerId,
+                consumerId,
                 filter,
                 cursor,
                 limit);

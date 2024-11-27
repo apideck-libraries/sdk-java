@@ -30,7 +30,7 @@ public class AccountingBillsDeleteRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -53,17 +53,17 @@ public class AccountingBillsDeleteRequest {
     @JsonCreator
     public AccountingBillsDeleteRequest(
             String id,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw) {
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         this.id = id;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
@@ -86,8 +86,8 @@ public class AccountingBillsDeleteRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -130,18 +130,18 @@ public class AccountingBillsDeleteRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingBillsDeleteRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public AccountingBillsDeleteRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingBillsDeleteRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public AccountingBillsDeleteRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -210,7 +210,7 @@ public class AccountingBillsDeleteRequest {
         AccountingBillsDeleteRequest other = (AccountingBillsDeleteRequest) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.raw, other.raw);
@@ -220,7 +220,7 @@ public class AccountingBillsDeleteRequest {
     public int hashCode() {
         return Objects.hash(
             id,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             raw);
@@ -230,7 +230,7 @@ public class AccountingBillsDeleteRequest {
     public String toString() {
         return Utils.toString(AccountingBillsDeleteRequest.class,
                 "id", id,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw);
@@ -240,7 +240,7 @@ public class AccountingBillsDeleteRequest {
  
         private String id;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -264,18 +264,18 @@ public class AccountingBillsDeleteRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -338,7 +338,7 @@ public class AccountingBillsDeleteRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new AccountingBillsDeleteRequest(
                 id,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 raw);

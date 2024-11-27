@@ -39,10 +39,6 @@ public class Apideck {
 
     private final Hris hris;
 
-    private final Lead lead;
-
-    private final Pos pos;
-
     private final Sms sms;
 
     private final IssueTracking issueTracking;
@@ -75,14 +71,6 @@ public class Apideck {
 
     public Hris hris() {
         return hris;
-    }
-
-    public Lead lead() {
-        return lead;
-    }
-
-    public Pos pos() {
-        return pos;
     }
 
     public Sms sms() {
@@ -196,17 +184,17 @@ public class Apideck {
             return this;
         }
         /**
-         * Allows setting the customerId parameter for all supported operations.
+         * Allows setting the consumerId parameter for all supported operations.
          *
-         * @param customerId The value to set.
+         * @param consumerId The value to set.
          * @return The builder instance.
          */
-        public Builder customerId(String customerId) {
+        public Builder consumerId(String consumerId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
                 this.sdkConfiguration.globals.get("parameters").put("header", new java.util.HashMap<>());
             }
 
-            this.sdkConfiguration.globals.get("parameters").get("header").put("customerId", customerId);
+            this.sdkConfiguration.globals.get("parameters").get("header").put("consumerId", consumerId);
 
             return this;
         }
@@ -270,8 +258,6 @@ public class Apideck {
         this.ecommerce = new Ecommerce(sdkConfiguration);
         this.fileStorage = new FileStorage(sdkConfiguration);
         this.hris = new Hris(sdkConfiguration);
-        this.lead = new Lead(sdkConfiguration);
-        this.pos = new Pos(sdkConfiguration);
         this.sms = new Sms(sdkConfiguration);
         this.issueTracking = new IssueTracking(sdkConfiguration);
         this.connector = new Connector(sdkConfiguration);

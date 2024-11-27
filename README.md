@@ -20,14 +20,19 @@ For more information about the API: [Apideck Developer Docs](https://developers.
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [openapi](#openapi)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Authentication](#authentication)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -41,7 +46,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.1.12'
+implementation 'com.apideck:unify:0.2.0'
 ```
 
 Maven:
@@ -49,7 +54,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.1.12</version>
+    <version>0.2.0</version>
 </dependency>
 ```
 
@@ -94,7 +99,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -565,93 +570,6 @@ public class Application {
 * [list](docs/sdks/collectionusers/README.md#list) - List Users
 * [get](docs/sdks/collectionusers/README.md#get) - Get user
 
-### [lead()](docs/sdks/lead/README.md)
-
-
-#### [lead().leads()](docs/sdks/apideckleads/README.md)
-
-* [list](docs/sdks/apideckleads/README.md#list) - List leads
-* [create](docs/sdks/apideckleads/README.md#create) - Create lead
-* [get](docs/sdks/apideckleads/README.md#get) - Get lead
-* [update](docs/sdks/apideckleads/README.md#update) - Update lead
-* [delete](docs/sdks/apideckleads/README.md#delete) - Delete lead
-
-### [pos()](docs/sdks/pos/README.md)
-
-
-#### [pos().items()](docs/sdks/items/README.md)
-
-* [list](docs/sdks/items/README.md#list) - List Items
-* [create](docs/sdks/items/README.md#create) - Create Item
-* [get](docs/sdks/items/README.md#get) - Get Item
-* [update](docs/sdks/items/README.md#update) - Update Item
-* [delete](docs/sdks/items/README.md#delete) - Delete Item
-
-#### [pos().locations()](docs/sdks/apidecklocations/README.md)
-
-* [list](docs/sdks/apidecklocations/README.md#list) - List Locations
-* [create](docs/sdks/apidecklocations/README.md#create) - Create Location
-* [get](docs/sdks/apidecklocations/README.md#get) - Get Location
-* [update](docs/sdks/apidecklocations/README.md#update) - Update Location
-* [delete](docs/sdks/apidecklocations/README.md#delete) - Delete Location
-
-#### [pos().merchants()](docs/sdks/merchants/README.md)
-
-* [list](docs/sdks/merchants/README.md#list) - List Merchants
-* [create](docs/sdks/merchants/README.md#create) - Create Merchant
-* [get](docs/sdks/merchants/README.md#get) - Get Merchant
-* [update](docs/sdks/merchants/README.md#update) - Update Merchant
-* [delete](docs/sdks/merchants/README.md#delete) - Delete Merchant
-
-#### [pos().modifierGroups()](docs/sdks/modifiergroups/README.md)
-
-* [list](docs/sdks/modifiergroups/README.md#list) - List Modifier Groups
-* [create](docs/sdks/modifiergroups/README.md#create) - Create Modifier Group
-* [get](docs/sdks/modifiergroups/README.md#get) - Get Modifier Group
-* [update](docs/sdks/modifiergroups/README.md#update) - Update Modifier Group
-* [delete](docs/sdks/modifiergroups/README.md#delete) - Delete Modifier Group
-
-#### [pos().modifiers()](docs/sdks/modifiers/README.md)
-
-* [list](docs/sdks/modifiers/README.md#list) - List Modifiers
-* [create](docs/sdks/modifiers/README.md#create) - Create Modifier
-* [get](docs/sdks/modifiers/README.md#get) - Get Modifier
-* [update](docs/sdks/modifiers/README.md#update) - Update Modifier
-* [delete](docs/sdks/modifiers/README.md#delete) - Delete Modifier
-
-#### [pos().orders()](docs/sdks/apideckorders/README.md)
-
-* [list](docs/sdks/apideckorders/README.md#list) - List Orders
-* [create](docs/sdks/apideckorders/README.md#create) - Create Order
-* [get](docs/sdks/apideckorders/README.md#get) - Get Order
-* [update](docs/sdks/apideckorders/README.md#update) - Update Order
-* [delete](docs/sdks/apideckorders/README.md#delete) - Delete Order
-* [pay](docs/sdks/apideckorders/README.md#pay) - Pay Order
-
-#### [pos().orderTypes()](docs/sdks/ordertypes/README.md)
-
-* [list](docs/sdks/ordertypes/README.md#list) - List Order Types
-* [create](docs/sdks/ordertypes/README.md#create) - Create Order Type
-* [get](docs/sdks/ordertypes/README.md#get) - Get Order Type
-* [update](docs/sdks/ordertypes/README.md#update) - Update Order Type
-* [delete](docs/sdks/ordertypes/README.md#delete) - Delete Order Type
-
-#### [pos().payments()](docs/sdks/apideckpayments/README.md)
-
-* [list](docs/sdks/apideckpayments/README.md#list) - List Payments
-* [create](docs/sdks/apideckpayments/README.md#create) - Create Payment
-* [get](docs/sdks/apideckpayments/README.md#get) - Get Payment
-* [update](docs/sdks/apideckpayments/README.md#update) - Update Payment
-* [delete](docs/sdks/apideckpayments/README.md#delete) - Delete Payment
-
-#### [pos().tenders()](docs/sdks/tenders/README.md)
-
-* [list](docs/sdks/tenders/README.md#list) - List Tenders
-* [create](docs/sdks/tenders/README.md#create) - Create Tender
-* [get](docs/sdks/tenders/README.md#get) - Get Tender
-* [update](docs/sdks/tenders/README.md#update) - Update Tender
-* [delete](docs/sdks/tenders/README.md#delete) - Delete Tender
-
 ### [sms()](docs/sdks/sms/README.md)
 
 
@@ -676,7 +594,7 @@ public class Application {
 * [get](docs/sdks/connections/README.md#get) - Get connection
 * [update](docs/sdks/connections/README.md#update) - Update connection
 * [delete](docs/sdks/connections/README.md#delete) - Deletes a connection
-* [import_](docs/sdks/connections/README.md#import_) - Import connection
+* [imports](docs/sdks/connections/README.md#imports) - Import connection
 * [token](docs/sdks/connections/README.md#token) - Authorize Access Token
 
 #### [vault().connectionSettings()](docs/sdks/connectionsettings/README.md)
@@ -764,7 +682,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -838,7 +756,7 @@ public class Application {
                         .build())
                     .build())
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -907,7 +825,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -965,7 +883,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .serverURL("https://unify.apideck.com")
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -1021,7 +939,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -1090,7 +1008,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

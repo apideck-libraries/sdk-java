@@ -31,7 +31,7 @@ public class EcommerceOrdersOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -60,19 +60,19 @@ public class EcommerceOrdersOneRequest {
     @JsonCreator
     public EcommerceOrdersOneRequest(
             String id,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
             JsonNullable<String> fields) {
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
         this.id = id;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
@@ -96,8 +96,8 @@ public class EcommerceOrdersOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -148,18 +148,18 @@ public class EcommerceOrdersOneRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public EcommerceOrdersOneRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public EcommerceOrdersOneRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public EcommerceOrdersOneRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public EcommerceOrdersOneRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -246,7 +246,7 @@ public class EcommerceOrdersOneRequest {
         EcommerceOrdersOneRequest other = (EcommerceOrdersOneRequest) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.raw, other.raw) &&
@@ -257,7 +257,7 @@ public class EcommerceOrdersOneRequest {
     public int hashCode() {
         return Objects.hash(
             id,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             raw,
@@ -268,7 +268,7 @@ public class EcommerceOrdersOneRequest {
     public String toString() {
         return Utils.toString(EcommerceOrdersOneRequest.class,
                 "id", id,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
@@ -279,7 +279,7 @@ public class EcommerceOrdersOneRequest {
  
         private String id;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -305,18 +305,18 @@ public class EcommerceOrdersOneRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -397,7 +397,7 @@ public class EcommerceOrdersOneRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new EcommerceOrdersOneRequest(
                 id,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 raw,

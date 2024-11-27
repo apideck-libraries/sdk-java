@@ -13,9 +13,11 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -37,16 +39,16 @@ public class UnprocessableResponseDetail {
         return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static UnprocessableResponseDetail of(DetailUnprocessableResponse2 value) {
+    public static UnprocessableResponseDetail of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<DetailUnprocessableResponse2>(){}));
+        return new UnprocessableResponseDetail(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
     
     /**
      * Returns an instance of one of these types:
      * <ul>
      * <li>{@code java.lang.String}</li>
-     * <li>{@code com.apideck.unify.models.errors.DetailUnprocessableResponse2}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -86,8 +88,8 @@ public class UnprocessableResponseDetail {
 
         public _Deserializer() {
             super(UnprocessableResponseDetail.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<DetailUnprocessableResponse2>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

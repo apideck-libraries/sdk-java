@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class VaultConnectionsDeleteRequestBuilder {
 
-    private Optional<String> customerId = Optional.empty();
+    private Optional<String> consumerId = Optional.empty();
     private Optional<String> appId = Optional.empty();
     private String serviceId;
     private String unifiedApi;
@@ -23,15 +23,15 @@ public class VaultConnectionsDeleteRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public VaultConnectionsDeleteRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.of(customerId);
+    public VaultConnectionsDeleteRequestBuilder consumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.of(consumerId);
         return this;
     }
 
-    public VaultConnectionsDeleteRequestBuilder customerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultConnectionsDeleteRequestBuilder consumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
                 
@@ -76,7 +76,7 @@ public class VaultConnectionsDeleteRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.delete(
-            customerId,
+            consumerId,
             appId,
             serviceId,
             unifiedApi,

@@ -41,7 +41,7 @@ public class VaultConnectionsImportRequestBuilder {
         Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
-        return sdk.import_(
+        return sdk.imports(
             request,
             options);
     }

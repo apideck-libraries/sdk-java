@@ -12,7 +12,7 @@ import java.util.Optional;
 
 public class VaultCustomMappingsAllRequestBuilder {
 
-    private Optional<String> customerId = Optional.empty();
+    private Optional<String> consumerId = Optional.empty();
     private Optional<String> appId = Optional.empty();
     private String unifiedApi;
     private String serviceId;
@@ -23,15 +23,15 @@ public class VaultCustomMappingsAllRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public VaultCustomMappingsAllRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.of(customerId);
+    public VaultCustomMappingsAllRequestBuilder consumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.of(consumerId);
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder customerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultCustomMappingsAllRequestBuilder consumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
                 
@@ -76,7 +76,7 @@ public class VaultCustomMappingsAllRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.list(
-            customerId,
+            consumerId,
             appId,
             unifiedApi,
             serviceId,

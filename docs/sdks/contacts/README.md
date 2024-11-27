@@ -41,18 +41,16 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         CrmContactsAllRequest req = CrmContactsAllRequest.builder()
                 .serviceId("salesforce")
                 .filter(ContactsFilter.builder()
-                    .name("Elon Musk")
                     .firstName("Elon")
                     .lastName("Musk")
                     .email("elon@tesla.com")
-                    .phoneNumber("111-111-1111")
                     .companyId("12345")
                     .ownerId("12345")
                     .build())
@@ -140,7 +138,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -306,7 +304,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -315,11 +313,9 @@ public class Application {
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .filter(ContactsFilter.builder()
-                    .name("Elon Musk")
                     .firstName("Elon")
                     .lastName("Musk")
                     .email("elon@tesla.com")
-                    .phoneNumber("111-111-1111")
                     .companyId("12345")
                     .ownerId("12345")
                     .build())
@@ -401,7 +397,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -569,7 +565,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

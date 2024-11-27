@@ -28,7 +28,7 @@ public class FileStorageFilesExportRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -57,19 +57,19 @@ public class FileStorageFilesExportRequest {
     @JsonCreator
     public FileStorageFilesExportRequest(
             String id,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             JsonNullable<String> fields,
             String format) {
         Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(format, "format");
         this.id = id;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.fields = fields;
@@ -94,8 +94,8 @@ public class FileStorageFilesExportRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -146,18 +146,18 @@ public class FileStorageFilesExportRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFilesExportRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public FileStorageFilesExportRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFilesExportRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public FileStorageFilesExportRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -235,7 +235,7 @@ public class FileStorageFilesExportRequest {
         FileStorageFilesExportRequest other = (FileStorageFilesExportRequest) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.fields, other.fields) &&
@@ -246,7 +246,7 @@ public class FileStorageFilesExportRequest {
     public int hashCode() {
         return Objects.hash(
             id,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             fields,
@@ -257,7 +257,7 @@ public class FileStorageFilesExportRequest {
     public String toString() {
         return Utils.toString(FileStorageFilesExportRequest.class,
                 "id", id,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "fields", fields,
@@ -268,7 +268,7 @@ public class FileStorageFilesExportRequest {
  
         private String id;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -294,18 +294,18 @@ public class FileStorageFilesExportRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -375,7 +375,7 @@ public class FileStorageFilesExportRequest {
         public FileStorageFilesExportRequest build() {
             return new FileStorageFilesExportRequest(
                 id,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 fields,

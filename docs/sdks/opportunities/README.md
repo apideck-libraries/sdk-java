@@ -41,20 +41,15 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         CrmOpportunitiesAllRequest req = CrmOpportunitiesAllRequest.builder()
                 .serviceId("salesforce")
                 .filter(OpportunitiesFilter.builder()
-                    .title("Tesla deal")
                     .status("Completed")
                     .monetaryAmount(75000d)
-                    .winProbability(50d)
-                    .companyId("1234")
-                    .ownerId("1234")
-                    .primaryContactId("1234")
                     .build())
                 .sort(OpportunitiesSort.builder()
                     .by(OpportunitiesSortBy.CREATED_AT)
@@ -132,7 +127,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -244,7 +239,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -322,7 +317,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -437,7 +432,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

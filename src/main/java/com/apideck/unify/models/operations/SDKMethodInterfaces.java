@@ -1475,363 +1475,6 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallLeadLeadsAll {
-        LeadLeadsAllResponse list(
-            LeadLeadsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallLeadLeadsAdd {
-        LeadLeadsAddResponse create(
-            LeadLeadsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallLeadLeadsOne {
-        LeadLeadsOneResponse get(
-            LeadLeadsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallLeadLeadsUpdate {
-        LeadLeadsUpdateResponse update(
-            LeadLeadsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallLeadLeadsDelete {
-        LeadLeadsDeleteResponse delete(
-            LeadLeadsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersAll {
-        PosOrdersAllResponse list(
-            PosOrdersAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersAdd {
-        PosOrdersAddResponse create(
-            PosOrdersAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersOne {
-        PosOrdersOneResponse get(
-            PosOrdersOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersUpdate {
-        PosOrdersUpdateResponse update(
-            PosOrdersUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersDelete {
-        PosOrdersDeleteResponse delete(
-            PosOrdersDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrdersPay {
-        PosOrdersPayResponse pay(
-            PosOrdersPayRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosPaymentsAll {
-        PosPaymentsAllResponse list(
-            PosPaymentsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosPaymentsAdd {
-        PosPaymentsAddResponse create(
-            PosPaymentsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosPaymentsOne {
-        PosPaymentsOneResponse get(
-            PosPaymentsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosPaymentsUpdate {
-        PosPaymentsUpdateResponse update(
-            PosPaymentsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosPaymentsDelete {
-        PosPaymentsDeleteResponse delete(
-            PosPaymentsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosMerchantsAll {
-        PosMerchantsAllResponse list(
-            PosMerchantsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosMerchantsAdd {
-        PosMerchantsAddResponse create(
-            PosMerchantsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosMerchantsOne {
-        PosMerchantsOneResponse get(
-            PosMerchantsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosMerchantsUpdate {
-        PosMerchantsUpdateResponse update(
-            PosMerchantsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosMerchantsDelete {
-        PosMerchantsDeleteResponse delete(
-            PosMerchantsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosLocationsAll {
-        PosLocationsAllResponse list(
-            PosLocationsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosLocationsAdd {
-        PosLocationsAddResponse create(
-            PosLocationsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosLocationsOne {
-        PosLocationsOneResponse get(
-            PosLocationsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosLocationsUpdate {
-        PosLocationsUpdateResponse update(
-            PosLocationsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosLocationsDelete {
-        PosLocationsDeleteResponse delete(
-            PosLocationsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosItemsAll {
-        PosItemsAllResponse list(
-            PosItemsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosItemsAdd {
-        PosItemsAddResponse create(
-            PosItemsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosItemsOne {
-        PosItemsOneResponse get(
-            PosItemsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosItemsUpdate {
-        PosItemsUpdateResponse update(
-            PosItemsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosItemsDelete {
-        PosItemsDeleteResponse delete(
-            PosItemsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifiersAll {
-        PosModifiersAllResponse list(
-            PosModifiersAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifiersAdd {
-        PosModifiersAddResponse create(
-            PosModifiersAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifiersOne {
-        PosModifiersOneResponse get(
-            PosModifiersOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifiersUpdate {
-        PosModifiersUpdateResponse update(
-            PosModifiersUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifiersDelete {
-        PosModifiersDeleteResponse delete(
-            PosModifiersDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifierGroupsAll {
-        PosModifierGroupsAllResponse list(
-            PosModifierGroupsAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifierGroupsAdd {
-        PosModifierGroupsAddResponse create(
-            PosModifierGroupsAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifierGroupsOne {
-        PosModifierGroupsOneResponse get(
-            PosModifierGroupsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifierGroupsUpdate {
-        PosModifierGroupsUpdateResponse update(
-            PosModifierGroupsUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosModifierGroupsDelete {
-        PosModifierGroupsDeleteResponse delete(
-            PosModifierGroupsDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrderTypesAll {
-        PosOrderTypesAllResponse list(
-            PosOrderTypesAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrderTypesAdd {
-        PosOrderTypesAddResponse create(
-            PosOrderTypesAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrderTypesOne {
-        PosOrderTypesOneResponse get(
-            PosOrderTypesOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrderTypesUpdate {
-        PosOrderTypesUpdateResponse update(
-            PosOrderTypesUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosOrderTypesDelete {
-        PosOrderTypesDeleteResponse delete(
-            PosOrderTypesDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosTendersAll {
-        PosTendersAllResponse list(
-            PosTendersAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosTendersAdd {
-        PosTendersAddResponse create(
-            PosTendersAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosTendersOne {
-        PosTendersOneResponse get(
-            PosTendersOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosTendersUpdate {
-        PosTendersUpdateResponse update(
-            PosTendersUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallPosTendersDelete {
-        PosTendersDeleteResponse delete(
-            PosTendersDeleteRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
     public interface MethodCallSmsMessagesAll {
         SmsMessagesAllResponse list(
             SmsMessagesAllRequest request,
@@ -2099,7 +1742,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallVaultConnectionsAll {
         VaultConnectionsAllResponse list(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> api,
             Optional<Boolean> configured,
@@ -2109,7 +1752,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallVaultConnectionsOne {
         VaultConnectionsOneResponse get(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String serviceId,
             String unifiedApi,
@@ -2126,7 +1769,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallVaultConnectionsDelete {
         VaultConnectionsDeleteResponse delete(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String serviceId,
             String unifiedApi,
@@ -2135,7 +1778,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallVaultConnectionsImport {
-        VaultConnectionsImportResponse import_(
+        VaultConnectionsImportResponse imports(
             VaultConnectionsImportRequest request,
             Optional<Options> options) throws Exception;
     }
@@ -2192,7 +1835,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallVaultCustomMappingsAll {
         VaultCustomMappingsAllResponse list(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             String unifiedApi,
             String serviceId,
@@ -2202,7 +1845,7 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallVaultSessionsCreate {
         VaultSessionsCreateResponse create(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<? extends Session> session,
             Optional<Options> options) throws Exception;

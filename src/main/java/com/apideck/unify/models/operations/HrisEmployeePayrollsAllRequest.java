@@ -41,7 +41,7 @@ public class HrisEmployeePayrollsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -77,7 +77,7 @@ public class HrisEmployeePayrollsAllRequest {
     public HrisEmployeePayrollsAllRequest(
             String employeeId,
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<? extends PayrollsFilter> filter,
@@ -85,7 +85,7 @@ public class HrisEmployeePayrollsAllRequest {
             JsonNullable<String> fields) {
         Utils.checkNotNull(employeeId, "employeeId");
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(filter, "filter");
@@ -93,7 +93,7 @@ public class HrisEmployeePayrollsAllRequest {
         Utils.checkNotNull(fields, "fields");
         this.employeeId = employeeId;
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.filter = filter;
@@ -126,8 +126,8 @@ public class HrisEmployeePayrollsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -206,18 +206,18 @@ public class HrisEmployeePayrollsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeePayrollsAllRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public HrisEmployeePayrollsAllRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeePayrollsAllRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public HrisEmployeePayrollsAllRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -323,7 +323,7 @@ public class HrisEmployeePayrollsAllRequest {
         return 
             Objects.deepEquals(this.employeeId, other.employeeId) &&
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.filter, other.filter) &&
@@ -336,7 +336,7 @@ public class HrisEmployeePayrollsAllRequest {
         return Objects.hash(
             employeeId,
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             filter,
@@ -349,7 +349,7 @@ public class HrisEmployeePayrollsAllRequest {
         return Utils.toString(HrisEmployeePayrollsAllRequest.class,
                 "employeeId", employeeId,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "filter", filter,
@@ -363,7 +363,7 @@ public class HrisEmployeePayrollsAllRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -409,18 +409,18 @@ public class HrisEmployeePayrollsAllRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -520,7 +520,7 @@ public class HrisEmployeePayrollsAllRequest {
             }            return new HrisEmployeePayrollsAllRequest(
                 employeeId,
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 filter,

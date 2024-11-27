@@ -31,7 +31,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -57,19 +57,19 @@ public class IssueTrackingCollectionTicketsAddRequest {
     @JsonCreator
     public IssueTrackingCollectionTicketsAddRequest(
             Optional<Boolean> raw,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             String collectionId,
             TicketInput ticket) {
         Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(collectionId, "collectionId");
         Utils.checkNotNull(ticket, "ticket");
         this.raw = raw;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.collectionId = collectionId;
@@ -94,8 +94,8 @@ public class IssueTrackingCollectionTicketsAddRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -152,18 +152,18 @@ public class IssueTrackingCollectionTicketsAddRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionTicketsAddRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public IssueTrackingCollectionTicketsAddRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionTicketsAddRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public IssueTrackingCollectionTicketsAddRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -229,7 +229,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
         IssueTrackingCollectionTicketsAddRequest other = (IssueTrackingCollectionTicketsAddRequest) o;
         return 
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.collectionId, other.collectionId) &&
@@ -240,7 +240,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
     public int hashCode() {
         return Objects.hash(
             raw,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             collectionId,
@@ -251,7 +251,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
     public String toString() {
         return Utils.toString(IssueTrackingCollectionTicketsAddRequest.class,
                 "raw", raw,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "collectionId", collectionId,
@@ -262,7 +262,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
  
         private Optional<Boolean> raw;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -297,18 +297,18 @@ public class IssueTrackingCollectionTicketsAddRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -368,7 +368,7 @@ public class IssueTrackingCollectionTicketsAddRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new IssueTrackingCollectionTicketsAddRequest(
                 raw,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 collectionId,

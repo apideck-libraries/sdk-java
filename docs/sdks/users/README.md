@@ -37,7 +37,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -116,7 +116,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -247,7 +247,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -325,7 +325,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
@@ -457,7 +457,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 

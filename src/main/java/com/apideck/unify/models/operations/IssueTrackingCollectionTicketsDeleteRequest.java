@@ -30,7 +30,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -59,19 +59,19 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
     @JsonCreator
     public IssueTrackingCollectionTicketsDeleteRequest(
             String ticketId,
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
             String collectionId) {
         Utils.checkNotNull(ticketId, "ticketId");
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(collectionId, "collectionId");
         this.ticketId = ticketId;
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
@@ -96,8 +96,8 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -148,18 +148,18 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionTicketsDeleteRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public IssueTrackingCollectionTicketsDeleteRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionTicketsDeleteRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public IssueTrackingCollectionTicketsDeleteRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -237,7 +237,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         IssueTrackingCollectionTicketsDeleteRequest other = (IssueTrackingCollectionTicketsDeleteRequest) o;
         return 
             Objects.deepEquals(this.ticketId, other.ticketId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.raw, other.raw) &&
@@ -248,7 +248,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
     public int hashCode() {
         return Objects.hash(
             ticketId,
-            customerId,
+            consumerId,
             appId,
             serviceId,
             raw,
@@ -259,7 +259,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
     public String toString() {
         return Utils.toString(IssueTrackingCollectionTicketsDeleteRequest.class,
                 "ticketId", ticketId,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
@@ -270,7 +270,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
  
         private String ticketId;
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -296,18 +296,18 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -379,7 +379,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
                 raw = _SINGLETON_VALUE_Raw.value();
             }            return new IssueTrackingCollectionTicketsDeleteRequest(
                 ticketId,
-                customerId,
+                consumerId,
                 appId,
                 serviceId,
                 raw,

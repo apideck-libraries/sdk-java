@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public class VaultSessionsCreateRequestBuilder {
 
-    private Optional<String> customerId = Optional.empty();
+    private Optional<String> consumerId = Optional.empty();
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Session> session = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
@@ -23,15 +23,15 @@ public class VaultSessionsCreateRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public VaultSessionsCreateRequestBuilder customerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.of(customerId);
+    public VaultSessionsCreateRequestBuilder consumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.of(consumerId);
         return this;
     }
 
-    public VaultSessionsCreateRequestBuilder customerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultSessionsCreateRequestBuilder consumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
                 
@@ -76,7 +76,7 @@ public class VaultSessionsCreateRequestBuilder {
                                                     .retryConfig(retryConfig)
                                                     .build());
         return sdk.create(
-            customerId,
+            consumerId,
             appId,
             session,
             options);

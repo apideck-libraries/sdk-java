@@ -42,12 +42,12 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .apiKey("<YOUR_API_KEY_HERE>")
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         VaultSessionsCreateResponse res = sdk.vault().sessions().create()
-                .customerId("test-consumer")
+                .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .session(Session.builder()
                     .consumerMetadata(ConsumerMetadata.builder()
@@ -92,7 +92,7 @@ public class Application {
 
 | Parameter                                                  | Type                                                       | Required                                                   | Description                                                | Example                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
-| `customerId`                                               | *Optional\<String>*                                        | :heavy_minus_sign:                                         | ID of the consumer which you want to get or push data from | test-consumer                                              |
+| `consumerId`                                               | *Optional\<String>*                                        | :heavy_minus_sign:                                         | ID of the consumer which you want to get or push data from | test-consumer                                              |
 | `appId`                                                    | *Optional\<String>*                                        | :heavy_minus_sign:                                         | The ID of your Unify application                           | dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX                    |
 | `session`                                                  | [Optional\<Session>](../../models/components/Session.md)   | :heavy_minus_sign:                                         | Additional redirect uri and/or consumer metadata           |                                                            |
 

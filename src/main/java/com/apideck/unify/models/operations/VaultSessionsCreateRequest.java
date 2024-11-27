@@ -23,7 +23,7 @@ public class VaultSessionsCreateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> customerId;
+    private Optional<String> consumerId;
 
     /**
      * The ID of your Unify application
@@ -39,13 +39,13 @@ public class VaultSessionsCreateRequest {
 
     @JsonCreator
     public VaultSessionsCreateRequest(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<? extends Session> session) {
-        Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(session, "session");
-        this.customerId = customerId;
+        this.consumerId = consumerId;
         this.appId = appId;
         this.session = session;
     }
@@ -58,8 +58,8 @@ public class VaultSessionsCreateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @JsonIgnore
-    public Optional<String> customerId() {
-        return customerId;
+    public Optional<String> consumerId() {
+        return consumerId;
     }
 
     /**
@@ -86,18 +86,18 @@ public class VaultSessionsCreateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultSessionsCreateRequest withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
+    public VaultSessionsCreateRequest withConsumerId(String consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultSessionsCreateRequest withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = customerId;
+    public VaultSessionsCreateRequest withConsumerId(Optional<String> consumerId) {
+        Utils.checkNotNull(consumerId, "consumerId");
+        this.consumerId = consumerId;
         return this;
     }
 
@@ -147,7 +147,7 @@ public class VaultSessionsCreateRequest {
         }
         VaultSessionsCreateRequest other = (VaultSessionsCreateRequest) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.consumerId, other.consumerId) &&
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.session, other.session);
     }
@@ -155,7 +155,7 @@ public class VaultSessionsCreateRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
-            customerId,
+            consumerId,
             appId,
             session);
     }
@@ -163,14 +163,14 @@ public class VaultSessionsCreateRequest {
     @Override
     public String toString() {
         return Utils.toString(VaultSessionsCreateRequest.class,
-                "customerId", customerId,
+                "consumerId", consumerId,
                 "appId", appId,
                 "session", session);
     }
     
     public final static class Builder {
  
-        private Optional<String> customerId = Optional.empty();
+        private Optional<String> consumerId = Optional.empty();
  
         private Optional<String> appId = Optional.empty();
  
@@ -183,18 +183,18 @@ public class VaultSessionsCreateRequest {
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
+        public Builder consumerId(String consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = Optional.ofNullable(consumerId);
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = customerId;
+        public Builder consumerId(Optional<String> consumerId) {
+            Utils.checkNotNull(consumerId, "consumerId");
+            this.consumerId = consumerId;
             return this;
         }
 
@@ -236,7 +236,7 @@ public class VaultSessionsCreateRequest {
         
         public VaultSessionsCreateRequest build() {
             return new VaultSessionsCreateRequest(
-                customerId,
+                consumerId,
                 appId,
                 session);
         }

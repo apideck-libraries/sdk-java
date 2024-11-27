@@ -9,8 +9,10 @@ import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -18,33 +20,51 @@ import java.util.Optional;
 public class BalanceSheetFilter {
 
     /**
-     * Filter by start date. If start date is given, end date is required.
+     * The start date of the period to include in the resource.
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
     private Optional<String> startDate;
 
     /**
-     * Filter by end date. If end date is given, start date is required.
+     * The end date of the period to include in the resource.
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
     private Optional<String> endDate;
 
+    /**
+     * The number of periods to include in the resource.
+     */
+    @SpeakeasyMetadata("queryParam:name=period_count")
+    private Optional<Long> periodCount;
+
+    /**
+     * The type of period to include in the resource: month, quarter, year.
+     */
+    @SpeakeasyMetadata("queryParam:name=period_type")
+    private Optional<? extends PeriodType> periodType;
+
     @JsonCreator
     public BalanceSheetFilter(
             Optional<String> startDate,
-            Optional<String> endDate) {
+            Optional<String> endDate,
+            Optional<Long> periodCount,
+            Optional<? extends PeriodType> periodType) {
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
+        Utils.checkNotNull(periodCount, "periodCount");
+        Utils.checkNotNull(periodType, "periodType");
         this.startDate = startDate;
         this.endDate = endDate;
+        this.periodCount = periodCount;
+        this.periodType = periodType;
     }
     
     public BalanceSheetFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
-     * Filter by start date. If start date is given, end date is required.
+     * The start date of the period to include in the resource.
      */
     @JsonIgnore
     public Optional<String> startDate() {
@@ -52,11 +72,28 @@ public class BalanceSheetFilter {
     }
 
     /**
-     * Filter by end date. If end date is given, start date is required.
+     * The end date of the period to include in the resource.
      */
     @JsonIgnore
     public Optional<String> endDate() {
         return endDate;
+    }
+
+    /**
+     * The number of periods to include in the resource.
+     */
+    @JsonIgnore
+    public Optional<Long> periodCount() {
+        return periodCount;
+    }
+
+    /**
+     * The type of period to include in the resource: month, quarter, year.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PeriodType> periodType() {
+        return (Optional<PeriodType>) periodType;
     }
 
     public final static Builder builder() {
@@ -64,7 +101,7 @@ public class BalanceSheetFilter {
     }
 
     /**
-     * Filter by start date. If start date is given, end date is required.
+     * The start date of the period to include in the resource.
      */
     public BalanceSheetFilter withStartDate(String startDate) {
         Utils.checkNotNull(startDate, "startDate");
@@ -73,7 +110,7 @@ public class BalanceSheetFilter {
     }
 
     /**
-     * Filter by start date. If start date is given, end date is required.
+     * The start date of the period to include in the resource.
      */
     public BalanceSheetFilter withStartDate(Optional<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
@@ -82,7 +119,7 @@ public class BalanceSheetFilter {
     }
 
     /**
-     * Filter by end date. If end date is given, start date is required.
+     * The end date of the period to include in the resource.
      */
     public BalanceSheetFilter withEndDate(String endDate) {
         Utils.checkNotNull(endDate, "endDate");
@@ -91,11 +128,47 @@ public class BalanceSheetFilter {
     }
 
     /**
-     * Filter by end date. If end date is given, start date is required.
+     * The end date of the period to include in the resource.
      */
     public BalanceSheetFilter withEndDate(Optional<String> endDate) {
         Utils.checkNotNull(endDate, "endDate");
         this.endDate = endDate;
+        return this;
+    }
+
+    /**
+     * The number of periods to include in the resource.
+     */
+    public BalanceSheetFilter withPeriodCount(long periodCount) {
+        Utils.checkNotNull(periodCount, "periodCount");
+        this.periodCount = Optional.ofNullable(periodCount);
+        return this;
+    }
+
+    /**
+     * The number of periods to include in the resource.
+     */
+    public BalanceSheetFilter withPeriodCount(Optional<Long> periodCount) {
+        Utils.checkNotNull(periodCount, "periodCount");
+        this.periodCount = periodCount;
+        return this;
+    }
+
+    /**
+     * The type of period to include in the resource: month, quarter, year.
+     */
+    public BalanceSheetFilter withPeriodType(PeriodType periodType) {
+        Utils.checkNotNull(periodType, "periodType");
+        this.periodType = Optional.ofNullable(periodType);
+        return this;
+    }
+
+    /**
+     * The type of period to include in the resource: month, quarter, year.
+     */
+    public BalanceSheetFilter withPeriodType(Optional<? extends PeriodType> periodType) {
+        Utils.checkNotNull(periodType, "periodType");
+        this.periodType = periodType;
         return this;
     }
     
@@ -110,35 +183,45 @@ public class BalanceSheetFilter {
         BalanceSheetFilter other = (BalanceSheetFilter) o;
         return 
             Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Objects.deepEquals(this.endDate, other.endDate) &&
+            Objects.deepEquals(this.periodCount, other.periodCount) &&
+            Objects.deepEquals(this.periodType, other.periodType);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             startDate,
-            endDate);
+            endDate,
+            periodCount,
+            periodType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(BalanceSheetFilter.class,
                 "startDate", startDate,
-                "endDate", endDate);
+                "endDate", endDate,
+                "periodCount", periodCount,
+                "periodType", periodType);
     }
     
     public final static class Builder {
  
         private Optional<String> startDate = Optional.empty();
  
-        private Optional<String> endDate = Optional.empty();  
+        private Optional<String> endDate = Optional.empty();
+ 
+        private Optional<Long> periodCount = Optional.empty();
+ 
+        private Optional<? extends PeriodType> periodType = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
         /**
-         * Filter by start date. If start date is given, end date is required.
+         * The start date of the period to include in the resource.
          */
         public Builder startDate(String startDate) {
             Utils.checkNotNull(startDate, "startDate");
@@ -147,7 +230,7 @@ public class BalanceSheetFilter {
         }
 
         /**
-         * Filter by start date. If start date is given, end date is required.
+         * The start date of the period to include in the resource.
          */
         public Builder startDate(Optional<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
@@ -156,7 +239,7 @@ public class BalanceSheetFilter {
         }
 
         /**
-         * Filter by end date. If end date is given, start date is required.
+         * The end date of the period to include in the resource.
          */
         public Builder endDate(String endDate) {
             Utils.checkNotNull(endDate, "endDate");
@@ -165,18 +248,56 @@ public class BalanceSheetFilter {
         }
 
         /**
-         * Filter by end date. If end date is given, start date is required.
+         * The end date of the period to include in the resource.
          */
         public Builder endDate(Optional<String> endDate) {
             Utils.checkNotNull(endDate, "endDate");
             this.endDate = endDate;
             return this;
         }
+
+        /**
+         * The number of periods to include in the resource.
+         */
+        public Builder periodCount(long periodCount) {
+            Utils.checkNotNull(periodCount, "periodCount");
+            this.periodCount = Optional.ofNullable(periodCount);
+            return this;
+        }
+
+        /**
+         * The number of periods to include in the resource.
+         */
+        public Builder periodCount(Optional<Long> periodCount) {
+            Utils.checkNotNull(periodCount, "periodCount");
+            this.periodCount = periodCount;
+            return this;
+        }
+
+        /**
+         * The type of period to include in the resource: month, quarter, year.
+         */
+        public Builder periodType(PeriodType periodType) {
+            Utils.checkNotNull(periodType, "periodType");
+            this.periodType = Optional.ofNullable(periodType);
+            return this;
+        }
+
+        /**
+         * The type of period to include in the resource: month, quarter, year.
+         */
+        public Builder periodType(Optional<? extends PeriodType> periodType) {
+            Utils.checkNotNull(periodType, "periodType");
+            this.periodType = periodType;
+            return this;
+        }
         
         public BalanceSheetFilter build() {
             return new BalanceSheetFilter(
                 startDate,
-                endDate);
+                endDate,
+                periodCount,
+                periodType);
         }
     }
 }

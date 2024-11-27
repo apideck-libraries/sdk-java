@@ -87,7 +87,7 @@ public class Sessions implements
      * 
      * Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
      * 
-     * @param customerId ID of the consumer which you want to get or push data from
+     * @param consumerId ID of the consumer which you want to get or push data from
      * @param appId The ID of your Unify application
      * @param session
      * @param options additional options
@@ -95,7 +95,7 @@ public class Sessions implements
      * @throws Exception if the API call fails
      */
     public VaultSessionsCreateResponse create(
-            Optional<String> customerId,
+            Optional<String> consumerId,
             Optional<String> appId,
             Optional<? extends Session> session,
             Optional<Options> options) throws Exception {
@@ -106,7 +106,7 @@ public class Sessions implements
         VaultSessionsCreateRequest request =
             VaultSessionsCreateRequest
                 .builder()
-                .customerId(customerId)
+                .consumerId(consumerId)
                 .appId(appId)
                 .session(session)
                 .build();

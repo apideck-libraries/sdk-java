@@ -128,7 +128,6 @@ import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -269,10 +268,8 @@ public class Application {
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(
@@ -504,7 +501,6 @@ import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -647,10 +643,8 @@ public class Application {
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(

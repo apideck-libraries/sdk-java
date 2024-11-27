@@ -343,7 +343,6 @@ import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.VaultConnectionsImportRequest;
 import com.apideck.unify.models.operations.VaultConnectionsImportResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.Map;
 
 public class Application {
@@ -363,8 +362,6 @@ public class Application {
                     .credentials(Credentials.builder()
                         .refreshToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.cThIIoDvwdueQB468K5xDc5633seEFoqwxjF_xSJyQQ")
                         .accessToken("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c")
-                        .issuedAt(OffsetDateTime.parse("2020-01-01T00:00:00Z"))
-                        .expiresIn(3600L)
                         .build())
                     .settings(ConnectionImportDataSettings.builder()
                         .build())

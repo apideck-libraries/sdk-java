@@ -165,8 +165,6 @@ public class Application {
                             .pricingType(ItemPricingType.FIXED)
                             .priceAmount(10d)
                             .priceCurrency(Currency.USD)
-                            .stockable(false)
-                            .presentAtAllLocations(false)
                             .build()))
                     .modifierGroups(List.of(
                         ItemModifierGroups.builder()
@@ -375,8 +373,6 @@ public class Application {
                             .pricingType(ItemPricingType.FIXED)
                             .priceAmount(10d)
                             .priceCurrency(Currency.USD)
-                            .stockable(false)
-                            .presentAtAllLocations(false)
                             .build()))
                     .modifierGroups(List.of(
                         ItemModifierGroups.builder()

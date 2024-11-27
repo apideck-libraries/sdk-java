@@ -48,7 +48,6 @@ public class Application {
         CrmLeadsAllRequest req = CrmLeadsAllRequest.builder()
                 .serviceId("salesforce")
                 .filter(LeadsFilter.builder()
-                    .name("Elon Musk")
                     .firstName("Elon")
                     .lastName("Musk")
                     .email("elon@tesla.com")

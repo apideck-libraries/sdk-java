@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 51366c2bf91c8d98986aa75c233a1b1b
+  docChecksum: 4cc508f41720526d29572ebc1e96a691
   docVersion: 10.8.1
-  speakeasyVersion: 1.443.0
-  generationVersion: 2.461.4
-  releaseVersion: 0.1.12
-  configChecksum: 5c06e236933190a83c97710265ecd9e6
+  speakeasyVersion: 1.448.0
+  generationVersion: 2.466.0
+  releaseVersion: 0.2.0
+  configChecksum: 5148c05515254dec73989d62808c51d0
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.1
+    core: 3.32.2
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     flattening: 2.81.1
@@ -30,7 +30,6 @@ features:
     nullables: 0.1.0
     retries: 0.1.1
     sdkHooks: 0.1.0
-    tests: 0.1.0
     typeOverrides: 2.81.1
     unions: 0.0.6
 generatedFiles:
@@ -11549,3 +11548,4 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+generatedTests: {}

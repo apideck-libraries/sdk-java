@@ -33,7 +33,6 @@ import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllResponse;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -57,8 +56,6 @@ public class Application {
                 .filter(IssuesFilter.builder()
                     .status(List.of(
                         "open"))
-                    .since(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .assigneeId("2332bd9c2eaaa5dcfa14721c")
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))

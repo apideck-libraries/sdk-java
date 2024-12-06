@@ -41,7 +41,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -135,7 +135,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -213,6 +213,10 @@ public class Application {
                                 .code("453")
                                 .build())
                             .trackingCategories(List.of(
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
@@ -327,7 +331,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -413,7 +417,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -495,6 +499,90 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build()))
+                            .rowVersion("1-12345")
+                            .build(),
+                        BillLineItemInput.builder()
+                            .rowId("12345")
+                            .code("120-C")
+                            .lineNumber(1L)
+                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
+                            .type(BillLineItemType.EXPENSE_ACCOUNT)
+                            .taxAmount(27500d)
+                            .totalAmount(27500d)
+                            .quantity(1d)
+                            .unitPrice(27500.5d)
+                            .unitOfMeasure("pc.")
+                            .discountPercentage(0.01d)
+                            .discountAmount(19.99d)
+                            .locationId("1234")
+                            .departmentId("1234")
+                            .item(LinkedInvoiceItem.builder()
+                                .id("12344")
+                                .code("120-C")
+                                .name("Model Y")
+                                .build())
+                            .taxRate(LinkedTaxRateInput.builder()
+                                .id("123456")
+                                .rate(10d)
+                                .build())
+                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
+                            .trackingCategories(List.of(
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build()))
+                            .rowVersion("1-12345")
+                            .build(),
+                        BillLineItemInput.builder()
+                            .rowId("12345")
+                            .code("120-C")
+                            .lineNumber(1L)
+                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
+                            .type(BillLineItemType.EXPENSE_ACCOUNT)
+                            .taxAmount(27500d)
+                            .totalAmount(27500d)
+                            .quantity(1d)
+                            .unitPrice(27500.5d)
+                            .unitOfMeasure("pc.")
+                            .discountPercentage(0.01d)
+                            .discountAmount(19.99d)
+                            .locationId("1234")
+                            .departmentId("1234")
+                            .item(LinkedInvoiceItem.builder()
+                                .id("12344")
+                                .code("120-C")
+                                .name("Model Y")
+                                .build())
+                            .taxRate(LinkedTaxRateInput.builder()
+                                .id("123456")
+                                .rate(10d)
+                                .build())
+                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
+                            .trackingCategories(List.of(
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .rowVersion("1-12345")
                             .build()))
@@ -534,12 +622,24 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
+                            .build(),
+                        LinkedTrackingCategory.builder()
+                            .id("123456")
+                            .name("New York")
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -606,7 +706,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();

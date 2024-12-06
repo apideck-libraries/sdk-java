@@ -107,6 +107,13 @@ public class TrackingCategory {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiaries")
+    private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries;
+
     @JsonCreator
     public TrackingCategory(
             @JsonProperty("id") Optional<String> id,
@@ -120,7 +127,8 @@ public class TrackingCategory {
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
+            @JsonProperty("subsidiaries") Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
@@ -133,6 +141,7 @@ public class TrackingCategory {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(passThrough, "passThrough");
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.id = id;
         this.parentId = parentId;
         this.name = name;
@@ -145,10 +154,11 @@ public class TrackingCategory {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.subsidiaries = subsidiaries;
     }
     
     public TrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -248,6 +258,15 @@ public class TrackingCategory {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<TrackingCategorySubsidiaries>> subsidiaries() {
+        return (Optional<List<TrackingCategorySubsidiaries>>) subsidiaries;
     }
 
     public final static Builder builder() {
@@ -469,6 +488,24 @@ public class TrackingCategory {
         this.passThrough = passThrough;
         return this;
     }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    public TrackingCategory withSubsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = Optional.ofNullable(subsidiaries);
+        return this;
+    }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    public TrackingCategory withSubsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = subsidiaries;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -491,7 +528,8 @@ public class TrackingCategory {
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Objects.deepEquals(this.passThrough, other.passThrough) &&
+            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
     }
     
     @Override
@@ -508,7 +546,8 @@ public class TrackingCategory {
             createdBy,
             updatedAt,
             createdAt,
-            passThrough);
+            passThrough,
+            subsidiaries);
     }
     
     @Override
@@ -525,7 +564,8 @@ public class TrackingCategory {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "subsidiaries", subsidiaries);
     }
     
     public final static class Builder {
@@ -552,7 +592,9 @@ public class TrackingCategory {
  
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
  
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
+        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+ 
+        private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -773,6 +815,24 @@ public class TrackingCategory {
             this.passThrough = passThrough;
             return this;
         }
+
+        /**
+         * The subsidiaries the account belongs to.
+         */
+        public Builder subsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = Optional.ofNullable(subsidiaries);
+            return this;
+        }
+
+        /**
+         * The subsidiaries the account belongs to.
+         */
+        public Builder subsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = subsidiaries;
+            return this;
+        }
         
         public TrackingCategory build() {
             return new TrackingCategory(
@@ -787,7 +847,8 @@ public class TrackingCategory {
                 createdBy,
                 updatedAt,
                 createdAt,
-                passThrough);
+                passThrough,
+                subsidiaries);
         }
     }
 }

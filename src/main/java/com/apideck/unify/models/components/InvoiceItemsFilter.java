@@ -11,8 +11,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class InvoiceItemsFilter {
@@ -23,15 +25,24 @@ public class InvoiceItemsFilter {
     @SpeakeasyMetadata("queryParam:name=name")
     private Optional<String> name;
 
+    /**
+     * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+     */
+    @SpeakeasyMetadata("queryParam:name=type")
+    private JsonNullable<? extends InvoiceItemType> type;
+
     @JsonCreator
     public InvoiceItemsFilter(
-            Optional<String> name) {
+            Optional<String> name,
+            JsonNullable<? extends InvoiceItemType> type) {
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(type, "type");
         this.name = name;
+        this.type = type;
     }
     
     public InvoiceItemsFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -40,6 +51,15 @@ public class InvoiceItemsFilter {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<InvoiceItemType> type() {
+        return (JsonNullable<InvoiceItemType>) type;
     }
 
     public final static Builder builder() {
@@ -63,6 +83,24 @@ public class InvoiceItemsFilter {
         this.name = name;
         return this;
     }
+
+    /**
+     * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+     */
+    public InvoiceItemsFilter withType(InvoiceItemType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = JsonNullable.of(type);
+        return this;
+    }
+
+    /**
+     * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+     */
+    public InvoiceItemsFilter withType(JsonNullable<? extends InvoiceItemType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,24 +112,29 @@ public class InvoiceItemsFilter {
         }
         InvoiceItemsFilter other = (InvoiceItemsFilter) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            name);
+            name,
+            type);
     }
     
     @Override
     public String toString() {
         return Utils.toString(InvoiceItemsFilter.class,
-                "name", name);
+                "name", name,
+                "type", type);
     }
     
     public final static class Builder {
  
-        private Optional<String> name = Optional.empty();  
+        private Optional<String> name = Optional.empty();
+ 
+        private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -114,10 +157,29 @@ public class InvoiceItemsFilter {
             this.name = name;
             return this;
         }
+
+        /**
+         * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+         */
+        public Builder type(InvoiceItemType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = JsonNullable.of(type);
+            return this;
+        }
+
+        /**
+         * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
+         */
+        public Builder type(JsonNullable<? extends InvoiceItemType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
+            return this;
+        }
         
         public InvoiceItemsFilter build() {
             return new InvoiceItemsFilter(
-                name);
+                name,
+                type);
         }
     }
 }

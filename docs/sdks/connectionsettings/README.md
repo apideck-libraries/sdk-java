@@ -33,7 +33,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -91,6 +91,7 @@ import com.apideck.unify.models.components.ConnectionDefaults;
 import com.apideck.unify.models.components.ConnectionInput;
 import com.apideck.unify.models.components.ConnectionValue;
 import com.apideck.unify.models.components.CustomMappingInput;
+import com.apideck.unify.models.components.Five;
 import com.apideck.unify.models.components.FormFieldOption;
 import com.apideck.unify.models.components.FormFieldOptionGroup;
 import com.apideck.unify.models.components.SimpleFormFieldOption;
@@ -111,7 +112,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -126,8 +127,7 @@ public class Application {
                         Map.entry("instance_url", "https://eu28.salesforce.com"),
                         Map.entry("api_key", "12345xxxxxx")))
                     .metadata(Map.ofEntries(
-                        Map.entry("account", Map.ofEntries(\n    Map.entry("name", "My Company"),
-                            Map.entry("id", "c01458a5-7276-41ce-bc19-639906b0450a"))),
+                        Map.entry("account", Map.ofEntries(\n    Map.entry("name", "My Company"),\n    Map.entry("id", "c01458a5-7276-41ce-bc19-639906b0450a"))),
                         Map.entry("plan", "enterprise")))
                     .configuration(List.of(
                         ConnectionConfiguration.builder()
@@ -143,9 +143,129 @@ public class Application {
                                                 SimpleFormFieldOption.builder()
                                                     .label("General Channel")
                                                     .value(SimpleFormFieldOptionValue.of(12.5d))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(List.of(
+                                                        Five.of("team"),
+                                                        Five.of("general"))))
+                                                    .build()))
+                                            .build())))
+                                    .value(ConnectionValue.of("GC5000 series"))
+                                    .build(),
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        FormFieldOption.of(SimpleFormFieldOption.builder()
+                                            .label("General Channel")
+                                            .value(SimpleFormFieldOptionValue.of(123L))
+                                            .build()),
+                                        FormFieldOption.of(SimpleFormFieldOption.builder()
+                                            .label("General Channel")
+                                            .value(SimpleFormFieldOptionValue.of("general"))
+                                            .build()),
+                                        FormFieldOption.of(FormFieldOptionGroup.builder()
+                                            .id("1234")
+                                            .label("General Channel")
+                                            .options(List.of(
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(123L))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(12.5d))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(true))
+                                                    .build()))
+                                            .build())))
+                                    .value(ConnectionValue.of(true))
+                                    .build()))
+                            .build(),
+                        ConnectionConfiguration.builder()
+                            .resource("leads")
+                            .defaults(List.of(
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        FormFieldOption.of(FormFieldOptionGroup.builder()
+                                            .id("1234")
+                                            .label("General Channel")
+                                            .options(List.of(
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(12.5d))
+                                                    .build()))
+                                            .build())))
+                                    .value(ConnectionValue.of(true))
+                                    .build()))
+                            .build(),
+                        ConnectionConfiguration.builder()
+                            .resource("leads")
+                            .defaults(List.of(
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        FormFieldOption.of(FormFieldOptionGroup.builder()
+                                            .id("1234")
+                                            .label("General Channel")
+                                            .options(List.of(
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(123L))
                                                     .build()))
                                             .build())))
                                     .value(ConnectionValue.of(10L))
+                                    .build(),
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        FormFieldOption.of(FormFieldOptionGroup.builder()
+                                            .id("1234")
+                                            .label("General Channel")
+                                            .options(List.of(
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(List.of(
+                                                        Five.of("team"),
+                                                        Five.of("general"))))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(true))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(12.5d))
+                                                    .build()))
+                                            .build())))
+                                    .value(ConnectionValue.of(10L))
+                                    .build(),
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        FormFieldOption.of(FormFieldOptionGroup.builder()
+                                            .id("1234")
+                                            .label("General Channel")
+                                            .options(List.of(
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of(List.of(
+                                                        Five.of("team"),
+                                                        Five.of("general"))))
+                                                    .build(),
+                                                SimpleFormFieldOption.builder()
+                                                    .label("General Channel")
+                                                    .value(SimpleFormFieldOptionValue.of("general"))
+                                                    .build()))
+                                            .build()),
+                                        FormFieldOption.of(SimpleFormFieldOption.builder()
+                                            .label("General Channel")
+                                            .value(SimpleFormFieldOptionValue.of(123L))
+                                            .build())))
+                                    .value(ConnectionValue.of(true))
                                     .build()))
                             .build()))
                     .customMappings(List.of(

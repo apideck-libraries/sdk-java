@@ -125,6 +125,13 @@ public class TaxRateInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+    /**
+     * The subsidiaries this belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiaries")
+    private Optional<? extends List<Subsidiaries>> subsidiaries;
+
     @JsonCreator
     public TaxRateInput(
             @JsonProperty("id") JsonNullable<String> id,
@@ -141,7 +148,8 @@ public class TaxRateInput {
             @JsonProperty("original_tax_rate_id") JsonNullable<String> originalTaxRateId,
             @JsonProperty("status") JsonNullable<? extends TaxRateStatus> status,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
+            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
@@ -157,6 +165,7 @@ public class TaxRateInput {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.id = id;
         this.name = name;
         this.code = code;
@@ -172,10 +181,11 @@ public class TaxRateInput {
         this.status = status;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.subsidiaries = subsidiaries;
     }
     
     public TaxRateInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -296,6 +306,15 @@ public class TaxRateInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Subsidiaries>> subsidiaries() {
+        return (Optional<List<Subsidiaries>>) subsidiaries;
     }
 
     public final static Builder builder() {
@@ -565,6 +584,24 @@ public class TaxRateInput {
         this.passThrough = passThrough;
         return this;
     }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    public TaxRateInput withSubsidiaries(List<Subsidiaries> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = Optional.ofNullable(subsidiaries);
+        return this;
+    }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    public TaxRateInput withSubsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = subsidiaries;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -590,7 +627,8 @@ public class TaxRateInput {
             Objects.deepEquals(this.originalTaxRateId, other.originalTaxRateId) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Objects.deepEquals(this.passThrough, other.passThrough) &&
+            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
     }
     
     @Override
@@ -610,7 +648,8 @@ public class TaxRateInput {
             originalTaxRateId,
             status,
             rowVersion,
-            passThrough);
+            passThrough,
+            subsidiaries);
     }
     
     @Override
@@ -630,7 +669,8 @@ public class TaxRateInput {
                 "originalTaxRateId", originalTaxRateId,
                 "status", status,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "subsidiaries", subsidiaries);
     }
     
     public final static class Builder {
@@ -663,7 +703,9 @@ public class TaxRateInput {
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
+        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+ 
+        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -932,6 +974,24 @@ public class TaxRateInput {
             this.passThrough = passThrough;
             return this;
         }
+
+        /**
+         * The subsidiaries this belongs to.
+         */
+        public Builder subsidiaries(List<Subsidiaries> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = Optional.ofNullable(subsidiaries);
+            return this;
+        }
+
+        /**
+         * The subsidiaries this belongs to.
+         */
+        public Builder subsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = subsidiaries;
+            return this;
+        }
         
         public TaxRateInput build() {
             return new TaxRateInput(
@@ -949,7 +1009,8 @@ public class TaxRateInput {
                 originalTaxRateId,
                 status,
                 rowVersion,
-                passThrough);
+                passThrough,
+                subsidiaries);
         }
     }
 }

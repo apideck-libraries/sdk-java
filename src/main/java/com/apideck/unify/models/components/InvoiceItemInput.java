@@ -87,7 +87,7 @@ public class InvoiceItemInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends InvoiceItemType> type;
+    private JsonNullable<? extends InvoiceItemTypeType> type;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_details")
@@ -160,7 +160,7 @@ public class InvoiceItemInput {
             @JsonProperty("tracked") JsonNullable<Boolean> tracked,
             @JsonProperty("taxable") JsonNullable<Boolean> taxable,
             @JsonProperty("inventory_date") JsonNullable<LocalDate> inventoryDate,
-            @JsonProperty("type") JsonNullable<? extends InvoiceItemType> type,
+            @JsonProperty("type") JsonNullable<? extends InvoiceItemTypeType> type,
             @JsonProperty("sales_details") Optional<? extends InvoiceItemSalesDetails> salesDetails,
             @JsonProperty("purchase_details") Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails,
             @JsonProperty("quantity") JsonNullable<Double> quantity,
@@ -290,8 +290,8 @@ public class InvoiceItemInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<InvoiceItemType> type() {
-        return (JsonNullable<InvoiceItemType>) type;
+    public JsonNullable<InvoiceItemTypeType> type() {
+        return (JsonNullable<InvoiceItemTypeType>) type;
     }
 
     @SuppressWarnings("unchecked")
@@ -526,7 +526,7 @@ public class InvoiceItemInput {
     /**
      * Item type
      */
-    public InvoiceItemInput withType(InvoiceItemType type) {
+    public InvoiceItemInput withType(InvoiceItemTypeType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -535,7 +535,7 @@ public class InvoiceItemInput {
     /**
      * Item type
      */
-    public InvoiceItemInput withType(JsonNullable<? extends InvoiceItemType> type) {
+    public InvoiceItemInput withType(JsonNullable<? extends InvoiceItemTypeType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -814,7 +814,7 @@ public class InvoiceItemInput {
  
         private JsonNullable<LocalDate> inventoryDate = JsonNullable.undefined();
  
-        private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();
+        private JsonNullable<? extends InvoiceItemTypeType> type = JsonNullable.undefined();
  
         private Optional<? extends InvoiceItemSalesDetails> salesDetails = Optional.empty();
  
@@ -992,7 +992,7 @@ public class InvoiceItemInput {
         /**
          * Item type
          */
-        public Builder type(InvoiceItemType type) {
+        public Builder type(InvoiceItemTypeType type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
@@ -1001,7 +1001,7 @@ public class InvoiceItemInput {
         /**
          * Item type
          */
-        public Builder type(JsonNullable<? extends InvoiceItemType> type) {
+        public Builder type(JsonNullable<? extends InvoiceItemTypeType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

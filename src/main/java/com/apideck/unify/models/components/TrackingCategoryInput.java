@@ -64,6 +64,13 @@ public class TrackingCategoryInput {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiaries")
+    private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries;
+
     @JsonCreator
     public TrackingCategoryInput(
             @JsonProperty("parent_id") JsonNullable<String> parentId,
@@ -71,23 +78,26 @@ public class TrackingCategoryInput {
             @JsonProperty("code") JsonNullable<String> code,
             @JsonProperty("status") Optional<? extends TrackingCategoryStatus> status,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
+            @JsonProperty("subsidiaries") Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.parentId = parentId;
         this.name = name;
         this.code = code;
         this.status = status;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.subsidiaries = subsidiaries;
     }
     
     public TrackingCategoryInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -138,6 +148,15 @@ public class TrackingCategoryInput {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<TrackingCategorySubsidiaries>> subsidiaries() {
+        return (Optional<List<TrackingCategorySubsidiaries>>) subsidiaries;
     }
 
     public final static Builder builder() {
@@ -251,6 +270,24 @@ public class TrackingCategoryInput {
         this.passThrough = passThrough;
         return this;
     }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    public TrackingCategoryInput withSubsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = Optional.ofNullable(subsidiaries);
+        return this;
+    }
+
+    /**
+     * The subsidiaries the account belongs to.
+     */
+    public TrackingCategoryInput withSubsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = subsidiaries;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -267,7 +304,8 @@ public class TrackingCategoryInput {
             Objects.deepEquals(this.code, other.code) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Objects.deepEquals(this.passThrough, other.passThrough) &&
+            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
     }
     
     @Override
@@ -278,7 +316,8 @@ public class TrackingCategoryInput {
             code,
             status,
             rowVersion,
-            passThrough);
+            passThrough,
+            subsidiaries);
     }
     
     @Override
@@ -289,7 +328,8 @@ public class TrackingCategoryInput {
                 "code", code,
                 "status", status,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "subsidiaries", subsidiaries);
     }
     
     public final static class Builder {
@@ -304,7 +344,9 @@ public class TrackingCategoryInput {
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
+        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+ 
+        private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -417,6 +459,24 @@ public class TrackingCategoryInput {
             this.passThrough = passThrough;
             return this;
         }
+
+        /**
+         * The subsidiaries the account belongs to.
+         */
+        public Builder subsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = Optional.ofNullable(subsidiaries);
+            return this;
+        }
+
+        /**
+         * The subsidiaries the account belongs to.
+         */
+        public Builder subsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = subsidiaries;
+            return this;
+        }
         
         public TrackingCategoryInput build() {
             return new TrackingCategoryInput(
@@ -425,7 +485,8 @@ public class TrackingCategoryInput {
                 code,
                 status,
                 rowVersion,
-                passThrough);
+                passThrough,
+                subsidiaries);
         }
     }
 }

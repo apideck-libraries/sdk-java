@@ -5,6 +5,7 @@
 package com.apideck.unify.models.operations;
 
 
+import com.apideck.unify.models.components.InvoiceItemFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -14,6 +15,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -57,6 +59,12 @@ public class AccountingInvoiceItemsOneRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends InvoiceItemFilter> filter;
+
     @JsonCreator
     public AccountingInvoiceItemsOneRequest(
             String id,
@@ -64,24 +72,27 @@ public class AccountingInvoiceItemsOneRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<? extends InvoiceItemFilter> filter) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(filter, "filter");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
         this.fields = fields;
+        this.filter = filter;
     }
     
     public AccountingInvoiceItemsOneRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -130,6 +141,15 @@ public class AccountingInvoiceItemsOneRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InvoiceItemFilter> filter() {
+        return (Optional<InvoiceItemFilter>) filter;
     }
 
     public final static Builder builder() {
@@ -234,6 +254,24 @@ public class AccountingInvoiceItemsOneRequest {
         this.fields = fields;
         return this;
     }
+
+    /**
+     * Apply filters
+     */
+    public AccountingInvoiceItemsOneRequest withFilter(InvoiceItemFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+    /**
+     * Apply filters
+     */
+    public AccountingInvoiceItemsOneRequest withFilter(Optional<? extends InvoiceItemFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -250,7 +288,8 @@ public class AccountingInvoiceItemsOneRequest {
             Objects.deepEquals(this.appId, other.appId) &&
             Objects.deepEquals(this.serviceId, other.serviceId) &&
             Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Objects.deepEquals(this.fields, other.fields) &&
+            Objects.deepEquals(this.filter, other.filter);
     }
     
     @Override
@@ -261,7 +300,8 @@ public class AccountingInvoiceItemsOneRequest {
             appId,
             serviceId,
             raw,
-            fields);
+            fields,
+            filter);
     }
     
     @Override
@@ -272,7 +312,8 @@ public class AccountingInvoiceItemsOneRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "fields", fields);
+                "fields", fields,
+                "filter", filter);
     }
     
     public final static class Builder {
@@ -287,7 +328,9 @@ public class AccountingInvoiceItemsOneRequest {
  
         private Optional<Boolean> raw;
  
-        private JsonNullable<String> fields = JsonNullable.undefined();  
+        private JsonNullable<String> fields = JsonNullable.undefined();
+ 
+        private Optional<? extends InvoiceItemFilter> filter = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -391,6 +434,24 @@ public class AccountingInvoiceItemsOneRequest {
             this.fields = fields;
             return this;
         }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(InvoiceItemFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends InvoiceItemFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
         
         public AccountingInvoiceItemsOneRequest build() {
             if (raw == null) {
@@ -401,7 +462,8 @@ public class AccountingInvoiceItemsOneRequest {
                 appId,
                 serviceId,
                 raw,
-                fields);
+                fields,
+                filter);
         }
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =

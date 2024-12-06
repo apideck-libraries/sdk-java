@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
 
 /**
- * InvoiceItemType - Item type
+ * InvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
  */
 public enum InvoiceItemType {
     INVENTORY("inventory"),

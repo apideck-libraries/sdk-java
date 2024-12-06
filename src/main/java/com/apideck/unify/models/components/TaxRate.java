@@ -161,6 +161,13 @@ public class TaxRate {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+    /**
+     * The subsidiaries this belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiaries")
+    private Optional<? extends List<Subsidiaries>> subsidiaries;
+
     @JsonCreator
     public TaxRate(
             @JsonProperty("id") JsonNullable<String> id,
@@ -182,7 +189,8 @@ public class TaxRate {
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
+            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
@@ -203,6 +211,7 @@ public class TaxRate {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(passThrough, "passThrough");
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.id = id;
         this.name = name;
         this.code = code;
@@ -223,10 +232,11 @@ public class TaxRate {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.passThrough = passThrough;
+        this.subsidiaries = subsidiaries;
     }
     
     public TaxRate() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -388,6 +398,15 @@ public class TaxRate {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<Subsidiaries>> subsidiaries() {
+        return (Optional<List<Subsidiaries>>) subsidiaries;
     }
 
     public final static Builder builder() {
@@ -747,6 +766,24 @@ public class TaxRate {
         this.passThrough = passThrough;
         return this;
     }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    public TaxRate withSubsidiaries(List<Subsidiaries> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = Optional.ofNullable(subsidiaries);
+        return this;
+    }
+
+    /**
+     * The subsidiaries this belongs to.
+     */
+    public TaxRate withSubsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+        Utils.checkNotNull(subsidiaries, "subsidiaries");
+        this.subsidiaries = subsidiaries;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -777,7 +814,8 @@ public class TaxRate {
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Objects.deepEquals(this.passThrough, other.passThrough) &&
+            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
     }
     
     @Override
@@ -802,7 +840,8 @@ public class TaxRate {
             createdBy,
             updatedAt,
             createdAt,
-            passThrough);
+            passThrough,
+            subsidiaries);
     }
     
     @Override
@@ -827,7 +866,8 @@ public class TaxRate {
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "subsidiaries", subsidiaries);
     }
     
     public final static class Builder {
@@ -870,7 +910,9 @@ public class TaxRate {
  
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
  
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
+        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+ 
+        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -1229,6 +1271,24 @@ public class TaxRate {
             this.passThrough = passThrough;
             return this;
         }
+
+        /**
+         * The subsidiaries this belongs to.
+         */
+        public Builder subsidiaries(List<Subsidiaries> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = Optional.ofNullable(subsidiaries);
+            return this;
+        }
+
+        /**
+         * The subsidiaries this belongs to.
+         */
+        public Builder subsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+            Utils.checkNotNull(subsidiaries, "subsidiaries");
+            this.subsidiaries = subsidiaries;
+            return this;
+        }
         
         public TaxRate build() {
             return new TaxRate(
@@ -1251,7 +1311,8 @@ public class TaxRate {
                 createdBy,
                 updatedAt,
                 createdAt,
-                passThrough);
+                passThrough,
+                subsidiaries);
         }
     }
 }

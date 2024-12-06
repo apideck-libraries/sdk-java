@@ -16,7 +16,7 @@ import java.util.Objects;
 
 public class Security {
 
-    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=Authorization")
+    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private String apiKey;
 
     @JsonCreator

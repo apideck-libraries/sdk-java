@@ -37,7 +37,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -125,7 +125,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -154,6 +154,12 @@ public class Application {
                             .name("employee_level")
                             .description("Employee Level")
                             .value(Value.of(true))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
@@ -190,8 +196,70 @@ public class Application {
                             .website("https://elonmusk.com")
                             .notes("Address notes or delivery instructions.")
                             .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
                             .build()))
                     .websites(List.of(
+                        Websites.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(ApplicantType.PRIMARY)
+                            .build(),
+                        Websites.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(ApplicantType.PRIMARY)
+                            .build(),
                         Websites.builder()
                             .url("http://example.com")
                             .id("12345")
@@ -294,7 +362,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -357,7 +425,6 @@ import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.SocialLinks;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -379,7 +446,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -402,15 +469,28 @@ public class Application {
                             .email("elon@musk.com")
                             .id("123")
                             .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
                             .build()))
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of6(List.of(
-                                Six.builder()
-                                    .build())))
+                            .value(Value.of(true))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
@@ -447,6 +527,58 @@ public class Application {
                             .website("https://elonmusk.com")
                             .notes("Address notes or delivery instructions.")
                             .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
                             .build()))
                     .websites(List.of(
                         Websites.builder()
@@ -455,6 +587,16 @@ public class Application {
                             .type(ApplicantType.PRIMARY)
                             .build()))
                     .socialLinks(List.of(
+                        SocialLinks.builder()
+                            .url("https://www.twitter.com/apideck")
+                            .id("12345")
+                            .type("twitter")
+                            .build(),
+                        SocialLinks.builder()
+                            .url("https://www.twitter.com/apideck")
+                            .id("12345")
+                            .type("twitter")
+                            .build(),
                         SocialLinks.builder()
                             .url("https://www.twitter.com/apideck")
                             .id("12345")
@@ -551,7 +693,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();

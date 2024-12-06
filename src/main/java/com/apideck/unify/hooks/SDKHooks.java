@@ -17,8 +17,6 @@ public final class SDKHooks {
         
         // for more information see
         // https://www.speakeasy.com/docs/additional-features/sdk-hooks
-        AuthHook authHook = new AuthHook();
-        hooks.registerBeforeRequest(authHook);
     }
     
 }

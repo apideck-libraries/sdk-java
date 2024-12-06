@@ -80,6 +80,13 @@ public class Expense {
     private Optional<String> departmentId;
 
     /**
+     * The type of payment for the expense.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_type")
+    private JsonNullable<? extends ExpensePaymentType> paymentType;
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -173,6 +180,7 @@ public class Expense {
             @JsonProperty("supplier_id") Optional<String> supplierId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("department_id") Optional<String> departmentId,
+            @JsonProperty("payment_type") JsonNullable<? extends ExpensePaymentType> paymentType,
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("type") JsonNullable<? extends ExpenseType> type,
@@ -194,6 +202,7 @@ public class Expense {
         Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(paymentType, "paymentType");
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(currencyRate, "currencyRate");
         Utils.checkNotNull(type, "type");
@@ -215,6 +224,7 @@ public class Expense {
         this.supplierId = supplierId;
         this.companyId = companyId;
         this.departmentId = departmentId;
+        this.paymentType = paymentType;
         this.currency = currency;
         this.currencyRate = currencyRate;
         this.type = type;
@@ -233,7 +243,7 @@ public class Expense {
     public Expense(
             String accountId,
             List<ExpenseLineItem> lineItems) {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -298,6 +308,15 @@ public class Expense {
     @JsonIgnore
     public Optional<String> departmentId() {
         return departmentId;
+    }
+
+    /**
+     * The type of payment for the expense.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<ExpensePaymentType> paymentType() {
+        return (JsonNullable<ExpensePaymentType>) paymentType;
     }
 
     /**
@@ -544,6 +563,24 @@ public class Expense {
     }
 
     /**
+     * The type of payment for the expense.
+     */
+    public Expense withPaymentType(ExpensePaymentType paymentType) {
+        Utils.checkNotNull(paymentType, "paymentType");
+        this.paymentType = JsonNullable.of(paymentType);
+        return this;
+    }
+
+    /**
+     * The type of payment for the expense.
+     */
+    public Expense withPaymentType(JsonNullable<? extends ExpensePaymentType> paymentType) {
+        Utils.checkNotNull(paymentType, "paymentType");
+        this.paymentType = paymentType;
+        return this;
+    }
+
+    /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     public Expense withCurrency(Currency currency) {
@@ -774,6 +811,7 @@ public class Expense {
             Objects.deepEquals(this.supplierId, other.supplierId) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.departmentId, other.departmentId) &&
+            Objects.deepEquals(this.paymentType, other.paymentType) &&
             Objects.deepEquals(this.currency, other.currency) &&
             Objects.deepEquals(this.currencyRate, other.currencyRate) &&
             Objects.deepEquals(this.type, other.type) &&
@@ -800,6 +838,7 @@ public class Expense {
             supplierId,
             companyId,
             departmentId,
+            paymentType,
             currency,
             currencyRate,
             type,
@@ -826,6 +865,7 @@ public class Expense {
                 "supplierId", supplierId,
                 "companyId", companyId,
                 "departmentId", departmentId,
+                "paymentType", paymentType,
                 "currency", currency,
                 "currencyRate", currencyRate,
                 "type", type,
@@ -858,6 +898,8 @@ public class Expense {
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
         private Optional<String> departmentId = Optional.empty();
+ 
+        private JsonNullable<? extends ExpensePaymentType> paymentType = JsonNullable.undefined();
  
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
  
@@ -1021,6 +1063,24 @@ public class Expense {
         public Builder departmentId(Optional<String> departmentId) {
             Utils.checkNotNull(departmentId, "departmentId");
             this.departmentId = departmentId;
+            return this;
+        }
+
+        /**
+         * The type of payment for the expense.
+         */
+        public Builder paymentType(ExpensePaymentType paymentType) {
+            Utils.checkNotNull(paymentType, "paymentType");
+            this.paymentType = JsonNullable.of(paymentType);
+            return this;
+        }
+
+        /**
+         * The type of payment for the expense.
+         */
+        public Builder paymentType(JsonNullable<? extends ExpensePaymentType> paymentType) {
+            Utils.checkNotNull(paymentType, "paymentType");
+            this.paymentType = paymentType;
             return this;
         }
 
@@ -1247,6 +1307,7 @@ public class Expense {
                 supplierId,
                 companyId,
                 departmentId,
+                paymentType,
                 currency,
                 currencyRate,
                 type,

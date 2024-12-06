@@ -175,7 +175,7 @@ public class LedgerAccountInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
-    private Optional<? extends List<Subsidiaries>> subsidiaries;
+    private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -215,7 +215,7 @@ public class LedgerAccountInput {
             @JsonProperty("parent_account") Optional<? extends ParentAccount> parentAccount,
             @JsonProperty("sub_account") JsonNullable<Boolean> subAccount,
             @JsonProperty("last_reconciliation_date") JsonNullable<LocalDate> lastReconciliationDate,
-            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries,
+            @JsonProperty("subsidiaries") Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(displayId, "displayId");
@@ -452,8 +452,8 @@ public class LedgerAccountInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Subsidiaries>> subsidiaries() {
-        return (Optional<List<Subsidiaries>>) subsidiaries;
+    public Optional<List<LedgerAccountSubsidiaries>> subsidiaries() {
+        return (Optional<List<LedgerAccountSubsidiaries>>) subsidiaries;
     }
 
     /**
@@ -856,7 +856,7 @@ public class LedgerAccountInput {
     /**
      * The subsidiaries the account belongs to.
      */
-    public LedgerAccountInput withSubsidiaries(List<Subsidiaries> subsidiaries) {
+    public LedgerAccountInput withSubsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = Optional.ofNullable(subsidiaries);
         return this;
@@ -865,7 +865,7 @@ public class LedgerAccountInput {
     /**
      * The subsidiaries the account belongs to.
      */
-    public LedgerAccountInput withSubsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+    public LedgerAccountInput withSubsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = subsidiaries;
         return this;
@@ -1051,7 +1051,7 @@ public class LedgerAccountInput {
  
         private JsonNullable<LocalDate> lastReconciliationDate = JsonNullable.undefined();
  
-        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();
+        private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries = Optional.empty();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
@@ -1440,7 +1440,7 @@ public class LedgerAccountInput {
         /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(List<Subsidiaries> subsidiaries) {
+        public Builder subsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = Optional.ofNullable(subsidiaries);
             return this;
@@ -1449,7 +1449,7 @@ public class LedgerAccountInput {
         /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+        public Builder subsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = subsidiaries;
             return this;

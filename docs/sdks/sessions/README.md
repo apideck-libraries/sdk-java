@@ -41,7 +41,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -74,10 +74,7 @@ public class Application {
                         .build())
                     .customConsumerSettings(Map.ofEntries(
                         Map.entry("feature_flag_1", true),
-                        Map.entry("tax_rates", List.of(\n    Map.ofEntries(\n    Map.entry("id", "6"),
-                                Map.entry("label", "6%")),
-                            Map.ofEntries(\n    Map.entry("id", "21"),
-                                Map.entry("label", "21%"))))))
+                        Map.entry("tax_rates", List.of(\n    Map.ofEntries(\n    Map.entry("id", "6"),\n    Map.entry("label", "6%")),\n    Map.ofEntries(\n    Map.entry("id", "21"),\n    Map.entry("label", "21%"))))))
                     .build())
                 .call();
 

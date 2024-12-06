@@ -33,6 +33,7 @@ import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllResponse;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -41,7 +42,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -56,6 +57,8 @@ public class Application {
                 .filter(IssuesFilter.builder()
                     .status(List.of(
                         "open"))
+                    .since(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .assigneeId("2332bd9c2eaaa5dcfa14721c")
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -127,7 +130,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -147,6 +150,9 @@ public class Application {
                             .build()))
                     .dueDate(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .tags(List.of(
+                        CollectionTagInput.builder()
+                            .id("12345")
+                            .build(),
                         CollectionTagInput.builder()
                             .id("12345")
                             .build()))
@@ -219,7 +225,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -296,7 +302,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -314,9 +320,18 @@ public class Application {
                     .assignees(List.of(
                         AssigneeInput.builder()
                             .id("12345")
+                            .build(),
+                        AssigneeInput.builder()
+                            .id("12345")
+                            .build(),
+                        AssigneeInput.builder()
+                            .id("12345")
                             .build()))
                     .dueDate(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .tags(List.of(
+                        CollectionTagInput.builder()
+                            .id("12345")
+                            .build(),
                         CollectionTagInput.builder()
                             .id("12345")
                             .build()))
@@ -324,6 +339,14 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -389,7 +412,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();

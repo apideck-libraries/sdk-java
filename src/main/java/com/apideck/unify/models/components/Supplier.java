@@ -220,6 +220,13 @@ public class Supplier {
     @JsonProperty("pass_through")
     private Optional<? extends List<PassThroughBody>> passThrough;
 
+    /**
+     * The subsidiary the supplier belongs to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary_id")
+    private Optional<String> subsidiaryId;
+
     @JsonCreator
     public Supplier(
             @JsonProperty("id") String id,
@@ -253,7 +260,8 @@ public class Supplier {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
+            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
+            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(displayId, "displayId");
@@ -286,6 +294,7 @@ public class Supplier {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         this.id = id;
         this.downstreamId = downstreamId;
         this.displayId = displayId;
@@ -318,11 +327,12 @@ public class Supplier {
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
+        this.subsidiaryId = subsidiaryId;
     }
     
     public Supplier(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -563,6 +573,14 @@ public class Supplier {
     @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
         return (Optional<List<PassThroughBody>>) passThrough;
+    }
+
+    /**
+     * The subsidiary the supplier belongs to.
+     */
+    @JsonIgnore
+    public Optional<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     public final static Builder builder() {
@@ -1081,6 +1099,24 @@ public class Supplier {
         this.passThrough = passThrough;
         return this;
     }
+
+    /**
+     * The subsidiary the supplier belongs to.
+     */
+    public Supplier withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+        return this;
+    }
+
+    /**
+     * The subsidiary the supplier belongs to.
+     */
+    public Supplier withSubsidiaryId(Optional<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1123,7 +1159,8 @@ public class Supplier {
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Objects.deepEquals(this.passThrough, other.passThrough) &&
+            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
@@ -1160,7 +1197,8 @@ public class Supplier {
             updatedAt,
             createdAt,
             rowVersion,
-            passThrough);
+            passThrough,
+            subsidiaryId);
     }
     
     @Override
@@ -1197,7 +1235,8 @@ public class Supplier {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
-                "passThrough", passThrough);
+                "passThrough", passThrough,
+                "subsidiaryId", subsidiaryId);
     }
     
     public final static class Builder {
@@ -1264,7 +1303,9 @@ public class Supplier {
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
+        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+ 
+        private Optional<String> subsidiaryId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -1782,6 +1823,24 @@ public class Supplier {
             this.passThrough = passThrough;
             return this;
         }
+
+        /**
+         * The subsidiary the supplier belongs to.
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * The subsidiary the supplier belongs to.
+         */
+        public Builder subsidiaryId(Optional<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
         
         public Supplier build() {
             return new Supplier(
@@ -1816,7 +1875,8 @@ public class Supplier {
                 updatedAt,
                 createdAt,
                 rowVersion,
-                passThrough);
+                passThrough,
+                subsidiaryId);
         }
     }
 }

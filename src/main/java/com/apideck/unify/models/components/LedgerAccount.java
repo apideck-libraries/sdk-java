@@ -197,7 +197,7 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
-    private Optional<? extends List<Subsidiaries>> subsidiaries;
+    private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
@@ -275,7 +275,7 @@ public class LedgerAccount {
             @JsonProperty("sub_account") JsonNullable<Boolean> subAccount,
             @JsonProperty("sub_accounts") Optional<? extends List<SubAccounts>> subAccounts,
             @JsonProperty("last_reconciliation_date") JsonNullable<LocalDate> lastReconciliationDate,
-            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries,
+            @JsonProperty("subsidiaries") Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries,
             @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -559,8 +559,8 @@ public class LedgerAccount {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<Subsidiaries>> subsidiaries() {
-        return (Optional<List<Subsidiaries>>) subsidiaries;
+    public Optional<List<LedgerAccountSubsidiaries>> subsidiaries() {
+        return (Optional<List<LedgerAccountSubsidiaries>>) subsidiaries;
     }
 
     /**
@@ -1058,7 +1058,7 @@ public class LedgerAccount {
     /**
      * The subsidiaries the account belongs to.
      */
-    public LedgerAccount withSubsidiaries(List<Subsidiaries> subsidiaries) {
+    public LedgerAccount withSubsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = Optional.ofNullable(subsidiaries);
         return this;
@@ -1067,7 +1067,7 @@ public class LedgerAccount {
     /**
      * The subsidiaries the account belongs to.
      */
-    public LedgerAccount withSubsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+    public LedgerAccount withSubsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = subsidiaries;
         return this;
@@ -1373,7 +1373,7 @@ public class LedgerAccount {
  
         private JsonNullable<LocalDate> lastReconciliationDate = JsonNullable.undefined();
  
-        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();
+        private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries = Optional.empty();
  
         private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
  
@@ -1826,7 +1826,7 @@ public class LedgerAccount {
         /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(List<Subsidiaries> subsidiaries) {
+        public Builder subsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = Optional.ofNullable(subsidiaries);
             return this;
@@ -1835,7 +1835,7 @@ public class LedgerAccount {
         /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
+        public Builder subsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = subsidiaries;
             return this;

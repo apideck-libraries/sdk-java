@@ -21,6 +21,7 @@ List Invoice Items
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.InvoiceItemType;
 import com.apideck.unify.models.components.InvoiceItemsFilter;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -37,7 +38,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -46,6 +47,7 @@ public class Application {
                 .serviceId("salesforce")
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
+                    .type(InvoiceItemType.SERVICE)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -98,7 +100,7 @@ import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.InvoiceItemInput;
 import com.apideck.unify.models.components.InvoiceItemPurchaseDetails;
 import com.apideck.unify.models.components.InvoiceItemSalesDetails;
-import com.apideck.unify.models.components.InvoiceItemType;
+import com.apideck.unify.models.components.InvoiceItemTypeType;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
@@ -120,7 +122,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -135,7 +137,7 @@ public class Application {
                     .tracked(true)
                     .taxable(true)
                     .inventoryDate(LocalDate.parse("2020-10-30"))
-                    .type(InvoiceItemType.INVENTORY)
+                    .type(InvoiceItemTypeType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
                         .unitPrice(27500.5d)
                         .unitOfMeasure("pc.")
@@ -179,6 +181,14 @@ public class Application {
                     .active(true)
                     .rowVersion("1-12345")
                     .passThrough(List.of(
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
@@ -233,6 +243,8 @@ Get Invoice Item
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.InvoiceItemFilter;
+import com.apideck.unify.models.components.InvoiceItemFilterInvoiceItemType;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -247,7 +259,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -256,6 +268,9 @@ public class Application {
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
+                .filter(InvoiceItemFilter.builder()
+                    .type(InvoiceItemFilterInvoiceItemType.SERVICE)
+                    .build())
                 .build();
 
         AccountingInvoiceItemsOneResponse res = sdk.accounting().invoiceItems().get()
@@ -304,7 +319,7 @@ import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.InvoiceItemInput;
 import com.apideck.unify.models.components.InvoiceItemPurchaseDetails;
 import com.apideck.unify.models.components.InvoiceItemSalesDetails;
-import com.apideck.unify.models.components.InvoiceItemType;
+import com.apideck.unify.models.components.InvoiceItemTypeType;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
@@ -326,7 +341,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
@@ -342,7 +357,7 @@ public class Application {
                     .tracked(true)
                     .taxable(true)
                     .inventoryDate(LocalDate.parse("2020-10-30"))
-                    .type(InvoiceItemType.INVENTORY)
+                    .type(InvoiceItemTypeType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
                         .unitPrice(27500.5d)
                         .unitOfMeasure("pc.")
@@ -382,6 +397,14 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
+                            .build(),
+                        LinkedTrackingCategory.builder()
+                            .id("123456")
+                            .name("New York")
+                            .build(),
+                        LinkedTrackingCategory.builder()
+                            .id("123456")
+                            .name("New York")
                             .build()))
                     .active(true)
                     .rowVersion("1-12345")
@@ -389,6 +412,22 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -454,7 +493,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();

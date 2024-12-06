@@ -35,14 +35,14 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         AccountingAttachmentsAllRequest req = AccountingAttachmentsAllRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
-                .referenceId("12345")
+                .referenceId("123456")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();
@@ -104,14 +104,14 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         AccountingAttachmentsOneRequest req = AccountingAttachmentsOneRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
-                .referenceId("12345")
+                .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
@@ -174,14 +174,14 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         AccountingAttachmentsDeleteRequest req = AccountingAttachmentsDeleteRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
-                .referenceId("12345")
+                .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
                 .build();
@@ -243,14 +243,14 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_API_KEY_HERE>")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
         AccountingAttachmentsDownloadRequest req = AccountingAttachmentsDownloadRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
-                .referenceId("12345")
+                .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")

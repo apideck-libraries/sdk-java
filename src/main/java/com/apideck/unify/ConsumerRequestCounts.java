@@ -124,10 +124,10 @@ public class ConsumerRequestCounts implements
                 request, 
                 this.sdkConfiguration.globals));
         _req.addHeaders(Utils.getHeadersFromMetadata(request, this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
@@ -157,7 +157,7 @@ public class ConsumerRequestCounts implements
                             new BeforeRequestContextImpl(
                                 "vault.consumerRequestCountsAll", 
                                 Optional.of(List.of()), 
-                                sdkConfiguration.securitySource()),
+                                _hookSecuritySource),
                             _finalReq.build());
                 } catch (Exception _e) {
                     throw new NonRetryableException(_e);
@@ -170,7 +170,7 @@ public class ConsumerRequestCounts implements
                             new AfterErrorContextImpl(
                                 "vault.consumerRequestCountsAll",
                                  Optional.of(List.of()),
-                                 sdkConfiguration.securitySource()), 
+                                 _hookSecuritySource), 
                             Optional.empty(),
                             Optional.of(_e));
                 }
@@ -183,7 +183,7 @@ public class ConsumerRequestCounts implements
                      new AfterSuccessContextImpl(
                          "vault.consumerRequestCountsAll", 
                          Optional.of(List.of()), 
-                         sdkConfiguration.securitySource()),
+                         _hookSecuritySource),
                      _retries.run());
         String _contentType = _httpRes
             .headers()

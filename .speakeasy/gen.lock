@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 5a3c61710af05ae5c21380b118217322
+  docChecksum: 6385e11ae594d46afc1910ffab8d003a
   docVersion: 10.8.3
-  speakeasyVersion: 1.453.0
-  generationVersion: 2.472.1
-  releaseVersion: 0.2.1
-  configChecksum: 4e73142ddfe8fc47bfca21de3f416bd0
+  speakeasyVersion: 1.454.0
+  generationVersion: 2.477.0
+  releaseVersion: 0.3.0
+  configChecksum: 0561a6ecea952b616a2ef14264f84034
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.32.2
+    core: 3.33.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.3.0
@@ -3026,6 +3026,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/utils/Security.java
   - src/main/java/com/apideck/unify/utils/SecurityMetadata.java
   - src/main/java/com/apideck/unify/utils/SerializedBody.java
+  - src/main/java/com/apideck/unify/utils/SessionManager.java
   - src/main/java/com/apideck/unify/utils/SpeakeasyHTTPClient.java
   - src/main/java/com/apideck/unify/utils/SpeakeasyMetadata.java
   - src/main/java/com/apideck/unify/utils/TypedObject.java

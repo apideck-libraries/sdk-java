@@ -12,6 +12,7 @@ import com.apideck.unify.utils.Utils;
 import java.lang.String;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 
 /**
  * Apideck: The Apideck OpenAPI Spec: SDK Optimized
@@ -215,9 +216,16 @@ public class Apideck {
             return this;
         }
         
-        // Visible for testing, will be accessed via reflection
-        void _hooks(com.apideck.unify.utils.Hooks hooks) {
-            sdkConfiguration.setHooks(hooks);    
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(com.apideck.unify.utils.Hooks hooks) {
+            sdkConfiguration.setHooks(hooks);  
+            return this;  
+        }
+        
+        // Visible for testing, may be accessed via reflection in tests
+        Builder _hooks(Consumer<? super com.apideck.unify.utils.Hooks> consumer) {
+            consumer.accept(sdkConfiguration.hooks());
+            return this;    
         }
         
         /**

@@ -46,7 +46,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.3.0'
+implementation 'com.apideck:unify:0.4.0'
 ```
 
 Maven:
@@ -54,7 +54,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
@@ -137,6 +137,14 @@ public class Application {
 
 ### [accounting()](docs/sdks/accounting/README.md)
 
+
+#### [accounting().agedCreditors()](docs/sdks/agedcreditors/README.md)
+
+* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
+
+#### [accounting().agedDebtors()](docs/sdks/ageddebtors/README.md)
+
+* [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
 
 #### [accounting().attachments()](docs/sdks/attachments/README.md)
 

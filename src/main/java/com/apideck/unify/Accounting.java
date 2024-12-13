@@ -30,6 +30,8 @@ public class Accounting {
     private final TrackingCategories trackingCategories;
     private final BillPayments billPayments;
     private final Expenses expenses;
+    private final AgedCreditors agedCreditors;
+    private final AgedDebtors agedDebtors;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,6 +56,8 @@ public class Accounting {
         this.trackingCategories = new TrackingCategories(this.sdkConfiguration);
         this.billPayments = new BillPayments(this.sdkConfiguration);
         this.expenses = new Expenses(this.sdkConfiguration);
+        this.agedCreditors = new AgedCreditors(this.sdkConfiguration);
+        this.agedDebtors = new AgedDebtors(this.sdkConfiguration);
     }
 
     public final TaxRates taxRates() {
@@ -138,5 +142,13 @@ public class Accounting {
 
     public final Expenses expenses() {
         return expenses;
+    }
+
+    public final AgedCreditors agedCreditors() {
+        return agedCreditors;
+    }
+
+    public final AgedDebtors agedDebtors() {
+        return agedDebtors;
     }
 }

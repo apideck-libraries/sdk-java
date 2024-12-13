@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 6385e11ae594d46afc1910ffab8d003a
-  docVersion: 10.8.3
-  speakeasyVersion: 1.454.0
-  generationVersion: 2.477.0
-  releaseVersion: 0.3.0
-  configChecksum: 0561a6ecea952b616a2ef14264f84034
+  docChecksum: 7ac99bda5530d96a93dea69622cbc790
+  docVersion: 10.9.0
+  speakeasyVersion: 1.454.2
+  generationVersion: 2.477.4
+  releaseVersion: 0.4.0
+  configChecksum: 49ad35c1673dc506d908723a274612ed
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -57,6 +57,9 @@ generatedFiles:
   - docs/models/components/ActivityType.md
   - docs/models/components/Address.md
   - docs/models/components/Addresses.md
+  - docs/models/components/AgedCreditors.md
+  - docs/models/components/AgedDebtors.md
+  - docs/models/components/AgedReportFilter.md
   - docs/models/components/Allocation.md
   - docs/models/components/AllocationInput.md
   - docs/models/components/AllocationType.md
@@ -82,6 +85,8 @@ generatedFiles:
   - docs/models/components/AttachmentReferenceType.md
   - docs/models/components/Audience.md
   - docs/models/components/AuthType.md
+  - docs/models/components/BalanceByPeriod.md
+  - docs/models/components/BalanceByTransaction.md
   - docs/models/components/BalanceSheet.md
   - docs/models/components/BalanceSheetAssetsAccount.md
   - docs/models/components/BalanceSheetEquityAccount.md
@@ -368,6 +373,8 @@ generatedFiles:
   - docs/models/components/GetAccountingLocationsResponse.md
   - docs/models/components/GetActivitiesResponse.md
   - docs/models/components/GetActivityResponse.md
+  - docs/models/components/GetAgedCreditorsResponse.md
+  - docs/models/components/GetAgedDebtorsResponse.md
   - docs/models/components/GetApiResourceCoverageResponse.md
   - docs/models/components/GetApiResourceResponse.md
   - docs/models/components/GetApiResponse.md
@@ -579,6 +586,8 @@ generatedFiles:
   - docs/models/components/Options.md
   - docs/models/components/OrdersSort.md
   - docs/models/components/OrdersSortBy.md
+  - docs/models/components/OutstandingBalance.md
+  - docs/models/components/OutstandingBalanceByCurrency.md
   - docs/models/components/Owner.md
   - docs/models/components/PaginationCoverage.md
   - docs/models/components/PaginationCoverageMode.md
@@ -687,6 +696,7 @@ generatedFiles:
   - docs/models/components/TrackingCategoryStatus.md
   - docs/models/components/TrackingCategorySubsidiaries.md
   - docs/models/components/TrackingItem.md
+  - docs/models/components/TransactionType.md
   - docs/models/components/Type.md
   - docs/models/components/UnexpectedErrorResponse.md
   - docs/models/components/UnifiedApi.md
@@ -770,6 +780,10 @@ generatedFiles:
   - docs/models/errors/UnauthorizedResponseDetail.md
   - docs/models/errors/UnprocessableResponse.md
   - docs/models/errors/UnprocessableResponseDetail.md
+  - docs/models/operations/AccountingAgedCreditorsOneRequest.md
+  - docs/models/operations/AccountingAgedCreditorsOneResponse.md
+  - docs/models/operations/AccountingAgedDebtorsOneRequest.md
+  - docs/models/operations/AccountingAgedDebtorsOneResponse.md
   - docs/models/operations/AccountingAttachmentsAllRequest.md
   - docs/models/operations/AccountingAttachmentsAllResponse.md
   - docs/models/operations/AccountingAttachmentsDeleteRequest.md
@@ -1297,6 +1311,8 @@ generatedFiles:
   - docs/models/operations/WebhookWebhooksUpdateResponse.md
   - docs/sdks/accounting/README.md
   - docs/sdks/activities/README.md
+  - docs/sdks/agedcreditors/README.md
+  - docs/sdks/ageddebtors/README.md
   - docs/sdks/apideck/README.md
   - docs/sdks/apideckcompanies/README.md
   - docs/sdks/apideckcustomers/README.md
@@ -1387,6 +1403,8 @@ generatedFiles:
   - settings.gradle
   - src/main/java/com/apideck/unify/Accounting.java
   - src/main/java/com/apideck/unify/Activities.java
+  - src/main/java/com/apideck/unify/AgedCreditors.java
+  - src/main/java/com/apideck/unify/AgedDebtors.java
   - src/main/java/com/apideck/unify/ApiResourceCoverage.java
   - src/main/java/com/apideck/unify/ApiResources.java
   - src/main/java/com/apideck/unify/Apideck.java
@@ -1491,6 +1509,9 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ActivityType.java
   - src/main/java/com/apideck/unify/models/components/Address.java
   - src/main/java/com/apideck/unify/models/components/Addresses.java
+  - src/main/java/com/apideck/unify/models/components/AgedCreditors.java
+  - src/main/java/com/apideck/unify/models/components/AgedDebtors.java
+  - src/main/java/com/apideck/unify/models/components/AgedReportFilter.java
   - src/main/java/com/apideck/unify/models/components/Allocation.java
   - src/main/java/com/apideck/unify/models/components/AllocationInput.java
   - src/main/java/com/apideck/unify/models/components/AllocationType.java
@@ -1516,6 +1537,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/AttachmentReferenceType.java
   - src/main/java/com/apideck/unify/models/components/Audience.java
   - src/main/java/com/apideck/unify/models/components/AuthType.java
+  - src/main/java/com/apideck/unify/models/components/BalanceByPeriod.java
+  - src/main/java/com/apideck/unify/models/components/BalanceByTransaction.java
   - src/main/java/com/apideck/unify/models/components/BalanceSheet.java
   - src/main/java/com/apideck/unify/models/components/BalanceSheetAssetsAccount.java
   - src/main/java/com/apideck/unify/models/components/BalanceSheetEquityAccount.java
@@ -1802,6 +1825,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetAccountingLocationsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetActivitiesResponse.java
   - src/main/java/com/apideck/unify/models/components/GetActivityResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetAgedCreditorsResponse.java
+  - src/main/java/com/apideck/unify/models/components/GetAgedDebtorsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetApiResourceCoverageResponse.java
   - src/main/java/com/apideck/unify/models/components/GetApiResourceResponse.java
   - src/main/java/com/apideck/unify/models/components/GetApiResponse.java
@@ -2013,6 +2038,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/Options.java
   - src/main/java/com/apideck/unify/models/components/OrdersSort.java
   - src/main/java/com/apideck/unify/models/components/OrdersSortBy.java
+  - src/main/java/com/apideck/unify/models/components/OutstandingBalance.java
+  - src/main/java/com/apideck/unify/models/components/OutstandingBalanceByCurrency.java
   - src/main/java/com/apideck/unify/models/components/Owner.java
   - src/main/java/com/apideck/unify/models/components/PaginationCoverage.java
   - src/main/java/com/apideck/unify/models/components/PaginationCoverageMode.java
@@ -2121,6 +2148,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/TrackingCategoryStatus.java
   - src/main/java/com/apideck/unify/models/components/TrackingCategorySubsidiaries.java
   - src/main/java/com/apideck/unify/models/components/TrackingItem.java
+  - src/main/java/com/apideck/unify/models/components/TransactionType.java
   - src/main/java/com/apideck/unify/models/components/Type.java
   - src/main/java/com/apideck/unify/models/components/UnexpectedErrorResponse.java
   - src/main/java/com/apideck/unify/models/components/UnifiedApi.java
@@ -2206,6 +2234,12 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/errors/UnauthorizedResponseDetail.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponse.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponseDetail.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneResponse.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneRequest.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneRequestBuilder.java
+  - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneResponse.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAttachmentsAllRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAttachmentsAllRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAttachmentsAllResponse.java
@@ -10994,6 +11028,58 @@ examples:
           application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
         "404":
           application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": "Could not find widget with id: '123'", "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.agedCreditorsOne:
+    "":
+      parameters:
+        query:
+          filter: {"customer_id": "123abc", "report_as_of_date": "2024-01-01", "period_count": 3, "period_length": 30}
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "AgedCreditors", "operation": "one", "data": {"report_generated_at": "2024-11-14T12:00:00.000Z", "report_as_of_date": "2024-11-13", "period_count": 4, "period_length": 30, "outstanding_balances": [{"customer_id": "123", "customer_name": "Super Store", "outstanding_balances_by_currency": [{"currency": "USD", "balances_by_period": [{"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}, {"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}]}, {"currency": "USD", "balances_by_period": [{"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}]}]}, {"customer_id": "123", "customer_name": "Super Store", "outstanding_balances_by_currency": [{"currency": "USD", "balances_by_period": []}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": {"missing": [{"foobar": "required"}]}, "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": {"not_found": {"entity": "widget", "id": "123"}}, "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
+        "422":
+          application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
+        default:
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+  accounting.agedDebtorsOne:
+    "":
+      parameters:
+        query:
+          filter: {"customer_id": "123abc", "report_as_of_date": "2024-01-01", "period_count": 3, "period_length": 30}
+          pass_through: {"search": "San Francisco"}
+          fields: "id,updated_at"
+        header:
+          x-apideck-consumer-id: "test-consumer"
+          x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
+          x-apideck-service-id: "salesforce"
+      responses:
+        "200":
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "AgedDebtors", "operation": "one", "data": {"report_generated_at": "2024-11-14T12:00:00.000Z", "report_as_of_date": "2024-11-13", "period_count": 4, "period_length": 30, "outstanding_balances": [{"customer_id": "123", "customer_name": "Super Store", "outstanding_balances_by_currency": [{"currency": "USD", "balances_by_period": [{"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}, {"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}, {"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}]}, {"currency": "USD", "balances_by_period": [{"start_date": "2024-01-01", "end_date": "2024-01-30", "total_amount": 1500, "balances_by_transaction": [{"transaction_id": "INV-1001", "transaction_date": "2024-01-15", "transaction_type": "invoice", "due_date": "2024-02-15", "original_amount": 1000, "outstanding_balance": 800}]}]}]}, {"customer_id": "123", "customer_name": "Super Store", "outstanding_balances_by_currency": [{"currency": "USD", "balances_by_period": []}]}]}}
+        "400":
+          application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": {"missing": [{"foobar": "required"}]}, "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
+        "401":
+          application/json: {"status_code": 401, "error": "Unauthorized", "type_name": "UnauthorizedError", "message": "Unauthorized Request", "detail": "Missing authentication", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
+        "402":
+          application/json: {"status_code": 402, "error": "Payment Required", "type_name": "RequestLimitError", "message": "Request Limit Reached", "detail": "You have reached your limit of 2000", "ref": "https://developers.apideck.com/errors#requestlimiterror"}
+        "404":
+          application/json: {"status_code": 404, "error": "Not Found", "type_name": "EntityNotFoundError", "message": "Unknown Widget", "detail": {"not_found": {"entity": "widget", "id": "123"}}, "ref": "https://developers.apideck.com/errors#entitynotfounderror"}
         "422":
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:

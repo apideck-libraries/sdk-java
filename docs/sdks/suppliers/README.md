@@ -31,7 +31,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingSuppliersAllRequest;
-import com.apideck.unify.models.operations.AccountingSuppliersAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -65,13 +64,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingSuppliersAllResponse res = sdk.accounting().suppliers().list()
+        sdk.accounting().suppliers().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getSuppliersResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

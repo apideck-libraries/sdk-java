@@ -31,7 +31,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
-import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -65,13 +64,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        IssueTrackingCollectionTicketsAllResponse res = sdk.issueTracking().collectionTickets().list()
+        sdk.issueTracking().collectionTickets().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTicketsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

@@ -32,7 +32,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.HrisEmployeesAllRequest;
-import com.apideck.unify.models.operations.HrisEmployeesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -68,13 +67,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        HrisEmployeesAllResponse res = sdk.hris().employees().list()
+        sdk.hris().employees().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getEmployeesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

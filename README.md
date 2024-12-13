@@ -25,6 +25,7 @@ For more information about the API: [Apideck Developer Docs](https://developers.
   * [SDK Installation](#sdk-installation)
   * [SDK Example Usage](#sdk-example-usage)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Pagination](#pagination)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -46,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.4.0'
+implementation 'com.apideck:unify:0.5.0'
 ```
 
 Maven:
@@ -54,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
 </dependency>
 ```
 
@@ -89,7 +90,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -117,13 +117,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -660,6 +660,64 @@ public class Application {
 </details>
 <!-- End Available Resources and Operations [operations] -->
 
+<!-- Start Pagination [pagination] -->
+## Pagination
+
+Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
+returned response object will have a `next` method that can be called to pull down the next group of results. The `next`
+function returns an `Optional` value, which `isPresent` until there are no more pages to be fetched.
+
+Here's an example of one such pagination call:
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.TaxRatesFilter;
+import com.apideck.unify.models.errors.BadRequestResponse;
+import com.apideck.unify.models.errors.NotFoundResponse;
+import com.apideck.unify.models.errors.PaymentRequiredResponse;
+import com.apideck.unify.models.errors.UnauthorizedResponse;
+import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import java.lang.Exception;
+import java.util.Map;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+            .build();
+
+        AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .serviceId("salesforce")
+                .filter(TaxRatesFilter.builder()
+                    .assets(true)
+                    .equity(true)
+                    .expenses(true)
+                    .liabilities(true)
+                    .revenue(true)
+                    .build())
+                .passThrough(Map.ofEntries(
+                    Map.entry("search", "San Francisco")))
+                .fields("id,updated_at")
+                .build();
+
+        sdk.accounting().taxRates().list()
+                .request(req)
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
+
+    }
+}
+```
+<!-- End Pagination [pagination] -->
+
 <!-- Start Retries [retries] -->
 ## Retries
 
@@ -677,7 +735,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
 import java.lang.Exception;
@@ -708,7 +765,7 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
@@ -720,11 +777,11 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -741,7 +798,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
 import java.lang.Exception;
@@ -782,13 +838,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -823,7 +879,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -851,13 +906,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -880,7 +935,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -909,13 +963,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -1010,7 +1064,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -1038,13 +1091,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

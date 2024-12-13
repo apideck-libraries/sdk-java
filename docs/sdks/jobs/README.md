@@ -24,7 +24,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AtsJobsAllRequest;
-import com.apideck.unify.models.operations.AtsJobsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -45,13 +44,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AtsJobsAllResponse res = sdk.ats().jobs().list()
+        sdk.ats().jobs().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getJobsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

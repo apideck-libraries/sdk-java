@@ -32,7 +32,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingCustomersAllRequest;
-import com.apideck.unify.models.operations.AccountingCustomersAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -67,13 +66,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingCustomersAllResponse res = sdk.accounting().customers().list()
+        sdk.accounting().customers().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getCustomersResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

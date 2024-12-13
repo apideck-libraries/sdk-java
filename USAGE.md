@@ -10,7 +10,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
-import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -38,13 +37,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingTaxRatesAllResponse res = sdk.accounting().taxRates().list()
+        sdk.accounting().taxRates().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTaxRatesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

@@ -29,7 +29,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAllRequest;
-import com.apideck.unify.models.operations.HrisTimeOffRequestsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -58,13 +57,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        HrisTimeOffRequestsAllResponse res = sdk.hris().timeOffRequests().list()
+        sdk.hris().timeOffRequests().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getTimeOffRequestsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

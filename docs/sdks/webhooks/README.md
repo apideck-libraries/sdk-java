@@ -26,7 +26,6 @@ import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
-import com.apideck.unify.models.operations.WebhookWebhooksAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -39,15 +38,15 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
-        WebhookWebhooksAllResponse res = sdk.webhook().webhooks().list()
+        sdk.webhook().webhooks().list()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .cursor("<value>")
                 .limit(20L)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getWebhooksResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

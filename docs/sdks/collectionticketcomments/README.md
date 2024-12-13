@@ -30,7 +30,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllRequest;
-import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -57,13 +56,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        IssueTrackingCollectionTicketCommentsAllResponse res = sdk.issueTracking().collectionTicketComments().list()
+        sdk.issueTracking().collectionTicketComments().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getCommentsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```
@@ -193,7 +192,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsOneRequest;
-import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsOneResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -214,13 +212,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        IssueTrackingCollectionTicketCommentsOneResponse res = sdk.issueTracking().collectionTicketComments().get()
+        sdk.issueTracking().collectionTicketComments().get()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getCommentResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

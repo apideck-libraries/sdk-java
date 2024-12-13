@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AtsApplicationsAllRequest;
-import com.apideck.unify.models.operations.AtsApplicationsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -47,13 +46,13 @@ public class Application {
                     Map.entry("search", "San Francisco")))
                 .build();
 
-        AtsApplicationsAllResponse res = sdk.ats().applications().list()
+        sdk.ats().applications().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getApplicationsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

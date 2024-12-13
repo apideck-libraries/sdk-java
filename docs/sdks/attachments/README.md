@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingAttachmentsAllRequest;
-import com.apideck.unify.models.operations.AccountingAttachmentsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -47,13 +46,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingAttachmentsAllResponse res = sdk.accounting().attachments().list()
+        sdk.accounting().attachments().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getAttachmentsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

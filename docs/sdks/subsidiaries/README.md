@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingSubsidiariesAllRequest;
-import com.apideck.unify.models.operations.AccountingSubsidiariesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -45,13 +44,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingSubsidiariesAllResponse res = sdk.accounting().subsidiaries().list()
+        sdk.accounting().subsidiaries().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getSubsidiariesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

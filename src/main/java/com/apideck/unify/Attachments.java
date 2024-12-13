@@ -39,11 +39,15 @@ import com.apideck.unify.utils.Retries;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -181,19 +185,61 @@ public class Attachments implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
+        byte[] _fullResponse = Utils.extractByteArrayFromBody(_httpRes);
+        
+        @SuppressWarnings("deprecation")
         AccountingAttachmentsAllResponse.Builder _resBuilder = 
             AccountingAttachmentsAllResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
+                .rawResponse(_httpRes)
+                .next(() -> {
+                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
+                    ReadContext _body = JsonPath.parse(_stringBody);
+
+                    if (request == null) {
+                        return Optional.empty();
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    @SuppressWarnings("unchecked")
+                    List<String> _nextCursorToken = _body.read("$.meta.cursors.next", List.class);
+                    if (_nextCursorToken == null || _nextCursorToken.isEmpty()) {
+                        return Optional.empty();
+                    };
+
+                    String _nextCursor = _nextCursorToken.get(0);
+
+                    
+                    
+                    
+                     
+                    AccountingAttachmentsAllRequestBuilder _ret = list();
+                    _ret.request(new AccountingAttachmentsAllRequest(
+                        request.referenceType(),
+                        request.referenceId(),
+                        request.raw(),
+                        request.consumerId(),
+                        request.appId(),
+                        request.serviceId(),
+                        request.cursor(),
+                        request.limit(),
+                        request.fields()
+                    ));
+                    return Optional.of(_ret.call());
+                });
 
         AccountingAttachmentsAllResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 GetAttachmentsResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<GetAttachmentsResponse>() {});
                 _res.withGetAttachmentsResponse(Optional.ofNullable(_out));
                 return _res;
@@ -202,13 +248,13 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "400")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 BadRequestResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<BadRequestResponse>() {});
                 throw _out;
             } else {
@@ -216,13 +262,13 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "401")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 UnauthorizedResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<UnauthorizedResponse>() {});
                 throw _out;
             } else {
@@ -230,13 +276,13 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "402")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 PaymentRequiredResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<PaymentRequiredResponse>() {});
                 throw _out;
             } else {
@@ -244,13 +290,13 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "404")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 NotFoundResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<NotFoundResponse>() {});
                 throw _out;
             } else {
@@ -258,13 +304,13 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "422")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 UnprocessableResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<UnprocessableResponse>() {});
                 throw _out;
             } else {
@@ -272,7 +318,7 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
@@ -281,12 +327,12 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 UnexpectedErrorResponse _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new String(_fullResponse, StandardCharsets.UTF_8),
                     new TypeReference<UnexpectedErrorResponse>() {});
                 _res.withUnexpectedErrorResponse(Optional.ofNullable(_out));
                 return _res;
@@ -295,14 +341,14 @@ public class Attachments implements
                     _httpRes, 
                     _httpRes.statusCode(), 
                     "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
+                    _fullResponse);
             }
         }
         throw new APIException(
             _httpRes, 
             _httpRes.statusCode(), 
             "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
+            _fullResponse);
     }
 
 

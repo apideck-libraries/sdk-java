@@ -667,6 +667,20 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallAccountingAgedCreditorsOne {
+        AccountingAgedCreditorsOneResponse get(
+            AccountingAgedCreditorsOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+
+    public interface MethodCallAccountingAgedDebtorsOne {
+        AccountingAgedDebtorsOneResponse get(
+            AccountingAgedDebtorsOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+
     public interface MethodCallAtsJobsAll {
         AtsJobsAllResponse list(
             AtsJobsAllRequest request,

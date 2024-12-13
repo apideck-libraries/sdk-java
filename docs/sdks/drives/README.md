@@ -28,7 +28,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.FileStorageDrivesAllRequest;
-import com.apideck.unify.models.operations.FileStorageDrivesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -49,13 +48,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        FileStorageDrivesAllResponse res = sdk.fileStorage().drives().list()
+        sdk.fileStorage().drives().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getDrivesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

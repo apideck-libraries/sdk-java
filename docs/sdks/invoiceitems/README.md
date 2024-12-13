@@ -29,7 +29,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAllRequest;
-import com.apideck.unify.models.operations.AccountingInvoiceItemsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -54,13 +53,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingInvoiceItemsAllResponse res = sdk.accounting().invoiceItems().list()
+        sdk.accounting().invoiceItems().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getInvoiceItemsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

@@ -31,7 +31,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingCreditNotesAllRequest;
-import com.apideck.unify.models.operations.AccountingCreditNotesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -60,13 +59,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AccountingCreditNotesAllResponse res = sdk.accounting().creditNotes().list()
+        sdk.accounting().creditNotes().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getCreditNotesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

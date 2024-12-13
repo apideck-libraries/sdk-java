@@ -23,7 +23,6 @@ import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.operations.ConnectorApisAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -36,18 +35,18 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
-        ConnectorApisAllResponse res = sdk.connector().apis().list()
+        sdk.connector().apis().list()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .cursor("<value>")
                 .limit(20L)
                 .filter(ApisFilter.builder()
                     .status(ApiStatus.BETA)
                     .build())
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getApisResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

@@ -31,7 +31,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersAllRequest;
-import com.apideck.unify.models.operations.AccountingPurchaseOrdersAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -60,13 +59,13 @@ public class Application {
                     .build())
                 .build();
 
-        AccountingPurchaseOrdersAllResponse res = sdk.accounting().purchaseOrders().list()
+        sdk.accounting().purchaseOrders().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getPurchaseOrdersResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

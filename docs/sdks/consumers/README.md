@@ -99,7 +99,6 @@ import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
-import com.apideck.unify.models.operations.VaultConsumersAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -112,15 +111,15 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
-        VaultConsumersAllResponse res = sdk.vault().consumers().list()
+        sdk.vault().consumers().list()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .cursor("<value>")
                 .limit(20L)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getConsumersResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

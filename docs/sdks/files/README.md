@@ -33,7 +33,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.FileStorageFilesAllRequest;
-import com.apideck.unify.models.operations.FileStorageFilesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -63,13 +62,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        FileStorageFilesAllResponse res = sdk.fileStorage().files().list()
+        sdk.fileStorage().files().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getFilesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

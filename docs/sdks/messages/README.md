@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.SmsMessagesAllRequest;
-import com.apideck.unify.models.operations.SmsMessagesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -45,13 +44,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        SmsMessagesAllResponse res = sdk.sms().messages().list()
+        sdk.sms().messages().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getMessagesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

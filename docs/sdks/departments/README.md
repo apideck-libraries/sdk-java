@@ -28,7 +28,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingDepartmentsAllRequest;
-import com.apideck.unify.models.operations.AccountingDepartmentsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -49,13 +48,13 @@ public class Application {
                     .build())
                 .build();
 
-        AccountingDepartmentsAllResponse res = sdk.accounting().departments().list()
+        sdk.accounting().departments().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getAccountingDepartmentsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

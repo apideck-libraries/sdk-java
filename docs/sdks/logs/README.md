@@ -25,7 +25,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.VaultLogsAllRequest;
-import com.apideck.unify.models.operations.VaultLogsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -46,13 +45,13 @@ public class Application {
                     .build())
                 .build();
 
-        VaultLogsAllResponse res = sdk.vault().logs().list()
+        sdk.vault().logs().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getLogsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

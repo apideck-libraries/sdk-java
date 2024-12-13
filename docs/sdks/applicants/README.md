@@ -28,7 +28,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AtsApplicantsAllRequest;
-import com.apideck.unify.models.operations.AtsApplicantsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -52,13 +51,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        AtsApplicantsAllResponse res = sdk.ats().applicants().list()
+        sdk.ats().applicants().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getApplicantsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

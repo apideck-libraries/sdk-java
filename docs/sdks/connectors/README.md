@@ -23,7 +23,6 @@ import com.apideck.unify.models.components.UnifiedApiId;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.operations.ConnectorConnectorsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -36,18 +35,18 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
-        ConnectorConnectorsAllResponse res = sdk.connector().connectors().list()
+        sdk.connector().connectors().list()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .cursor("<value>")
                 .limit(20L)
                 .filter(ConnectorsFilter.builder()
                     .unifiedApi(UnifiedApiId.FILE_STORAGE)
                     .build())
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getConnectorsResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

@@ -12,6 +12,8 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.InputStream;
+import java.lang.Deprecated;
+import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -19,6 +21,7 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.Callable;
 
 
 public class SmsMessagesAllResponse implements Response {
@@ -47,6 +50,8 @@ public class SmsMessagesAllResponse implements Response {
      * Unexpected error
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+
+    private Callable<Optional<SmsMessagesAllResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public SmsMessagesAllResponse(
@@ -114,6 +119,16 @@ public class SmsMessagesAllResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+    }
+
+    public Optional<SmsMessagesAllResponse> next() throws Exception {
+        return this.next.call();
+    }
+    
+    // internal use only
+    private SmsMessagesAllResponse withNext(Callable<Optional<SmsMessagesAllResponse>> next) {
+        this.next = next;
+        return this;
     }
 
     public final static Builder builder() {
@@ -221,6 +236,7 @@ public class SmsMessagesAllResponse implements Response {
     }
     
     public final static class Builder {
+        private Callable<Optional<SmsMessagesAllResponse>> next;
  
         private String contentType;
  
@@ -298,6 +314,18 @@ public class SmsMessagesAllResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
+
+        /**
+         * Internal API. Not for public use. Sets the provider of the next page.
+         *
+         * @Deprecated not part of the public API, may be removed without notice
+         */
+        @Deprecated
+        public Builder next(Callable<Optional<SmsMessagesAllResponse>> next) {
+            Utils.checkNotNull(next, "next");
+            this.next = next;
+            return this;
+        }
         
         public SmsMessagesAllResponse build() {
             return new SmsMessagesAllResponse(
@@ -305,7 +333,8 @@ public class SmsMessagesAllResponse implements Response {
                 statusCode,
                 rawResponse,
                 getMessagesResponse,
-                unexpectedErrorResponse);
+                unexpectedErrorResponse)
+                .withNext(next);
         }
     }
 }

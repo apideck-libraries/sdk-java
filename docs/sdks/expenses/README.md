@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
-import com.apideck.unify.models.operations.AccountingExpensesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -44,13 +43,13 @@ public class Application {
                 .serviceId("salesforce")
                 .build();
 
-        AccountingExpensesAllResponse res = sdk.accounting().expenses().list()
+        sdk.accounting().expenses().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getExpensesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

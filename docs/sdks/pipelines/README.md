@@ -27,7 +27,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.CrmPipelinesAllRequest;
-import com.apideck.unify.models.operations.CrmPipelinesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -48,13 +47,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        CrmPipelinesAllResponse res = sdk.crm().pipelines().list()
+        sdk.crm().pipelines().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getPipelinesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

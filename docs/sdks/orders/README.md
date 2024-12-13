@@ -28,7 +28,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.EcommerceOrdersAllRequest;
-import com.apideck.unify.models.operations.EcommerceOrdersAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -59,13 +58,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        EcommerceOrdersAllResponse res = sdk.ecommerce().orders().list()
+        sdk.ecommerce().orders().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getEcommerceOrdersResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

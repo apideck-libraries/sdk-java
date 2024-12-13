@@ -31,7 +31,6 @@ import com.apideck.unify.models.errors.PaymentRequiredResponse;
 import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.CrmActivitiesAllRequest;
-import com.apideck.unify.models.operations.CrmActivitiesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -64,13 +63,13 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        CrmActivitiesAllResponse res = sdk.crm().activities().list()
+        sdk.crm().activities().list()
                 .request(req)
-                .call();
+                .callAsStreamUnwrapped()
+            .forEach(item -> {
+               // handle item
+            });
 
-        if (res.getActivitiesResponse().isPresent()) {
-            // handle response
-        }
     }
 }
 ```

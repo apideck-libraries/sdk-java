@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ApiStatus - Status of the API. APIs with status live or beta are callable.
@@ -25,5 +27,14 @@ public enum ApiStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ApiStatus> fromValue(String value) {
+        for (ApiStatus o: ApiStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

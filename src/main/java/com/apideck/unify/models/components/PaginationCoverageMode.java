@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * PaginationCoverageMode - How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
@@ -23,5 +25,14 @@ public enum PaginationCoverageMode {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PaginationCoverageMode> fromValue(String value) {
+        for (PaginationCoverageMode o: PaginationCoverageMode.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

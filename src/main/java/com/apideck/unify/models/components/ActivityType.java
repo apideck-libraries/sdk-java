@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ActivityType - The type of the activity
@@ -30,5 +32,14 @@ public enum ActivityType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ActivityType> fromValue(String value) {
+        for (ActivityType o: ActivityType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

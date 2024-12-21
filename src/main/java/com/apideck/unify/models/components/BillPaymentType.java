@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * BillPaymentType - Type of payment
@@ -25,5 +27,14 @@ public enum BillPaymentType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<BillPaymentType> fromValue(String value) {
+        for (BillPaymentType o: BillPaymentType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

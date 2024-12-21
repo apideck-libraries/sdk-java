@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Audience - Audience for the doc.
@@ -23,5 +25,14 @@ public enum Audience {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Audience> fromValue(String value) {
+        for (Audience o: Audience.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

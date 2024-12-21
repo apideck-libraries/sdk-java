@@ -66,7 +66,7 @@ public class Application {
 
         sdk.issueTracking().collectionTickets().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

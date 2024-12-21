@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum PurchaseOrderStatus {
     DRAFT("draft"),
@@ -24,5 +26,14 @@ public enum PurchaseOrderStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PurchaseOrderStatus> fromValue(String value) {
+        for (PurchaseOrderStatus o: PurchaseOrderStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

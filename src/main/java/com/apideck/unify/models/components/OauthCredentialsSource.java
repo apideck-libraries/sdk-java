@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * OauthCredentialsSource - Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
@@ -23,5 +25,14 @@ public enum OauthCredentialsSource {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<OauthCredentialsSource> fromValue(String value) {
+        for (OauthCredentialsSource o: OauthCredentialsSource.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

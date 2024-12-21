@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.5.0'
+implementation 'com.apideck:unify:0.5.1'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.5.0</version>
+    <version>0.5.1</version>
 </dependency>
 ```
 
@@ -119,7 +119,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -708,7 +708,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -777,7 +777,7 @@ public class Application {
                         .retryConnectError(false)
                         .build())
                     .build())
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -840,7 +840,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -908,7 +908,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -965,7 +965,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -1093,7 +1093,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

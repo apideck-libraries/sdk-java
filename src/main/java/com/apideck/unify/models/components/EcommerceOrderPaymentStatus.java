@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * EcommerceOrderPaymentStatus - Current payment status of the order.
@@ -28,5 +30,14 @@ public enum EcommerceOrderPaymentStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<EcommerceOrderPaymentStatus> fromValue(String value) {
+        for (EcommerceOrderPaymentStatus o: EcommerceOrderPaymentStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

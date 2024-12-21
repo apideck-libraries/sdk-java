@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * InvoiceLineItemType - Item type
@@ -26,5 +28,14 @@ public enum InvoiceLineItemType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<InvoiceLineItemType> fromValue(String value) {
+        for (InvoiceLineItemType o: InvoiceLineItemType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

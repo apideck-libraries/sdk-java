@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * PeriodType - The type of period to include in the resource: month, quarter, year.
@@ -24,5 +26,14 @@ public enum PeriodType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PeriodType> fromValue(String value) {
+        for (PeriodType o: PeriodType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

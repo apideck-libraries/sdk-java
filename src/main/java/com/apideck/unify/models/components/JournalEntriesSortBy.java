@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * JournalEntriesSortBy - The field on which to sort the Journal Entries.
@@ -23,5 +25,14 @@ public enum JournalEntriesSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<JournalEntriesSortBy> fromValue(String value) {
+        for (JournalEntriesSortBy o: JournalEntriesSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

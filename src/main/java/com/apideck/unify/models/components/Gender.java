@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Gender - The gender represents the gender identity of a person.
@@ -26,5 +28,14 @@ public enum Gender {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Gender> fromValue(String value) {
+        for (Gender o: Gender.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

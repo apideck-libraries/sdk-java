@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * PaymentUnit - Unit of measurement for employee compensation.
@@ -27,5 +29,14 @@ public enum PaymentUnit {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PaymentUnit> fromValue(String value) {
+        for (PaymentUnit o: PaymentUnit.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

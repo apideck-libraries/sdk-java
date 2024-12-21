@@ -58,7 +58,7 @@ public class Application {
 
         sdk.issueTracking().collectionTicketComments().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });
@@ -214,7 +214,7 @@ public class Application {
 
         sdk.issueTracking().collectionTicketComments().get()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

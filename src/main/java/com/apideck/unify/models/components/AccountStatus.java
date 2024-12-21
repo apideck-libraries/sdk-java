@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * AccountStatus - The status of the account.
@@ -24,5 +26,14 @@ public enum AccountStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<AccountStatus> fromValue(String value) {
+        for (AccountStatus o: AccountStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

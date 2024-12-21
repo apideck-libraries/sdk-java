@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum FormFieldType {
     TEXT("text"),
@@ -31,5 +33,14 @@ public enum FormFieldType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<FormFieldType> fromValue(String value) {
+        for (FormFieldType o: FormFieldType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

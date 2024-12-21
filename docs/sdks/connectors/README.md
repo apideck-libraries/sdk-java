@@ -42,7 +42,7 @@ public class Application {
                 .filter(ConnectorsFilter.builder()
                     .unifiedApi(UnifiedApiId.FILE_STORAGE)
                     .build())
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ConnectorStatus - Status of the connector. Connectors with status live or beta are callable.
@@ -25,5 +27,14 @@ public enum ConnectorStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ConnectorStatus> fromValue(String value) {
+        for (ConnectorStatus o: ConnectorStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * FilesSortBy - The field on which to sort the Files
@@ -23,5 +25,14 @@ public enum FilesSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<FilesSortBy> fromValue(String value) {
+        for (FilesSortBy o: FilesSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

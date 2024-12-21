@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * LedgerAccountsSortBy - The field on which to sort the Ledger Accounts
@@ -23,5 +25,14 @@ public enum LedgerAccountsSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<LedgerAccountsSortBy> fromValue(String value) {
+        for (LedgerAccountsSortBy o: LedgerAccountsSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

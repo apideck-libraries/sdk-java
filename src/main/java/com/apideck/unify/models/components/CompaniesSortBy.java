@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * CompaniesSortBy - The field on which to sort the Companies
@@ -24,5 +26,14 @@ public enum CompaniesSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<CompaniesSortBy> fromValue(String value) {
+        for (CompaniesSortBy o: CompaniesSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

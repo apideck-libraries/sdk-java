@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Visibility - The visibility of the job
@@ -24,5 +26,14 @@ public enum Visibility {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Visibility> fromValue(String value) {
+        for (Visibility o: Visibility.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

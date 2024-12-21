@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * AllocationType - Type of entity this payment should be attributed to.
@@ -30,5 +32,14 @@ public enum AllocationType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<AllocationType> fromValue(String value) {
+        for (AllocationType o: AllocationType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

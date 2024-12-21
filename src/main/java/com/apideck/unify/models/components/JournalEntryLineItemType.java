@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * JournalEntryLineItemType - Debit entries are considered positive, and credit entries are considered negative.
@@ -23,5 +25,14 @@ public enum JournalEntryLineItemType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<JournalEntryLineItemType> fromValue(String value) {
+        for (JournalEntryLineItemType o: JournalEntryLineItemType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

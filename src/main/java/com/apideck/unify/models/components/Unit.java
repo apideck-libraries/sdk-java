@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Unit - The window unit for the rate.
@@ -25,5 +27,14 @@ public enum Unit {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Unit> fromValue(String value) {
+        for (Unit o: Unit.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

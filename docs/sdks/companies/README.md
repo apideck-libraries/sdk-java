@@ -60,7 +60,7 @@ public class Application {
 
         sdk.crm().companies().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * MessageStatus - Status of the delivery of the message.
@@ -33,5 +35,14 @@ public enum MessageStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<MessageStatus> fromValue(String value) {
+        for (MessageStatus o: MessageStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

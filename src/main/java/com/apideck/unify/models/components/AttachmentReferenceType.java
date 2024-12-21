@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum AttachmentReferenceType {
     INVOICE("invoice"),
@@ -21,5 +23,14 @@ public enum AttachmentReferenceType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<AttachmentReferenceType> fromValue(String value) {
+        for (AttachmentReferenceType o: AttachmentReferenceType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ContactsSortBy - The field on which to sort the Contacts
@@ -27,5 +29,14 @@ public enum ContactsSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ContactsSortBy> fromValue(String value) {
+        for (ContactsSortBy o: ContactsSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

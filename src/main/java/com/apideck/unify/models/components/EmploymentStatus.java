@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * EmploymentStatus - The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
@@ -25,5 +27,14 @@ public enum EmploymentStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<EmploymentStatus> fromValue(String value) {
+        for (EmploymentStatus o: EmploymentStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

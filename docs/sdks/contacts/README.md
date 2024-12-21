@@ -66,7 +66,7 @@ public class Application {
 
         sdk.crm().contacts().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

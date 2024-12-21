@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ApiType - Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
@@ -23,5 +25,14 @@ public enum ApiType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ApiType> fromValue(String value) {
+        for (ApiType o: ApiType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

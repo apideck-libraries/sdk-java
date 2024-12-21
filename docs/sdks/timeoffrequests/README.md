@@ -59,7 +59,7 @@ public class Application {
 
         sdk.hris().timeOffRequests().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

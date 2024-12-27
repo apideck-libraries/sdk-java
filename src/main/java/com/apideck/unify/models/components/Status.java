@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Status - The status of the webhook.
@@ -23,5 +25,14 @@ public enum Status {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Status> fromValue(String value) {
+        for (Status o: Status.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

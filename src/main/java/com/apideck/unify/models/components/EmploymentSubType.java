@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * EmploymentSubType - The work schedule of the employee.
@@ -26,5 +28,14 @@ public enum EmploymentSubType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<EmploymentSubType> fromValue(String value) {
+        for (EmploymentSubType o: EmploymentSubType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

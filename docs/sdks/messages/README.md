@@ -46,7 +46,7 @@ public class Application {
 
         sdk.sms().messages().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

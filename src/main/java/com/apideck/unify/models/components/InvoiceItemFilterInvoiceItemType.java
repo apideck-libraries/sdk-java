@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * InvoiceItemFilterInvoiceItemType - The type of invoice item, indicating whether it is an inventory item, a service, or another type.
@@ -24,5 +26,14 @@ public enum InvoiceItemFilterInvoiceItemType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<InvoiceItemFilterInvoiceItemType> fromValue(String value) {
+        for (InvoiceItemFilterInvoiceItemType o: InvoiceItemFilterInvoiceItemType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

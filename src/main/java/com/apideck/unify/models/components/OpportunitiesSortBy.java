@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * OpportunitiesSortBy - The field on which to sort the Opportunities
@@ -27,5 +29,14 @@ public enum OpportunitiesSortBy {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<OpportunitiesSortBy> fromValue(String value) {
+        for (OpportunitiesSortBy o: OpportunitiesSortBy.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

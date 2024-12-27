@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * BillLineItemType - Bill Line Item type
@@ -24,5 +26,14 @@ public enum BillLineItemType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<BillLineItemType> fromValue(String value) {
+        for (BillLineItemType o: BillLineItemType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

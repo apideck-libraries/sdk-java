@@ -42,6 +42,7 @@ public class Application {
                 .serviceId("salesforce")
                 .filter(AgedReportFilter.builder()
                     .customerId("123abc")
+                    .supplierId("123abc")
                     .reportAsOfDate("2024-01-01")
                     .periodCount(3L)
                     .periodLength(30L)

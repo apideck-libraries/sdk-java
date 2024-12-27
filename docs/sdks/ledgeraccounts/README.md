@@ -61,7 +61,7 @@ public class Application {
 
         sdk.accounting().ledgerAccounts().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

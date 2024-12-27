@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * MessageType - Set to sms for SMS messages and mms for MMS messages.
@@ -23,5 +25,14 @@ public enum MessageType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<MessageType> fromValue(String value) {
+        for (MessageType o: MessageType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

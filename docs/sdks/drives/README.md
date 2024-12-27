@@ -50,7 +50,7 @@ public class Application {
 
         sdk.fileStorage().drives().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

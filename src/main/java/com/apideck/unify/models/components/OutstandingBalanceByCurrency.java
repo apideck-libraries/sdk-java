@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -29,6 +30,13 @@ public class OutstandingBalanceByCurrency {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+    /**
+     * Total amount of the outstanding balance.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("total_amount")
+    private Optional<Double> totalAmount;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances_by_period")
     private Optional<? extends List<BalanceByPeriod>> balancesByPeriod;
@@ -36,15 +44,18 @@ public class OutstandingBalanceByCurrency {
     @JsonCreator
     public OutstandingBalanceByCurrency(
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
+            @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("balances_by_period") Optional<? extends List<BalanceByPeriod>> balancesByPeriod) {
         Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(balancesByPeriod, "balancesByPeriod");
         this.currency = currency;
+        this.totalAmount = totalAmount;
         this.balancesByPeriod = balancesByPeriod;
     }
     
     public OutstandingBalanceByCurrency() {
-        this(JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -54,6 +65,14 @@ public class OutstandingBalanceByCurrency {
     @JsonIgnore
     public JsonNullable<Currency> currency() {
         return (JsonNullable<Currency>) currency;
+    }
+
+    /**
+     * Total amount of the outstanding balance.
+     */
+    @JsonIgnore
+    public Optional<Double> totalAmount() {
+        return totalAmount;
     }
 
     @SuppressWarnings("unchecked")
@@ -84,6 +103,24 @@ public class OutstandingBalanceByCurrency {
         return this;
     }
 
+    /**
+     * Total amount of the outstanding balance.
+     */
+    public OutstandingBalanceByCurrency withTotalAmount(double totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = Optional.ofNullable(totalAmount);
+        return this;
+    }
+
+    /**
+     * Total amount of the outstanding balance.
+     */
+    public OutstandingBalanceByCurrency withTotalAmount(Optional<Double> totalAmount) {
+        Utils.checkNotNull(totalAmount, "totalAmount");
+        this.totalAmount = totalAmount;
+        return this;
+    }
+
     public OutstandingBalanceByCurrency withBalancesByPeriod(List<BalanceByPeriod> balancesByPeriod) {
         Utils.checkNotNull(balancesByPeriod, "balancesByPeriod");
         this.balancesByPeriod = Optional.ofNullable(balancesByPeriod);
@@ -107,6 +144,7 @@ public class OutstandingBalanceByCurrency {
         OutstandingBalanceByCurrency other = (OutstandingBalanceByCurrency) o;
         return 
             Objects.deepEquals(this.currency, other.currency) &&
+            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
             Objects.deepEquals(this.balancesByPeriod, other.balancesByPeriod);
     }
     
@@ -114,6 +152,7 @@ public class OutstandingBalanceByCurrency {
     public int hashCode() {
         return Objects.hash(
             currency,
+            totalAmount,
             balancesByPeriod);
     }
     
@@ -121,12 +160,15 @@ public class OutstandingBalanceByCurrency {
     public String toString() {
         return Utils.toString(OutstandingBalanceByCurrency.class,
                 "currency", currency,
+                "totalAmount", totalAmount,
                 "balancesByPeriod", balancesByPeriod);
     }
     
     public final static class Builder {
  
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+ 
+        private Optional<Double> totalAmount = Optional.empty();
  
         private Optional<? extends List<BalanceByPeriod>> balancesByPeriod = Optional.empty();  
         
@@ -152,6 +194,24 @@ public class OutstandingBalanceByCurrency {
             return this;
         }
 
+        /**
+         * Total amount of the outstanding balance.
+         */
+        public Builder totalAmount(double totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        /**
+         * Total amount of the outstanding balance.
+         */
+        public Builder totalAmount(Optional<Double> totalAmount) {
+            Utils.checkNotNull(totalAmount, "totalAmount");
+            this.totalAmount = totalAmount;
+            return this;
+        }
+
         public Builder balancesByPeriod(List<BalanceByPeriod> balancesByPeriod) {
             Utils.checkNotNull(balancesByPeriod, "balancesByPeriod");
             this.balancesByPeriod = Optional.ofNullable(balancesByPeriod);
@@ -167,6 +227,7 @@ public class OutstandingBalanceByCurrency {
         public OutstandingBalanceByCurrency build() {
             return new OutstandingBalanceByCurrency(
                 currency,
+                totalAmount,
                 balancesByPeriod);
         }
     }

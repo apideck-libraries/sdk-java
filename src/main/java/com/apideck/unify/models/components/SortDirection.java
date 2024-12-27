@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * SortDirection - The direction in which to sort the results
@@ -23,5 +25,14 @@ public enum SortDirection {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<SortDirection> fromValue(String value) {
+        for (SortDirection o: SortDirection.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

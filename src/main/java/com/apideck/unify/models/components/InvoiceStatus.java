@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * InvoiceStatus - Invoice status
@@ -29,5 +31,14 @@ public enum InvoiceStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<InvoiceStatus> fromValue(String value) {
+        for (InvoiceStatus o: InvoiceStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

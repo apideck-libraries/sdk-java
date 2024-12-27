@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * RequestType - The type of request
@@ -28,5 +30,14 @@ public enum RequestType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<RequestType> fromValue(String value) {
+        for (RequestType o: RequestType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

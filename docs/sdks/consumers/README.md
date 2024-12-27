@@ -115,7 +115,7 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .cursor("<value>")
                 .limit(20L)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

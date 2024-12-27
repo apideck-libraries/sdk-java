@@ -49,7 +49,7 @@ public class Application {
 
         sdk.crm().pipelines().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

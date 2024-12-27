@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * EmployeesFilterEmploymentStatus - Employment status to filter on
@@ -25,5 +27,14 @@ public enum EmployeesFilterEmploymentStatus {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<EmployeesFilterEmploymentStatus> fromValue(String value) {
+        for (EmployeesFilterEmploymentStatus o: EmployeesFilterEmploymentStatus.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

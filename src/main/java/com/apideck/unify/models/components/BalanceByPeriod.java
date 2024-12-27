@@ -19,23 +19,24 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class BalanceByPeriod {
 
     /**
-     * Start date of the period.
+     * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private Optional<LocalDate> startDate;
+    private JsonNullable<LocalDate> startDate;
 
     /**
-     * End date of the period.
+     * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
-    private Optional<LocalDate> endDate;
+    private JsonNullable<LocalDate> endDate;
 
     /**
      * Total amount of the period.
@@ -50,8 +51,8 @@ public class BalanceByPeriod {
 
     @JsonCreator
     public BalanceByPeriod(
-            @JsonProperty("start_date") Optional<LocalDate> startDate,
-            @JsonProperty("end_date") Optional<LocalDate> endDate,
+            @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
+            @JsonProperty("end_date") JsonNullable<LocalDate> endDate,
             @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("balances_by_transaction") Optional<? extends List<BalanceByTransaction>> balancesByTransaction) {
         Utils.checkNotNull(startDate, "startDate");
@@ -65,22 +66,22 @@ public class BalanceByPeriod {
     }
     
     public BalanceByPeriod() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
-     * Start date of the period.
+     * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
     @JsonIgnore
-    public Optional<LocalDate> startDate() {
+    public JsonNullable<LocalDate> startDate() {
         return startDate;
     }
 
     /**
-     * End date of the period.
+     * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
     @JsonIgnore
-    public Optional<LocalDate> endDate() {
+    public JsonNullable<LocalDate> endDate() {
         return endDate;
     }
 
@@ -103,36 +104,36 @@ public class BalanceByPeriod {
     }
 
     /**
-     * Start date of the period.
+     * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
     public BalanceByPeriod withStartDate(LocalDate startDate) {
         Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
+        this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
     /**
-     * Start date of the period.
+     * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
-    public BalanceByPeriod withStartDate(Optional<LocalDate> startDate) {
+    public BalanceByPeriod withStartDate(JsonNullable<LocalDate> startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = startDate;
         return this;
     }
 
     /**
-     * End date of the period.
+     * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
     public BalanceByPeriod withEndDate(LocalDate endDate) {
         Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
+        this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
     /**
-     * End date of the period.
+     * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
-    public BalanceByPeriod withEndDate(Optional<LocalDate> endDate) {
+    public BalanceByPeriod withEndDate(JsonNullable<LocalDate> endDate) {
         Utils.checkNotNull(endDate, "endDate");
         this.endDate = endDate;
         return this;
@@ -204,9 +205,9 @@ public class BalanceByPeriod {
     
     public final static class Builder {
  
-        private Optional<LocalDate> startDate = Optional.empty();
+        private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
  
-        private Optional<LocalDate> endDate = Optional.empty();
+        private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
  
         private Optional<Double> totalAmount = Optional.empty();
  
@@ -217,36 +218,36 @@ public class BalanceByPeriod {
         }
 
         /**
-         * Start date of the period.
+         * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
          */
         public Builder startDate(LocalDate startDate) {
             Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
+            this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
-         * Start date of the period.
+         * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
          */
-        public Builder startDate(Optional<LocalDate> startDate) {
+        public Builder startDate(JsonNullable<LocalDate> startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = startDate;
             return this;
         }
 
         /**
-         * End date of the period.
+         * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
          */
         public Builder endDate(LocalDate endDate) {
             Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
+            this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
-         * End date of the period.
+         * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
          */
-        public Builder endDate(Optional<LocalDate> endDate) {
+        public Builder endDate(JsonNullable<LocalDate> endDate) {
             Utils.checkNotNull(endDate, "endDate");
             this.endDate = endDate;
             return this;

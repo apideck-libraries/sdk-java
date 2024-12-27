@@ -53,7 +53,7 @@ public class Application {
 
         sdk.fileStorage().driveGroups().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

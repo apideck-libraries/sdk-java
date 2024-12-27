@@ -68,7 +68,7 @@ public class Application {
 
         sdk.accounting().customers().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

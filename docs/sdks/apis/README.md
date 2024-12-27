@@ -42,7 +42,7 @@ public class Application {
                 .filter(ApisFilter.builder()
                     .status(ApiStatus.BETA)
                     .build())
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

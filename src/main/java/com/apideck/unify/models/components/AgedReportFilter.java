@@ -25,6 +25,12 @@ public class AgedReportFilter {
     private Optional<String> customerId;
 
     /**
+     * Filter by supplier id
+     */
+    @SpeakeasyMetadata("queryParam:name=supplier_id")
+    private Optional<String> supplierId;
+
+    /**
      * The cutoff date for considering transactions
      */
     @SpeakeasyMetadata("queryParam:name=report_as_of_date")
@@ -45,21 +51,24 @@ public class AgedReportFilter {
     @JsonCreator
     public AgedReportFilter(
             Optional<String> customerId,
+            Optional<String> supplierId,
             Optional<String> reportAsOfDate,
             Optional<Long> periodCount,
             Optional<Long> periodLength) {
         Utils.checkNotNull(customerId, "customerId");
+        Utils.checkNotNull(supplierId, "supplierId");
         Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
         Utils.checkNotNull(periodCount, "periodCount");
         Utils.checkNotNull(periodLength, "periodLength");
         this.customerId = customerId;
+        this.supplierId = supplierId;
         this.reportAsOfDate = reportAsOfDate;
         this.periodCount = periodCount;
         this.periodLength = periodLength;
     }
     
     public AgedReportFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -68,6 +77,14 @@ public class AgedReportFilter {
     @JsonIgnore
     public Optional<String> customerId() {
         return customerId;
+    }
+
+    /**
+     * Filter by supplier id
+     */
+    @JsonIgnore
+    public Optional<String> supplierId() {
+        return supplierId;
     }
 
     /**
@@ -113,6 +130,24 @@ public class AgedReportFilter {
     public AgedReportFilter withCustomerId(Optional<String> customerId) {
         Utils.checkNotNull(customerId, "customerId");
         this.customerId = customerId;
+        return this;
+    }
+
+    /**
+     * Filter by supplier id
+     */
+    public AgedReportFilter withSupplierId(String supplierId) {
+        Utils.checkNotNull(supplierId, "supplierId");
+        this.supplierId = Optional.ofNullable(supplierId);
+        return this;
+    }
+
+    /**
+     * Filter by supplier id
+     */
+    public AgedReportFilter withSupplierId(Optional<String> supplierId) {
+        Utils.checkNotNull(supplierId, "supplierId");
+        this.supplierId = supplierId;
         return this;
     }
 
@@ -181,6 +216,7 @@ public class AgedReportFilter {
         AgedReportFilter other = (AgedReportFilter) o;
         return 
             Objects.deepEquals(this.customerId, other.customerId) &&
+            Objects.deepEquals(this.supplierId, other.supplierId) &&
             Objects.deepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
             Objects.deepEquals(this.periodCount, other.periodCount) &&
             Objects.deepEquals(this.periodLength, other.periodLength);
@@ -190,6 +226,7 @@ public class AgedReportFilter {
     public int hashCode() {
         return Objects.hash(
             customerId,
+            supplierId,
             reportAsOfDate,
             periodCount,
             periodLength);
@@ -199,6 +236,7 @@ public class AgedReportFilter {
     public String toString() {
         return Utils.toString(AgedReportFilter.class,
                 "customerId", customerId,
+                "supplierId", supplierId,
                 "reportAsOfDate", reportAsOfDate,
                 "periodCount", periodCount,
                 "periodLength", periodLength);
@@ -207,6 +245,8 @@ public class AgedReportFilter {
     public final static class Builder {
  
         private Optional<String> customerId = Optional.empty();
+ 
+        private Optional<String> supplierId = Optional.empty();
  
         private Optional<String> reportAsOfDate = Optional.empty();
  
@@ -233,6 +273,24 @@ public class AgedReportFilter {
         public Builder customerId(Optional<String> customerId) {
             Utils.checkNotNull(customerId, "customerId");
             this.customerId = customerId;
+            return this;
+        }
+
+        /**
+         * Filter by supplier id
+         */
+        public Builder supplierId(String supplierId) {
+            Utils.checkNotNull(supplierId, "supplierId");
+            this.supplierId = Optional.ofNullable(supplierId);
+            return this;
+        }
+
+        /**
+         * Filter by supplier id
+         */
+        public Builder supplierId(Optional<String> supplierId) {
+            Utils.checkNotNull(supplierId, "supplierId");
+            this.supplierId = supplierId;
             return this;
         }
 
@@ -293,6 +351,7 @@ public class AgedReportFilter {
         public AgedReportFilter build() {
             return new AgedReportFilter(
                 customerId,
+                supplierId,
                 reportAsOfDate,
                 periodCount,
                 periodLength);

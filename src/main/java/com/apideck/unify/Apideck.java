@@ -4,12 +4,12 @@
 
 package com.apideck.unify;
 
-import com.apideck.unify.models.operations.SDKMethodInterfaces.*;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.SpeakeasyHTTPClient;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -192,7 +192,7 @@ public class Apideck {
          */
         public Builder consumerId(String consumerId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
-                this.sdkConfiguration.globals.get("parameters").put("header", new java.util.HashMap<>());
+                this.sdkConfiguration.globals.get("parameters").put("header", new HashMap<>());
             }
 
             this.sdkConfiguration.globals.get("parameters").get("header").put("consumerId", consumerId);
@@ -208,7 +208,7 @@ public class Apideck {
          */
         public Builder appId(String appId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
-                this.sdkConfiguration.globals.get("parameters").put("header", new java.util.HashMap<>());
+                this.sdkConfiguration.globals.get("parameters").put("header", new HashMap<>());
             }
 
             this.sdkConfiguration.globals.get("parameters").get("header").put("appId", appId);

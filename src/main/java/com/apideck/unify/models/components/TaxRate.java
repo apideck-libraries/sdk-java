@@ -168,6 +168,10 @@ public class TaxRate {
     @JsonProperty("subsidiaries")
     private Optional<? extends List<Subsidiaries>> subsidiaries;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     @JsonCreator
     public TaxRate(
             @JsonProperty("id") JsonNullable<String> id,
@@ -190,7 +194,8 @@ public class TaxRate {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries) {
+            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(code, "code");
@@ -212,6 +217,7 @@ public class TaxRate {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
+        Utils.checkNotNull(customFields, "customFields");
         this.id = id;
         this.name = name;
         this.code = code;
@@ -233,10 +239,11 @@ public class TaxRate {
         this.createdAt = createdAt;
         this.passThrough = passThrough;
         this.subsidiaries = subsidiaries;
+        this.customFields = customFields;
     }
     
     public TaxRate() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -407,6 +414,12 @@ public class TaxRate {
     @JsonIgnore
     public Optional<List<Subsidiaries>> subsidiaries() {
         return (Optional<List<Subsidiaries>>) subsidiaries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     public final static Builder builder() {
@@ -784,6 +797,18 @@ public class TaxRate {
         this.subsidiaries = subsidiaries;
         return this;
     }
+
+    public TaxRate withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public TaxRate withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -815,7 +840,8 @@ public class TaxRate {
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
+            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
+            Objects.deepEquals(this.customFields, other.customFields);
     }
     
     @Override
@@ -841,7 +867,8 @@ public class TaxRate {
             updatedAt,
             createdAt,
             passThrough,
-            subsidiaries);
+            subsidiaries,
+            customFields);
     }
     
     @Override
@@ -867,7 +894,8 @@ public class TaxRate {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "passThrough", passThrough,
-                "subsidiaries", subsidiaries);
+                "subsidiaries", subsidiaries,
+                "customFields", customFields);
     }
     
     public final static class Builder {
@@ -912,7 +940,9 @@ public class TaxRate {
  
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
  
-        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();  
+        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -1289,6 +1319,18 @@ public class TaxRate {
             this.subsidiaries = subsidiaries;
             return this;
         }
+
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
         
         public TaxRate build() {
             return new TaxRate(
@@ -1312,7 +1354,8 @@ public class TaxRate {
                 updatedAt,
                 createdAt,
                 passThrough,
-                subsidiaries);
+                subsidiaries,
+                customFields);
         }
     }
 }

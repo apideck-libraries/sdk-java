@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum ShowAs {
     FREE("free"),
@@ -20,5 +22,14 @@ public enum ShowAs {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ShowAs> fromValue(String value) {
+        for (ShowAs o: ShowAs.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

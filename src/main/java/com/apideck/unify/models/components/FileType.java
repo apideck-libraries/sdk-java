@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * FileType - The type of resource. Could be file, folder or url
@@ -24,5 +26,14 @@ public enum FileType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<FileType> fromValue(String value) {
+        for (FileType o: FileType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * DisabledReason - Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
@@ -24,5 +26,14 @@ public enum DisabledReason {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<DisabledReason> fromValue(String value) {
+        for (DisabledReason o: DisabledReason.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

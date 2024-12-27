@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * OAuthGrantType - OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -24,5 +26,14 @@ public enum OAuthGrantType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<OAuthGrantType> fromValue(String value) {
+        for (OAuthGrantType o: OAuthGrantType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

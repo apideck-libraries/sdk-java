@@ -47,7 +47,7 @@ public class Application {
 
         sdk.vault().logs().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

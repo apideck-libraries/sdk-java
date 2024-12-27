@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * ConnectorAuthType - Type of authorization used by the connector
@@ -26,5 +28,14 @@ public enum ConnectorAuthType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<ConnectorAuthType> fromValue(String value) {
+        for (ConnectorAuthType o: ConnectorAuthType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

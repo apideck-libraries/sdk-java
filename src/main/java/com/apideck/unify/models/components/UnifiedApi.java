@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * UnifiedApi - Which Unified Api request was made to.
@@ -33,5 +35,14 @@ public enum UnifiedApi {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<UnifiedApi> fromValue(String value) {
+        for (UnifiedApi o: UnifiedApi.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

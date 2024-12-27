@@ -39,7 +39,7 @@ public class Application {
 
         sdk.accounting().taxRates().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

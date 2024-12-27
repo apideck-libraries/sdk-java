@@ -56,7 +56,7 @@ public class AgedDebtors {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outstanding_balances")
-    private Optional<? extends List<OutstandingBalance>> outstandingBalances;
+    private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances;
 
     @JsonCreator
     public AgedDebtors(
@@ -64,7 +64,7 @@ public class AgedDebtors {
             @JsonProperty("report_as_of_date") Optional<LocalDate> reportAsOfDate,
             @JsonProperty("period_count") Optional<Long> periodCount,
             @JsonProperty("period_length") Optional<Long> periodLength,
-            @JsonProperty("outstanding_balances") Optional<? extends List<OutstandingBalance>> outstandingBalances) {
+            @JsonProperty("outstanding_balances") Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
         Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
         Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
         Utils.checkNotNull(periodCount, "periodCount");
@@ -115,8 +115,8 @@ public class AgedDebtors {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<OutstandingBalance>> outstandingBalances() {
-        return (Optional<List<OutstandingBalance>>) outstandingBalances;
+    public Optional<List<OutstandingBalanceByCustomer>> outstandingBalances() {
+        return (Optional<List<OutstandingBalanceByCustomer>>) outstandingBalances;
     }
 
     public final static Builder builder() {
@@ -195,13 +195,13 @@ public class AgedDebtors {
         return this;
     }
 
-    public AgedDebtors withOutstandingBalances(List<OutstandingBalance> outstandingBalances) {
+    public AgedDebtors withOutstandingBalances(List<OutstandingBalanceByCustomer> outstandingBalances) {
         Utils.checkNotNull(outstandingBalances, "outstandingBalances");
         this.outstandingBalances = Optional.ofNullable(outstandingBalances);
         return this;
     }
 
-    public AgedDebtors withOutstandingBalances(Optional<? extends List<OutstandingBalance>> outstandingBalances) {
+    public AgedDebtors withOutstandingBalances(Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
         Utils.checkNotNull(outstandingBalances, "outstandingBalances");
         this.outstandingBalances = outstandingBalances;
         return this;
@@ -254,7 +254,7 @@ public class AgedDebtors {
  
         private Optional<Long> periodLength;
  
-        private Optional<? extends List<OutstandingBalance>> outstandingBalances = Optional.empty();  
+        private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -332,13 +332,13 @@ public class AgedDebtors {
             return this;
         }
 
-        public Builder outstandingBalances(List<OutstandingBalance> outstandingBalances) {
+        public Builder outstandingBalances(List<OutstandingBalanceByCustomer> outstandingBalances) {
             Utils.checkNotNull(outstandingBalances, "outstandingBalances");
             this.outstandingBalances = Optional.ofNullable(outstandingBalances);
             return this;
         }
 
-        public Builder outstandingBalances(Optional<? extends List<OutstandingBalance>> outstandingBalances) {
+        public Builder outstandingBalances(Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
             Utils.checkNotNull(outstandingBalances, "outstandingBalances");
             this.outstandingBalances = outstandingBalances;
             return this;

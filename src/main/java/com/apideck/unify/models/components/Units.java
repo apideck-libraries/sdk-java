@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Units - The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
@@ -24,5 +26,14 @@ public enum Units {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Units> fromValue(String value) {
+        for (Units o: Units.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

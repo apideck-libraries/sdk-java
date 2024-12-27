@@ -64,6 +64,13 @@ public class BalanceByTransaction {
     @JsonProperty("outstanding_balance")
     private Optional<Double> outstandingBalance;
 
+    /**
+     * Transaction number of the transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("transaction_number")
+    private Optional<String> transactionNumber;
+
     @JsonCreator
     public BalanceByTransaction(
             @JsonProperty("transaction_id") Optional<String> transactionId,
@@ -71,23 +78,26 @@ public class BalanceByTransaction {
             @JsonProperty("transaction_type") Optional<? extends TransactionType> transactionType,
             @JsonProperty("due_date") Optional<LocalDate> dueDate,
             @JsonProperty("original_amount") Optional<Double> originalAmount,
-            @JsonProperty("outstanding_balance") Optional<Double> outstandingBalance) {
+            @JsonProperty("outstanding_balance") Optional<Double> outstandingBalance,
+            @JsonProperty("transaction_number") Optional<String> transactionNumber) {
         Utils.checkNotNull(transactionId, "transactionId");
         Utils.checkNotNull(transactionDate, "transactionDate");
         Utils.checkNotNull(transactionType, "transactionType");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(originalAmount, "originalAmount");
         Utils.checkNotNull(outstandingBalance, "outstandingBalance");
+        Utils.checkNotNull(transactionNumber, "transactionNumber");
         this.transactionId = transactionId;
         this.transactionDate = transactionDate;
         this.transactionType = transactionType;
         this.dueDate = dueDate;
         this.originalAmount = originalAmount;
         this.outstandingBalance = outstandingBalance;
+        this.transactionNumber = transactionNumber;
     }
     
     public BalanceByTransaction() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -137,6 +147,14 @@ public class BalanceByTransaction {
     @JsonIgnore
     public Optional<Double> outstandingBalance() {
         return outstandingBalance;
+    }
+
+    /**
+     * Transaction number of the transaction.
+     */
+    @JsonIgnore
+    public Optional<String> transactionNumber() {
+        return transactionNumber;
     }
 
     public final static Builder builder() {
@@ -250,6 +268,24 @@ public class BalanceByTransaction {
         this.outstandingBalance = outstandingBalance;
         return this;
     }
+
+    /**
+     * Transaction number of the transaction.
+     */
+    public BalanceByTransaction withTransactionNumber(String transactionNumber) {
+        Utils.checkNotNull(transactionNumber, "transactionNumber");
+        this.transactionNumber = Optional.ofNullable(transactionNumber);
+        return this;
+    }
+
+    /**
+     * Transaction number of the transaction.
+     */
+    public BalanceByTransaction withTransactionNumber(Optional<String> transactionNumber) {
+        Utils.checkNotNull(transactionNumber, "transactionNumber");
+        this.transactionNumber = transactionNumber;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -266,7 +302,8 @@ public class BalanceByTransaction {
             Objects.deepEquals(this.transactionType, other.transactionType) &&
             Objects.deepEquals(this.dueDate, other.dueDate) &&
             Objects.deepEquals(this.originalAmount, other.originalAmount) &&
-            Objects.deepEquals(this.outstandingBalance, other.outstandingBalance);
+            Objects.deepEquals(this.outstandingBalance, other.outstandingBalance) &&
+            Objects.deepEquals(this.transactionNumber, other.transactionNumber);
     }
     
     @Override
@@ -277,7 +314,8 @@ public class BalanceByTransaction {
             transactionType,
             dueDate,
             originalAmount,
-            outstandingBalance);
+            outstandingBalance,
+            transactionNumber);
     }
     
     @Override
@@ -288,7 +326,8 @@ public class BalanceByTransaction {
                 "transactionType", transactionType,
                 "dueDate", dueDate,
                 "originalAmount", originalAmount,
-                "outstandingBalance", outstandingBalance);
+                "outstandingBalance", outstandingBalance,
+                "transactionNumber", transactionNumber);
     }
     
     public final static class Builder {
@@ -303,7 +342,9 @@ public class BalanceByTransaction {
  
         private Optional<Double> originalAmount = Optional.empty();
  
-        private Optional<Double> outstandingBalance = Optional.empty();  
+        private Optional<Double> outstandingBalance = Optional.empty();
+ 
+        private Optional<String> transactionNumber = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -416,6 +457,24 @@ public class BalanceByTransaction {
             this.outstandingBalance = outstandingBalance;
             return this;
         }
+
+        /**
+         * Transaction number of the transaction.
+         */
+        public Builder transactionNumber(String transactionNumber) {
+            Utils.checkNotNull(transactionNumber, "transactionNumber");
+            this.transactionNumber = Optional.ofNullable(transactionNumber);
+            return this;
+        }
+
+        /**
+         * Transaction number of the transaction.
+         */
+        public Builder transactionNumber(Optional<String> transactionNumber) {
+            Utils.checkNotNull(transactionNumber, "transactionNumber");
+            this.transactionNumber = transactionNumber;
+            return this;
+        }
         
         public BalanceByTransaction build() {
             return new BalanceByTransaction(
@@ -424,7 +483,8 @@ public class BalanceByTransaction {
                 transactionType,
                 dueDate,
                 originalAmount,
-                outstandingBalance);
+                outstandingBalance,
+                transactionNumber);
         }
     }
 }

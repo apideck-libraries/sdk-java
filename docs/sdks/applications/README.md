@@ -48,7 +48,7 @@ public class Application {
 
         sdk.ats().applications().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

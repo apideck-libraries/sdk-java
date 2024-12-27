@@ -69,7 +69,7 @@ public class Application {
 
         sdk.hris().employees().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

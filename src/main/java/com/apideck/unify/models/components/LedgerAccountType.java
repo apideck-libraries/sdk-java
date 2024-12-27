@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * LedgerAccountType - The type of account.
@@ -41,5 +43,14 @@ public enum LedgerAccountType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<LedgerAccountType> fromValue(String value) {
+        for (LedgerAccountType o: LedgerAccountType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

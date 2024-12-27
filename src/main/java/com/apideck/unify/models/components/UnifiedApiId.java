@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * UnifiedApiId - Name of Apideck Unified API
@@ -48,5 +50,14 @@ public enum UnifiedApiId {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<UnifiedApiId> fromValue(String value) {
+        for (UnifiedApiId o: UnifiedApiId.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

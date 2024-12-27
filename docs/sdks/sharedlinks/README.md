@@ -49,7 +49,7 @@ public class Application {
 
         sdk.fileStorage().sharedLinks().list()
                 .request(req)
-                .callAsStreamUnwrapped()
+                .callAsStream()
             .forEach(item -> {
                // handle item
             });

@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * PaymentFrequency - Frequency of employee compensation.
@@ -26,5 +28,14 @@ public enum PaymentFrequency {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<PaymentFrequency> fromValue(String value) {
+        for (PaymentFrequency o: PaymentFrequency.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

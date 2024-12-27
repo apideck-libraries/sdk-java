@@ -6,6 +6,8 @@ package com.apideck.unify.models.components;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Direction - The direction of the message.
@@ -26,5 +28,14 @@ public enum Direction {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<Direction> fromValue(String value) {
+        for (Direction o: Direction.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

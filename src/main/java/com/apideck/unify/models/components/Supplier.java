@@ -178,6 +178,10 @@ public class Supplier {
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends CustomMappings> customMappings;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * The user who last updated the object.
      */
@@ -255,6 +259,7 @@ public class Supplier {
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
@@ -288,6 +293,7 @@ public class Supplier {
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -321,6 +327,7 @@ public class Supplier {
         this.paymentMethod = paymentMethod;
         this.channel = channel;
         this.customMappings = customMappings;
+        this.customFields = customFields;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
         this.updatedAt = updatedAt;
@@ -332,7 +339,7 @@ public class Supplier {
     
     public Supplier(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -524,6 +531,12 @@ public class Supplier {
     @JsonIgnore
     public JsonNullable<CustomMappings> customMappings() {
         return (JsonNullable<CustomMappings>) customMappings;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -992,6 +1005,18 @@ public class Supplier {
         return this;
     }
 
+    public Supplier withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public Supplier withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * The user who last updated the object.
      */
@@ -1154,6 +1179,7 @@ public class Supplier {
             Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
             Objects.deepEquals(this.channel, other.channel) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.updatedBy, other.updatedBy) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
@@ -1192,6 +1218,7 @@ public class Supplier {
             paymentMethod,
             channel,
             customMappings,
+            customFields,
             updatedBy,
             createdBy,
             updatedAt,
@@ -1230,6 +1257,7 @@ public class Supplier {
                 "paymentMethod", paymentMethod,
                 "channel", channel,
                 "customMappings", customMappings,
+                "customFields", customFields,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
@@ -1292,6 +1320,8 @@ public class Supplier {
         private JsonNullable<String> channel = JsonNullable.undefined();
  
         private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
  
@@ -1716,6 +1746,18 @@ public class Supplier {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * The user who last updated the object.
          */
@@ -1870,6 +1912,7 @@ public class Supplier {
                 paymentMethod,
                 channel,
                 customMappings,
+                customFields,
                 updatedBy,
                 createdBy,
                 updatedAt,

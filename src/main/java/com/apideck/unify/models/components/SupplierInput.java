@@ -157,6 +157,10 @@ public class SupplierInput {
     @JsonProperty("channel")
     private JsonNullable<String> channel;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
@@ -203,6 +207,7 @@ public class SupplierInput {
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
             @JsonProperty("subsidiary_id") Optional<String> subsidiaryId) {
@@ -229,6 +234,7 @@ public class SupplierInput {
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(subsidiaryId, "subsidiaryId");
@@ -255,13 +261,14 @@ public class SupplierInput {
         this.status = status;
         this.paymentMethod = paymentMethod;
         this.channel = channel;
+        this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
         this.subsidiaryId = subsidiaryId;
     }
     
     public SupplierInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -428,6 +435,12 @@ public class SupplierInput {
     @JsonIgnore
     public JsonNullable<String> channel() {
         return channel;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -819,6 +832,18 @@ public class SupplierInput {
         return this;
     }
 
+    public SupplierInput withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public SupplierInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
@@ -906,6 +931,7 @@ public class SupplierInput {
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
             Objects.deepEquals(this.channel, other.channel) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
             Objects.deepEquals(this.subsidiaryId, other.subsidiaryId);
@@ -937,6 +963,7 @@ public class SupplierInput {
             status,
             paymentMethod,
             channel,
+            customFields,
             rowVersion,
             passThrough,
             subsidiaryId);
@@ -968,6 +995,7 @@ public class SupplierInput {
                 "status", status,
                 "paymentMethod", paymentMethod,
                 "channel", channel,
+                "customFields", customFields,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough,
                 "subsidiaryId", subsidiaryId);
@@ -1020,6 +1048,8 @@ public class SupplierInput {
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
  
         private JsonNullable<String> channel = JsonNullable.undefined();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
@@ -1391,6 +1421,18 @@ public class SupplierInput {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -1470,6 +1512,7 @@ public class SupplierInput {
                 status,
                 paymentMethod,
                 channel,
+                customFields,
                 rowVersion,
                 passThrough,
                 subsidiaryId);

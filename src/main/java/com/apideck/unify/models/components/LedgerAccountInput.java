@@ -177,6 +177,10 @@ public class LedgerAccountInput {
     @JsonProperty("subsidiaries")
     private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
@@ -216,6 +220,7 @@ public class LedgerAccountInput {
             @JsonProperty("sub_account") JsonNullable<Boolean> subAccount,
             @JsonProperty("last_reconciliation_date") JsonNullable<LocalDate> lastReconciliationDate,
             @JsonProperty("subsidiaries") Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(displayId, "displayId");
@@ -241,6 +246,7 @@ public class LedgerAccountInput {
         Utils.checkNotNull(subAccount, "subAccount");
         Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.displayId = displayId;
@@ -266,12 +272,13 @@ public class LedgerAccountInput {
         this.subAccount = subAccount;
         this.lastReconciliationDate = lastReconciliationDate;
         this.subsidiaries = subsidiaries;
+        this.customFields = customFields;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
     }
     
     public LedgerAccountInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -454,6 +461,12 @@ public class LedgerAccountInput {
     @JsonIgnore
     public Optional<List<LedgerAccountSubsidiaries>> subsidiaries() {
         return (Optional<List<LedgerAccountSubsidiaries>>) subsidiaries;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -871,6 +884,18 @@ public class LedgerAccountInput {
         return this;
     }
 
+    public LedgerAccountInput withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public LedgerAccountInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
@@ -940,6 +965,7 @@ public class LedgerAccountInput {
             Objects.deepEquals(this.subAccount, other.subAccount) &&
             Objects.deepEquals(this.lastReconciliationDate, other.lastReconciliationDate) &&
             Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
             Objects.deepEquals(this.passThrough, other.passThrough);
     }
@@ -970,6 +996,7 @@ public class LedgerAccountInput {
             subAccount,
             lastReconciliationDate,
             subsidiaries,
+            customFields,
             rowVersion,
             passThrough);
     }
@@ -1000,6 +1027,7 @@ public class LedgerAccountInput {
                 "subAccount", subAccount,
                 "lastReconciliationDate", lastReconciliationDate,
                 "subsidiaries", subsidiaries,
+                "customFields", customFields,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
@@ -1052,6 +1080,8 @@ public class LedgerAccountInput {
         private JsonNullable<LocalDate> lastReconciliationDate = JsonNullable.undefined();
  
         private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries = Optional.empty();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
@@ -1455,6 +1485,18 @@ public class LedgerAccountInput {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -1516,6 +1558,7 @@ public class LedgerAccountInput {
                 subAccount,
                 lastReconciliationDate,
                 subsidiaries,
+                customFields,
                 rowVersion,
                 passThrough);
         }

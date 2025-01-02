@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 7dcfb4378c6b67f6f82c84503a30eb9f
+  docChecksum: acdbd94ea7dcac1efe718acbf408db84
   docVersion: 10.9.0
   speakeasyVersion: 1.460.3
   generationVersion: 2.484.0
-  releaseVersion: 0.5.1
-  configChecksum: db4447de8f8e5692163fda177362f278
+  releaseVersion: 0.5.2
+  configChecksum: 360b29feccd18ba600e34260018c8dfd
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -58,7 +58,6 @@ generatedFiles:
   - docs/models/components/ActivityType.md
   - docs/models/components/Address.md
   - docs/models/components/Addresses.md
-  - docs/models/components/AgedCreditors.md
   - docs/models/components/AgedDebtors.md
   - docs/models/components/AgedReportFilter.md
   - docs/models/components/Allocation.md
@@ -204,7 +203,6 @@ generatedFiles:
   - docs/models/components/CreateNoteResponse.md
   - docs/models/components/CreateOpportunityResponse.md
   - docs/models/components/CreatePaymentResponse.md
-  - docs/models/components/CreatePipelineResponse.md
   - docs/models/components/CreatePurchaseOrderResponse.md
   - docs/models/components/CreateSessionResponse.md
   - docs/models/components/CreateSessionResponseData.md
@@ -277,7 +275,6 @@ generatedFiles:
   - docs/models/components/DeleteNoteResponse.md
   - docs/models/components/DeleteOpportunityResponse.md
   - docs/models/components/DeletePaymentResponse.md
-  - docs/models/components/DeletePipelineResponse.md
   - docs/models/components/DeletePurchaseOrderResponse.md
   - docs/models/components/DeleteSharedLinkResponse.md
   - docs/models/components/DeleteSubsidiaryResponse.md
@@ -374,7 +371,6 @@ generatedFiles:
   - docs/models/components/GetAccountingLocationsResponse.md
   - docs/models/components/GetActivitiesResponse.md
   - docs/models/components/GetActivityResponse.md
-  - docs/models/components/GetAgedCreditorsResponse.md
   - docs/models/components/GetAgedDebtorsResponse.md
   - docs/models/components/GetApiResourceCoverageResponse.md
   - docs/models/components/GetApiResourceResponse.md
@@ -461,7 +457,6 @@ generatedFiles:
   - docs/models/components/GetPaymentsResponse.md
   - docs/models/components/GetPayrollResponse.md
   - docs/models/components/GetPayrollsResponse.md
-  - docs/models/components/GetPipelineResponse.md
   - docs/models/components/GetPipelinesResponse.md
   - docs/models/components/GetProductResponse.md
   - docs/models/components/GetProductsResponse.md
@@ -589,7 +584,6 @@ generatedFiles:
   - docs/models/components/OrdersSortBy.md
   - docs/models/components/OutstandingBalanceByCurrency.md
   - docs/models/components/OutstandingBalanceByCustomer.md
-  - docs/models/components/OutstandingBalanceBySupplier.md
   - docs/models/components/Owner.md
   - docs/models/components/PaginationCoverage.md
   - docs/models/components/PaginationCoverageMode.md
@@ -614,8 +608,6 @@ generatedFiles:
   - docs/models/components/PhoneNumber.md
   - docs/models/components/PhoneNumberType.md
   - docs/models/components/Pipeline.md
-  - docs/models/components/PipelineInput.md
-  - docs/models/components/PipelineStages.md
   - docs/models/components/Price.md
   - docs/models/components/Priority.md
   - docs/models/components/ProbationPeriod.md
@@ -742,7 +734,6 @@ generatedFiles:
   - docs/models/components/UpdateNoteResponse.md
   - docs/models/components/UpdateOpportunityResponse.md
   - docs/models/components/UpdatePaymentResponse.md
-  - docs/models/components/UpdatePipelineResponse.md
   - docs/models/components/UpdatePurchaseOrderResponse.md
   - docs/models/components/UpdateSharedLinkResponse.md
   - docs/models/components/UpdateSubsidiaryResponse.md
@@ -782,8 +773,6 @@ generatedFiles:
   - docs/models/errors/UnauthorizedResponseDetail.md
   - docs/models/errors/UnprocessableResponse.md
   - docs/models/errors/UnprocessableResponseDetail.md
-  - docs/models/operations/AccountingAgedCreditorsOneRequest.md
-  - docs/models/operations/AccountingAgedCreditorsOneResponse.md
   - docs/models/operations/AccountingAgedDebtorsOneRequest.md
   - docs/models/operations/AccountingAgedDebtorsOneResponse.md
   - docs/models/operations/AccountingAttachmentsAllRequest.md
@@ -1070,16 +1059,8 @@ generatedFiles:
   - docs/models/operations/CrmOpportunitiesOneResponse.md
   - docs/models/operations/CrmOpportunitiesUpdateRequest.md
   - docs/models/operations/CrmOpportunitiesUpdateResponse.md
-  - docs/models/operations/CrmPipelinesAddRequest.md
-  - docs/models/operations/CrmPipelinesAddResponse.md
   - docs/models/operations/CrmPipelinesAllRequest.md
   - docs/models/operations/CrmPipelinesAllResponse.md
-  - docs/models/operations/CrmPipelinesDeleteRequest.md
-  - docs/models/operations/CrmPipelinesDeleteResponse.md
-  - docs/models/operations/CrmPipelinesOneRequest.md
-  - docs/models/operations/CrmPipelinesOneResponse.md
-  - docs/models/operations/CrmPipelinesUpdateRequest.md
-  - docs/models/operations/CrmPipelinesUpdateResponse.md
   - docs/models/operations/CrmUsersAddRequest.md
   - docs/models/operations/CrmUsersAddResponse.md
   - docs/models/operations/CrmUsersAllRequest.md
@@ -1313,7 +1294,6 @@ generatedFiles:
   - docs/models/operations/WebhookWebhooksUpdateResponse.md
   - docs/sdks/accounting/README.md
   - docs/sdks/activities/README.md
-  - docs/sdks/agedcreditors/README.md
   - docs/sdks/ageddebtors/README.md
   - docs/sdks/apideck/README.md
   - docs/sdks/apideckcompanies/README.md
@@ -1405,7 +1385,6 @@ generatedFiles:
   - settings.gradle
   - src/main/java/com/apideck/unify/Accounting.java
   - src/main/java/com/apideck/unify/Activities.java
-  - src/main/java/com/apideck/unify/AgedCreditors.java
   - src/main/java/com/apideck/unify/AgedDebtors.java
   - src/main/java/com/apideck/unify/ApiResourceCoverage.java
   - src/main/java/com/apideck/unify/ApiResources.java
@@ -1511,7 +1490,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ActivityType.java
   - src/main/java/com/apideck/unify/models/components/Address.java
   - src/main/java/com/apideck/unify/models/components/Addresses.java
-  - src/main/java/com/apideck/unify/models/components/AgedCreditors.java
   - src/main/java/com/apideck/unify/models/components/AgedDebtors.java
   - src/main/java/com/apideck/unify/models/components/AgedReportFilter.java
   - src/main/java/com/apideck/unify/models/components/Allocation.java
@@ -1657,7 +1635,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/CreateNoteResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateOpportunityResponse.java
   - src/main/java/com/apideck/unify/models/components/CreatePaymentResponse.java
-  - src/main/java/com/apideck/unify/models/components/CreatePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/CreatePurchaseOrderResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateSessionResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateSessionResponseData.java
@@ -1730,7 +1707,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/DeleteNoteResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteOpportunityResponse.java
   - src/main/java/com/apideck/unify/models/components/DeletePaymentResponse.java
-  - src/main/java/com/apideck/unify/models/components/DeletePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/DeletePurchaseOrderResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteSharedLinkResponse.java
   - src/main/java/com/apideck/unify/models/components/DeleteSubsidiaryResponse.java
@@ -1827,7 +1803,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetAccountingLocationsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetActivitiesResponse.java
   - src/main/java/com/apideck/unify/models/components/GetActivityResponse.java
-  - src/main/java/com/apideck/unify/models/components/GetAgedCreditorsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetAgedDebtorsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetApiResourceCoverageResponse.java
   - src/main/java/com/apideck/unify/models/components/GetApiResourceResponse.java
@@ -1914,7 +1889,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetPaymentsResponse.java
   - src/main/java/com/apideck/unify/models/components/GetPayrollResponse.java
   - src/main/java/com/apideck/unify/models/components/GetPayrollsResponse.java
-  - src/main/java/com/apideck/unify/models/components/GetPipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/GetPipelinesResponse.java
   - src/main/java/com/apideck/unify/models/components/GetProductResponse.java
   - src/main/java/com/apideck/unify/models/components/GetProductsResponse.java
@@ -2042,7 +2016,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/OrdersSortBy.java
   - src/main/java/com/apideck/unify/models/components/OutstandingBalanceByCurrency.java
   - src/main/java/com/apideck/unify/models/components/OutstandingBalanceByCustomer.java
-  - src/main/java/com/apideck/unify/models/components/OutstandingBalanceBySupplier.java
   - src/main/java/com/apideck/unify/models/components/Owner.java
   - src/main/java/com/apideck/unify/models/components/PaginationCoverage.java
   - src/main/java/com/apideck/unify/models/components/PaginationCoverageMode.java
@@ -2067,8 +2040,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/PhoneNumber.java
   - src/main/java/com/apideck/unify/models/components/PhoneNumberType.java
   - src/main/java/com/apideck/unify/models/components/Pipeline.java
-  - src/main/java/com/apideck/unify/models/components/PipelineInput.java
-  - src/main/java/com/apideck/unify/models/components/PipelineStages.java
   - src/main/java/com/apideck/unify/models/components/Price.java
   - src/main/java/com/apideck/unify/models/components/Priority.java
   - src/main/java/com/apideck/unify/models/components/ProbationPeriod.java
@@ -2195,7 +2166,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/UpdateNoteResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateOpportunityResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdatePaymentResponse.java
-  - src/main/java/com/apideck/unify/models/components/UpdatePipelineResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdatePurchaseOrderResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateSharedLinkResponse.java
   - src/main/java/com/apideck/unify/models/components/UpdateSubsidiaryResponse.java
@@ -2237,9 +2207,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/errors/UnauthorizedResponseDetail.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponse.java
   - src/main/java/com/apideck/unify/models/errors/UnprocessableResponseDetail.java
-  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequest.java
-  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneRequestBuilder.java
-  - src/main/java/com/apideck/unify/models/operations/AccountingAgedCreditorsOneResponse.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneRequest.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/AccountingAgedDebtorsOneResponse.java
@@ -2669,21 +2636,9 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/operations/CrmOpportunitiesUpdateRequest.java
   - src/main/java/com/apideck/unify/models/operations/CrmOpportunitiesUpdateRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/CrmOpportunitiesUpdateResponse.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAddRequest.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAddRequestBuilder.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAddResponse.java
   - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAllRequest.java
   - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAllRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/CrmPipelinesAllResponse.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesDeleteRequest.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesDeleteRequestBuilder.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesDeleteResponse.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesOneRequest.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesOneRequestBuilder.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesOneResponse.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesUpdateRequest.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesUpdateRequestBuilder.java
-  - src/main/java/com/apideck/unify/models/operations/CrmPipelinesUpdateResponse.java
   - src/main/java/com/apideck/unify/models/operations/CrmUsersAddRequest.java
   - src/main/java/com/apideck/unify/models/operations/CrmUsersAddRequestBuilder.java
   - src/main/java/com/apideck/unify/models/operations/CrmUsersAddResponse.java

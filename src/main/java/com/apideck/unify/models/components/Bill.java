@@ -266,6 +266,10 @@ public class Bill {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
@@ -325,6 +329,7 @@ public class Bill {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
             @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod) {
@@ -364,6 +369,7 @@ public class Bill {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(rowVersion, "rowVersion");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
@@ -403,13 +409,14 @@ public class Bill {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
+        this.customFields = customFields;
         this.customMappings = customMappings;
         this.passThrough = passThrough;
         this.accountingPeriod = accountingPeriod;
     }
     
     public Bill() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -693,6 +700,12 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
         return rowVersion;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -1349,6 +1362,18 @@ public class Bill {
         return this;
     }
 
+    public Bill withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public Bill withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
@@ -1449,6 +1474,7 @@ public class Bill {
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
             Objects.deepEquals(this.accountingPeriod, other.accountingPeriod);
@@ -1493,6 +1519,7 @@ public class Bill {
             updatedAt,
             createdAt,
             rowVersion,
+            customFields,
             customMappings,
             passThrough,
             accountingPeriod);
@@ -1537,6 +1564,7 @@ public class Bill {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
+                "customFields", customFields,
                 "customMappings", customMappings,
                 "passThrough", passThrough,
                 "accountingPeriod", accountingPeriod);
@@ -1615,6 +1643,8 @@ public class Bill {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
  
@@ -2250,6 +2280,18 @@ public class Bill {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -2342,6 +2384,7 @@ public class Bill {
                 updatedAt,
                 createdAt,
                 rowVersion,
+                customFields,
                 customMappings,
                 passThrough,
                 accountingPeriod);

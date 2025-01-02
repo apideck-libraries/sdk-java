@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.5.1'
+implementation 'com.apideck:unify:0.5.2'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.5.1</version>
+    <version>0.5.2</version>
 </dependency>
 ```
 
@@ -137,10 +137,6 @@ public class Application {
 
 ### [accounting()](docs/sdks/accounting/README.md)
 
-
-#### [accounting().agedCreditors()](docs/sdks/agedcreditors/README.md)
-
-* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
 
 #### [accounting().agedDebtors()](docs/sdks/ageddebtors/README.md)
 
@@ -409,10 +405,6 @@ public class Application {
 #### [crm().pipelines()](docs/sdks/pipelines/README.md)
 
 * [list](docs/sdks/pipelines/README.md#list) - List pipelines
-* [create](docs/sdks/pipelines/README.md#create) - Create pipeline
-* [get](docs/sdks/pipelines/README.md#get) - Get pipeline
-* [update](docs/sdks/pipelines/README.md#update) - Update pipeline
-* [delete](docs/sdks/pipelines/README.md#delete) - Delete pipeline
 
 #### [crm().users()](docs/sdks/users/README.md)
 

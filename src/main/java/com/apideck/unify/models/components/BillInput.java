@@ -223,6 +223,10 @@ public class BillInput {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -269,6 +273,7 @@ public class BillInput {
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
             @JsonProperty("accounting_period") JsonNullable<String> accountingPeriod) {
         Utils.checkNotNull(billNumber, "billNumber");
@@ -301,6 +306,7 @@ public class BillInput {
         Utils.checkNotNull(discountPercentage, "discountPercentage");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(rowVersion, "rowVersion");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(accountingPeriod, "accountingPeriod");
         this.billNumber = billNumber;
@@ -333,12 +339,13 @@ public class BillInput {
         this.discountPercentage = discountPercentage;
         this.trackingCategories = trackingCategories;
         this.rowVersion = rowVersion;
+        this.customFields = customFields;
         this.passThrough = passThrough;
         this.accountingPeriod = accountingPeriod;
     }
     
     public BillInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -574,6 +581,12 @@ public class BillInput {
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
         return rowVersion;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -1113,6 +1126,18 @@ public class BillInput {
         return this;
     }
 
+    public BillInput withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public BillInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1189,6 +1214,7 @@ public class BillInput {
             Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
             Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
             Objects.deepEquals(this.accountingPeriod, other.accountingPeriod);
     }
@@ -1226,6 +1252,7 @@ public class BillInput {
             discountPercentage,
             trackingCategories,
             rowVersion,
+            customFields,
             passThrough,
             accountingPeriod);
     }
@@ -1263,6 +1290,7 @@ public class BillInput {
                 "discountPercentage", discountPercentage,
                 "trackingCategories", trackingCategories,
                 "rowVersion", rowVersion,
+                "customFields", customFields,
                 "passThrough", passThrough,
                 "accountingPeriod", accountingPeriod);
     }
@@ -1328,6 +1356,8 @@ public class BillInput {
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
  
@@ -1853,6 +1883,18 @@ public class BillInput {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1921,6 +1963,7 @@ public class BillInput {
                 discountPercentage,
                 trackingCategories,
                 rowVersion,
+                customFields,
                 passThrough,
                 accountingPeriod);
         }

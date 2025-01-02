@@ -667,13 +667,6 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallAccountingAgedCreditorsOne {
-        AccountingAgedCreditorsOneResponse get(
-            AccountingAgedCreditorsOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
     public interface MethodCallAccountingAgedDebtorsOne {
         AccountingAgedDebtorsOneResponse get(
             AccountingAgedDebtorsOneRequest request,
@@ -908,34 +901,6 @@ public class SDKMethodInterfaces {
     public interface MethodCallCrmPipelinesAll {
         CrmPipelinesAllResponse list(
             CrmPipelinesAllRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallCrmPipelinesAdd {
-        CrmPipelinesAddResponse create(
-            CrmPipelinesAddRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallCrmPipelinesOne {
-        CrmPipelinesOneResponse get(
-            CrmPipelinesOneRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallCrmPipelinesUpdate {
-        CrmPipelinesUpdateResponse update(
-            CrmPipelinesUpdateRequest request,
-            Optional<Options> options) throws Exception;
-    }
-
-
-    public interface MethodCallCrmPipelinesDelete {
-        CrmPipelinesDeleteResponse delete(
-            CrmPipelinesDeleteRequest request,
             Optional<Options> options) throws Exception;
     }
 

@@ -108,9 +108,7 @@ Create Customer
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomerInput;
 import com.apideck.unify.models.components.CustomerStatusStatus;
@@ -124,8 +122,6 @@ import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -211,25 +207,9 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
-                        Website.builder()
-                            .url("http://example.com")
-                            .id("12345")
-                            .type(WebsiteType.PRIMARY)
-                            .build()))
+                    ))
                     .bankAccounts(List.of(
-                        BankAccount.builder()
-                            .bankName("Monzo")
-                            .accountNumber("123465")
-                            .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
-                            .iban("CH2989144532982975332")
-                            .bic("AUDSCHGGXXX")
-                            .routingNumber("012345678")
-                            .bsbNumber("062-001")
-                            .branchIdentifier("001")
-                            .bankCode("BNH")
-                            .currency(Currency.USD)
-                            .build()))
+                    ))
                     .notes("Some notes about this customer")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
@@ -270,18 +250,12 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

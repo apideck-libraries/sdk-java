@@ -111,9 +111,6 @@ import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
@@ -214,20 +211,9 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .socialLinks(List.of(
-                        SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
-                            .id("12345")
-                            .type("twitter")
-                            .build()))
+                    ))
                     .phoneNumbers(List.of(
-                        PhoneNumber.builder()
-                            .number("111-111-1111")
-                            .id("12345")
-                            .countryCode("1")
-                            .areaCode("323")
-                            .extension("105")
-                            .type(PhoneNumberType.PRIMARY)
-                            .build()))
+                    ))
                     .emails(List.of(
                         Email.builder()
                             .email("elon@musk.com")
@@ -439,8 +425,6 @@ import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLink;
@@ -458,7 +442,6 @@ import com.apideck.unify.models.operations.CrmCompaniesUpdateResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -637,14 +620,7 @@ public class Application {
                     .salutation("Mr")
                     .birthday(LocalDate.parse("2000-08-12"))
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();

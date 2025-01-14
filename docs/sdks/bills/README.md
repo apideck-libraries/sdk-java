@@ -109,13 +109,11 @@ import com.apideck.unify.models.components.BillLineItemInput;
 import com.apideck.unify.models.components.BillLineItemType;
 import com.apideck.unify.models.components.BillStatus;
 import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LinkedInvoiceItem;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -127,7 +125,6 @@ import com.apideck.unify.models.operations.AccountingBillsAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -261,14 +258,7 @@ public class Application {
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .accountingPeriod("01-24")
                     .build())
                 .serviceId("salesforce")

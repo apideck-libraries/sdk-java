@@ -102,7 +102,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AllocationInput;
 import com.apideck.unify.models.components.CreditNoteInput;
 import com.apideck.unify.models.components.CreditNoteStatus;
 import com.apideck.unify.models.components.CreditNoteType;
@@ -219,11 +218,7 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
-                        AllocationInput.builder()
-                            .id("123456")
-                            .amount(49.99d)
-                            .allocationId("123456")
-                            .build()))
+                    ))
                     .note("Some notes about this credit note")
                     .terms("Some terms about this credit note")
                     .billingAddress(Address.builder()
@@ -485,7 +480,6 @@ import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -669,24 +663,14 @@ public class Application {
                                 .rate(10d)
                                 .build())
                             .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
+                            ))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
                                 .nominalCode("N091")
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of6(List.of(
-                                        Six.builder()
-                                            .build())))
-                                    .build()))
+                            ))
                             .rowVersion("1-12345")
                             .build()))
                     .allocations(List.of(
@@ -804,10 +788,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

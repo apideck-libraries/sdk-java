@@ -92,7 +92,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountingLocationInput;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LocationStatus;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.SubsidiaryReferenceInput;
@@ -106,7 +105,6 @@ import com.apideck.unify.models.operations.AccountingLocationsAddRequest;
 import com.apideck.unify.models.operations.AccountingLocationsAddResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -163,10 +161,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

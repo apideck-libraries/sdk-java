@@ -111,8 +111,6 @@ import com.apideck.unify.models.components.ActivityInput;
 import com.apideck.unify.models.components.ActivityType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.ShowAs;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -125,7 +123,6 @@ import com.apideck.unify.models.operations.CrmActivitiesAddRequest;
 import com.apideck.unify.models.operations.CrmActivitiesAddResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -225,14 +222,7 @@ public class Application {
                             .status(ActivityAttendeeStatus.ACCEPTED)
                             .build()))
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -481,10 +471,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")

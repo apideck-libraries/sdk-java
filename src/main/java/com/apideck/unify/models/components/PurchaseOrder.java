@@ -177,7 +177,7 @@ public class PurchaseOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("due_date")
-    private Optional<LocalDate> dueDate;
+    private JsonNullable<LocalDate> dueDate;
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -288,7 +288,7 @@ public class PurchaseOrder {
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
-            @JsonProperty("due_date") Optional<LocalDate> dueDate,
+            @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("channel") JsonNullable<String> channel,
@@ -376,7 +376,7 @@ public class PurchaseOrder {
     }
     
     public PurchaseOrder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -559,7 +559,7 @@ public class PurchaseOrder {
      * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
      */
     @JsonIgnore
-    public Optional<LocalDate> dueDate() {
+    public JsonNullable<LocalDate> dueDate() {
         return dueDate;
     }
 
@@ -1055,14 +1055,14 @@ public class PurchaseOrder {
      */
     public PurchaseOrder withDueDate(LocalDate dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = Optional.ofNullable(dueDate);
+        this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
 
     /**
      * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
      */
-    public PurchaseOrder withDueDate(Optional<LocalDate> dueDate) {
+    public PurchaseOrder withDueDate(JsonNullable<LocalDate> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
         return this;
@@ -1462,7 +1462,7 @@ public class PurchaseOrder {
  
         private JsonNullable<Boolean> accountingByRow = JsonNullable.undefined();
  
-        private Optional<LocalDate> dueDate = Optional.empty();
+        private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
  
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
  
@@ -1881,14 +1881,14 @@ public class PurchaseOrder {
          */
         public Builder dueDate(LocalDate dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = Optional.ofNullable(dueDate);
+            this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
          * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
          */
-        public Builder dueDate(Optional<LocalDate> dueDate) {
+        public Builder dueDate(JsonNullable<LocalDate> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
             return this;

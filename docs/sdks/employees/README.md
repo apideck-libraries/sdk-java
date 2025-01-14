@@ -113,20 +113,15 @@ import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.EmployeeCompensationInput;
 import com.apideck.unify.models.components.EmployeeInput;
 import com.apideck.unify.models.components.EmployeeJobInput;
 import com.apideck.unify.models.components.EmployeeJobStatus;
 import com.apideck.unify.models.components.EmploymentStatus;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.FlsaStatus;
 import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
@@ -136,7 +131,6 @@ import com.apideck.unify.models.components.ProbationPeriod;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Team;
 import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -147,7 +141,6 @@ import com.apideck.unify.models.operations.HrisEmployeesAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -337,18 +330,9 @@ public class Application {
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build()))
+                    ))
                     .customFields(List.of(
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of(true))
-                            .build()))
+                    ))
                     .socialLinks(List.of(
                         SocialLink.builder()
                             .url("https://www.twitter.com/apideck")
@@ -419,14 +403,7 @@ public class Application {
                     .rowVersion("1-12345")
                     .deleted(true)
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -559,7 +536,6 @@ import com.apideck.unify.models.components.EmployeeInput;
 import com.apideck.unify.models.components.EmployeeJobInput;
 import com.apideck.unify.models.components.EmployeeJobStatus;
 import com.apideck.unify.models.components.EmploymentStatus;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.FlsaStatus;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.Gender;
@@ -586,7 +562,6 @@ import com.apideck.unify.models.operations.HrisEmployeesUpdateResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -931,10 +906,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

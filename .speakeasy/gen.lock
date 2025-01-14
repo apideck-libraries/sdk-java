@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 3e6be91e9344532273c404d73c679c75
+  docChecksum: 8d9c85df713492bb9fe416a01201df13
   docVersion: 10.9.1
-  speakeasyVersion: 1.468.2
-  generationVersion: 2.493.4
-  releaseVersion: 0.5.3
-  configChecksum: 54f4a644f412f8f26c17efd78cf43229
+  speakeasyVersion: 1.468.5
+  generationVersion: 2.493.11
+  releaseVersion: 0.5.4
+  configChecksum: decb2c8c955c642b2c2c08f46d8464e6
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -5018,7 +5018,8 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
-        "200": {}
+        "200":
+          '*/*': "x-file: example.file"
   accounting.trackingCategoriesAll:
     "":
       parameters:
@@ -7080,7 +7081,8 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
-        "200": {}
+        "200":
+          '*/*': "x-file: example.file"
   fileStorage.filesExport:
     "":
       parameters:
@@ -7106,7 +7108,8 @@ examples:
           application/json: {"status_code": 422, "error": "Unprocessable Entity", "type_name": "InvalidStateError", "message": "Invalid State", "detail": "Unprocessable request, please verify your request headers and body.", "ref": "https://developers.apideck.com/errors#invalidstateerror"}
         default:
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestHeadersValidationError", "message": "Invalid Params", "detail": "Missing Header: x-apideck-consumer-id", "ref": "https://developers.apideck.com/errors#unauthorizederror"}
-        "200": {}
+        "200":
+          '*/*': "x-file: example.file"
   fileStorage.foldersAdd:
     "":
       parameters:

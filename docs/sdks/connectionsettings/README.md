@@ -90,7 +90,6 @@ import com.apideck.unify.models.components.ConnectionConfiguration;
 import com.apideck.unify.models.components.ConnectionDefaults;
 import com.apideck.unify.models.components.ConnectionInput;
 import com.apideck.unify.models.components.ConnectionValue;
-import com.apideck.unify.models.components.CustomMappingInput;
 import com.apideck.unify.models.components.Five;
 import com.apideck.unify.models.components.FormFieldOption;
 import com.apideck.unify.models.components.FormFieldOptionGroup;
@@ -190,15 +189,7 @@ public class Application {
                                 ConnectionDefaults.builder()
                                     .id("ProductInterest")
                                     .options(List.of(
-                                        FormFieldOption.of(FormFieldOptionGroup.builder()
-                                            .id("1234")
-                                            .label("General Channel")
-                                            .options(List.of(
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .value(SimpleFormFieldOptionValue.of(12.5d))
-                                                    .build()))
-                                            .build())))
+                                    ))
                                     .value(ConnectionValue.of(true))
                                     .build()))
                             .build(),
@@ -212,10 +203,7 @@ public class Application {
                                             .id("1234")
                                             .label("General Channel")
                                             .options(List.of(
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .value(SimpleFormFieldOptionValue.of(123L))
-                                                    .build()))
+                                            ))
                                             .build())))
                                     .value(ConnectionValue.of(10L))
                                     .build(),
@@ -269,9 +257,7 @@ public class Application {
                                     .build()))
                             .build()))
                     .customMappings(List.of(
-                        CustomMappingInput.builder()
-                            .value("$.root.training.first_aid")
-                            .build()))
+                    ))
                     .build())
                 .build();
 

@@ -99,11 +99,6 @@ import com.apideck.unify.models.components.ApplicantType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.SocialLinks;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Websites;
@@ -117,7 +112,6 @@ import com.apideck.unify.models.operations.AtsApplicantsAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -161,14 +155,7 @@ public class Application {
                             .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .phoneNumbers(List.of(
-                        PhoneNumber.builder()
-                            .number("111-111-1111")
-                            .id("12345")
-                            .countryCode("1")
-                            .areaCode("323")
-                            .extension("105")
-                            .type(PhoneNumberType.PRIMARY)
-                            .build()))
+                    ))
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
@@ -265,11 +252,7 @@ public class Application {
                             .type(ApplicantType.PRIMARY)
                             .build()))
                     .socialLinks(List.of(
-                        SocialLinks.builder()
-                            .url("https://www.twitter.com/apideck")
-                            .id("12345")
-                            .type("twitter")
-                            .build()))
+                    ))
                     .stageId("12345")
                     .recruiterId("12345")
                     .coordinatorId("12345")
@@ -293,14 +276,7 @@ public class Application {
                     .recordUrl("https://app.intercom.io/contacts/12345")
                     .deleted(true)
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();
@@ -416,7 +392,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.ApplicantInput;
-import com.apideck.unify.models.components.ApplicantType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
@@ -427,7 +402,6 @@ import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLinks;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.components.Websites;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -580,11 +554,7 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .websites(List.of(
-                        Websites.builder()
-                            .url("http://example.com")
-                            .id("12345")
-                            .type(ApplicantType.PRIMARY)
-                            .build()))
+                    ))
                     .socialLinks(List.of(
                         SocialLinks.builder()
                             .url("https://www.twitter.com/apideck")

@@ -87,14 +87,14 @@ public class Bill {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bill_date")
-    private Optional<LocalDate> billDate;
+    private JsonNullable<LocalDate> billDate;
 
     /**
      * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("due_date")
-    private Optional<LocalDate> dueDate;
+    private JsonNullable<LocalDate> dueDate;
 
     /**
      * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
@@ -301,8 +301,8 @@ public class Bill {
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
-            @JsonProperty("bill_date") Optional<LocalDate> billDate,
-            @JsonProperty("due_date") Optional<LocalDate> dueDate,
+            @JsonProperty("bill_date") JsonNullable<LocalDate> billDate,
+            @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("paid_date") JsonNullable<LocalDate> paidDate,
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
@@ -416,7 +416,7 @@ public class Bill {
     }
     
     public Bill() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -489,7 +489,7 @@ public class Bill {
      * Date bill was issued - YYYY-MM-DD.
      */
     @JsonIgnore
-    public Optional<LocalDate> billDate() {
+    public JsonNullable<LocalDate> billDate() {
         return billDate;
     }
 
@@ -497,7 +497,7 @@ public class Bill {
      * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
      */
     @JsonIgnore
-    public Optional<LocalDate> dueDate() {
+    public JsonNullable<LocalDate> dueDate() {
         return dueDate;
     }
 
@@ -887,14 +887,14 @@ public class Bill {
      */
     public Bill withBillDate(LocalDate billDate) {
         Utils.checkNotNull(billDate, "billDate");
-        this.billDate = Optional.ofNullable(billDate);
+        this.billDate = JsonNullable.of(billDate);
         return this;
     }
 
     /**
      * Date bill was issued - YYYY-MM-DD.
      */
-    public Bill withBillDate(Optional<LocalDate> billDate) {
+    public Bill withBillDate(JsonNullable<LocalDate> billDate) {
         Utils.checkNotNull(billDate, "billDate");
         this.billDate = billDate;
         return this;
@@ -905,14 +905,14 @@ public class Bill {
      */
     public Bill withDueDate(LocalDate dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = Optional.ofNullable(dueDate);
+        this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
 
     /**
      * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
      */
-    public Bill withDueDate(Optional<LocalDate> dueDate) {
+    public Bill withDueDate(JsonNullable<LocalDate> dueDate) {
         Utils.checkNotNull(dueDate, "dueDate");
         this.dueDate = dueDate;
         return this;
@@ -1588,9 +1588,9 @@ public class Bill {
  
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
  
-        private Optional<LocalDate> billDate = Optional.empty();
+        private JsonNullable<LocalDate> billDate = JsonNullable.undefined();
  
-        private Optional<LocalDate> dueDate = Optional.empty();
+        private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
  
         private JsonNullable<LocalDate> paidDate = JsonNullable.undefined();
  
@@ -1805,14 +1805,14 @@ public class Bill {
          */
         public Builder billDate(LocalDate billDate) {
             Utils.checkNotNull(billDate, "billDate");
-            this.billDate = Optional.ofNullable(billDate);
+            this.billDate = JsonNullable.of(billDate);
             return this;
         }
 
         /**
          * Date bill was issued - YYYY-MM-DD.
          */
-        public Builder billDate(Optional<LocalDate> billDate) {
+        public Builder billDate(JsonNullable<LocalDate> billDate) {
             Utils.checkNotNull(billDate, "billDate");
             this.billDate = billDate;
             return this;
@@ -1823,14 +1823,14 @@ public class Bill {
          */
         public Builder dueDate(LocalDate dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = Optional.ofNullable(dueDate);
+            this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
          * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
          */
-        public Builder dueDate(Optional<LocalDate> dueDate) {
+        public Builder dueDate(JsonNullable<LocalDate> dueDate) {
             Utils.checkNotNull(dueDate, "dueDate");
             this.dueDate = dueDate;
             return this;

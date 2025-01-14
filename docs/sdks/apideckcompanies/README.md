@@ -93,15 +93,11 @@ import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.HrisCompanyInput;
 import com.apideck.unify.models.components.HrisCompanyStatus;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -111,7 +107,6 @@ import com.apideck.unify.models.operations.HrisCompaniesAddRequest;
 import com.apideck.unify.models.operations.HrisCompaniesAddResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -182,21 +177,10 @@ public class Application {
                             .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
-                        Website.builder()
-                            .url("http://example.com")
-                            .id("12345")
-                            .type(WebsiteType.PRIMARY)
-                            .build()))
+                    ))
                     .debtorId("12345")
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();

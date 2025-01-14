@@ -92,8 +92,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Type;
@@ -107,7 +105,6 @@ import com.apideck.unify.models.operations.CrmUsersAddRequest;
 import com.apideck.unify.models.operations.CrmUsersAddResponse;
 import java.lang.Exception;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -185,14 +182,7 @@ public class Application {
                             .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();

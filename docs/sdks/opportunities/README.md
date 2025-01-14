@@ -108,7 +108,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.OpportunityInput;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Value;
@@ -123,7 +122,6 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -177,10 +175,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

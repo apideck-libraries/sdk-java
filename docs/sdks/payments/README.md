@@ -104,11 +104,9 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AllocationInput;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LinkedCustomerInput;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PaymentInput;
 import com.apideck.unify.models.components.PaymentStatus;
 import com.apideck.unify.models.components.PaymentType;
@@ -123,7 +121,6 @@ import com.apideck.unify.models.operations.AccountingPaymentsAddResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Map;
 
 public class Application {
 
@@ -186,14 +183,7 @@ public class Application {
                     .rowVersion("1-12345")
                     .displayId("123456")
                     .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
+                    ))
                     .build())
                 .serviceId("salesforce")
                 .build();

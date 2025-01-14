@@ -107,14 +107,10 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LeadInput;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -226,20 +222,9 @@ public class Application {
                             .type("twitter")
                             .build()))
                     .phoneNumbers(List.of(
-                        PhoneNumber.builder()
-                            .number("111-111-1111")
-                            .id("12345")
-                            .countryCode("1")
-                            .areaCode("323")
-                            .extension("105")
-                            .type(PhoneNumberType.PRIMARY)
-                            .build()))
+                    ))
                     .emails(List.of(
-                        Email.builder()
-                            .email("elon@musk.com")
-                            .id("123")
-                            .type(EmailType.PRIMARY)
-                            .build()))
+                    ))
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
@@ -618,10 +603,7 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
+                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")

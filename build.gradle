@@ -63,7 +63,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.apideck"
-version = "0.5.2"
+version = "0.5.3"
 
 sourcesJar {
     archiveBaseName = "unify"
@@ -101,7 +101,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.apideck'
             artifactId = 'unify'
-            version = '0.5.2'
+            version = '0.5.3'
 
             from components.java
 
@@ -144,6 +144,8 @@ if (!project.hasProperty('skip.signing')) {
     }
 }
 
+
+
 dependencies {
     api 'com.fasterxml.jackson.core:jackson-annotations:2.18.2'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
@@ -154,7 +156,5 @@ dependencies {
     implementation 'commons-io:commons-io:2.18.0'
     implementation 'com.jayway.jsonpath:json-path:2.9.0'
 }
-
-
 
 apply from: 'build-extras.gradle'

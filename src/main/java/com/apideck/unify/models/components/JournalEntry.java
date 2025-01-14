@@ -164,6 +164,10 @@ public class JournalEntry {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("custom_fields")
+    private Optional<? extends List<CustomField>> customFields;
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -193,6 +197,7 @@ public class JournalEntry {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
+            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(title, "title");
@@ -214,6 +219,7 @@ public class JournalEntry {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(rowVersion, "rowVersion");
+        Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.title = title;
@@ -235,11 +241,12 @@ public class JournalEntry {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
+        this.customFields = customFields;
         this.passThrough = passThrough;
     }
     
     public JournalEntry() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -404,6 +411,12 @@ public class JournalEntry {
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
         return rowVersion;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<CustomField>> customFields() {
+        return (Optional<List<CustomField>>) customFields;
     }
 
     /**
@@ -779,6 +792,18 @@ public class JournalEntry {
         return this;
     }
 
+    public JournalEntry withCustomFields(List<CustomField> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = Optional.ofNullable(customFields);
+        return this;
+    }
+
+    public JournalEntry withCustomFields(Optional<? extends List<CustomField>> customFields) {
+        Utils.checkNotNull(customFields, "customFields");
+        this.customFields = customFields;
+        return this;
+    }
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -827,6 +852,7 @@ public class JournalEntry {
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
+            Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.passThrough, other.passThrough);
     }
     
@@ -853,6 +879,7 @@ public class JournalEntry {
             updatedAt,
             createdAt,
             rowVersion,
+            customFields,
             passThrough);
     }
     
@@ -879,6 +906,7 @@ public class JournalEntry {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
+                "customFields", customFields,
                 "passThrough", passThrough);
     }
     
@@ -923,6 +951,8 @@ public class JournalEntry {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
+ 
+        private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();  
         
@@ -1290,6 +1320,18 @@ public class JournalEntry {
             return this;
         }
 
+        public Builder customFields(List<CustomField> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = Optional.ofNullable(customFields);
+            return this;
+        }
+
+        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+            Utils.checkNotNull(customFields, "customFields");
+            this.customFields = customFields;
+            return this;
+        }
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1330,6 +1372,7 @@ public class JournalEntry {
                 updatedAt,
                 createdAt,
                 rowVersion,
+                customFields,
                 passThrough);
         }
     }

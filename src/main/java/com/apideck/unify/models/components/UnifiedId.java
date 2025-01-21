@@ -13,6 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
+/**
+ * UnifiedId - A object containing a unique identifier for the resource that was created, updated, or deleted.
+ */
 
 public class UnifiedId {
 

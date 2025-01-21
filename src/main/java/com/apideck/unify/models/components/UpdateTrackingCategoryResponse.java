@@ -50,6 +50,9 @@ public class UpdateTrackingCategoryResponse {
     @JsonProperty("operation")
     private String operation;
 
+    /**
+     * A object containing a unique identifier for the resource that was created, updated, or deleted.
+     */
     @JsonProperty("data")
     private UnifiedId data;
 
@@ -115,6 +118,9 @@ public class UpdateTrackingCategoryResponse {
         return operation;
     }
 
+    /**
+     * A object containing a unique identifier for the resource that was created, updated, or deleted.
+     */
     @JsonIgnore
     public UnifiedId data() {
         return data;
@@ -169,6 +175,9 @@ public class UpdateTrackingCategoryResponse {
         return this;
     }
 
+    /**
+     * A object containing a unique identifier for the resource that was created, updated, or deleted.
+     */
     public UpdateTrackingCategoryResponse withData(UnifiedId data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
@@ -278,6 +287,9 @@ public class UpdateTrackingCategoryResponse {
             return this;
         }
 
+        /**
+         * A object containing a unique identifier for the resource that was created, updated, or deleted.
+         */
         public Builder data(UnifiedId data) {
             Utils.checkNotNull(data, "data");
             this.data = data;

@@ -43,6 +43,7 @@ public class Application {
                     .statusCode(201d)
                     .excludeUnifiedApis("vault,proxy")
                     .build())
+                .limit(20L)
                 .build();
 
         sdk.vault().logs().list()

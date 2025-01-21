@@ -46,13 +46,11 @@ public class Application {
             .build();
 
         CrmActivitiesAllRequest req = CrmActivitiesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(ActivitiesFilter.builder()
-                    .companyId("1234")
-                    .ownerId("1234")
-                    .contactId("1234")
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .type("Task")
                     .build())
                 .sort(ActivitiesSort.builder()
                     .by(ActivitiesSortBy.CREATED_AT)
@@ -111,6 +109,9 @@ import com.apideck.unify.models.components.ActivityInput;
 import com.apideck.unify.models.components.ActivityType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.ShowAs;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -123,6 +124,7 @@ import com.apideck.unify.models.operations.CrmActivitiesAddRequest;
 import com.apideck.unify.models.operations.CrmActivitiesAddResponse;
 import java.lang.Exception;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -207,6 +209,13 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
                             .value(Value.of(true))
                             .build()))
                     .attendees(List.of(
@@ -222,8 +231,24 @@ public class Application {
                             .status(ActivityAttendeeStatus.ACCEPTED)
                             .build()))
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -291,6 +316,7 @@ public class Application {
         CrmActivitiesOneRequest req = CrmActivitiesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -343,8 +369,10 @@ import com.apideck.unify.models.components.ActivityType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.ShowAs;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -442,6 +470,8 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
@@ -453,9 +483,24 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build(),
+                                Six.builder()
+                                    .build())))
                             .build()))
                     .attendees(List.of(
+                        ActivityAttendeeInput.builder()
+                            .name("Elon Musk")
+                            .firstName("Elon")
+                            .middleName("D.")
+                            .lastName("Musk")
+                            .prefix("Mr.")
+                            .suffix("PhD")
+                            .emailAddress("elon@musk.com")
+                            .isOrganizer(true)
+                            .status(ActivityAttendeeStatus.ACCEPTED)
+                            .build(),
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")
                             .firstName("Elon")
@@ -471,7 +516,10 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -492,6 +540,10 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -499,6 +551,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmActivitiesUpdateResponse res = sdk.crm().activities().update()
@@ -565,6 +618,7 @@ public class Application {
         CrmActivitiesDeleteRequest req = CrmActivitiesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmActivitiesDeleteResponse res = sdk.crm().activities().delete()

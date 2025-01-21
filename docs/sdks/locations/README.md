@@ -41,7 +41,9 @@ public class Application {
             .build();
 
         AccountingLocationsAllRequest req = AccountingLocationsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .fields("id,updated_at")
                 .filter(AccountingLocationsFilter.builder()
                     .subsidiary("1")
@@ -92,6 +94,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountingLocationInput;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LocationStatus;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.SubsidiaryReferenceInput;
@@ -105,6 +108,7 @@ import com.apideck.unify.models.operations.AccountingLocationsAddRequest;
 import com.apideck.unify.models.operations.AccountingLocationsAddResponse;
 import java.lang.Exception;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -148,6 +152,32 @@ public class Application {
                             .website("https://elonmusk.com")
                             .notes("Address notes or delivery instructions.")
                             .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
                             .build()))
                     .subsidiaries(List.of(
                         SubsidiaryReferenceInput.builder()
@@ -161,9 +191,21 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -231,6 +273,7 @@ public class Application {
         AccountingLocationsOneRequest req = AccountingLocationsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -414,9 +457,22 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingLocationsUpdateResponse res = sdk.accounting().locations().update()
@@ -483,6 +539,7 @@ public class Application {
         AccountingLocationsDeleteRequest req = AccountingLocationsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingLocationsDeleteResponse res = sdk.accounting().locations().delete()

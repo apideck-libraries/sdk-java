@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.5.4'
+implementation 'com.apideck:unify:0.6.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.5.4</version>
+    <version>0.6.0</version>
 </dependency>
 ```
 
@@ -104,7 +104,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -685,7 +687,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -744,7 +748,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -817,7 +823,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -885,7 +893,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -942,7 +952,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -1015,8 +1027,21 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -1070,7 +1095,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)

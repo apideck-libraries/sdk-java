@@ -39,7 +39,9 @@ public class Application {
             .build();
 
         EcommerceCustomersAllRequest req = EcommerceCustomersAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(EcommerceCustomersFilter.builder()
                     .email("elon@musk.com")
                     .phoneNumber("111-111-1111")
@@ -113,6 +115,7 @@ public class Application {
         EcommerceCustomersOneRequest req = EcommerceCustomersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

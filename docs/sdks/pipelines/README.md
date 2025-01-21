@@ -37,7 +37,9 @@ public class Application {
             .build();
 
         CrmPipelinesAllRequest req = CrmPipelinesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

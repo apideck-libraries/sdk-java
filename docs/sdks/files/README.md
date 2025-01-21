@@ -47,7 +47,9 @@ public class Application {
             .build();
 
         FileStorageFilesAllRequest req = FileStorageFilesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(FilesFilter.builder()
                     .driveId("1234")
                     .folderId("root")
@@ -104,10 +106,8 @@ Search Files
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.FilesFilter;
 import com.apideck.unify.models.components.FilesSearch;
-import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -116,7 +116,6 @@ import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.FileStorageFilesSearchRequest;
 import com.apideck.unify.models.operations.FileStorageFilesSearchResponse;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Map;
 
 public class Application {
@@ -132,21 +131,12 @@ public class Application {
         FileStorageFilesSearchRequest req = FileStorageFilesSearchRequest.builder()
                 .filesSearch(FilesSearch.builder()
                     .query("logo jpg")
-                    .driveId("1234")
-                    .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
                     .build())
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
+                .limit(20L)
                 .filter(FilesFilter.builder()
                     .driveId("1234")
                     .folderId("root")
@@ -218,6 +208,7 @@ public class Application {
         FileStorageFilesOneRequest req = FileStorageFilesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -312,6 +303,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -332,6 +327,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         FileStorageFilesUpdateResponse res = sdk.fileStorage().files().update()
@@ -398,6 +394,7 @@ public class Application {
         FileStorageFilesDeleteRequest req = FileStorageFilesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         FileStorageFilesDeleteResponse res = sdk.fileStorage().files().delete()

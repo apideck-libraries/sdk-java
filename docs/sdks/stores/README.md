@@ -38,6 +38,7 @@ public class Application {
 
         EcommerceStoresOneRequest req = EcommerceStoresOneRequest.builder()
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

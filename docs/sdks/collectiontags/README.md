@@ -38,7 +38,9 @@ public class Application {
 
         IssueTrackingCollectionTagsAllRequest req = IssueTrackingCollectionTagsAllRequest.builder()
                 .collectionId("apideck-io")
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")

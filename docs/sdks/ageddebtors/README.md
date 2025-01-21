@@ -39,6 +39,7 @@ public class Application {
             .build();
 
         AccountingAgedDebtorsOneRequest req = AccountingAgedDebtorsOneRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
                 .filter(AgedReportFilter.builder()
                     .customerId("123abc")

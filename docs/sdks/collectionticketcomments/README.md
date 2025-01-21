@@ -46,7 +46,9 @@ public class Application {
         IssueTrackingCollectionTicketCommentsAllRequest req = IssueTrackingCollectionTicketCommentsAllRequest.builder()
                 .collectionId("apideck-io")
                 .ticketId("<id>")
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .sort(CommentsSort.builder()
                     .by(CommentsSortBy.CREATED_AT)
                     .direction(SortDirection.DESC)
@@ -139,8 +141,21 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -208,7 +223,9 @@ public class Application {
                 .id("<id>")
                 .collectionId("apideck-io")
                 .ticketId("<id>")
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .fields("id,updated_at")
                 .build();
 
@@ -303,6 +320,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -323,6 +344,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketCommentsUpdateResponse res = sdk.issueTracking().collectionTicketComments().update()
@@ -391,6 +413,7 @@ public class Application {
                 .collectionId("apideck-io")
                 .ticketId("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketCommentsDeleteResponse res = sdk.issueTracking().collectionTicketComments().delete()

@@ -41,9 +41,11 @@ public class Application {
             .build();
 
         AtsApplicationsAllRequest req = AtsApplicationsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
+                .limit(20L)
                 .build();
 
         sdk.ats().applications().list()
@@ -135,8 +137,21 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -204,6 +219,7 @@ public class Application {
         AtsApplicationsOneRequest req = AtsApplicationsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AtsApplicationsOneResponse res = sdk.ats().applications().get()
@@ -303,6 +319,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -323,6 +343,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AtsApplicationsUpdateResponse res = sdk.ats().applications().update()
@@ -389,6 +410,7 @@ public class Application {
         AtsApplicationsDeleteRequest req = AtsApplicationsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AtsApplicationsDeleteResponse res = sdk.ats().applications().delete()

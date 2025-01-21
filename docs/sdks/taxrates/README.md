@@ -43,7 +43,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -99,10 +101,12 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Components;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.TaxRateInput;
 import com.apideck.unify.models.components.TaxRateStatus;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -140,6 +144,12 @@ public class Application {
                             .name("GST")
                             .rate(10d)
                             .compound(true)
+                            .build(),
+                        Components.builder()
+                            .id("10")
+                            .name("GST")
+                            .rate(10d)
+                            .compound(true)
                             .build()))
                     .type("NONE")
                     .reportTaxType("NONE")
@@ -153,14 +163,32 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -229,6 +257,7 @@ public class Application {
         AccountingTaxRatesOneRequest req = AccountingTaxRatesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -275,10 +304,13 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Components;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.TaxRateInput;
 import com.apideck.unify.models.components.TaxRateStatus;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -342,6 +374,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -360,8 +396,23 @@ public class Application {
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(true))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingTaxRatesUpdateResponse res = sdk.accounting().taxRates().update()
@@ -428,6 +479,7 @@ public class Application {
         AccountingTaxRatesDeleteRequest req = AccountingTaxRatesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingTaxRatesDeleteResponse res = sdk.accounting().taxRates().delete()

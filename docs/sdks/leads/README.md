@@ -45,9 +45,10 @@ public class Application {
             .build();
 
         CrmLeadsAllRequest req = CrmLeadsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(LeadsFilter.builder()
-                    .name("Elon Musk")
                     .firstName("Elon")
                     .lastName("Musk")
                     .email("elon@tesla.com")
@@ -107,10 +108,14 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.Email;
+import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LeadInput;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.PhoneNumber;
+import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -157,6 +162,11 @@ public class Application {
                     .currency(Currency.USD)
                     .fax("+12129876543")
                     .websites(List.of(
+                        Website.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(WebsiteType.PRIMARY)
+                            .build(),
                         Website.builder()
                             .url("http://example.com")
                             .id("12345")
@@ -220,11 +230,27 @@ public class Application {
                             .url("https://www.twitter.com/apideck")
                             .id("12345")
                             .type("twitter")
+                            .build(),
+                        SocialLink.builder()
+                            .url("https://www.twitter.com/apideck")
+                            .id("12345")
+                            .type("twitter")
                             .build()))
                     .phoneNumbers(List.of(
-                    ))
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build()))
                     .emails(List.of(
-                    ))
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build()))
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
@@ -293,6 +319,7 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -360,6 +387,7 @@ public class Application {
         CrmLeadsOneRequest req = CrmLeadsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -416,6 +444,7 @@ import com.apideck.unify.models.components.LeadInput;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
@@ -536,6 +565,11 @@ public class Application {
                             .url("https://www.twitter.com/apideck")
                             .id("12345")
                             .type("twitter")
+                            .build(),
+                        SocialLink.builder()
+                            .url("https://www.twitter.com/apideck")
+                            .id("12345")
+                            .type("twitter")
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
@@ -580,6 +614,14 @@ public class Application {
                             .description("Employee Level")
                             .value(Value.of(Four.builder()
                                 .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build())))
                             .build()))
                     .tags(List.of(
                         "New"))
@@ -591,22 +633,10 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                            ))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmLeadsUpdateResponse res = sdk.crm().leads().update()
@@ -673,6 +703,7 @@ public class Application {
         CrmLeadsDeleteRequest req = CrmLeadsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmLeadsDeleteResponse res = sdk.crm().leads().delete()

@@ -41,7 +41,9 @@ public class Application {
             .build();
 
         IssueTrackingCollectionsAllRequest req = IssueTrackingCollectionsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .sort(CollectionsSort.builder()
                     .by(CollectionsSortBy.NAME)
                     .direction(SortDirection.DESC)
@@ -115,6 +117,7 @@ public class Application {
         IssueTrackingCollectionsOneRequest req = IssueTrackingCollectionsOneRequest.builder()
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

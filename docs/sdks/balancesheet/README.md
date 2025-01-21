@@ -49,6 +49,7 @@ public class Application {
                     .periodCount(3L)
                     .periodType(PeriodType.MONTH)
                     .build())
+                .raw(false)
                 .build();
 
         AccountingBalanceSheetOneResponse res = sdk.accounting().balanceSheet().get()

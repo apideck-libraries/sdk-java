@@ -42,7 +42,9 @@ public class Application {
         AccountingAttachmentsAllRequest req = AccountingAttachmentsAllRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
                 .referenceId("123456")
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .fields("id,updated_at")
                 .build();
 
@@ -113,6 +115,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -183,6 +186,7 @@ public class Application {
                 .referenceId("123456")
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingAttachmentsDeleteResponse res = sdk.accounting().attachments().delete()

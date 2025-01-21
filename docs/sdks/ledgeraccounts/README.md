@@ -46,7 +46,9 @@ public class Application {
             .build();
 
         AccountingLedgerAccountsAllRequest req = AccountingLedgerAccountsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(LedgerAccountsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -106,12 +108,15 @@ import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Classification;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LedgerAccountInput;
 import com.apideck.unify.models.components.LedgerAccountType;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.ParentAccount;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -176,6 +181,20 @@ public class Application {
                         .build())
                     .subAccount(false)
                     .lastReconciliationDate(LocalDate.parse("2020-09-30"))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(true))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -184,13 +203,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -258,6 +274,7 @@ public class Application {
         AccountingLedgerAccountsOneRequest req = AccountingLedgerAccountsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -308,12 +325,16 @@ import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Classification;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LedgerAccountInput;
 import com.apideck.unify.models.components.LedgerAccountType;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.ParentAccount;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Six;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -379,6 +400,30 @@ public class Application {
                         .build())
                     .subAccount(false)
                     .lastReconciliationDate(LocalDate.parse("2020-09-30"))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(true))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build(),
+                                Six.builder()
+                                    .build())))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -391,27 +436,15 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -419,6 +452,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingLedgerAccountsUpdateResponse res = sdk.accounting().ledgerAccounts().update()
@@ -485,6 +519,7 @@ public class Application {
         AccountingLedgerAccountsDeleteRequest req = AccountingLedgerAccountsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingLedgerAccountsDeleteResponse res = sdk.accounting().ledgerAccounts().delete()

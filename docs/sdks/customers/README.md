@@ -47,7 +47,9 @@ public class Application {
             .build();
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(CustomersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -108,13 +110,17 @@ Create Customer
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.CustomerInput;
 import com.apideck.unify.models.components.CustomerStatusStatus;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedParentCustomer;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
@@ -122,6 +128,9 @@ import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
+import com.apideck.unify.models.components.Website;
+import com.apideck.unify.models.components.WebsiteType;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -182,6 +191,32 @@ public class Application {
                             .website("https://elonmusk.com")
                             .notes("Address notes or delivery instructions.")
                             .rowVersion("1-12345")
+                            .build(),
+                        Address.builder()
+                            .id("123")
+                            .type(Type.PRIMARY)
+                            .string("25 Spring Street, Blackburn, VIC 3130")
+                            .name("HQ US")
+                            .line1("Main street")
+                            .line2("apt #")
+                            .line3("Suite #")
+                            .line4("delivery instructions")
+                            .streetNumber("25")
+                            .city("San Francisco")
+                            .state("CA")
+                            .postalCode("94104")
+                            .country("US")
+                            .latitude("40.759211")
+                            .longitude("-73.984638")
+                            .county("Santa Clara")
+                            .contactName("Elon Musk")
+                            .salutation("Mr")
+                            .phoneNumber("111-111-1111")
+                            .fax("122-111-1111")
+                            .email("elon@musk.com")
+                            .website("https://elonmusk.com")
+                            .notes("Address notes or delivery instructions.")
+                            .rowVersion("1-12345")
                             .build()))
                     .phoneNumbers(List.of(
                         PhoneNumber.builder()
@@ -205,11 +240,32 @@ public class Application {
                             .email("elon@musk.com")
                             .id("123")
                             .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
-                    ))
+                        Website.builder()
+                            .url("http://example.com")
+                            .id("12345")
+                            .type(WebsiteType.PRIMARY)
+                            .build()))
                     .bankAccounts(List.of(
-                    ))
+                        BankAccount.builder()
+                            .bankName("Monzo")
+                            .accountNumber("123465")
+                            .accountName("SPACEX LLC")
+                            .accountType(AccountType.CREDIT_CARD)
+                            .iban("CH2989144532982975332")
+                            .bic("AUDSCHGGXXX")
+                            .routingNumber("012345678")
+                            .bsbNumber("062-001")
+                            .branchIdentifier("001")
+                            .bankCode("BNH")
+                            .currency(Currency.USD)
+                            .build()))
                     .notes("Some notes about this customer")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
@@ -229,6 +285,26 @@ public class Application {
                     .status(CustomerStatusStatus.ACTIVE)
                     .paymentMethod("cash")
                     .channel("email")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(10d))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -250,14 +326,33 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -325,6 +420,7 @@ public class Application {
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -374,18 +470,22 @@ import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.CustomerInput;
 import com.apideck.unify.models.components.CustomerStatusStatus;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedParentCustomer;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
 import com.apideck.unify.models.components.WebsiteType;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -524,6 +624,11 @@ public class Application {
                             .email("elon@musk.com")
                             .id("123")
                             .type(EmailType.PRIMARY)
+                            .build(),
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
                             .build()))
                     .websites(List.of(
                         Website.builder()
@@ -587,6 +692,22 @@ public class Application {
                     .status(CustomerStatusStatus.ACTIVE)
                     .paymentMethod("cash")
                     .channel("email")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build())))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -595,18 +716,11 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingCustomersUpdateResponse res = sdk.accounting().customers().update()
@@ -673,6 +787,7 @@ public class Application {
         AccountingCustomersDeleteRequest req = AccountingCustomersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingCustomersDeleteResponse res = sdk.accounting().customers().delete()

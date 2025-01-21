@@ -43,7 +43,9 @@ public class Application {
             .build();
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
                     .type(InvoiceItemType.SERVICE)
@@ -176,6 +178,10 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
+                            .build(),
+                        LinkedTrackingCategory.builder()
+                            .id("123456")
+                            .name("New York")
                             .build()))
                     .active(true)
                     .rowVersion("1-12345")
@@ -186,14 +192,22 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -263,6 +277,7 @@ public class Application {
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .filter(InvoiceItemFilter.builder()
                     .type(InvoiceItemFilterInvoiceItemType.SERVICE)
@@ -411,6 +426,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -431,6 +450,7 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingInvoiceItemsUpdateResponse res = sdk.accounting().invoiceItems().update()
@@ -497,6 +517,7 @@ public class Application {
         AccountingInvoiceItemsDeleteRequest req = AccountingInvoiceItemsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingInvoiceItemsDeleteResponse res = sdk.accounting().invoiceItems().delete()

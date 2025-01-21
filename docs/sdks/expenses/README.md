@@ -40,7 +40,9 @@ public class Application {
             .build();
 
         AccountingExpensesAllRequest req = AccountingExpensesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .build();
 
         sdk.accounting().expenses().list()
@@ -89,9 +91,12 @@ import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExpenseInput;
 import com.apideck.unify.models.components.ExpenseLineItemInput;
+import com.apideck.unify.models.components.ExpensePaymentType;
 import com.apideck.unify.models.components.ExpenseType;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -103,6 +108,7 @@ import com.apideck.unify.models.operations.AccountingExpensesAddResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -146,6 +152,7 @@ public class Application {
                     .supplierId("12345")
                     .companyId("12345")
                     .departmentId("12345")
+                    .paymentType(ExpensePaymentType.CASH)
                     .currency(Currency.USD)
                     .currencyRate(0.69d)
                     .type(ExpenseType.EXPENSE)
@@ -161,11 +168,49 @@ public class Application {
                             .name("employee_level")
                             .description("Employee Level")
                             .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -233,6 +278,7 @@ public class Application {
         AccountingExpensesOneRequest req = AccountingExpensesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingExpensesOneResponse res = sdk.accounting().expenses().get()
@@ -281,6 +327,7 @@ import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExpenseInput;
 import com.apideck.unify.models.components.ExpenseLineItemInput;
+import com.apideck.unify.models.components.ExpensePaymentType;
 import com.apideck.unify.models.components.ExpenseType;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
@@ -344,6 +391,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .accountId("123456")
                             .customerId("12345")
@@ -387,6 +438,7 @@ public class Application {
                     .supplierId("12345")
                     .companyId("12345")
                     .departmentId("12345")
+                    .paymentType(ExpensePaymentType.CASH)
                     .currency(Currency.USD)
                     .currencyRate(0.69d)
                     .type(ExpenseType.EXPENSE)
@@ -418,6 +470,10 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -431,10 +487,14 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingExpensesUpdateResponse res = sdk.accounting().expenses().update()
@@ -501,6 +561,7 @@ public class Application {
         AccountingExpensesDeleteRequest req = AccountingExpensesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingExpensesDeleteResponse res = sdk.accounting().expenses().delete()

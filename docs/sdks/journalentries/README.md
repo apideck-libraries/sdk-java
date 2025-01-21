@@ -46,7 +46,9 @@ public class Application {
             .build();
 
         AccountingJournalEntriesAllRequest req = AccountingJournalEntriesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(JournalEntriesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -103,6 +105,8 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.JournalEntryInput;
 import com.apideck.unify.models.components.JournalEntryLineItemInput;
 import com.apideck.unify.models.components.JournalEntryLineItemType;
@@ -111,7 +115,9 @@ import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -122,6 +128,7 @@ import com.apideck.unify.models.operations.AccountingJournalEntriesAddResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -200,6 +207,67 @@ public class Application {
                                     .build())
                                 .build())
                             .lineNumber(1L)
+                            .build(),
+                        JournalEntryLineItemInput.builder()
+                            .type(JournalEntryLineItemType.DEBIT)
+                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
+                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
+                            .taxAmount(27500d)
+                            .subTotal(27500d)
+                            .totalAmount(27500d)
+                            .taxRate(LinkedTaxRateInput.builder()
+                                .id("123456")
+                                .rate(10d)
+                                .build())
+                            .trackingCategories(List.of(
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build()))
+                            .customer(LinkedCustomerInput.builder()
+                                .id("12345")
+                                .displayName("Windsurf Shop")
+                                .email("boring@boring.com")
+                                .build())
+                            .supplier(LinkedSupplierInput.builder()
+                                .id("12345")
+                                .displayName("Windsurf Shop")
+                                .address(Address.builder()
+                                    .id("123")
+                                    .type(Type.PRIMARY)
+                                    .string("25 Spring Street, Blackburn, VIC 3130")
+                                    .name("HQ US")
+                                    .line1("Main street")
+                                    .line2("apt #")
+                                    .line3("Suite #")
+                                    .line4("delivery instructions")
+                                    .streetNumber("25")
+                                    .city("San Francisco")
+                                    .state("CA")
+                                    .postalCode("94104")
+                                    .country("US")
+                                    .latitude("40.759211")
+                                    .longitude("-73.984638")
+                                    .county("Santa Clara")
+                                    .contactName("Elon Musk")
+                                    .salutation("Mr")
+                                    .phoneNumber("111-111-1111")
+                                    .fax("122-111-1111")
+                                    .email("elon@musk.com")
+                                    .website("https://elonmusk.com")
+                                    .notes("Address notes or delivery instructions.")
+                                    .rowVersion("1-12345")
+                                    .build())
+                                .build())
+                            .lineNumber(1L)
                             .build()))
                     .memo("Thank you for your business and have a great day!")
                     .postedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -214,9 +282,27 @@ public class Application {
                             .build()))
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
+                            .build()))
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -284,6 +370,7 @@ public class Application {
         AccountingJournalEntriesOneRequest req = AccountingJournalEntriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -331,7 +418,9 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.JournalEntryInput;
 import com.apideck.unify.models.components.JournalEntryLineItemInput;
 import com.apideck.unify.models.components.JournalEntryLineItemType;
@@ -341,7 +430,9 @@ import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -452,6 +543,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .customer(LinkedCustomerInput.builder()
                                 .id("12345")
@@ -572,6 +667,22 @@ public class Application {
                             .build()))
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build())))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
@@ -579,18 +690,11 @@ public class Application {
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingJournalEntriesUpdateResponse res = sdk.accounting().journalEntries().update()
@@ -657,6 +761,7 @@ public class Application {
         AccountingJournalEntriesDeleteRequest req = AccountingJournalEntriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingJournalEntriesDeleteResponse res = sdk.accounting().journalEntries().delete()

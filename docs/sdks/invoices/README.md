@@ -46,7 +46,9 @@ public class Application {
             .build();
 
         AccountingInvoicesAllRequest req = AccountingInvoicesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(InvoicesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -108,7 +110,7 @@ import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Four;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.InvoiceInput;
 import com.apideck.unify.models.components.InvoiceLineItemInput;
 import com.apideck.unify.models.components.InvoiceLineItemType;
@@ -132,6 +134,7 @@ import com.apideck.unify.models.operations.AccountingInvoicesAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -176,6 +179,10 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
+                            .build(),
+                        LinkedTrackingCategory.builder()
+                            .id("123456")
+                            .name("New York")
                             .build()))
                     .lineItems(List.of(
                         InvoiceLineItemInput.builder()
@@ -207,6 +214,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -214,7 +225,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
-                            ))
+                                CustomField.builder()
+                                    .id("2389328923893298")
+                                    .name("employee_level")
+                                    .description("Employee Level")
+                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .build()))
                             .rowVersion("1-12345")
                             .build(),
                         InvoiceLineItemInput.builder()
@@ -243,7 +259,18 @@ public class Application {
                                 .rate(10d)
                                 .build())
                             .trackingCategories(List.of(
-                            ))
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build()))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
                                 .nominalCode("N091")
@@ -254,8 +281,7 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of(Four.builder()
-                                        .build()))
+                                    .value(Value.of("Uses Salesforce and Marketo"))
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
@@ -376,9 +402,13 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -446,6 +476,7 @@ public class Application {
         AccountingInvoicesOneRequest req = AccountingInvoicesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -496,6 +527,7 @@ import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.InvoiceInput;
 import com.apideck.unify.models.components.InvoiceLineItemInput;
@@ -507,6 +539,7 @@ import com.apideck.unify.models.components.LinkedInvoiceItem;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -519,6 +552,7 @@ import com.apideck.unify.models.operations.AccountingInvoicesUpdateResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -603,6 +637,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -614,6 +652,8 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
+                                    .value(Value.of(Four.builder()
+                                        .build()))
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
@@ -674,6 +714,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .customFields(List.of(
+                                CustomField.builder()
+                                    .id("2389328923893298")
+                                    .name("employee_level")
+                                    .description("Employee Level")
+                                    .value(Value.of(10d))
+                                    .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
@@ -759,12 +805,32 @@ public class Application {
                         .code("453")
                         .build())
                     .customFields(List.of(
-                    ))
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingInvoicesUpdateResponse res = sdk.accounting().invoices().update()
@@ -831,6 +897,7 @@ public class Application {
         AccountingInvoicesDeleteRequest req = AccountingInvoicesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingInvoicesDeleteResponse res = sdk.accounting().invoices().delete()

@@ -63,7 +63,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "com.apideck"
-version = "0.5.4"
+version = "0.6.0"
 
 sourcesJar {
     archiveBaseName = "unify"
@@ -101,7 +101,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.apideck'
             artifactId = 'unify'
-            version = '0.5.4'
+            version = '0.6.0'
 
             from components.java
 

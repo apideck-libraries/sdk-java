@@ -46,7 +46,9 @@ public class Application {
             .build();
 
         AccountingBillsAllRequest req = AccountingBillsAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(BillsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
@@ -109,12 +111,16 @@ import com.apideck.unify.models.components.BillLineItemInput;
 import com.apideck.unify.models.components.BillLineItemType;
 import com.apideck.unify.models.components.BillStatus;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.LinkedInvoiceItem;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -125,6 +131,7 @@ import com.apideck.unify.models.operations.AccountingBillsAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -218,6 +225,46 @@ public class Application {
                                     .name("New York")
                                     .build()))
                             .rowVersion("1-12345")
+                            .build(),
+                        BillLineItemInput.builder()
+                            .rowId("12345")
+                            .code("120-C")
+                            .lineNumber(1L)
+                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
+                            .type(BillLineItemType.EXPENSE_ACCOUNT)
+                            .taxAmount(27500d)
+                            .totalAmount(27500d)
+                            .quantity(1d)
+                            .unitPrice(27500.5d)
+                            .unitOfMeasure("pc.")
+                            .discountPercentage(0.01d)
+                            .discountAmount(19.99d)
+                            .locationId("1234")
+                            .departmentId("1234")
+                            .item(LinkedInvoiceItem.builder()
+                                .id("12344")
+                                .code("120-C")
+                                .name("Model Y")
+                                .build())
+                            .taxRate(LinkedTaxRateInput.builder()
+                                .id("123456")
+                                .rate(10d)
+                                .build())
+                            .ledgerAccount(LinkedLedgerAccountInput.builder()
+                                .id("123456")
+                                .nominalCode("N091")
+                                .code("453")
+                                .build())
+                            .trackingCategories(List.of(
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
+                                    .build()))
+                            .rowVersion("1-12345")
                             .build()))
                     .terms("Net 30 days")
                     .balance(27500d)
@@ -257,10 +304,28 @@ public class Application {
                             .name("New York")
                             .build()))
                     .rowVersion("1-12345")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
+                            .build()))
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .accountingPeriod("01-24")
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -328,6 +393,7 @@ public class Application {
         AccountingBillsOneRequest req = AccountingBillsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -381,14 +447,18 @@ import com.apideck.unify.models.components.BillLineItemInput;
 import com.apideck.unify.models.components.BillLineItemType;
 import com.apideck.unify.models.components.BillStatus;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.LinkedInvoiceItem;
 import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -528,6 +598,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .rowVersion("1-12345")
                             .build(),
@@ -617,18 +691,26 @@ public class Application {
                             .name("New York")
                             .build()))
                     .rowVersion("1-12345")
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build())))
+                            .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
@@ -637,6 +719,7 @@ public class Application {
                     .accountingPeriod("01-24")
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingBillsUpdateResponse res = sdk.accounting().bills().update()
@@ -703,6 +786,7 @@ public class Application {
         AccountingBillsDeleteRequest req = AccountingBillsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         AccountingBillsDeleteResponse res = sdk.accounting().bills().delete()

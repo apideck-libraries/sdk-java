@@ -46,7 +46,9 @@ public class Application {
             .build();
 
         HrisEmployeesAllRequest req = HrisEmployeesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(EmployeesFilter.builder()
                     .companyId("1234")
                     .email("elon@tesla.com")
@@ -113,16 +115,20 @@ import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
+import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.Email;
+import com.apideck.unify.models.components.EmailType;
 import com.apideck.unify.models.components.EmployeeCompensationInput;
 import com.apideck.unify.models.components.EmployeeInput;
 import com.apideck.unify.models.components.EmployeeJobInput;
 import com.apideck.unify.models.components.EmployeeJobStatus;
 import com.apideck.unify.models.components.EmploymentStatus;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.FlsaStatus;
 import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
-import com.apideck.unify.models.components.PaymentFrequency;
+import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -131,6 +137,7 @@ import com.apideck.unify.models.components.ProbationPeriod;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Team;
 import com.apideck.unify.models.components.Type;
+import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -141,6 +148,7 @@ import com.apideck.unify.models.operations.HrisEmployeesAddResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -256,15 +264,52 @@ public class Application {
                                 .notes("Address notes or delivery instructions.")
                                 .rowVersion("1-12345")
                                 .build())
+                            .build(),
+                        EmployeeJobInput.builder()
+                            .title("CEO")
+                            .role("Sales")
+                            .startDate(LocalDate.parse("2020-08-12"))
+                            .endDate(LocalDate.parse("2020-08-12"))
+                            .compensationRate(72000d)
+                            .currency(Currency.USD)
+                            .paymentUnit(PaymentUnit.YEAR)
+                            .hiredAt(LocalDate.parse("2020-08-12"))
+                            .isPrimary(true)
+                            .isManager(true)
+                            .status(EmployeeJobStatus.ACTIVE)
+                            .location(Address.builder()
+                                .id("123")
+                                .type(Type.PRIMARY)
+                                .string("25 Spring Street, Blackburn, VIC 3130")
+                                .name("HQ US")
+                                .line1("Main street")
+                                .line2("apt #")
+                                .line3("Suite #")
+                                .line4("delivery instructions")
+                                .streetNumber("25")
+                                .city("San Francisco")
+                                .state("CA")
+                                .postalCode("94104")
+                                .country("US")
+                                .latitude("40.759211")
+                                .longitude("-73.984638")
+                                .county("Santa Clara")
+                                .contactName("Elon Musk")
+                                .salutation("Mr")
+                                .phoneNumber("111-111-1111")
+                                .fax("122-111-1111")
+                                .email("elon@musk.com")
+                                .website("https://elonmusk.com")
+                                .notes("Address notes or delivery instructions.")
+                                .rowVersion("1-12345")
+                                .build())
                             .build()))
                     .compensations(List.of(
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(
@@ -328,54 +373,38 @@ public class Application {
                             .areaCode("323")
                             .extension("105")
                             .type(PhoneNumberType.PRIMARY)
+                            .build(),
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
                             .build()))
                     .emails(List.of(
-                    ))
+                        Email.builder()
+                            .email("elon@musk.com")
+                            .id("123")
+                            .type(EmailType.PRIMARY)
+                            .build()))
                     .customFields(List.of(
-                    ))
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
+                            .build()))
                     .socialLinks(List.of(
-                        SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
-                            .id("12345")
-                            .type("twitter")
-                            .build(),
-                        SocialLink.builder()
-                            .url("https://www.twitter.com/apideck")
-                            .id("12345")
-                            .type("twitter")
-                            .build(),
                         SocialLink.builder()
                             .url("https://www.twitter.com/apideck")
                             .id("12345")
                             .type("twitter")
                             .build()))
                     .bankAccounts(List.of(
-                        BankAccount.builder()
-                            .bankName("Monzo")
-                            .accountNumber("123465")
-                            .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
-                            .iban("CH2989144532982975332")
-                            .bic("AUDSCHGGXXX")
-                            .routingNumber("012345678")
-                            .bsbNumber("062-001")
-                            .branchIdentifier("001")
-                            .bankCode("BNH")
-                            .currency(Currency.USD)
-                            .build(),
-                        BankAccount.builder()
-                            .bankName("Monzo")
-                            .accountNumber("123465")
-                            .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
-                            .iban("CH2989144532982975332")
-                            .bic("AUDSCHGGXXX")
-                            .routingNumber("012345678")
-                            .bsbNumber("062-001")
-                            .branchIdentifier("001")
-                            .bankCode("BNH")
-                            .currency(Currency.USD)
-                            .build(),
                         BankAccount.builder()
                             .bankName("Monzo")
                             .accountNumber("123465")
@@ -403,8 +432,24 @@ public class Application {
                     .rowVersion("1-12345")
                     .deleted(true)
                     .passThrough(List.of(
-                    ))
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -474,6 +519,7 @@ public class Application {
         HrisEmployeesOneRequest req = HrisEmployeesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .filter(EmployeesOneFilter.builder()
                     .companyId("1234")
@@ -536,13 +582,13 @@ import com.apideck.unify.models.components.EmployeeInput;
 import com.apideck.unify.models.components.EmployeeJobInput;
 import com.apideck.unify.models.components.EmployeeJobStatus;
 import com.apideck.unify.models.components.EmploymentStatus;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.FlsaStatus;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.Gender;
 import com.apideck.unify.models.components.LeavingReason;
 import com.apideck.unify.models.components.Manager;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentFrequency;
 import com.apideck.unify.models.components.PaymentUnit;
 import com.apideck.unify.models.components.PersonInput;
 import com.apideck.unify.models.components.PhoneNumber;
@@ -562,6 +608,7 @@ import com.apideck.unify.models.operations.HrisEmployeesUpdateResponse;
 import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -761,10 +808,8 @@ public class Application {
                         EmployeeCompensationInput.builder()
                             .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
-                            .currency(Currency.USD)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
-                            .paymentFrequency(PaymentFrequency.MONTHLY)
                             .build()))
                     .worksRemote(true)
                     .addresses(List.of(
@@ -821,6 +866,14 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .phoneNumbers(List.of(
+                        PhoneNumber.builder()
+                            .number("111-111-1111")
+                            .id("12345")
+                            .countryCode("1")
+                            .areaCode("323")
+                            .extension("105")
+                            .type(PhoneNumberType.PRIMARY)
+                            .build(),
                         PhoneNumber.builder()
                             .number("111-111-1111")
                             .id("12345")
@@ -888,6 +941,19 @@ public class Application {
                             .branchIdentifier("001")
                             .bankCode("BNH")
                             .currency(Currency.USD)
+                            .build(),
+                        BankAccount.builder()
+                            .bankName("Monzo")
+                            .accountNumber("123465")
+                            .accountName("SPACEX LLC")
+                            .accountType(AccountType.CREDIT_CARD)
+                            .iban("CH2989144532982975332")
+                            .bic("AUDSCHGGXXX")
+                            .routingNumber("012345678")
+                            .bsbNumber("062-001")
+                            .branchIdentifier("001")
+                            .bankCode("BNH")
+                            .currency(Currency.USD)
                             .build()))
                     .taxCode("1111")
                     .taxId("234-32-0000")
@@ -906,10 +972,14 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         HrisEmployeesUpdateResponse res = sdk.hris().employees().update()
@@ -976,6 +1046,7 @@ public class Application {
         HrisEmployeesDeleteRequest req = HrisEmployeesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         HrisEmployeesDeleteResponse res = sdk.hris().employees().delete()

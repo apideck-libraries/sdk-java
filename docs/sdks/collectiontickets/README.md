@@ -32,7 +32,6 @@ import com.apideck.unify.models.errors.UnauthorizedResponse;
 import com.apideck.unify.models.errors.UnprocessableResponse;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -48,7 +47,9 @@ public class Application {
 
         IssueTrackingCollectionTicketsAllRequest req = IssueTrackingCollectionTicketsAllRequest.builder()
                 .collectionId("apideck-io")
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .sort(TicketsSort.builder()
                     .by(TicketsSortBy.CREATED_AT)
                     .direction(SortDirection.DESC)
@@ -56,8 +57,6 @@ public class Application {
                 .filter(IssuesFilter.builder()
                     .status(List.of(
                         "open"))
-                    .since(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
-                    .assigneeId("2332bd9c2eaaa5dcfa14721c")
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -108,6 +107,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AssigneeInput;
 import com.apideck.unify.models.components.CollectionTagInput;
+import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Priority;
 import com.apideck.unify.models.components.TicketInput;
@@ -121,6 +121,7 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAddResp
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -144,6 +145,9 @@ public class Application {
                     .assignees(List.of(
                         AssigneeInput.builder()
                             .id("12345")
+                            .build(),
+                        AssigneeInput.builder()
+                            .id("12345")
                             .build()))
                     .dueDate(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .tags(List.of(
@@ -157,9 +161,21 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -228,6 +244,7 @@ public class Application {
                 .ticketId("<id>")
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -345,9 +362,22 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketsUpdateResponse res = sdk.issueTracking().collectionTickets().update()
@@ -415,6 +445,7 @@ public class Application {
                 .ticketId("<id>")
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketsDeleteResponse res = sdk.issueTracking().collectionTickets().delete()

@@ -45,15 +45,12 @@ public class Application {
             .build();
 
         CrmOpportunitiesAllRequest req = CrmOpportunitiesAllRequest.builder()
+                .raw(false)
                 .serviceId("salesforce")
+                .limit(20L)
                 .filter(OpportunitiesFilter.builder()
-                    .title("Tesla deal")
                     .status("Completed")
                     .monetaryAmount(75000d)
-                    .winProbability(50d)
-                    .companyId("1234")
-                    .ownerId("1234")
-                    .primaryContactId("1234")
                     .build())
                 .sort(OpportunitiesSort.builder()
                     .by(OpportunitiesSortBy.CREATED_AT)
@@ -108,6 +105,8 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
+import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.OpportunityInput;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Value;
@@ -122,6 +121,7 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 
 public class Application {
 
@@ -168,6 +168,13 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
                             .value(Value.of(true))
                             .build()))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -175,9 +182,13 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                            ))
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
+                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -245,6 +256,7 @@ public class Application {
         CrmOpportunitiesOneRequest req = CrmOpportunitiesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -293,8 +305,10 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
+import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.OpportunityInput;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -355,6 +369,8 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
@@ -366,7 +382,11 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of6(List.of(
+                                Six.builder()
+                                    .build(),
+                                Six.builder()
+                                    .build())))
                             .build()))
                     .stageLastChangedAt(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .passThrough(List.of(
@@ -385,9 +405,18 @@ public class Application {
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
                             .build()))
                     .build())
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmOpportunitiesUpdateResponse res = sdk.crm().opportunities().update()
@@ -454,6 +483,7 @@ public class Application {
         CrmOpportunitiesDeleteRequest req = CrmOpportunitiesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
+                .raw(false)
                 .build();
 
         CrmOpportunitiesDeleteResponse res = sdk.crm().opportunities().delete()

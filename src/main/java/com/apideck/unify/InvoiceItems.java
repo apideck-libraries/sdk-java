@@ -225,6 +225,7 @@ public class InvoiceItems implements
                     
                     
                     
+                    
                      
                     AccountingInvoiceItemsAllRequestBuilder _ret = list();
                     _ret.request(new AccountingInvoiceItemsAllRequest(
@@ -235,6 +236,7 @@ public class InvoiceItems implements
                         request.cursor(),
                         request.limit(),
                         request.filter(),
+                        request.sort(),
                         request.passThrough(),
                         request.fields()
                     ));

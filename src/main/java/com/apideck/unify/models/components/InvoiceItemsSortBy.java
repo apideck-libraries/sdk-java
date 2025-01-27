@@ -10,20 +10,16 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * PaymentStatus - Status of payment
+ * InvoiceItemsSortBy - The field on which to sort the Invoice Items
  */
-public enum PaymentStatus {
-    DRAFT("draft"),
-    AUTHORISED("authorised"),
-    REJECTED("rejected"),
-    PAID("paid"),
-    VOIDED("voided"),
-    DELETED("deleted");
+public enum InvoiceItemsSortBy {
+    CREATED_AT("created_at"),
+    UPDATED_AT("updated_at");
 
     @JsonValue
     private final String value;
 
-    private PaymentStatus(String value) {
+    private InvoiceItemsSortBy(String value) {
         this.value = value;
     }
     
@@ -31,8 +27,8 @@ public enum PaymentStatus {
         return value;
     }
     
-    public static Optional<PaymentStatus> fromValue(String value) {
-        for (PaymentStatus o: PaymentStatus.values()) {
+    public static Optional<InvoiceItemsSortBy> fromValue(String value) {
+        for (InvoiceItemsSortBy o: InvoiceItemsSortBy.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

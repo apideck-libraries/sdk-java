@@ -34,9 +34,9 @@ public class OpportunityInput {
     /**
      * The unique identifier of the primary contact associated with the opportunity.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("primary_contact_id")
-    private Optional<String> primaryContactId;
+    private JsonNullable<String> primaryContactId;
 
     /**
      * A description of the opportunity.
@@ -224,7 +224,7 @@ public class OpportunityInput {
     @JsonCreator
     public OpportunityInput(
             @JsonProperty("title") String title,
-            @JsonProperty("primary_contact_id") Optional<String> primaryContactId,
+            @JsonProperty("primary_contact_id") JsonNullable<String> primaryContactId,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("type") JsonNullable<String> type,
             @JsonProperty("monetary_amount") JsonNullable<Double> monetaryAmount,
@@ -314,7 +314,7 @@ public class OpportunityInput {
     
     public OpportunityInput(
             String title) {
-        this(title, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(title, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -329,7 +329,7 @@ public class OpportunityInput {
      * The unique identifier of the primary contact associated with the opportunity.
      */
     @JsonIgnore
-    public Optional<String> primaryContactId() {
+    public JsonNullable<String> primaryContactId() {
         return primaryContactId;
     }
 
@@ -566,14 +566,14 @@ public class OpportunityInput {
      */
     public OpportunityInput withPrimaryContactId(String primaryContactId) {
         Utils.checkNotNull(primaryContactId, "primaryContactId");
-        this.primaryContactId = Optional.ofNullable(primaryContactId);
+        this.primaryContactId = JsonNullable.of(primaryContactId);
         return this;
     }
 
     /**
      * The unique identifier of the primary contact associated with the opportunity.
      */
-    public OpportunityInput withPrimaryContactId(Optional<String> primaryContactId) {
+    public OpportunityInput withPrimaryContactId(JsonNullable<String> primaryContactId) {
         Utils.checkNotNull(primaryContactId, "primaryContactId");
         this.primaryContactId = primaryContactId;
         return this;
@@ -1166,7 +1166,7 @@ public class OpportunityInput {
  
         private String title;
  
-        private Optional<String> primaryContactId = Optional.empty();
+        private JsonNullable<String> primaryContactId = JsonNullable.undefined();
  
         private JsonNullable<String> description = JsonNullable.undefined();
  
@@ -1240,14 +1240,14 @@ public class OpportunityInput {
          */
         public Builder primaryContactId(String primaryContactId) {
             Utils.checkNotNull(primaryContactId, "primaryContactId");
-            this.primaryContactId = Optional.ofNullable(primaryContactId);
+            this.primaryContactId = JsonNullable.of(primaryContactId);
             return this;
         }
 
         /**
          * The unique identifier of the primary contact associated with the opportunity.
          */
-        public Builder primaryContactId(Optional<String> primaryContactId) {
+        public Builder primaryContactId(JsonNullable<String> primaryContactId) {
             Utils.checkNotNull(primaryContactId, "primaryContactId");
             this.primaryContactId = primaryContactId;
             return this;

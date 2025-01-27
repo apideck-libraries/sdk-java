@@ -23,6 +23,9 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.InvoiceItemType;
 import com.apideck.unify.models.components.InvoiceItemsFilter;
+import com.apideck.unify.models.components.InvoiceItemsSort;
+import com.apideck.unify.models.components.InvoiceItemsSortBy;
+import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -49,6 +52,10 @@ public class Application {
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
                     .type(InvoiceItemType.SERVICE)
+                    .build())
+                .sort(InvoiceItemsSort.builder()
+                    .by(InvoiceItemsSortBy.UPDATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))

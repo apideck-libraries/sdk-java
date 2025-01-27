@@ -6,6 +6,7 @@ package com.apideck.unify.models.operations;
 
 
 import com.apideck.unify.models.components.InvoiceItemsFilter;
+import com.apideck.unify.models.components.InvoiceItemsSort;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -69,6 +70,12 @@ public class AccountingInvoiceItemsAllRequest {
     private Optional<? extends InvoiceItemsFilter> filter;
 
     /**
+     * Apply sorting
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=sort")
+    private Optional<? extends InvoiceItemsSort> sort;
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
@@ -89,6 +96,7 @@ public class AccountingInvoiceItemsAllRequest {
             JsonNullable<String> cursor,
             Optional<Long> limit,
             Optional<? extends InvoiceItemsFilter> filter,
+            Optional<? extends InvoiceItemsSort> sort,
             Optional<? extends Map<String, Object>> passThrough,
             JsonNullable<String> fields) {
         Utils.checkNotNull(raw, "raw");
@@ -98,6 +106,7 @@ public class AccountingInvoiceItemsAllRequest {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(filter, "filter");
+        Utils.checkNotNull(sort, "sort");
         Utils.checkNotNull(passThrough, "passThrough");
         Utils.checkNotNull(fields, "fields");
         this.raw = raw;
@@ -107,12 +116,13 @@ public class AccountingInvoiceItemsAllRequest {
         this.cursor = cursor;
         this.limit = limit;
         this.filter = filter;
+        this.sort = sort;
         this.passThrough = passThrough;
         this.fields = fields;
     }
     
     public AccountingInvoiceItemsAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -170,6 +180,15 @@ public class AccountingInvoiceItemsAllRequest {
     @JsonIgnore
     public Optional<InvoiceItemsFilter> filter() {
         return (Optional<InvoiceItemsFilter>) filter;
+    }
+
+    /**
+     * Apply sorting
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<InvoiceItemsSort> sort() {
+        return (Optional<InvoiceItemsSort>) sort;
     }
 
     /**
@@ -320,6 +339,24 @@ public class AccountingInvoiceItemsAllRequest {
     }
 
     /**
+     * Apply sorting
+     */
+    public AccountingInvoiceItemsAllRequest withSort(InvoiceItemsSort sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = Optional.ofNullable(sort);
+        return this;
+    }
+
+    /**
+     * Apply sorting
+     */
+    public AccountingInvoiceItemsAllRequest withSort(Optional<? extends InvoiceItemsSort> sort) {
+        Utils.checkNotNull(sort, "sort");
+        this.sort = sort;
+        return this;
+    }
+
+    /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
     public AccountingInvoiceItemsAllRequest withPassThrough(Map<String, Object> passThrough) {
@@ -372,6 +409,7 @@ public class AccountingInvoiceItemsAllRequest {
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
             Objects.deepEquals(this.filter, other.filter) &&
+            Objects.deepEquals(this.sort, other.sort) &&
             Objects.deepEquals(this.passThrough, other.passThrough) &&
             Objects.deepEquals(this.fields, other.fields);
     }
@@ -386,6 +424,7 @@ public class AccountingInvoiceItemsAllRequest {
             cursor,
             limit,
             filter,
+            sort,
             passThrough,
             fields);
     }
@@ -400,6 +439,7 @@ public class AccountingInvoiceItemsAllRequest {
                 "cursor", cursor,
                 "limit", limit,
                 "filter", filter,
+                "sort", sort,
                 "passThrough", passThrough,
                 "fields", fields);
     }
@@ -419,6 +459,8 @@ public class AccountingInvoiceItemsAllRequest {
         private Optional<Long> limit;
  
         private Optional<? extends InvoiceItemsFilter> filter = Optional.empty();
+ 
+        private Optional<? extends InvoiceItemsSort> sort = Optional.empty();
  
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
  
@@ -555,6 +597,24 @@ public class AccountingInvoiceItemsAllRequest {
         }
 
         /**
+         * Apply sorting
+         */
+        public Builder sort(InvoiceItemsSort sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = Optional.ofNullable(sort);
+            return this;
+        }
+
+        /**
+         * Apply sorting
+         */
+        public Builder sort(Optional<? extends InvoiceItemsSort> sort) {
+            Utils.checkNotNull(sort, "sort");
+            this.sort = sort;
+            return this;
+        }
+
+        /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
         public Builder passThrough(Map<String, Object> passThrough) {
@@ -604,6 +664,7 @@ public class AccountingInvoiceItemsAllRequest {
                 cursor,
                 limit,
                 filter,
+                sort,
                 passThrough,
                 fields);
         }

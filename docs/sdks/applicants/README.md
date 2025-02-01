@@ -42,9 +42,9 @@ public class Application {
             .build();
 
         AtsApplicantsAllRequest req = AtsApplicantsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(ApplicantsFilter.builder()
                     .jobId("1234")
                     .build())
@@ -309,7 +309,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -376,8 +377,9 @@ public class Application {
 
         AtsApplicantsOneRequest req = AtsApplicantsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -664,8 +666,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AtsApplicantsUpdateResponse res = sdk.ats().applicants().update()
@@ -731,8 +734,9 @@ public class Application {
 
         AtsApplicantsDeleteRequest req = AtsApplicantsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AtsApplicantsDeleteResponse res = sdk.ats().applicants().delete()

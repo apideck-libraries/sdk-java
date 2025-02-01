@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.PurchaseOrdersFilter;
 import com.apideck.unify.models.components.PurchaseOrdersSort;
 import com.apideck.unify.models.components.PurchaseOrdersSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,18 +45,17 @@ public class Application {
             .build();
 
         AccountingPurchaseOrdersAllRequest req = AccountingPurchaseOrdersAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
-                .limit(20L)
                 .filter(PurchaseOrdersFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .supplierId("1234")
                     .build())
                 .sort(PurchaseOrdersSort.builder()
                     .by(PurchaseOrdersSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .build();
 
@@ -419,7 +417,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -486,8 +485,9 @@ public class Application {
 
         AccountingPurchaseOrdersOneRequest req = AccountingPurchaseOrdersOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingPurchaseOrdersOneResponse res = sdk.accounting().purchaseOrders().get()
@@ -880,8 +880,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingPurchaseOrdersUpdateResponse res = sdk.accounting().purchaseOrders().update()
@@ -947,8 +948,9 @@ public class Application {
 
         AccountingPurchaseOrdersDeleteRequest req = AccountingPurchaseOrdersDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingPurchaseOrdersDeleteResponse res = sdk.accounting().purchaseOrders().delete()

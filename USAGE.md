@@ -24,9 +24,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)

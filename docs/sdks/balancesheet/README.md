@@ -40,6 +40,8 @@ public class Application {
             .build();
 
         AccountingBalanceSheetOneRequest req = AccountingBalanceSheetOneRequest.builder()
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -49,7 +51,6 @@ public class Application {
                     .periodCount(3L)
                     .periodType(PeriodType.MONTH)
                     .build())
-                .raw(false)
                 .build();
 
         AccountingBalanceSheetOneResponse res = sdk.accounting().balanceSheet().get()

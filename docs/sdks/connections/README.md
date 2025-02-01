@@ -341,6 +341,8 @@ public class Application {
                             .value("$.root.training.first_aid")
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .build();
 
         VaultConnectionsUpdateResponse res = sdk.vault().connections().update()
@@ -484,6 +486,8 @@ public class Application {
                         Map.entry("account", Map.ofEntries(\n    Map.entry("name", "My Company"),\n    Map.entry("id", "c01458a5-7276-41ce-bc19-639906b0450a"))),
                         Map.entry("plan", "enterprise")))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .build();
 
         VaultConnectionsImportResponse res = sdk.vault().connections().imports()
@@ -556,6 +560,8 @@ public class Application {
         VaultConnectionsTokenRequest req = VaultConnectionsTokenRequest.builder()
                 .serviceId("pipedrive")
                 .unifiedApi("crm")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .build();
 
         VaultConnectionsTokenResponse res = sdk.vault().connections().token()

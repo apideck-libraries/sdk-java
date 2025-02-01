@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.LeadsFilter;
 import com.apideck.unify.models.components.LeadsSort;
 import com.apideck.unify.models.components.LeadsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -45,9 +44,9 @@ public class Application {
             .build();
 
         CrmLeadsAllRequest req = CrmLeadsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(LeadsFilter.builder()
                     .firstName("Elon")
                     .lastName("Musk")
@@ -56,7 +55,6 @@ public class Application {
                     .build())
                 .sort(LeadsSort.builder()
                     .by(LeadsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -319,7 +317,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -386,8 +385,9 @@ public class Application {
 
         CrmLeadsOneRequest req = CrmLeadsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -635,8 +635,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmLeadsUpdateResponse res = sdk.crm().leads().update()
@@ -702,8 +703,9 @@ public class Application {
 
         CrmLeadsDeleteRequest req = CrmLeadsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmLeadsDeleteResponse res = sdk.crm().leads().delete()

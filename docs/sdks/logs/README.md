@@ -38,12 +38,13 @@ public class Application {
             .build();
 
         VaultLogsAllRequest req = VaultLogsAllRequest.builder()
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .consumerId("test-consumer")
                 .filter(LogsFilter.builder()
                     .connectorId("crm+salesforce")
                     .statusCode(201d)
                     .excludeUnifiedApis("vault,proxy")
                     .build())
-                .limit(20L)
                 .build();
 
         sdk.vault().logs().list()

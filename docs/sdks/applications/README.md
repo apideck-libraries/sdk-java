@@ -41,11 +41,11 @@ public class Application {
             .build();
 
         AtsApplicationsAllRequest req = AtsApplicationsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
-                .limit(20L)
                 .build();
 
         sdk.ats().applications().list()
@@ -151,7 +151,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -218,8 +219,9 @@ public class Application {
 
         AtsApplicationsOneRequest req = AtsApplicationsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AtsApplicationsOneResponse res = sdk.ats().applications().get()
@@ -342,8 +344,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AtsApplicationsUpdateResponse res = sdk.ats().applications().update()
@@ -409,8 +412,9 @@ public class Application {
 
         AtsApplicationsDeleteRequest req = AtsApplicationsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AtsApplicationsDeleteResponse res = sdk.ats().applications().delete()

@@ -21,7 +21,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.EcommerceOrdersFilter;
 import com.apideck.unify.models.components.OrdersSort;
 import com.apideck.unify.models.components.OrdersSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -42,9 +41,9 @@ public class Application {
             .build();
 
         EcommerceOrdersAllRequest req = EcommerceOrdersAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(EcommerceOrdersFilter.builder()
                     .email("elon@musk.com")
                     .customerId("123")
@@ -53,7 +52,6 @@ public class Application {
                     .build())
                 .sort(OrdersSort.builder()
                     .by(OrdersSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -123,8 +121,9 @@ public class Application {
 
         EcommerceOrdersOneRequest req = EcommerceOrdersOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

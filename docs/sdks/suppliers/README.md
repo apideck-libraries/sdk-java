@@ -21,7 +21,6 @@ List Suppliers
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.components.SuppliersFilter;
 import com.apideck.unify.models.components.SuppliersSort;
 import com.apideck.unify.models.components.SuppliersSortBy;
@@ -46,9 +45,9 @@ public class Application {
             .build();
 
         AccountingSuppliersAllRequest req = AccountingSuppliersAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(SuppliersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -59,7 +58,6 @@ public class Application {
                     .build())
                 .sort(SuppliersSort.builder()
                     .by(SuppliersSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -345,7 +343,8 @@ public class Application {
                             .build()))
                     .subsidiaryId("12345")
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -412,8 +411,9 @@ public class Application {
 
         AccountingSuppliersOneRequest req = AccountingSuppliersOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -707,8 +707,9 @@ public class Application {
                             .build()))
                     .subsidiaryId("12345")
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingSuppliersUpdateResponse res = sdk.accounting().suppliers().update()
@@ -774,8 +775,9 @@ public class Application {
 
         AccountingSuppliersDeleteRequest req = AccountingSuppliersDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingSuppliersDeleteResponse res = sdk.accounting().suppliers().delete()

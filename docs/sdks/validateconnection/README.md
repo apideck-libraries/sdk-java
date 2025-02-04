@@ -45,6 +45,8 @@ public class Application {
         VaultValidateConnectionStateRequest req = VaultValidateConnectionStateRequest.builder()
                 .serviceId("pipedrive")
                 .unifiedApi("crm")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .build();
 
         VaultValidateConnectionStateResponse res = sdk.vault().validateConnection().state()

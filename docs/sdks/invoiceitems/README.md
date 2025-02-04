@@ -25,7 +25,6 @@ import com.apideck.unify.models.components.InvoiceItemType;
 import com.apideck.unify.models.components.InvoiceItemsFilter;
 import com.apideck.unify.models.components.InvoiceItemsSort;
 import com.apideck.unify.models.components.InvoiceItemsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,16 +45,15 @@ public class Application {
             .build();
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(InvoiceItemsFilter.builder()
                     .name("Widgets Large")
                     .type(InvoiceItemType.SERVICE)
                     .build())
                 .sort(InvoiceItemsSort.builder()
                     .by(InvoiceItemsSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -214,7 +212,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -283,8 +282,9 @@ public class Application {
 
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .filter(InvoiceItemFilter.builder()
                     .type(InvoiceItemFilterInvoiceItemType.SERVICE)
@@ -456,8 +456,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingInvoiceItemsUpdateResponse res = sdk.accounting().invoiceItems().update()
@@ -523,8 +524,9 @@ public class Application {
 
         AccountingInvoiceItemsDeleteRequest req = AccountingInvoiceItemsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingInvoiceItemsDeleteResponse res = sdk.accounting().invoiceItems().delete()

@@ -25,7 +25,6 @@ import com.apideck.unify.models.components.CustomersFilter;
 import com.apideck.unify.models.components.CustomersFilterStatus;
 import com.apideck.unify.models.components.CustomersSort;
 import com.apideck.unify.models.components.CustomersSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -47,9 +46,9 @@ public class Application {
             .build();
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(CustomersFilter.builder()
                     .companyName("SpaceX")
                     .displayName("Elon Musk")
@@ -61,7 +60,6 @@ public class Application {
                     .build())
                 .sort(CustomersSort.builder()
                     .by(CustomersSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -352,7 +350,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -419,8 +418,9 @@ public class Application {
 
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -719,8 +719,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingCustomersUpdateResponse res = sdk.accounting().customers().update()
@@ -786,8 +787,9 @@ public class Application {
 
         AccountingCustomersDeleteRequest req = AccountingCustomersDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingCustomersDeleteResponse res = sdk.accounting().customers().delete()

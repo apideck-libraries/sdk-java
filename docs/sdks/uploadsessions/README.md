@@ -76,7 +76,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -144,8 +145,9 @@ public class Application {
 
         FileStorageUploadSessionsOneRequest req = FileStorageUploadSessionsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -213,8 +215,9 @@ public class Application {
 
         FileStorageUploadSessionsDeleteRequest req = FileStorageUploadSessionsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageUploadSessionsDeleteResponse res = sdk.fileStorage().uploadSessions().delete()
@@ -280,7 +283,8 @@ public class Application {
 
         FileStorageUploadSessionsFinishRequest req = FileStorageUploadSessionsFinishRequest.builder()
                 .id("<id>")
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .digest("sha=fpRyg5eVQletdZqEKaFlqwBXJzM=")
                 .build();

@@ -44,6 +44,8 @@ public class Application {
                 .createCallbackState(CreateCallbackState.builder()
                     .redirectUri("https://example.com/callback")
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .build();
 
         VaultCreateCallbackStateResponse res = sdk.vault().createCallback().state()

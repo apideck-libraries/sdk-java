@@ -5,8 +5,8 @@ management:
   docVersion: 10.11.2
   speakeasyVersion: 1.484.1
   generationVersion: 2.503.2
-  releaseVersion: 0.7.0
-  configChecksum: ae5c0e02ac358bf9444f31711f5d69c6
+  releaseVersion: 0.7.2
+  configChecksum: 886e1eb4210ec25a79a260c8a42e368f
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:

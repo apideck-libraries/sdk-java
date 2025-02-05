@@ -26,7 +26,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.FilesFilter;
 import com.apideck.unify.models.components.FilesSort;
 import com.apideck.unify.models.components.FilesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -47,9 +46,7 @@ public class Application {
             .build();
 
         FileStorageFilesAllRequest req = FileStorageFilesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(FilesFilter.builder()
                     .driveId("1234")
                     .folderId("root")
@@ -57,7 +54,6 @@ public class Application {
                     .build())
                 .sort(FilesSort.builder()
                     .by(FilesSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -136,7 +132,6 @@ public class Application {
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
-                .limit(20L)
                 .filter(FilesFilter.builder()
                     .driveId("1234")
                     .folderId("root")
@@ -208,7 +203,6 @@ public class Application {
         FileStorageFilesOneRequest req = FileStorageFilesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -327,7 +321,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageFilesUpdateResponse res = sdk.fileStorage().files().update()
@@ -394,7 +387,6 @@ public class Application {
         FileStorageFilesDeleteRequest req = FileStorageFilesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageFilesDeleteResponse res = sdk.fileStorage().files().delete()

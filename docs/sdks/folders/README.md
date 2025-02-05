@@ -77,7 +77,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();
@@ -146,7 +145,6 @@ public class Application {
         FileStorageFoldersOneRequest req = FileStorageFoldersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -265,7 +263,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageFoldersUpdateResponse res = sdk.fileStorage().folders().update()
@@ -332,7 +329,6 @@ public class Application {
         FileStorageFoldersDeleteRequest req = FileStorageFoldersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageFoldersDeleteResponse res = sdk.fileStorage().folders().delete()
@@ -453,7 +449,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

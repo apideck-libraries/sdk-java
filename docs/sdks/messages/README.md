@@ -40,9 +40,7 @@ public class Application {
             .build();
 
         SmsMessagesAllRequest req = SmsMessagesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .fields("id,updated_at")
                 .build();
 
@@ -151,7 +149,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -219,7 +216,6 @@ public class Application {
         SmsMessagesOneRequest req = SmsMessagesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -346,7 +342,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         SmsMessagesUpdateResponse res = sdk.sms().messages().update()
@@ -413,7 +408,6 @@ public class Application {
         SmsMessagesDeleteRequest req = SmsMessagesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         SmsMessagesDeleteResponse res = sdk.sms().messages().delete()

@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.JournalEntriesFilter;
 import com.apideck.unify.models.components.JournalEntriesSort;
 import com.apideck.unify.models.components.JournalEntriesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,15 +45,12 @@ public class Application {
             .build();
 
         AccountingJournalEntriesAllRequest req = AccountingJournalEntriesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(JournalEntriesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
                 .sort(JournalEntriesSort.builder()
                     .by(JournalEntriesSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -302,7 +298,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -370,7 +365,6 @@ public class Application {
         AccountingJournalEntriesOneRequest req = AccountingJournalEntriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -694,7 +688,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingJournalEntriesUpdateResponse res = sdk.accounting().journalEntries().update()
@@ -761,7 +754,6 @@ public class Application {
         AccountingJournalEntriesDeleteRequest req = AccountingJournalEntriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingJournalEntriesDeleteResponse res = sdk.accounting().journalEntries().delete()

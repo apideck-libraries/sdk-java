@@ -40,9 +40,7 @@ public class Application {
             .build();
 
         AccountingExpensesAllRequest req = AccountingExpensesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .build();
 
         sdk.accounting().expenses().list()
@@ -210,7 +208,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -278,7 +275,6 @@ public class Application {
         AccountingExpensesOneRequest req = AccountingExpensesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingExpensesOneResponse res = sdk.accounting().expenses().get()
@@ -494,7 +490,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingExpensesUpdateResponse res = sdk.accounting().expenses().update()
@@ -561,7 +556,6 @@ public class Application {
         AccountingExpensesDeleteRequest req = AccountingExpensesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingExpensesDeleteResponse res = sdk.accounting().expenses().delete()

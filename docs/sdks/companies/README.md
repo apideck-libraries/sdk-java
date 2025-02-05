@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.CompaniesFilter;
 import com.apideck.unify.models.components.CompaniesSort;
 import com.apideck.unify.models.components.CompaniesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -45,15 +44,12 @@ public class Application {
             .build();
 
         CrmCompaniesAllRequest req = CrmCompaniesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(CompaniesFilter.builder()
                     .name("SpaceX")
                     .build())
                 .sort(CompaniesSort.builder()
                     .by(CompaniesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -359,7 +355,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -426,7 +421,6 @@ public class Application {
 
         CrmCompaniesOneRequest req = CrmCompaniesOneRequest.builder()
                 .id("<id>")
-                .raw(false)
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();
@@ -724,7 +718,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -791,7 +784,6 @@ public class Application {
 
         CrmCompaniesDeleteRequest req = CrmCompaniesDeleteRequest.builder()
                 .id("<id>")
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 

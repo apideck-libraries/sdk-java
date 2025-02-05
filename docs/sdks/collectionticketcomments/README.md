@@ -23,7 +23,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.CommentsSort;
 import com.apideck.unify.models.components.CommentsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,12 +45,9 @@ public class Application {
         IssueTrackingCollectionTicketCommentsAllRequest req = IssueTrackingCollectionTicketCommentsAllRequest.builder()
                 .collectionId("apideck-io")
                 .ticketId("<id>")
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .sort(CommentsSort.builder()
                     .by(CommentsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -155,7 +151,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -223,9 +218,7 @@ public class Application {
                 .id("<id>")
                 .collectionId("apideck-io")
                 .ticketId("<id>")
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .fields("id,updated_at")
                 .build();
 
@@ -344,7 +337,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketCommentsUpdateResponse res = sdk.issueTracking().collectionTicketComments().update()
@@ -413,7 +405,6 @@ public class Application {
                 .collectionId("apideck-io")
                 .ticketId("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketCommentsDeleteResponse res = sdk.issueTracking().collectionTicketComments().delete()

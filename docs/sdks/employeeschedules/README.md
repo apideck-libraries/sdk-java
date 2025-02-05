@@ -39,7 +39,6 @@ public class Application {
 
         HrisEmployeeSchedulesAllRequest req = HrisEmployeeSchedulesAllRequest.builder()
                 .employeeId("<id>")
-                .raw(false)
                 .serviceId("salesforce")
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))

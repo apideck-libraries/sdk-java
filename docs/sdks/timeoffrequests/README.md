@@ -43,9 +43,7 @@ public class Application {
             .build();
 
         HrisTimeOffRequestsAllRequest req = HrisTimeOffRequestsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(TimeOffRequestsFilter.builder()
                     .startDate("2022-04-08")
                     .endDate("2022-04-21")
@@ -174,7 +172,6 @@ public class Application {
                             .build()))
                     .policyType("sick")
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -243,7 +240,6 @@ public class Application {
                 .id("<id>")
                 .employeeId("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -381,7 +377,6 @@ public class Application {
                     .policyType("sick")
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisTimeOffRequestsUpdateResponse res = sdk.hris().timeOffRequests().update()
@@ -449,7 +444,6 @@ public class Application {
                 .id("<id>")
                 .employeeId("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisTimeOffRequestsDeleteResponse res = sdk.hris().timeOffRequests().delete()

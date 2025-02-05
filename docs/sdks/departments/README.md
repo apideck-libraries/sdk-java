@@ -41,9 +41,7 @@ public class Application {
             .build();
 
         AccountingDepartmentsAllRequest req = AccountingDepartmentsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .fields("id,updated_at")
                 .filter(AccountingDepartmentsFilter.builder()
                     .subsidiary("1")
@@ -153,7 +151,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -221,7 +218,6 @@ public class Application {
         AccountingDepartmentsOneRequest req = AccountingDepartmentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -341,7 +337,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingDepartmentsUpdateResponse res = sdk.accounting().departments().update()
@@ -408,7 +403,6 @@ public class Application {
         AccountingDepartmentsDeleteRequest req = AccountingDepartmentsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingDepartmentsDeleteResponse res = sdk.accounting().departments().delete()

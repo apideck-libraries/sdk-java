@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.BillsFilter;
 import com.apideck.unify.models.components.BillsSort;
 import com.apideck.unify.models.components.By;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,15 +45,12 @@ public class Application {
             .build();
 
         AccountingBillsAllRequest req = AccountingBillsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(BillsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
                 .sort(BillsSort.builder()
                     .by(By.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -325,7 +321,6 @@ public class Application {
                             .build()))
                     .accountingPeriod("01-24")
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -393,7 +388,6 @@ public class Application {
         AccountingBillsOneRequest req = AccountingBillsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -719,7 +713,6 @@ public class Application {
                     .accountingPeriod("01-24")
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingBillsUpdateResponse res = sdk.accounting().bills().update()
@@ -786,7 +779,6 @@ public class Application {
         AccountingBillsDeleteRequest req = AccountingBillsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingBillsDeleteResponse res = sdk.accounting().bills().delete()

@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.InvoicesFilter;
 import com.apideck.unify.models.components.InvoicesSort;
 import com.apideck.unify.models.components.InvoicesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,9 +45,7 @@ public class Application {
             .build();
 
         AccountingInvoicesAllRequest req = AccountingInvoicesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(InvoicesFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .createdSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
@@ -56,7 +53,6 @@ public class Application {
                     .build())
                 .sort(InvoicesSort.builder()
                     .by(InvoicesSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -408,7 +404,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -476,7 +471,6 @@ public class Application {
         AccountingInvoicesOneRequest req = AccountingInvoicesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -830,7 +824,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingInvoicesUpdateResponse res = sdk.accounting().invoices().update()
@@ -897,7 +890,6 @@ public class Application {
         AccountingInvoicesDeleteRequest req = AccountingInvoicesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingInvoicesDeleteResponse res = sdk.accounting().invoices().delete()

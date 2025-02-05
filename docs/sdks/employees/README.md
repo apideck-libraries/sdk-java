@@ -25,7 +25,6 @@ import com.apideck.unify.models.components.EmployeesFilter;
 import com.apideck.unify.models.components.EmployeesFilterEmploymentStatus;
 import com.apideck.unify.models.components.EmployeesSort;
 import com.apideck.unify.models.components.EmployeesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,9 +45,7 @@ public class Application {
             .build();
 
         HrisEmployeesAllRequest req = HrisEmployeesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(EmployeesFilter.builder()
                     .companyId("1234")
                     .email("elon@tesla.com")
@@ -62,7 +59,6 @@ public class Application {
                     .build())
                 .sort(EmployeesSort.builder()
                     .by(EmployeesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -449,7 +445,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -519,7 +514,6 @@ public class Application {
         HrisEmployeesOneRequest req = HrisEmployeesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .filter(EmployeesOneFilter.builder()
                     .companyId("1234")
@@ -979,7 +973,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisEmployeesUpdateResponse res = sdk.hris().employees().update()
@@ -1046,7 +1039,6 @@ public class Application {
         HrisEmployeesDeleteRequest req = HrisEmployeesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisEmployeesDeleteResponse res = sdk.hris().employees().delete()

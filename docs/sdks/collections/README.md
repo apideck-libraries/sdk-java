@@ -20,7 +20,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.CollectionsSort;
 import com.apideck.unify.models.components.CollectionsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -41,12 +40,9 @@ public class Application {
             .build();
 
         IssueTrackingCollectionsAllRequest req = IssueTrackingCollectionsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .sort(CollectionsSort.builder()
                     .by(CollectionsSortBy.NAME)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -117,7 +113,6 @@ public class Application {
         IssueTrackingCollectionsOneRequest req = IssueTrackingCollectionsOneRequest.builder()
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 

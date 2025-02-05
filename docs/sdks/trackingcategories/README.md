@@ -41,9 +41,7 @@ public class Application {
             .build();
 
         AccountingTrackingCategoriesAllRequest req = AccountingTrackingCategoriesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -149,7 +147,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -217,7 +214,6 @@ public class Application {
         AccountingTrackingCategoriesOneRequest req = AccountingTrackingCategoriesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -339,7 +335,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingTrackingCategoriesUpdateResponse res = sdk.accounting().trackingCategories().update()
@@ -406,7 +401,6 @@ public class Application {
         AccountingTrackingCategoriesDeleteRequest req = AccountingTrackingCategoriesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingTrackingCategoriesDeleteResponse res = sdk.accounting().trackingCategories().delete()

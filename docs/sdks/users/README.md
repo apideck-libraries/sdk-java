@@ -41,9 +41,7 @@ public class Application {
             .build();
 
         CrmUsersAllRequest req = CrmUsersAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -222,7 +220,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -290,7 +287,6 @@ public class Application {
         CrmUsersOneRequest req = CrmUsersOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -527,7 +523,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmUsersUpdateResponse res = sdk.crm().users().update()
@@ -594,7 +589,6 @@ public class Application {
         CrmUsersDeleteRequest req = CrmUsersDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmUsersDeleteResponse res = sdk.crm().users().delete()

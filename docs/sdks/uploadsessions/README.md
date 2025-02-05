@@ -76,7 +76,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -145,7 +144,6 @@ public class Application {
         FileStorageUploadSessionsOneRequest req = FileStorageUploadSessionsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -214,7 +212,6 @@ public class Application {
         FileStorageUploadSessionsDeleteRequest req = FileStorageUploadSessionsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageUploadSessionsDeleteResponse res = sdk.fileStorage().uploadSessions().delete()
@@ -280,7 +277,6 @@ public class Application {
 
         FileStorageUploadSessionsFinishRequest req = FileStorageUploadSessionsFinishRequest.builder()
                 .id("<id>")
-                .raw(false)
                 .serviceId("salesforce")
                 .digest("sha=fpRyg5eVQletdZqEKaFlqwBXJzM=")
                 .build();

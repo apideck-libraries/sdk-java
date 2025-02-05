@@ -40,7 +40,6 @@ public class Application {
             .build();
 
         HrisPayrollsAllRequest req = HrisPayrollsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
                 .filter(PayrollsFilter.builder()
                     .startDate("2022-04-08")
@@ -114,7 +113,6 @@ public class Application {
 
         HrisPayrollsOneRequest req = HrisPayrollsOneRequest.builder()
                 .payrollId("<id>")
-                .raw(false)
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();

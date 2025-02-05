@@ -22,7 +22,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.IssuesFilter;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.components.TicketsSort;
 import com.apideck.unify.models.components.TicketsSortBy;
 import com.apideck.unify.models.errors.BadRequestResponse;
@@ -47,12 +46,9 @@ public class Application {
 
         IssueTrackingCollectionTicketsAllRequest req = IssueTrackingCollectionTicketsAllRequest.builder()
                 .collectionId("apideck-io")
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .sort(TicketsSort.builder()
                     .by(TicketsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .filter(IssuesFilter.builder()
                     .status(List.of(
@@ -175,7 +171,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -244,7 +239,6 @@ public class Application {
                 .ticketId("<id>")
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -377,7 +371,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketsUpdateResponse res = sdk.issueTracking().collectionTickets().update()
@@ -445,7 +438,6 @@ public class Application {
                 .ticketId("<id>")
                 .collectionId("apideck-io")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         IssueTrackingCollectionTicketsDeleteResponse res = sdk.issueTracking().collectionTickets().delete()

@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.PaymentsFilter;
 import com.apideck.unify.models.components.PaymentsSort;
 import com.apideck.unify.models.components.PaymentsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,15 +45,12 @@ public class Application {
             .build();
 
         AccountingPaymentsAllRequest req = AccountingPaymentsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(PaymentsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
                 .sort(PaymentsSort.builder()
                     .by(PaymentsSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -232,7 +228,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -300,7 +295,6 @@ public class Application {
         AccountingPaymentsOneRequest req = AccountingPaymentsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -491,7 +485,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingPaymentsUpdateResponse res = sdk.accounting().payments().update()
@@ -558,7 +551,6 @@ public class Application {
         AccountingPaymentsDeleteRequest req = AccountingPaymentsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingPaymentsDeleteResponse res = sdk.accounting().payments().delete()

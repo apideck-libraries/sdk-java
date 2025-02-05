@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.OpportunitiesFilter;
 import com.apideck.unify.models.components.OpportunitiesSort;
 import com.apideck.unify.models.components.OpportunitiesSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -45,16 +44,13 @@ public class Application {
             .build();
 
         CrmOpportunitiesAllRequest req = CrmOpportunitiesAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(OpportunitiesFilter.builder()
                     .status("Completed")
                     .monetaryAmount(75000d)
                     .build())
                 .sort(OpportunitiesSort.builder()
                     .by(OpportunitiesSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -188,7 +184,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -256,7 +251,6 @@ public class Application {
         CrmOpportunitiesOneRequest req = CrmOpportunitiesOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -416,7 +410,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmOpportunitiesUpdateResponse res = sdk.crm().opportunities().update()
@@ -483,7 +476,6 @@ public class Application {
         CrmOpportunitiesDeleteRequest req = CrmOpportunitiesDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmOpportunitiesDeleteResponse res = sdk.crm().opportunities().delete()

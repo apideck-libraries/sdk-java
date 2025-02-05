@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ContactsFilter;
 import com.apideck.unify.models.components.ContactsSort;
 import com.apideck.unify.models.components.ContactsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -45,9 +44,7 @@ public class Application {
             .build();
 
         CrmContactsAllRequest req = CrmContactsAllRequest.builder()
-                .raw(false)
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(ContactsFilter.builder()
                     .firstName("Elon")
                     .lastName("Musk")
@@ -57,7 +54,6 @@ public class Application {
                     .build())
                 .sort(ContactsSort.builder()
                     .by(ContactsSortBy.CREATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -330,7 +326,6 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
                 .serviceId("salesforce")
                 .build();
 
@@ -399,7 +394,6 @@ public class Application {
         CrmContactsOneRequest req = CrmContactsOneRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .filter(ContactsFilter.builder()
                     .firstName("Elon")
@@ -665,7 +659,6 @@ public class Application {
                             .build()))
                     .build())
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmContactsUpdateResponse res = sdk.crm().contacts().update()
@@ -732,7 +725,6 @@ public class Application {
         CrmContactsDeleteRequest req = CrmContactsDeleteRequest.builder()
                 .id("<id>")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         CrmContactsDeleteResponse res = sdk.crm().contacts().delete()

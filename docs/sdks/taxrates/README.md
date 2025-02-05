@@ -43,9 +43,9 @@ public class Application {
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(TaxRatesFilter.builder()
                     .assets(true)
                     .equity(true)
@@ -188,7 +188,8 @@ public class Application {
                                 "<value>")))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -256,8 +257,9 @@ public class Application {
 
         AccountingTaxRatesOneRequest req = AccountingTaxRatesOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -411,8 +413,9 @@ public class Application {
                                 .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingTaxRatesUpdateResponse res = sdk.accounting().taxRates().update()
@@ -478,8 +481,9 @@ public class Application {
 
         AccountingTaxRatesDeleteRequest req = AccountingTaxRatesDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingTaxRatesDeleteResponse res = sdk.accounting().taxRates().delete()

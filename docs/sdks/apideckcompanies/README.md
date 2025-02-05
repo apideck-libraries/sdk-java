@@ -41,9 +41,9 @@ public class Application {
             .build();
 
         HrisCompaniesAllRequest req = HrisCompaniesAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -239,7 +239,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -306,8 +307,9 @@ public class Application {
 
         HrisCompaniesOneRequest req = HrisCompaniesOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -550,8 +552,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisCompaniesUpdateResponse res = sdk.hris().companies().update()
@@ -617,8 +620,9 @@ public class Application {
 
         HrisCompaniesDeleteRequest req = HrisCompaniesDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisCompaniesDeleteResponse res = sdk.hris().companies().delete()

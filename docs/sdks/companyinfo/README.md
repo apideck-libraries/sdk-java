@@ -37,7 +37,8 @@ public class Application {
             .build();
 
         AccountingCompanyInfoOneRequest req = AccountingCompanyInfoOneRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();

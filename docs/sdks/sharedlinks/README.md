@@ -41,9 +41,9 @@ public class Application {
             .build();
 
         FileStorageSharedLinksAllRequest req = FileStorageSharedLinksAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
@@ -147,7 +147,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -214,8 +215,9 @@ public class Application {
 
         FileStorageSharedLinksOneRequest req = FileStorageSharedLinksOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -334,8 +336,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageSharedLinksUpdateResponse res = sdk.fileStorage().sharedLinks().update()
@@ -401,8 +404,9 @@ public class Application {
 
         FileStorageSharedLinksDeleteRequest req = FileStorageSharedLinksDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         FileStorageSharedLinksDeleteResponse res = sdk.fileStorage().sharedLinks().delete()

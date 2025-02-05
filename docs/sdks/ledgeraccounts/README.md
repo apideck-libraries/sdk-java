@@ -24,7 +24,6 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.LedgerAccountsFilter;
 import com.apideck.unify.models.components.LedgerAccountsSort;
 import com.apideck.unify.models.components.LedgerAccountsSortBy;
-import com.apideck.unify.models.components.SortDirection;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
 import com.apideck.unify.models.errors.PaymentRequiredResponse;
@@ -46,15 +45,14 @@ public class Application {
             .build();
 
         AccountingLedgerAccountsAllRequest req = AccountingLedgerAccountsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(LedgerAccountsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .build())
                 .sort(LedgerAccountsSort.builder()
                     .by(LedgerAccountsSortBy.UPDATED_AT)
-                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -206,7 +204,8 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -273,8 +272,9 @@ public class Application {
 
         AccountingLedgerAccountsOneRequest req = AccountingLedgerAccountsOneRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -451,8 +451,9 @@ public class Application {
                                     .build()))
                             .build()))
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingLedgerAccountsUpdateResponse res = sdk.accounting().ledgerAccounts().update()
@@ -518,8 +519,9 @@ public class Application {
 
         AccountingLedgerAccountsDeleteRequest req = AccountingLedgerAccountsDeleteRequest.builder()
                 .id("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         AccountingLedgerAccountsDeleteResponse res = sdk.accounting().ledgerAccounts().delete()

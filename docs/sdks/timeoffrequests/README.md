@@ -43,9 +43,9 @@ public class Application {
             .build();
 
         HrisTimeOffRequestsAllRequest req = HrisTimeOffRequestsAllRequest.builder()
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .limit(20L)
                 .filter(TimeOffRequestsFilter.builder()
                     .startDate("2022-04-08")
                     .endDate("2022-04-21")
@@ -174,7 +174,8 @@ public class Application {
                             .build()))
                     .policyType("sick")
                     .build())
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .build();
 
@@ -242,8 +243,9 @@ public class Application {
         HrisTimeOffRequestsOneRequest req = HrisTimeOffRequestsOneRequest.builder()
                 .id("<id>")
                 .employeeId("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .fields("id,updated_at")
                 .build();
 
@@ -380,8 +382,9 @@ public class Application {
                             .build()))
                     .policyType("sick")
                     .build())
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisTimeOffRequestsUpdateResponse res = sdk.hris().timeOffRequests().update()
@@ -448,8 +451,9 @@ public class Application {
         HrisTimeOffRequestsDeleteRequest req = HrisTimeOffRequestsDeleteRequest.builder()
                 .id("<id>")
                 .employeeId("<id>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
-                .raw(false)
                 .build();
 
         HrisTimeOffRequestsDeleteResponse res = sdk.hris().timeOffRequests().delete()

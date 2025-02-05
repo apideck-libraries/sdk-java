@@ -41,7 +41,8 @@ public class Application {
 
         HrisEmployeePayrollsAllRequest req = HrisEmployeePayrollsAllRequest.builder()
                 .employeeId("<id>")
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .filter(PayrollsFilter.builder()
                     .startDate("2022-04-08")
@@ -116,7 +117,8 @@ public class Application {
         HrisEmployeePayrollsOneRequest req = HrisEmployeePayrollsOneRequest.builder()
                 .payrollId("<id>")
                 .employeeId("<id>")
-                .raw(false)
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
                 .build();

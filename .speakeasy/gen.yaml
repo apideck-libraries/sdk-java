@@ -9,11 +9,12 @@ generation:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: true
 java:
-  version: 0.7.2
+  version: 0.8.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify

@@ -32,9 +32,9 @@ class SDKConfiguration {
     }
     public int serverIdx = 0;
     private static final String LANGUAGE = "java";
-    public static final String OPENAPI_DOC_VERSION = "10.11.2";
-    public static final String SDK_VERSION = "0.7.2";
-    public static final String GEN_VERSION = "2.503.2";
+    public static final String OPENAPI_DOC_VERSION = "10.11.5";
+    public static final String SDK_VERSION = "0.8.0";
+    public static final String GEN_VERSION = "2.517.3";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s", 

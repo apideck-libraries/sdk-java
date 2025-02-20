@@ -13,6 +13,7 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
@@ -69,6 +70,12 @@ public class FileStorageFilesSearchRequest {
     private Optional<Long> limit;
 
     /**
+     * Include raw response. Mostly used for debugging purposes
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
+    private Optional<Boolean> raw;
+
+    /**
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
@@ -86,6 +93,7 @@ public class FileStorageFilesSearchRequest {
             JsonNullable<String> fields,
             JsonNullable<String> cursor,
             Optional<Long> limit,
+            Optional<Boolean> raw,
             Optional<? extends FilesFilter> filter,
             FilesSearch filesSearch) {
         Utils.checkNotNull(consumerId, "consumerId");
@@ -95,6 +103,7 @@ public class FileStorageFilesSearchRequest {
         Utils.checkNotNull(fields, "fields");
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
+        Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(filter, "filter");
         Utils.checkNotNull(filesSearch, "filesSearch");
         this.consumerId = consumerId;
@@ -104,13 +113,14 @@ public class FileStorageFilesSearchRequest {
         this.fields = fields;
         this.cursor = cursor;
         this.limit = limit;
+        this.raw = raw;
         this.filter = filter;
         this.filesSearch = filesSearch;
     }
     
     public FileStorageFilesSearchRequest(
             FilesSearch filesSearch) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), filesSearch);
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), filesSearch);
     }
 
     /**
@@ -168,6 +178,14 @@ public class FileStorageFilesSearchRequest {
     @JsonIgnore
     public Optional<Long> limit() {
         return limit;
+    }
+
+    /**
+     * Include raw response. Mostly used for debugging purposes
+     */
+    @JsonIgnore
+    public Optional<Boolean> raw() {
+        return raw;
     }
 
     /**
@@ -315,6 +333,24 @@ public class FileStorageFilesSearchRequest {
     }
 
     /**
+     * Include raw response. Mostly used for debugging purposes
+     */
+    public FileStorageFilesSearchRequest withRaw(boolean raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = Optional.ofNullable(raw);
+        return this;
+    }
+
+    /**
+     * Include raw response. Mostly used for debugging purposes
+     */
+    public FileStorageFilesSearchRequest withRaw(Optional<Boolean> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
+
+    /**
      * Apply filters
      */
     public FileStorageFilesSearchRequest withFilter(FilesFilter filter) {
@@ -355,6 +391,7 @@ public class FileStorageFilesSearchRequest {
             Objects.deepEquals(this.fields, other.fields) &&
             Objects.deepEquals(this.cursor, other.cursor) &&
             Objects.deepEquals(this.limit, other.limit) &&
+            Objects.deepEquals(this.raw, other.raw) &&
             Objects.deepEquals(this.filter, other.filter) &&
             Objects.deepEquals(this.filesSearch, other.filesSearch);
     }
@@ -369,6 +406,7 @@ public class FileStorageFilesSearchRequest {
             fields,
             cursor,
             limit,
+            raw,
             filter,
             filesSearch);
     }
@@ -383,6 +421,7 @@ public class FileStorageFilesSearchRequest {
                 "fields", fields,
                 "cursor", cursor,
                 "limit", limit,
+                "raw", raw,
                 "filter", filter,
                 "filesSearch", filesSearch);
     }
@@ -402,6 +441,8 @@ public class FileStorageFilesSearchRequest {
         private JsonNullable<String> cursor = JsonNullable.undefined();
  
         private Optional<Long> limit;
+ 
+        private Optional<Boolean> raw;
  
         private Optional<? extends FilesFilter> filter = Optional.empty();
  
@@ -538,6 +579,24 @@ public class FileStorageFilesSearchRequest {
         }
 
         /**
+         * Include raw response. Mostly used for debugging purposes
+         */
+        public Builder raw(boolean raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = Optional.ofNullable(raw);
+            return this;
+        }
+
+        /**
+         * Include raw response. Mostly used for debugging purposes
+         */
+        public Builder raw(Optional<Boolean> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
+
+        /**
          * Apply filters
          */
         public Builder filter(FilesFilter filter) {
@@ -564,6 +623,9 @@ public class FileStorageFilesSearchRequest {
         public FileStorageFilesSearchRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
+            }
+            if (raw == null) {
+                raw = _SINGLETON_VALUE_Raw.value();
             }            return new FileStorageFilesSearchRequest(
                 consumerId,
                 appId,
@@ -572,6 +634,7 @@ public class FileStorageFilesSearchRequest {
                 fields,
                 cursor,
                 limit,
+                raw,
                 filter,
                 filesSearch);
         }
@@ -581,6 +644,12 @@ public class FileStorageFilesSearchRequest {
                         "limit",
                         "20",
                         new TypeReference<Optional<Long>>() {});
+
+        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+                new LazySingletonValue<>(
+                        "raw",
+                        "false",
+                        new TypeReference<Optional<Boolean>>() {});
     }
 }
 

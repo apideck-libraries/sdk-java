@@ -8,11 +8,17 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetLeadResponse - Lead
@@ -53,6 +59,13 @@ public class GetLeadResponse {
     @JsonProperty("data")
     private Lead data;
 
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
     @JsonCreator
     public GetLeadResponse(
             @JsonProperty("status_code") long statusCode,
@@ -60,19 +73,32 @@ public class GetLeadResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") Lead data) {
+            @JsonProperty("data") Lead data,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(service, "service");
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.service = service;
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.raw = raw;
+    }
+    
+    public GetLeadResponse(
+            long statusCode,
+            String status,
+            String service,
+            String resource,
+            String operation,
+            Lead data) {
+        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
     }
 
     /**
@@ -118,6 +144,15 @@ public class GetLeadResponse {
     @JsonIgnore
     public Lead data() {
         return data;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     public final static Builder builder() {
@@ -174,6 +209,24 @@ public class GetLeadResponse {
         this.data = data;
         return this;
     }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetLeadResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetLeadResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -190,7 +243,8 @@ public class GetLeadResponse {
             Objects.deepEquals(this.service, other.service) &&
             Objects.deepEquals(this.resource, other.resource) &&
             Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.raw, other.raw);
     }
     
     @Override
@@ -201,7 +255,8 @@ public class GetLeadResponse {
             service,
             resource,
             operation,
-            data);
+            data,
+            raw);
     }
     
     @Override
@@ -212,7 +267,8 @@ public class GetLeadResponse {
                 "service", service,
                 "resource", resource,
                 "operation", operation,
-                "data", data);
+                "data", data,
+                "raw", raw);
     }
     
     public final static class Builder {
@@ -227,7 +283,9 @@ public class GetLeadResponse {
  
         private String operation;
  
-        private Lead data;  
+        private Lead data;
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -283,6 +341,24 @@ public class GetLeadResponse {
             this.data = data;
             return this;
         }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
         
         public GetLeadResponse build() {
             return new GetLeadResponse(
@@ -291,7 +367,8 @@ public class GetLeadResponse {
                 service,
                 resource,
                 operation,
-                data);
+                data,
+                raw);
         }
     }
 }

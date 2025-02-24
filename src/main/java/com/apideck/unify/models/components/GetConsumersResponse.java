@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetConsumersResponse - Consumers
@@ -54,30 +57,40 @@ public class GetConsumersResponse {
     @JsonProperty("links")
     private Optional<? extends Links> links;
 
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
     @JsonCreator
     public GetConsumersResponse(
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("status") String status,
             @JsonProperty("data") List<Data> data,
             @JsonProperty("meta") Optional<? extends Meta> meta,
-            @JsonProperty("links") Optional<? extends Links> links) {
+            @JsonProperty("links") Optional<? extends Links> links,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.data = data;
         this.meta = meta;
         this.links = links;
+        this.raw = raw;
     }
     
     public GetConsumersResponse(
             long statusCode,
             String status,
             List<Data> data) {
-        this(statusCode, status, data, Optional.empty(), Optional.empty());
+        this(statusCode, status, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -117,6 +130,15 @@ public class GetConsumersResponse {
     @JsonIgnore
     public Optional<Links> links() {
         return (Optional<Links>) links;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     public final static Builder builder() {
@@ -182,6 +204,24 @@ public class GetConsumersResponse {
         this.links = links;
         return this;
     }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetConsumersResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetConsumersResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -197,7 +237,8 @@ public class GetConsumersResponse {
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.data, other.data) &&
             Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links);
+            Objects.deepEquals(this.links, other.links) &&
+            Objects.deepEquals(this.raw, other.raw);
     }
     
     @Override
@@ -207,7 +248,8 @@ public class GetConsumersResponse {
             status,
             data,
             meta,
-            links);
+            links,
+            raw);
     }
     
     @Override
@@ -217,7 +259,8 @@ public class GetConsumersResponse {
                 "status", status,
                 "data", data,
                 "meta", meta,
-                "links", links);
+                "links", links,
+                "raw", raw);
     }
     
     public final static class Builder {
@@ -230,7 +273,9 @@ public class GetConsumersResponse {
  
         private Optional<? extends Meta> meta = Optional.empty();
  
-        private Optional<? extends Links> links = Optional.empty();  
+        private Optional<? extends Links> links = Optional.empty();
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -295,6 +340,24 @@ public class GetConsumersResponse {
             this.links = links;
             return this;
         }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
         
         public GetConsumersResponse build() {
             return new GetConsumersResponse(
@@ -302,7 +365,8 @@ public class GetConsumersResponse {
                 status,
                 data,
                 meta,
-                links);
+                links,
+                raw);
         }
     }
 }

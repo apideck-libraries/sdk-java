@@ -12,11 +12,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetApiResourceCoverageResponse - ApiResources
@@ -40,6 +43,13 @@ public class GetApiResourceCoverageResponse {
     private ApiResourceCoverage data;
 
     /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
+    /**
      * Response metadata
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -58,16 +68,19 @@ public class GetApiResourceCoverageResponse {
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("status") String status,
             @JsonProperty("data") ApiResourceCoverage data,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw,
             @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("links") Optional<? extends Links> links) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
         this.statusCode = statusCode;
         this.status = status;
         this.data = data;
+        this.raw = raw;
         this.meta = meta;
         this.links = links;
     }
@@ -76,7 +89,7 @@ public class GetApiResourceCoverageResponse {
             long statusCode,
             String status,
             ApiResourceCoverage data) {
-        this(statusCode, status, data, Optional.empty(), Optional.empty());
+        this(statusCode, status, data, JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -98,6 +111,15 @@ public class GetApiResourceCoverageResponse {
     @JsonIgnore
     public ApiResourceCoverage data() {
         return data;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     /**
@@ -143,6 +165,24 @@ public class GetApiResourceCoverageResponse {
     public GetApiResourceCoverageResponse withData(ApiResourceCoverage data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetApiResourceCoverageResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetApiResourceCoverageResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
         return this;
     }
 
@@ -195,6 +235,7 @@ public class GetApiResourceCoverageResponse {
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.raw, other.raw) &&
             Objects.deepEquals(this.meta, other.meta) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -205,6 +246,7 @@ public class GetApiResourceCoverageResponse {
             statusCode,
             status,
             data,
+            raw,
             meta,
             links);
     }
@@ -215,6 +257,7 @@ public class GetApiResourceCoverageResponse {
                 "statusCode", statusCode,
                 "status", status,
                 "data", data,
+                "raw", raw,
                 "meta", meta,
                 "links", links);
     }
@@ -226,6 +269,8 @@ public class GetApiResourceCoverageResponse {
         private String status;
  
         private ApiResourceCoverage data;
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
  
         private Optional<? extends Meta> meta = Optional.empty();
  
@@ -256,6 +301,24 @@ public class GetApiResourceCoverageResponse {
         public Builder data(ApiResourceCoverage data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
             return this;
         }
 
@@ -300,6 +363,7 @@ public class GetApiResourceCoverageResponse {
                 statusCode,
                 status,
                 data,
+                raw,
                 meta,
                 links);
         }

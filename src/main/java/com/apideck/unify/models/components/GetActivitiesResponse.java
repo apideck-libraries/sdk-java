@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetActivitiesResponse - Activities
@@ -59,6 +62,13 @@ public class GetActivitiesResponse {
     private List<Activity> data;
 
     /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
+    /**
      * Response metadata
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -80,6 +90,7 @@ public class GetActivitiesResponse {
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
             @JsonProperty("data") List<Activity> data,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw,
             @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("links") Optional<? extends Links> links) {
         Utils.checkNotNull(statusCode, "statusCode");
@@ -88,6 +99,7 @@ public class GetActivitiesResponse {
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
         this.statusCode = statusCode;
@@ -96,6 +108,7 @@ public class GetActivitiesResponse {
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.raw = raw;
         this.meta = meta;
         this.links = links;
     }
@@ -107,7 +120,7 @@ public class GetActivitiesResponse {
             String resource,
             String operation,
             List<Activity> data) {
-        this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty());
+        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -153,6 +166,15 @@ public class GetActivitiesResponse {
     @JsonIgnore
     public List<Activity> data() {
         return data;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     /**
@@ -229,6 +251,24 @@ public class GetActivitiesResponse {
     }
 
     /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetActivitiesResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetActivitiesResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
+
+    /**
      * Response metadata
      */
     public GetActivitiesResponse withMeta(Meta meta) {
@@ -280,6 +320,7 @@ public class GetActivitiesResponse {
             Objects.deepEquals(this.resource, other.resource) &&
             Objects.deepEquals(this.operation, other.operation) &&
             Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.raw, other.raw) &&
             Objects.deepEquals(this.meta, other.meta) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -293,6 +334,7 @@ public class GetActivitiesResponse {
             resource,
             operation,
             data,
+            raw,
             meta,
             links);
     }
@@ -306,6 +348,7 @@ public class GetActivitiesResponse {
                 "resource", resource,
                 "operation", operation,
                 "data", data,
+                "raw", raw,
                 "meta", meta,
                 "links", links);
     }
@@ -323,6 +366,8 @@ public class GetActivitiesResponse {
         private String operation;
  
         private List<Activity> data;
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
  
         private Optional<? extends Meta> meta = Optional.empty();
  
@@ -384,6 +429,24 @@ public class GetActivitiesResponse {
         }
 
         /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
+
+        /**
          * Response metadata
          */
         public Builder meta(Meta meta) {
@@ -427,6 +490,7 @@ public class GetActivitiesResponse {
                 resource,
                 operation,
                 data,
+                raw,
                 meta,
                 links);
         }

@@ -8,11 +8,17 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * DeleteBillResponse - Bill deleted
@@ -56,6 +62,13 @@ public class DeleteBillResponse {
     @JsonProperty("data")
     private UnifiedId data;
 
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
     @JsonCreator
     public DeleteBillResponse(
             @JsonProperty("status_code") long statusCode,
@@ -63,19 +76,32 @@ public class DeleteBillResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") UnifiedId data) {
+            @JsonProperty("data") UnifiedId data,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(service, "service");
         Utils.checkNotNull(resource, "resource");
         Utils.checkNotNull(operation, "operation");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.service = service;
         this.resource = resource;
         this.operation = operation;
         this.data = data;
+        this.raw = raw;
+    }
+    
+    public DeleteBillResponse(
+            long statusCode,
+            String status,
+            String service,
+            String resource,
+            String operation,
+            UnifiedId data) {
+        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
     }
 
     /**
@@ -124,6 +150,15 @@ public class DeleteBillResponse {
     @JsonIgnore
     public UnifiedId data() {
         return data;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     public final static Builder builder() {
@@ -183,6 +218,24 @@ public class DeleteBillResponse {
         this.data = data;
         return this;
     }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public DeleteBillResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public DeleteBillResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -199,7 +252,8 @@ public class DeleteBillResponse {
             Objects.deepEquals(this.service, other.service) &&
             Objects.deepEquals(this.resource, other.resource) &&
             Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data);
+            Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.raw, other.raw);
     }
     
     @Override
@@ -210,7 +264,8 @@ public class DeleteBillResponse {
             service,
             resource,
             operation,
-            data);
+            data,
+            raw);
     }
     
     @Override
@@ -221,7 +276,8 @@ public class DeleteBillResponse {
                 "service", service,
                 "resource", resource,
                 "operation", operation,
-                "data", data);
+                "data", data,
+                "raw", raw);
     }
     
     public final static class Builder {
@@ -236,7 +292,9 @@ public class DeleteBillResponse {
  
         private String operation;
  
-        private UnifiedId data;  
+        private UnifiedId data;
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -295,6 +353,24 @@ public class DeleteBillResponse {
             this.data = data;
             return this;
         }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
         
         public DeleteBillResponse build() {
             return new DeleteBillResponse(
@@ -303,7 +379,8 @@ public class DeleteBillResponse {
                 service,
                 resource,
                 operation,
-                data);
+                data,
+                raw);
         }
     }
 }

@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetTrackingCategoriesResponse - Tracking categories
@@ -72,6 +75,13 @@ public class GetTrackingCategoriesResponse {
     @JsonProperty("links")
     private Optional<? extends Links> links;
 
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
     @JsonCreator
     public GetTrackingCategoriesResponse(
             @JsonProperty("status_code") long statusCode,
@@ -81,7 +91,8 @@ public class GetTrackingCategoriesResponse {
             @JsonProperty("operation") String operation,
             @JsonProperty("data") List<TrackingCategory> data,
             @JsonProperty("meta") Optional<? extends Meta> meta,
-            @JsonProperty("links") Optional<? extends Links> links) {
+            @JsonProperty("links") Optional<? extends Links> links,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(service, "service");
@@ -90,6 +101,7 @@ public class GetTrackingCategoriesResponse {
         Utils.checkNotNull(data, "data");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
+        Utils.checkNotNull(raw, "raw");
         this.statusCode = statusCode;
         this.status = status;
         this.service = service;
@@ -98,6 +110,7 @@ public class GetTrackingCategoriesResponse {
         this.data = data;
         this.meta = meta;
         this.links = links;
+        this.raw = raw;
     }
     
     public GetTrackingCategoriesResponse(
@@ -107,7 +120,7 @@ public class GetTrackingCategoriesResponse {
             String resource,
             String operation,
             List<TrackingCategory> data) {
-        this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty());
+        this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -171,6 +184,15 @@ public class GetTrackingCategoriesResponse {
     @JsonIgnore
     public Optional<Links> links() {
         return (Optional<Links>) links;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     public final static Builder builder() {
@@ -263,6 +285,24 @@ public class GetTrackingCategoriesResponse {
         this.links = links;
         return this;
     }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetTrackingCategoriesResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetTrackingCategoriesResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -281,7 +321,8 @@ public class GetTrackingCategoriesResponse {
             Objects.deepEquals(this.operation, other.operation) &&
             Objects.deepEquals(this.data, other.data) &&
             Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links);
+            Objects.deepEquals(this.links, other.links) &&
+            Objects.deepEquals(this.raw, other.raw);
     }
     
     @Override
@@ -294,7 +335,8 @@ public class GetTrackingCategoriesResponse {
             operation,
             data,
             meta,
-            links);
+            links,
+            raw);
     }
     
     @Override
@@ -307,7 +349,8 @@ public class GetTrackingCategoriesResponse {
                 "operation", operation,
                 "data", data,
                 "meta", meta,
-                "links", links);
+                "links", links,
+                "raw", raw);
     }
     
     public final static class Builder {
@@ -326,7 +369,9 @@ public class GetTrackingCategoriesResponse {
  
         private Optional<? extends Meta> meta = Optional.empty();
  
-        private Optional<? extends Links> links = Optional.empty();  
+        private Optional<? extends Links> links = Optional.empty();
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();  
         
         private Builder() {
           // force use of static builder() method
@@ -418,6 +463,24 @@ public class GetTrackingCategoriesResponse {
             this.links = links;
             return this;
         }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
+            return this;
+        }
         
         public GetTrackingCategoriesResponse build() {
             return new GetTrackingCategoriesResponse(
@@ -428,7 +491,8 @@ public class GetTrackingCategoriesResponse {
                 operation,
                 data,
                 meta,
-                links);
+                links,
+                raw);
         }
     }
 }

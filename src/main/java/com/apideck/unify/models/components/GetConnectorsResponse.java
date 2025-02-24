@@ -12,12 +12,15 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * GetConnectorsResponse - Connectors
@@ -41,6 +44,13 @@ public class GetConnectorsResponse {
     private List<Connector> data;
 
     /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("_raw")
+    private JsonNullable<? extends Map<String, Object>> raw;
+
+    /**
      * Response metadata
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -59,16 +69,19 @@ public class GetConnectorsResponse {
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("status") String status,
             @JsonProperty("data") List<Connector> data,
+            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw,
             @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("links") Optional<? extends Links> links) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(data, "data");
+        Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(meta, "meta");
         Utils.checkNotNull(links, "links");
         this.statusCode = statusCode;
         this.status = status;
         this.data = data;
+        this.raw = raw;
         this.meta = meta;
         this.links = links;
     }
@@ -77,7 +90,7 @@ public class GetConnectorsResponse {
             long statusCode,
             String status,
             List<Connector> data) {
-        this(statusCode, status, data, Optional.empty(), Optional.empty());
+        this(statusCode, status, data, JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -99,6 +112,15 @@ public class GetConnectorsResponse {
     @JsonIgnore
     public List<Connector> data() {
         return data;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Map<String, Object>> raw() {
+        return (JsonNullable<Map<String, Object>>) raw;
     }
 
     /**
@@ -144,6 +166,24 @@ public class GetConnectorsResponse {
     public GetConnectorsResponse withData(List<Connector> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetConnectorsResponse withRaw(Map<String, Object> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = JsonNullable.of(raw);
+        return this;
+    }
+
+    /**
+     * Raw response from the integration when raw=true query param is provided
+     */
+    public GetConnectorsResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
+        Utils.checkNotNull(raw, "raw");
+        this.raw = raw;
         return this;
     }
 
@@ -196,6 +236,7 @@ public class GetConnectorsResponse {
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.data, other.data) &&
+            Objects.deepEquals(this.raw, other.raw) &&
             Objects.deepEquals(this.meta, other.meta) &&
             Objects.deepEquals(this.links, other.links);
     }
@@ -206,6 +247,7 @@ public class GetConnectorsResponse {
             statusCode,
             status,
             data,
+            raw,
             meta,
             links);
     }
@@ -216,6 +258,7 @@ public class GetConnectorsResponse {
                 "statusCode", statusCode,
                 "status", status,
                 "data", data,
+                "raw", raw,
                 "meta", meta,
                 "links", links);
     }
@@ -227,6 +270,8 @@ public class GetConnectorsResponse {
         private String status;
  
         private List<Connector> data;
+ 
+        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
  
         private Optional<? extends Meta> meta = Optional.empty();
  
@@ -257,6 +302,24 @@ public class GetConnectorsResponse {
         public Builder data(List<Connector> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(Map<String, Object> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = JsonNullable.of(raw);
+            return this;
+        }
+
+        /**
+         * Raw response from the integration when raw=true query param is provided
+         */
+        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
+            Utils.checkNotNull(raw, "raw");
+            this.raw = raw;
             return this;
         }
 
@@ -301,6 +364,7 @@ public class GetConnectorsResponse {
                 statusCode,
                 status,
                 data,
+                raw,
                 meta,
                 links);
         }

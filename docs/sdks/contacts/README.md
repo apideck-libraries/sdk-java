@@ -103,9 +103,9 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.ContactGender;
 import com.apideck.unify.models.components.ContactInput;
-import com.apideck.unify.models.components.ContactType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
@@ -144,7 +144,7 @@ public class Application {
                 .contact(ContactInput.builder()
                     .name("Elon Musk")
                     .ownerId("54321")
-                    .type(ContactType.PERSONAL)
+                    .type(Type.PERSONAL)
                     .companyId("23456")
                     .companyName("23456")
                     .leadId("34567")
@@ -179,7 +179,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -205,7 +205,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -447,9 +447,9 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.ContactGender;
 import com.apideck.unify.models.components.ContactInput;
-import com.apideck.unify.models.components.ContactType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
@@ -490,7 +490,7 @@ public class Application {
                 .contact(ContactInput.builder()
                     .name("Elon Musk")
                     .ownerId("54321")
-                    .type(ContactType.PERSONAL)
+                    .type(Type.PERSONAL)
                     .companyId("23456")
                     .companyName("23456")
                     .leadId("34567")
@@ -530,7 +530,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -556,7 +556,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")

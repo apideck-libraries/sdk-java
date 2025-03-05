@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 1b699953c6695d1307d5ba6eeb4cfd5f
+  docChecksum: d7135fd6bec8d864fcc4b9f14f36dfd2
   docVersion: 10.11.5
-  speakeasyVersion: 1.501.1
-  generationVersion: 2.522.5
-  releaseVersion: 0.8.1
-  configChecksum: 3895777b7976130ae49b35e1755e10b8
+  speakeasyVersion: 1.509.1
+  generationVersion: 2.539.1
+  releaseVersion: 0.8.2
+  configChecksum: b66b1f2bc8eb29d8d1e074bf54efdc83
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -56,6 +56,7 @@ generatedFiles:
   - docs/models/components/ActivityInput.md
   - docs/models/components/ActivityType.md
   - docs/models/components/Address.md
+  - docs/models/components/AddressType.md
   - docs/models/components/Addresses.md
   - docs/models/components/AgedDebtors.md
   - docs/models/components/AgedReportFilter.md
@@ -162,7 +163,6 @@ generatedFiles:
   - docs/models/components/Contact.md
   - docs/models/components/ContactGender.md
   - docs/models/components/ContactInput.md
-  - docs/models/components/ContactType.md
   - docs/models/components/ContactsFilter.md
   - docs/models/components/ContactsSort.md
   - docs/models/components/ContactsSortBy.md
@@ -1490,6 +1490,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ActivityInput.java
   - src/main/java/com/apideck/unify/models/components/ActivityType.java
   - src/main/java/com/apideck/unify/models/components/Address.java
+  - src/main/java/com/apideck/unify/models/components/AddressType.java
   - src/main/java/com/apideck/unify/models/components/Addresses.java
   - src/main/java/com/apideck/unify/models/components/AgedDebtors.java
   - src/main/java/com/apideck/unify/models/components/AgedReportFilter.java
@@ -1596,7 +1597,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/Contact.java
   - src/main/java/com/apideck/unify/models/components/ContactGender.java
   - src/main/java/com/apideck/unify/models/components/ContactInput.java
-  - src/main/java/com/apideck/unify/models/components/ContactType.java
   - src/main/java/com/apideck/unify/models/components/ContactsFilter.java
   - src/main/java/com/apideck/unify/models/components/ContactsSort.java
   - src/main/java/com/apideck/unify/models/components/ContactsSortBy.java

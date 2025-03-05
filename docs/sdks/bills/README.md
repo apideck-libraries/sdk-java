@@ -101,6 +101,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.BillInput;
 import com.apideck.unify.models.components.BillLineItemInput;
@@ -115,7 +116,6 @@ import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -147,7 +147,7 @@ public class Application {
                         .displayName("Windsurf Shop")
                         .address(Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -435,6 +435,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.BillInput;
 import com.apideck.unify.models.components.BillLineItemInput;
@@ -451,7 +452,6 @@ import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -484,7 +484,7 @@ public class Application {
                         .displayName("Windsurf Shop")
                         .address(Address.builder()
                             .id("123")
-                            .type(Type.PRIMARY)
+                            .type(AddressType.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")

@@ -104,12 +104,12 @@ import com.apideck.unify.models.components.ActivityAttendeeStatus;
 import com.apideck.unify.models.components.ActivityInput;
 import com.apideck.unify.models.components.ActivityType;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.ShowAs;
-import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -157,7 +157,7 @@ public class Application {
                     .location("Space")
                     .locationAddress(Address.builder()
                         .id("123")
-                        .type(Type.PRIMARY)
+                        .type(AddressType.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")
@@ -361,13 +361,13 @@ import com.apideck.unify.models.components.ActivityAttendeeStatus;
 import com.apideck.unify.models.components.ActivityInput;
 import com.apideck.unify.models.components.ActivityType;
 import com.apideck.unify.models.components.Address;
+import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
 import com.apideck.unify.models.components.Four;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.ShowAs;
 import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -416,7 +416,7 @@ public class Application {
                     .location("Space")
                     .locationAddress(Address.builder()
                         .id("123")
-                        .type(Type.PRIMARY)
+                        .type(AddressType.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")

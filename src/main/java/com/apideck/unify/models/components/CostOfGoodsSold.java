@@ -19,10 +19,10 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * Expenses - The operating expenses accounts
+ * CostOfGoodsSold - The cost of goods sold accounts
  */
 
-public class Expenses {
+public class CostOfGoodsSold {
 
     /**
      * A unique identifier for an object.
@@ -63,7 +63,7 @@ public class Expenses {
     private Object records;
 
     @JsonCreator
-    public Expenses(
+    public CostOfGoodsSold(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("code") Optional<String> code,
             @JsonProperty("title") Optional<String> title,
@@ -84,7 +84,7 @@ public class Expenses {
         this.records = records;
     }
     
-    public Expenses(
+    public CostOfGoodsSold(
             Object records) {
         this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), records);
     }
@@ -142,7 +142,7 @@ public class Expenses {
     /**
      * A unique identifier for an object.
      */
-    public Expenses withId(String id) {
+    public CostOfGoodsSold withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -151,7 +151,7 @@ public class Expenses {
     /**
      * A unique identifier for an object.
      */
-    public Expenses withId(Optional<String> id) {
+    public CostOfGoodsSold withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -160,7 +160,7 @@ public class Expenses {
     /**
      * The account code of the account
      */
-    public Expenses withCode(String code) {
+    public CostOfGoodsSold withCode(String code) {
         Utils.checkNotNull(code, "code");
         this.code = Optional.ofNullable(code);
         return this;
@@ -169,7 +169,7 @@ public class Expenses {
     /**
      * The account code of the account
      */
-    public Expenses withCode(Optional<String> code) {
+    public CostOfGoodsSold withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -178,7 +178,7 @@ public class Expenses {
     /**
      * The name of the account.
      */
-    public Expenses withTitle(String title) {
+    public CostOfGoodsSold withTitle(String title) {
         Utils.checkNotNull(title, "title");
         this.title = Optional.ofNullable(title);
         return this;
@@ -187,7 +187,7 @@ public class Expenses {
     /**
      * The name of the account.
      */
-    public Expenses withTitle(Optional<String> title) {
+    public CostOfGoodsSold withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -196,7 +196,7 @@ public class Expenses {
     /**
      * The type of profit and loss
      */
-    public Expenses withType(ProfitAndLossType type) {
+    public CostOfGoodsSold withType(ProfitAndLossType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -205,7 +205,7 @@ public class Expenses {
     /**
      * The type of profit and loss
      */
-    public Expenses withType(JsonNullable<? extends ProfitAndLossType> type) {
+    public CostOfGoodsSold withType(JsonNullable<? extends ProfitAndLossType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -214,7 +214,7 @@ public class Expenses {
     /**
      * The total amount of the transaction
      */
-    public Expenses withTotal(double total) {
+    public CostOfGoodsSold withTotal(double total) {
         Utils.checkNotNull(total, "total");
         this.total = Optional.ofNullable(total);
         return this;
@@ -223,13 +223,13 @@ public class Expenses {
     /**
      * The total amount of the transaction
      */
-    public Expenses withTotal(Optional<Double> total) {
+    public CostOfGoodsSold withTotal(Optional<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
         return this;
     }
 
-    public Expenses withRecords(Object records) {
+    public CostOfGoodsSold withRecords(Object records) {
         Utils.checkNotNull(records, "records");
         this.records = records;
         return this;
@@ -243,7 +243,7 @@ public class Expenses {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Expenses other = (Expenses) o;
+        CostOfGoodsSold other = (CostOfGoodsSold) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.code, other.code) &&
@@ -266,7 +266,7 @@ public class Expenses {
     
     @Override
     public String toString() {
-        return Utils.toString(Expenses.class,
+        return Utils.toString(CostOfGoodsSold.class,
                 "id", id,
                 "code", code,
                 "title", title,
@@ -389,8 +389,8 @@ public class Expenses {
             return this;
         }
         
-        public Expenses build() {
-            return new Expenses(
+        public CostOfGoodsSold build() {
+            return new CostOfGoodsSold(
                 id,
                 code,
                 title,

@@ -11,50 +11,37 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
-import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 
-public class GrossProfit {
+public class ProfitAndLossIndicator {
 
     /**
-     * Total gross profit
+     * The total amount of the transaction
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("total")
     private Optional<Double> total;
 
-    @JsonProperty("records")
-    private Object records;
-
     @JsonCreator
-    public GrossProfit(
-            @JsonProperty("total") Optional<Double> total,
-            @JsonProperty("records") Object records) {
+    public ProfitAndLossIndicator(
+            @JsonProperty("total") Optional<Double> total) {
         Utils.checkNotNull(total, "total");
-        Utils.checkNotNull(records, "records");
         this.total = total;
-        this.records = records;
     }
     
-    public GrossProfit(
-            Object records) {
-        this(Optional.empty(), records);
+    public ProfitAndLossIndicator() {
+        this(Optional.empty());
     }
 
     /**
-     * Total gross profit
+     * The total amount of the transaction
      */
     @JsonIgnore
     public Optional<Double> total() {
         return total;
-    }
-
-    @JsonIgnore
-    public Object records() {
-        return records;
     }
 
     public final static Builder builder() {
@@ -62,26 +49,20 @@ public class GrossProfit {
     }
 
     /**
-     * Total gross profit
+     * The total amount of the transaction
      */
-    public GrossProfit withTotal(double total) {
+    public ProfitAndLossIndicator withTotal(double total) {
         Utils.checkNotNull(total, "total");
         this.total = Optional.ofNullable(total);
         return this;
     }
 
     /**
-     * Total gross profit
+     * The total amount of the transaction
      */
-    public GrossProfit withTotal(Optional<Double> total) {
+    public ProfitAndLossIndicator withTotal(Optional<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
-        return this;
-    }
-
-    public GrossProfit withRecords(Object records) {
-        Utils.checkNotNull(records, "records");
-        this.records = records;
         return this;
     }
     
@@ -93,38 +74,33 @@ public class GrossProfit {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GrossProfit other = (GrossProfit) o;
+        ProfitAndLossIndicator other = (ProfitAndLossIndicator) o;
         return 
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.records, other.records);
+            Objects.deepEquals(this.total, other.total);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            total,
-            records);
+            total);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GrossProfit.class,
-                "total", total,
-                "records", records);
+        return Utils.toString(ProfitAndLossIndicator.class,
+                "total", total);
     }
     
     public final static class Builder {
  
-        private Optional<Double> total = Optional.empty();
- 
-        private Object records;  
+        private Optional<Double> total = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
 
         /**
-         * Total gross profit
+         * The total amount of the transaction
          */
         public Builder total(double total) {
             Utils.checkNotNull(total, "total");
@@ -133,24 +109,17 @@ public class GrossProfit {
         }
 
         /**
-         * Total gross profit
+         * The total amount of the transaction
          */
         public Builder total(Optional<Double> total) {
             Utils.checkNotNull(total, "total");
             this.total = total;
             return this;
         }
-
-        public Builder records(Object records) {
-            Utils.checkNotNull(records, "records");
-            this.records = records;
-            return this;
-        }
         
-        public GrossProfit build() {
-            return new GrossProfit(
-                total,
-                records);
+        public ProfitAndLossIndicator build() {
+            return new ProfitAndLossIndicator(
+                total);
         }
     }
 }

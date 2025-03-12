@@ -19,10 +19,10 @@ import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 /**
- * Income - The operating income accounts
+ * OtherExpenses - The other expenses accounts
  */
 
-public class Income {
+public class OtherExpenses {
 
     /**
      * A unique identifier for an object.
@@ -63,7 +63,7 @@ public class Income {
     private Object records;
 
     @JsonCreator
-    public Income(
+    public OtherExpenses(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("code") Optional<String> code,
             @JsonProperty("title") Optional<String> title,
@@ -84,7 +84,7 @@ public class Income {
         this.records = records;
     }
     
-    public Income(
+    public OtherExpenses(
             Object records) {
         this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), records);
     }
@@ -142,7 +142,7 @@ public class Income {
     /**
      * A unique identifier for an object.
      */
-    public Income withId(String id) {
+    public OtherExpenses withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
@@ -151,7 +151,7 @@ public class Income {
     /**
      * A unique identifier for an object.
      */
-    public Income withId(Optional<String> id) {
+    public OtherExpenses withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
         return this;
@@ -160,7 +160,7 @@ public class Income {
     /**
      * The account code of the account
      */
-    public Income withCode(String code) {
+    public OtherExpenses withCode(String code) {
         Utils.checkNotNull(code, "code");
         this.code = Optional.ofNullable(code);
         return this;
@@ -169,7 +169,7 @@ public class Income {
     /**
      * The account code of the account
      */
-    public Income withCode(Optional<String> code) {
+    public OtherExpenses withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
         this.code = code;
         return this;
@@ -178,7 +178,7 @@ public class Income {
     /**
      * The name of the account.
      */
-    public Income withTitle(String title) {
+    public OtherExpenses withTitle(String title) {
         Utils.checkNotNull(title, "title");
         this.title = Optional.ofNullable(title);
         return this;
@@ -187,7 +187,7 @@ public class Income {
     /**
      * The name of the account.
      */
-    public Income withTitle(Optional<String> title) {
+    public OtherExpenses withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
         this.title = title;
         return this;
@@ -196,7 +196,7 @@ public class Income {
     /**
      * The type of profit and loss
      */
-    public Income withType(ProfitAndLossType type) {
+    public OtherExpenses withType(ProfitAndLossType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -205,7 +205,7 @@ public class Income {
     /**
      * The type of profit and loss
      */
-    public Income withType(JsonNullable<? extends ProfitAndLossType> type) {
+    public OtherExpenses withType(JsonNullable<? extends ProfitAndLossType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -214,7 +214,7 @@ public class Income {
     /**
      * The aggregated total of all accounts within this category.
      */
-    public Income withTotal(double total) {
+    public OtherExpenses withTotal(double total) {
         Utils.checkNotNull(total, "total");
         this.total = Optional.ofNullable(total);
         return this;
@@ -223,13 +223,13 @@ public class Income {
     /**
      * The aggregated total of all accounts within this category.
      */
-    public Income withTotal(Optional<Double> total) {
+    public OtherExpenses withTotal(Optional<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
         return this;
     }
 
-    public Income withRecords(Object records) {
+    public OtherExpenses withRecords(Object records) {
         Utils.checkNotNull(records, "records");
         this.records = records;
         return this;
@@ -243,7 +243,7 @@ public class Income {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Income other = (Income) o;
+        OtherExpenses other = (OtherExpenses) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.code, other.code) &&
@@ -266,7 +266,7 @@ public class Income {
     
     @Override
     public String toString() {
-        return Utils.toString(Income.class,
+        return Utils.toString(OtherExpenses.class,
                 "id", id,
                 "code", code,
                 "title", title,
@@ -389,8 +389,8 @@ public class Income {
             return this;
         }
         
-        public Income build() {
-            return new Income(
+        public OtherExpenses build() {
+            return new OtherExpenses(
                 id,
                 code,
                 title,

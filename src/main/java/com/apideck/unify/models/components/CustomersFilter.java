@@ -57,6 +57,12 @@ public class CustomersFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+    /**
+     * Supplier ID of customer to search for
+     */
+    @SpeakeasyMetadata("queryParam:name=supplier_id")
+    private Optional<String> supplierId;
+
     @JsonCreator
     public CustomersFilter(
             Optional<String> companyName,
@@ -65,7 +71,8 @@ public class CustomersFilter {
             Optional<String> lastName,
             Optional<String> email,
             JsonNullable<? extends CustomersFilterStatus> status,
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<String> supplierId) {
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(firstName, "firstName");
@@ -73,6 +80,7 @@ public class CustomersFilter {
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(supplierId, "supplierId");
         this.companyName = companyName;
         this.displayName = displayName;
         this.firstName = firstName;
@@ -80,10 +88,11 @@ public class CustomersFilter {
         this.email = email;
         this.status = status;
         this.updatedSince = updatedSince;
+        this.supplierId = supplierId;
     }
     
     public CustomersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -138,6 +147,14 @@ public class CustomersFilter {
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Supplier ID of customer to search for
+     */
+    @JsonIgnore
+    public Optional<String> supplierId() {
+        return supplierId;
     }
 
     public final static Builder builder() {
@@ -263,6 +280,24 @@ public class CustomersFilter {
         this.updatedSince = updatedSince;
         return this;
     }
+
+    /**
+     * Supplier ID of customer to search for
+     */
+    public CustomersFilter withSupplierId(String supplierId) {
+        Utils.checkNotNull(supplierId, "supplierId");
+        this.supplierId = Optional.ofNullable(supplierId);
+        return this;
+    }
+
+    /**
+     * Supplier ID of customer to search for
+     */
+    public CustomersFilter withSupplierId(Optional<String> supplierId) {
+        Utils.checkNotNull(supplierId, "supplierId");
+        this.supplierId = supplierId;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -280,7 +315,8 @@ public class CustomersFilter {
             Objects.deepEquals(this.lastName, other.lastName) &&
             Objects.deepEquals(this.email, other.email) &&
             Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
+            Objects.deepEquals(this.supplierId, other.supplierId);
     }
     
     @Override
@@ -292,7 +328,8 @@ public class CustomersFilter {
             lastName,
             email,
             status,
-            updatedSince);
+            updatedSince,
+            supplierId);
     }
     
     @Override
@@ -304,7 +341,8 @@ public class CustomersFilter {
                 "lastName", lastName,
                 "email", email,
                 "status", status,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "supplierId", supplierId);
     }
     
     public final static class Builder {
@@ -321,7 +359,9 @@ public class CustomersFilter {
  
         private JsonNullable<? extends CustomersFilterStatus> status = JsonNullable.undefined();
  
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();  
+        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+ 
+        private Optional<String> supplierId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -446,6 +486,24 @@ public class CustomersFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
+        /**
+         * Supplier ID of customer to search for
+         */
+        public Builder supplierId(String supplierId) {
+            Utils.checkNotNull(supplierId, "supplierId");
+            this.supplierId = Optional.ofNullable(supplierId);
+            return this;
+        }
+
+        /**
+         * Supplier ID of customer to search for
+         */
+        public Builder supplierId(Optional<String> supplierId) {
+            Utils.checkNotNull(supplierId, "supplierId");
+            this.supplierId = supplierId;
+            return this;
+        }
         
         public CustomersFilter build() {
             return new CustomersFilter(
@@ -455,7 +513,8 @@ public class CustomersFilter {
                 lastName,
                 email,
                 status,
-                updatedSince);
+                updatedSince,
+                supplierId);
         }
     }
 }

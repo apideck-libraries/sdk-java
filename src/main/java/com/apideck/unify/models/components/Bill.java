@@ -223,6 +223,13 @@ public class Bill {
     private JsonNullable<Double> discountPercentage;
 
     /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_document_url")
+    private JsonNullable<String> sourceDocumentUrl;
+
+    /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -321,6 +328,7 @@ public class Bill {
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
             @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
+            @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -361,6 +369,7 @@ public class Bill {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
         Utils.checkNotNull(bankAccount, "bankAccount");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -401,6 +410,7 @@ public class Bill {
         this.accountingByRow = accountingByRow;
         this.bankAccount = bankAccount;
         this.discountPercentage = discountPercentage;
+        this.sourceDocumentUrl = sourceDocumentUrl;
         this.trackingCategories = trackingCategories;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -414,7 +424,7 @@ public class Bill {
     }
     
     public Bill() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -649,6 +659,14 @@ public class Bill {
     @JsonIgnore
     public JsonNullable<Double> discountPercentage() {
         return discountPercentage;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceDocumentUrl() {
+        return sourceDocumentUrl;
     }
 
     /**
@@ -1253,6 +1271,24 @@ public class Bill {
     }
 
     /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public Bill withSourceDocumentUrl(String sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+        return this;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public Bill withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = sourceDocumentUrl;
+        return this;
+    }
+
+    /**
      * A list of linked tracking categories.
      */
     public Bill withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -1466,6 +1502,7 @@ public class Bill {
             Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
             Objects.deepEquals(this.bankAccount, other.bankAccount) &&
             Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
+            Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
             Objects.deepEquals(this.updatedBy, other.updatedBy) &&
             Objects.deepEquals(this.createdBy, other.createdBy) &&
@@ -1511,6 +1548,7 @@ public class Bill {
             accountingByRow,
             bankAccount,
             discountPercentage,
+            sourceDocumentUrl,
             trackingCategories,
             updatedBy,
             createdBy,
@@ -1556,6 +1594,7 @@ public class Bill {
                 "accountingByRow", accountingByRow,
                 "bankAccount", bankAccount,
                 "discountPercentage", discountPercentage,
+                "sourceDocumentUrl", sourceDocumentUrl,
                 "trackingCategories", trackingCategories,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -1629,6 +1668,8 @@ public class Bill {
         private Optional<? extends BankAccount> bankAccount = Optional.empty();
  
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
+ 
+        private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
  
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
  
@@ -2171,6 +2212,24 @@ public class Bill {
         }
 
         /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(String sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+            return this;
+        }
+
+        /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = sourceDocumentUrl;
+            return this;
+        }
+
+        /**
          * A list of linked tracking categories.
          */
         public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -2376,6 +2435,7 @@ public class Bill {
                 accountingByRow,
                 bankAccount,
                 discountPercentage,
+                sourceDocumentUrl,
                 trackingCategories,
                 updatedBy,
                 createdBy,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: d7135fd6bec8d864fcc4b9f14f36dfd2
-  docVersion: 10.11.5
-  speakeasyVersion: 1.509.1
-  generationVersion: 2.539.1
-  releaseVersion: 0.8.2
-  configChecksum: b66b1f2bc8eb29d8d1e074bf54efdc83
+  docChecksum: 1c457e5380748926df036f79bf4d8520
+  docVersion: 10.12.3
+  speakeasyVersion: 1.517.0
+  generationVersion: 2.548.1
+  releaseVersion: 0.9.0
+  configChecksum: 6680d1a588c4caf083a697a3214ac0e5
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -167,6 +167,7 @@ generatedFiles:
   - docs/models/components/ContactsSort.md
   - docs/models/components/ContactsSortBy.md
   - docs/models/components/CopyFolderRequest.md
+  - docs/models/components/CostOfGoodsSold.md
   - docs/models/components/Coverage.md
   - docs/models/components/CreateAccountingDepartmentResponse.md
   - docs/models/components/CreateAccountingLocationResponse.md
@@ -482,7 +483,6 @@ generatedFiles:
   - docs/models/components/GetUsersResponse.md
   - docs/models/components/GetWebhookResponse.md
   - docs/models/components/GetWebhooksResponse.md
-  - docs/models/components/GrossProfit.md
   - docs/models/components/HrisCompany.md
   - docs/models/components/HrisCompanyInput.md
   - docs/models/components/HrisCompanyStatus.md
@@ -565,8 +565,6 @@ generatedFiles:
   - docs/models/components/MessageType.md
   - docs/models/components/Meta.md
   - docs/models/components/Mode.md
-  - docs/models/components/NetIncome.md
-  - docs/models/components/NetOperatingIncome.md
   - docs/models/components/Note.md
   - docs/models/components/NoteInput.md
   - docs/models/components/Notes.md
@@ -583,6 +581,8 @@ generatedFiles:
   - docs/models/components/Options.md
   - docs/models/components/OrdersSort.md
   - docs/models/components/OrdersSortBy.md
+  - docs/models/components/OtherExpenses.md
+  - docs/models/components/OtherIncome.md
   - docs/models/components/OutstandingBalanceByCurrency.md
   - docs/models/components/OutstandingBalanceByCustomer.md
   - docs/models/components/Owner.md
@@ -615,6 +615,8 @@ generatedFiles:
   - docs/models/components/ProductStatus.md
   - docs/models/components/ProfitAndLoss.md
   - docs/models/components/ProfitAndLossFilter.md
+  - docs/models/components/ProfitAndLossIndicator.md
+  - docs/models/components/ProfitAndLossType.md
   - docs/models/components/PurchaseDetails.md
   - docs/models/components/PurchaseOrder.md
   - docs/models/components/PurchaseOrderInput.md
@@ -693,6 +695,7 @@ generatedFiles:
   - docs/models/components/TrackingItem.md
   - docs/models/components/TransactionType.md
   - docs/models/components/Type.md
+  - docs/models/components/UncategorizedAccounts.md
   - docs/models/components/UnexpectedErrorResponse.md
   - docs/models/components/UnifiedApi.md
   - docs/models/components/UnifiedApiId.md
@@ -1601,6 +1604,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ContactsSort.java
   - src/main/java/com/apideck/unify/models/components/ContactsSortBy.java
   - src/main/java/com/apideck/unify/models/components/CopyFolderRequest.java
+  - src/main/java/com/apideck/unify/models/components/CostOfGoodsSold.java
   - src/main/java/com/apideck/unify/models/components/Coverage.java
   - src/main/java/com/apideck/unify/models/components/CreateAccountingDepartmentResponse.java
   - src/main/java/com/apideck/unify/models/components/CreateAccountingLocationResponse.java
@@ -1916,7 +1920,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/GetUsersResponse.java
   - src/main/java/com/apideck/unify/models/components/GetWebhookResponse.java
   - src/main/java/com/apideck/unify/models/components/GetWebhooksResponse.java
-  - src/main/java/com/apideck/unify/models/components/GrossProfit.java
   - src/main/java/com/apideck/unify/models/components/HrisCompany.java
   - src/main/java/com/apideck/unify/models/components/HrisCompanyInput.java
   - src/main/java/com/apideck/unify/models/components/HrisCompanyStatus.java
@@ -1999,8 +2002,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/MessageType.java
   - src/main/java/com/apideck/unify/models/components/Meta.java
   - src/main/java/com/apideck/unify/models/components/Mode.java
-  - src/main/java/com/apideck/unify/models/components/NetIncome.java
-  - src/main/java/com/apideck/unify/models/components/NetOperatingIncome.java
   - src/main/java/com/apideck/unify/models/components/Note.java
   - src/main/java/com/apideck/unify/models/components/NoteInput.java
   - src/main/java/com/apideck/unify/models/components/Notes.java
@@ -2017,6 +2018,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/Options.java
   - src/main/java/com/apideck/unify/models/components/OrdersSort.java
   - src/main/java/com/apideck/unify/models/components/OrdersSortBy.java
+  - src/main/java/com/apideck/unify/models/components/OtherExpenses.java
+  - src/main/java/com/apideck/unify/models/components/OtherIncome.java
   - src/main/java/com/apideck/unify/models/components/OutstandingBalanceByCurrency.java
   - src/main/java/com/apideck/unify/models/components/OutstandingBalanceByCustomer.java
   - src/main/java/com/apideck/unify/models/components/Owner.java
@@ -2049,6 +2052,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ProductStatus.java
   - src/main/java/com/apideck/unify/models/components/ProfitAndLoss.java
   - src/main/java/com/apideck/unify/models/components/ProfitAndLossFilter.java
+  - src/main/java/com/apideck/unify/models/components/ProfitAndLossIndicator.java
+  - src/main/java/com/apideck/unify/models/components/ProfitAndLossType.java
   - src/main/java/com/apideck/unify/models/components/PurchaseDetails.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrder.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrderInput.java
@@ -2127,6 +2132,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/TrackingItem.java
   - src/main/java/com/apideck/unify/models/components/TransactionType.java
   - src/main/java/com/apideck/unify/models/components/Type.java
+  - src/main/java/com/apideck/unify/models/components/UncategorizedAccounts.java
   - src/main/java/com/apideck/unify/models/components/UnexpectedErrorResponse.java
   - src/main/java/com/apideck/unify/models/components/UnifiedApi.java
   - src/main/java/com/apideck/unify/models/components/UnifiedApiId.java
@@ -3855,7 +3861,7 @@ examples:
         query:
           raw: false
           limit: 20
-          filter: {"company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z"}
+          filter: {"company_name": "SpaceX", "display_name": "Elon Musk", "first_name": "Elon", "last_name": "Musk", "email": "elon@musk.com", "status": "active", "updated_since": "2020-09-30T07:43:32.000Z", "supplier_id": "123"}
           sort: {"by": "updated_at", "direction": "desc"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
@@ -4322,7 +4328,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "ProfitAndLosses", "operation": "one", "data": {"id": "12345", "report_name": "ProfitAndLoss", "start_date": "2017-01-01", "end_date": "2017-01-01", "currency": "USD", "customer_id": "123", "income": {"total": 200000, "records": [{"id": "123", "name": "Income 1", "amount": 10000}, {"id": "456", "name": "Income 2", "amount": 20000}]}, "expenses": {"total": 200000, "records": [{"id": "123", "name": "Expense 1", "amount": 10000}, {"id": "456", "name": "Expense 2", "amount": 20000}]}, "net_income": {"total": 200000, "records": "<value>"}, "net_operating_income": {"total": 200000, "records": "<value>"}, "gross_profit": {"total": 200000, "records": "<value>"}}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "ProfitAndLosses", "operation": "one", "data": {"id": "12345", "report_name": "ProfitAndLoss", "start_date": "2017-01-01", "end_date": "2017-01-01", "currency": "USD", "income": {"total": 200000, "records": [{"id": "123", "name": "Income 1", "amount": 10000}, {"id": "456", "name": "Income 2", "amount": 20000}]}, "expenses": {"total": 200000, "records": [{"id": "123", "name": "Expense 1", "amount": 10000}, {"id": "456", "name": "Expense 2", "amount": 20000}]}, "gross_profit": {"total": 200000}, "net_operating_income": {"total": 200000}, "net_income": {"total": 200000}}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": {"missing": [{"foobar": "required"}]}, "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":

@@ -8,6 +8,7 @@ import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -19,8 +20,10 @@ public class BalanceSheetFilter {
 
     /**
      * The start date of the period to include in the resource.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
+    @Deprecated
     private Optional<String> startDate;
 
     /**
@@ -63,7 +66,9 @@ public class BalanceSheetFilter {
 
     /**
      * The start date of the period to include in the resource.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     @JsonIgnore
     public Optional<String> startDate() {
         return startDate;
@@ -100,7 +105,9 @@ public class BalanceSheetFilter {
 
     /**
      * The start date of the period to include in the resource.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public BalanceSheetFilter withStartDate(String startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = Optional.ofNullable(startDate);
@@ -109,7 +116,9 @@ public class BalanceSheetFilter {
 
     /**
      * The start date of the period to include in the resource.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
+    @Deprecated
     public BalanceSheetFilter withStartDate(Optional<String> startDate) {
         Utils.checkNotNull(startDate, "startDate");
         this.startDate = startDate;
@@ -206,6 +215,7 @@ public class BalanceSheetFilter {
     
     public final static class Builder {
  
+        @Deprecated
         private Optional<String> startDate = Optional.empty();
  
         private Optional<String> endDate = Optional.empty();
@@ -220,7 +230,9 @@ public class BalanceSheetFilter {
 
         /**
          * The start date of the period to include in the resource.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder startDate(String startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = Optional.ofNullable(startDate);
@@ -229,7 +241,9 @@ public class BalanceSheetFilter {
 
         /**
          * The start date of the period to include in the resource.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
+        @Deprecated
         public Builder startDate(Optional<String> startDate) {
             Utils.checkNotNull(startDate, "startDate");
             this.startDate = startDate;

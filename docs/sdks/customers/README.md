@@ -55,6 +55,7 @@ public class Application {
                     .email("elon@musk.com")
                     .status(CustomersFilterStatus.ACTIVE)
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .supplierId("123")
                     .build())
                 .sort(CustomersSort.builder()
                     .by(CustomersSortBy.UPDATED_AT)

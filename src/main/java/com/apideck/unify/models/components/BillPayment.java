@@ -51,7 +51,7 @@ public class BillPayment {
     private JsonNullable<Double> currencyRate;
 
     /**
-     * The total amount of the transaction
+     * The total amount of the transaction or record
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("total_amount")
@@ -346,7 +346,7 @@ public class BillPayment {
     }
 
     /**
-     * The total amount of the transaction
+     * The total amount of the transaction or record
      */
     @JsonIgnore
     public Optional<Double> totalAmount() {
@@ -613,7 +613,7 @@ public class BillPayment {
     }
 
     /**
-     * The total amount of the transaction
+     * The total amount of the transaction or record
      */
     public BillPayment withTotalAmount(double totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -622,7 +622,7 @@ public class BillPayment {
     }
 
     /**
-     * The total amount of the transaction
+     * The total amount of the transaction or record
      */
     public BillPayment withTotalAmount(Optional<Double> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -1281,7 +1281,7 @@ public class BillPayment {
         }
 
         /**
-         * The total amount of the transaction
+         * The total amount of the transaction or record
          */
         public Builder totalAmount(double totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
@@ -1290,7 +1290,7 @@ public class BillPayment {
         }
 
         /**
-         * The total amount of the transaction
+         * The total amount of the transaction or record
          */
         public Builder totalAmount(Optional<Double> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");

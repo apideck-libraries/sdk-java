@@ -208,6 +208,13 @@ public class BillInput {
     private JsonNullable<Double> discountPercentage;
 
     /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_document_url")
+    private JsonNullable<String> sourceDocumentUrl;
+
+    /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -269,6 +276,7 @@ public class BillInput {
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
             @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
+            @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
@@ -302,6 +310,7 @@ public class BillInput {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
         Utils.checkNotNull(bankAccount, "bankAccount");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(customFields, "customFields");
@@ -335,6 +344,7 @@ public class BillInput {
         this.accountingByRow = accountingByRow;
         this.bankAccount = bankAccount;
         this.discountPercentage = discountPercentage;
+        this.sourceDocumentUrl = sourceDocumentUrl;
         this.trackingCategories = trackingCategories;
         this.rowVersion = rowVersion;
         this.customFields = customFields;
@@ -343,7 +353,7 @@ public class BillInput {
     }
     
     public BillInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -562,6 +572,14 @@ public class BillInput {
     @JsonIgnore
     public JsonNullable<Double> discountPercentage() {
         return discountPercentage;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceDocumentUrl() {
+        return sourceDocumentUrl;
     }
 
     /**
@@ -1089,6 +1107,24 @@ public class BillInput {
     }
 
     /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public BillInput withSourceDocumentUrl(String sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+        return this;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public BillInput withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = sourceDocumentUrl;
+        return this;
+    }
+
+    /**
      * A list of linked tracking categories.
      */
     public BillInput withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -1210,6 +1246,7 @@ public class BillInput {
             Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
             Objects.deepEquals(this.bankAccount, other.bankAccount) &&
             Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
+            Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
             Objects.deepEquals(this.customFields, other.customFields) &&
@@ -1248,6 +1285,7 @@ public class BillInput {
             accountingByRow,
             bankAccount,
             discountPercentage,
+            sourceDocumentUrl,
             trackingCategories,
             rowVersion,
             customFields,
@@ -1286,6 +1324,7 @@ public class BillInput {
                 "accountingByRow", accountingByRow,
                 "bankAccount", bankAccount,
                 "discountPercentage", discountPercentage,
+                "sourceDocumentUrl", sourceDocumentUrl,
                 "trackingCategories", trackingCategories,
                 "rowVersion", rowVersion,
                 "customFields", customFields,
@@ -1350,6 +1389,8 @@ public class BillInput {
         private Optional<? extends BankAccount> bankAccount = Optional.empty();
  
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
+ 
+        private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
  
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
  
@@ -1846,6 +1887,24 @@ public class BillInput {
         }
 
         /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(String sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+            return this;
+        }
+
+        /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = sourceDocumentUrl;
+            return this;
+        }
+
+        /**
          * A list of linked tracking categories.
          */
         public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
@@ -1959,6 +2018,7 @@ public class BillInput {
                 accountingByRow,
                 bankAccount,
                 discountPercentage,
+                sourceDocumentUrl,
                 trackingCategories,
                 rowVersion,
                 customFields,

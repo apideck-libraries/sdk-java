@@ -100,7 +100,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.CompanyInput;
 import com.apideck.unify.models.components.CompanyRowType;
@@ -113,6 +112,7 @@ import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLink;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
 import com.apideck.unify.models.components.WebsiteType;
@@ -200,7 +200,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -226,7 +226,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -469,7 +469,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.CompanyInput;
 import com.apideck.unify.models.components.CompanyRowType;
@@ -483,6 +482,7 @@ import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.SocialLink;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
 import com.apideck.unify.models.components.WebsiteType;
@@ -584,7 +584,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -610,7 +610,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")

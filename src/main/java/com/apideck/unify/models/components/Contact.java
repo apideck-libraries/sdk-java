@@ -50,7 +50,7 @@ public class Contact {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends Type> type;
+    private JsonNullable<? extends ContactType> type;
 
     /**
      * The company the contact is associated with.
@@ -293,7 +293,7 @@ public class Contact {
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") Optional<String> name,
             @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("type") JsonNullable<? extends Type> type,
+            @JsonProperty("type") JsonNullable<? extends ContactType> type,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("lead_id") JsonNullable<String> leadId,
@@ -448,8 +448,8 @@ public class Contact {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Type> type() {
-        return (JsonNullable<Type>) type;
+    public JsonNullable<ContactType> type() {
+        return (JsonNullable<ContactType>) type;
     }
 
     /**
@@ -797,7 +797,7 @@ public class Contact {
     /**
      * The type of the contact.
      */
-    public Contact withType(Type type) {
+    public Contact withType(ContactType type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -806,7 +806,7 @@ public class Contact {
     /**
      * The type of the contact.
      */
-    public Contact withType(JsonNullable<? extends Type> type) {
+    public Contact withType(JsonNullable<? extends ContactType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -1585,7 +1585,7 @@ public class Contact {
  
         private JsonNullable<String> ownerId = JsonNullable.undefined();
  
-        private JsonNullable<? extends Type> type = JsonNullable.undefined();
+        private JsonNullable<? extends ContactType> type = JsonNullable.undefined();
  
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
@@ -1723,7 +1723,7 @@ public class Contact {
         /**
          * The type of the contact.
          */
-        public Builder type(Type type) {
+        public Builder type(ContactType type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
@@ -1732,7 +1732,7 @@ public class Contact {
         /**
          * The type of the contact.
          */
-        public Builder type(JsonNullable<? extends Type> type) {
+        public Builder type(JsonNullable<? extends ContactType> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

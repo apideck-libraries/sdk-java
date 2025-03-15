@@ -9,13 +9,16 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * Type - The type of the contact.
+ * Type - The type of address.
  */
 public enum Type {
-    CUSTOMER("customer"),
-    SUPPLIER("supplier"),
-    EMPLOYEE("employee"),
-    PERSONAL("personal");
+    PRIMARY("primary"),
+    SECONDARY("secondary"),
+    HOME("home"),
+    OFFICE("office"),
+    SHIPPING("shipping"),
+    BILLING("billing"),
+    OTHER("other");
 
     @JsonValue
     private final String value;

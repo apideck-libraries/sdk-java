@@ -60,9 +60,9 @@ public class Application {
         sdk.hris().timeOffRequests().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -139,7 +139,7 @@ public class Application {
                     .requestType(RequestType.VACATION)
                     .approvalDate("2022-03-21")
                     .units(Units.HOURS)
-                    .amount(3.5d)
+                    .amount(3.5)
                     .dayPart("morning")
                     .notes(Notes.builder()
                         .employee("Relaxing on the beach for a few hours.")
@@ -151,11 +151,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -163,11 +167,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .policyType("sick")
@@ -327,7 +335,7 @@ public class Application {
                     .requestType(RequestType.VACATION)
                     .approvalDate("2022-03-21")
                     .units(Units.HOURS)
-                    .amount(3.5d)
+                    .amount(3.5)
                     .dayPart("morning")
                     .notes(Notes.builder()
                         .employee("Relaxing on the beach for a few hours.")
@@ -339,11 +347,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -351,11 +363,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -363,15 +379,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .policyType("sick")

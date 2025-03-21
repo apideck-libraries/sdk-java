@@ -40,9 +40,9 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

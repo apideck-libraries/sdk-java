@@ -40,7 +40,7 @@ public class Application {
         VaultLogsAllRequest req = VaultLogsAllRequest.builder()
                 .filter(LogsFilter.builder()
                     .connectorId("crm+salesforce")
-                    .statusCode(201d)
+                    .statusCode(201)
                     .excludeUnifiedApis("vault,proxy")
                     .build())
                 .build();
@@ -48,9 +48,9 @@ public class Application {
         sdk.vault().logs().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

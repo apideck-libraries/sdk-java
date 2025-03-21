@@ -48,9 +48,9 @@ public class Application {
         sdk.issueTracking().collectionUsers().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

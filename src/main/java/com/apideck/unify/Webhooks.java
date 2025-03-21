@@ -48,7 +48,9 @@ import com.apideck.unify.utils.SerializedBody;
 import com.apideck.unify.utils.Utils.JsonShape;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
 import java.lang.Exception;
@@ -216,22 +218,18 @@ public class Webhooks implements
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes)
                 .next(() -> {
-                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
-                    ReadContext _body = JsonPath.parse(_stringBody);
-
                     if (request == null) {
                         return Optional.empty();
                     }
+                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
+                    Configuration _config = Configuration.defaultConfiguration()
+                            .addOptions(Option.SUPPRESS_EXCEPTIONS);
+                    ReadContext _body = JsonPath.using(_config).parse(_stringBody);
                     
-                    @SuppressWarnings("unchecked")
-                    List<String> _nextCursorToken = _body.read("$.meta.cursors.next", List.class);
-                    if (_nextCursorToken == null || _nextCursorToken.isEmpty()) {
+                    String _nextCursor = _body.read("$.meta.cursors.next", String.class);
+                    if (_nextCursor == null) {
                         return Optional.empty();
-                    };
-
-                    String _nextCursor = _nextCursorToken.get(0);
-
-                    
+                    }
                     
                      
                     WebhookWebhooksAllRequestBuilder _ret = list();

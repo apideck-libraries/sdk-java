@@ -74,7 +74,7 @@ public class ConsumerConnection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private JsonNullable<? extends Settings> settings;
+    private JsonNullable<? extends Map<String, Object>> settings;
 
     /**
      * Attach your own consumer specific metadata
@@ -111,7 +111,7 @@ public class ConsumerConnection {
             @JsonProperty("consumer_id") Optional<String> consumerId,
             @JsonProperty("auth_type") Optional<? extends AuthType> authType,
             @JsonProperty("enabled") Optional<Boolean> enabled,
-            @JsonProperty("settings") JsonNullable<? extends Settings> settings,
+            @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
             @JsonProperty("created_at") Optional<String> createdAt,
             @JsonProperty("updated_at") JsonNullable<String> updatedAt,
@@ -218,8 +218,8 @@ public class ConsumerConnection {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Settings> settings() {
-        return (JsonNullable<Settings>) settings;
+    public JsonNullable<Map<String, Object>> settings() {
+        return (JsonNullable<Map<String, Object>>) settings;
     }
 
     /**
@@ -395,7 +395,7 @@ public class ConsumerConnection {
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConsumerConnection withSettings(Settings settings) {
+    public ConsumerConnection withSettings(Map<String, Object> settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = JsonNullable.of(settings);
         return this;
@@ -404,7 +404,7 @@ public class ConsumerConnection {
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConsumerConnection withSettings(JsonNullable<? extends Settings> settings) {
+    public ConsumerConnection withSettings(JsonNullable<? extends Map<String, Object>> settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = settings;
         return this;
@@ -564,7 +564,7 @@ public class ConsumerConnection {
  
         private Optional<Boolean> enabled = Optional.empty();
  
-        private JsonNullable<? extends Settings> settings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
  
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
  
@@ -719,7 +719,7 @@ public class ConsumerConnection {
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(Settings settings) {
+        public Builder settings(Map<String, Object> settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = JsonNullable.of(settings);
             return this;
@@ -728,7 +728,7 @@ public class ConsumerConnection {
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(JsonNullable<? extends Settings> settings) {
+        public Builder settings(JsonNullable<? extends Map<String, Object>> settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = settings;
             return this;

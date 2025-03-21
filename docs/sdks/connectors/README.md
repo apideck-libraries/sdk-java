@@ -43,9 +43,9 @@ public class Application {
                     .unifiedApi(UnifiedApiId.FILE_STORAGE)
                     .build())
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

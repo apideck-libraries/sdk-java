@@ -39,9 +39,12 @@ model {
     }
 }
 
+version = "${version}"
+group = "${groupId}"
+
 jar {
     dependsOn(":generatePomFileForMavenPublication")
-    archiveBaseName = "unify"
+    archiveBaseName = "${artifactId}"
 
     into("META-INF/maven/com.apideck/unify") {
         from("$buildDir/pom.xml")
@@ -62,15 +65,12 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 
-group = "com.apideck"
-version = "0.9.0"
-
 sourcesJar {
-    archiveBaseName = "unify"
+    archiveBaseName = "${artifactId}"
 }
 
 javadocJar {
-    archiveBaseName = "unify"
+    archiveBaseName = "${artifactId}"
 }
 sonatypeCentralUpload {
     // This is your Sonatype generated username
@@ -80,9 +80,9 @@ sonatypeCentralUpload {
 
     // This is a list of files to upload. Ideally you would point to your jar file, source and javadoc jar (required by central)
     archives = files(
-      "$buildDir/libs/unify-${version}.jar",
-      "$buildDir/libs/unify-${version}-sources.jar",
-      "$buildDir/libs/unify-${version}-javadoc.jar"
+      "$buildDir/libs/${artifactId}-${version}.jar",
+      "$buildDir/libs/${artifactId}-${version}-sources.jar",
+      "$buildDir/libs/${artifactId}-${version}-javadoc.jar"
     )
 
     // This is the pom file to upload. This is required by central
@@ -99,9 +99,11 @@ publishing {
 
     publications {
         maven(MavenPublication) {
-            groupId = 'com.apideck'
-            artifactId = 'unify'
-            version = '0.9.0'
+            // note that properties can't yet be used below!
+            // https://github.com/gradle/gradle/issues/18619
+            groupId = "com.apideck"
+            artifactId = "unify"
+            version = "0.10.0"
 
             from components.java
 

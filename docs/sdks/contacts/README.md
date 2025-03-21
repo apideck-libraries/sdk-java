@@ -63,9 +63,9 @@ public class Application {
         sdk.crm().contacts().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -103,9 +103,9 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.ContactGender;
 import com.apideck.unify.models.components.ContactInput;
+import com.apideck.unify.models.components.ContactType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
@@ -144,7 +144,7 @@ public class Application {
                 .contact(ContactInput.builder()
                     .name("Elon Musk")
                     .ownerId("54321")
-                    .type(Type.PERSONAL)
+                    .type(ContactType.PERSONAL)
                     .companyId("23456")
                     .companyName("23456")
                     .leadId("34567")
@@ -162,7 +162,7 @@ public class Application {
                     .leadSource("Cold Call")
                     .fax("+12129876543")
                     .description("Internal champion")
-                    .currentBalance(10.5d)
+                    .currentBalance(10.5)
                     .status("open")
                     .active(true)
                     .websites(List.of(
@@ -179,7 +179,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -205,7 +205,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -268,7 +268,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(10d))
+                            .value(Value.of(10))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
@@ -286,15 +286,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -302,11 +308,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -314,15 +324,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -447,9 +463,9 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.ContactGender;
 import com.apideck.unify.models.components.ContactInput;
+import com.apideck.unify.models.components.ContactType;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.Email;
 import com.apideck.unify.models.components.EmailType;
@@ -490,7 +506,7 @@ public class Application {
                 .contact(ContactInput.builder()
                     .name("Elon Musk")
                     .ownerId("54321")
-                    .type(Type.PERSONAL)
+                    .type(ContactType.PERSONAL)
                     .companyId("23456")
                     .companyName("23456")
                     .leadId("34567")
@@ -508,7 +524,7 @@ public class Application {
                     .leadSource("Cold Call")
                     .fax("+12129876543")
                     .description("Internal champion")
-                    .currentBalance(10.5d)
+                    .currentBalance(10.5)
                     .status("open")
                     .active(true)
                     .websites(List.of(
@@ -530,7 +546,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -556,7 +572,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -654,7 +670,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

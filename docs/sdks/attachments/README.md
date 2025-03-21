@@ -49,9 +49,9 @@ public class Application {
         sdk.accounting().attachments().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

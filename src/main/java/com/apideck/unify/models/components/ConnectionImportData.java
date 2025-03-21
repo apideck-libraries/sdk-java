@@ -30,7 +30,7 @@ public class ConnectionImportData {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private JsonNullable<? extends ConnectionImportDataSettings> settings;
+    private JsonNullable<? extends Settings> settings;
 
     /**
      * Attach your own consumer specific metadata
@@ -42,7 +42,7 @@ public class ConnectionImportData {
     @JsonCreator
     public ConnectionImportData(
             @JsonProperty("credentials") Optional<? extends Credentials> credentials,
-            @JsonProperty("settings") JsonNullable<? extends ConnectionImportDataSettings> settings,
+            @JsonProperty("settings") JsonNullable<? extends Settings> settings,
             @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata) {
         Utils.checkNotNull(credentials, "credentials");
         Utils.checkNotNull(settings, "settings");
@@ -67,8 +67,8 @@ public class ConnectionImportData {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<ConnectionImportDataSettings> settings() {
-        return (JsonNullable<ConnectionImportDataSettings>) settings;
+    public JsonNullable<Settings> settings() {
+        return (JsonNullable<Settings>) settings;
     }
 
     /**
@@ -99,7 +99,7 @@ public class ConnectionImportData {
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConnectionImportData withSettings(ConnectionImportDataSettings settings) {
+    public ConnectionImportData withSettings(Settings settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = JsonNullable.of(settings);
         return this;
@@ -108,7 +108,7 @@ public class ConnectionImportData {
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConnectionImportData withSettings(JsonNullable<? extends ConnectionImportDataSettings> settings) {
+    public ConnectionImportData withSettings(JsonNullable<? extends Settings> settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = settings;
         return this;
@@ -167,7 +167,7 @@ public class ConnectionImportData {
  
         private Optional<? extends Credentials> credentials = Optional.empty();
  
-        private JsonNullable<? extends ConnectionImportDataSettings> settings = JsonNullable.undefined();
+        private JsonNullable<? extends Settings> settings = JsonNullable.undefined();
  
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();  
         
@@ -190,7 +190,7 @@ public class ConnectionImportData {
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(ConnectionImportDataSettings settings) {
+        public Builder settings(Settings settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = JsonNullable.of(settings);
             return this;
@@ -199,7 +199,7 @@ public class ConnectionImportData {
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(JsonNullable<? extends ConnectionImportDataSettings> settings) {
+        public Builder settings(JsonNullable<? extends Settings> settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = settings;
             return this;

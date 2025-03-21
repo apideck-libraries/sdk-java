@@ -60,9 +60,9 @@ public class Application {
         sdk.accounting().bills().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -101,7 +101,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.BillInput;
 import com.apideck.unify.models.components.BillLineItemInput;
@@ -116,6 +115,7 @@ import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -147,7 +147,7 @@ public class Application {
                         .displayName("Windsurf Shop")
                         .address(Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -174,7 +174,7 @@ public class Application {
                         .build())
                     .companyId("12345")
                     .currency(Currency.USD)
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .taxInclusive(true)
                     .billDate(LocalDate.parse("2020-09-30"))
                     .dueDate(LocalDate.parse("2020-10-30"))
@@ -188,13 +188,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -204,7 +204,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -228,13 +228,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -244,7 +244,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -263,11 +263,11 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .terms("Net 30 days")
-                    .balance(27500d)
-                    .deposit(0d)
-                    .subTotal(27500d)
-                    .totalTax(2500d)
-                    .total(27500d)
+                    .balance(27500)
+                    .deposit(0)
+                    .subTotal(27500)
+                    .totalTax(2500)
+                    .total(27500)
                     .taxCode("1234")
                     .notes("Some notes about this bill.")
                     .status(BillStatus.DRAFT)
@@ -293,7 +293,7 @@ public class Application {
                         .bankCode("BNH")
                         .currency(Currency.USD)
                         .build())
-                    .discountPercentage(5.5d)
+                    .discountPercentage(5.5)
                     .trackingCategories(List.of(
                         LinkedTrackingCategory.builder()
                             .id("123456")
@@ -316,7 +316,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .accountingPeriod("01-24")
@@ -435,7 +437,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.BillInput;
 import com.apideck.unify.models.components.BillLineItemInput;
@@ -452,6 +453,7 @@ import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Six;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -484,7 +486,7 @@ public class Application {
                         .displayName("Windsurf Shop")
                         .address(Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -511,7 +513,7 @@ public class Application {
                         .build())
                     .companyId("12345")
                     .currency(Currency.USD)
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .taxInclusive(true)
                     .billDate(LocalDate.parse("2020-09-30"))
                     .dueDate(LocalDate.parse("2020-10-30"))
@@ -525,13 +527,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -541,7 +543,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -565,13 +567,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -581,7 +583,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -605,13 +607,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -621,7 +623,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -644,11 +646,11 @@ public class Application {
                             .rowVersion("1-12345")
                             .build()))
                     .terms("Net 30 days")
-                    .balance(27500d)
-                    .deposit(0d)
-                    .subTotal(27500d)
-                    .totalTax(2500d)
-                    .total(27500d)
+                    .balance(27500)
+                    .deposit(0)
+                    .subTotal(27500)
+                    .totalTax(2500)
+                    .total(27500)
                     .taxCode("1234")
                     .notes("Some notes about this bill.")
                     .status(BillStatus.DRAFT)
@@ -674,7 +676,7 @@ public class Application {
                         .bankCode("BNH")
                         .currency(Currency.USD)
                         .build())
-                    .discountPercentage(5.5d)
+                    .discountPercentage(5.5)
                     .trackingCategories(List.of(
                         LinkedTrackingCategory.builder()
                             .id("123456")
@@ -707,7 +709,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .accountingPeriod("01-24")

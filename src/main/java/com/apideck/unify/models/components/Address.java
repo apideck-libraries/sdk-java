@@ -30,7 +30,7 @@ public class Address {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends AddressType> type;
+    private JsonNullable<? extends Type> type;
 
     /**
      * The address string. Some APIs don't provide structured address data.
@@ -189,7 +189,7 @@ public class Address {
     @JsonCreator
     public Address(
             @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("type") JsonNullable<? extends AddressType> type,
+            @JsonProperty("type") JsonNullable<? extends Type> type,
             @JsonProperty("string") JsonNullable<String> string,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("line1") JsonNullable<String> line1,
@@ -279,8 +279,8 @@ public class Address {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AddressType> type() {
-        return (JsonNullable<AddressType>) type;
+    public JsonNullable<Type> type() {
+        return (JsonNullable<Type>) type;
     }
 
     /**
@@ -484,7 +484,7 @@ public class Address {
     /**
      * The type of address.
      */
-    public Address withType(AddressType type) {
+    public Address withType(Type type) {
         Utils.checkNotNull(type, "type");
         this.type = JsonNullable.of(type);
         return this;
@@ -493,7 +493,7 @@ public class Address {
     /**
      * The type of address.
      */
-    public Address withType(JsonNullable<? extends AddressType> type) {
+    public Address withType(JsonNullable<? extends Type> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
@@ -993,7 +993,7 @@ public class Address {
  
         private JsonNullable<String> id = JsonNullable.undefined();
  
-        private JsonNullable<? extends AddressType> type = JsonNullable.undefined();
+        private JsonNullable<? extends Type> type = JsonNullable.undefined();
  
         private JsonNullable<String> string = JsonNullable.undefined();
  
@@ -1064,7 +1064,7 @@ public class Address {
         /**
          * The type of address.
          */
-        public Builder type(AddressType type) {
+        public Builder type(Type type) {
             Utils.checkNotNull(type, "type");
             this.type = JsonNullable.of(type);
             return this;
@@ -1073,7 +1073,7 @@ public class Address {
         /**
          * The type of address.
          */
-        public Builder type(JsonNullable<? extends AddressType> type) {
+        public Builder type(JsonNullable<? extends Type> type) {
             Utils.checkNotNull(type, "type");
             this.type = type;
             return this;

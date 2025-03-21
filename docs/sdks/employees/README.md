@@ -68,9 +68,9 @@ public class Application {
         sdk.hris().employees().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -109,7 +109,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
@@ -133,6 +132,7 @@ import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.ProbationPeriod;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Team;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -227,7 +227,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000d)
+                            .compensationRate(72000)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -236,7 +236,7 @@ public class Application {
                             .status(EmployeeJobStatus.ACTIVE)
                             .location(Address.builder()
                                 .id("123")
-                                .type(AddressType.PRIMARY)
+                                .type(Type.PRIMARY)
                                 .string("25 Spring Street, Blackburn, VIC 3130")
                                 .name("HQ US")
                                 .line1("Main street")
@@ -266,7 +266,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000d)
+                            .compensationRate(72000)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -275,7 +275,7 @@ public class Application {
                             .status(EmployeeJobStatus.ACTIVE)
                             .location(Address.builder()
                                 .id("123")
-                                .type(AddressType.PRIMARY)
+                                .type(Type.PRIMARY)
                                 .string("25 Spring Street, Blackburn, VIC 3130")
                                 .name("HQ US")
                                 .line1("Main street")
@@ -302,7 +302,7 @@ public class Application {
                             .build()))
                     .compensations(List.of(
                         EmployeeCompensationInput.builder()
-                            .rate(50d)
+                            .rate(50)
                             .paymentUnit(PaymentUnit.HOUR)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
@@ -311,7 +311,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -337,7 +337,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -433,15 +433,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -566,7 +572,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
@@ -591,6 +596,7 @@ import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.ProbationPeriod;
 import com.apideck.unify.models.components.SocialLink;
 import com.apideck.unify.models.components.Team;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -686,7 +692,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000d)
+                            .compensationRate(72000)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -695,7 +701,7 @@ public class Application {
                             .status(EmployeeJobStatus.ACTIVE)
                             .location(Address.builder()
                                 .id("123")
-                                .type(AddressType.PRIMARY)
+                                .type(Type.PRIMARY)
                                 .string("25 Spring Street, Blackburn, VIC 3130")
                                 .name("HQ US")
                                 .line1("Main street")
@@ -725,7 +731,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000d)
+                            .compensationRate(72000)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -734,7 +740,7 @@ public class Application {
                             .status(EmployeeJobStatus.ACTIVE)
                             .location(Address.builder()
                                 .id("123")
-                                .type(AddressType.PRIMARY)
+                                .type(Type.PRIMARY)
                                 .string("25 Spring Street, Blackburn, VIC 3130")
                                 .name("HQ US")
                                 .line1("Main street")
@@ -764,7 +770,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000d)
+                            .compensationRate(72000)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -773,7 +779,7 @@ public class Application {
                             .status(EmployeeJobStatus.ACTIVE)
                             .location(Address.builder()
                                 .id("123")
-                                .type(AddressType.PRIMARY)
+                                .type(Type.PRIMARY)
                                 .string("25 Spring Street, Blackburn, VIC 3130")
                                 .name("HQ US")
                                 .line1("Main street")
@@ -800,7 +806,7 @@ public class Application {
                             .build()))
                     .compensations(List.of(
                         EmployeeCompensationInput.builder()
-                            .rate(50d)
+                            .rate(50)
                             .paymentUnit(PaymentUnit.HOUR)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
@@ -809,7 +815,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -835,7 +841,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -968,7 +974,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

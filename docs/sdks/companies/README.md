@@ -59,9 +59,9 @@ public class Application {
         sdk.crm().companies().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -100,7 +100,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.CompanyInput;
 import com.apideck.unify.models.components.CompanyRowType;
@@ -113,6 +112,7 @@ import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.SocialLink;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
 import com.apideck.unify.models.components.WebsiteType;
@@ -200,7 +200,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -226,7 +226,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -296,7 +296,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(10d))
+                            .value(Value.of(10))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
@@ -315,15 +315,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -331,11 +337,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -343,15 +353,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -469,7 +485,6 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountType;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.BankAccount;
 import com.apideck.unify.models.components.CompanyInput;
 import com.apideck.unify.models.components.CompanyRowType;
@@ -483,6 +498,7 @@ import com.apideck.unify.models.components.PhoneNumber;
 import com.apideck.unify.models.components.PhoneNumberType;
 import com.apideck.unify.models.components.Six;
 import com.apideck.unify.models.components.SocialLink;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.components.Website;
 import com.apideck.unify.models.components.WebsiteType;
@@ -584,7 +600,7 @@ public class Application {
                     .addresses(List.of(
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -610,7 +626,7 @@ public class Application {
                             .build(),
                         Address.builder()
                             .id("123")
-                            .type(AddressType.PRIMARY)
+                            .type(Type.PRIMARY)
                             .string("25 Spring Street, Blackburn, VIC 3130")
                             .name("HQ US")
                             .line1("Main street")
@@ -701,7 +717,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(10d))
+                            .value(Value.of(10))
                             .build()))
                     .tags(List.of(
                         "New"))
@@ -714,7 +730,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

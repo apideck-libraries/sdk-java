@@ -4,92 +4,19 @@
 
 
 package com.apideck.unify.models.components;
-import com.apideck.unify.utils.OneOfDeserializer;
-import com.apideck.unify.utils.TypedObject;
-import com.apideck.unify.utils.Utils.JsonShape;
-import com.apideck.unify.utils.Utils.TypeReferenceWithShape;
-import com.apideck.unify.utils.Utils;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.lang.Override;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.util.Objects;
 
-@JsonDeserialize(using = FormFieldOption._Deserializer.class)
-public class FormFieldOption {
+@JsonTypeInfo(use = Id.NAME, property = "option_type", include = As.EXISTING_PROPERTY, visible = true)
+@JsonSubTypes({
+    @Type(value = SimpleFormFieldOption.class, name="simple"),
+    @Type(value = FormFieldOptionGroup.class, name="group")})
+public interface FormFieldOption {
 
-    @JsonValue
-    private TypedObject value;
-    
-    private FormFieldOption(TypedObject value) {
-        this.value = value;
-    }
+    String optionType();
 
-    public static FormFieldOption of(SimpleFormFieldOption value) {
-        Utils.checkNotNull(value, "value");
-        return new FormFieldOption(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<SimpleFormFieldOption>(){}));
-    }
-
-    public static FormFieldOption of(FormFieldOptionGroup value) {
-        Utils.checkNotNull(value, "value");
-        return new FormFieldOption(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<FormFieldOptionGroup>(){}));
-    }
-    
-    /**
-     * Returns an instance of one of these types:
-     * <ul>
-     * <li>{@code com.apideck.unify.models.components.SimpleFormFieldOption}</li>
-     * <li>{@code com.apideck.unify.models.components.FormFieldOptionGroup}</li>
-     * </ul>
-     * 
-     * <p>Use {@code instanceof} to determine what type is returned. For example:
-     * 
-     * <pre>
-     * if (obj.value() instanceof String) {
-     *     String answer = (String) obj.value();
-     *     System.out.println("answer=" + answer);
-     * }
-     * </pre>
-     * 
-     * @return value of oneOf type
-     **/ 
-    public java.lang.Object value() {
-        return value.value();
-    }    
-    
-    @Override
-    public boolean equals(java.lang.Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        FormFieldOption other = (FormFieldOption) o;
-        return Objects.deepEquals(this.value.value(), other.value.value()); 
-    }
-    
-    @Override
-    public int hashCode() {
-        return Objects.hash(value.value());
-    }
-    
-    @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<FormFieldOption> {
-
-        public _Deserializer() {
-            super(FormFieldOption.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<FormFieldOptionGroup>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<SimpleFormFieldOption>() {}, JsonShape.DEFAULT));
-        }
-    }
-    
-    @Override
-    public String toString() {
-        return Utils.toString(FormFieldOption.class,
-                "value", value);
-    }
- 
 }

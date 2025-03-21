@@ -60,9 +60,9 @@ public class Application {
         sdk.accounting().creditNotes().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -100,7 +100,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.AllocationInput;
 import com.apideck.unify.models.components.CreditNoteInput;
 import com.apideck.unify.models.components.CreditNoteStatus;
@@ -116,6 +115,7 @@ import com.apideck.unify.models.components.LinkedLedgerAccountInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -141,7 +141,7 @@ public class Application {
 
         AccountingCreditNotesAddRequest req = AccountingCreditNotesAddRequest.builder()
                 .creditNote(CreditNoteInput.builder()
-                    .totalAmount(49.99d)
+                    .totalAmount(49.99)
                     .number("OIT00546")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -150,13 +150,13 @@ public class Application {
                         .build())
                     .companyId("12345")
                     .currency(Currency.USD)
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .taxInclusive(true)
-                    .subTotal(27500d)
-                    .totalTax(2500d)
+                    .subTotal(27500)
+                    .totalTax(2500)
                     .taxCode("1234")
-                    .balance(27500d)
-                    .remainingCredit(27500d)
+                    .balance(27500)
+                    .remainingCredit(27500)
                     .status(CreditNoteStatus.AUTHORISED)
                     .reference("123456")
                     .dateIssued(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
@@ -175,13 +175,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -191,7 +191,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -229,13 +229,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -245,7 +245,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -276,7 +276,7 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of(10d))
+                                    .value(Value.of(10))
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
@@ -289,24 +289,24 @@ public class Application {
                     .allocations(List.of(
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build(),
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build(),
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build()))
                     .note("Some notes about this credit note")
                     .terms("Some terms about this credit note")
                     .billingAddress(Address.builder()
                         .id("123")
-                        .type(AddressType.PRIMARY)
+                        .type(Type.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")
@@ -332,7 +332,7 @@ public class Application {
                         .build())
                     .shippingAddress(Address.builder()
                         .id("123")
-                        .type(AddressType.PRIMARY)
+                        .type(Type.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")
@@ -392,7 +392,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -509,7 +511,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.AllocationInput;
 import com.apideck.unify.models.components.CreditNoteInput;
 import com.apideck.unify.models.components.CreditNoteStatus;
@@ -526,6 +527,7 @@ import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Six;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -552,7 +554,7 @@ public class Application {
         AccountingCreditNotesUpdateRequest req = AccountingCreditNotesUpdateRequest.builder()
                 .id("<id>")
                 .creditNote(CreditNoteInput.builder()
-                    .totalAmount(49.99d)
+                    .totalAmount(49.99)
                     .number("OIT00546")
                     .customer(LinkedCustomerInput.builder()
                         .id("12345")
@@ -561,13 +563,13 @@ public class Application {
                         .build())
                     .companyId("12345")
                     .currency(Currency.USD)
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .taxInclusive(true)
-                    .subTotal(27500d)
-                    .totalTax(2500d)
+                    .subTotal(27500)
+                    .totalTax(2500)
                     .taxCode("1234")
-                    .balance(27500d)
-                    .remainingCredit(27500d)
+                    .balance(27500)
+                    .remainingCredit(27500)
                     .status(CreditNoteStatus.AUTHORISED)
                     .reference("123456")
                     .dateIssued(OffsetDateTime.parse("2021-05-01T12:00:00.000Z"))
@@ -586,13 +588,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -602,7 +604,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -644,13 +646,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -660,7 +662,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -698,13 +700,13 @@ public class Application {
                             .lineNumber(1L)
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
                             .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500d)
-                            .totalAmount(27500d)
-                            .quantity(1d)
-                            .unitPrice(27500.5d)
+                            .taxAmount(27500)
+                            .totalAmount(27500)
+                            .quantity(1)
+                            .unitPrice(27500.5)
                             .unitOfMeasure("pc.")
-                            .discountPercentage(0.01d)
-                            .discountAmount(19.99d)
+                            .discountPercentage(0.01)
+                            .discountAmount(19.99)
                             .locationId("1234")
                             .departmentId("1234")
                             .item(LinkedInvoiceItem.builder()
@@ -714,7 +716,7 @@ public class Application {
                                 .build())
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -738,24 +740,24 @@ public class Application {
                     .allocations(List.of(
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build(),
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build(),
                         AllocationInput.builder()
                             .id("123456")
-                            .amount(49.99d)
+                            .amount(49.99)
                             .allocationId("123456")
                             .build()))
                     .note("Some notes about this credit note")
                     .terms("Some terms about this credit note")
                     .billingAddress(Address.builder()
                         .id("123")
-                        .type(AddressType.PRIMARY)
+                        .type(Type.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")
@@ -781,7 +783,7 @@ public class Application {
                         .build())
                     .shippingAddress(Address.builder()
                         .id("123")
-                        .type(AddressType.PRIMARY)
+                        .type(Type.PRIMARY)
                         .string("25 Spring Street, Blackburn, VIC 3130")
                         .name("HQ US")
                         .line1("Main street")
@@ -832,15 +834,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -848,11 +856,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -860,7 +872,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

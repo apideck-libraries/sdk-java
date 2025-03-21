@@ -8,6 +8,7 @@ import com.apideck.unify.models.errors.APIException;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import java.lang.Exception;
 import java.util.Optional;
 import java.util.stream.Stream;
 

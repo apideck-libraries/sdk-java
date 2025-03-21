@@ -43,9 +43,9 @@ public class Application {
                 .cursor("<value>")
                 .limit(20L)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

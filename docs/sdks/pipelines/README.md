@@ -46,9 +46,9 @@ public class Application {
         sdk.crm().pipelines().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

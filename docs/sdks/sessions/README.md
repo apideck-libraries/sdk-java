@@ -73,7 +73,13 @@ public class Application {
                         .build())
                     .customConsumerSettings(Map.ofEntries(
                         Map.entry("feature_flag_1", true),
-                        Map.entry("tax_rates", List.of(\n    Map.ofEntries(\n    Map.entry("id", "6"),\n    Map.entry("label", "6%")),\n    Map.ofEntries(\n    Map.entry("id", "21"),\n    Map.entry("label", "21%"))))))
+                        Map.entry("tax_rates", List.of(
+                            Map.ofEntries(
+                                Map.entry("id", "6"),
+                                Map.entry("label", "6%")),
+                            Map.ofEntries(
+                                Map.entry("id", "21"),
+                                Map.entry("label", "21%"))))))
                     .build())
                 .call();
 

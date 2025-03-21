@@ -46,7 +46,9 @@ import com.apideck.unify.utils.SerializedBody;
 import com.apideck.unify.utils.Utils.JsonShape;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
+import com.jayway.jsonpath.Option;
 import com.jayway.jsonpath.ReadContext;
 import java.io.InputStream;
 import java.lang.Exception;
@@ -60,7 +62,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit; 
+import java.util.concurrent.TimeUnit;
+import org.openapitools.jackson.nullable.JsonNullable; 
 
 public class JournalEntries implements
             MethodCallAccountingJournalEntriesAll,
@@ -202,25 +205,21 @@ public class JournalEntries implements
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes)
                 .next(() -> {
-                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
-                    ReadContext _body = JsonPath.parse(_stringBody);
-
                     if (request == null) {
                         return Optional.empty();
                     }
+                    String _stringBody = new String(_fullResponse, StandardCharsets.UTF_8);
+                    Configuration _config = Configuration.defaultConfiguration()
+                            .addOptions(Option.SUPPRESS_EXCEPTIONS);
+                    ReadContext _body = JsonPath.using(_config).parse(_stringBody);
                     
                     
                     
                     
-                    @SuppressWarnings("unchecked")
-                    List<String> _nextCursorToken = _body.read("$.meta.cursors.next", List.class);
-                    if (_nextCursorToken == null || _nextCursorToken.isEmpty()) {
+                    String _nextCursor = _body.read("$.meta.cursors.next", String.class);
+                    if (_nextCursor == null) {
                         return Optional.empty();
-                    };
-
-                    String _nextCursor = _nextCursorToken.get(0);
-
-                    
+                    }
                     
                     
                     
@@ -233,7 +232,7 @@ public class JournalEntries implements
                         request.consumerId(),
                         request.appId(),
                         request.serviceId(),
-                        request.cursor(),
+                        JsonNullable.of(_nextCursor),
                         request.limit(),
                         request.filter(),
                         request.sort(),

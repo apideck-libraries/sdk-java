@@ -4,6 +4,7 @@
 
 
 package com.apideck.unify.models.components;
+import com.apideck.unify.utils.HasSecurity;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,7 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
 
-public class Security {
+public class Security implements HasSecurity {
 
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private String apiKey;

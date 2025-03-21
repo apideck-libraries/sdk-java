@@ -16,32 +16,39 @@ import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
-public class SimpleFormFieldOption {
+public class SimpleFormFieldOption implements FormFieldOption {
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
     private Optional<? extends SimpleFormFieldOptionValue> value;
 
+    @JsonProperty("option_type")
+    private OptionType optionType;
+
     @JsonCreator
     public SimpleFormFieldOption(
-            @JsonProperty("label") Optional<String> label,
-            @JsonProperty("value") Optional<? extends SimpleFormFieldOptionValue> value) {
+            @JsonProperty("label") String label,
+            @JsonProperty("value") Optional<? extends SimpleFormFieldOptionValue> value,
+            @JsonProperty("option_type") OptionType optionType) {
         Utils.checkNotNull(label, "label");
         Utils.checkNotNull(value, "value");
+        Utils.checkNotNull(optionType, "optionType");
         this.label = label;
         this.value = value;
+        this.optionType = optionType;
     }
     
-    public SimpleFormFieldOption() {
-        this(Optional.empty(), Optional.empty());
+    public SimpleFormFieldOption(
+            String label,
+            OptionType optionType) {
+        this(label, Optional.empty(), optionType);
     }
 
     @JsonIgnore
-    public Optional<String> label() {
+    public String label() {
         return label;
     }
 
@@ -51,17 +58,17 @@ public class SimpleFormFieldOption {
         return (Optional<SimpleFormFieldOptionValue>) value;
     }
 
+    @JsonIgnore
+    @Override
+    public String optionType() {
+        return Utils.discriminatorToString(optionType);
+    }
+
     public final static Builder builder() {
         return new Builder();
     }
 
     public SimpleFormFieldOption withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
-
-    public SimpleFormFieldOption withLabel(Optional<String> label) {
         Utils.checkNotNull(label, "label");
         this.label = label;
         return this;
@@ -78,6 +85,12 @@ public class SimpleFormFieldOption {
         this.value = value;
         return this;
     }
+
+    public SimpleFormFieldOption withOptionType(OptionType optionType) {
+        Utils.checkNotNull(optionType, "optionType");
+        this.optionType = optionType;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,40 +103,39 @@ public class SimpleFormFieldOption {
         SimpleFormFieldOption other = (SimpleFormFieldOption) o;
         return 
             Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.value, other.value);
+            Objects.deepEquals(this.value, other.value) &&
+            Objects.deepEquals(this.optionType, other.optionType);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             label,
-            value);
+            value,
+            optionType);
     }
     
     @Override
     public String toString() {
         return Utils.toString(SimpleFormFieldOption.class,
                 "label", label,
-                "value", value);
+                "value", value,
+                "optionType", optionType);
     }
     
     public final static class Builder {
  
-        private Optional<String> label = Optional.empty();
+        private String label;
  
-        private Optional<? extends SimpleFormFieldOptionValue> value = Optional.empty();  
+        private Optional<? extends SimpleFormFieldOptionValue> value = Optional.empty();
+ 
+        private OptionType optionType;  
         
         private Builder() {
           // force use of static builder() method
         }
 
         public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        public Builder label(Optional<String> label) {
             Utils.checkNotNull(label, "label");
             this.label = label;
             return this;
@@ -140,11 +152,18 @@ public class SimpleFormFieldOption {
             this.value = value;
             return this;
         }
+
+        public Builder optionType(OptionType optionType) {
+            Utils.checkNotNull(optionType, "optionType");
+            this.optionType = optionType;
+            return this;
+        }
         
         public SimpleFormFieldOption build() {
             return new SimpleFormFieldOption(
                 label,
-                value);
+                value,
+                optionType);
         }
     }
 }

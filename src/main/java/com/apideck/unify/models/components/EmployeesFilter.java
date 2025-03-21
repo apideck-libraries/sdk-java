@@ -70,6 +70,12 @@ public class EmployeesFilter {
     @SpeakeasyMetadata("queryParam:name=department_id")
     private Optional<String> departmentId;
 
+    /**
+     * City to filter on
+     */
+    @SpeakeasyMetadata("queryParam:name=city")
+    private Optional<String> city;
+
     @JsonCreator
     public EmployeesFilter(
             Optional<String> companyId,
@@ -80,7 +86,8 @@ public class EmployeesFilter {
             Optional<String> managerId,
             Optional<? extends EmployeesFilterEmploymentStatus> employmentStatus,
             Optional<String> employeeNumber,
-            Optional<String> departmentId) {
+            Optional<String> departmentId,
+            Optional<String> city) {
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(firstName, "firstName");
@@ -90,6 +97,7 @@ public class EmployeesFilter {
         Utils.checkNotNull(employmentStatus, "employmentStatus");
         Utils.checkNotNull(employeeNumber, "employeeNumber");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(city, "city");
         this.companyId = companyId;
         this.email = email;
         this.firstName = firstName;
@@ -99,10 +107,11 @@ public class EmployeesFilter {
         this.employmentStatus = employmentStatus;
         this.employeeNumber = employeeNumber;
         this.departmentId = departmentId;
+        this.city = city;
     }
     
     public EmployeesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -176,6 +185,14 @@ public class EmployeesFilter {
     @JsonIgnore
     public Optional<String> departmentId() {
         return departmentId;
+    }
+
+    /**
+     * City to filter on
+     */
+    @JsonIgnore
+    public Optional<String> city() {
+        return city;
     }
 
     public final static Builder builder() {
@@ -343,6 +360,24 @@ public class EmployeesFilter {
         this.departmentId = departmentId;
         return this;
     }
+
+    /**
+     * City to filter on
+     */
+    public EmployeesFilter withCity(String city) {
+        Utils.checkNotNull(city, "city");
+        this.city = Optional.ofNullable(city);
+        return this;
+    }
+
+    /**
+     * City to filter on
+     */
+    public EmployeesFilter withCity(Optional<String> city) {
+        Utils.checkNotNull(city, "city");
+        this.city = city;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -362,7 +397,8 @@ public class EmployeesFilter {
             Objects.deepEquals(this.managerId, other.managerId) &&
             Objects.deepEquals(this.employmentStatus, other.employmentStatus) &&
             Objects.deepEquals(this.employeeNumber, other.employeeNumber) &&
-            Objects.deepEquals(this.departmentId, other.departmentId);
+            Objects.deepEquals(this.departmentId, other.departmentId) &&
+            Objects.deepEquals(this.city, other.city);
     }
     
     @Override
@@ -376,7 +412,8 @@ public class EmployeesFilter {
             managerId,
             employmentStatus,
             employeeNumber,
-            departmentId);
+            departmentId,
+            city);
     }
     
     @Override
@@ -390,7 +427,8 @@ public class EmployeesFilter {
                 "managerId", managerId,
                 "employmentStatus", employmentStatus,
                 "employeeNumber", employeeNumber,
-                "departmentId", departmentId);
+                "departmentId", departmentId,
+                "city", city);
     }
     
     public final static class Builder {
@@ -411,7 +449,9 @@ public class EmployeesFilter {
  
         private Optional<String> employeeNumber = Optional.empty();
  
-        private Optional<String> departmentId = Optional.empty();  
+        private Optional<String> departmentId = Optional.empty();
+ 
+        private Optional<String> city = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -578,6 +618,24 @@ public class EmployeesFilter {
             this.departmentId = departmentId;
             return this;
         }
+
+        /**
+         * City to filter on
+         */
+        public Builder city(String city) {
+            Utils.checkNotNull(city, "city");
+            this.city = Optional.ofNullable(city);
+            return this;
+        }
+
+        /**
+         * City to filter on
+         */
+        public Builder city(Optional<String> city) {
+            Utils.checkNotNull(city, "city");
+            this.city = city;
+            return this;
+        }
         
         public EmployeesFilter build() {
             return new EmployeesFilter(
@@ -589,7 +647,8 @@ public class EmployeesFilter {
                 managerId,
                 employmentStatus,
                 employeeNumber,
-                departmentId);
+                departmentId,
+                city);
         }
     }
 }

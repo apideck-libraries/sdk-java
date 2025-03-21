@@ -9,21 +9,18 @@ import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
 /**
- * AddressType - The type of address.
+ * ContactType - The type of the contact.
  */
-public enum AddressType {
-    PRIMARY("primary"),
-    SECONDARY("secondary"),
-    HOME("home"),
-    OFFICE("office"),
-    SHIPPING("shipping"),
-    BILLING("billing"),
-    OTHER("other");
+public enum ContactType {
+    CUSTOMER("customer"),
+    SUPPLIER("supplier"),
+    EMPLOYEE("employee"),
+    PERSONAL("personal");
 
     @JsonValue
     private final String value;
 
-    private AddressType(String value) {
+    private ContactType(String value) {
         this.value = value;
     }
     
@@ -31,8 +28,8 @@ public enum AddressType {
         return value;
     }
     
-    public static Optional<AddressType> fromValue(String value) {
-        for (AddressType o: AddressType.values()) {
+    public static Optional<ContactType> fromValue(String value) {
+        for (ContactType o: ContactType.values()) {
             if (Objects.deepEquals(o.value, value)) {
                 return Optional.of(o);
             }

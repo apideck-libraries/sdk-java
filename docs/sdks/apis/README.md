@@ -43,9 +43,9 @@ public class Application {
                     .status(ApiStatus.BETA)
                     .build())
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

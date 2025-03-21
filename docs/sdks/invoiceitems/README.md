@@ -61,9 +61,9 @@ public class Application {
         sdk.accounting().invoiceItems().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -143,25 +143,25 @@ public class Application {
                     .inventoryDate(LocalDate.parse("2020-10-30"))
                     .type(InvoiceItemTypeType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
-                        .unitPrice(27500.5d)
+                        .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10d)
+                            .rate(10)
                             .build())
                         .build())
                     .purchaseDetails(InvoiceItemPurchaseDetails.builder()
-                        .unitPrice(27500.5d)
+                        .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10d)
+                            .rate(10)
                             .build())
                         .build())
-                    .quantity(1d)
-                    .unitPrice(27500.5d)
+                    .quantity(1)
+                    .unitPrice(27500.5)
                     .assetAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
                         .nominalCode("N091")
@@ -194,11 +194,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -206,7 +210,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -371,25 +377,25 @@ public class Application {
                     .inventoryDate(LocalDate.parse("2020-10-30"))
                     .type(InvoiceItemTypeType.INVENTORY)
                     .salesDetails(InvoiceItemSalesDetails.builder()
-                        .unitPrice(27500.5d)
+                        .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10d)
+                            .rate(10)
                             .build())
                         .build())
                     .purchaseDetails(InvoiceItemPurchaseDetails.builder()
-                        .unitPrice(27500.5d)
+                        .unitPrice(27500.5)
                         .unitOfMeasure("pc.")
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10d)
+                            .rate(10)
                             .build())
                         .build())
-                    .quantity(1d)
-                    .unitPrice(27500.5d)
+                    .quantity(1)
+                    .unitPrice(27500.5)
                     .assetAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
                         .nominalCode("N091")
@@ -426,11 +432,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -438,15 +448,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

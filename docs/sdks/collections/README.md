@@ -52,9 +52,9 @@ public class Application {
         sdk.issueTracking().collections().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

@@ -59,9 +59,9 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -132,21 +132,21 @@ public class Application {
                     .name("GST on Purchases")
                     .code("ABN")
                     .description("Reduced rate GST Purchases")
-                    .effectiveTaxRate(10d)
-                    .totalTaxRate(10d)
+                    .effectiveTaxRate(10)
+                    .totalTaxRate(10)
                     .taxPayableAccountId("123456")
                     .taxRemittedAccountId("123456")
                     .components(List.of(
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10d)
+                            .rate(10)
                             .compound(true)
                             .build(),
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10d)
+                            .rate(10)
                             .compound(true)
                             .build()))
                     .type("NONE")
@@ -160,11 +160,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -172,7 +176,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .customFields(List.of(
@@ -335,27 +341,27 @@ public class Application {
                     .name("GST on Purchases")
                     .code("ABN")
                     .description("Reduced rate GST Purchases")
-                    .effectiveTaxRate(10d)
-                    .totalTaxRate(10d)
+                    .effectiveTaxRate(10)
+                    .totalTaxRate(10)
                     .taxPayableAccountId("123456")
                     .taxRemittedAccountId("123456")
                     .components(List.of(
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10d)
+                            .rate(10)
                             .compound(true)
                             .build(),
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10d)
+                            .rate(10)
                             .compound(true)
                             .build(),
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10d)
+                            .rate(10)
                             .compound(true)
                             .build()))
                     .type("NONE")
@@ -369,11 +375,15 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -381,15 +391,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .customFields(List.of(

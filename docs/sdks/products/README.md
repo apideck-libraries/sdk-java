@@ -47,9 +47,9 @@ public class Application {
         sdk.ecommerce().products().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }

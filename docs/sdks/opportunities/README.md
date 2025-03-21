@@ -47,7 +47,7 @@ public class Application {
                 .serviceId("salesforce")
                 .filter(OpportunitiesFilter.builder()
                     .status("Completed")
-                    .monetaryAmount(75000d)
+                    .monetaryAmount(75000)
                     .build())
                 .sort(OpportunitiesSort.builder()
                     .by(OpportunitiesSortBy.CREATED_AT)
@@ -60,9 +60,9 @@ public class Application {
         sdk.crm().opportunities().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -135,9 +135,9 @@ public class Application {
                     .primaryContactId("12345")
                     .description("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.")
                     .type("Existing Customer - Upgrade")
-                    .monetaryAmount(75000d)
+                    .monetaryAmount(75000)
                     .currency(Currency.USD)
-                    .winProbability(40d)
+                    .winProbability(40)
                     .closeDate(LocalDate.parse("2020-10-30"))
                     .lossReasonId("12345")
                     .lossReason("No budget")
@@ -180,7 +180,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -334,9 +336,9 @@ public class Application {
                     .primaryContactId("12345")
                     .description("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.")
                     .type("Existing Customer - Upgrade")
-                    .monetaryAmount(75000d)
+                    .monetaryAmount(75000)
                     .currency(Currency.USD)
-                    .winProbability(40d)
+                    .winProbability(40)
                     .closeDate(LocalDate.parse("2020-10-30"))
                     .lossReasonId("12345")
                     .lossReason("No budget")
@@ -389,15 +391,21 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
@@ -405,7 +413,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

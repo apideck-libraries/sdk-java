@@ -60,9 +60,9 @@ public class Application {
         sdk.accounting().journalEntries().list()
                 .request(req)
                 .callAsStream()
-            .forEach(item -> {
-               // handle item
-            });
+                .forEach(item -> {
+                   // handle item again
+                });
 
     }
 }
@@ -100,7 +100,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
@@ -113,6 +112,7 @@ import com.apideck.unify.models.components.LinkedSupplierInput;
 import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -139,7 +139,7 @@ public class Application {
         AccountingJournalEntriesAddRequest req = AccountingJournalEntriesAddRequest.builder()
                 .journalEntry(JournalEntryInput.builder()
                     .title("Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry")
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .currency(Currency.USD)
                     .companyId("12345")
                     .lineItems(List.of(
@@ -151,12 +151,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500d)
-                            .subTotal(27500d)
-                            .totalAmount(27500d)
+                            .taxAmount(27500)
+                            .subTotal(27500)
+                            .totalAmount(27500)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -177,7 +177,7 @@ public class Application {
                                 .displayName("Windsurf Shop")
                                 .address(Address.builder()
                                     .id("123")
-                                    .type(AddressType.PRIMARY)
+                                    .type(Type.PRIMARY)
                                     .string("25 Spring Street, Blackburn, VIC 3130")
                                     .name("HQ US")
                                     .line1("Main street")
@@ -212,12 +212,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500d)
-                            .subTotal(27500d)
-                            .totalAmount(27500d)
+                            .taxAmount(27500)
+                            .subTotal(27500)
+                            .totalAmount(27500)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -238,7 +238,7 @@ public class Application {
                                 .displayName("Windsurf Shop")
                                 .address(Address.builder()
                                     .id("123")
-                                    .type(AddressType.PRIMARY)
+                                    .type(Type.PRIMARY)
                                     .string("25 Spring Street, Blackburn, VIC 3130")
                                     .name("HQ US")
                                     .line1("Main street")
@@ -294,7 +294,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -411,7 +413,6 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AddressType;
 import com.apideck.unify.models.components.Currency;
 import com.apideck.unify.models.components.CustomField;
 import com.apideck.unify.models.components.ExtendPaths;
@@ -426,6 +427,7 @@ import com.apideck.unify.models.components.LinkedTaxRateInput;
 import com.apideck.unify.models.components.LinkedTrackingCategory;
 import com.apideck.unify.models.components.PassThroughBody;
 import com.apideck.unify.models.components.Six;
+import com.apideck.unify.models.components.Type;
 import com.apideck.unify.models.components.Value;
 import com.apideck.unify.models.errors.BadRequestResponse;
 import com.apideck.unify.models.errors.NotFoundResponse;
@@ -453,7 +455,7 @@ public class Application {
                 .id("<id>")
                 .journalEntry(JournalEntryInput.builder()
                     .title("Purchase Invoice-Inventory (USD): 2019/02/01 Batch Summary Entry")
-                    .currencyRate(0.69d)
+                    .currencyRate(0.69)
                     .currency(Currency.USD)
                     .companyId("12345")
                     .lineItems(List.of(
@@ -465,12 +467,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500d)
-                            .subTotal(27500d)
-                            .totalAmount(27500d)
+                            .taxAmount(27500)
+                            .subTotal(27500)
+                            .totalAmount(27500)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -491,7 +493,7 @@ public class Application {
                                 .displayName("Windsurf Shop")
                                 .address(Address.builder()
                                     .id("123")
-                                    .type(AddressType.PRIMARY)
+                                    .type(Type.PRIMARY)
                                     .string("25 Spring Street, Blackburn, VIC 3130")
                                     .name("HQ US")
                                     .line1("Main street")
@@ -526,12 +528,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500d)
-                            .subTotal(27500d)
-                            .totalAmount(27500d)
+                            .taxAmount(27500)
+                            .subTotal(27500)
+                            .totalAmount(27500)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -552,7 +554,7 @@ public class Application {
                                 .displayName("Windsurf Shop")
                                 .address(Address.builder()
                                     .id("123")
-                                    .type(AddressType.PRIMARY)
+                                    .type(Type.PRIMARY)
                                     .string("25 Spring Street, Blackburn, VIC 3130")
                                     .name("HQ US")
                                     .line1("Main street")
@@ -587,12 +589,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500d)
-                            .subTotal(27500d)
-                            .totalAmount(27500d)
+                            .taxAmount(27500)
+                            .subTotal(27500)
+                            .totalAmount(27500)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10d)
+                                .rate(10)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -617,7 +619,7 @@ public class Application {
                                 .displayName("Windsurf Shop")
                                 .address(Address.builder()
                                     .id("123")
-                                    .type(AddressType.PRIMARY)
+                                    .type(Type.PRIMARY)
                                     .string("25 Spring Street, Blackburn, VIC 3130")
                                     .name("HQ US")
                                     .line1("Main street")
@@ -683,7 +685,9 @@ public class Application {
                             .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
-                                    .value(Map.ofEntries(\n    Map.entry("TaxClassificationRef", Map.ofEntries(\n    Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())

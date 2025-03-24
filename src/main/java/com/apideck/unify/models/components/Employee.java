@@ -32,6 +32,13 @@ public class Employee {
     private JsonNullable<String> id;
 
     /**
+     * The third-party API ID of original entity
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("downstream_id")
+    private JsonNullable<String> downstreamId;
+
+    /**
      * The first name of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -437,6 +444,7 @@ public class Employee {
     @JsonCreator
     public Employee(
             @JsonProperty("id") JsonNullable<String> id,
+            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("last_name") JsonNullable<String> lastName,
             @JsonProperty("middle_name") JsonNullable<String> middleName,
@@ -503,6 +511,7 @@ public class Employee {
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(downstreamId, "downstreamId");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
         Utils.checkNotNull(middleName, "middleName");
@@ -569,6 +578,7 @@ public class Employee {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
+        this.downstreamId = downstreamId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -637,7 +647,7 @@ public class Employee {
     }
     
     public Employee() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -646,6 +656,14 @@ public class Employee {
     @JsonIgnore
     public JsonNullable<String> id() {
         return id;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    @JsonIgnore
+    public JsonNullable<String> downstreamId() {
+        return downstreamId;
     }
 
     /**
@@ -1158,6 +1176,24 @@ public class Employee {
     public Employee withId(JsonNullable<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public Employee withDownstreamId(String downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = JsonNullable.of(downstreamId);
+        return this;
+    }
+
+    /**
+     * The third-party API ID of original entity
+     */
+    public Employee withDownstreamId(JsonNullable<String> downstreamId) {
+        Utils.checkNotNull(downstreamId, "downstreamId");
+        this.downstreamId = downstreamId;
         return this;
     }
 
@@ -2238,6 +2274,7 @@ public class Employee {
         Employee other = (Employee) o;
         return 
             Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
             Objects.deepEquals(this.firstName, other.firstName) &&
             Objects.deepEquals(this.lastName, other.lastName) &&
             Objects.deepEquals(this.middleName, other.middleName) &&
@@ -2309,6 +2346,7 @@ public class Employee {
     public int hashCode() {
         return Objects.hash(
             id,
+            downstreamId,
             firstName,
             lastName,
             middleName,
@@ -2380,6 +2418,7 @@ public class Employee {
     public String toString() {
         return Utils.toString(Employee.class,
                 "id", id,
+                "downstreamId", downstreamId,
                 "firstName", firstName,
                 "lastName", lastName,
                 "middleName", middleName,
@@ -2450,6 +2489,8 @@ public class Employee {
     public final static class Builder {
  
         private JsonNullable<String> id = JsonNullable.undefined();
+ 
+        private JsonNullable<String> downstreamId = JsonNullable.undefined();
  
         private JsonNullable<String> firstName = JsonNullable.undefined();
  
@@ -2601,6 +2642,24 @@ public class Employee {
         public Builder id(JsonNullable<String> id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(String downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = JsonNullable.of(downstreamId);
+            return this;
+        }
+
+        /**
+         * The third-party API ID of original entity
+         */
+        public Builder downstreamId(JsonNullable<String> downstreamId) {
+            Utils.checkNotNull(downstreamId, "downstreamId");
+            this.downstreamId = downstreamId;
             return this;
         }
 
@@ -3673,6 +3732,7 @@ public class Employee {
         public Employee build() {
             return new Employee(
                 id,
+                downstreamId,
                 firstName,
                 lastName,
                 middleName,

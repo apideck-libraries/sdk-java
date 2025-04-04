@@ -23,11 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TimeOffRequestStatus;
 import com.apideck.unify.models.components.TimeOffRequestsFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -99,18 +95,8 @@ Create Time Off Request
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Notes;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.RequestType;
-import com.apideck.unify.models.components.TimeOffRequestInput;
-import com.apideck.unify.models.components.TimeOffRequestStatusStatus;
-import com.apideck.unify.models.components.Units;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAddRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAddResponse;
 import java.lang.Exception;
@@ -225,11 +211,7 @@ Get Time Off Request
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsOneRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsOneResponse;
 import java.lang.Exception;
@@ -293,18 +275,8 @@ Update Time Off Request
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Notes;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.RequestType;
-import com.apideck.unify.models.components.TimeOffRequestInput;
-import com.apideck.unify.models.components.TimeOffRequestStatusStatus;
-import com.apideck.unify.models.components.Units;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsUpdateRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsUpdateResponse;
 import java.lang.Exception;
@@ -443,11 +415,7 @@ Delete Time Off Request
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsDeleteRequest;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsDeleteResponse;
 import java.lang.Exception;

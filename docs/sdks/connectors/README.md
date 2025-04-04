@@ -20,9 +20,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.models.components.UnifiedApiId;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
+import com.apideck.unify.models.errors.*;
 import java.lang.Exception;
 
 public class Application {
@@ -36,9 +34,6 @@ public class Application {
             .build();
 
         sdk.connector().connectors().list()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .cursor("<value>")
-                .limit(20L)
                 .filter(ConnectorsFilter.builder()
                     .unifiedApi(UnifiedApiId.FILE_STORAGE)
                     .build())
@@ -83,9 +78,7 @@ Get Connector
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.ConnectorConnectorsOneResponse;
 import java.lang.Exception;
 
@@ -100,7 +93,6 @@ public class Application {
             .build();
 
         ConnectorConnectorsOneResponse res = sdk.connector().connectors().get()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .id("<id>")
                 .call();
 

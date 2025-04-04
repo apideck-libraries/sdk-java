@@ -21,14 +21,8 @@ List opportunities
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.OpportunitiesFilter;
-import com.apideck.unify.models.components.OpportunitiesSort;
-import com.apideck.unify.models.components.OpportunitiesSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -99,18 +93,8 @@ Create opportunity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.OpportunityInput;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesAddRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesAddResponse;
 import java.lang.Exception;
@@ -231,11 +215,7 @@ Get opportunity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesOneRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesOneResponse;
 import java.lang.Exception;
@@ -298,19 +278,8 @@ Update opportunity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.OpportunityInput;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesUpdateRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesUpdateResponse;
 import java.lang.Exception;
@@ -464,11 +433,7 @@ Delete opportunity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesDeleteRequest;
 import com.apideck.unify.models.operations.CrmOpportunitiesDeleteResponse;
 import java.lang.Exception;

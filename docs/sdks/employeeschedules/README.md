@@ -17,11 +17,7 @@ List schedules for employee, a schedule is a work pattern, not the actual worked
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllRequest;
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllResponse;
 import java.lang.Exception;

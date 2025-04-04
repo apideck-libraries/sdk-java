@@ -21,14 +21,8 @@ List companies
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CompaniesFilter;
-import com.apideck.unify.models.components.CompaniesSort;
-import com.apideck.unify.models.components.CompaniesSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -98,29 +92,8 @@ Create company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.CompanyInput;
-import com.apideck.unify.models.components.CompanyRowType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.SocialLink;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesAddRequest;
 import com.apideck.unify.models.operations.CrmCompaniesAddResponse;
 import java.lang.Exception;
@@ -416,11 +389,7 @@ Get company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesOneRequest;
 import com.apideck.unify.models.operations.CrmCompaniesOneResponse;
 import java.lang.Exception;
@@ -483,30 +452,8 @@ Update company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.CompanyInput;
-import com.apideck.unify.models.components.CompanyRowType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.SocialLink;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesUpdateRequest;
 import com.apideck.unify.models.operations.CrmCompaniesUpdateResponse;
 import java.lang.Exception;
@@ -781,11 +728,7 @@ Delete company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesDeleteRequest;
 import com.apideck.unify.models.operations.CrmCompaniesDeleteResponse;
 import java.lang.Exception;

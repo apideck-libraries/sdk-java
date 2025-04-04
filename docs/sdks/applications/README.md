@@ -21,11 +21,7 @@ List Applications
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicationsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -88,16 +84,8 @@ Create Application
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ApplicationInput;
-import com.apideck.unify.models.components.ApplicationStatus;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Stage;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicationsAddRequest;
 import com.apideck.unify.models.operations.AtsApplicationsAddResponse;
 import java.lang.Exception;
@@ -202,11 +190,7 @@ Get Application
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicationsOneRequest;
 import com.apideck.unify.models.operations.AtsApplicationsOneResponse;
 import java.lang.Exception;
@@ -268,16 +252,8 @@ Update Application
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ApplicationInput;
-import com.apideck.unify.models.components.ApplicationStatus;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Stage;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicationsUpdateRequest;
 import com.apideck.unify.models.operations.AtsApplicationsUpdateResponse;
 import java.lang.Exception;
@@ -405,11 +381,7 @@ Delete Application
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicationsDeleteRequest;
 import com.apideck.unify.models.operations.AtsApplicationsDeleteResponse;
 import java.lang.Exception;

@@ -21,11 +21,7 @@ List Companies
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisCompaniesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -89,24 +85,8 @@ Create Company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.HrisCompanyInput;
-import com.apideck.unify.models.components.HrisCompanyStatus;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisCompaniesAddRequest;
 import com.apideck.unify.models.operations.HrisCompaniesAddResponse;
 import java.lang.Exception;
@@ -288,11 +268,7 @@ Get Company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisCompaniesOneRequest;
 import com.apideck.unify.models.operations.HrisCompaniesOneResponse;
 import java.lang.Exception;
@@ -355,24 +331,8 @@ Update Company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.HrisCompanyInput;
-import com.apideck.unify.models.components.HrisCompanyStatus;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Website;
-import com.apideck.unify.models.components.WebsiteType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisCompaniesUpdateRequest;
 import com.apideck.unify.models.operations.HrisCompaniesUpdateResponse;
 import java.lang.Exception;
@@ -607,11 +567,7 @@ Delete Company
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisCompaniesDeleteRequest;
 import com.apideck.unify.models.operations.HrisCompaniesDeleteResponse;
 import java.lang.Exception;

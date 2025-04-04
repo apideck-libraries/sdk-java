@@ -18,14 +18,8 @@ List Orders
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.EcommerceOrdersFilter;
-import com.apideck.unify.models.components.OrdersSort;
-import com.apideck.unify.models.components.OrdersSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceOrdersAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -98,11 +92,7 @@ Get Order
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceOrdersOneRequest;
 import com.apideck.unify.models.operations.EcommerceOrdersOneResponse;
 import java.lang.Exception;

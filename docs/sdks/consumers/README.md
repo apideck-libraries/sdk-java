@@ -23,11 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ConsumerInput;
 import com.apideck.unify.models.components.ConsumerMetadata;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersAddResponse;
 import java.lang.Exception;
 
@@ -42,7 +38,6 @@ public class Application {
             .build();
 
         VaultConsumersAddResponse res = sdk.vault().consumers().create()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumer(ConsumerInput.builder()
                     .consumerId("test_consumer_id")
                     .metadata(ConsumerMetadata.builder()
@@ -94,11 +89,7 @@ This endpoint includes all application consumers, along with an aggregated count
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import java.lang.Exception;
 
 public class Application {
@@ -112,9 +103,6 @@ public class Application {
             .build();
 
         sdk.vault().consumers().list()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .cursor("<value>")
-                .limit(20L)
                 .callAsStream()
                 .forEach(item -> {
                    // handle item again
@@ -158,11 +146,7 @@ Consumer detail including their aggregated counts with the connections they have
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersOneResponse;
 import java.lang.Exception;
 
@@ -177,7 +161,6 @@ public class Application {
             .build();
 
         VaultConsumersOneResponse res = sdk.vault().consumers().get()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumerId("test_user_id")
                 .call();
 
@@ -222,11 +205,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ConsumerMetadata;
 import com.apideck.unify.models.components.UpdateConsumerRequest;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersUpdateResponse;
 import java.lang.Exception;
 
@@ -241,7 +220,6 @@ public class Application {
             .build();
 
         VaultConsumersUpdateResponse res = sdk.vault().consumers().update()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumerId("test_user_id")
                 .updateConsumerRequest(UpdateConsumerRequest.builder()
                     .metadata(ConsumerMetadata.builder()
@@ -293,11 +271,7 @@ Delete consumer and all their connections, including credentials.
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumersDeleteResponse;
 import java.lang.Exception;
 
@@ -312,7 +286,6 @@ public class Application {
             .build();
 
         VaultConsumersDeleteResponse res = sdk.vault().consumers().delete()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumerId("test_user_id")
                 .call();
 

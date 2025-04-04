@@ -21,14 +21,8 @@ List activities
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ActivitiesFilter;
-import com.apideck.unify.models.components.ActivitiesSort;
-import com.apideck.unify.models.components.ActivitiesSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,23 +93,8 @@ Create activity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ActivityAttendeeInput;
-import com.apideck.unify.models.components.ActivityAttendeeStatus;
-import com.apideck.unify.models.components.ActivityInput;
-import com.apideck.unify.models.components.ActivityType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.ShowAs;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesAddRequest;
 import com.apideck.unify.models.operations.CrmActivitiesAddResponse;
 import java.lang.Exception;
@@ -295,11 +274,7 @@ Get activity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesOneRequest;
 import com.apideck.unify.models.operations.CrmActivitiesOneResponse;
 import java.lang.Exception;
@@ -362,24 +337,8 @@ Update activity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ActivityAttendeeInput;
-import com.apideck.unify.models.components.ActivityAttendeeStatus;
-import com.apideck.unify.models.components.ActivityInput;
-import com.apideck.unify.models.components.ActivityType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.ShowAs;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesUpdateRequest;
 import com.apideck.unify.models.operations.CrmActivitiesUpdateResponse;
 import java.lang.Exception;
@@ -607,11 +566,7 @@ Delete activity
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesDeleteRequest;
 import com.apideck.unify.models.operations.CrmActivitiesDeleteResponse;
 import java.lang.Exception;

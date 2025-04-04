@@ -17,9 +17,7 @@ Get API Resource Coverage
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneResponse;
 import java.lang.Exception;
 
@@ -34,7 +32,6 @@ public class Application {
             .build();
 
         ConnectorApiResourceCoverageOneResponse res = sdk.connector().apiResourceCoverage().get()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .id("<id>")
                 .resourceId("<id>")
                 .call();

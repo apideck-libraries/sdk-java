@@ -21,14 +21,8 @@ List Journal Entries
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.JournalEntriesFilter;
-import com.apideck.unify.models.components.JournalEntriesSort;
-import com.apideck.unify.models.components.JournalEntriesSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,26 +93,8 @@ Create Journal Entry
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.JournalEntryInput;
-import com.apideck.unify.models.components.JournalEntryLineItemInput;
-import com.apideck.unify.models.components.JournalEntryLineItemType;
-import com.apideck.unify.models.components.LinkedCustomerInput;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAddRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesAddResponse;
 import java.lang.Exception;
@@ -202,6 +178,8 @@ public class Application {
                                     .rowVersion("1-12345")
                                     .build())
                                 .build())
+                            .departmentId("12345")
+                            .locationId("12345")
                             .lineNumber(1L)
                             .build(),
                         JournalEntryLineItemInput.builder()
@@ -263,6 +241,8 @@ public class Application {
                                     .rowVersion("1-12345")
                                     .build())
                                 .build())
+                            .departmentId("12345")
+                            .locationId("12345")
                             .lineNumber(1L)
                             .build()))
                     .memo("Thank you for your business and have a great day!")
@@ -345,11 +325,7 @@ Get Journal Entry
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingJournalEntriesOneRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesOneResponse;
 import java.lang.Exception;
@@ -412,28 +388,8 @@ Update Journal Entry
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.JournalEntryInput;
-import com.apideck.unify.models.components.JournalEntryLineItemInput;
-import com.apideck.unify.models.components.JournalEntryLineItemType;
-import com.apideck.unify.models.components.LinkedCustomerInput;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesUpdateResponse;
 import java.lang.Exception;
@@ -518,6 +474,8 @@ public class Application {
                                     .rowVersion("1-12345")
                                     .build())
                                 .build())
+                            .departmentId("12345")
+                            .locationId("12345")
                             .lineNumber(1L)
                             .build(),
                         JournalEntryLineItemInput.builder()
@@ -579,6 +537,8 @@ public class Application {
                                     .rowVersion("1-12345")
                                     .build())
                                 .build())
+                            .departmentId("12345")
+                            .locationId("12345")
                             .lineNumber(1L)
                             .build(),
                         JournalEntryLineItemInput.builder()
@@ -644,6 +604,8 @@ public class Application {
                                     .rowVersion("1-12345")
                                     .build())
                                 .build())
+                            .departmentId("12345")
+                            .locationId("12345")
                             .lineNumber(1L)
                             .build()))
                     .memo("Thank you for your business and have a great day!")
@@ -736,11 +698,7 @@ Delete Journal Entry
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingJournalEntriesDeleteResponse;
 import java.lang.Exception;

@@ -6,6 +6,7 @@
 ### Available Operations
 
 * [list](#list) - List Attachments
+* [upload](#upload) - Upload attachment
 * [get](#get) - Get Attachment
 * [delete](#delete) - Delete Attachment
 * [download](#download) - Download Attachment
@@ -21,11 +22,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AttachmentReferenceType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsAllRequest;
 import java.lang.Exception;
 
@@ -78,6 +75,74 @@ public class Application {
 | models/errors/UnprocessableResponse   | 422                                   | application/json                      |
 | models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
 
+## upload
+
+Upload attachment
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.AttachmentReferenceType;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingAttachmentsUploadRequest;
+import com.apideck.unify.models.operations.AccountingAttachmentsUploadResponse;
+import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+            .build();
+
+        AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
+                .referenceType(AttachmentReferenceType.INVOICE)
+                .referenceId("123456")
+                .requestBody("0x8cc9e675ad".getBytes(StandardCharsets.UTF_8))
+                .xApideckMetadata("{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}")
+                .serviceId("salesforce")
+                .build();
+
+        AccountingAttachmentsUploadResponse res = sdk.accounting().attachments().upload()
+                .request(req)
+                .call();
+
+        if (res.createAttachmentResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                           | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `request`                                                                                           | [AccountingAttachmentsUploadRequest](../../models/operations/AccountingAttachmentsUploadRequest.md) | :heavy_check_mark:                                                                                  | The request object to use for the request.                                                          |
+| `serverURL`                                                                                         | *String*                                                                                            | :heavy_minus_sign:                                                                                  | An optional server URL to use.                                                                      |
+
+### Response
+
+**[AccountingAttachmentsUploadResponse](../../models/operations/AccountingAttachmentsUploadResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
 ## get
 
 Get Attachment
@@ -89,11 +154,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AttachmentReferenceType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsOneRequest;
 import com.apideck.unify.models.operations.AccountingAttachmentsOneResponse;
 import java.lang.Exception;
@@ -159,11 +220,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AttachmentReferenceType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingAttachmentsDeleteResponse;
 import java.lang.Exception;
@@ -228,11 +285,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AttachmentReferenceType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsDownloadRequest;
 import com.apideck.unify.models.operations.AccountingAttachmentsDownloadResponse;
 import java.lang.Exception;

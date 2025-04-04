@@ -21,14 +21,8 @@ List Credit Notes
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreditNotesFilter;
-import com.apideck.unify.models.components.CreditNotesSort;
-import com.apideck.unify.models.components.CreditNotesSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,29 +93,8 @@ Create Credit Note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AllocationInput;
-import com.apideck.unify.models.components.CreditNoteInput;
-import com.apideck.unify.models.components.CreditNoteStatus;
-import com.apideck.unify.models.components.CreditNoteType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceLineItemInput;
-import com.apideck.unify.models.components.InvoiceLineItemType;
-import com.apideck.unify.models.components.LinkedCustomerInput;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesAddRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesAddResponse;
 import java.lang.Exception;
@@ -182,8 +155,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -236,8 +209,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -443,11 +416,7 @@ Get Credit Note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesOneRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesOneResponse;
 import java.lang.Exception;
@@ -510,30 +479,8 @@ Update Credit Note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.AllocationInput;
-import com.apideck.unify.models.components.CreditNoteInput;
-import com.apideck.unify.models.components.CreditNoteStatus;
-import com.apideck.unify.models.components.CreditNoteType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceLineItemInput;
-import com.apideck.unify.models.components.InvoiceLineItemType;
-import com.apideck.unify.models.components.LinkedCustomerInput;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesUpdateResponse;
 import java.lang.Exception;
@@ -595,8 +542,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -653,8 +600,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -707,8 +654,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -923,11 +870,7 @@ Delete Credit Note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingCreditNotesDeleteResponse;
 import java.lang.Exception;

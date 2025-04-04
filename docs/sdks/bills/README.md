@@ -21,14 +21,8 @@ List Bills
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.BillsFilter;
-import com.apideck.unify.models.components.BillsSort;
-import com.apideck.unify.models.components.By;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,29 +93,8 @@ Create Bill
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.BillInput;
-import com.apideck.unify.models.components.BillLineItemInput;
-import com.apideck.unify.models.components.BillLineItemType;
-import com.apideck.unify.models.components.BillStatus;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsAddRequest;
 import com.apideck.unify.models.operations.AccountingBillsAddResponse;
 import java.lang.Exception;
@@ -195,8 +168,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -235,8 +208,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -294,6 +267,7 @@ public class Application {
                         .currency(Currency.USD)
                         .build())
                     .discountPercentage(5.5)
+                    .sourceDocumentUrl("https://www.invoicesolution.com/bill/123456")
                     .trackingCategories(List.of(
                         LinkedTrackingCategory.builder()
                             .id("123456")
@@ -368,11 +342,7 @@ Get Bill
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsOneRequest;
 import com.apideck.unify.models.operations.AccountingBillsOneResponse;
 import java.lang.Exception;
@@ -435,31 +405,8 @@ Update Bill
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.BillInput;
-import com.apideck.unify.models.components.BillLineItemInput;
-import com.apideck.unify.models.components.BillLineItemType;
-import com.apideck.unify.models.components.BillStatus;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingBillsUpdateResponse;
 import java.lang.Exception;
@@ -534,8 +481,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -574,8 +521,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -614,8 +561,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -677,6 +624,7 @@ public class Application {
                         .currency(Currency.USD)
                         .build())
                     .discountPercentage(5.5)
+                    .sourceDocumentUrl("https://www.invoicesolution.com/bill/123456")
                     .trackingCategories(List.of(
                         LinkedTrackingCategory.builder()
                             .id("123456")
@@ -761,11 +709,7 @@ Delete Bill
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingBillsDeleteResponse;
 import java.lang.Exception;

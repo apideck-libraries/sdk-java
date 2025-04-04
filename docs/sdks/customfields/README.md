@@ -18,11 +18,7 @@ This endpoint returns an custom fields on a connection resource.
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultCustomFieldsAllRequest;
 import com.apideck.unify.models.operations.VaultCustomFieldsAllResponse;
 import java.lang.Exception;

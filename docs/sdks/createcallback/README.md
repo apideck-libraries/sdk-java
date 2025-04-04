@@ -19,11 +19,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.CreateCallbackState;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultCreateCallbackStateRequest;
 import com.apideck.unify.models.operations.VaultCreateCallbackStateResponse;
 import java.lang.Exception;

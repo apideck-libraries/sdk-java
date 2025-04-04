@@ -21,11 +21,7 @@ List notes
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -89,14 +85,8 @@ Create note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.NoteInput;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesAddRequest;
 import com.apideck.unify.models.operations.CrmNotesAddResponse;
 import java.lang.Exception;
@@ -202,11 +192,7 @@ Get note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesOneRequest;
 import com.apideck.unify.models.operations.CrmNotesOneResponse;
 import java.lang.Exception;
@@ -269,14 +255,8 @@ Update note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.NoteInput;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesUpdateRequest;
 import com.apideck.unify.models.operations.CrmNotesUpdateResponse;
 import java.lang.Exception;
@@ -405,11 +385,7 @@ Delete note
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesDeleteRequest;
 import com.apideck.unify.models.operations.CrmNotesDeleteResponse;
 import java.lang.Exception;

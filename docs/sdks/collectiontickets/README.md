@@ -21,14 +21,8 @@ List Tickets
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.IssuesFilter;
-import com.apideck.unify.models.components.TicketsSort;
-import com.apideck.unify.models.components.TicketsSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
 import java.lang.Exception;
 import java.util.List;
@@ -101,17 +95,8 @@ Create Ticket
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AssigneeInput;
-import com.apideck.unify.models.components.CollectionTagInput;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Priority;
-import com.apideck.unify.models.components.TicketInput;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAddRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAddResponse;
 import java.lang.Exception;
@@ -220,11 +205,7 @@ Get Ticket
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsOneRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsOneResponse;
 import java.lang.Exception;
@@ -288,17 +269,8 @@ Update Ticket
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AssigneeInput;
-import com.apideck.unify.models.components.CollectionTagInput;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Priority;
-import com.apideck.unify.models.components.TicketInput;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsUpdateRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsUpdateResponse;
 import java.lang.Exception;
@@ -429,11 +401,7 @@ Delete Ticket
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsDeleteRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsDeleteResponse;
 import java.lang.Exception;

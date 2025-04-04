@@ -18,11 +18,7 @@ List Jobs
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsJobsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -86,11 +82,7 @@ Get Job
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsJobsOneRequest;
 import com.apideck.unify.models.operations.AtsJobsOneResponse;
 import java.lang.Exception;

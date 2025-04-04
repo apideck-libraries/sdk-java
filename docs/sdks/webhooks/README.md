@@ -21,11 +21,7 @@ List all webhook subscriptions
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import java.lang.Exception;
 
 public class Application {
@@ -39,9 +35,6 @@ public class Application {
             .build();
 
         sdk.webhook().webhooks().list()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .cursor("<value>")
-                .limit(20L)
                 .callAsStream()
                 .forEach(item -> {
                    // handle item again
@@ -84,15 +77,8 @@ Create a webhook subscription to receive events
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreateWebhookRequest;
-import com.apideck.unify.models.components.Status;
-import com.apideck.unify.models.components.UnifiedApiId;
-import com.apideck.unify.models.components.WebhookEventType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.WebhookWebhooksAddResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -108,7 +94,6 @@ public class Application {
             .build();
 
         WebhookWebhooksAddResponse res = sdk.webhook().webhooks().create()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .createWebhookRequest(CreateWebhookRequest.builder()
                     .unifiedApi(UnifiedApiId.CRM)
                     .status(Status.ENABLED)
@@ -159,11 +144,7 @@ Get the webhook subscription details
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.WebhookWebhooksOneResponse;
 import java.lang.Exception;
 
@@ -179,7 +160,6 @@ public class Application {
 
         WebhookWebhooksOneResponse res = sdk.webhook().webhooks().get()
                 .id("<id>")
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .call();
 
         if (res.getWebhookResponse().isPresent()) {
@@ -221,14 +201,8 @@ Update a webhook subscription
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Status;
-import com.apideck.unify.models.components.UpdateWebhookRequest;
-import com.apideck.unify.models.components.WebhookEventType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.WebhookWebhooksUpdateResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -245,7 +219,6 @@ public class Application {
 
         WebhookWebhooksUpdateResponse res = sdk.webhook().webhooks().update()
                 .id("<id>")
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .updateWebhookRequest(UpdateWebhookRequest.builder()
                     .description("A description")
                     .status(Status.ENABLED)
@@ -296,11 +269,7 @@ Delete a webhook subscription
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.WebhookWebhooksDeleteResponse;
 import java.lang.Exception;
 
@@ -316,7 +285,6 @@ public class Application {
 
         WebhookWebhooksDeleteResponse res = sdk.webhook().webhooks().delete()
                 .id("<id>")
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .call();
 
         if (res.deleteWebhookResponse().isPresent()) {

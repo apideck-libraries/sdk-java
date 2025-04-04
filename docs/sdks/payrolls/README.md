@@ -19,11 +19,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.PayrollsFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisPayrollsAllRequest;
 import com.apideck.unify.models.operations.HrisPayrollsAllResponse;
 import java.lang.Exception;
@@ -92,11 +88,7 @@ Get Payroll
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisPayrollsOneRequest;
 import com.apideck.unify.models.operations.HrisPayrollsOneResponse;
 import java.lang.Exception;

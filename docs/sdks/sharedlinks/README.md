@@ -21,11 +21,7 @@ List SharedLinks
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -89,15 +85,8 @@ Create Shared Link
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Scope;
-import com.apideck.unify.models.components.SharedLinkInput;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksAddRequest;
 import com.apideck.unify.models.operations.FileStorageSharedLinksAddResponse;
 import java.lang.Exception;
@@ -198,11 +187,7 @@ Get Shared Link
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksOneRequest;
 import com.apideck.unify.models.operations.FileStorageSharedLinksOneResponse;
 import java.lang.Exception;
@@ -265,15 +250,8 @@ Update Shared Link
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Scope;
-import com.apideck.unify.models.components.SharedLinkInput;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksUpdateRequest;
 import com.apideck.unify.models.operations.FileStorageSharedLinksUpdateResponse;
 import java.lang.Exception;
@@ -397,11 +375,7 @@ Delete Shared Link
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksDeleteRequest;
 import com.apideck.unify.models.operations.FileStorageSharedLinksDeleteResponse;
 import java.lang.Exception;

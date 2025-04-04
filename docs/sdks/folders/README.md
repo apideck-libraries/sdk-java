@@ -21,14 +21,8 @@ Create Folder
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreateFolderRequest;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFoldersAddRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersAddResponse;
 import java.lang.Exception;
@@ -131,11 +125,7 @@ Get Folder
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFoldersOneRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersOneResponse;
 import java.lang.Exception;
@@ -198,14 +188,8 @@ Rename or move Folder
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.UpdateFolderRequest;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFoldersUpdateRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersUpdateResponse;
 import java.lang.Exception;
@@ -329,11 +313,7 @@ Delete Folder
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFoldersDeleteRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersDeleteResponse;
 import java.lang.Exception;
@@ -395,14 +375,8 @@ Copy Folder
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CopyFolderRequest;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFoldersCopyRequest;
 import com.apideck.unify.models.operations.FileStorageFoldersCopyResponse;
 import java.lang.Exception;

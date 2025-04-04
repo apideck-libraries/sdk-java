@@ -21,11 +21,7 @@ List Expenses
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesAllRequest;
 import java.lang.Exception;
 
@@ -85,22 +81,8 @@ Create Expense
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExpenseInput;
-import com.apideck.unify.models.components.ExpenseLineItemInput;
-import com.apideck.unify.models.components.ExpensePaymentType;
-import com.apideck.unify.models.components.ExpenseType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesAddRequest;
 import com.apideck.unify.models.operations.AccountingExpensesAddResponse;
 import java.lang.Exception;
@@ -138,6 +120,7 @@ public class Application {
                             .customerId("12345")
                             .departmentId("12345")
                             .locationId("12345")
+                            .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10)
@@ -263,11 +246,7 @@ Get Expense
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesOneRequest;
 import com.apideck.unify.models.operations.AccountingExpensesOneResponse;
 import java.lang.Exception;
@@ -329,23 +308,8 @@ Update Expense
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExpenseInput;
-import com.apideck.unify.models.components.ExpenseLineItemInput;
-import com.apideck.unify.models.components.ExpensePaymentType;
-import com.apideck.unify.models.components.ExpenseType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingExpensesUpdateResponse;
 import java.lang.Exception;
@@ -384,6 +348,7 @@ public class Application {
                             .customerId("12345")
                             .departmentId("12345")
                             .locationId("12345")
+                            .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10)
@@ -406,6 +371,7 @@ public class Application {
                             .customerId("12345")
                             .departmentId("12345")
                             .locationId("12345")
+                            .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10)
@@ -432,6 +398,7 @@ public class Application {
                             .customerId("12345")
                             .departmentId("12345")
                             .locationId("12345")
+                            .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
                                 .rate(10)
@@ -552,11 +519,7 @@ Delete Expense
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingExpensesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingExpensesDeleteResponse;
 import java.lang.Exception;

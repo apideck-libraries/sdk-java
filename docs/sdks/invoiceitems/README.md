@@ -21,15 +21,8 @@ List Invoice Items
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.InvoiceItemType;
-import com.apideck.unify.models.components.InvoiceItemsFilter;
-import com.apideck.unify.models.components.InvoiceItemsSort;
-import com.apideck.unify.models.components.InvoiceItemsSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -100,20 +93,8 @@ Create Invoice Item
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceItemInput;
-import com.apideck.unify.models.components.InvoiceItemPurchaseDetails;
-import com.apideck.unify.models.components.InvoiceItemSalesDetails;
-import com.apideck.unify.models.components.InvoiceItemTypeType;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAddRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsAddResponse;
 import java.lang.Exception;
@@ -187,6 +168,10 @@ public class Application {
                             .name("New York")
                             .build()))
                     .active(true)
+                    .departmentId("12345")
+                    .locationId("12345")
+                    .subsidiaryId("12345")
+                    .taxScheduleId("123456")
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -263,11 +248,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.InvoiceItemFilter;
 import com.apideck.unify.models.components.InvoiceItemFilterInvoiceItemType;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsOneRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsOneResponse;
 import java.lang.Exception;
@@ -333,20 +314,8 @@ Update Invoice Item
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceItemInput;
-import com.apideck.unify.models.components.InvoiceItemPurchaseDetails;
-import com.apideck.unify.models.components.InvoiceItemSalesDetails;
-import com.apideck.unify.models.components.InvoiceItemTypeType;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsUpdateResponse;
 import java.lang.Exception;
@@ -425,6 +394,10 @@ public class Application {
                             .name("New York")
                             .build()))
                     .active(true)
+                    .departmentId("12345")
+                    .locationId("12345")
+                    .subsidiaryId("12345")
+                    .taxScheduleId("123456")
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
@@ -511,11 +484,7 @@ Delete Invoice Item
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingInvoiceItemsDeleteResponse;
 import java.lang.Exception;

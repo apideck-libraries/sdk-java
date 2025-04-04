@@ -18,11 +18,7 @@ Get consumer request counts within a given datetime range.
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllResponse;
 import java.lang.Exception;
 
@@ -37,7 +33,6 @@ public class Application {
             .build();
 
         VaultConsumerRequestCountsAllResponse res = sdk.vault().consumerRequestCounts().list()
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumerId("test_user_id")
                 .startDatetime("2021-05-01T12:00:00.000Z")
                 .endDatetime("2021-05-30T12:00:00.000Z")

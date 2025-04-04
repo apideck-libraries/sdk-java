@@ -22,11 +22,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountingLocationsFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsAllRequest;
 import java.lang.Exception;
 
@@ -90,18 +86,8 @@ Create Location
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountingLocationInput;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LocationStatus;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.SubsidiaryReferenceInput;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsAddRequest;
 import com.apideck.unify.models.operations.AccountingLocationsAddResponse;
 import java.lang.Exception;
@@ -252,11 +238,7 @@ Get Location
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsOneRequest;
 import com.apideck.unify.models.operations.AccountingLocationsOneResponse;
 import java.lang.Exception;
@@ -319,18 +301,8 @@ Update Location
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountingLocationInput;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LocationStatus;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.SubsidiaryReferenceInput;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingLocationsUpdateResponse;
 import java.lang.Exception;
@@ -526,11 +498,7 @@ Delete Location
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingLocationsDeleteResponse;
 import java.lang.Exception;

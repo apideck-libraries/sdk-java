@@ -21,11 +21,7 @@ List Messages
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesAllRequest;
 import java.lang.Exception;
 
@@ -86,15 +82,8 @@ Create Message
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.MessageInput;
-import com.apideck.unify.models.components.MessageType;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesAddRequest;
 import com.apideck.unify.models.operations.SmsMessagesAddResponse;
 import java.lang.Exception;
@@ -202,11 +191,7 @@ Get Message
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesOneRequest;
 import com.apideck.unify.models.operations.SmsMessagesOneResponse;
 import java.lang.Exception;
@@ -269,15 +254,8 @@ Update Message
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.MessageInput;
-import com.apideck.unify.models.components.MessageType;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesUpdateRequest;
 import com.apideck.unify.models.operations.SmsMessagesUpdateResponse;
 import java.lang.Exception;
@@ -408,11 +386,7 @@ Delete Message
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesDeleteRequest;
 import com.apideck.unify.models.operations.SmsMessagesDeleteResponse;
 import java.lang.Exception;

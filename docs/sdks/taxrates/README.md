@@ -23,11 +23,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -98,18 +94,8 @@ Create Tax Rate
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Components;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.TaxRateInput;
-import com.apideck.unify.models.components.TaxRateStatus;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAddRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesAddResponse;
 import java.lang.Exception;
@@ -238,11 +224,7 @@ Get Tax Rate. Note: Not all connectors return the actual rate/percentage value. 
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesOneRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesOneResponse;
 import java.lang.Exception;
@@ -305,19 +287,8 @@ Update Tax Rate
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Components;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.Four;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.TaxRateInput;
-import com.apideck.unify.models.components.TaxRateStatus;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesUpdateRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesUpdateResponse;
 import java.lang.Exception;
@@ -468,11 +439,7 @@ Delete Tax Rate
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesDeleteRequest;
 import com.apideck.unify.models.operations.AccountingTaxRatesDeleteResponse;
 import java.lang.Exception;

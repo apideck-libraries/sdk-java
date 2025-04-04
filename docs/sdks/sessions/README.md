@@ -21,16 +21,8 @@ Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.ConsumerMetadata;
-import com.apideck.unify.models.components.Session;
-import com.apideck.unify.models.components.SessionSettings;
-import com.apideck.unify.models.components.Theme;
-import com.apideck.unify.models.components.UnifiedApiId;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultSessionsCreateResponse;
 import java.lang.Exception;
 import java.util.List;
@@ -47,8 +39,6 @@ public class Application {
             .build();
 
         VaultSessionsCreateResponse res = sdk.vault().sessions().create()
-                .consumerId("test-consumer")
-                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .session(Session.builder()
                     .consumerMetadata(ConsumerMetadata.builder()
                         .accountName("SpaceX")

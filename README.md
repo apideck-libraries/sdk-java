@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.10.1'
+implementation 'com.apideck:unify:0.11.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.10.1</version>
+    <version>0.11.0</version>
 </dependency>
 ```
 
@@ -84,11 +84,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -138,6 +134,10 @@ public class Application {
 ### [accounting()](docs/sdks/accounting/README.md)
 
 
+#### [accounting().agedCreditors()](docs/sdks/agedcreditors/README.md)
+
+* [get](docs/sdks/agedcreditors/README.md#get) - Get Aged Creditors
+
 #### [accounting().agedDebtors()](docs/sdks/ageddebtors/README.md)
 
 * [get](docs/sdks/ageddebtors/README.md#get) - Get Aged Debtors
@@ -145,6 +145,7 @@ public class Application {
 #### [accounting().attachments()](docs/sdks/attachments/README.md)
 
 * [list](docs/sdks/attachments/README.md#list) - List Attachments
+* [upload](docs/sdks/attachments/README.md#upload) - Upload attachment
 * [get](docs/sdks/attachments/README.md#get) - Get Attachment
 * [delete](docs/sdks/attachments/README.md#delete) - Delete Attachment
 * [download](docs/sdks/attachments/README.md#download) - Download Attachment
@@ -405,6 +406,10 @@ public class Application {
 #### [crm().pipelines()](docs/sdks/pipelines/README.md)
 
 * [list](docs/sdks/pipelines/README.md#list) - List pipelines
+* [create](docs/sdks/pipelines/README.md#create) - Create pipeline
+* [get](docs/sdks/pipelines/README.md#get) - Get pipeline
+* [update](docs/sdks/pipelines/README.md#update) - Update pipeline
+* [delete](docs/sdks/pipelines/README.md#delete) - Delete pipeline
 
 #### [crm().users()](docs/sdks/users/README.md)
 
@@ -485,6 +490,7 @@ public class Application {
 
 * [create](docs/sdks/uploadsessions/README.md#create) - Start Upload Session
 * [get](docs/sdks/uploadsessions/README.md#get) - Get Upload Session
+* [upload](docs/sdks/uploadsessions/README.md#upload) - Upload part of File to Upload Session
 * [delete](docs/sdks/uploadsessions/README.md#delete) - Abort Upload Session
 * [finish](docs/sdks/uploadsessions/README.md#finish) - Finish Upload Session
 
@@ -665,11 +671,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -721,11 +723,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
@@ -784,11 +782,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
@@ -865,11 +859,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -921,11 +911,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -973,19 +959,12 @@ The server URL can also be overridden on a per-operation basis, provided a serve
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreateUploadSessionRequest;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
-import com.apideck.unify.models.operations.FileStorageUploadSessionsAddRequest;
-import com.apideck.unify.models.operations.FileStorageUploadSessionsAddResponse;
+import com.apideck.unify.models.components.AttachmentReferenceType;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.AccountingAttachmentsUploadRequest;
+import com.apideck.unify.models.operations.AccountingAttachmentsUploadResponse;
 import java.lang.Exception;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
 
 public class Application {
 
@@ -997,55 +976,20 @@ public class Application {
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();
 
-        FileStorageUploadSessionsAddRequest req = FileStorageUploadSessionsAddRequest.builder()
-                .createUploadSessionRequest(CreateUploadSessionRequest.builder()
-                    .name("Documents")
-                    .parentFolderId("1234")
-                    .size(1810673L)
-                    .driveId("1234")
-                    .passThrough(List.of(
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build()))
-                    .build())
+        AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
+                .referenceType(AttachmentReferenceType.INVOICE)
+                .referenceId("123456")
+                .requestBody("0x8cc9e675ad".getBytes(StandardCharsets.UTF_8))
+                .xApideckMetadata("{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}")
                 .serviceId("salesforce")
                 .build();
 
-        FileStorageUploadSessionsAddResponse res = sdk.fileStorage().uploadSessions().create()
+        AccountingAttachmentsUploadResponse res = sdk.accounting().attachments().upload()
                 .request(req)
                 .serverURL("https://upload.apideck.com")
                 .call();
 
-        if (res.createUploadSessionResponse().isPresent()) {
+        if (res.createAttachmentResponse().isPresent()) {
             // handle response
         }
     }
@@ -1070,11 +1014,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
 import java.lang.Exception;
 import java.util.Map;

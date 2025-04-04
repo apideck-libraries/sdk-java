@@ -21,14 +21,8 @@ List Bill Payments
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.PaymentsFilter;
-import com.apideck.unify.models.components.PaymentsSort;
-import com.apideck.unify.models.components.PaymentsSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,26 +93,8 @@ Create Bill Payment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BillPaymentAllocationType;
-import com.apideck.unify.models.components.BillPaymentAllocations;
-import com.apideck.unify.models.components.BillPaymentInput;
-import com.apideck.unify.models.components.BillPaymentType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentStatus;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAddRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsAddResponse;
 import java.lang.Exception;
@@ -313,11 +289,7 @@ Get Bill Payment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsOneRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsOneResponse;
 import java.lang.Exception;
@@ -380,27 +352,8 @@ Update Bill Payment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BillPaymentAllocationType;
-import com.apideck.unify.models.components.BillPaymentAllocations;
-import com.apideck.unify.models.components.BillPaymentInput;
-import com.apideck.unify.models.components.BillPaymentType;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PaymentStatus;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsUpdateResponse;
 import java.lang.Exception;
@@ -612,11 +565,7 @@ Delete Bill Payment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillPaymentsDeleteRequest;
 import com.apideck.unify.models.operations.AccountingBillPaymentsDeleteResponse;
 import java.lang.Exception;

@@ -21,14 +21,8 @@ List Purchase Orders
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.PurchaseOrdersFilter;
-import com.apideck.unify.models.components.PurchaseOrdersSort;
-import com.apideck.unify.models.components.PurchaseOrdersSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersAllRequest;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
@@ -99,29 +93,8 @@ Create Purchase Order
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceLineItemInput;
-import com.apideck.unify.models.components.InvoiceLineItemType;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PurchaseOrderInput;
-import com.apideck.unify.models.components.PurchaseOrderStatus;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersAddRequest;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersAddResponse;
 import java.lang.Exception;
@@ -199,8 +172,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -253,8 +226,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -368,61 +341,34 @@ public class Application {
                             .id("123456")
                             .name("New York")
                             .build()))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>",
+                                "<value>")))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(true))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -476,11 +422,7 @@ Get Purchase Order
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersOneRequest;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersOneResponse;
 import java.lang.Exception;
@@ -542,30 +484,8 @@ Update Purchase Order
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.AccountType;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.BankAccount;
-import com.apideck.unify.models.components.Currency;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.InvoiceLineItemInput;
-import com.apideck.unify.models.components.InvoiceLineItemType;
-import com.apideck.unify.models.components.LinkedInvoiceItem;
-import com.apideck.unify.models.components.LinkedLedgerAccountInput;
-import com.apideck.unify.models.components.LinkedSupplierInput;
-import com.apideck.unify.models.components.LinkedTaxRateInput;
-import com.apideck.unify.models.components.LinkedTrackingCategory;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PurchaseOrderInput;
-import com.apideck.unify.models.components.PurchaseOrderStatus;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersUpdateRequest;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersUpdateResponse;
 import java.lang.Exception;
@@ -644,8 +564,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -702,8 +622,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -756,8 +676,8 @@ public class Application {
                             .unitOfMeasure("pc.")
                             .discountPercentage(0.01)
                             .discountAmount(19.99)
-                            .locationId("1234")
-                            .departmentId("1234")
+                            .locationId("12345")
+                            .departmentId("12345")
                             .item(LinkedInvoiceItem.builder()
                                 .id("12344")
                                 .code("120-C")
@@ -851,27 +771,32 @@ public class Application {
                             .id("123456")
                             .name("New York")
                             .build()))
+                    .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(10))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(true))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value>",
+                                "<value>")))
+                            .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -947,11 +872,7 @@ Delete Purchase Order
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersDeleteRequest;
 import com.apideck.unify.models.operations.AccountingPurchaseOrdersDeleteResponse;
 import java.lang.Exception;

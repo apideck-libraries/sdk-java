@@ -23,11 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.CommentsSort;
 import com.apideck.unify.models.components.CommentsSortBy;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -96,14 +92,8 @@ Create Comment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CollectionTicketCommentInput;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAddRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAddResponse;
 import java.lang.Exception;
@@ -204,11 +194,7 @@ Get Comment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsOneRequest;
 import java.lang.Exception;
 
@@ -272,14 +258,8 @@ Update Comment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CollectionTicketCommentInput;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsUpdateRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsUpdateResponse;
 import java.lang.Exception;
@@ -403,11 +383,7 @@ Delete Comment
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsDeleteRequest;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsDeleteResponse;
 import java.lang.Exception;

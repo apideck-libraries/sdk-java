@@ -7,6 +7,7 @@
 
 * [create](#create) - Start Upload Session
 * [get](#get) - Get Upload Session
+* [upload](#upload) - Upload part of File to Upload Session
 * [delete](#delete) - Abort Upload Session
 * [finish](#finish) - Finish Upload Session
 
@@ -20,14 +21,8 @@ Start an Upload Session. Upload sessions are used to upload large files, use the
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.CreateUploadSessionRequest;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsAddRequest;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsAddResponse;
 import java.lang.Exception;
@@ -130,11 +125,7 @@ Get Upload Session. Use the `part_size` to split your file into parts. Upload th
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsOneRequest;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsOneResponse;
 import java.lang.Exception;
@@ -188,6 +179,73 @@ public class Application {
 | models/errors/UnprocessableResponse   | 422                                   | application/json                      |
 | models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
 
+## upload
+
+Upload part of File to Upload Session (max 100MB). Get `part_size` from [Get Upload Session](#operation/uploadSessionsOne) first. Every File part (except the last one) uploaded to this endpoint should have Content-Length equal to `part_size`. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
+
+### Example Usage
+
+```java
+package hello.world;
+
+import com.apideck.unify.Apideck;
+import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.FileStorageUploadSessionsUploadRequest;
+import com.apideck.unify.models.operations.FileStorageUploadSessionsUploadResponse;
+import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+
+public class Application {
+
+    public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
+
+        Apideck sdk = Apideck.builder()
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .consumerId("test-consumer")
+                .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+            .build();
+
+        FileStorageUploadSessionsUploadRequest req = FileStorageUploadSessionsUploadRequest.builder()
+                .id("<id>")
+                .partNumber(0)
+                .requestBody("<binary string>".getBytes(StandardCharsets.UTF_8))
+                .serviceId("salesforce")
+                .digest("sha=fpRyg5eVQletdZqEKaFlqwBXJzM=")
+                .build();
+
+        FileStorageUploadSessionsUploadResponse res = sdk.fileStorage().uploadSessions().upload()
+                .request(req)
+                .call();
+
+        if (res.updateUploadSessionResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                   | Type                                                                                                        | Required                                                                                                    | Description                                                                                                 |
+| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                                   | [FileStorageUploadSessionsUploadRequest](../../models/operations/FileStorageUploadSessionsUploadRequest.md) | :heavy_check_mark:                                                                                          | The request object to use for the request.                                                                  |
+| `serverURL`                                                                                                 | *String*                                                                                                    | :heavy_minus_sign:                                                                                          | An optional server URL to use.                                                                              |
+
+### Response
+
+**[FileStorageUploadSessionsUploadResponse](../../models/operations/FileStorageUploadSessionsUploadResponse.md)**
+
+### Errors
+
+| Error Type                            | Status Code                           | Content Type                          |
+| ------------------------------------- | ------------------------------------- | ------------------------------------- |
+| models/errors/BadRequestResponse      | 400                                   | application/json                      |
+| models/errors/UnauthorizedResponse    | 401                                   | application/json                      |
+| models/errors/PaymentRequiredResponse | 402                                   | application/json                      |
+| models/errors/NotFoundResponse        | 404                                   | application/json                      |
+| models/errors/UnprocessableResponse   | 422                                   | application/json                      |
+| models/errors/APIException            | 4XX, 5XX                              | \*/\*                                 |
+
 ## delete
 
 Abort Upload Session. Note that the base URL is upload.apideck.com instead of unify.apideck.com. For more information on uploads, refer to the [file upload guide](/guides/file-upload).
@@ -198,11 +256,7 @@ Abort Upload Session. Note that the base URL is upload.apideck.com instead of un
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsDeleteRequest;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsDeleteResponse;
 import java.lang.Exception;
@@ -264,11 +318,7 @@ Finish Upload Session. Only call this endpoint after all File parts have been up
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsFinishRequest;
 import com.apideck.unify.models.operations.FileStorageUploadSessionsFinishResponse;
 import java.lang.Exception;

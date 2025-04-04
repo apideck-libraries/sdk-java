@@ -17,11 +17,7 @@ This endpoint returns a list of custom mappings for a connection.
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllRequest;
 import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllResponse;
 import java.lang.Exception;

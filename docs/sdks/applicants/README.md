@@ -22,11 +22,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ApplicantsFilter;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsAllRequest;
 import java.lang.Exception;
 import java.util.Map;
@@ -93,25 +89,8 @@ Create Applicant
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.ApplicantInput;
-import com.apideck.unify.models.components.ApplicantType;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.SocialLinks;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.components.Websites;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsAddRequest;
 import com.apideck.unify.models.operations.AtsApplicantsAddResponse;
 import java.lang.Exception;
@@ -354,11 +333,7 @@ Get Applicant
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsOneRequest;
 import com.apideck.unify.models.operations.AtsApplicantsOneResponse;
 import java.lang.Exception;
@@ -421,26 +396,8 @@ Update Applicant
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.components.Address;
-import com.apideck.unify.models.components.ApplicantInput;
-import com.apideck.unify.models.components.ApplicantType;
-import com.apideck.unify.models.components.CustomField;
-import com.apideck.unify.models.components.Email;
-import com.apideck.unify.models.components.EmailType;
-import com.apideck.unify.models.components.ExtendPaths;
-import com.apideck.unify.models.components.PassThroughBody;
-import com.apideck.unify.models.components.PhoneNumber;
-import com.apideck.unify.models.components.PhoneNumberType;
-import com.apideck.unify.models.components.Six;
-import com.apideck.unify.models.components.SocialLinks;
-import com.apideck.unify.models.components.Type;
-import com.apideck.unify.models.components.Value;
-import com.apideck.unify.models.components.Websites;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.components.*;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsUpdateRequest;
 import com.apideck.unify.models.operations.AtsApplicantsUpdateResponse;
 import java.lang.Exception;
@@ -711,11 +668,7 @@ Delete Applicant
 package hello.world;
 
 import com.apideck.unify.Apideck;
-import com.apideck.unify.models.errors.BadRequestResponse;
-import com.apideck.unify.models.errors.NotFoundResponse;
-import com.apideck.unify.models.errors.PaymentRequiredResponse;
-import com.apideck.unify.models.errors.UnauthorizedResponse;
-import com.apideck.unify.models.errors.UnprocessableResponse;
+import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsDeleteRequest;
 import com.apideck.unify.models.operations.AtsApplicantsDeleteResponse;
 import java.lang.Exception;

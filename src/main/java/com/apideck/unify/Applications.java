@@ -158,7 +158,11 @@ public class Applications implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -220,28 +224,21 @@ public class Applications implements
                     Configuration _config = Configuration.defaultConfiguration()
                             .addOptions(Option.SUPPRESS_EXCEPTIONS);
                     ReadContext _body = JsonPath.using(_config).parse(_stringBody);
-                    
-                    
-                    
-                    
                     String _nextCursor = _body.read("$.meta.cursors.next", String.class);
                     if (_nextCursor == null) {
                         return Optional.empty();
-                    }
-                    
-                    
-                     
-                    AtsApplicationsAllRequestBuilder _ret = list();
-                    _ret.request(new AtsApplicationsAllRequest(
-                        request.raw(),
+                    } 
+                    AtsApplicationsAllRequestBuilder _nextRequest = list()
+                            .request(new AtsApplicationsAllRequest(
+                                request.raw(),
                         request.consumerId(),
                         request.appId(),
                         request.serviceId(),
                         JsonNullable.of(_nextCursor),
                         request.passThrough(),
                         request.limit()
-                    ));
-                    return Optional.of(_ret.call());
+                             ));
+                    return Optional.of(_nextRequest.call());
                 });
 
         AtsApplicationsAllResponse _res = _resBuilder.build();
@@ -464,7 +461,11 @@ public class Applications implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -725,7 +726,11 @@ public class Applications implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -999,7 +1004,11 @@ public class Applications implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1260,7 +1269,11 @@ public class Applications implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;

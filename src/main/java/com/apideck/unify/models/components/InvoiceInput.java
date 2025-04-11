@@ -227,6 +227,13 @@ public class InvoiceInput {
     private JsonNullable<String> sourceDocumentUrl;
 
     /**
+     * IDs of payments made on the invoice
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_allocations")
+    private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations;
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -312,6 +319,7 @@ public class InvoiceInput {
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("template_id") JsonNullable<String> templateId,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
+            @JsonProperty("payment_allocations") JsonNullable<? extends List<PaymentAllocations>> paymentAllocations,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("language") JsonNullable<String> language,
@@ -351,6 +359,7 @@ public class InvoiceInput {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(templateId, "templateId");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(language, "language");
@@ -390,6 +399,7 @@ public class InvoiceInput {
         this.shippingAddress = shippingAddress;
         this.templateId = templateId;
         this.sourceDocumentUrl = sourceDocumentUrl;
+        this.paymentAllocations = paymentAllocations;
         this.paymentMethod = paymentMethod;
         this.channel = channel;
         this.language = language;
@@ -402,7 +412,7 @@ public class InvoiceInput {
     }
     
     public InvoiceInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -645,6 +655,15 @@ public class InvoiceInput {
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
         return sourceDocumentUrl;
+    }
+
+    /**
+     * IDs of payments made on the invoice
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<PaymentAllocations>> paymentAllocations() {
+        return (JsonNullable<List<PaymentAllocations>>) paymentAllocations;
     }
 
     /**
@@ -1245,6 +1264,24 @@ public class InvoiceInput {
     }
 
     /**
+     * IDs of payments made on the invoice
+     */
+    public InvoiceInput withPaymentAllocations(List<PaymentAllocations> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = JsonNullable.of(paymentAllocations);
+        return this;
+    }
+
+    /**
+     * IDs of payments made on the invoice
+     */
+    public InvoiceInput withPaymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = paymentAllocations;
+        return this;
+    }
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     public InvoiceInput withPaymentMethod(String paymentMethod) {
@@ -1429,6 +1466,7 @@ public class InvoiceInput {
             Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
             Objects.deepEquals(this.templateId, other.templateId) &&
             Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
+            Objects.deepEquals(this.paymentAllocations, other.paymentAllocations) &&
             Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
             Objects.deepEquals(this.channel, other.channel) &&
             Objects.deepEquals(this.language, other.language) &&
@@ -1473,6 +1511,7 @@ public class InvoiceInput {
             shippingAddress,
             templateId,
             sourceDocumentUrl,
+            paymentAllocations,
             paymentMethod,
             channel,
             language,
@@ -1517,6 +1556,7 @@ public class InvoiceInput {
                 "shippingAddress", shippingAddress,
                 "templateId", templateId,
                 "sourceDocumentUrl", sourceDocumentUrl,
+                "paymentAllocations", paymentAllocations,
                 "paymentMethod", paymentMethod,
                 "channel", channel,
                 "language", language,
@@ -1590,6 +1630,8 @@ public class InvoiceInput {
         private JsonNullable<String> templateId = JsonNullable.undefined();
  
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
+ 
+        private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations = JsonNullable.undefined();
  
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
  
@@ -2140,6 +2182,24 @@ public class InvoiceInput {
         }
 
         /**
+         * IDs of payments made on the invoice
+         */
+        public Builder paymentAllocations(List<PaymentAllocations> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = JsonNullable.of(paymentAllocations);
+            return this;
+        }
+
+        /**
+         * IDs of payments made on the invoice
+         */
+        public Builder paymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = paymentAllocations;
+            return this;
+        }
+
+        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
         public Builder paymentMethod(String paymentMethod) {
@@ -2315,6 +2375,7 @@ public class InvoiceInput {
                 shippingAddress,
                 templateId,
                 sourceDocumentUrl,
+                paymentAllocations,
                 paymentMethod,
                 channel,
                 language,

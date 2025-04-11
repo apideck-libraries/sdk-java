@@ -158,7 +158,11 @@ public class BillPayments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -220,23 +224,13 @@ public class BillPayments implements
                     Configuration _config = Configuration.defaultConfiguration()
                             .addOptions(Option.SUPPRESS_EXCEPTIONS);
                     ReadContext _body = JsonPath.using(_config).parse(_stringBody);
-                    
-                    
-                    
-                    
                     String _nextCursor = _body.read("$.meta.cursors.next", String.class);
                     if (_nextCursor == null) {
                         return Optional.empty();
-                    }
-                    
-                    
-                    
-                    
-                    
-                     
-                    AccountingBillPaymentsAllRequestBuilder _ret = list();
-                    _ret.request(new AccountingBillPaymentsAllRequest(
-                        request.raw(),
+                    } 
+                    AccountingBillPaymentsAllRequestBuilder _nextRequest = list()
+                            .request(new AccountingBillPaymentsAllRequest(
+                                request.raw(),
                         request.consumerId(),
                         request.appId(),
                         request.serviceId(),
@@ -246,8 +240,8 @@ public class BillPayments implements
                         request.sort(),
                         request.passThrough(),
                         request.fields()
-                    ));
-                    return Optional.of(_ret.call());
+                             ));
+                    return Optional.of(_nextRequest.call());
                 });
 
         AccountingBillPaymentsAllResponse _res = _resBuilder.build();
@@ -470,7 +464,11 @@ public class BillPayments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -731,7 +729,11 @@ public class BillPayments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1005,7 +1007,11 @@ public class BillPayments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1266,7 +1272,11 @@ public class BillPayments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;

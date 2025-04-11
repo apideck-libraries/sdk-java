@@ -160,7 +160,11 @@ public class CollectionTicketComments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -222,24 +226,13 @@ public class CollectionTicketComments implements
                     Configuration _config = Configuration.defaultConfiguration()
                             .addOptions(Option.SUPPRESS_EXCEPTIONS);
                     ReadContext _body = JsonPath.using(_config).parse(_stringBody);
-                    
-                    
-                    
-                    
-                    
-                    
                     String _nextCursor = _body.read("$.meta.cursors.next", String.class);
                     if (_nextCursor == null) {
                         return Optional.empty();
-                    }
-                    
-                    
-                    
-                    
-                     
-                    IssueTrackingCollectionTicketCommentsAllRequestBuilder _ret = list();
-                    _ret.request(new IssueTrackingCollectionTicketCommentsAllRequest(
-                        request.raw(),
+                    } 
+                    IssueTrackingCollectionTicketCommentsAllRequestBuilder _nextRequest = list()
+                            .request(new IssueTrackingCollectionTicketCommentsAllRequest(
+                                request.raw(),
                         request.consumerId(),
                         request.appId(),
                         request.serviceId(),
@@ -250,8 +243,8 @@ public class CollectionTicketComments implements
                         request.sort(),
                         request.passThrough(),
                         request.fields()
-                    ));
-                    return Optional.of(_ret.call());
+                             ));
+                    return Optional.of(_nextRequest.call());
                 });
 
         IssueTrackingCollectionTicketCommentsAllResponse _res = _resBuilder.build();
@@ -476,7 +469,11 @@ public class CollectionTicketComments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -737,7 +734,11 @@ public class CollectionTicketComments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -799,23 +800,13 @@ public class CollectionTicketComments implements
                     Configuration _config = Configuration.defaultConfiguration()
                             .addOptions(Option.SUPPRESS_EXCEPTIONS);
                     ReadContext _body = JsonPath.using(_config).parse(_stringBody);
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     String _nextCursor = _body.read("$.meta.cursors.next", String.class);
                     if (_nextCursor == null) {
                         return Optional.empty();
-                    }
-                    
-                    
-                     
-                    IssueTrackingCollectionTicketCommentsOneRequestBuilder _ret = get();
-                    _ret.request(new IssueTrackingCollectionTicketCommentsOneRequest(
-                        request.id(),
+                    } 
+                    IssueTrackingCollectionTicketCommentsOneRequestBuilder _nextRequest = get()
+                            .request(new IssueTrackingCollectionTicketCommentsOneRequest(
+                                request.id(),
                         request.raw(),
                         request.consumerId(),
                         request.appId(),
@@ -825,8 +816,8 @@ public class CollectionTicketComments implements
                         request.collectionId(),
                         request.ticketId(),
                         request.fields()
-                    ));
-                    return Optional.of(_ret.call());
+                             ));
+                    return Optional.of(_nextRequest.call());
                 });
 
         IssueTrackingCollectionTicketCommentsOneResponse _res = _resBuilder.build();
@@ -1051,7 +1042,11 @@ public class CollectionTicketComments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1312,7 +1307,11 @@ public class CollectionTicketComments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;

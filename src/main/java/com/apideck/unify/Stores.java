@@ -128,7 +128,11 @@ public class Stores implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;

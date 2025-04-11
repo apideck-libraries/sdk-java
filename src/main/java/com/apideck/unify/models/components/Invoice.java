@@ -242,6 +242,13 @@ public class Invoice {
     private JsonNullable<String> sourceDocumentUrl;
 
     /**
+     * IDs of payments made on the invoice
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("payment_allocations")
+    private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations;
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -364,6 +371,7 @@ public class Invoice {
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("template_id") JsonNullable<String> templateId,
             @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
+            @JsonProperty("payment_allocations") JsonNullable<? extends List<PaymentAllocations>> paymentAllocations,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("language") JsonNullable<String> language,
@@ -410,6 +418,7 @@ public class Invoice {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(templateId, "templateId");
         Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(language, "language");
@@ -456,6 +465,7 @@ public class Invoice {
         this.shippingAddress = shippingAddress;
         this.templateId = templateId;
         this.sourceDocumentUrl = sourceDocumentUrl;
+        this.paymentAllocations = paymentAllocations;
         this.paymentMethod = paymentMethod;
         this.channel = channel;
         this.language = language;
@@ -473,7 +483,7 @@ public class Invoice {
     }
     
     public Invoice() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -732,6 +742,15 @@ public class Invoice {
     @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
         return sourceDocumentUrl;
+    }
+
+    /**
+     * IDs of payments made on the invoice
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<List<PaymentAllocations>> paymentAllocations() {
+        return (JsonNullable<List<PaymentAllocations>>) paymentAllocations;
     }
 
     /**
@@ -1409,6 +1428,24 @@ public class Invoice {
     }
 
     /**
+     * IDs of payments made on the invoice
+     */
+    public Invoice withPaymentAllocations(List<PaymentAllocations> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = JsonNullable.of(paymentAllocations);
+        return this;
+    }
+
+    /**
+     * IDs of payments made on the invoice
+     */
+    public Invoice withPaymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
+        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        this.paymentAllocations = paymentAllocations;
+        return this;
+    }
+
+    /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
     public Invoice withPaymentMethod(String paymentMethod) {
@@ -1685,6 +1722,7 @@ public class Invoice {
             Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
             Objects.deepEquals(this.templateId, other.templateId) &&
             Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
+            Objects.deepEquals(this.paymentAllocations, other.paymentAllocations) &&
             Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
             Objects.deepEquals(this.channel, other.channel) &&
             Objects.deepEquals(this.language, other.language) &&
@@ -1736,6 +1774,7 @@ public class Invoice {
             shippingAddress,
             templateId,
             sourceDocumentUrl,
+            paymentAllocations,
             paymentMethod,
             channel,
             language,
@@ -1787,6 +1826,7 @@ public class Invoice {
                 "shippingAddress", shippingAddress,
                 "templateId", templateId,
                 "sourceDocumentUrl", sourceDocumentUrl,
+                "paymentAllocations", paymentAllocations,
                 "paymentMethod", paymentMethod,
                 "channel", channel,
                 "language", language,
@@ -1869,6 +1909,8 @@ public class Invoice {
         private JsonNullable<String> templateId = JsonNullable.undefined();
  
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
+ 
+        private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations = JsonNullable.undefined();
  
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
  
@@ -2465,6 +2507,24 @@ public class Invoice {
         }
 
         /**
+         * IDs of payments made on the invoice
+         */
+        public Builder paymentAllocations(List<PaymentAllocations> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = JsonNullable.of(paymentAllocations);
+            return this;
+        }
+
+        /**
+         * IDs of payments made on the invoice
+         */
+        public Builder paymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
+            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+            this.paymentAllocations = paymentAllocations;
+            return this;
+        }
+
+        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
         public Builder paymentMethod(String paymentMethod) {
@@ -2732,6 +2792,7 @@ public class Invoice {
                 shippingAddress,
                 templateId,
                 sourceDocumentUrl,
+                paymentAllocations,
                 paymentMethod,
                 channel,
                 language,

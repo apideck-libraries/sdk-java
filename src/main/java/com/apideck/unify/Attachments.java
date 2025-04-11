@@ -167,7 +167,11 @@ public class Attachments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -229,22 +233,13 @@ public class Attachments implements
                     Configuration _config = Configuration.defaultConfiguration()
                             .addOptions(Option.SUPPRESS_EXCEPTIONS);
                     ReadContext _body = JsonPath.using(_config).parse(_stringBody);
-                    
-                    
-                    
-                    
-                    
-                    
                     String _nextCursor = _body.read("$.meta.cursors.next", String.class);
                     if (_nextCursor == null) {
                         return Optional.empty();
-                    }
-                    
-                    
-                     
-                    AccountingAttachmentsAllRequestBuilder _ret = list();
-                    _ret.request(new AccountingAttachmentsAllRequest(
-                        request.referenceType(),
+                    } 
+                    AccountingAttachmentsAllRequestBuilder _nextRequest = list()
+                            .request(new AccountingAttachmentsAllRequest(
+                                request.referenceType(),
                         request.referenceId(),
                         request.raw(),
                         request.consumerId(),
@@ -253,8 +248,8 @@ public class Attachments implements
                         JsonNullable.of(_nextCursor),
                         request.limit(),
                         request.fields()
-                    ));
-                    return Optional.of(_ret.call());
+                             ));
+                    return Optional.of(_nextRequest.call());
                 });
 
         AccountingAttachmentsAllResponse _res = _resBuilder.build();
@@ -486,7 +481,11 @@ public class Attachments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -747,7 +746,11 @@ public class Attachments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1008,7 +1011,11 @@ public class Attachments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;
@@ -1269,7 +1276,11 @@ public class Attachments implements
                 .build();
         }
         List<String> _statusCodes = new ArrayList<>();
-        _statusCodes.add("5XX");
+        _statusCodes.add("408");
+        _statusCodes.add("500");
+        _statusCodes.add("502");
+        _statusCodes.add("503");
+        _statusCodes.add("504");
         Retries _retries = Retries.builder()
             .action(() -> {
                 HttpRequest _r = null;

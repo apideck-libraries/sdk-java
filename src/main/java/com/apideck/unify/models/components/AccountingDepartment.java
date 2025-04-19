@@ -53,6 +53,13 @@ public class AccountingDepartment {
     private Optional<? extends List<SubsidiaryReference>> subsidiaries;
 
     /**
+     * The code of the department.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("code")
+    private Optional<String> code;
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -108,6 +115,7 @@ public class AccountingDepartment {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends DepartmentStatus> status,
             @JsonProperty("subsidiaries") Optional<? extends List<SubsidiaryReference>> subsidiaries,
+            @JsonProperty("code") Optional<String> code,
             @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
@@ -120,6 +128,7 @@ public class AccountingDepartment {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
+        Utils.checkNotNull(code, "code");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
@@ -132,6 +141,7 @@ public class AccountingDepartment {
         this.name = name;
         this.status = status;
         this.subsidiaries = subsidiaries;
+        this.code = code;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
@@ -142,7 +152,7 @@ public class AccountingDepartment {
     }
     
     public AccountingDepartment() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -182,6 +192,14 @@ public class AccountingDepartment {
     @JsonIgnore
     public Optional<List<SubsidiaryReference>> subsidiaries() {
         return (Optional<List<SubsidiaryReference>>) subsidiaries;
+    }
+
+    /**
+     * The code of the department.
+     */
+    @JsonIgnore
+    public Optional<String> code() {
+        return code;
     }
 
     /**
@@ -331,6 +349,24 @@ public class AccountingDepartment {
     }
 
     /**
+     * The code of the department.
+     */
+    public AccountingDepartment withCode(String code) {
+        Utils.checkNotNull(code, "code");
+        this.code = Optional.ofNullable(code);
+        return this;
+    }
+
+    /**
+     * The code of the department.
+     */
+    public AccountingDepartment withCode(Optional<String> code) {
+        Utils.checkNotNull(code, "code");
+        this.code = code;
+        return this;
+    }
+
+    /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     public AccountingDepartment withCustomMappings(CustomMappings customMappings) {
@@ -472,6 +508,7 @@ public class AccountingDepartment {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
+            Objects.deepEquals(this.code, other.code) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
             Objects.deepEquals(this.updatedBy, other.updatedBy) &&
@@ -489,6 +526,7 @@ public class AccountingDepartment {
             name,
             status,
             subsidiaries,
+            code,
             customMappings,
             rowVersion,
             updatedBy,
@@ -506,6 +544,7 @@ public class AccountingDepartment {
                 "name", name,
                 "status", status,
                 "subsidiaries", subsidiaries,
+                "code", code,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
@@ -526,6 +565,8 @@ public class AccountingDepartment {
         private Optional<? extends DepartmentStatus> status = Optional.empty();
  
         private Optional<? extends List<SubsidiaryReference>> subsidiaries = Optional.empty();
+ 
+        private Optional<String> code = Optional.empty();
  
         private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
  
@@ -626,6 +667,24 @@ public class AccountingDepartment {
         public Builder subsidiaries(Optional<? extends List<SubsidiaryReference>> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = subsidiaries;
+            return this;
+        }
+
+        /**
+         * The code of the department.
+         */
+        public Builder code(String code) {
+            Utils.checkNotNull(code, "code");
+            this.code = Optional.ofNullable(code);
+            return this;
+        }
+
+        /**
+         * The code of the department.
+         */
+        public Builder code(Optional<String> code) {
+            Utils.checkNotNull(code, "code");
+            this.code = code;
             return this;
         }
 
@@ -762,6 +821,7 @@ public class AccountingDepartment {
                 name,
                 status,
                 subsidiaries,
+                code,
                 customMappings,
                 rowVersion,
                 updatedBy,

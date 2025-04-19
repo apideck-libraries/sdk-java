@@ -75,6 +75,12 @@ public class EmployeesFilter {
     @SpeakeasyMetadata("queryParam:name=city")
     private Optional<String> city;
 
+    /**
+     * Country to filter on
+     */
+    @SpeakeasyMetadata("queryParam:name=country")
+    private Optional<String> country;
+
     @JsonCreator
     public EmployeesFilter(
             Optional<String> companyId,
@@ -86,7 +92,8 @@ public class EmployeesFilter {
             Optional<? extends EmployeesFilterEmploymentStatus> employmentStatus,
             Optional<String> employeeNumber,
             Optional<String> departmentId,
-            Optional<String> city) {
+            Optional<String> city,
+            Optional<String> country) {
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(email, "email");
         Utils.checkNotNull(firstName, "firstName");
@@ -97,6 +104,7 @@ public class EmployeesFilter {
         Utils.checkNotNull(employeeNumber, "employeeNumber");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(city, "city");
+        Utils.checkNotNull(country, "country");
         this.companyId = companyId;
         this.email = email;
         this.firstName = firstName;
@@ -107,10 +115,11 @@ public class EmployeesFilter {
         this.employeeNumber = employeeNumber;
         this.departmentId = departmentId;
         this.city = city;
+        this.country = country;
     }
     
     public EmployeesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -192,6 +201,14 @@ public class EmployeesFilter {
     @JsonIgnore
     public Optional<String> city() {
         return city;
+    }
+
+    /**
+     * Country to filter on
+     */
+    @JsonIgnore
+    public Optional<String> country() {
+        return country;
     }
 
     public final static Builder builder() {
@@ -378,6 +395,24 @@ public class EmployeesFilter {
         return this;
     }
 
+    /**
+     * Country to filter on
+     */
+    public EmployeesFilter withCountry(String country) {
+        Utils.checkNotNull(country, "country");
+        this.country = Optional.ofNullable(country);
+        return this;
+    }
+
+    /**
+     * Country to filter on
+     */
+    public EmployeesFilter withCountry(Optional<String> country) {
+        Utils.checkNotNull(country, "country");
+        this.country = country;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -398,7 +433,8 @@ public class EmployeesFilter {
             Objects.deepEquals(this.employmentStatus, other.employmentStatus) &&
             Objects.deepEquals(this.employeeNumber, other.employeeNumber) &&
             Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.city, other.city);
+            Objects.deepEquals(this.city, other.city) &&
+            Objects.deepEquals(this.country, other.country);
     }
     
     @Override
@@ -413,7 +449,8 @@ public class EmployeesFilter {
             employmentStatus,
             employeeNumber,
             departmentId,
-            city);
+            city,
+            country);
     }
     
     @Override
@@ -428,7 +465,8 @@ public class EmployeesFilter {
                 "employmentStatus", employmentStatus,
                 "employeeNumber", employeeNumber,
                 "departmentId", departmentId,
-                "city", city);
+                "city", city,
+                "country", country);
     }
     
     public final static class Builder {
@@ -452,6 +490,8 @@ public class EmployeesFilter {
         private Optional<String> departmentId = Optional.empty();
  
         private Optional<String> city = Optional.empty();
+ 
+        private Optional<String> country = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -636,6 +676,24 @@ public class EmployeesFilter {
             this.city = city;
             return this;
         }
+
+        /**
+         * Country to filter on
+         */
+        public Builder country(String country) {
+            Utils.checkNotNull(country, "country");
+            this.country = Optional.ofNullable(country);
+            return this;
+        }
+
+        /**
+         * Country to filter on
+         */
+        public Builder country(Optional<String> country) {
+            Utils.checkNotNull(country, "country");
+            this.country = country;
+            return this;
+        }
         
         public EmployeesFilter build() {
             return new EmployeesFilter(
@@ -648,7 +706,8 @@ public class EmployeesFilter {
                 employmentStatus,
                 employeeNumber,
                 departmentId,
-                city);
+                city,
+                country);
         }
     }
 }

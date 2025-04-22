@@ -49,6 +49,8 @@ public class Application {
                     .employmentStatus(EmployeesFilterEmploymentStatus.ACTIVE)
                     .employeeNumber("123456-AB")
                     .departmentId("1234")
+                    .city("San Francisco")
+                    .country("US")
                     .build())
                 .sort(EmployeesSort.builder()
                     .by(EmployeesSortBy.CREATED_AT)

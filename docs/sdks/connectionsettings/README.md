@@ -238,8 +238,7 @@ public class Application {
                                             .build(),
                                         FormFieldOptionGroup.builder()
                                             .label("General Channel")
-                                            .options(List.of(
-                                            ))
+                                            .options(List.of())
                                             .optionType(FormFieldOptionGroupOptionType.GROUP)
                                             .id("1234")
                                             .build()))

@@ -18,6 +18,7 @@ public enum InvoiceLineItemType {
     DISCOUNT("discount"),
     INFO("info"),
     SUB_TOTAL("sub_total"),
+    SERVICE("service"),
     OTHER("other");
 
     @JsonValue

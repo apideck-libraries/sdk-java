@@ -45,6 +45,13 @@ public class AccountingDepartmentInput {
     private Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries;
 
     /**
+     * The code of the department.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("code")
+    private Optional<String> code;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -64,24 +71,27 @@ public class AccountingDepartmentInput {
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("status") Optional<? extends DepartmentStatus> status,
             @JsonProperty("subsidiaries") Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries,
+            @JsonProperty("code") Optional<String> code,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(parentId, "parentId");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(subsidiaries, "subsidiaries");
+        Utils.checkNotNull(code, "code");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(passThrough, "passThrough");
         this.parentId = parentId;
         this.name = name;
         this.status = status;
         this.subsidiaries = subsidiaries;
+        this.code = code;
         this.rowVersion = rowVersion;
         this.passThrough = passThrough;
     }
     
     public AccountingDepartmentInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -113,6 +123,14 @@ public class AccountingDepartmentInput {
     @JsonIgnore
     public Optional<List<SubsidiaryReferenceInput>> subsidiaries() {
         return (Optional<List<SubsidiaryReferenceInput>>) subsidiaries;
+    }
+
+    /**
+     * The code of the department.
+     */
+    @JsonIgnore
+    public Optional<String> code() {
+        return code;
     }
 
     /**
@@ -203,6 +221,24 @@ public class AccountingDepartmentInput {
     }
 
     /**
+     * The code of the department.
+     */
+    public AccountingDepartmentInput withCode(String code) {
+        Utils.checkNotNull(code, "code");
+        this.code = Optional.ofNullable(code);
+        return this;
+    }
+
+    /**
+     * The code of the department.
+     */
+    public AccountingDepartmentInput withCode(Optional<String> code) {
+        Utils.checkNotNull(code, "code");
+        this.code = code;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public AccountingDepartmentInput withRowVersion(String rowVersion) {
@@ -253,6 +289,7 @@ public class AccountingDepartmentInput {
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
+            Objects.deepEquals(this.code, other.code) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
             Objects.deepEquals(this.passThrough, other.passThrough);
     }
@@ -264,6 +301,7 @@ public class AccountingDepartmentInput {
             name,
             status,
             subsidiaries,
+            code,
             rowVersion,
             passThrough);
     }
@@ -275,6 +313,7 @@ public class AccountingDepartmentInput {
                 "name", name,
                 "status", status,
                 "subsidiaries", subsidiaries,
+                "code", code,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
@@ -288,6 +327,8 @@ public class AccountingDepartmentInput {
         private Optional<? extends DepartmentStatus> status = Optional.empty();
  
         private Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries = Optional.empty();
+ 
+        private Optional<String> code = Optional.empty();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
@@ -364,6 +405,24 @@ public class AccountingDepartmentInput {
         }
 
         /**
+         * The code of the department.
+         */
+        public Builder code(String code) {
+            Utils.checkNotNull(code, "code");
+            this.code = Optional.ofNullable(code);
+            return this;
+        }
+
+        /**
+         * The code of the department.
+         */
+        public Builder code(Optional<String> code) {
+            Utils.checkNotNull(code, "code");
+            this.code = code;
+            return this;
+        }
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -405,6 +464,7 @@ public class AccountingDepartmentInput {
                 name,
                 status,
                 subsidiaries,
+                code,
                 rowVersion,
                 passThrough);
         }

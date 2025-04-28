@@ -1,21 +1,21 @@
-speakeasyVersion: 1.537.0
+speakeasyVersion: 1.540.0
 sources:
     Apideck-OAS:
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:441e96cb7c893583bf576898c7e6362d69bb6696c90bca124195cc38b2eb83af
-        sourceBlobDigest: sha256:303c1acf7abc835f46d58b4a823c3bb3e537aae128b78352be572e712c7879f6
+        sourceRevisionDigest: sha256:9cc8ce639f2e9c19f6c2c7601a69786eb7f6da5b6e52241ea74596e7a203f58b
+        sourceBlobDigest: sha256:920cd0abb9aa343c591a899ed87ab62dacd719dd688374cc42f919f1ebab947c
         tags:
             - latest
-            - speakeasy-sdk-regen-1744725234
-            - 10.16.2
+            - speakeasy-sdk-regen-1745317277
+            - 10.16.4
 targets:
     apideck:
         source: Apideck-OAS
         sourceNamespace: apideck-oas
-        sourceRevisionDigest: sha256:441e96cb7c893583bf576898c7e6362d69bb6696c90bca124195cc38b2eb83af
-        sourceBlobDigest: sha256:303c1acf7abc835f46d58b4a823c3bb3e537aae128b78352be572e712c7879f6
+        sourceRevisionDigest: sha256:9cc8ce639f2e9c19f6c2c7601a69786eb7f6da5b6e52241ea74596e7a203f58b
+        sourceBlobDigest: sha256:920cd0abb9aa343c591a899ed87ab62dacd719dd688374cc42f919f1ebab947c
         codeSamplesNamespace: apideck-oas-java-code-samples
-        codeSamplesRevisionDigest: sha256:0f3ed39c5fb5caef53b411a7d322012da8e6a3822d9c149fa3905eaecdd3d64a
+        codeSamplesRevisionDigest: sha256:533046f4b7c29144159f9c225a40c760cff7af3840ec9bd087f27e1d6dbba193
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

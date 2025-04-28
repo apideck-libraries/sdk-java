@@ -70,6 +70,13 @@ public class Note {
     private JsonNullable<String> opportunityId;
 
     /**
+     * The activity that is related to the note.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("activity_id")
+    private JsonNullable<String> activityId;
+
+    /**
      * The lead that is related to the note.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -134,6 +141,7 @@ public class Note {
             @JsonProperty("contact_id") JsonNullable<String> contactId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("opportunity_id") JsonNullable<String> opportunityId,
+            @JsonProperty("activity_id") JsonNullable<String> activityId,
             @JsonProperty("lead_id") JsonNullable<String> leadId,
             @JsonProperty("active") JsonNullable<Boolean> active,
             @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
@@ -149,6 +157,7 @@ public class Note {
         Utils.checkNotNull(contactId, "contactId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(opportunityId, "opportunityId");
+        Utils.checkNotNull(activityId, "activityId");
         Utils.checkNotNull(leadId, "leadId");
         Utils.checkNotNull(active, "active");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -164,6 +173,7 @@ public class Note {
         this.contactId = contactId;
         this.companyId = companyId;
         this.opportunityId = opportunityId;
+        this.activityId = activityId;
         this.leadId = leadId;
         this.active = active;
         this.customMappings = customMappings;
@@ -175,7 +185,7 @@ public class Note {
     }
     
     public Note() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -232,6 +242,14 @@ public class Note {
     @JsonIgnore
     public JsonNullable<String> opportunityId() {
         return opportunityId;
+    }
+
+    /**
+     * The activity that is related to the note.
+     */
+    @JsonIgnore
+    public JsonNullable<String> activityId() {
+        return activityId;
     }
 
     /**
@@ -431,6 +449,24 @@ public class Note {
     }
 
     /**
+     * The activity that is related to the note.
+     */
+    public Note withActivityId(String activityId) {
+        Utils.checkNotNull(activityId, "activityId");
+        this.activityId = JsonNullable.of(activityId);
+        return this;
+    }
+
+    /**
+     * The activity that is related to the note.
+     */
+    public Note withActivityId(JsonNullable<String> activityId) {
+        Utils.checkNotNull(activityId, "activityId");
+        this.activityId = activityId;
+        return this;
+    }
+
+    /**
      * The lead that is related to the note.
      */
     public Note withLeadId(String leadId) {
@@ -592,6 +628,7 @@ public class Note {
             Objects.deepEquals(this.contactId, other.contactId) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.opportunityId, other.opportunityId) &&
+            Objects.deepEquals(this.activityId, other.activityId) &&
             Objects.deepEquals(this.leadId, other.leadId) &&
             Objects.deepEquals(this.active, other.active) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
@@ -612,6 +649,7 @@ public class Note {
             contactId,
             companyId,
             opportunityId,
+            activityId,
             leadId,
             active,
             customMappings,
@@ -632,6 +670,7 @@ public class Note {
                 "contactId", contactId,
                 "companyId", companyId,
                 "opportunityId", opportunityId,
+                "activityId", activityId,
                 "leadId", leadId,
                 "active", active,
                 "customMappings", customMappings,
@@ -657,6 +696,8 @@ public class Note {
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
         private JsonNullable<String> opportunityId = JsonNullable.undefined();
+ 
+        private JsonNullable<String> activityId = JsonNullable.undefined();
  
         private JsonNullable<String> leadId = JsonNullable.undefined();
  
@@ -801,6 +842,24 @@ public class Note {
         public Builder opportunityId(JsonNullable<String> opportunityId) {
             Utils.checkNotNull(opportunityId, "opportunityId");
             this.opportunityId = opportunityId;
+            return this;
+        }
+
+        /**
+         * The activity that is related to the note.
+         */
+        public Builder activityId(String activityId) {
+            Utils.checkNotNull(activityId, "activityId");
+            this.activityId = JsonNullable.of(activityId);
+            return this;
+        }
+
+        /**
+         * The activity that is related to the note.
+         */
+        public Builder activityId(JsonNullable<String> activityId) {
+            Utils.checkNotNull(activityId, "activityId");
+            this.activityId = activityId;
             return this;
         }
 
@@ -957,6 +1016,7 @@ public class Note {
                 contactId,
                 companyId,
                 opportunityId,
+                activityId,
                 leadId,
                 active,
                 customMappings,

@@ -63,6 +63,13 @@ public class NoteInput {
     private JsonNullable<String> opportunityId;
 
     /**
+     * The activity that is related to the note.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("activity_id")
+    private JsonNullable<String> activityId;
+
+    /**
      * The lead that is related to the note.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -91,6 +98,7 @@ public class NoteInput {
             @JsonProperty("contact_id") JsonNullable<String> contactId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("opportunity_id") JsonNullable<String> opportunityId,
+            @JsonProperty("activity_id") JsonNullable<String> activityId,
             @JsonProperty("lead_id") JsonNullable<String> leadId,
             @JsonProperty("active") JsonNullable<Boolean> active,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -100,6 +108,7 @@ public class NoteInput {
         Utils.checkNotNull(contactId, "contactId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(opportunityId, "opportunityId");
+        Utils.checkNotNull(activityId, "activityId");
         Utils.checkNotNull(leadId, "leadId");
         Utils.checkNotNull(active, "active");
         Utils.checkNotNull(passThrough, "passThrough");
@@ -109,13 +118,14 @@ public class NoteInput {
         this.contactId = contactId;
         this.companyId = companyId;
         this.opportunityId = opportunityId;
+        this.activityId = activityId;
         this.leadId = leadId;
         this.active = active;
         this.passThrough = passThrough;
     }
     
     public NoteInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -164,6 +174,14 @@ public class NoteInput {
     @JsonIgnore
     public JsonNullable<String> opportunityId() {
         return opportunityId;
+    }
+
+    /**
+     * The activity that is related to the note.
+     */
+    @JsonIgnore
+    public JsonNullable<String> activityId() {
+        return activityId;
     }
 
     /**
@@ -304,6 +322,24 @@ public class NoteInput {
     }
 
     /**
+     * The activity that is related to the note.
+     */
+    public NoteInput withActivityId(String activityId) {
+        Utils.checkNotNull(activityId, "activityId");
+        this.activityId = JsonNullable.of(activityId);
+        return this;
+    }
+
+    /**
+     * The activity that is related to the note.
+     */
+    public NoteInput withActivityId(JsonNullable<String> activityId) {
+        Utils.checkNotNull(activityId, "activityId");
+        this.activityId = activityId;
+        return this;
+    }
+
+    /**
      * The lead that is related to the note.
      */
     public NoteInput withLeadId(String leadId) {
@@ -374,6 +410,7 @@ public class NoteInput {
             Objects.deepEquals(this.contactId, other.contactId) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.opportunityId, other.opportunityId) &&
+            Objects.deepEquals(this.activityId, other.activityId) &&
             Objects.deepEquals(this.leadId, other.leadId) &&
             Objects.deepEquals(this.active, other.active) &&
             Objects.deepEquals(this.passThrough, other.passThrough);
@@ -388,6 +425,7 @@ public class NoteInput {
             contactId,
             companyId,
             opportunityId,
+            activityId,
             leadId,
             active,
             passThrough);
@@ -402,6 +440,7 @@ public class NoteInput {
                 "contactId", contactId,
                 "companyId", companyId,
                 "opportunityId", opportunityId,
+                "activityId", activityId,
                 "leadId", leadId,
                 "active", active,
                 "passThrough", passThrough);
@@ -420,6 +459,8 @@ public class NoteInput {
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
         private JsonNullable<String> opportunityId = JsonNullable.undefined();
+ 
+        private JsonNullable<String> activityId = JsonNullable.undefined();
  
         private JsonNullable<String> leadId = JsonNullable.undefined();
  
@@ -540,6 +581,24 @@ public class NoteInput {
         }
 
         /**
+         * The activity that is related to the note.
+         */
+        public Builder activityId(String activityId) {
+            Utils.checkNotNull(activityId, "activityId");
+            this.activityId = JsonNullable.of(activityId);
+            return this;
+        }
+
+        /**
+         * The activity that is related to the note.
+         */
+        public Builder activityId(JsonNullable<String> activityId) {
+            Utils.checkNotNull(activityId, "activityId");
+            this.activityId = activityId;
+            return this;
+        }
+
+        /**
          * The lead that is related to the note.
          */
         public Builder leadId(String leadId) {
@@ -601,6 +660,7 @@ public class NoteInput {
                 contactId,
                 companyId,
                 opportunityId,
+                activityId,
                 leadId,
                 active,
                 passThrough);

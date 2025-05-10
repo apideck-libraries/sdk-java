@@ -37,7 +37,7 @@ public class Application {
         sdk.webhook().webhooks().list()
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }

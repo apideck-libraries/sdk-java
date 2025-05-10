@@ -105,7 +105,7 @@ public class Application {
         sdk.vault().consumers().list()
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }

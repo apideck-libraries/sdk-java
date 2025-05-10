@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.13.1'
+implementation 'com.apideck:unify:0.13.2'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.13.1</version>
+    <version>0.13.2</version>
 </dependency>
 ```
 
@@ -140,7 +140,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -727,7 +727,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -792,7 +792,7 @@ public class Application {
                     .build())
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -851,7 +851,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -915,7 +915,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -968,7 +968,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -1070,7 +1070,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }

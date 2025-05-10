@@ -39,7 +39,7 @@ public class Application {
                     .build())
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }

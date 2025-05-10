@@ -130,9 +130,9 @@ public class EcommerceOrderLineItem {
     /**
      * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private Optional<String> totalAmount;
+    private JsonNullable<String> totalAmount;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discounts")
@@ -155,7 +155,7 @@ public class EcommerceOrderLineItem {
             @JsonProperty("refunded_amount") JsonNullable<String> refundedAmount,
             @JsonProperty("refunded_quantity") JsonNullable<String> refundedQuantity,
             @JsonProperty("sub_total") JsonNullable<String> subTotal,
-            @JsonProperty("total_amount") Optional<String> totalAmount,
+            @JsonProperty("total_amount") JsonNullable<String> totalAmount,
             @JsonProperty("discounts") Optional<? extends List<EcommerceDiscount>> discounts) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(productId, "productId");
@@ -194,7 +194,7 @@ public class EcommerceOrderLineItem {
     }
     
     public EcommerceOrderLineItem() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -319,7 +319,7 @@ public class EcommerceOrderLineItem {
      * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
      */
     @JsonIgnore
-    public Optional<String> totalAmount() {
+    public JsonNullable<String> totalAmount() {
         return totalAmount;
     }
 
@@ -602,14 +602,14 @@ public class EcommerceOrderLineItem {
      */
     public EcommerceOrderLineItem withTotalAmount(String totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
+        this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
     /**
      * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
      */
-    public EcommerceOrderLineItem withTotalAmount(Optional<String> totalAmount) {
+    public EcommerceOrderLineItem withTotalAmount(JsonNullable<String> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
         this.totalAmount = totalAmount;
         return this;
@@ -733,7 +733,7 @@ public class EcommerceOrderLineItem {
  
         private JsonNullable<String> subTotal = JsonNullable.undefined();
  
-        private Optional<String> totalAmount = Optional.empty();
+        private JsonNullable<String> totalAmount = JsonNullable.undefined();
  
         private Optional<? extends List<EcommerceDiscount>> discounts = Optional.empty();
         
@@ -1010,14 +1010,14 @@ public class EcommerceOrderLineItem {
          */
         public Builder totalAmount(String totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
+            this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
         /**
          * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
          */
-        public Builder totalAmount(Optional<String> totalAmount) {
+        public Builder totalAmount(JsonNullable<String> totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = totalAmount;
             return this;

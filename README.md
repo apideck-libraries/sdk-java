@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.13.1'
+implementation 'com.apideck:unify:0.13.2'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.13.1</version>
+    <version>0.13.2</version>
 </dependency>
 ```
 
@@ -140,7 +140,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -176,6 +176,22 @@ public class Application {
 #### [accounting().balanceSheet()](docs/sdks/balancesheet/README.md)
 
 * [get](docs/sdks/balancesheet/README.md#get) - Get BalanceSheet
+
+#### [accounting().bankFeedAccounts()](docs/sdks/bankfeedaccounts/README.md)
+
+* [list](docs/sdks/bankfeedaccounts/README.md#list) - List Bank Feed Accounts
+* [create](docs/sdks/bankfeedaccounts/README.md#create) - Create Bank Feed Account
+* [get](docs/sdks/bankfeedaccounts/README.md#get) - Get Bank Feed Account
+* [update](docs/sdks/bankfeedaccounts/README.md#update) - Update Bank Feed Account
+* [delete](docs/sdks/bankfeedaccounts/README.md#delete) - Delete Bank Feed Account
+
+#### [accounting().bankFeedStatements()](docs/sdks/bankfeedstatements/README.md)
+
+* [list](docs/sdks/bankfeedstatements/README.md#list) - List Bank Feed Statements
+* [create](docs/sdks/bankfeedstatements/README.md#create) - Create Bank Feed Statement
+* [get](docs/sdks/bankfeedstatements/README.md#get) - Get Bank Feed Statement
+* [update](docs/sdks/bankfeedstatements/README.md#update) - Update Bank Feed Statement
+* [delete](docs/sdks/bankfeedstatements/README.md#delete) - Delete Bank Feed Statement
 
 #### [accounting().billPayments()](docs/sdks/billpayments/README.md)
 
@@ -727,7 +743,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -792,7 +808,7 @@ public class Application {
                     .build())
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -851,7 +867,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -915,7 +931,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -968,7 +984,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }
@@ -1070,7 +1086,7 @@ public class Application {
                 .request(req)
                 .callAsStream()
                 .forEach(item -> {
-                   // handle item again
+                   // handle item
                 });
 
     }

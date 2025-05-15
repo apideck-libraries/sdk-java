@@ -28,6 +28,8 @@ public class Accounting {
     private final Expenses expenses;
     private final AgedCreditors agedCreditors;
     private final AgedDebtors agedDebtors;
+    private final BankFeedAccounts bankFeedAccounts;
+    private final BankFeedStatements bankFeedStatements;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -54,6 +56,8 @@ public class Accounting {
         this.expenses = new Expenses(this.sdkConfiguration);
         this.agedCreditors = new AgedCreditors(this.sdkConfiguration);
         this.agedDebtors = new AgedDebtors(this.sdkConfiguration);
+        this.bankFeedAccounts = new BankFeedAccounts(this.sdkConfiguration);
+        this.bankFeedStatements = new BankFeedStatements(this.sdkConfiguration);
     }
 
     public final TaxRates taxRates() {
@@ -146,5 +150,13 @@ public class Accounting {
 
     public final AgedDebtors agedDebtors() {
         return agedDebtors;
+    }
+
+    public final BankFeedAccounts bankFeedAccounts() {
+        return bankFeedAccounts;
+    }
+
+    public final BankFeedStatements bankFeedStatements() {
+        return bankFeedStatements;
     }
 }

@@ -592,6 +592,66 @@ public class SDKMethodInterfaces {
             Optional<Options> options) throws Exception;
     }
 
+    public interface MethodCallAccountingBankFeedAccountsAll {
+        AccountingBankFeedAccountsAllResponse list(
+            AccountingBankFeedAccountsAllRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedAccountsAdd {
+        AccountingBankFeedAccountsAddResponse create(
+            AccountingBankFeedAccountsAddRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedAccountsOne {
+        AccountingBankFeedAccountsOneResponse get(
+            AccountingBankFeedAccountsOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedAccountsUpdate {
+        AccountingBankFeedAccountsUpdateResponse update(
+            AccountingBankFeedAccountsUpdateRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedAccountsDelete {
+        AccountingBankFeedAccountsDeleteResponse delete(
+            AccountingBankFeedAccountsDeleteRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedStatementsAll {
+        AccountingBankFeedStatementsAllResponse list(
+            AccountingBankFeedStatementsAllRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedStatementsAdd {
+        AccountingBankFeedStatementsAddResponse create(
+            AccountingBankFeedStatementsAddRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedStatementsOne {
+        AccountingBankFeedStatementsOneResponse get(
+            AccountingBankFeedStatementsOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedStatementsUpdate {
+        AccountingBankFeedStatementsUpdateResponse update(
+            AccountingBankFeedStatementsUpdateRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingBankFeedStatementsDelete {
+        AccountingBankFeedStatementsDeleteResponse delete(
+            AccountingBankFeedStatementsDeleteRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallAtsJobsAll {
         AtsJobsAllResponse list(
             AtsJobsAllRequest request,

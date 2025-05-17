@@ -174,6 +174,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -185,13 +189,9 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build(),
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .value(Value.of5(List.of(
+                                        "<value 1>",
+                                        "<value 2>")))
                                     .build()))
                             .rowVersion("1-12345")
                             .build(),
@@ -243,19 +243,9 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
-                                    .build(),
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of(10))
-                                    .build(),
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .value(Value.of5(List.of(
+                                        "<value 1>",
+                                        "<value 2>")))
                                     .build()))
                             .rowVersion("1-12345")
                             .build()))
@@ -333,14 +323,6 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
                             .build()))
                     .customFields(List.of(
                         CustomField.builder()
@@ -348,21 +330,36 @@ public class Application {
                             .name("employee_level")
                             .description("Employee Level")
                             .value(Value.of5(List.of(
-                                "<value>",
-                                "<value>",
-                                "<value>")))
+                                "<value 1>",
+                                "<value 2>")))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of5(List.of(
+                                "<value 1>",
+                                "<value 2>")))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of5(List.of(
+                                "<value 1>",
+                                "<value 2>")))
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -572,17 +569,8 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of6(List.of(
-                                        Six.builder()
-                                            .build(),
-                                        Six.builder()
-                                            .build())))
-                                    .build(),
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of(true))
+                                    .value(Value.of(Four.builder()
+                                        .build()))
                                     .build()))
                             .rowVersion("1-12345")
                             .build(),
@@ -619,10 +607,6 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
                                     .build()))
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
@@ -634,53 +618,8 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of6(List.of(
-                                        Six.builder()
-                                            .build())))
-                                    .build()))
-                            .rowVersion("1-12345")
-                            .build(),
-                        InvoiceLineItemInput.builder()
-                            .id("12345")
-                            .rowId("12345")
-                            .code("120-C")
-                            .lineNumber(1L)
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .type(InvoiceLineItemType.SALES_ITEM)
-                            .taxAmount(27500)
-                            .totalAmount(27500)
-                            .quantity(1)
-                            .unitPrice(27500.5)
-                            .unitOfMeasure("pc.")
-                            .discountPercentage(0.01)
-                            .discountAmount(19.99)
-                            .locationId("12345")
-                            .departmentId("12345")
-                            .item(LinkedInvoiceItem.builder()
-                                .id("12344")
-                                .code("120-C")
-                                .name("Model Y")
-                                .build())
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .customFields(List.of(
-                                CustomField.builder()
-                                    .id("2389328923893298")
-                                    .name("employee_level")
-                                    .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .value(Value.of(Four.builder()
+                                        .build()))
                                     .build()))
                             .rowVersion("1-12345")
                             .build()))
@@ -772,7 +711,15 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
@@ -812,11 +759,7 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

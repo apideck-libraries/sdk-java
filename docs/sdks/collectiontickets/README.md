@@ -129,9 +129,15 @@ public class Application {
                             .build(),
                         AssigneeInput.builder()
                             .id("12345")
+                            .build(),
+                        AssigneeInput.builder()
+                            .id("12345")
                             .build()))
                     .dueDate(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .tags(List.of(
+                        CollectionTagInput.builder()
+                            .id("12345")
+                            .build(),
                         CollectionTagInput.builder()
                             .id("12345")
                             .build(),
@@ -147,11 +153,39 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -304,15 +338,9 @@ public class Application {
                             .build(),
                         AssigneeInput.builder()
                             .id("12345")
-                            .build(),
-                        AssigneeInput.builder()
-                            .id("12345")
                             .build()))
                     .dueDate(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
                     .tags(List.of(
-                        CollectionTagInput.builder()
-                            .id("12345")
-                            .build(),
                         CollectionTagInput.builder()
                             .id("12345")
                             .build()))
@@ -326,6 +354,16 @@ public class Application {
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

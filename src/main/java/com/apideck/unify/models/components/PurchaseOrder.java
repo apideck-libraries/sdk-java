@@ -59,6 +59,13 @@ public class PurchaseOrder {
     private JsonNullable<? extends LinkedSupplier> supplier;
 
     /**
+     * The ID of the subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary_id")
+    private JsonNullable<String> subsidiaryId;
+
+    /**
      * The company or subsidiary id the transaction belongs to
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -271,6 +278,7 @@ public class PurchaseOrder {
             @JsonProperty("po_number") JsonNullable<String> poNumber,
             @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
+            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("status") JsonNullable<? extends PurchaseOrderStatus> status,
             @JsonProperty("issued_date") JsonNullable<LocalDate> issuedDate,
@@ -308,6 +316,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(poNumber, "poNumber");
         Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(supplier, "supplier");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(issuedDate, "issuedDate");
@@ -345,6 +354,7 @@ public class PurchaseOrder {
         this.poNumber = poNumber;
         this.reference = reference;
         this.supplier = supplier;
+        this.subsidiaryId = subsidiaryId;
         this.companyId = companyId;
         this.status = status;
         this.issuedDate = issuedDate;
@@ -380,7 +390,7 @@ public class PurchaseOrder {
     }
     
     public PurchaseOrder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -422,6 +432,14 @@ public class PurchaseOrder {
     @JsonIgnore
     public JsonNullable<LinkedSupplier> supplier() {
         return (JsonNullable<LinkedSupplier>) supplier;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    @JsonIgnore
+    public JsonNullable<String> subsidiaryId() {
+        return subsidiaryId;
     }
 
     /**
@@ -763,6 +781,24 @@ public class PurchaseOrder {
     public PurchaseOrder withSupplier(JsonNullable<? extends LinkedSupplier> supplier) {
         Utils.checkNotNull(supplier, "supplier");
         this.supplier = supplier;
+        return this;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    public PurchaseOrder withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = JsonNullable.of(subsidiaryId);
+        return this;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    public PurchaseOrder withSubsidiaryId(JsonNullable<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
         return this;
     }
 
@@ -1322,6 +1358,7 @@ public class PurchaseOrder {
             Objects.deepEquals(this.poNumber, other.poNumber) &&
             Objects.deepEquals(this.reference, other.reference) &&
             Objects.deepEquals(this.supplier, other.supplier) &&
+            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.issuedDate, other.issuedDate) &&
@@ -1364,6 +1401,7 @@ public class PurchaseOrder {
             poNumber,
             reference,
             supplier,
+            subsidiaryId,
             companyId,
             status,
             issuedDate,
@@ -1406,6 +1444,7 @@ public class PurchaseOrder {
                 "poNumber", poNumber,
                 "reference", reference,
                 "supplier", supplier,
+                "subsidiaryId", subsidiaryId,
                 "companyId", companyId,
                 "status", status,
                 "issuedDate", issuedDate,
@@ -1451,6 +1490,8 @@ public class PurchaseOrder {
         private JsonNullable<String> reference = JsonNullable.undefined();
  
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
+ 
+        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
  
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
@@ -1607,6 +1648,24 @@ public class PurchaseOrder {
         public Builder supplier(JsonNullable<? extends LinkedSupplier> supplier) {
             Utils.checkNotNull(supplier, "supplier");
             this.supplier = supplier;
+            return this;
+        }
+
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = JsonNullable.of(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
             return this;
         }
 
@@ -2157,6 +2216,7 @@ public class PurchaseOrder {
                 poNumber,
                 reference,
                 supplier,
+                subsidiaryId,
                 companyId,
                 status,
                 issuedDate,

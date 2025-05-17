@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -88,6 +89,13 @@ public class ExpenseLineItemInput {
     @JsonProperty("billable")
     private Optional<Boolean> billable;
 
+    /**
+     * Line number of the resource
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("line_number")
+    private JsonNullable<Long> lineNumber;
+
     @JsonCreator
     public ExpenseLineItemInput(
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -99,7 +107,8 @@ public class ExpenseLineItemInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("total_amount") Optional<Double> totalAmount,
-            @JsonProperty("billable") Optional<Boolean> billable) {
+            @JsonProperty("billable") Optional<Boolean> billable,
+            @JsonProperty("line_number") JsonNullable<Long> lineNumber) {
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountId, "accountId");
         Utils.checkNotNull(customerId, "customerId");
@@ -110,6 +119,7 @@ public class ExpenseLineItemInput {
         Utils.checkNotNull(description, "description");
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(billable, "billable");
+        Utils.checkNotNull(lineNumber, "lineNumber");
         this.trackingCategories = trackingCategories;
         this.accountId = accountId;
         this.customerId = customerId;
@@ -120,10 +130,11 @@ public class ExpenseLineItemInput {
         this.description = description;
         this.totalAmount = totalAmount;
         this.billable = billable;
+        this.lineNumber = lineNumber;
     }
     
     public ExpenseLineItemInput() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -203,6 +214,14 @@ public class ExpenseLineItemInput {
     @JsonIgnore
     public Optional<Boolean> billable() {
         return billable;
+    }
+
+    /**
+     * Line number of the resource
+     */
+    @JsonIgnore
+    public JsonNullable<Long> lineNumber() {
+        return lineNumber;
     }
 
     public final static Builder builder() {
@@ -383,6 +402,24 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+    /**
+     * Line number of the resource
+     */
+    public ExpenseLineItemInput withLineNumber(long lineNumber) {
+        Utils.checkNotNull(lineNumber, "lineNumber");
+        this.lineNumber = JsonNullable.of(lineNumber);
+        return this;
+    }
+
+    /**
+     * Line number of the resource
+     */
+    public ExpenseLineItemInput withLineNumber(JsonNullable<Long> lineNumber) {
+        Utils.checkNotNull(lineNumber, "lineNumber");
+        this.lineNumber = lineNumber;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -403,7 +440,8 @@ public class ExpenseLineItemInput {
             Objects.deepEquals(this.taxRate, other.taxRate) &&
             Objects.deepEquals(this.description, other.description) &&
             Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.billable, other.billable);
+            Objects.deepEquals(this.billable, other.billable) &&
+            Objects.deepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
@@ -418,7 +456,8 @@ public class ExpenseLineItemInput {
             taxRate,
             description,
             totalAmount,
-            billable);
+            billable,
+            lineNumber);
     }
     
     @Override
@@ -433,7 +472,8 @@ public class ExpenseLineItemInput {
                 "taxRate", taxRate,
                 "description", description,
                 "totalAmount", totalAmount,
-                "billable", billable);
+                "billable", billable,
+                "lineNumber", lineNumber);
     }
     
     public final static class Builder {
@@ -457,6 +497,8 @@ public class ExpenseLineItemInput {
         private Optional<Double> totalAmount = Optional.empty();
  
         private Optional<Boolean> billable = Optional.empty();
+ 
+        private JsonNullable<Long> lineNumber = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -635,6 +677,24 @@ public class ExpenseLineItemInput {
             this.billable = billable;
             return this;
         }
+
+        /**
+         * Line number of the resource
+         */
+        public Builder lineNumber(long lineNumber) {
+            Utils.checkNotNull(lineNumber, "lineNumber");
+            this.lineNumber = JsonNullable.of(lineNumber);
+            return this;
+        }
+
+        /**
+         * Line number of the resource
+         */
+        public Builder lineNumber(JsonNullable<Long> lineNumber) {
+            Utils.checkNotNull(lineNumber, "lineNumber");
+            this.lineNumber = lineNumber;
+            return this;
+        }
         
         public ExpenseLineItemInput build() {
             return new ExpenseLineItemInput(
@@ -647,7 +707,8 @@ public class ExpenseLineItemInput {
                 taxRate,
                 description,
                 totalAmount,
-                billable);
+                billable,
+                lineNumber);
         }
     }
 }

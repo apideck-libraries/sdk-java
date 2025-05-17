@@ -134,6 +134,12 @@ public class Application {
                             .name("GST")
                             .rate(10)
                             .compound(true)
+                            .build(),
+                        Components.builder()
+                            .id("10")
+                            .name("GST")
+                            .rate(10)
+                            .compound(true)
                             .build()))
                     .type("NONE")
                     .reportTaxType("NONE")
@@ -155,11 +161,7 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -172,10 +174,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of5(List.of(
-                                "<value>",
-                                "<value>",
-                                "<value>")))
+                            .value(Value.of(10))
                             .build()))
                     .build())
                 .serviceId("salesforce")
@@ -322,18 +321,6 @@ public class Application {
                             .name("GST")
                             .rate(10)
                             .compound(true)
-                            .build(),
-                        Components.builder()
-                            .id("10")
-                            .name("GST")
-                            .rate(10)
-                            .compound(true)
-                            .build(),
-                        Components.builder()
-                            .id("10")
-                            .name("GST")
-                            .rate(10)
-                            .compound(true)
                             .build()))
                     .type("NONE")
                     .reportTaxType("NONE")
@@ -371,6 +358,16 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
@@ -384,7 +381,15 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of(Four.builder()
+                                .build()))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of(Four.builder()
+                                .build()))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")

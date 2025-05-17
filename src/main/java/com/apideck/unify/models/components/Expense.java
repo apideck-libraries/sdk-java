@@ -161,6 +161,20 @@ public class Expense {
     private JsonNullable<String> rowVersion;
 
     /**
+     * The user who last updated the object.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_by")
+    private JsonNullable<String> updatedBy;
+
+    /**
+     * The user who created the object.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("created_by")
+    private JsonNullable<String> createdBy;
+
+    /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -190,6 +204,8 @@ public class Expense {
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
+            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") JsonNullable<String> createdBy,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(number, "number");
@@ -212,6 +228,8 @@ public class Expense {
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(rowVersion, "rowVersion");
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        Utils.checkNotNull(createdBy, "createdBy");
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.number = number;
@@ -234,13 +252,15 @@ public class Expense {
         this.updatedAt = updatedAt;
         this.createdAt = createdAt;
         this.rowVersion = rowVersion;
+        this.updatedBy = updatedBy;
+        this.createdBy = createdBy;
         this.passThrough = passThrough;
     }
     
     public Expense(
             String accountId,
             List<ExpenseLineItem> lineItems) {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -409,6 +429,22 @@ public class Expense {
     @JsonIgnore
     public JsonNullable<String> rowVersion() {
         return rowVersion;
+    }
+
+    /**
+     * The user who last updated the object.
+     */
+    @JsonIgnore
+    public JsonNullable<String> updatedBy() {
+        return updatedBy;
+    }
+
+    /**
+     * The user who created the object.
+     */
+    @JsonIgnore
+    public JsonNullable<String> createdBy() {
+        return createdBy;
     }
 
     /**
@@ -773,6 +809,42 @@ public class Expense {
     }
 
     /**
+     * The user who last updated the object.
+     */
+    public Expense withUpdatedBy(String updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = JsonNullable.of(updatedBy);
+        return this;
+    }
+
+    /**
+     * The user who last updated the object.
+     */
+    public Expense withUpdatedBy(JsonNullable<String> updatedBy) {
+        Utils.checkNotNull(updatedBy, "updatedBy");
+        this.updatedBy = updatedBy;
+        return this;
+    }
+
+    /**
+     * The user who created the object.
+     */
+    public Expense withCreatedBy(String createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = JsonNullable.of(createdBy);
+        return this;
+    }
+
+    /**
+     * The user who created the object.
+     */
+    public Expense withCreatedBy(JsonNullable<String> createdBy) {
+        Utils.checkNotNull(createdBy, "createdBy");
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     public Expense withPassThrough(List<PassThroughBody> passThrough) {
@@ -822,6 +894,8 @@ public class Expense {
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
+            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
+            Objects.deepEquals(this.createdBy, other.createdBy) &&
             Objects.deepEquals(this.passThrough, other.passThrough);
     }
     
@@ -849,6 +923,8 @@ public class Expense {
             updatedAt,
             createdAt,
             rowVersion,
+            updatedBy,
+            createdBy,
             passThrough);
     }
     
@@ -876,6 +952,8 @@ public class Expense {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt,
                 "rowVersion", rowVersion,
+                "updatedBy", updatedBy,
+                "createdBy", createdBy,
                 "passThrough", passThrough);
     }
     
@@ -922,6 +1000,10 @@ public class Expense {
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
+ 
+        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+ 
+        private JsonNullable<String> createdBy = JsonNullable.undefined();
  
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
         
@@ -1278,6 +1360,42 @@ public class Expense {
         }
 
         /**
+         * The user who last updated the object.
+         */
+        public Builder updatedBy(String updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = JsonNullable.of(updatedBy);
+            return this;
+        }
+
+        /**
+         * The user who last updated the object.
+         */
+        public Builder updatedBy(JsonNullable<String> updatedBy) {
+            Utils.checkNotNull(updatedBy, "updatedBy");
+            this.updatedBy = updatedBy;
+            return this;
+        }
+
+        /**
+         * The user who created the object.
+         */
+        public Builder createdBy(String createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = JsonNullable.of(createdBy);
+            return this;
+        }
+
+        /**
+         * The user who created the object.
+         */
+        public Builder createdBy(JsonNullable<String> createdBy) {
+            Utils.checkNotNull(createdBy, "createdBy");
+            this.createdBy = createdBy;
+            return this;
+        }
+
+        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
         public Builder passThrough(List<PassThroughBody> passThrough) {
@@ -1318,6 +1436,8 @@ public class Expense {
                 updatedAt,
                 createdAt,
                 rowVersion,
+                updatedBy,
+                createdBy,
                 passThrough);
         }
     }

@@ -42,6 +42,7 @@ public class Application {
                 .serviceId("salesforce")
                 .filter(PaymentsFilter.builder()
                     .updatedSince(OffsetDateTime.parse("2020-09-30T07:43:32.000Z"))
+                    .invoiceId("123")
                     .build())
                 .sort(PaymentsSort.builder()
                     .by(PaymentsSortBy.UPDATED_AT)
@@ -173,6 +174,12 @@ public class Application {
                             .type(BillPaymentAllocationType.BILL)
                             .amount(49.99)
                             .allocationId("123456")
+                            .build(),
+                        BillPaymentAllocations.builder()
+                            .id("12345")
+                            .type(BillPaymentAllocationType.BILL)
+                            .amount(49.99)
+                            .allocationId("123456")
                             .build()))
                     .note("Some notes about this transaction")
                     .number("123456")
@@ -180,12 +187,14 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
                             .build()))
                     .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
@@ -216,26 +225,6 @@ public class Application {
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -360,6 +349,7 @@ import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -442,31 +432,13 @@ public class Application {
                             .build()))
                     .note("Some notes about this transaction")
                     .number("123456")
-                    .trackingCategories(List.of(
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build()))
+                    .trackingCategories(JsonNullable.of(null))
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of6(List.of(
-                                Six.builder()
-                                    .build(),
-                                Six.builder()
-                                    .build())))
-                            .build(),
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .rowVersion("1-12345")
                     .displayId("123456")
@@ -484,34 +456,6 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

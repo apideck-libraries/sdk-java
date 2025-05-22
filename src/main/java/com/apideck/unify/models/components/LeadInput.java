@@ -29,9 +29,9 @@ public class LeadInput {
     /**
      * The name of the company the lead is associated with.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_name")
-    private Optional<String> companyName;
+    private JsonNullable<String> companyName;
 
     /**
      * The owner of the lead.
@@ -157,7 +157,7 @@ public class LeadInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private JsonNullable<? extends List<CustomField>> customFields;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -173,7 +173,7 @@ public class LeadInput {
     @JsonCreator
     public LeadInput(
             @JsonProperty("name") String name,
-            @JsonProperty("company_name") Optional<String> companyName,
+            @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("owner_id") JsonNullable<String> ownerId,
             @JsonProperty("owner_name") JsonNullable<String> ownerName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
@@ -194,7 +194,7 @@ public class LeadInput {
             @JsonProperty("social_links") Optional<? extends List<SocialLink>> socialLinks,
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("custom_fields") JsonNullable<? extends List<CustomField>> customFields,
             @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(name, "name");
@@ -251,7 +251,7 @@ public class LeadInput {
     
     public LeadInput(
             String name) {
-        this(name, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -266,7 +266,7 @@ public class LeadInput {
      * The name of the company the lead is associated with.
      */
     @JsonIgnore
-    public Optional<String> companyName() {
+    public JsonNullable<String> companyName() {
         return companyName;
     }
 
@@ -420,8 +420,8 @@ public class LeadInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+    public JsonNullable<List<CustomField>> customFields() {
+        return (JsonNullable<List<CustomField>>) customFields;
     }
 
     @SuppressWarnings("unchecked")
@@ -457,14 +457,14 @@ public class LeadInput {
      */
     public LeadInput withCompanyName(String companyName) {
         Utils.checkNotNull(companyName, "companyName");
-        this.companyName = Optional.ofNullable(companyName);
+        this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
     /**
      * The name of the company the lead is associated with.
      */
-    public LeadInput withCompanyName(Optional<String> companyName) {
+    public LeadInput withCompanyName(JsonNullable<String> companyName) {
         Utils.checkNotNull(companyName, "companyName");
         this.companyName = companyName;
         return this;
@@ -796,11 +796,11 @@ public class LeadInput {
 
     public LeadInput withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
+        this.customFields = JsonNullable.of(customFields);
         return this;
     }
 
-    public LeadInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+    public LeadInput withCustomFields(JsonNullable<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
         return this;
@@ -938,7 +938,7 @@ public class LeadInput {
  
         private String name;
  
-        private Optional<String> companyName = Optional.empty();
+        private JsonNullable<String> companyName = JsonNullable.undefined();
  
         private JsonNullable<String> ownerId = JsonNullable.undefined();
  
@@ -980,7 +980,7 @@ public class LeadInput {
  
         private Optional<? extends List<Email>> emails = Optional.empty();
  
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
  
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
  
@@ -1004,14 +1004,14 @@ public class LeadInput {
          */
         public Builder companyName(String companyName) {
             Utils.checkNotNull(companyName, "companyName");
-            this.companyName = Optional.ofNullable(companyName);
+            this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
          * The name of the company the lead is associated with.
          */
-        public Builder companyName(Optional<String> companyName) {
+        public Builder companyName(JsonNullable<String> companyName) {
             Utils.checkNotNull(companyName, "companyName");
             this.companyName = companyName;
             return this;
@@ -1343,11 +1343,11 @@ public class LeadInput {
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
+            this.customFields = JsonNullable.of(customFields);
             return this;
         }
 
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+        public Builder customFields(JsonNullable<? extends List<CustomField>> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = customFields;
             return this;

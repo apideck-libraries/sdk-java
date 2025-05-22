@@ -9,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -79,7 +81,7 @@ public class Person {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     @JsonCreator
     public Person(
@@ -91,7 +93,7 @@ public class Person {
             @JsonProperty("initials") JsonNullable<String> initials,
             @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
             @JsonProperty("deceased_on") JsonNullable<LocalDate> deceasedOn,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings) {
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(lastName, "lastName");
@@ -186,8 +188,8 @@ public class Person {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     public final static Builder builder() {
@@ -341,7 +343,7 @@ public class Person {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Person withCustomMappings(CustomMappings customMappings) {
+    public Person withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -350,7 +352,7 @@ public class Person {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Person withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public Person withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -424,7 +426,7 @@ public class Person {
  
         private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -577,7 +579,7 @@ public class Person {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -586,7 +588,7 @@ public class Person {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

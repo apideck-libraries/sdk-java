@@ -10,11 +10,13 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -173,7 +175,7 @@ public class Supplier {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -255,7 +257,7 @@ public class Supplier {
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
             @JsonProperty("channel") JsonNullable<String> channel,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -526,8 +528,8 @@ public class Supplier {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     @SuppressWarnings("unchecked")
@@ -987,7 +989,7 @@ public class Supplier {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Supplier withCustomMappings(CustomMappings customMappings) {
+    public Supplier withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -996,7 +998,7 @@ public class Supplier {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Supplier withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public Supplier withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -1317,7 +1319,7 @@ public class Supplier {
  
         private JsonNullable<String> channel = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
  
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
@@ -1729,7 +1731,7 @@ public class Supplier {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -1738,7 +1740,7 @@ public class Supplier {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

@@ -9,9 +9,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -37,13 +39,13 @@ public class CollectionTag {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     @JsonCreator
     public CollectionTag(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings) {
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(customMappings, "customMappings");
@@ -77,8 +79,8 @@ public class CollectionTag {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     public final static Builder builder() {
@@ -124,7 +126,7 @@ public class CollectionTag {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public CollectionTag withCustomMappings(CustomMappings customMappings) {
+    public CollectionTag withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -133,7 +135,7 @@ public class CollectionTag {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public CollectionTag withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public CollectionTag withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -177,7 +179,7 @@ public class CollectionTag {
  
         private JsonNullable<String> name = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -222,7 +224,7 @@ public class CollectionTag {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -231,7 +233,7 @@ public class CollectionTag {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

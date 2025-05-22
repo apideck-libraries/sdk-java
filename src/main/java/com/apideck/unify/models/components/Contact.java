@@ -12,11 +12,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -226,7 +228,7 @@ public class Contact {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private JsonNullable<? extends List<CustomField>> customFields;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -258,7 +260,7 @@ public class Contact {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
      * The last update date of the contact.
@@ -321,12 +323,12 @@ public class Contact {
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("email_domain") JsonNullable<String> emailDomain,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("custom_fields") JsonNullable<? extends List<CustomField>> customFields,
             @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
             @JsonProperty("first_call_at") JsonNullable<OffsetDateTime> firstCallAt,
             @JsonProperty("first_email_at") JsonNullable<OffsetDateTime> firstEmailAt,
             @JsonProperty("last_activity_at") JsonNullable<OffsetDateTime> lastActivityAt,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("opportunity_ids") Optional<? extends List<String>> opportunityIds,
@@ -416,7 +418,7 @@ public class Contact {
     }
     
     public Contact() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -660,8 +662,8 @@ public class Contact {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+    public JsonNullable<List<CustomField>> customFields() {
+        return (JsonNullable<List<CustomField>>) customFields;
     }
 
     @SuppressWarnings("unchecked")
@@ -699,8 +701,8 @@ public class Contact {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     /**
@@ -1269,11 +1271,11 @@ public class Contact {
 
     public Contact withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
+        this.customFields = JsonNullable.of(customFields);
         return this;
     }
 
-    public Contact withCustomFields(Optional<? extends List<CustomField>> customFields) {
+    public Contact withCustomFields(JsonNullable<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
         return this;
@@ -1348,7 +1350,7 @@ public class Contact {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Contact withCustomMappings(CustomMappings customMappings) {
+    public Contact withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -1357,7 +1359,7 @@ public class Contact {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Contact withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public Contact withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -1646,7 +1648,7 @@ public class Contact {
  
         private JsonNullable<String> emailDomain = JsonNullable.undefined();
  
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
  
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
  
@@ -1656,7 +1658,7 @@ public class Contact {
  
         private JsonNullable<OffsetDateTime> lastActivityAt = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
  
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
  
@@ -2198,11 +2200,11 @@ public class Contact {
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
+            this.customFields = JsonNullable.of(customFields);
             return this;
         }
 
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+        public Builder customFields(JsonNullable<? extends List<CustomField>> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = customFields;
             return this;
@@ -2277,7 +2279,7 @@ public class Contact {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -2286,7 +2288,7 @@ public class Contact {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

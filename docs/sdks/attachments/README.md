@@ -105,7 +105,7 @@ public class Application {
         AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
                 .referenceId("123456")
-                .requestBody("0x8cc9e675ad".getBytes(StandardCharsets.UTF_8))
+                .requestBody("0x506D4BD16D".getBytes(StandardCharsets.UTF_8))
                 .xApideckMetadata("{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}")
                 .serviceId("salesforce")
                 .build();

@@ -218,7 +218,7 @@ public class ContactInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private JsonNullable<? extends List<CustomField>> customFields;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -270,7 +270,7 @@ public class ContactInput {
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("email_domain") JsonNullable<String> emailDomain,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
+            @JsonProperty("custom_fields") JsonNullable<? extends List<CustomField>> customFields,
             @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
             @JsonProperty("opportunity_ids") Optional<? extends List<String>> opportunityIds,
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
@@ -345,7 +345,7 @@ public class ContactInput {
     }
     
     public ContactInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -581,8 +581,8 @@ public class ContactInput {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+    public JsonNullable<List<CustomField>> customFields() {
+        return (JsonNullable<List<CustomField>>) customFields;
     }
 
     @SuppressWarnings("unchecked")
@@ -1123,11 +1123,11 @@ public class ContactInput {
 
     public ContactInput withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
+        this.customFields = JsonNullable.of(customFields);
         return this;
     }
 
-    public ContactInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
+    public ContactInput withCustomFields(JsonNullable<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
         return this;
@@ -1369,7 +1369,7 @@ public class ContactInput {
  
         private JsonNullable<String> emailDomain = JsonNullable.undefined();
  
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
  
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
  
@@ -1891,11 +1891,11 @@ public class ContactInput {
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
+            this.customFields = JsonNullable.of(customFields);
             return this;
         }
 
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
+        public Builder customFields(JsonNullable<? extends List<CustomField>> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = customFields;
             return this;

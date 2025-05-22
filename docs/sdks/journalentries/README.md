@@ -101,6 +101,7 @@ import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -139,65 +140,6 @@ public class Application {
                                     .id("123456")
                                     .name("New York")
                                     .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
-                            .customer(LinkedCustomerInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .email("boring@boring.com")
-                                .build())
-                            .supplier(LinkedSupplierInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .address(Address.builder()
-                                    .id("123")
-                                    .type(Type.PRIMARY)
-                                    .string("25 Spring Street, Blackburn, VIC 3130")
-                                    .name("HQ US")
-                                    .line1("Main street")
-                                    .line2("apt #")
-                                    .line3("Suite #")
-                                    .line4("delivery instructions")
-                                    .streetNumber("25")
-                                    .city("San Francisco")
-                                    .state("CA")
-                                    .postalCode("94104")
-                                    .country("US")
-                                    .latitude("40.759211")
-                                    .longitude("-73.984638")
-                                    .county("Santa Clara")
-                                    .contactName("Elon Musk")
-                                    .salutation("Mr")
-                                    .phoneNumber("111-111-1111")
-                                    .fax("122-111-1111")
-                                    .email("elon@musk.com")
-                                    .website("https://elonmusk.com")
-                                    .notes("Address notes or delivery instructions.")
-                                    .rowVersion("1-12345")
-                                    .build())
-                                .build())
-                            .departmentId("12345")
-                            .locationId("12345")
-                            .lineNumber(1L)
-                            .build(),
-                        JournalEntryLineItemInput.builder()
-                            .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500)
-                            .subTotal(27500)
-                            .totalAmount(27500)
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
@@ -251,11 +193,7 @@ public class Application {
                     .taxType("sales")
                     .taxCode("1234")
                     .number("OIT00546")
-                    .trackingCategories(List.of(
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build()))
+                    .trackingCategories(JsonNullable.of(null))
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(
@@ -263,15 +201,68 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of5(List.of(
-                                "<value>",
-                                "<value>",
-                                "<value>")))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -438,132 +429,6 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
-                                    .build()))
-                            .customer(LinkedCustomerInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .email("boring@boring.com")
-                                .build())
-                            .supplier(LinkedSupplierInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .address(Address.builder()
-                                    .id("123")
-                                    .type(Type.PRIMARY)
-                                    .string("25 Spring Street, Blackburn, VIC 3130")
-                                    .name("HQ US")
-                                    .line1("Main street")
-                                    .line2("apt #")
-                                    .line3("Suite #")
-                                    .line4("delivery instructions")
-                                    .streetNumber("25")
-                                    .city("San Francisco")
-                                    .state("CA")
-                                    .postalCode("94104")
-                                    .country("US")
-                                    .latitude("40.759211")
-                                    .longitude("-73.984638")
-                                    .county("Santa Clara")
-                                    .contactName("Elon Musk")
-                                    .salutation("Mr")
-                                    .phoneNumber("111-111-1111")
-                                    .fax("122-111-1111")
-                                    .email("elon@musk.com")
-                                    .website("https://elonmusk.com")
-                                    .notes("Address notes or delivery instructions.")
-                                    .rowVersion("1-12345")
-                                    .build())
-                                .build())
-                            .departmentId("12345")
-                            .locationId("12345")
-                            .lineNumber(1L)
-                            .build(),
-                        JournalEntryLineItemInput.builder()
-                            .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500)
-                            .subTotal(27500)
-                            .totalAmount(27500)
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
-                            .customer(LinkedCustomerInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .email("boring@boring.com")
-                                .build())
-                            .supplier(LinkedSupplierInput.builder()
-                                .id("12345")
-                                .displayName("Windsurf Shop")
-                                .address(Address.builder()
-                                    .id("123")
-                                    .type(Type.PRIMARY)
-                                    .string("25 Spring Street, Blackburn, VIC 3130")
-                                    .name("HQ US")
-                                    .line1("Main street")
-                                    .line2("apt #")
-                                    .line3("Suite #")
-                                    .line4("delivery instructions")
-                                    .streetNumber("25")
-                                    .city("San Francisco")
-                                    .state("CA")
-                                    .postalCode("94104")
-                                    .country("US")
-                                    .latitude("40.759211")
-                                    .longitude("-73.984638")
-                                    .county("Santa Clara")
-                                    .contactName("Elon Musk")
-                                    .salutation("Mr")
-                                    .phoneNumber("111-111-1111")
-                                    .fax("122-111-1111")
-                                    .email("elon@musk.com")
-                                    .website("https://elonmusk.com")
-                                    .notes("Address notes or delivery instructions.")
-                                    .rowVersion("1-12345")
-                                    .build())
-                                .build())
-                            .departmentId("12345")
-                            .locationId("12345")
-                            .lineNumber(1L)
-                            .build(),
-                        JournalEntryLineItemInput.builder()
-                            .type(JournalEntryLineItemType.DEBIT)
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500)
-                            .subTotal(27500)
-                            .totalAmount(27500)
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
                                     .build(),
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -630,21 +495,34 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(Four.builder()
-                                .build()))
-                            .build(),
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of6(List.of(
-                                Six.builder()
-                                    .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

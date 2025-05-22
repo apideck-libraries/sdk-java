@@ -9,10 +9,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
+import java.util.Map;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -57,7 +59,7 @@ public class Collection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
      * The date and time when the object was last updated.
@@ -80,7 +82,7 @@ public class Collection {
             @JsonProperty("type") JsonNullable<String> type,
             @JsonProperty("name") JsonNullable<String> name,
             @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
         Utils.checkNotNull(id, "id");
@@ -151,8 +153,8 @@ public class Collection {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     /**
@@ -259,7 +261,7 @@ public class Collection {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Collection withCustomMappings(CustomMappings customMappings) {
+    public Collection withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -268,7 +270,7 @@ public class Collection {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Collection withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public Collection withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -369,7 +371,7 @@ public class Collection {
  
         private JsonNullable<String> description = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
  
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
  
@@ -463,7 +465,7 @@ public class Collection {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -472,7 +474,7 @@ public class Collection {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

@@ -184,14 +184,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(Four.builder()
-                                .build()))
-                            .build(),
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of(true))
+                            .value(Value.of(10))
                             .build()))
                     .attendees(List.of(
                         ActivityAttendeeInput.builder()
@@ -209,18 +202,6 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -429,26 +410,26 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(Four.builder()
-                                .build()))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
-                            .build(),
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of6(List.of(
-                                Six.builder()
-                                    .build(),
-                                Six.builder()
-                                    .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .attendees(List.of(
+                        ActivityAttendeeInput.builder()
+                            .name("Elon Musk")
+                            .firstName("Elon")
+                            .middleName("D.")
+                            .lastName("Musk")
+                            .prefix("Mr.")
+                            .suffix("PhD")
+                            .emailAddress("elon@musk.com")
+                            .isOrganizer(true)
+                            .status(ActivityAttendeeStatus.ACCEPTED)
+                            .build(),
                         ActivityAttendeeInput.builder()
                             .name("Elon Musk")
                             .firstName("Elon")
@@ -480,17 +461,17 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

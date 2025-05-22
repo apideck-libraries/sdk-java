@@ -54,28 +54,6 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build()))
                     .build())
@@ -216,44 +194,6 @@ public class Application {
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -407,51 +347,11 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

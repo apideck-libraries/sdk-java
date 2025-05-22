@@ -10,12 +10,14 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -201,7 +203,7 @@ public class Applicant {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends CustomMappings> customMappings;
+    private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
      * Flag to indicate if the object is deleted.
@@ -297,7 +299,7 @@ public class Applicant {
             @JsonProperty("cv_url") Optional<String> cvUrl,
             @JsonProperty("record_url") JsonNullable<String> recordUrl,
             @JsonProperty("rejected_at") JsonNullable<OffsetDateTime> rejectedAt,
-            @JsonProperty("custom_mappings") JsonNullable<? extends CustomMappings> customMappings,
+            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("deleted") JsonNullable<Boolean> deleted,
             @JsonProperty("deleted_by") JsonNullable<String> deletedBy,
             @JsonProperty("deleted_at") JsonNullable<OffsetDateTime> deletedAt,
@@ -628,8 +630,8 @@ public class Applicant {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<CustomMappings> customMappings() {
-        return (JsonNullable<CustomMappings>) customMappings;
+    public JsonNullable<Map<String, Object>> customMappings() {
+        return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
     /**
@@ -1196,7 +1198,7 @@ public class Applicant {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Applicant withCustomMappings(CustomMappings customMappings) {
+    public Applicant withCustomMappings(Map<String, Object> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = JsonNullable.of(customMappings);
         return this;
@@ -1205,7 +1207,7 @@ public class Applicant {
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Applicant withCustomMappings(JsonNullable<? extends CustomMappings> customMappings) {
+    public Applicant withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
         return this;
@@ -1587,7 +1589,7 @@ public class Applicant {
  
         private JsonNullable<OffsetDateTime> rejectedAt = JsonNullable.undefined();
  
-        private JsonNullable<? extends CustomMappings> customMappings = JsonNullable.undefined();
+        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
  
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
  
@@ -2104,7 +2106,7 @@ public class Applicant {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(CustomMappings customMappings) {
+        public Builder customMappings(Map<String, Object> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = JsonNullable.of(customMappings);
             return this;
@@ -2113,7 +2115,7 @@ public class Applicant {
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(JsonNullable<? extends CustomMappings> customMappings) {
+        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
             Utils.checkNotNull(customMappings, "customMappings");
             this.customMappings = customMappings;
             return this;

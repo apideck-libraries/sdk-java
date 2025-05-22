@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.13.2'
+implementation 'com.apideck:unify:0.13.3'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.13.2</version>
+    <version>0.13.3</version>
 </dependency>
 ```
 
@@ -1018,7 +1018,7 @@ public class Application {
         AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
                 .referenceType(AttachmentReferenceType.INVOICE)
                 .referenceId("123456")
-                .requestBody("0x8cc9e675ad".getBytes(StandardCharsets.UTF_8))
+                .requestBody("0x506D4BD16D".getBytes(StandardCharsets.UTF_8))
                 .xApideckMetadata("{\"name\":\"document.pdf\",\"description\":\"Invoice attachment\"}")
                 .serviceId("salesforce")
                 .build();

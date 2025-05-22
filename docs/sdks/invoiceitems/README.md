@@ -101,6 +101,7 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -158,15 +159,7 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
-                    .trackingCategories(List.of(
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build()))
+                    .trackingCategories(JsonNullable.of(null))
                     .active(true)
                     .departmentId("12345")
                     .locationId("12345")
@@ -183,16 +176,6 @@ public class Application {
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -322,6 +305,7 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -370,21 +354,13 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
-                    .incomeAccount(LinkedLedgerAccountInput.builder()
-                        .id("123456")
-                        .nominalCode("N091")
-                        .code("453")
-                        .build())
+                    .incomeAccount(JsonNullable.of(null))
                     .expenseAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
                         .nominalCode("N091")
                         .code("453")
                         .build())
                     .trackingCategories(List.of(
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build(),
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
@@ -408,29 +384,11 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
                                     .build()))
                             .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

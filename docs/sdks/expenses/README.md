@@ -115,6 +115,10 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
+                                    .build(),
+                                LinkedTrackingCategory.builder()
+                                    .id("123456")
+                                    .name("New York")
                                     .build()))
                             .accountId("123456")
                             .customerId("12345")
@@ -127,6 +131,7 @@ public class Application {
                                 .build())
                             .description("Travel US.")
                             .billable(true)
+                            .lineNumber(1L)
                             .build()))
                     .number("OIT00546")
                     .customerId("12345")
@@ -144,6 +149,12 @@ public class Application {
                         .build())
                     .totalAmount(275)
                     .customFields(List.of(
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
@@ -188,11 +199,13 @@ public class Application {
                                     .value(Map.ofEntries(
                                         Map.entry("TaxClassificationRef", Map.ofEntries(
                                             Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build()))
-                            .build(),
-                        PassThroughBody.builder()
-                            .serviceId("<id>")
-                            .extendPaths(List.of(
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -343,25 +356,6 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
-                                    .build()))
-                            .accountId("123456")
-                            .customerId("12345")
-                            .departmentId("12345")
-                            .locationId("12345")
-                            .subsidiaryId("12345")
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .description("Travel US.")
-                            .billable(true)
-                            .build(),
-                        ExpenseLineItemInput.builder()
-                            .totalAmount(275)
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
                                     .build(),
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -378,33 +372,7 @@ public class Application {
                                 .build())
                             .description("Travel US.")
                             .billable(true)
-                            .build(),
-                        ExpenseLineItemInput.builder()
-                            .totalAmount(275)
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
-                            .accountId("123456")
-                            .customerId("12345")
-                            .departmentId("12345")
-                            .locationId("12345")
-                            .subsidiaryId("12345")
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .description("Travel US.")
-                            .billable(true)
+                            .lineNumber(1L)
                             .build()))
                     .number("OIT00546")
                     .customerId("12345")
@@ -426,26 +394,13 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(true))
-                            .build(),
-                        CustomField.builder()
-                            .id("2389328923893298")
-                            .name("employee_level")
-                            .description("Employee Level")
-                            .value(Value.of(Four.builder()
-                                .build()))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
-                                ExtendPaths.builder()
-                                    .path("$.nested.property")
-                                    .value(Map.ofEntries(
-                                        Map.entry("TaxClassificationRef", Map.ofEntries(
-                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
-                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(

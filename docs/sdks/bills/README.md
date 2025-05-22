@@ -101,6 +101,7 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -192,42 +193,6 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
-                                    .build()))
-                            .rowVersion("1-12345")
-                            .build(),
-                        BillLineItemInput.builder()
-                            .rowId("12345")
-                            .code("120-C")
-                            .lineNumber(1L)
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500)
-                            .totalAmount(27500)
-                            .quantity(1)
-                            .unitPrice(27500.5)
-                            .unitOfMeasure("pc.")
-                            .discountPercentage(0.01)
-                            .discountAmount(19.99)
-                            .locationId("12345")
-                            .departmentId("12345")
-                            .item(LinkedInvoiceItem.builder()
-                                .id("12344")
-                                .code("120-C")
-                                .name("Model Y")
-                                .build())
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
                                     .build(),
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -268,26 +233,87 @@ public class Application {
                         .build())
                     .discountPercentage(5.5)
                     .sourceDocumentUrl("https://www.invoicesolution.com/bill/123456")
-                    .trackingCategories(List.of(
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
-                            .build()))
+                    .trackingCategories(JsonNullable.of(null))
                     .rowVersion("1-12345")
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of5(List.of(
-                                "<value>",
-                                "<value>",
-                                "<value>")))
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
+                            .build(),
+                        CustomField.builder()
+                            .id("2389328923893298")
+                            .name("employee_level")
+                            .description("Employee Level")
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .passThrough(List.of(
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build(),
                                 ExtendPaths.builder()
                                     .path("$.nested.property")
                                     .value(Map.ofEntries(
@@ -501,10 +527,6 @@ public class Application {
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
                                     .build()))
                             .rowVersion("1-12345")
                             .build(),
@@ -538,54 +560,6 @@ public class Application {
                                 .code("453")
                                 .build())
                             .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build()))
-                            .rowVersion("1-12345")
-                            .build(),
-                        BillLineItemInput.builder()
-                            .rowId("12345")
-                            .code("120-C")
-                            .lineNumber(1L)
-                            .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .type(BillLineItemType.EXPENSE_ACCOUNT)
-                            .taxAmount(27500)
-                            .totalAmount(27500)
-                            .quantity(1)
-                            .unitPrice(27500.5)
-                            .unitOfMeasure("pc.")
-                            .discountPercentage(0.01)
-                            .discountAmount(19.99)
-                            .locationId("12345")
-                            .departmentId("12345")
-                            .item(LinkedInvoiceItem.builder()
-                                .id("12344")
-                                .code("120-C")
-                                .name("Model Y")
-                                .build())
-                            .taxRate(LinkedTaxRateInput.builder()
-                                .id("123456")
-                                .rate(10)
-                                .build())
-                            .ledgerAccount(LinkedLedgerAccountInput.builder()
-                                .id("123456")
-                                .nominalCode("N091")
-                                .code("453")
-                                .build())
-                            .trackingCategories(List.of(
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
-                                LinkedTrackingCategory.builder()
-                                    .id("123456")
-                                    .name("New York")
-                                    .build(),
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
                                     .name("New York")
@@ -629,10 +603,6 @@ public class Application {
                         LinkedTrackingCategory.builder()
                             .id("123456")
                             .name("New York")
-                            .build(),
-                        LinkedTrackingCategory.builder()
-                            .id("123456")
-                            .name("New York")
                             .build()))
                     .rowVersion("1-12345")
                     .customFields(List.of(
@@ -640,18 +610,25 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(Four.builder()
-                                .build()))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of6(List.of(
-                                Six.builder()
-                                    .build())))
+                            .value(Value.of("Uses Salesforce and Marketo"))
                             .build()))
                     .passThrough(List.of(
+                        PassThroughBody.builder()
+                            .serviceId("<id>")
+                            .extendPaths(List.of(
+                                ExtendPaths.builder()
+                                    .path("$.nested.property")
+                                    .value(Map.ofEntries(
+                                        Map.entry("TaxClassificationRef", Map.ofEntries(
+                                            Map.entry("value", "EUC-99990201-V1-00020000")))))
+                                    .build()))
+                            .build(),
                         PassThroughBody.builder()
                             .serviceId("<id>")
                             .extendPaths(List.of(

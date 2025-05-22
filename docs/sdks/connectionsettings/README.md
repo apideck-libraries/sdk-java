@@ -121,75 +121,9 @@ public class Application {
                                 ConnectionDefaults.builder()
                                     .id("ProductInterest")
                                     .options(List.of(
-                                        FormFieldOptionGroup.builder()
-                                            .label("General Channel")
-                                            .options(List.of(
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of(12.5))
-                                                    .build(),
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of(List.of(
-                                                        Five.of("team"),
-                                                        Five.of("general"))))
-                                                    .build()))
-                                            .optionType(FormFieldOptionGroupOptionType.GROUP)
-                                            .id("1234")
-                                            .build(),
                                         SimpleFormFieldOption.builder()
                                             .label("General Channel")
                                             .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of(List.of(
-                                                Five.of("team"),
-                                                Five.of("general"))))
-                                            .build()))
-                                    .value(ConnectionValue.of(10.5))
-                                    .build(),
-                                ConnectionDefaults.builder()
-                                    .id("ProductInterest")
-                                    .options(List.of(
-                                        SimpleFormFieldOption.builder()
-                                            .label("General Channel")
-                                            .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of("general"))
-                                            .build()))
-                                    .value(ConnectionValue.of(true))
-                                    .build()))
-                            .build(),
-                        ConnectionConfiguration.builder()
-                            .resource("leads")
-                            .defaults(List.of(
-                                ConnectionDefaults.builder()
-                                    .id("ProductInterest")
-                                    .options(List.of(
-                                        SimpleFormFieldOption.builder()
-                                            .label("General Channel")
-                                            .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of(true))
-                                            .build()))
-                                    .value(ConnectionValue.of(true))
-                                    .build(),
-                                ConnectionDefaults.builder()
-                                    .id("ProductInterest")
-                                    .options(List.of(
-                                        SimpleFormFieldOption.builder()
-                                            .label("General Channel")
-                                            .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of(true))
-                                            .build(),
-                                        FormFieldOptionGroup.builder()
-                                            .label("General Channel")
-                                            .options(List.of(
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of(12.5))
-                                                    .build()))
-                                            .optionType(FormFieldOptionGroupOptionType.GROUP)
-                                            .id("1234")
                                             .build()))
                                     .value(ConnectionValue.of("GC5000 series"))
                                     .build(),
@@ -199,14 +133,17 @@ public class Application {
                                         SimpleFormFieldOption.builder()
                                             .label("General Channel")
                                             .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of(List.of(
-                                                Five.of("team"),
-                                                Five.of("general"))))
                                             .build()))
-                                    .value(ConnectionValue.of(List.of(
-                                        Value5.of(10.5),
-                                        Value5.of(10L),
-                                        Value5.of("GC6000 series"))))
+                                    .value(ConnectionValue.of("GC5000 series"))
+                                    .build(),
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        SimpleFormFieldOption.builder()
+                                            .label("General Channel")
+                                            .optionType(OptionType.SIMPLE)
+                                            .build()))
+                                    .value(ConnectionValue.of("GC5000 series"))
                                     .build()))
                             .build(),
                         ConnectionConfiguration.builder()
@@ -215,34 +152,11 @@ public class Application {
                                 ConnectionDefaults.builder()
                                     .id("ProductInterest")
                                     .options(List.of(
-                                        FormFieldOptionGroup.builder()
+                                        SimpleFormFieldOption.builder()
                                             .label("General Channel")
-                                            .options(List.of(
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of("general"))
-                                                    .build(),
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of("general"))
-                                                    .build(),
-                                                SimpleFormFieldOption.builder()
-                                                    .label("General Channel")
-                                                    .optionType(OptionType.SIMPLE)
-                                                    .value(SimpleFormFieldOptionValue.of(123L))
-                                                    .build()))
-                                            .optionType(FormFieldOptionGroupOptionType.GROUP)
-                                            .id("1234")
-                                            .build(),
-                                        FormFieldOptionGroup.builder()
-                                            .label("General Channel")
-                                            .options(List.of())
-                                            .optionType(FormFieldOptionGroupOptionType.GROUP)
-                                            .id("1234")
+                                            .optionType(OptionType.SIMPLE)
                                             .build()))
-                                    .value(ConnectionValue.of(true))
+                                    .value(ConnectionValue.of("GC5000 series"))
                                     .build(),
                                 ConnectionDefaults.builder()
                                     .id("ProductInterest")
@@ -250,9 +164,17 @@ public class Application {
                                         SimpleFormFieldOption.builder()
                                             .label("General Channel")
                                             .optionType(OptionType.SIMPLE)
-                                            .value(SimpleFormFieldOptionValue.of("general"))
                                             .build()))
-                                    .value(ConnectionValue.of(true))
+                                    .value(ConnectionValue.of("GC5000 series"))
+                                    .build(),
+                                ConnectionDefaults.builder()
+                                    .id("ProductInterest")
+                                    .options(List.of(
+                                        SimpleFormFieldOption.builder()
+                                            .label("General Channel")
+                                            .optionType(OptionType.SIMPLE)
+                                            .build()))
+                                    .value(ConnectionValue.of("GC5000 series"))
                                     .build()))
                             .build()))
                     .customMappings(List.of(

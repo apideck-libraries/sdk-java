@@ -56,9 +56,9 @@ public class OtherExpenses {
     /**
      * The aggregated total of all accounts within this category.
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total")
-    private Optional<Double> total;
+    private JsonNullable<Double> total;
 
     @JsonProperty("records")
     private Object records;
@@ -69,7 +69,7 @@ public class OtherExpenses {
             @JsonProperty("code") Optional<String> code,
             @JsonProperty("title") Optional<String> title,
             @JsonProperty("type") JsonNullable<? extends ProfitAndLossType> type,
-            @JsonProperty("total") Optional<Double> total,
+            @JsonProperty("total") JsonNullable<Double> total,
             @JsonProperty("records") Object records) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(code, "code");
@@ -87,7 +87,7 @@ public class OtherExpenses {
     
     public OtherExpenses(
             Object records) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), records);
+        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), records);
     }
 
     /**
@@ -127,7 +127,7 @@ public class OtherExpenses {
      * The aggregated total of all accounts within this category.
      */
     @JsonIgnore
-    public Optional<Double> total() {
+    public JsonNullable<Double> total() {
         return total;
     }
 
@@ -217,14 +217,14 @@ public class OtherExpenses {
      */
     public OtherExpenses withTotal(double total) {
         Utils.checkNotNull(total, "total");
-        this.total = Optional.ofNullable(total);
+        this.total = JsonNullable.of(total);
         return this;
     }
 
     /**
      * The aggregated total of all accounts within this category.
      */
-    public OtherExpenses withTotal(Optional<Double> total) {
+    public OtherExpenses withTotal(JsonNullable<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
         return this;
@@ -287,7 +287,7 @@ public class OtherExpenses {
  
         private JsonNullable<? extends ProfitAndLossType> type = JsonNullable.undefined();
  
-        private Optional<Double> total = Optional.empty();
+        private JsonNullable<Double> total = JsonNullable.undefined();
  
         private Object records;
         
@@ -372,14 +372,14 @@ public class OtherExpenses {
          */
         public Builder total(double total) {
             Utils.checkNotNull(total, "total");
-            this.total = Optional.ofNullable(total);
+            this.total = JsonNullable.of(total);
             return this;
         }
 
         /**
          * The aggregated total of all accounts within this category.
          */
-        public Builder total(Optional<Double> total) {
+        public Builder total(JsonNullable<Double> total) {
             Utils.checkNotNull(total, "total");
             this.total = total;
             return this;

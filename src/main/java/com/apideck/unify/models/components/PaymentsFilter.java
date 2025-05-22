@@ -18,20 +18,31 @@ public class PaymentsFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+    @SpeakeasyMetadata("queryParam:name=invoice_id")
+    private Optional<String> invoiceId;
+
     @JsonCreator
     public PaymentsFilter(
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<String> invoiceId) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(invoiceId, "invoiceId");
         this.updatedSince = updatedSince;
+        this.invoiceId = invoiceId;
     }
     
     public PaymentsFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    @JsonIgnore
+    public Optional<String> invoiceId() {
+        return invoiceId;
     }
 
     public final static Builder builder() {
@@ -50,6 +61,18 @@ public class PaymentsFilter {
         return this;
     }
 
+    public PaymentsFilter withInvoiceId(String invoiceId) {
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        this.invoiceId = Optional.ofNullable(invoiceId);
+        return this;
+    }
+
+    public PaymentsFilter withInvoiceId(Optional<String> invoiceId) {
+        Utils.checkNotNull(invoiceId, "invoiceId");
+        this.invoiceId = invoiceId;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -61,24 +84,29 @@ public class PaymentsFilter {
         }
         PaymentsFilter other = (PaymentsFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
+            Objects.deepEquals(this.invoiceId, other.invoiceId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            updatedSince);
+            updatedSince,
+            invoiceId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PaymentsFilter.class,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "invoiceId", invoiceId);
     }
     
     public final static class Builder {
  
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+ 
+        private Optional<String> invoiceId = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -95,10 +123,23 @@ public class PaymentsFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
+        public Builder invoiceId(String invoiceId) {
+            Utils.checkNotNull(invoiceId, "invoiceId");
+            this.invoiceId = Optional.ofNullable(invoiceId);
+            return this;
+        }
+
+        public Builder invoiceId(Optional<String> invoiceId) {
+            Utils.checkNotNull(invoiceId, "invoiceId");
+            this.invoiceId = invoiceId;
+            return this;
+        }
         
         public PaymentsFilter build() {
             return new PaymentsFilter(
-                updatedSince);
+                updatedSince,
+                invoiceId);
         }
     }
 }

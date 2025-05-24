@@ -159,6 +159,10 @@ public class EcommerceOrder {
     @JsonProperty("note")
     private JsonNullable<String> note;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("refunds")
+    private Optional<? extends List<EcommerceOrderRefund>> refunds;
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
@@ -203,6 +207,7 @@ public class EcommerceOrder {
             @JsonProperty("tracking") Optional<? extends List<TrackingItem>> tracking,
             @JsonProperty("line_items") Optional<? extends List<EcommerceOrderLineItem>> lineItems,
             @JsonProperty("note") JsonNullable<String> note,
+            @JsonProperty("refunds") Optional<? extends List<EcommerceOrderRefund>> refunds,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
@@ -227,6 +232,7 @@ public class EcommerceOrder {
         Utils.checkNotNull(tracking, "tracking");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(note, "note");
+        Utils.checkNotNull(refunds, "refunds");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -251,6 +257,7 @@ public class EcommerceOrder {
         this.tracking = tracking;
         this.lineItems = lineItems;
         this.note = note;
+        this.refunds = refunds;
         this.customMappings = customMappings;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -258,7 +265,7 @@ public class EcommerceOrder {
     
     public EcommerceOrder(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -428,6 +435,12 @@ public class EcommerceOrder {
     @JsonIgnore
     public JsonNullable<String> note() {
         return note;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<EcommerceOrderRefund>> refunds() {
+        return (Optional<List<EcommerceOrderRefund>>) refunds;
     }
 
     /**
@@ -810,6 +823,18 @@ public class EcommerceOrder {
         return this;
     }
 
+    public EcommerceOrder withRefunds(List<EcommerceOrderRefund> refunds) {
+        Utils.checkNotNull(refunds, "refunds");
+        this.refunds = Optional.ofNullable(refunds);
+        return this;
+    }
+
+    public EcommerceOrder withRefunds(Optional<? extends List<EcommerceOrderRefund>> refunds) {
+        Utils.checkNotNull(refunds, "refunds");
+        this.refunds = refunds;
+        return this;
+    }
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
@@ -896,6 +921,7 @@ public class EcommerceOrder {
             Objects.deepEquals(this.tracking, other.tracking) &&
             Objects.deepEquals(this.lineItems, other.lineItems) &&
             Objects.deepEquals(this.note, other.note) &&
+            Objects.deepEquals(this.refunds, other.refunds) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt);
@@ -925,6 +951,7 @@ public class EcommerceOrder {
             tracking,
             lineItems,
             note,
+            refunds,
             customMappings,
             createdAt,
             updatedAt);
@@ -954,6 +981,7 @@ public class EcommerceOrder {
                 "tracking", tracking,
                 "lineItems", lineItems,
                 "note", note,
+                "refunds", refunds,
                 "customMappings", customMappings,
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
@@ -1002,6 +1030,8 @@ public class EcommerceOrder {
         private Optional<? extends List<EcommerceOrderLineItem>> lineItems = Optional.empty();
  
         private JsonNullable<String> note = JsonNullable.undefined();
+ 
+        private Optional<? extends List<EcommerceOrderRefund>> refunds = Optional.empty();
  
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
  
@@ -1364,6 +1394,18 @@ public class EcommerceOrder {
             return this;
         }
 
+        public Builder refunds(List<EcommerceOrderRefund> refunds) {
+            Utils.checkNotNull(refunds, "refunds");
+            this.refunds = Optional.ofNullable(refunds);
+            return this;
+        }
+
+        public Builder refunds(Optional<? extends List<EcommerceOrderRefund>> refunds) {
+            Utils.checkNotNull(refunds, "refunds");
+            this.refunds = refunds;
+            return this;
+        }
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -1441,6 +1483,7 @@ public class EcommerceOrder {
                 tracking,
                 lineItems,
                 note,
+                refunds,
                 customMappings,
                 createdAt,
                 updatedAt);

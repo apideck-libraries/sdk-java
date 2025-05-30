@@ -964,6 +964,66 @@ public class SDKMethodInterfaces {
             Optional<Options> options) throws Exception;
     }
 
+    public interface MethodCallCrmCustomObjectSchemasAll {
+        CrmCustomObjectSchemasAllResponse list(
+            CrmCustomObjectSchemasAllRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectSchemasAdd {
+        CrmCustomObjectSchemasAddResponse create(
+            CrmCustomObjectSchemasAddRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectSchemasOne {
+        CrmCustomObjectSchemasOneResponse get(
+            CrmCustomObjectSchemasOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectSchemasUpdate {
+        CrmCustomObjectSchemasUpdateResponse update(
+            CrmCustomObjectSchemasUpdateRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectSchemasDelete {
+        CrmCustomObjectSchemasDeleteResponse delete(
+            CrmCustomObjectSchemasDeleteRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectsAll {
+        CrmCustomObjectsAllResponse list(
+            CrmCustomObjectsAllRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectsAdd {
+        CrmCustomObjectsAddResponse create(
+            CrmCustomObjectsAddRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectsOne {
+        CrmCustomObjectsOneResponse get(
+            CrmCustomObjectsOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectsUpdate {
+        CrmCustomObjectsUpdateResponse update(
+            CrmCustomObjectsUpdateRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallCrmCustomObjectsDelete {
+        CrmCustomObjectsDeleteResponse delete(
+            CrmCustomObjectsDeleteRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallEcommerceOrdersAll {
         EcommerceOrdersAllResponse list(
             EcommerceOrdersAllRequest request,

@@ -4,8 +4,8 @@
 package com.apideck.unify;
 
 import com.apideck.unify.utils.HTTPClient;
+import com.apideck.unify.utils.Hook.SdkInitData;
 import com.apideck.unify.utils.RetryConfig;
-import com.apideck.unify.utils.SpeakeasyHTTPClient;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
 import java.util.HashMap;
@@ -94,7 +94,7 @@ public class Apideck {
         return webhook;
     }
 
-    private final SDKConfiguration sdkConfiguration;
+    private SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -102,6 +102,9 @@ public class Apideck {
     public static class Builder {
 
         private final SDKConfiguration sdkConfiguration = new SDKConfiguration();
+        private String serverUrl;
+        private String server;
+        
 
         private Builder() {
         }
@@ -113,7 +116,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder client(HTTPClient client) {
-            this.sdkConfiguration.defaultClient = client;
+            this.sdkConfiguration.setClient(client);
             return this;
         }
         /**
@@ -123,9 +126,9 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder apiKey(String apiKey) {
-            this.sdkConfiguration.securitySource = SecuritySource.of(com.apideck.unify.models.components.Security.builder()
+            this.sdkConfiguration.setSecuritySource(SecuritySource.of(com.apideck.unify.models.components.Security.builder()
               .apiKey(apiKey)
-              .build());
+              .build()));
             return this;
         }
 
@@ -136,7 +139,8 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder securitySource(SecuritySource securitySource) {
-            this.sdkConfiguration.securitySource = securitySource;
+            Utils.checkNotNull(securitySource, "securitySource");
+            this.sdkConfiguration.setSecuritySource(securitySource);
             return this;
         }
         
@@ -147,7 +151,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl) {
-            this.sdkConfiguration.serverUrl = serverUrl;
+            this.serverUrl = serverUrl;
             return this;
         }
 
@@ -159,7 +163,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
+            this.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -170,8 +174,8 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder serverIndex(int serverIdx) {
-            this.sdkConfiguration.serverIdx = serverIdx;
-            this.sdkConfiguration.serverUrl = SERVERS[serverIdx];
+            this.sdkConfiguration.setServerIdx(serverIdx);
+            this.serverUrl= SERVERS[serverIdx];
             return this;
         }
         
@@ -182,7 +186,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder retryConfig(RetryConfig retryConfig) {
-            this.sdkConfiguration.retryConfig = Optional.of(retryConfig);
+            this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
         /**
@@ -235,19 +239,11 @@ public class Apideck {
          * @return The SDK instance.
          */
         public Apideck build() {
-            if (sdkConfiguration.defaultClient == null) {
-                sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
+            if (serverUrl == null || serverUrl.isBlank()) {
+                serverUrl = SERVERS[0];
+                sdkConfiguration.setServerIdx(0);
             }
-	        if (sdkConfiguration.securitySource == null) {
-	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
-	        }
-            if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
-                sdkConfiguration.serverUrl = SERVERS[0];
-                sdkConfiguration.serverIdx = 0;
-            }
-            if (sdkConfiguration.serverUrl.endsWith("/")) {
-                sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
-            }
+            sdkConfiguration.setServerUrl(serverUrl);
             return new Apideck(sdkConfiguration);
         }
     }
@@ -263,6 +259,7 @@ public class Apideck {
 
     private Apideck(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.sdkConfiguration.initialize();
         this.accounting = new Accounting(sdkConfiguration);
         this.ats = new Ats(sdkConfiguration);
         this.crm = new Crm(sdkConfiguration);
@@ -274,6 +271,9 @@ public class Apideck {
         this.connector = new Connector(sdkConfiguration);
         this.vault = new Vault(sdkConfiguration);
         this.webhook = new Webhook(sdkConfiguration);
-        this.sdkConfiguration.initialize();
+        
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        this.sdkConfiguration.setServerUrl(data.baseUrl());
+        this.sdkConfiguration.setClient(data.client());
     }
 }

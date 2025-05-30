@@ -66,6 +66,13 @@ public class JournalEntry {
     private Optional<? extends List<JournalEntryLineItem>> lineItems;
 
     /**
+     * Journal entry status
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private JsonNullable<? extends JournalEntryStatus> status;
+
+    /**
      * Reference for the journal entry.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -182,6 +189,7 @@ public class JournalEntry {
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("line_items") Optional<? extends List<JournalEntryLineItem>> lineItems,
+            @JsonProperty("status") JsonNullable<? extends JournalEntryStatus> status,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("posted_at") Optional<OffsetDateTime> postedAt,
             @JsonProperty("journal_symbol") JsonNullable<String> journalSymbol,
@@ -204,6 +212,7 @@ public class JournalEntry {
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(memo, "memo");
         Utils.checkNotNull(postedAt, "postedAt");
         Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -226,6 +235,7 @@ public class JournalEntry {
         this.currency = currency;
         this.companyId = companyId;
         this.lineItems = lineItems;
+        this.status = status;
         this.memo = memo;
         this.postedAt = postedAt;
         this.journalSymbol = journalSymbol;
@@ -245,7 +255,7 @@ public class JournalEntry {
     }
     
     public JournalEntry() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -296,6 +306,15 @@ public class JournalEntry {
     @JsonIgnore
     public Optional<List<JournalEntryLineItem>> lineItems() {
         return (Optional<List<JournalEntryLineItem>>) lineItems;
+    }
+
+    /**
+     * Journal entry status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<JournalEntryStatus> status() {
+        return (JsonNullable<JournalEntryStatus>) status;
     }
 
     /**
@@ -536,6 +555,24 @@ public class JournalEntry {
     public JournalEntry withLineItems(Optional<? extends List<JournalEntryLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
+        return this;
+    }
+
+    /**
+     * Journal entry status
+     */
+    public JournalEntry withStatus(JournalEntryStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Journal entry status
+     */
+    public JournalEntry withStatus(JsonNullable<? extends JournalEntryStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
@@ -838,6 +875,7 @@ public class JournalEntry {
             Objects.deepEquals(this.currency, other.currency) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.lineItems, other.lineItems) &&
+            Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.memo, other.memo) &&
             Objects.deepEquals(this.postedAt, other.postedAt) &&
             Objects.deepEquals(this.journalSymbol, other.journalSymbol) &&
@@ -865,6 +903,7 @@ public class JournalEntry {
             currency,
             companyId,
             lineItems,
+            status,
             memo,
             postedAt,
             journalSymbol,
@@ -892,6 +931,7 @@ public class JournalEntry {
                 "currency", currency,
                 "companyId", companyId,
                 "lineItems", lineItems,
+                "status", status,
                 "memo", memo,
                 "postedAt", postedAt,
                 "journalSymbol", journalSymbol,
@@ -923,6 +963,8 @@ public class JournalEntry {
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
         private Optional<? extends List<JournalEntryLineItem>> lineItems = Optional.empty();
+ 
+        private JsonNullable<? extends JournalEntryStatus> status = JsonNullable.undefined();
  
         private JsonNullable<String> memo = JsonNullable.undefined();
  
@@ -1065,6 +1107,24 @@ public class JournalEntry {
         public Builder lineItems(Optional<? extends List<JournalEntryLineItem>> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = lineItems;
+            return this;
+        }
+
+        /**
+         * Journal entry status
+         */
+        public Builder status(JournalEntryStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Journal entry status
+         */
+        public Builder status(JsonNullable<? extends JournalEntryStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
             return this;
         }
 
@@ -1358,6 +1418,7 @@ public class JournalEntry {
                 currency,
                 companyId,
                 lineItems,
+                status,
                 memo,
                 postedAt,
                 journalSymbol,

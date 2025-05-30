@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.13.4'
+implementation 'com.apideck:unify:0.14.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.13.4</version>
+    <version>0.14.0</version>
 </dependency>
 ```
 
@@ -417,6 +417,22 @@ public class Application {
 * [get](docs/sdks/contacts/README.md#get) - Get contact
 * [update](docs/sdks/contacts/README.md#update) - Update contact
 * [delete](docs/sdks/contacts/README.md#delete) - Delete contact
+
+#### [crm().customObjects()](docs/sdks/customobjects/README.md)
+
+* [list](docs/sdks/customobjects/README.md#list) - List custom objects
+* [create](docs/sdks/customobjects/README.md#create) - Create custom object
+* [get](docs/sdks/customobjects/README.md#get) - Get custom object
+* [update](docs/sdks/customobjects/README.md#update) - Update custom object
+* [delete](docs/sdks/customobjects/README.md#delete) - Delete custom object
+
+#### [crm().customObjectSchemas()](docs/sdks/customobjectschemas/README.md)
+
+* [list](docs/sdks/customobjectschemas/README.md#list) - List custom object schemas
+* [create](docs/sdks/customobjectschemas/README.md#create) - Create custom object schema
+* [get](docs/sdks/customobjectschemas/README.md#get) - Get custom object schema
+* [update](docs/sdks/customobjectschemas/README.md#update) - Update custom object schema
+* [delete](docs/sdks/customobjectschemas/README.md#delete) - Delete custom object schema
 
 #### [crm().leads()](docs/sdks/leads/README.md)
 

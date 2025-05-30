@@ -13,6 +13,8 @@ public class Crm {
     private final Notes notes;
     private final Users users;
     private final Activities activities;
+    private final CustomObjectSchemas customObjectSchemas;
+    private final CustomObjects customObjects;
 
     Crm(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -24,6 +26,8 @@ public class Crm {
         this.notes = new Notes(this.sdkConfiguration);
         this.users = new Users(this.sdkConfiguration);
         this.activities = new Activities(this.sdkConfiguration);
+        this.customObjectSchemas = new CustomObjectSchemas(this.sdkConfiguration);
+        this.customObjects = new CustomObjects(this.sdkConfiguration);
     }
 
     public final Companies companies() {
@@ -56,5 +60,13 @@ public class Crm {
 
     public final Activities activities() {
         return activities;
+    }
+
+    public final CustomObjectSchemas customObjectSchemas() {
+        return customObjectSchemas;
+    }
+
+    public final CustomObjects customObjects() {
+        return customObjects;
     }
 }

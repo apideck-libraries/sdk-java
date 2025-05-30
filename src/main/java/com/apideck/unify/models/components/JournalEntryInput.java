@@ -57,6 +57,13 @@ public class JournalEntryInput {
     private Optional<? extends List<JournalEntryLineItemInput>> lineItems;
 
     /**
+     * Journal entry status
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("status")
+    private JsonNullable<? extends JournalEntryStatus> status;
+
+    /**
      * Reference for the journal entry.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -137,6 +144,7 @@ public class JournalEntryInput {
             @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("company_id") JsonNullable<String> companyId,
             @JsonProperty("line_items") Optional<? extends List<JournalEntryLineItemInput>> lineItems,
+            @JsonProperty("status") JsonNullable<? extends JournalEntryStatus> status,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("posted_at") Optional<OffsetDateTime> postedAt,
             @JsonProperty("journal_symbol") JsonNullable<String> journalSymbol,
@@ -153,6 +161,7 @@ public class JournalEntryInput {
         Utils.checkNotNull(currency, "currency");
         Utils.checkNotNull(companyId, "companyId");
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(status, "status");
         Utils.checkNotNull(memo, "memo");
         Utils.checkNotNull(postedAt, "postedAt");
         Utils.checkNotNull(journalSymbol, "journalSymbol");
@@ -169,6 +178,7 @@ public class JournalEntryInput {
         this.currency = currency;
         this.companyId = companyId;
         this.lineItems = lineItems;
+        this.status = status;
         this.memo = memo;
         this.postedAt = postedAt;
         this.journalSymbol = journalSymbol;
@@ -183,7 +193,7 @@ public class JournalEntryInput {
     }
     
     public JournalEntryInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -226,6 +236,15 @@ public class JournalEntryInput {
     @JsonIgnore
     public Optional<List<JournalEntryLineItemInput>> lineItems() {
         return (Optional<List<JournalEntryLineItemInput>>) lineItems;
+    }
+
+    /**
+     * Journal entry status
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<JournalEntryStatus> status() {
+        return (JsonNullable<JournalEntryStatus>) status;
     }
 
     /**
@@ -407,6 +426,24 @@ public class JournalEntryInput {
     public JournalEntryInput withLineItems(Optional<? extends List<JournalEntryLineItemInput>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
+        return this;
+    }
+
+    /**
+     * Journal entry status
+     */
+    public JournalEntryInput withStatus(JournalEntryStatus status) {
+        Utils.checkNotNull(status, "status");
+        this.status = JsonNullable.of(status);
+        return this;
+    }
+
+    /**
+     * Journal entry status
+     */
+    public JournalEntryInput withStatus(JsonNullable<? extends JournalEntryStatus> status) {
+        Utils.checkNotNull(status, "status");
+        this.status = status;
         return this;
     }
 
@@ -618,6 +655,7 @@ public class JournalEntryInput {
             Objects.deepEquals(this.currency, other.currency) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
             Objects.deepEquals(this.lineItems, other.lineItems) &&
+            Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.memo, other.memo) &&
             Objects.deepEquals(this.postedAt, other.postedAt) &&
             Objects.deepEquals(this.journalSymbol, other.journalSymbol) &&
@@ -639,6 +677,7 @@ public class JournalEntryInput {
             currency,
             companyId,
             lineItems,
+            status,
             memo,
             postedAt,
             journalSymbol,
@@ -660,6 +699,7 @@ public class JournalEntryInput {
                 "currency", currency,
                 "companyId", companyId,
                 "lineItems", lineItems,
+                "status", status,
                 "memo", memo,
                 "postedAt", postedAt,
                 "journalSymbol", journalSymbol,
@@ -684,6 +724,8 @@ public class JournalEntryInput {
         private JsonNullable<String> companyId = JsonNullable.undefined();
  
         private Optional<? extends List<JournalEntryLineItemInput>> lineItems = Optional.empty();
+ 
+        private JsonNullable<? extends JournalEntryStatus> status = JsonNullable.undefined();
  
         private JsonNullable<String> memo = JsonNullable.undefined();
  
@@ -798,6 +840,24 @@ public class JournalEntryInput {
         public Builder lineItems(Optional<? extends List<JournalEntryLineItemInput>> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = lineItems;
+            return this;
+        }
+
+        /**
+         * Journal entry status
+         */
+        public Builder status(JournalEntryStatus status) {
+            Utils.checkNotNull(status, "status");
+            this.status = JsonNullable.of(status);
+            return this;
+        }
+
+        /**
+         * Journal entry status
+         */
+        public Builder status(JsonNullable<? extends JournalEntryStatus> status) {
+            Utils.checkNotNull(status, "status");
+            this.status = status;
             return this;
         }
 
@@ -1000,6 +1060,7 @@ public class JournalEntryInput {
                 currency,
                 companyId,
                 lineItems,
+                status,
                 memo,
                 postedAt,
                 journalSymbol,

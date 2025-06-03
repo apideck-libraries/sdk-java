@@ -13,33 +13,33 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ProfitAndLossIndicator {
 
     /**
      * The total amount of the transaction or record
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total")
-    private Optional<Double> total;
+    private JsonNullable<Double> total;
 
     @JsonCreator
     public ProfitAndLossIndicator(
-            @JsonProperty("total") Optional<Double> total) {
+            @JsonProperty("total") JsonNullable<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
     }
     
     public ProfitAndLossIndicator() {
-        this(Optional.empty());
+        this(JsonNullable.undefined());
     }
 
     /**
      * The total amount of the transaction or record
      */
     @JsonIgnore
-    public Optional<Double> total() {
+    public JsonNullable<Double> total() {
         return total;
     }
 
@@ -52,14 +52,14 @@ public class ProfitAndLossIndicator {
      */
     public ProfitAndLossIndicator withTotal(double total) {
         Utils.checkNotNull(total, "total");
-        this.total = Optional.ofNullable(total);
+        this.total = JsonNullable.of(total);
         return this;
     }
 
     /**
      * The total amount of the transaction or record
      */
-    public ProfitAndLossIndicator withTotal(Optional<Double> total) {
+    public ProfitAndLossIndicator withTotal(JsonNullable<Double> total) {
         Utils.checkNotNull(total, "total");
         this.total = total;
         return this;
@@ -93,7 +93,7 @@ public class ProfitAndLossIndicator {
     
     public final static class Builder {
  
-        private Optional<Double> total = Optional.empty();
+        private JsonNullable<Double> total = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -104,14 +104,14 @@ public class ProfitAndLossIndicator {
          */
         public Builder total(double total) {
             Utils.checkNotNull(total, "total");
-            this.total = Optional.ofNullable(total);
+            this.total = JsonNullable.of(total);
             return this;
         }
 
         /**
          * The total amount of the transaction or record
          */
-        public Builder total(Optional<Double> total) {
+        public Builder total(JsonNullable<Double> total) {
             Utils.checkNotNull(total, "total");
             this.total = total;
             return this;

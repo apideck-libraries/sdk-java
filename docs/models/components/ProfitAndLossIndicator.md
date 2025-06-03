@@ -5,4 +5,4 @@
 
 | Field                                         | Type                                          | Required                                      | Description                                   | Example                                       |
 | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- | --------------------------------------------- |
-| `total`                                       | *Optional\<Double>*                           | :heavy_check_mark:                            | The total amount of the transaction or record | 49.99                                         |
+| `total`                                       | *JsonNullable\<Double>*                       | :heavy_minus_sign:                            | The total amount of the transaction or record | 49.99                                         |

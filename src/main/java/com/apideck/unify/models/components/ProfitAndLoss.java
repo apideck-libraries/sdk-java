@@ -50,9 +50,9 @@ public class ProfitAndLoss {
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @JsonInclude(Include.ALWAYS)
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private Optional<? extends Currency> currency;
+    private JsonNullable<? extends Currency> currency;
 
     /**
      * The operating income accounts
@@ -126,7 +126,7 @@ public class ProfitAndLoss {
             @JsonProperty("report_name") String reportName,
             @JsonProperty("start_date") Optional<String> startDate,
             @JsonProperty("end_date") Optional<String> endDate,
-            @JsonProperty("currency") Optional<? extends Currency> currency,
+            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
             @JsonProperty("income") Income income,
             @JsonProperty("cost_of_goods_sold") Optional<? extends CostOfGoodsSold> costOfGoodsSold,
             @JsonProperty("expenses") Expenses expenses,
@@ -176,7 +176,7 @@ public class ProfitAndLoss {
             String reportName,
             Income income,
             Expenses expenses) {
-        this(Optional.empty(), reportName, Optional.empty(), Optional.empty(), Optional.empty(), income, Optional.empty(), expenses, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), reportName, Optional.empty(), Optional.empty(), JsonNullable.undefined(), income, Optional.empty(), expenses, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -216,8 +216,8 @@ public class ProfitAndLoss {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<Currency> currency() {
-        return (Optional<Currency>) currency;
+    public JsonNullable<Currency> currency() {
+        return (JsonNullable<Currency>) currency;
     }
 
     /**
@@ -379,14 +379,14 @@ public class ProfitAndLoss {
      */
     public ProfitAndLoss withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
-        this.currency = Optional.ofNullable(currency);
+        this.currency = JsonNullable.of(currency);
         return this;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public ProfitAndLoss withCurrency(Optional<? extends Currency> currency) {
+    public ProfitAndLoss withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -635,7 +635,7 @@ public class ProfitAndLoss {
  
         private Optional<String> endDate = Optional.empty();
  
-        private Optional<? extends Currency> currency = Optional.empty();
+        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
  
         private Income income;
  
@@ -731,14 +731,14 @@ public class ProfitAndLoss {
          */
         public Builder currency(Currency currency) {
             Utils.checkNotNull(currency, "currency");
-            this.currency = Optional.ofNullable(currency);
+            this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Optional<? extends Currency> currency) {
+        public Builder currency(JsonNullable<? extends Currency> currency) {
             Utils.checkNotNull(currency, "currency");
             this.currency = currency;
             return this;

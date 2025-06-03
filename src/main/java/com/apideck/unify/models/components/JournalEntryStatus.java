@@ -20,7 +20,8 @@ public enum JournalEntryStatus {
     POSTED("posted"),
     VOIDED("voided"),
     REJECTED("rejected"),
-    DELETED("deleted");
+    DELETED("deleted"),
+    OTHER("other");
 
     @JsonValue
     private final String value;

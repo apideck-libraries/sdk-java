@@ -33,9 +33,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingInvoicesAllRequest req = AccountingInvoicesAllRequest.builder()
@@ -47,6 +47,7 @@ public class Application {
                     .build())
                 .sort(InvoicesSort.builder()
                     .by(InvoicesSortBy.UPDATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -111,9 +112,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingInvoicesAddRequest req = AccountingInvoicesAddRequest.builder()
@@ -372,9 +373,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingInvoicesOneRequest req = AccountingInvoicesOneRequest.builder()
@@ -434,15 +435,16 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingInvoicesUpdateRequest req = AccountingInvoicesUpdateRequest.builder()
@@ -529,21 +531,19 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of(true))
+                                    .value(JsonNullable.of(null))
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of6(List.of(
-                                        Six.builder()
-                                            .build())))
+                                    .value(JsonNullable.of(null))
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(Value.of("Uses Salesforce and Marketo"))
+                                    .value(JsonNullable.of(null))
                                     .build()))
                             .rowVersion("1-12345")
                             .build()))
@@ -639,7 +639,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(Value.of(10))
+                            .value(JsonNullable.of(null))
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(
@@ -765,9 +765,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingInvoicesDeleteRequest req = AccountingInvoicesDeleteRequest.builder()

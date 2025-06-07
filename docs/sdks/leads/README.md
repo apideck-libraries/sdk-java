@@ -32,9 +32,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmLeadsAllRequest req = CrmLeadsAllRequest.builder()
@@ -47,6 +47,7 @@ public class Application {
                     .build())
                 .sort(LeadsSort.builder()
                     .by(LeadsSortBy.CREATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -108,9 +109,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmLeadsAddRequest req = CrmLeadsAddRequest.builder()
@@ -396,9 +397,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmLeadsOneRequest req = CrmLeadsOneRequest.builder()
@@ -462,9 +463,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmLeadsUpdateRequest req = CrmLeadsUpdateRequest.builder()
@@ -718,9 +719,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmLeadsDeleteRequest req = CrmLeadsDeleteRequest.builder()

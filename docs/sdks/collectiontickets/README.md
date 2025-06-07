@@ -33,9 +33,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IssueTrackingCollectionTicketsAllRequest req = IssueTrackingCollectionTicketsAllRequest.builder()
@@ -43,6 +43,7 @@ public class Application {
                 .serviceId("salesforce")
                 .sort(TicketsSort.builder()
                     .by(TicketsSortBy.CREATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .filter(IssuesFilter.builder()
                     .status(List.of(
@@ -109,9 +110,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IssueTrackingCollectionTicketsAddRequest req = IssueTrackingCollectionTicketsAddRequest.builder()
@@ -249,9 +250,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IssueTrackingCollectionTicketsOneRequest req = IssueTrackingCollectionTicketsOneRequest.builder()
@@ -317,9 +318,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IssueTrackingCollectionTicketsUpdateRequest req = IssueTrackingCollectionTicketsUpdateRequest.builder()
@@ -449,9 +450,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         IssueTrackingCollectionTicketsDeleteRequest req = IssueTrackingCollectionTicketsDeleteRequest.builder()

@@ -33,9 +33,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingPurchaseOrdersAllRequest req = AccountingPurchaseOrdersAllRequest.builder()
@@ -48,6 +48,7 @@ public class Application {
                     .build())
                 .sort(PurchaseOrdersSort.builder()
                     .by(PurchaseOrdersSortBy.UPDATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .build();
 
@@ -107,9 +108,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingPurchaseOrdersAddRequest req = AccountingPurchaseOrdersAddRequest.builder()
@@ -461,9 +462,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingPurchaseOrdersOneRequest req = AccountingPurchaseOrdersOneRequest.builder()
@@ -528,9 +529,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingPurchaseOrdersUpdateRequest req = AccountingPurchaseOrdersUpdateRequest.builder()
@@ -835,9 +836,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         AccountingPurchaseOrdersDeleteRequest req = AccountingPurchaseOrdersDeleteRequest.builder()

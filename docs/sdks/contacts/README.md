@@ -32,9 +32,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmContactsAllRequest req = CrmContactsAllRequest.builder()
@@ -48,6 +48,7 @@ public class Application {
                     .build())
                 .sort(ContactsSort.builder()
                     .by(ContactsSortBy.CREATED_AT)
+                    .direction(SortDirection.DESC)
                     .build())
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
@@ -109,9 +110,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmContactsAddRequest req = CrmContactsAddRequest.builder()
@@ -343,9 +344,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmContactsOneRequest req = CrmContactsOneRequest.builder()
@@ -416,9 +417,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmContactsUpdateRequest req = CrmContactsUpdateRequest.builder()
@@ -697,9 +698,9 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
+                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
             .build();
 
         CrmContactsDeleteRequest req = CrmContactsDeleteRequest.builder()

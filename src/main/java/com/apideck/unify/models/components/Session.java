@@ -38,7 +38,7 @@ public class Session {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private Optional<? extends SessionSettings> settings;
+    private Optional<? extends Settings> settings;
 
     /**
      * Theming options to change the look and feel of Vault.
@@ -58,7 +58,7 @@ public class Session {
     public Session(
             @JsonProperty("consumer_metadata") Optional<? extends ConsumerMetadata> consumerMetadata,
             @JsonProperty("redirect_uri") Optional<String> redirectUri,
-            @JsonProperty("settings") Optional<? extends SessionSettings> settings,
+            @JsonProperty("settings") Optional<? extends Settings> settings,
             @JsonProperty("theme") Optional<? extends Theme> theme,
             @JsonProperty("custom_consumer_settings") Optional<? extends Map<String, Object>> customConsumerSettings) {
         Utils.checkNotNull(consumerMetadata, "consumerMetadata");
@@ -99,8 +99,8 @@ public class Session {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<SessionSettings> settings() {
-        return (Optional<SessionSettings>) settings;
+    public Optional<Settings> settings() {
+        return (Optional<Settings>) settings;
     }
 
     /**
@@ -164,7 +164,7 @@ public class Session {
     /**
      * Settings to change the way the Vault is displayed.
      */
-    public Session withSettings(SessionSettings settings) {
+    public Session withSettings(Settings settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = Optional.ofNullable(settings);
         return this;
@@ -173,7 +173,7 @@ public class Session {
     /**
      * Settings to change the way the Vault is displayed.
      */
-    public Session withSettings(Optional<? extends SessionSettings> settings) {
+    public Session withSettings(Optional<? extends Settings> settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = settings;
         return this;
@@ -259,7 +259,7 @@ public class Session {
  
         private Optional<String> redirectUri = Optional.empty();
  
-        private Optional<? extends SessionSettings> settings = Optional.empty();
+        private Optional<? extends Settings> settings = Optional.empty();
  
         private Optional<? extends Theme> theme = Optional.empty();
  
@@ -308,7 +308,7 @@ public class Session {
         /**
          * Settings to change the way the Vault is displayed.
          */
-        public Builder settings(SessionSettings settings) {
+        public Builder settings(Settings settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = Optional.ofNullable(settings);
             return this;
@@ -317,7 +317,7 @@ public class Session {
         /**
          * Settings to change the way the Vault is displayed.
          */
-        public Builder settings(Optional<? extends SessionSettings> settings) {
+        public Builder settings(Optional<? extends Settings> settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = settings;
             return this;

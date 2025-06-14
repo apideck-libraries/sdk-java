@@ -77,7 +77,6 @@ public class TrackingCategories implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Tracking Categories
      * 
@@ -371,7 +370,6 @@ public class TrackingCategories implements
     }
 
 
-
     /**
      * Create Tracking Category
      * 
@@ -650,7 +648,6 @@ public class TrackingCategories implements
     }
 
 
-
     /**
      * Get Tracking Category
      * 
@@ -916,7 +913,6 @@ public class TrackingCategories implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class TrackingCategories implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -47,7 +47,6 @@ public class ConnectionCustomMappings implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List connection custom mappings
      * 

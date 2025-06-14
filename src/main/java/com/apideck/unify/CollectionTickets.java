@@ -77,7 +77,6 @@ public class CollectionTickets implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Tickets
      * 
@@ -376,7 +375,6 @@ public class CollectionTickets implements
     }
 
 
-
     /**
      * Create Ticket
      * 
@@ -657,7 +655,6 @@ public class CollectionTickets implements
     }
 
 
-
     /**
      * Get Ticket
      * 
@@ -923,7 +920,6 @@ public class CollectionTickets implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1204,7 +1200,6 @@ public class CollectionTickets implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

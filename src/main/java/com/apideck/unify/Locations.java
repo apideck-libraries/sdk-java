@@ -77,7 +77,6 @@ public class Locations implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Locations
      * 
@@ -371,7 +370,6 @@ public class Locations implements
     }
 
 
-
     /**
      * Create Location
      * 
@@ -650,7 +648,6 @@ public class Locations implements
     }
 
 
-
     /**
      * Get Location
      * 
@@ -916,7 +913,6 @@ public class Locations implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Locations implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

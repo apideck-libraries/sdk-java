@@ -77,7 +77,6 @@ public class DriveGroups implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List DriveGroups
      * 
@@ -372,7 +371,6 @@ public class DriveGroups implements
     }
 
 
-
     /**
      * Create DriveGroup
      * 
@@ -651,7 +649,6 @@ public class DriveGroups implements
     }
 
 
-
     /**
      * Get DriveGroup
      * 
@@ -917,7 +914,6 @@ public class DriveGroups implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1194,6 @@ public class DriveGroups implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

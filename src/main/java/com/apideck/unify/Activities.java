@@ -77,7 +77,6 @@ public class Activities implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List activities
      * 
@@ -373,7 +372,6 @@ public class Activities implements
     }
 
 
-
     /**
      * Create activity
      * 
@@ -652,7 +650,6 @@ public class Activities implements
     }
 
 
-
     /**
      * Get activity
      * 
@@ -918,7 +915,6 @@ public class Activities implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Activities implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

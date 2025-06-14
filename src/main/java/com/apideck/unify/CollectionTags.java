@@ -54,7 +54,6 @@ public class CollectionTags implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Tags
      * 

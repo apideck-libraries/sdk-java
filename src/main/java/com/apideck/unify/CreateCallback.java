@@ -50,7 +50,6 @@ public class CreateCallback implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create Callback State
      * 

@@ -77,7 +77,6 @@ public class Companies implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List companies
      * 
@@ -373,7 +372,6 @@ public class Companies implements
     }
 
 
-
     /**
      * Create company
      * 
@@ -652,7 +650,6 @@ public class Companies implements
     }
 
 
-
     /**
      * Get company
      * 
@@ -918,7 +915,6 @@ public class Companies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Companies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

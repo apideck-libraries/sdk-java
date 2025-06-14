@@ -77,7 +77,6 @@ public class Drives implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Drives
      * 
@@ -371,7 +370,6 @@ public class Drives implements
     }
 
 
-
     /**
      * Create Drive
      * 
@@ -650,7 +648,6 @@ public class Drives implements
     }
 
 
-
     /**
      * Get Drive
      * 
@@ -916,7 +913,6 @@ public class Drives implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Drives implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

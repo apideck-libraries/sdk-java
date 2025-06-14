@@ -77,7 +77,6 @@ public class PurchaseOrders implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Purchase Orders
      * 
@@ -372,7 +371,6 @@ public class PurchaseOrders implements
     }
 
 
-
     /**
      * Create Purchase Order
      * 
@@ -651,7 +649,6 @@ public class PurchaseOrders implements
     }
 
 
-
     /**
      * Get Purchase Order
      * 
@@ -917,7 +914,6 @@ public class PurchaseOrders implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1194,6 @@ public class PurchaseOrders implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

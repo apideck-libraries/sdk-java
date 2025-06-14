@@ -77,7 +77,6 @@ public class Employees implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Employees
      * 
@@ -373,7 +372,6 @@ public class Employees implements
     }
 
 
-
     /**
      * Create Employee
      * 
@@ -652,7 +650,6 @@ public class Employees implements
     }
 
 
-
     /**
      * Get Employee
      * 
@@ -918,7 +915,6 @@ public class Employees implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Employees implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

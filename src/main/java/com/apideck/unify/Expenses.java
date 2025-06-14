@@ -77,7 +77,6 @@ public class Expenses implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Expenses
      * 
@@ -369,7 +368,6 @@ public class Expenses implements
     }
 
 
-
     /**
      * Create Expense
      * 
@@ -648,7 +646,6 @@ public class Expenses implements
     }
 
 
-
     /**
      * Get Expense
      * 
@@ -914,7 +911,6 @@ public class Expenses implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1195,7 +1191,6 @@ public class Expenses implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -51,7 +51,6 @@ public class Sessions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create Session
      * 

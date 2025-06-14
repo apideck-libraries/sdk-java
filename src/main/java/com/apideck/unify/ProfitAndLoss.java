@@ -47,7 +47,6 @@ public class ProfitAndLoss implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get Profit and Loss
      * 

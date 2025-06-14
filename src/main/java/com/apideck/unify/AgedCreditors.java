@@ -47,7 +47,6 @@ public class AgedCreditors implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get Aged Creditors
      * 

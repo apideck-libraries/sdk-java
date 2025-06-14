@@ -77,7 +77,6 @@ public class ApideckCompanies implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Companies
      * 
@@ -371,7 +370,6 @@ public class ApideckCompanies implements
     }
 
 
-
     /**
      * Create Company
      * 
@@ -650,7 +648,6 @@ public class ApideckCompanies implements
     }
 
 
-
     /**
      * Get Company
      * 
@@ -916,7 +913,6 @@ public class ApideckCompanies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class ApideckCompanies implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

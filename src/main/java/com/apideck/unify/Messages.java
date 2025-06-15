@@ -77,7 +77,6 @@ public class Messages implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Messages
      * 
@@ -370,7 +369,6 @@ public class Messages implements
     }
 
 
-
     /**
      * Create Message
      * 
@@ -649,7 +647,6 @@ public class Messages implements
     }
 
 
-
     /**
      * Get Message
      * 
@@ -915,7 +912,6 @@ public class Messages implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1196,7 +1192,6 @@ public class Messages implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

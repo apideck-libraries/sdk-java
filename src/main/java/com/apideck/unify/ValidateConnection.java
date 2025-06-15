@@ -50,7 +50,6 @@ public class ValidateConnection implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Validate Connection State
      * 

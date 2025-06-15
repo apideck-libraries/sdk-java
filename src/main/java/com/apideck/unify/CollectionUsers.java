@@ -59,7 +59,6 @@ public class CollectionUsers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Users
      * 
@@ -354,7 +353,6 @@ public class CollectionUsers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

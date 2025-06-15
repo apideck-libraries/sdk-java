@@ -77,7 +77,6 @@ public class Departments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Departments
      * 
@@ -371,7 +370,6 @@ public class Departments implements
     }
 
 
-
     /**
      * Create Department
      * 
@@ -650,7 +648,6 @@ public class Departments implements
     }
 
 
-
     /**
      * Get Department
      * 
@@ -916,7 +913,6 @@ public class Departments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Departments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

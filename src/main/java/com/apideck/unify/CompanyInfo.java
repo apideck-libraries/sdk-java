@@ -47,7 +47,6 @@ public class CompanyInfo implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get company info
      * 

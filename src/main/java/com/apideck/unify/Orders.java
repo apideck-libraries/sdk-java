@@ -59,7 +59,6 @@ public class Orders implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Orders
      * 
@@ -353,7 +352,6 @@ public class Orders implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

@@ -59,7 +59,6 @@ public class Collections implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Collections
      * 
@@ -352,7 +351,6 @@ public class Collections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

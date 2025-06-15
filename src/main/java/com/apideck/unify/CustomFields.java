@@ -47,7 +47,6 @@ public class CustomFields implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get resource custom fields
      * 

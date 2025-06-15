@@ -84,7 +84,6 @@ public class Files implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Files
      * 
@@ -380,7 +379,6 @@ public class Files implements
     }
 
 
-
     /**
      * Search Files
      * 
@@ -659,7 +657,6 @@ public class Files implements
     }
 
 
-
     /**
      * Get File
      * 
@@ -925,7 +922,6 @@ public class Files implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1208,7 +1204,6 @@ public class Files implements
     }
 
 
-
     /**
      * Delete File
      * 
@@ -1476,7 +1471,6 @@ public class Files implements
     }
 
 
-
     /**
      * Download File
      * 
@@ -1741,7 +1735,6 @@ public class Files implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -77,7 +77,6 @@ public class TaxRates implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Tax Rates
      * 
@@ -372,7 +371,6 @@ public class TaxRates implements
     }
 
 
-
     /**
      * Create Tax Rate
      * 
@@ -651,7 +649,6 @@ public class TaxRates implements
     }
 
 
-
     /**
      * Get Tax Rate
      * 
@@ -917,7 +914,6 @@ public class TaxRates implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1194,6 @@ public class TaxRates implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

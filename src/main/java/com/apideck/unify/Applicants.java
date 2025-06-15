@@ -77,7 +77,6 @@ public class Applicants implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Applicants
      * 
@@ -372,7 +371,6 @@ public class Applicants implements
     }
 
 
-
     /**
      * Create Applicant
      * 
@@ -651,7 +649,6 @@ public class Applicants implements
     }
 
 
-
     /**
      * Get Applicant
      * 
@@ -917,7 +914,6 @@ public class Applicants implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1194,6 @@ public class Applicants implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

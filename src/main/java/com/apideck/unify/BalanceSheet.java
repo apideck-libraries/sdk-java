@@ -47,7 +47,6 @@ public class BalanceSheet implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get BalanceSheet
      * 

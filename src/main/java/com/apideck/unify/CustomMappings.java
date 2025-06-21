@@ -47,7 +47,6 @@ public class CustomMappings implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List custom mappings
      * 

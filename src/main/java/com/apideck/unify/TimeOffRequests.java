@@ -77,7 +77,6 @@ public class TimeOffRequests implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Time Off Requests
      * 
@@ -372,7 +371,6 @@ public class TimeOffRequests implements
     }
 
 
-
     /**
      * Create Time Off Request
      * 
@@ -651,7 +649,6 @@ public class TimeOffRequests implements
     }
 
 
-
     /**
      * Get Time Off Request
      * 
@@ -917,7 +914,6 @@ public class TimeOffRequests implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1198,7 +1194,6 @@ public class TimeOffRequests implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

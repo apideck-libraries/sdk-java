@@ -77,7 +77,6 @@ public class Notes implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List notes
      * 
@@ -371,7 +370,6 @@ public class Notes implements
     }
 
 
-
     /**
      * Create note
      * 
@@ -650,7 +648,6 @@ public class Notes implements
     }
 
 
-
     /**
      * Get note
      * 
@@ -916,7 +913,6 @@ public class Notes implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Notes implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

@@ -77,7 +77,6 @@ public class CollectionTicketComments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Comments
      * 
@@ -376,7 +375,6 @@ public class CollectionTicketComments implements
     }
 
 
-
     /**
      * Create Comment
      * 
@@ -655,7 +653,6 @@ public class CollectionTicketComments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -955,7 +952,6 @@ public class CollectionTicketComments implements
     }
 
 
-
     /**
      * Update Comment
      * 
@@ -1234,7 +1230,6 @@ public class CollectionTicketComments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

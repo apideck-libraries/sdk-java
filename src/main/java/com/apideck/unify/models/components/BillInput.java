@@ -93,7 +93,7 @@ public class BillInput {
     private JsonNullable<String> poNumber;
 
     /**
-     * Optional bill reference.
+     * Optional reference identifier for the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
@@ -438,7 +438,7 @@ public class BillInput {
     }
 
     /**
-     * Optional bill reference.
+     * Optional reference identifier for the transaction.
      */
     @JsonIgnore
     public JsonNullable<String> reference() {
@@ -806,7 +806,7 @@ public class BillInput {
     }
 
     /**
-     * Optional bill reference.
+     * Optional reference identifier for the transaction.
      */
     public BillInput withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
@@ -815,7 +815,7 @@ public class BillInput {
     }
 
     /**
-     * Optional bill reference.
+     * Optional reference identifier for the transaction.
      */
     public BillInput withReference(JsonNullable<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -1587,7 +1587,7 @@ public class BillInput {
         }
 
         /**
-         * Optional bill reference.
+         * Optional reference identifier for the transaction.
          */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -1596,7 +1596,7 @@ public class BillInput {
         }
 
         /**
-         * Optional bill reference.
+         * Optional reference identifier for the transaction.
          */
         public Builder reference(JsonNullable<String> reference) {
             Utils.checkNotNull(reference, "reference");

@@ -84,7 +84,6 @@ public class Attachments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Attachments
      * 
@@ -381,7 +380,6 @@ public class Attachments implements
     }
 
 
-
     /**
      * Upload attachment
      * 
@@ -669,7 +667,6 @@ public class Attachments implements
     }
 
 
-
     /**
      * Get Attachment
      * 
@@ -937,7 +934,6 @@ public class Attachments implements
     }
 
 
-
     /**
      * Delete Attachment
      * 
@@ -1203,7 +1199,6 @@ public class Attachments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

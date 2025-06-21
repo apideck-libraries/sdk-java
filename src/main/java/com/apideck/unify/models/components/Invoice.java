@@ -97,7 +97,7 @@ public class Invoice {
     private JsonNullable<String> poNumber;
 
     /**
-     * Optional invoice reference.
+     * Optional reference identifier for the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
@@ -571,7 +571,7 @@ public class Invoice {
     }
 
     /**
-     * Optional invoice reference.
+     * Optional reference identifier for the transaction.
      */
     @JsonIgnore
     public JsonNullable<String> reference() {
@@ -1048,7 +1048,7 @@ public class Invoice {
     }
 
     /**
-     * Optional invoice reference.
+     * Optional reference identifier for the transaction.
      */
     public Invoice withReference(String reference) {
         Utils.checkNotNull(reference, "reference");
@@ -1057,7 +1057,7 @@ public class Invoice {
     }
 
     /**
-     * Optional invoice reference.
+     * Optional reference identifier for the transaction.
      */
     public Invoice withReference(JsonNullable<String> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -2127,7 +2127,7 @@ public class Invoice {
         }
 
         /**
-         * Optional invoice reference.
+         * Optional reference identifier for the transaction.
          */
         public Builder reference(String reference) {
             Utils.checkNotNull(reference, "reference");
@@ -2136,7 +2136,7 @@ public class Invoice {
         }
 
         /**
-         * Optional invoice reference.
+         * Optional reference identifier for the transaction.
          */
         public Builder reference(JsonNullable<String> reference) {
             Utils.checkNotNull(reference, "reference");

@@ -47,7 +47,6 @@ public class ConsumerRequestCounts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Consumer request counts
      * 

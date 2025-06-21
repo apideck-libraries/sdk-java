@@ -130,6 +130,13 @@ public class Expense {
     @JsonProperty("line_items")
     private List<ExpenseLineItem> lineItems;
 
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("reference")
+    private JsonNullable<String> reference;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
@@ -201,6 +208,7 @@ public class Expense {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
             @JsonProperty("line_items") List<ExpenseLineItem> lineItems,
+            @JsonProperty("reference") JsonNullable<String> reference,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
@@ -225,6 +233,7 @@ public class Expense {
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(reference, "reference");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -249,6 +258,7 @@ public class Expense {
         this.taxRate = taxRate;
         this.totalAmount = totalAmount;
         this.lineItems = lineItems;
+        this.reference = reference;
         this.customFields = customFields;
         this.customMappings = customMappings;
         this.updatedAt = updatedAt;
@@ -262,7 +272,7 @@ public class Expense {
     public Expense(
             String accountId,
             List<ExpenseLineItem> lineItems) {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -392,6 +402,14 @@ public class Expense {
     @JsonIgnore
     public List<ExpenseLineItem> lineItems() {
         return lineItems;
+    }
+
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    @JsonIgnore
+    public JsonNullable<String> reference() {
+        return reference;
     }
 
     @SuppressWarnings("unchecked")
@@ -726,6 +744,24 @@ public class Expense {
         return this;
     }
 
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    public Expense withReference(String reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = JsonNullable.of(reference);
+        return this;
+    }
+
+    /**
+     * Optional reference identifier for the transaction.
+     */
+    public Expense withReference(JsonNullable<String> reference) {
+        Utils.checkNotNull(reference, "reference");
+        this.reference = reference;
+        return this;
+    }
+
     public Expense withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -891,6 +927,7 @@ public class Expense {
             Objects.deepEquals(this.taxRate, other.taxRate) &&
             Objects.deepEquals(this.totalAmount, other.totalAmount) &&
             Objects.deepEquals(this.lineItems, other.lineItems) &&
+            Objects.deepEquals(this.reference, other.reference) &&
             Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.customMappings, other.customMappings) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
@@ -920,6 +957,7 @@ public class Expense {
             taxRate,
             totalAmount,
             lineItems,
+            reference,
             customFields,
             customMappings,
             updatedAt,
@@ -949,6 +987,7 @@ public class Expense {
                 "taxRate", taxRate,
                 "totalAmount", totalAmount,
                 "lineItems", lineItems,
+                "reference", reference,
                 "customFields", customFields,
                 "customMappings", customMappings,
                 "updatedAt", updatedAt,
@@ -992,6 +1031,8 @@ public class Expense {
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
  
         private List<ExpenseLineItem> lineItems;
+ 
+        private JsonNullable<String> reference = JsonNullable.undefined();
  
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
  
@@ -1277,6 +1318,24 @@ public class Expense {
             return this;
         }
 
+        /**
+         * Optional reference identifier for the transaction.
+         */
+        public Builder reference(String reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = JsonNullable.of(reference);
+            return this;
+        }
+
+        /**
+         * Optional reference identifier for the transaction.
+         */
+        public Builder reference(JsonNullable<String> reference) {
+            Utils.checkNotNull(reference, "reference");
+            this.reference = reference;
+            return this;
+        }
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1433,6 +1492,7 @@ public class Expense {
                 taxRate,
                 totalAmount,
                 lineItems,
+                reference,
                 customFields,
                 customMappings,
                 updatedAt,

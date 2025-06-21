@@ -65,6 +65,13 @@ public class Supplier {
     private JsonNullable<String> companyId;
 
     /**
+     * The category/type of the supplier
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("supplier_category")
+    private JsonNullable<String> supplierCategory;
+
+    /**
      * The job title of the person.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -238,6 +245,7 @@ public class Supplier {
             @JsonProperty("display_name") JsonNullable<String> displayName,
             @JsonProperty("company_name") JsonNullable<String> companyName,
             @JsonProperty("company_id") JsonNullable<String> companyId,
+            @JsonProperty("supplier_category") JsonNullable<String> supplierCategory,
             @JsonProperty("title") JsonNullable<String> title,
             @JsonProperty("first_name") JsonNullable<String> firstName,
             @JsonProperty("middle_name") JsonNullable<String> middleName,
@@ -272,6 +280,7 @@ public class Supplier {
         Utils.checkNotNull(displayName, "displayName");
         Utils.checkNotNull(companyName, "companyName");
         Utils.checkNotNull(companyId, "companyId");
+        Utils.checkNotNull(supplierCategory, "supplierCategory");
         Utils.checkNotNull(title, "title");
         Utils.checkNotNull(firstName, "firstName");
         Utils.checkNotNull(middleName, "middleName");
@@ -306,6 +315,7 @@ public class Supplier {
         this.displayName = displayName;
         this.companyName = companyName;
         this.companyId = companyId;
+        this.supplierCategory = supplierCategory;
         this.title = title;
         this.firstName = firstName;
         this.middleName = middleName;
@@ -338,7 +348,7 @@ public class Supplier {
     
     public Supplier(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -387,6 +397,14 @@ public class Supplier {
     @JsonIgnore
     public JsonNullable<String> companyId() {
         return companyId;
+    }
+
+    /**
+     * The category/type of the supplier
+     */
+    @JsonIgnore
+    public JsonNullable<String> supplierCategory() {
+        return supplierCategory;
     }
 
     /**
@@ -695,6 +713,24 @@ public class Supplier {
     public Supplier withCompanyId(JsonNullable<String> companyId) {
         Utils.checkNotNull(companyId, "companyId");
         this.companyId = companyId;
+        return this;
+    }
+
+    /**
+     * The category/type of the supplier
+     */
+    public Supplier withSupplierCategory(String supplierCategory) {
+        Utils.checkNotNull(supplierCategory, "supplierCategory");
+        this.supplierCategory = JsonNullable.of(supplierCategory);
+        return this;
+    }
+
+    /**
+     * The category/type of the supplier
+     */
+    public Supplier withSupplierCategory(JsonNullable<String> supplierCategory) {
+        Utils.checkNotNull(supplierCategory, "supplierCategory");
+        this.supplierCategory = supplierCategory;
         return this;
     }
 
@@ -1159,6 +1195,7 @@ public class Supplier {
             Objects.deepEquals(this.displayName, other.displayName) &&
             Objects.deepEquals(this.companyName, other.companyName) &&
             Objects.deepEquals(this.companyId, other.companyId) &&
+            Objects.deepEquals(this.supplierCategory, other.supplierCategory) &&
             Objects.deepEquals(this.title, other.title) &&
             Objects.deepEquals(this.firstName, other.firstName) &&
             Objects.deepEquals(this.middleName, other.middleName) &&
@@ -1198,6 +1235,7 @@ public class Supplier {
             displayName,
             companyName,
             companyId,
+            supplierCategory,
             title,
             firstName,
             middleName,
@@ -1237,6 +1275,7 @@ public class Supplier {
                 "displayName", displayName,
                 "companyName", companyName,
                 "companyId", companyId,
+                "supplierCategory", supplierCategory,
                 "title", title,
                 "firstName", firstName,
                 "middleName", middleName,
@@ -1280,6 +1319,8 @@ public class Supplier {
         private JsonNullable<String> companyName = JsonNullable.undefined();
  
         private JsonNullable<String> companyId = JsonNullable.undefined();
+ 
+        private JsonNullable<String> supplierCategory = JsonNullable.undefined();
  
         private JsonNullable<String> title = JsonNullable.undefined();
  
@@ -1437,6 +1478,24 @@ public class Supplier {
         public Builder companyId(JsonNullable<String> companyId) {
             Utils.checkNotNull(companyId, "companyId");
             this.companyId = companyId;
+            return this;
+        }
+
+        /**
+         * The category/type of the supplier
+         */
+        public Builder supplierCategory(String supplierCategory) {
+            Utils.checkNotNull(supplierCategory, "supplierCategory");
+            this.supplierCategory = JsonNullable.of(supplierCategory);
+            return this;
+        }
+
+        /**
+         * The category/type of the supplier
+         */
+        public Builder supplierCategory(JsonNullable<String> supplierCategory) {
+            Utils.checkNotNull(supplierCategory, "supplierCategory");
+            this.supplierCategory = supplierCategory;
             return this;
         }
 
@@ -1892,6 +1951,7 @@ public class Supplier {
                 displayName,
                 companyName,
                 companyId,
+                supplierCategory,
                 title,
                 firstName,
                 middleName,

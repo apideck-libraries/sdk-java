@@ -45,7 +45,6 @@ public class ApiResources implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get API Resource
      * 

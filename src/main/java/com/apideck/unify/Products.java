@@ -59,7 +59,6 @@ public class Products implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Products
      * 
@@ -351,7 +350,6 @@ public class Products implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

@@ -652,6 +652,18 @@ public class SDKMethodInterfaces {
             Optional<Options> options) throws Exception;
     }
 
+    public interface MethodCallAccountingCategoriesAll {
+        AccountingCategoriesAllResponse list(
+            AccountingCategoriesAllRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
+    public interface MethodCallAccountingCategoriesOne {
+        AccountingCategoriesOneResponse get(
+            AccountingCategoriesOneRequest request,
+            Optional<Options> options) throws Exception;
+    }
+
     public interface MethodCallAtsJobsAll {
         AtsJobsAllResponse list(
             AtsJobsAllRequest request,

@@ -60,7 +60,6 @@ public class Connectors implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Connectors
      * 
@@ -331,7 +330,6 @@ public class Connectors implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

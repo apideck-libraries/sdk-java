@@ -77,7 +77,6 @@ public class Customers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Customers
      * 
@@ -373,7 +372,6 @@ public class Customers implements
     }
 
 
-
     /**
      * Create Customer
      * 
@@ -652,7 +650,6 @@ public class Customers implements
     }
 
 
-
     /**
      * Get Customer
      * 
@@ -918,7 +915,6 @@ public class Customers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Customers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

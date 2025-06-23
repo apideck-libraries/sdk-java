@@ -77,7 +77,6 @@ public class Leads implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List leads
      * 
@@ -373,7 +372,6 @@ public class Leads implements
     }
 
 
-
     /**
      * Create lead
      * 
@@ -652,7 +650,6 @@ public class Leads implements
     }
 
 
-
     /**
      * Get lead
      * 
@@ -918,7 +915,6 @@ public class Leads implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Leads implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

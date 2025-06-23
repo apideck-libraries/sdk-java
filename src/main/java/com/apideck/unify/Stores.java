@@ -47,7 +47,6 @@ public class Stores implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get Store
      * 

@@ -44,7 +44,6 @@ public class ConnectorDocs implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get Connector Doc content
      * 

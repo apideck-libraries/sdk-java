@@ -74,7 +74,6 @@ public class Connections implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get all connections
      * 
@@ -359,7 +358,6 @@ public class Connections implements
     }
 
 
-
     /**
      * Get connection
      * 
@@ -639,7 +637,6 @@ public class Connections implements
     }
 
 
-
     /**
      * Update connection
      * 
@@ -915,7 +912,6 @@ public class Connections implements
     }
 
 
-
     /**
      * Deletes a connection
      * 
@@ -1182,7 +1178,6 @@ public class Connections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1458,7 +1453,6 @@ public class Connections implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

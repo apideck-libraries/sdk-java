@@ -77,7 +77,6 @@ public class Applications implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Applications
      * 
@@ -370,7 +369,6 @@ public class Applications implements
     }
 
 
-
     /**
      * Create Application
      * 
@@ -649,7 +647,6 @@ public class Applications implements
     }
 
 
-
     /**
      * Get Application
      * 
@@ -915,7 +912,6 @@ public class Applications implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1196,7 +1192,6 @@ public class Applications implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

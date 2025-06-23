@@ -77,7 +77,6 @@ public class LedgerAccounts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Ledger Accounts
      * 
@@ -373,7 +372,6 @@ public class LedgerAccounts implements
     }
 
 
-
     /**
      * Create Ledger Account
      * 
@@ -652,7 +650,6 @@ public class LedgerAccounts implements
     }
 
 
-
     /**
      * Get Ledger Account
      * 
@@ -918,7 +915,6 @@ public class LedgerAccounts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class LedgerAccounts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

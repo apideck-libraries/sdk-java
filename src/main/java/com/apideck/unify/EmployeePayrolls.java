@@ -52,7 +52,6 @@ public class EmployeePayrolls implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Employee Payrolls
      * 
@@ -318,7 +317,6 @@ public class EmployeePayrolls implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

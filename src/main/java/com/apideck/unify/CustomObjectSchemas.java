@@ -77,7 +77,6 @@ public class CustomObjectSchemas implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List custom object schemas
      * 
@@ -370,7 +369,6 @@ public class CustomObjectSchemas implements
     }
 
 
-
     /**
      * Create custom object schema
      * 
@@ -649,7 +647,6 @@ public class CustomObjectSchemas implements
     }
 
 
-
     /**
      * Get custom object schema
      * 
@@ -915,7 +912,6 @@ public class CustomObjectSchemas implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1196,7 +1192,6 @@ public class CustomObjectSchemas implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

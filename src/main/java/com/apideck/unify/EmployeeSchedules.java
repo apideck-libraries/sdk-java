@@ -47,7 +47,6 @@ public class EmployeeSchedules implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Employee Schedules
      * 

@@ -54,7 +54,6 @@ public class Logs implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get all consumer request logs
      * 

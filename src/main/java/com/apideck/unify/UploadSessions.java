@@ -99,7 +99,6 @@ public class UploadSessions implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Start Upload Session
      * 
@@ -385,7 +384,6 @@ public class UploadSessions implements
     }
 
 
-
     /**
      * Get Upload Session
      * 
@@ -658,7 +656,6 @@ public class UploadSessions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -948,7 +945,6 @@ public class UploadSessions implements
     }
 
 
-
     /**
      * Abort Upload Session
      * 
@@ -1214,7 +1210,6 @@ public class UploadSessions implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

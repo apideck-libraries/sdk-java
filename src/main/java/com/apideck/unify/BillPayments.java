@@ -77,7 +77,6 @@ public class BillPayments implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Bill Payments
      * 
@@ -373,7 +372,6 @@ public class BillPayments implements
     }
 
 
-
     /**
      * Create Bill Payment
      * 
@@ -652,7 +650,6 @@ public class BillPayments implements
     }
 
 
-
     /**
      * Get Bill Payment
      * 
@@ -918,7 +915,6 @@ public class BillPayments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class BillPayments implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

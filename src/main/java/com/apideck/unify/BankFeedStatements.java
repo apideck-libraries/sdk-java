@@ -77,7 +77,6 @@ public class BankFeedStatements implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Bank Feed Statements
      * 
@@ -371,7 +370,6 @@ public class BankFeedStatements implements
     }
 
 
-
     /**
      * Create Bank Feed Statement
      * 
@@ -650,7 +648,6 @@ public class BankFeedStatements implements
     }
 
 
-
     /**
      * Get Bank Feed Statement
      * 
@@ -916,7 +913,6 @@ public class BankFeedStatements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class BankFeedStatements implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

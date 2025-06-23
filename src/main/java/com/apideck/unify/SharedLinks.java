@@ -77,7 +77,6 @@ public class SharedLinks implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List SharedLinks
      * 
@@ -371,7 +370,6 @@ public class SharedLinks implements
     }
 
 
-
     /**
      * Create Shared Link
      * 
@@ -650,7 +648,6 @@ public class SharedLinks implements
     }
 
 
-
     /**
      * Get Shared Link
      * 
@@ -916,7 +913,6 @@ public class SharedLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class SharedLinks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

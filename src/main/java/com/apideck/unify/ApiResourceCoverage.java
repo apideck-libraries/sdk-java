@@ -45,7 +45,6 @@ public class ApiResourceCoverage implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get API Resource Coverage
      * 

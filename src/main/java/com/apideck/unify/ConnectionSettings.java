@@ -55,7 +55,6 @@ public class ConnectionSettings implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get resource settings
      * 
@@ -316,7 +315,6 @@ public class ConnectionSettings implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

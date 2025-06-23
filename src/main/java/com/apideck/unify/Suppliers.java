@@ -77,7 +77,6 @@ public class Suppliers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Suppliers
      * 
@@ -373,7 +372,6 @@ public class Suppliers implements
     }
 
 
-
     /**
      * Create Supplier
      * 
@@ -652,7 +650,6 @@ public class Suppliers implements
     }
 
 
-
     /**
      * Get Supplier
      * 
@@ -918,7 +915,6 @@ public class Suppliers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Suppliers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

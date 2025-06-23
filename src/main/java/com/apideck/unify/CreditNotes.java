@@ -77,7 +77,6 @@ public class CreditNotes implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Credit Notes
      * 
@@ -373,7 +372,6 @@ public class CreditNotes implements
     }
 
 
-
     /**
      * Create Credit Note
      * 
@@ -652,7 +650,6 @@ public class CreditNotes implements
     }
 
 
-
     /**
      * Get Credit Note
      * 
@@ -918,7 +915,6 @@ public class CreditNotes implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class CreditNotes implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

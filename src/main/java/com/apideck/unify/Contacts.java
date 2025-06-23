@@ -77,7 +77,6 @@ public class Contacts implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List contacts
      * 
@@ -373,7 +372,6 @@ public class Contacts implements
     }
 
 
-
     /**
      * Create contact
      * 
@@ -652,7 +650,6 @@ public class Contacts implements
     }
 
 
-
     /**
      * Get contact
      * 
@@ -918,7 +915,6 @@ public class Contacts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Contacts implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

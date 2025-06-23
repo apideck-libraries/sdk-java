@@ -80,7 +80,6 @@ public class Consumers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create consumer
      * 
@@ -361,7 +360,6 @@ public class Consumers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -660,7 +658,6 @@ public class Consumers implements
     }
 
 
-
     /**
      * Get consumer
      * 
@@ -930,7 +927,6 @@ public class Consumers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1220,7 +1216,6 @@ public class Consumers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

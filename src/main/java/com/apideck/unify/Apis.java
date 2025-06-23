@@ -60,7 +60,6 @@ public class Apis implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List APIs
      * 
@@ -331,7 +330,6 @@ public class Apis implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

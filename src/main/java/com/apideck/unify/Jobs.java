@@ -59,7 +59,6 @@ public class Jobs implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Jobs
      * 
@@ -351,7 +350,6 @@ public class Jobs implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

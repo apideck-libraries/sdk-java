@@ -77,7 +77,6 @@ public class Users implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List users
      * 
@@ -371,7 +370,6 @@ public class Users implements
     }
 
 
-
     /**
      * Create user
      * 
@@ -650,7 +648,6 @@ public class Users implements
     }
 
 
-
     /**
      * Get user
      * 
@@ -916,7 +913,6 @@ public class Users implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Users implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

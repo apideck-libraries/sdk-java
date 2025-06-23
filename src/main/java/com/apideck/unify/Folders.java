@@ -69,7 +69,6 @@ public class Folders implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Create Folder
      * 
@@ -348,7 +347,6 @@ public class Folders implements
     }
 
 
-
     /**
      * Get Folder
      * 
@@ -614,7 +612,6 @@ public class Folders implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -897,7 +894,6 @@ public class Folders implements
     }
 
 
-
     /**
      * Delete Folder
      * 
@@ -1163,7 +1159,6 @@ public class Folders implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

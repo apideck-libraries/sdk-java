@@ -80,7 +80,6 @@ public class Webhooks implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List webhook subscriptions
      * 
@@ -377,7 +376,6 @@ public class Webhooks implements
     }
 
 
-
     /**
      * Create webhook subscription
      * 
@@ -660,7 +658,6 @@ public class Webhooks implements
     }
 
 
-
     /**
      * Get webhook subscription
      * 
@@ -930,7 +927,6 @@ public class Webhooks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1220,7 +1216,6 @@ public class Webhooks implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

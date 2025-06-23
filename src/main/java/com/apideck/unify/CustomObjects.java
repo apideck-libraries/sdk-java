@@ -77,7 +77,6 @@ public class CustomObjects implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List custom objects
      * 
@@ -374,7 +373,6 @@ public class CustomObjects implements
     }
 
 
-
     /**
      * Create custom object
      * 
@@ -655,7 +653,6 @@ public class CustomObjects implements
     }
 
 
-
     /**
      * Get custom object
      * 
@@ -921,7 +918,6 @@ public class CustomObjects implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1202,7 +1198,6 @@ public class CustomObjects implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

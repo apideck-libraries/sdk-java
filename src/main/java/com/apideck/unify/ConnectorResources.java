@@ -46,7 +46,6 @@ public class ConnectorResources implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * Get Connector Resource
      * 

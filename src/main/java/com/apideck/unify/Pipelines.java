@@ -77,7 +77,6 @@ public class Pipelines implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List pipelines
      * 
@@ -371,7 +370,6 @@ public class Pipelines implements
     }
 
 
-
     /**
      * Create pipeline
      * 
@@ -650,7 +648,6 @@ public class Pipelines implements
     }
 
 
-
     /**
      * Get pipeline
      * 
@@ -916,7 +913,6 @@ public class Pipelines implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1197,7 +1193,6 @@ public class Pipelines implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

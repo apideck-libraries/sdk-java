@@ -59,7 +59,6 @@ public class ApideckCustomers implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Customers
      * 
@@ -352,7 +351,6 @@ public class ApideckCustomers implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             _fullResponse);
     }
-
 
 
     /**

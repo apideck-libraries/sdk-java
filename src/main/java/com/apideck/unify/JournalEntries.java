@@ -77,7 +77,6 @@ public class JournalEntries implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Journal Entries
      * 
@@ -373,7 +372,6 @@ public class JournalEntries implements
     }
 
 
-
     /**
      * Create Journal Entry
      * 
@@ -652,7 +650,6 @@ public class JournalEntries implements
     }
 
 
-
     /**
      * Get Journal Entry
      * 
@@ -918,7 +915,6 @@ public class JournalEntries implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class JournalEntries implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

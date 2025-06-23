@@ -77,7 +77,6 @@ public class InvoiceItems implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Invoice Items
      * 
@@ -373,7 +372,6 @@ public class InvoiceItems implements
     }
 
 
-
     /**
      * Create Invoice Item
      * 
@@ -652,7 +650,6 @@ public class InvoiceItems implements
     }
 
 
-
     /**
      * Get Invoice Item
      * 
@@ -918,7 +915,6 @@ public class InvoiceItems implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class InvoiceItems implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

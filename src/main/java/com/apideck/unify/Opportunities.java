@@ -77,7 +77,6 @@ public class Opportunities implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List opportunities
      * 
@@ -373,7 +372,6 @@ public class Opportunities implements
     }
 
 
-
     /**
      * Create opportunity
      * 
@@ -652,7 +650,6 @@ public class Opportunities implements
     }
 
 
-
     /**
      * Get opportunity
      * 
@@ -918,7 +915,6 @@ public class Opportunities implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1199,7 +1195,6 @@ public class Opportunities implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

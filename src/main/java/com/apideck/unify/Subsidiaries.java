@@ -77,7 +77,6 @@ public class Subsidiaries implements
         this.sdkConfiguration = sdkConfiguration;
     }
 
-
     /**
      * List Subsidiaries
      * 
@@ -370,7 +369,6 @@ public class Subsidiaries implements
     }
 
 
-
     /**
      * Create Subsidiary
      * 
@@ -649,7 +647,6 @@ public class Subsidiaries implements
     }
 
 
-
     /**
      * Get Subsidiary
      * 
@@ -915,7 +912,6 @@ public class Subsidiaries implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**
@@ -1196,7 +1192,6 @@ public class Subsidiaries implements
             "Unexpected status code received: " + _httpRes.statusCode(), 
             Utils.extractByteArrayFromBody(_httpRes));
     }
-
 
 
     /**

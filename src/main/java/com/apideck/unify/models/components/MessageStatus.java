@@ -30,7 +30,7 @@ public enum MessageStatus {
     @JsonValue
     private final String value;
 
-    private MessageStatus(String value) {
+    MessageStatus(String value) {
         this.value = value;
     }
     

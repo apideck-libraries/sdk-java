@@ -21,7 +21,7 @@ public enum TaxRateStatus {
     @JsonValue
     private final String value;
 
-    private TaxRateStatus(String value) {
+    TaxRateStatus(String value) {
         this.value = value;
     }
     

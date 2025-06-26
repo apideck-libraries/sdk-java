@@ -20,7 +20,7 @@ public enum SubscriptionLevel {
     @JsonValue
     private final String value;
 
-    private SubscriptionLevel(String value) {
+    SubscriptionLevel(String value) {
         this.value = value;
     }
     

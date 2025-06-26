@@ -18,7 +18,7 @@ public enum ApplicationStatus {
     @JsonValue
     private final String value;
 
-    private ApplicationStatus(String value) {
+    ApplicationStatus(String value) {
         this.value = value;
     }
     

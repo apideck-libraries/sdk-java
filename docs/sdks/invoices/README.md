@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingInvoicesAllRequest;
+import com.apideck.unify.models.operations.AccountingInvoicesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -57,8 +58,8 @@ public class Application {
         sdk.accounting().invoices().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingInvoicesAllResponse item) -> {
+                   // handle page
                 });
 
     }

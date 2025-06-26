@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConnectionsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultConnectionsDeleteRequestBuilder {
     private String serviceId;
     private String unifiedApi;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConnectionsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConnectionsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallVaultConnectionsDelete sdk) {
-        this.sdk = sdk;
+    public VaultConnectionsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConnectionsDeleteRequestBuilder consumerId(String consumerId) {
@@ -71,15 +75,28 @@ public class VaultConnectionsDeleteRequestBuilder {
         return this;
     }
 
-    public VaultConnectionsDeleteResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            consumerId,
+
+    private VaultConnectionsDeleteRequest buildRequest() {
+
+        VaultConnectionsDeleteRequest request = new VaultConnectionsDeleteRequest(consumerId,
             appId,
             serviceId,
-            unifiedApi,
-            options);
+            unifiedApi);
+
+        return request;
+    }
+
+    public VaultConnectionsDeleteResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
+              = new VaultConnectionsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConnectionsDeleteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

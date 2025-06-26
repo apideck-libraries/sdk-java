@@ -20,7 +20,7 @@ public enum JournalEntryLineItemType {
     @JsonValue
     private final String value;
 
-    private JournalEntryLineItemType(String value) {
+    JournalEntryLineItemType(String value) {
         this.value = value;
     }
     

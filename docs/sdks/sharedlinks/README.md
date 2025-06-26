@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageSharedLinksAllRequest;
+import com.apideck.unify.models.operations.FileStorageSharedLinksAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -46,8 +47,8 @@ public class Application {
         sdk.fileStorage().sharedLinks().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((FileStorageSharedLinksAllResponse item) -> {
+                   // handle page
                 });
 
     }

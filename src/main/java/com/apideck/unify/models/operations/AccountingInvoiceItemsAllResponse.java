@@ -10,8 +10,6 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -19,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class AccountingInvoiceItemsAllResponse implements Response {
 
@@ -47,8 +44,6 @@ public class AccountingInvoiceItemsAllResponse implements Response {
      * Unexpected error
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
-
-    private Callable<Optional<AccountingInvoiceItemsAllResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public AccountingInvoiceItemsAllResponse(
@@ -116,16 +111,6 @@ public class AccountingInvoiceItemsAllResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
-    }
-
-    public Optional<AccountingInvoiceItemsAllResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private AccountingInvoiceItemsAllResponse withNext(Callable<Optional<AccountingInvoiceItemsAllResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -234,7 +219,6 @@ public class AccountingInvoiceItemsAllResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<AccountingInvoiceItemsAllResponse>> next;
  
         private String contentType;
  
@@ -312,18 +296,6 @@ public class AccountingInvoiceItemsAllResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<AccountingInvoiceItemsAllResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public AccountingInvoiceItemsAllResponse build() {
             return new AccountingInvoiceItemsAllResponse(
@@ -331,8 +303,7 @@ public class AccountingInvoiceItemsAllResponse implements Response {
                 statusCode,
                 rawResponse,
                 getInvoiceItemsResponse,
-                unexpectedErrorResponse)
-                .withNext(next);
+                unexpectedErrorResponse);
         }
     }
 }

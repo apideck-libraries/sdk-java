@@ -3,7 +3,11 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.UnifiedApiId;
+import com.apideck.unify.operations.ConnectorConnectorResourcesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -18,10 +22,10 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
     private String resourceId;
     private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorConnectorResourcesOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorConnectorResourcesOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorConnectorResourcesOne sdk) {
-        this.sdk = sdk;
+    public ConnectorConnectorResourcesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorConnectorResourcesOneRequestBuilder appId(String appId) {
@@ -72,15 +76,28 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
         return this;
     }
 
-    public ConnectorConnectorResourcesOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
+
+    private ConnectorConnectorResourcesOneRequest buildRequest() {
+
+        ConnectorConnectorResourcesOneRequest request = new ConnectorConnectorResourcesOneRequest(appId,
             id,
             resourceId,
-            unifiedApi,
-            options);
+            unifiedApi);
+
+        return request;
+    }
+
+    public ConnectorConnectorResourcesOneResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
+              = new ConnectorConnectorResourcesOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorConnectorResourcesOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultCustomMappingsAllRequestBuilder {
     private String unifiedApi;
     private String serviceId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultCustomMappingsAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultCustomMappingsAllRequestBuilder(SDKMethodInterfaces.MethodCallVaultCustomMappingsAll sdk) {
-        this.sdk = sdk;
+    public VaultCustomMappingsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultCustomMappingsAllRequestBuilder consumerId(String consumerId) {
@@ -71,15 +75,28 @@ public class VaultCustomMappingsAllRequestBuilder {
         return this;
     }
 
-    public VaultCustomMappingsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            consumerId,
+
+    private VaultCustomMappingsAllRequest buildRequest() {
+
+        VaultCustomMappingsAllRequest request = new VaultCustomMappingsAllRequest(consumerId,
             appId,
             unifiedApi,
-            serviceId,
-            options);
+            serviceId);
+
+        return request;
+    }
+
+    public VaultCustomMappingsAllResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
+              = new VaultCustomMappingsAllOperation(
+                 sdkConfiguration,
+                 options);
+        VaultCustomMappingsAllRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

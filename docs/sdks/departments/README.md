@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountingDepartmentsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingDepartmentsAllRequest;
+import com.apideck.unify.models.operations.AccountingDepartmentsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -47,8 +48,8 @@ public class Application {
         sdk.accounting().departments().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingDepartmentsAllResponse item) -> {
+                   // handle page
                 });
 
     }

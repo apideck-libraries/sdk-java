@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingInvoiceItemsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingInvoiceItemsAddRequestBuilder {
 
     private AccountingInvoiceItemsAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingInvoiceItemsAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingInvoiceItemsAddRequestBuilder(SDKMethodInterfaces.MethodCallAccountingInvoiceItemsAdd sdk) {
-        this.sdk = sdk;
+    public AccountingInvoiceItemsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingInvoiceItemsAddRequestBuilder request(AccountingInvoiceItemsAddRequest request) {
@@ -39,10 +43,14 @@ public class AccountingInvoiceItemsAddRequestBuilder {
 
     public AccountingInvoiceItemsAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
+              = new AccountingInvoiceItemsAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

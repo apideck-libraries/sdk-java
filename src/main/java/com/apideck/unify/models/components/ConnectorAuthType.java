@@ -23,7 +23,7 @@ public enum ConnectorAuthType {
     @JsonValue
     private final String value;
 
-    private ConnectorAuthType(String value) {
+    ConnectorAuthType(String value) {
         this.value = value;
     }
     

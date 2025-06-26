@@ -20,6 +20,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionUsersAllRequest;
+import com.apideck.unify.models.operations.IssueTrackingCollectionUsersAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -44,8 +45,8 @@ public class Application {
         sdk.issueTracking().collectionUsers().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((IssueTrackingCollectionUsersAllResponse item) -> {
+                   // handle page
                 });
 
     }

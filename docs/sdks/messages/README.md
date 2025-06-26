@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.SmsMessagesAllRequest;
+import com.apideck.unify.models.operations.SmsMessagesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -43,8 +44,8 @@ public class Application {
         sdk.sms().messages().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((SmsMessagesAllResponse item) -> {
+                   // handle page
                 });
 
     }

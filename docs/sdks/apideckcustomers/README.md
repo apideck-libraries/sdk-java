@@ -21,6 +21,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.EcommerceCustomersFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceCustomersAllRequest;
+import com.apideck.unify.models.operations.EcommerceCustomersAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -48,8 +49,8 @@ public class Application {
         sdk.ecommerce().customers().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((EcommerceCustomersAllResponse item) -> {
+                   // handle page
                 });
 
     }

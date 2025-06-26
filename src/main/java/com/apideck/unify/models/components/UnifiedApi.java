@@ -30,7 +30,7 @@ public enum UnifiedApi {
     @JsonValue
     private final String value;
 
-    private UnifiedApi(String value) {
+    UnifiedApi(String value) {
         this.value = value;
     }
     

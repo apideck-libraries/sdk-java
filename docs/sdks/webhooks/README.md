@@ -22,6 +22,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.WebhookWebhooksAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -36,8 +37,8 @@ public class Application {
         sdk.webhook().webhooks().list()
                 .limit(20L)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((WebhookWebhooksAllResponse item) -> {
+                   // handle page
                 });
 
     }

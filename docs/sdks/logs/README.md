@@ -21,6 +21,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.LogsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.VaultLogsAllRequest;
+import com.apideck.unify.models.operations.VaultLogsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -44,8 +45,8 @@ public class Application {
         sdk.vault().logs().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((VaultLogsAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmContactsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmContactsUpdateRequestBuilder {
 
     private CrmContactsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmContactsUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmContactsUpdateRequestBuilder(SDKMethodInterfaces.MethodCallCrmContactsUpdate sdk) {
-        this.sdk = sdk;
+    public CrmContactsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmContactsUpdateRequestBuilder request(CrmContactsUpdateRequest request) {
@@ -39,10 +43,14 @@ public class CrmContactsUpdateRequestBuilder {
 
     public CrmContactsUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
+              = new CrmContactsUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -21,7 +21,7 @@ public enum OAuthGrantType {
     @JsonValue
     private final String value;
 
-    private OAuthGrantType(String value) {
+    OAuthGrantType(String value) {
         this.value = value;
     }
     

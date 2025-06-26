@@ -20,7 +20,7 @@ public enum ManagedVia {
     @JsonValue
     private final String value;
 
-    private ManagedVia(String value) {
+    ManagedVia(String value) {
         this.value = value;
     }
     

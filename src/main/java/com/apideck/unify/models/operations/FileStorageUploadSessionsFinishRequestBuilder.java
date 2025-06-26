@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageUploadSessionsFinishOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class FileStorageUploadSessionsFinishRequestBuilder {
     private FileStorageUploadSessionsFinishRequest request;
     private Optional<String> serverURL = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageUploadSessionsFinish sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageUploadSessionsFinishRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageUploadSessionsFinish sdk) {
-        this.sdk = sdk;
+    public FileStorageUploadSessionsFinishRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageUploadSessionsFinishRequestBuilder request(FileStorageUploadSessionsFinishRequest request) {
@@ -53,11 +57,15 @@ public class FileStorageUploadSessionsFinishRequestBuilder {
 
     public FileStorageUploadSessionsFinishResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.finish(
-            request,
-            serverURL,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
+              = new FileStorageUploadSessionsFinishOperation(
+                 sdkConfiguration,
+                 serverURL,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

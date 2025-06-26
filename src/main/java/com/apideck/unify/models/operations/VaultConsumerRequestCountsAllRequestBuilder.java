@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
     private String startDatetime;
     private String endDatetime;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConsumerRequestCountsAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConsumerRequestCountsAllRequestBuilder(SDKMethodInterfaces.MethodCallVaultConsumerRequestCountsAll sdk) {
-        this.sdk = sdk;
+    public VaultConsumerRequestCountsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConsumerRequestCountsAllRequestBuilder appId(String appId) {
@@ -65,15 +69,28 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
         return this;
     }
 
-    public VaultConsumerRequestCountsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            appId,
+
+    private VaultConsumerRequestCountsAllRequest buildRequest() {
+
+        VaultConsumerRequestCountsAllRequest request = new VaultConsumerRequestCountsAllRequest(appId,
             consumerId,
             startDatetime,
-            endDatetime,
-            options);
+            endDatetime);
+
+        return request;
+    }
+
+    public VaultConsumerRequestCountsAllResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
+              = new VaultConsumerRequestCountsAllOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConsumerRequestCountsAllRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

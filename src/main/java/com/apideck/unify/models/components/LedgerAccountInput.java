@@ -52,7 +52,7 @@ public class LedgerAccountInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("classification")
-    private JsonNullable<? extends Classification> classification;
+    private JsonNullable<? extends LedgerAccountClassification> classification;
 
     /**
      * The type of account.
@@ -198,7 +198,7 @@ public class LedgerAccountInput {
             @JsonProperty("display_id") Optional<String> displayId,
             @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
             @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("classification") JsonNullable<? extends Classification> classification,
+            @JsonProperty("classification") JsonNullable<? extends LedgerAccountClassification> classification,
             @JsonProperty("type") Optional<? extends LedgerAccountType> type,
             @JsonProperty("sub_type") JsonNullable<String> subType,
             @JsonProperty("name") JsonNullable<String> name,
@@ -311,8 +311,8 @@ public class LedgerAccountInput {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<Classification> classification() {
-        return (JsonNullable<Classification>) classification;
+    public JsonNullable<LedgerAccountClassification> classification() {
+        return (JsonNullable<LedgerAccountClassification>) classification;
     }
 
     /**
@@ -552,7 +552,7 @@ public class LedgerAccountInput {
     /**
      * The classification of account.
      */
-    public LedgerAccountInput withClassification(Classification classification) {
+    public LedgerAccountInput withClassification(LedgerAccountClassification classification) {
         Utils.checkNotNull(classification, "classification");
         this.classification = JsonNullable.of(classification);
         return this;
@@ -561,7 +561,7 @@ public class LedgerAccountInput {
     /**
      * The classification of account.
      */
-    public LedgerAccountInput withClassification(JsonNullable<? extends Classification> classification) {
+    public LedgerAccountInput withClassification(JsonNullable<? extends LedgerAccountClassification> classification) {
         Utils.checkNotNull(classification, "classification");
         this.classification = classification;
         return this;
@@ -1043,7 +1043,7 @@ public class LedgerAccountInput {
  
         private JsonNullable<String> code = JsonNullable.undefined();
  
-        private JsonNullable<? extends Classification> classification = JsonNullable.undefined();
+        private JsonNullable<? extends LedgerAccountClassification> classification = JsonNullable.undefined();
  
         private Optional<? extends LedgerAccountType> type = Optional.empty();
  
@@ -1156,7 +1156,7 @@ public class LedgerAccountInput {
         /**
          * The classification of account.
          */
-        public Builder classification(Classification classification) {
+        public Builder classification(LedgerAccountClassification classification) {
             Utils.checkNotNull(classification, "classification");
             this.classification = JsonNullable.of(classification);
             return this;
@@ -1165,7 +1165,7 @@ public class LedgerAccountInput {
         /**
          * The classification of account.
          */
-        public Builder classification(JsonNullable<? extends Classification> classification) {
+        public Builder classification(JsonNullable<? extends LedgerAccountClassification> classification) {
             Utils.checkNotNull(classification, "classification");
             this.classification = classification;
             return this;

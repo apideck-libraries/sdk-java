@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.HrisTimeOffRequestsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class HrisTimeOffRequestsDeleteRequestBuilder {
 
     private HrisTimeOffRequestsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallHrisTimeOffRequestsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public HrisTimeOffRequestsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallHrisTimeOffRequestsDelete sdk) {
-        this.sdk = sdk;
+    public HrisTimeOffRequestsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public HrisTimeOffRequestsDeleteRequestBuilder request(HrisTimeOffRequestsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class HrisTimeOffRequestsDeleteRequestBuilder {
 
     public HrisTimeOffRequestsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
+              = new HrisTimeOffRequestsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

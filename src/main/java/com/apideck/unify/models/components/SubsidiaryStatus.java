@@ -20,7 +20,7 @@ public enum SubsidiaryStatus {
     @JsonValue
     private final String value;
 
-    private SubsidiaryStatus(String value) {
+    SubsidiaryStatus(String value) {
         this.value = value;
     }
     

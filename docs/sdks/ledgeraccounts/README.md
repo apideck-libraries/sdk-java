@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLedgerAccountsAllRequest;
+import com.apideck.unify.models.operations.AccountingLedgerAccountsAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class Application {
         sdk.accounting().ledgerAccounts().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingLedgerAccountsAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -117,7 +118,7 @@ public class Application {
                 .ledgerAccount(LedgerAccountInput.builder()
                     .displayId("1-12345")
                     .code("453")
-                    .classification(Classification.ASSET)
+                    .classification(LedgerAccountClassification.ASSET)
                     .type(LedgerAccountType.BANK)
                     .subType("CHECKING_ACCOUNT")
                     .name("Bank account")
@@ -327,7 +328,7 @@ public class Application {
                 .ledgerAccount(LedgerAccountInput.builder()
                     .displayId("1-12345")
                     .code("453")
-                    .classification(Classification.ASSET)
+                    .classification(LedgerAccountClassification.ASSET)
                     .type(LedgerAccountType.BANK)
                     .subType("CHECKING_ACCOUNT")
                     .name("Bank account")

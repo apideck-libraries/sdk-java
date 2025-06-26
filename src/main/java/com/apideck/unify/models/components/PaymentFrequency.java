@@ -23,7 +23,7 @@ public enum PaymentFrequency {
     @JsonValue
     private final String value;
 
-    private PaymentFrequency(String value) {
+    PaymentFrequency(String value) {
         this.value = value;
     }
     

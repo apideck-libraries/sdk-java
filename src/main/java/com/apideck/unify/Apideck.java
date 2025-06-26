@@ -6,9 +6,9 @@ package com.apideck.unify;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.Hook.SdkInitData;
 import com.apideck.unify.utils.RetryConfig;
+import com.apideck.unify.utils.SpeakeasyHTTPClient;
 import com.apideck.unify.utils.Utils;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -27,6 +27,8 @@ public class Apideck {
     public static final String[] SERVERS = {
         "https://unify.apideck.com",
     };
+
+    
 
     private final Accounting accounting;
 
@@ -93,7 +95,6 @@ public class Apideck {
     public Webhook webhook() {
         return webhook;
     }
-
     private SDKConfiguration sdkConfiguration;
 
     /**
@@ -189,6 +190,20 @@ public class Apideck {
             this.sdkConfiguration.setRetryConfig(Optional.of(retryConfig));
             return this;
         }
+
+        /**
+         * Enables debug logging for HTTP requests and responses, including JSON body content.
+         *
+         * This is a convenience method that calls {@link HTTPClient#enableDebugLogging()}.
+         * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
+         * it is up to the custom client to honor this setting.
+         *
+         * @return The builder instance.
+         */
+        public Builder enableHTTPDebugLogging() {
+            this.sdkConfiguration.client().enableDebugLogging();
+            return this;
+        }
         /**
          * Allows setting the consumerId parameter for all supported operations.
          *
@@ -196,12 +211,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder consumerId(String consumerId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
-                this.sdkConfiguration.globals.get("parameters").put("header", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("header").put("consumerId", consumerId);
-
+            this.sdkConfiguration.globals.putParam("header", "consumerId", consumerId);
             return this;
         }
         
@@ -212,12 +222,7 @@ public class Apideck {
          * @return The builder instance.
          */
         public Builder appId(String appId) {
-            if (!this.sdkConfiguration.globals.get("parameters").containsKey("header")) {
-                this.sdkConfiguration.globals.get("parameters").put("header", new HashMap<>());
-            }
-
-            this.sdkConfiguration.globals.get("parameters").get("header").put("appId", appId);
-
+            this.sdkConfiguration.globals.putParam("header", "appId", appId);
             return this;
         }
         

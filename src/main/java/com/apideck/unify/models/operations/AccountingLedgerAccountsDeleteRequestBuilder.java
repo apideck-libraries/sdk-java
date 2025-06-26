@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingLedgerAccountsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingLedgerAccountsDeleteRequestBuilder {
 
     private AccountingLedgerAccountsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingLedgerAccountsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingLedgerAccountsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingLedgerAccountsDelete sdk) {
-        this.sdk = sdk;
+    public AccountingLedgerAccountsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingLedgerAccountsDeleteRequestBuilder request(AccountingLedgerAccountsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingLedgerAccountsDeleteRequestBuilder {
 
     public AccountingLedgerAccountsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
+              = new AccountingLedgerAccountsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

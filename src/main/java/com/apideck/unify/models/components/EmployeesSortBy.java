@@ -22,7 +22,7 @@ public enum EmployeesSortBy {
     @JsonValue
     private final String value;
 
-    private EmployeesSortBy(String value) {
+    EmployeesSortBy(String value) {
         this.value = value;
     }
     

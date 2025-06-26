@@ -21,7 +21,7 @@ public enum IntegrationState {
     @JsonValue
     private final String value;
 
-    private IntegrationState(String value) {
+    IntegrationState(String value) {
         this.value = value;
     }
     

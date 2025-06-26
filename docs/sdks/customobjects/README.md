@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCustomObjectsAllRequest;
+import com.apideck.unify.models.operations.CrmCustomObjectsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -47,8 +48,8 @@ public class Application {
         sdk.crm().customObjects().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmCustomObjectsAllResponse item) -> {
+                   // handle page
                 });
 
     }

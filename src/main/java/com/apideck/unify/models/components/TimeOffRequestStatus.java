@@ -24,7 +24,7 @@ public enum TimeOffRequestStatus {
     @JsonValue
     private final String value;
 
-    private TimeOffRequestStatus(String value) {
+    TimeOffRequestStatus(String value) {
         this.value = value;
     }
     

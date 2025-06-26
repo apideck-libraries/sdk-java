@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingJournalEntriesDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingJournalEntriesDeleteRequestBuilder {
 
     private AccountingJournalEntriesDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingJournalEntriesDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingJournalEntriesDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingJournalEntriesDelete sdk) {
-        this.sdk = sdk;
+    public AccountingJournalEntriesDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingJournalEntriesDeleteRequestBuilder request(AccountingJournalEntriesDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingJournalEntriesDeleteRequestBuilder {
 
     public AccountingJournalEntriesDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
+              = new AccountingJournalEntriesDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

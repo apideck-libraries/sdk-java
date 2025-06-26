@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.EcommerceCustomersOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class EcommerceCustomersOneRequestBuilder {
 
     private EcommerceCustomersOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallEcommerceCustomersOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public EcommerceCustomersOneRequestBuilder(SDKMethodInterfaces.MethodCallEcommerceCustomersOne sdk) {
-        this.sdk = sdk;
+    public EcommerceCustomersOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public EcommerceCustomersOneRequestBuilder request(EcommerceCustomersOneRequest request) {
@@ -39,10 +43,14 @@ public class EcommerceCustomersOneRequestBuilder {
 
     public EcommerceCustomersOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
+              = new EcommerceCustomersOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

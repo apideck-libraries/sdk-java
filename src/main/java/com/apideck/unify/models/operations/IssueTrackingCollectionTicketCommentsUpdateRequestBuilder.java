@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequestBuilder {
 
     private IssueTrackingCollectionTicketCommentsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallIssueTrackingCollectionTicketCommentsUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public IssueTrackingCollectionTicketCommentsUpdateRequestBuilder(SDKMethodInterfaces.MethodCallIssueTrackingCollectionTicketCommentsUpdate sdk) {
-        this.sdk = sdk;
+    public IssueTrackingCollectionTicketCommentsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public IssueTrackingCollectionTicketCommentsUpdateRequestBuilder request(IssueTrackingCollectionTicketCommentsUpdateRequest request) {
@@ -39,10 +43,14 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequestBuilder {
 
     public IssueTrackingCollectionTicketCommentsUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
+              = new IssueTrackingCollectionTicketCommentsUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

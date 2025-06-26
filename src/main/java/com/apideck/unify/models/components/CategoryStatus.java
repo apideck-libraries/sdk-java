@@ -20,7 +20,7 @@ public enum CategoryStatus {
     @JsonValue
     private final String value;
 
-    private CategoryStatus(String value) {
+    CategoryStatus(String value) {
         this.value = value;
     }
     

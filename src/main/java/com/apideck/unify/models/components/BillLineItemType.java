@@ -21,7 +21,7 @@ public enum BillLineItemType {
     @JsonValue
     private final String value;
 
-    private BillLineItemType(String value) {
+    BillLineItemType(String value) {
         this.value = value;
     }
     

@@ -26,6 +26,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageFilesAllRequest;
+import com.apideck.unify.models.operations.FileStorageFilesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -58,8 +59,8 @@ public class Application {
         sdk.fileStorage().files().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((FileStorageFilesAllResponse item) -> {
+                   // handle page
                 });
 
     }

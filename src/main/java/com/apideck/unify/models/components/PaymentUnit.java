@@ -24,7 +24,7 @@ public enum PaymentUnit {
     @JsonValue
     private final String value;
 
-    private PaymentUnit(String value) {
+    PaymentUnit(String value) {
         this.value = value;
     }
     

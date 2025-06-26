@@ -22,7 +22,7 @@ public enum Priority {
     @JsonValue
     private final String value;
 
-    private Priority(String value) {
+    Priority(String value) {
         this.value = value;
     }
     

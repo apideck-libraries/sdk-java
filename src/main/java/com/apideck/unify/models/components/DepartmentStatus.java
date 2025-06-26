@@ -20,7 +20,7 @@ public enum DepartmentStatus {
     @JsonValue
     private final String value;
 
-    private DepartmentStatus(String value) {
+    DepartmentStatus(String value) {
         this.value = value;
     }
     

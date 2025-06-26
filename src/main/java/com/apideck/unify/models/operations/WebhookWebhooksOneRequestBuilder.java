@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.WebhookWebhooksOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class WebhookWebhooksOneRequestBuilder {
     private String id;
     private Optional<String> appId = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallWebhookWebhooksOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public WebhookWebhooksOneRequestBuilder(SDKMethodInterfaces.MethodCallWebhookWebhooksOne sdk) {
-        this.sdk = sdk;
+    public WebhookWebhooksOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public WebhookWebhooksOneRequestBuilder id(String id) {
@@ -51,13 +55,26 @@ public class WebhookWebhooksOneRequestBuilder {
         return this;
     }
 
+
+    private WebhookWebhooksOneRequest buildRequest() {
+
+        WebhookWebhooksOneRequest request = new WebhookWebhooksOneRequest(id,
+            appId);
+
+        return request;
+    }
+
     public WebhookWebhooksOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            id,
-            appId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
+              = new WebhookWebhooksOneOperation(
+                 sdkConfiguration,
+                 options);
+        WebhookWebhooksOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

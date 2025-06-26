@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultCustomFieldsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class VaultCustomFieldsAllRequestBuilder {
 
     private VaultCustomFieldsAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultCustomFieldsAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultCustomFieldsAllRequestBuilder(SDKMethodInterfaces.MethodCallVaultCustomFieldsAll sdk) {
-        this.sdk = sdk;
+    public VaultCustomFieldsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VaultCustomFieldsAllRequestBuilder request(VaultCustomFieldsAllRequest request) {
@@ -39,10 +43,14 @@ public class VaultCustomFieldsAllRequestBuilder {
 
     public VaultCustomFieldsAllResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
+              = new VaultCustomFieldsAllOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

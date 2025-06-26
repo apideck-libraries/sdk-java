@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmUsersOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmUsersOneRequestBuilder {
 
     private CrmUsersOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmUsersOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmUsersOneRequestBuilder(SDKMethodInterfaces.MethodCallCrmUsersOne sdk) {
-        this.sdk = sdk;
+    public CrmUsersOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmUsersOneRequestBuilder request(CrmUsersOneRequest request) {
@@ -39,10 +43,14 @@ public class CrmUsersOneRequestBuilder {
 
     public CrmUsersOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
+              = new CrmUsersOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

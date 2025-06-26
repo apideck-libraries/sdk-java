@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingInvoiceItemsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingInvoiceItemsDeleteRequestBuilder {
 
     private AccountingInvoiceItemsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingInvoiceItemsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingInvoiceItemsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingInvoiceItemsDelete sdk) {
-        this.sdk = sdk;
+    public AccountingInvoiceItemsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingInvoiceItemsDeleteRequestBuilder request(AccountingInvoiceItemsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingInvoiceItemsDeleteRequestBuilder {
 
     public AccountingInvoiceItemsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
+              = new AccountingInvoiceItemsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

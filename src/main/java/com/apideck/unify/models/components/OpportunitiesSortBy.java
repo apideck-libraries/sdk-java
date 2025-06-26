@@ -24,7 +24,7 @@ public enum OpportunitiesSortBy {
     @JsonValue
     private final String value;
 
-    private OpportunitiesSortBy(String value) {
+    OpportunitiesSortBy(String value) {
         this.value = value;
     }
     

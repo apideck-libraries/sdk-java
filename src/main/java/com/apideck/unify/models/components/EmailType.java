@@ -24,7 +24,7 @@ public enum EmailType {
     @JsonValue
     private final String value;
 
-    private EmailType(String value) {
+    EmailType(String value) {
         this.value = value;
     }
     

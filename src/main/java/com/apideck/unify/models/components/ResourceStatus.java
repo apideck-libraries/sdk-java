@@ -23,7 +23,7 @@ public enum ResourceStatus {
     @JsonValue
     private final String value;
 
-    private ResourceStatus(String value) {
+    ResourceStatus(String value) {
         this.value = value;
     }
     

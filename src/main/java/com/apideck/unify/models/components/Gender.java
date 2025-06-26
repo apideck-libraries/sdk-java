@@ -23,7 +23,7 @@ public enum Gender {
     @JsonValue
     private final String value;
 
-    private Gender(String value) {
+    Gender(String value) {
         this.value = value;
     }
     

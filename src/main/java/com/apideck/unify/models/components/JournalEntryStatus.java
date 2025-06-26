@@ -26,7 +26,7 @@ public enum JournalEntryStatus {
     @JsonValue
     private final String value;
 
-    private JournalEntryStatus(String value) {
+    JournalEntryStatus(String value) {
         this.value = value;
     }
     

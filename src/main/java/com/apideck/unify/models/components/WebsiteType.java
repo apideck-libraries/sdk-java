@@ -23,7 +23,7 @@ public enum WebsiteType {
     @JsonValue
     private final String value;
 
-    private WebsiteType(String value) {
+    WebsiteType(String value) {
         this.value = value;
     }
     

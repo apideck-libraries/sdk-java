@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.ConnectorApiResourceCoverageOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -16,10 +20,10 @@ public class ConnectorApiResourceCoverageOneRequestBuilder {
     private String id;
     private String resourceId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorApiResourceCoverageOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorApiResourceCoverageOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorApiResourceCoverageOne sdk) {
-        this.sdk = sdk;
+    public ConnectorApiResourceCoverageOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorApiResourceCoverageOneRequestBuilder appId(String appId) {
@@ -58,14 +62,27 @@ public class ConnectorApiResourceCoverageOneRequestBuilder {
         return this;
     }
 
+
+    private ConnectorApiResourceCoverageOneRequest buildRequest() {
+
+        ConnectorApiResourceCoverageOneRequest request = new ConnectorApiResourceCoverageOneRequest(appId,
+            id,
+            resourceId);
+
+        return request;
+    }
+
     public ConnectorApiResourceCoverageOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            id,
-            resourceId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
+              = new ConnectorApiResourceCoverageOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorApiResourceCoverageOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

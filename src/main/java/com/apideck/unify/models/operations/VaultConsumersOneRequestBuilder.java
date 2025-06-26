@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConsumersOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class VaultConsumersOneRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String consumerId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConsumersOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConsumersOneRequestBuilder(SDKMethodInterfaces.MethodCallVaultConsumersOne sdk) {
-        this.sdk = sdk;
+    public VaultConsumersOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConsumersOneRequestBuilder appId(String appId) {
@@ -51,13 +55,26 @@ public class VaultConsumersOneRequestBuilder {
         return this;
     }
 
+
+    private VaultConsumersOneRequest buildRequest() {
+
+        VaultConsumersOneRequest request = new VaultConsumersOneRequest(appId,
+            consumerId);
+
+        return request;
+    }
+
     public VaultConsumersOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            consumerId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
+              = new VaultConsumersOneOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConsumersOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

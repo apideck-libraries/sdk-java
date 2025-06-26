@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingAgedDebtorsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingAgedDebtorsOneRequestBuilder {
 
     private AccountingAgedDebtorsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingAgedDebtorsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingAgedDebtorsOneRequestBuilder(SDKMethodInterfaces.MethodCallAccountingAgedDebtorsOne sdk) {
-        this.sdk = sdk;
+    public AccountingAgedDebtorsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingAgedDebtorsOneRequestBuilder request(AccountingAgedDebtorsOneRequest request) {
@@ -39,10 +43,14 @@ public class AccountingAgedDebtorsOneRequestBuilder {
 
     public AccountingAgedDebtorsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingAgedDebtorsOneRequest, AccountingAgedDebtorsOneResponse> operation
+              = new AccountingAgedDebtorsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -20,7 +20,7 @@ public enum OauthCredentialsSource {
     @JsonValue
     private final String value;
 
-    private OauthCredentialsSource(String value) {
+    OauthCredentialsSource(String value) {
         this.value = value;
     }
     

@@ -4,24 +4,22 @@
 package com.apideck.unify;
 
 import com.apideck.unify.hooks.SDKHooks;
+import com.apideck.unify.utils.Globals;
 import com.apideck.unify.utils.HTTPClient;
 import com.apideck.unify.utils.Hooks;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.SpeakeasyHTTPClient;
 import com.apideck.unify.utils.Utils;
-import java.lang.Object;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 public class SDKConfiguration {
 
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "10.18.0";
-    public static final String SDK_VERSION = "0.15.0";
-    public static final String GEN_VERSION = "2.632.2";
+    public static final String SDK_VERSION = "0.16.0";
+    public static final String GEN_VERSION = "2.638.1";
     private static final String BASE_PACKAGE = "com.apideck.unify";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s",
@@ -108,9 +106,7 @@ public class SDKConfiguration {
     }
 
     @SuppressWarnings("serial")
-    public Map<String, Map<String, Map<String,Object>>> globals = new HashMap<>(){ {
-        put("parameters", new HashMap<>());
-    } };
+    public Globals globals = new Globals();
     
     private Optional<RetryConfig> retryConfig = Optional.empty();
     

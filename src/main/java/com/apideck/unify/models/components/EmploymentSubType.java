@@ -23,7 +23,7 @@ public enum EmploymentSubType {
     @JsonValue
     private final String value;
 
-    private EmploymentSubType(String value) {
+    EmploymentSubType(String value) {
         this.value = value;
     }
     

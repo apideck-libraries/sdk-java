@@ -10,8 +10,6 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -19,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class AccountingTaxRatesAllResponse implements Response {
 
@@ -47,8 +44,6 @@ public class AccountingTaxRatesAllResponse implements Response {
      * Unexpected error
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
-
-    private Callable<Optional<AccountingTaxRatesAllResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public AccountingTaxRatesAllResponse(
@@ -116,16 +111,6 @@ public class AccountingTaxRatesAllResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
-    }
-
-    public Optional<AccountingTaxRatesAllResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private AccountingTaxRatesAllResponse withNext(Callable<Optional<AccountingTaxRatesAllResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -234,7 +219,6 @@ public class AccountingTaxRatesAllResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<AccountingTaxRatesAllResponse>> next;
  
         private String contentType;
  
@@ -312,18 +296,6 @@ public class AccountingTaxRatesAllResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<AccountingTaxRatesAllResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public AccountingTaxRatesAllResponse build() {
             return new AccountingTaxRatesAllResponse(
@@ -331,8 +303,7 @@ public class AccountingTaxRatesAllResponse implements Response {
                 statusCode,
                 rawResponse,
                 getTaxRatesResponse,
-                unexpectedErrorResponse)
-                .withNext(next);
+                unexpectedErrorResponse);
         }
     }
 }

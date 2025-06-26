@@ -27,7 +27,7 @@ public enum ActivityType {
     @JsonValue
     private final String value;
 
-    private ActivityType(String value) {
+    ActivityType(String value) {
         this.value = value;
     }
     

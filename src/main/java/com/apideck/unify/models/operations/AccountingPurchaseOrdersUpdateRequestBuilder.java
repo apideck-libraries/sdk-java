@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingPurchaseOrdersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingPurchaseOrdersUpdateRequestBuilder {
 
     private AccountingPurchaseOrdersUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingPurchaseOrdersUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingPurchaseOrdersUpdateRequestBuilder(SDKMethodInterfaces.MethodCallAccountingPurchaseOrdersUpdate sdk) {
-        this.sdk = sdk;
+    public AccountingPurchaseOrdersUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingPurchaseOrdersUpdateRequestBuilder request(AccountingPurchaseOrdersUpdateRequest request) {
@@ -39,10 +43,14 @@ public class AccountingPurchaseOrdersUpdateRequestBuilder {
 
     public AccountingPurchaseOrdersUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
+              = new AccountingPurchaseOrdersUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

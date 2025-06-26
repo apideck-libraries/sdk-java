@@ -3,7 +3,11 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.CreateWebhookRequest;
+import com.apideck.unify.operations.WebhookWebhooksAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -16,10 +20,10 @@ public class WebhookWebhooksAddRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private CreateWebhookRequest createWebhookRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallWebhookWebhooksAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public WebhookWebhooksAddRequestBuilder(SDKMethodInterfaces.MethodCallWebhookWebhooksAdd sdk) {
-        this.sdk = sdk;
+    public WebhookWebhooksAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public WebhookWebhooksAddRequestBuilder appId(String appId) {
@@ -52,13 +56,26 @@ public class WebhookWebhooksAddRequestBuilder {
         return this;
     }
 
+
+    private WebhookWebhooksAddRequest buildRequest() {
+
+        WebhookWebhooksAddRequest request = new WebhookWebhooksAddRequest(appId,
+            createWebhookRequest);
+
+        return request;
+    }
+
     public WebhookWebhooksAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            appId,
-            createWebhookRequest,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
+              = new WebhookWebhooksAddOperation(
+                 sdkConfiguration,
+                 options);
+        WebhookWebhooksAddRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

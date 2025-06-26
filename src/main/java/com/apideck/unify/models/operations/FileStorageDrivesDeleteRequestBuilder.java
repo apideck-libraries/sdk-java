@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageDrivesDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class FileStorageDrivesDeleteRequestBuilder {
 
     private FileStorageDrivesDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageDrivesDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageDrivesDeleteRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageDrivesDelete sdk) {
-        this.sdk = sdk;
+    public FileStorageDrivesDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageDrivesDeleteRequestBuilder request(FileStorageDrivesDeleteRequest request) {
@@ -39,10 +43,14 @@ public class FileStorageDrivesDeleteRequestBuilder {
 
     public FileStorageDrivesDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
+              = new FileStorageDrivesDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -21,7 +21,7 @@ public enum CollectionsSortBy {
     @JsonValue
     private final String value;
 
-    private CollectionsSortBy(String value) {
+    CollectionsSortBy(String value) {
         this.value = value;
     }
     

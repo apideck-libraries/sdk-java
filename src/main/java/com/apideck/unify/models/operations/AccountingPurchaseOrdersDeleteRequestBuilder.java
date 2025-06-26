@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingPurchaseOrdersDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingPurchaseOrdersDeleteRequestBuilder {
 
     private AccountingPurchaseOrdersDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingPurchaseOrdersDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingPurchaseOrdersDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingPurchaseOrdersDelete sdk) {
-        this.sdk = sdk;
+    public AccountingPurchaseOrdersDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingPurchaseOrdersDeleteRequestBuilder request(AccountingPurchaseOrdersDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingPurchaseOrdersDeleteRequestBuilder {
 
     public AccountingPurchaseOrdersDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
+              = new AccountingPurchaseOrdersDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -21,7 +21,7 @@ public enum StatementStatus {
     @JsonValue
     private final String value;
 
-    private StatementStatus(String value) {
+    StatementStatus(String value) {
         this.value = value;
     }
     

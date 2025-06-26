@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingTaxRatesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingTaxRatesUpdateRequestBuilder {
 
     private AccountingTaxRatesUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingTaxRatesUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingTaxRatesUpdateRequestBuilder(SDKMethodInterfaces.MethodCallAccountingTaxRatesUpdate sdk) {
-        this.sdk = sdk;
+    public AccountingTaxRatesUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingTaxRatesUpdateRequestBuilder request(AccountingTaxRatesUpdateRequest request) {
@@ -39,10 +43,14 @@ public class AccountingTaxRatesUpdateRequestBuilder {
 
     public AccountingTaxRatesUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
+              = new AccountingTaxRatesUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -10,8 +10,6 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -19,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class AccountingBankFeedStatementsAllResponse implements Response {
 
@@ -47,8 +44,6 @@ public class AccountingBankFeedStatementsAllResponse implements Response {
      * Unexpected error
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
-
-    private Callable<Optional<AccountingBankFeedStatementsAllResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public AccountingBankFeedStatementsAllResponse(
@@ -116,16 +111,6 @@ public class AccountingBankFeedStatementsAllResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
-    }
-
-    public Optional<AccountingBankFeedStatementsAllResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private AccountingBankFeedStatementsAllResponse withNext(Callable<Optional<AccountingBankFeedStatementsAllResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -234,7 +219,6 @@ public class AccountingBankFeedStatementsAllResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<AccountingBankFeedStatementsAllResponse>> next;
  
         private String contentType;
  
@@ -312,18 +296,6 @@ public class AccountingBankFeedStatementsAllResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<AccountingBankFeedStatementsAllResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public AccountingBankFeedStatementsAllResponse build() {
             return new AccountingBankFeedStatementsAllResponse(
@@ -331,8 +303,7 @@ public class AccountingBankFeedStatementsAllResponse implements Response {
                 statusCode,
                 rawResponse,
                 getBankFeedStatementsResponse,
-                unexpectedErrorResponse)
-                .withNext(next);
+                unexpectedErrorResponse);
         }
     }
 }

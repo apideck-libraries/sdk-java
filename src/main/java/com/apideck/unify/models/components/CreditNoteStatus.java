@@ -23,7 +23,7 @@ public enum CreditNoteStatus {
     @JsonValue
     private final String value;
 
-    private CreditNoteStatus(String value) {
+    CreditNoteStatus(String value) {
         this.value = value;
     }
     

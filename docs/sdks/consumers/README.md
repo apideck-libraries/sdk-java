@@ -89,6 +89,7 @@ package hello.world;
 
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.VaultConsumersAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -103,8 +104,8 @@ public class Application {
         sdk.vault().consumers().list()
                 .limit(20L)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((VaultConsumersAllResponse item) -> {
+                   // handle page
                 });
 
     }

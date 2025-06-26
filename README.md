@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.15.0'
+implementation 'com.apideck:unify:0.16.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.15.0</version>
+    <version>0.16.0</version>
 </dependency>
 ```
 
@@ -76,9 +76,11 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ### Logging
 A logging framework/facade has not yet been adopted but is under consideration.
 
-For request and response logging (especially json bodies) use:
+For request and response logging (especially json bodies), call `enableHTTPDebugLogging()` on the SDK builder like so:
 ```java
-SpeakeasyHTTPClient.setDebugLogging(true); // experimental API only (may change without warning)
+SDK.builder()
+    .enableHTTPDebugLogging()
+    .build();
 ```
 Example output:
 ```
@@ -92,7 +94,9 @@ Response body:
   "token": "global"
 }
 ```
-WARNING: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+__WARNING__: This should only used for temporary debugging purposes. Leaving this option on in a production system could expose credentials/secrets in logs. <i>Authorization</i> headers are redacted by default and there is the ability to specify redacted header names via `SpeakeasyHTTPClient.setRedactedHeaders`.
+
+__NOTE__: This is a convenience method that calls `HTTPClient.enableDebugLogging()`. The `SpeakeasyHTTPClient` honors this setting. If you are using a custom HTTP client, it is up to the custom client to honor this setting.
 
 Another option is to set the System property `-Djdk.httpclient.HttpClient.log=all`. However, this second option does not log bodies.
 <!-- End SDK Installation [installation] -->
@@ -109,6 +113,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -139,8 +144,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -721,11 +726,12 @@ public class Application {
 <!-- Start Pagination [pagination] -->
 ## Pagination
 
-Some of the endpoints in this SDK support pagination. To use pagination, you make your SDK calls as usual, but the
-returned response object will have a `next` method that can be called to pull down the next group of results. The `next`
-function returns an `Optional` value, which `isPresent` until there are no more pages to be fetched.
+Some of the endpoints in this SDK support pagination. To use pagination, you can make your SDK calls using the `callAsIterable` or `callAsStream` methods.
+For certain operations, you can also use the `callAsStreamUnwrapped` method that streams individual page items directly.
 
-Here's an example of one such pagination call:
+Here's an example depicting the different ways to use pagination:
+
+
 ```java
 package hello.world;
 
@@ -733,7 +739,9 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
+import java.lang.Iterable;
 import java.util.Map;
 
 public class Application {
@@ -760,12 +768,24 @@ public class Application {
                 .fields("id,updated_at")
                 .build();
 
-        sdk.accounting().taxRates().list()
-                .request(req)
-                .callAsStream()
-                .forEach(item -> {
-                   // handle item
-                });
+        var b = sdk.accounting().taxRates().list()
+                .request(req);
+
+        // Iterate through all pages using a traditional for-each loop
+        // Each iteration returns a complete page response
+        Iterable<AccountingTaxRatesAllResponse> iterable = b.callAsIterable();
+        for (AccountingTaxRatesAllResponse page : iterable) {
+            // handle page
+        }
+
+        // Stream through all pages and process individual items
+        // callAsStreamUnwrapped() flattens pages into individual items
+
+        // Stream through pages without unwrapping (each item is a complete page)
+        b.callAsStream()
+            .forEach((AccountingTaxRatesAllResponse page) -> {
+                // handle page
+            });
 
     }
 }
@@ -785,6 +805,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
 import java.lang.Exception;
@@ -828,8 +849,8 @@ public class Application {
                         .build())
                     .build())
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -844,6 +865,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import com.apideck.unify.utils.BackoffStrategy;
 import com.apideck.unify.utils.RetryConfig;
 import java.lang.Exception;
@@ -887,8 +909,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -921,6 +943,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -951,8 +974,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -973,6 +996,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -1004,8 +1028,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -1076,6 +1100,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -1106,8 +1131,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -20,7 +20,7 @@ public enum LedgerAccountsSortBy {
     @JsonValue
     private final String value;
 
-    private LedgerAccountsSortBy(String value) {
+    LedgerAccountsSortBy(String value) {
         this.value = value;
     }
     

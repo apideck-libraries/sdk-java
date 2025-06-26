@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageUploadSessionsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class FileStorageUploadSessionsAddRequestBuilder {
     private FileStorageUploadSessionsAddRequest request;
     private Optional<String> serverURL = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageUploadSessionsAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageUploadSessionsAddRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageUploadSessionsAdd sdk) {
-        this.sdk = sdk;
+    public FileStorageUploadSessionsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageUploadSessionsAddRequestBuilder request(FileStorageUploadSessionsAddRequest request) {
@@ -53,11 +57,15 @@ public class FileStorageUploadSessionsAddRequestBuilder {
 
     public FileStorageUploadSessionsAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            serverURL,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
+              = new FileStorageUploadSessionsAddOperation(
+                 sdkConfiguration,
+                 serverURL,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

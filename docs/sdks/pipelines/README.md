@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmPipelinesAllRequest;
+import com.apideck.unify.models.operations.CrmPipelinesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -46,8 +47,8 @@ public class Application {
         sdk.crm().pipelines().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmPipelinesAllResponse item) -> {
+                   // handle page
                 });
 
     }

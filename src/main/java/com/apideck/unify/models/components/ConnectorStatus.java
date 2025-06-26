@@ -22,7 +22,7 @@ public enum ConnectorStatus {
     @JsonValue
     private final String value;
 
-    private ConnectorStatus(String value) {
+    ConnectorStatus(String value) {
         this.value = value;
     }
     

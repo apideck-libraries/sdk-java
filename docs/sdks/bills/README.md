@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBillsAllRequest;
+import com.apideck.unify.models.operations.AccountingBillsAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class Application {
         sdk.accounting().bills().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingBillsAllResponse item) -> {
+                   // handle page
                 });
 
     }

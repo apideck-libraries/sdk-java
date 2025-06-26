@@ -20,7 +20,7 @@ public enum ApiType {
     @JsonValue
     private final String value;
 
-    private ApiType(String value) {
+    ApiType(String value) {
         this.value = value;
     }
     

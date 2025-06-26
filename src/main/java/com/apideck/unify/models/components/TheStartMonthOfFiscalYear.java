@@ -30,7 +30,7 @@ public enum TheStartMonthOfFiscalYear {
     @JsonValue
     private final String value;
 
-    private TheStartMonthOfFiscalYear(String value) {
+    TheStartMonthOfFiscalYear(String value) {
         this.value = value;
     }
     

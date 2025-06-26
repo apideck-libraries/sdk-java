@@ -24,7 +24,7 @@ public enum EcommerceOrderStatus {
     @JsonValue
     private final String value;
 
-    private EcommerceOrderStatus(String value) {
+    EcommerceOrderStatus(String value) {
         this.value = value;
     }
     

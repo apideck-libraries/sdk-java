@@ -20,7 +20,7 @@ public enum EventSource {
     @JsonValue
     private final String value;
 
-    private EventSource(String value) {
+    EventSource(String value) {
         this.value = value;
     }
     

@@ -26,7 +26,7 @@ public enum FormFieldType {
     @JsonValue
     private final String value;
 
-    private FormFieldType(String value) {
+    FormFieldType(String value) {
         this.value = value;
     }
     

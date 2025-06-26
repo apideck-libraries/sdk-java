@@ -22,7 +22,7 @@ public enum BillPaymentType {
     @JsonValue
     private final String value;
 
-    private BillPaymentType(String value) {
+    BillPaymentType(String value) {
         this.value = value;
     }
     

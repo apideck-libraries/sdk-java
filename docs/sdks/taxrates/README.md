@@ -25,6 +25,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.TaxRatesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTaxRatesAllRequest;
+import com.apideck.unify.models.operations.AccountingTaxRatesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -55,8 +56,8 @@ public class Application {
         sdk.accounting().taxRates().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTaxRatesAllResponse item) -> {
+                   // handle page
                 });
 
     }

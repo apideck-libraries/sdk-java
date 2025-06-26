@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmCompaniesAllRequest;
+import com.apideck.unify.models.operations.CrmCompaniesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -54,8 +55,8 @@ public class Application {
         sdk.crm().companies().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmCompaniesAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -27,7 +27,7 @@ public enum ConnectorSettingType {
     @JsonValue
     private final String value;
 
-    private ConnectorSettingType(String value) {
+    ConnectorSettingType(String value) {
         this.value = value;
     }
     

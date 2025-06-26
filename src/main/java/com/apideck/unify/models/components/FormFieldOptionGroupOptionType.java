@@ -14,7 +14,7 @@ public enum FormFieldOptionGroupOptionType {
     @JsonValue
     private final String value;
 
-    private FormFieldOptionGroupOptionType(String value) {
+    FormFieldOptionGroupOptionType(String value) {
         this.value = value;
     }
     

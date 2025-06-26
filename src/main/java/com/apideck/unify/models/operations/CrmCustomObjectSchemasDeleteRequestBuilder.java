@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmCustomObjectSchemasDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmCustomObjectSchemasDeleteRequestBuilder {
 
     private CrmCustomObjectSchemasDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmCustomObjectSchemasDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmCustomObjectSchemasDeleteRequestBuilder(SDKMethodInterfaces.MethodCallCrmCustomObjectSchemasDelete sdk) {
-        this.sdk = sdk;
+    public CrmCustomObjectSchemasDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmCustomObjectSchemasDeleteRequestBuilder request(CrmCustomObjectSchemasDeleteRequest request) {
@@ -39,10 +43,14 @@ public class CrmCustomObjectSchemasDeleteRequestBuilder {
 
     public CrmCustomObjectSchemasDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
+              = new CrmCustomObjectSchemasDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

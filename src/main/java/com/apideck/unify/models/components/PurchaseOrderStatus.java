@@ -19,7 +19,7 @@ public enum PurchaseOrderStatus {
     @JsonValue
     private final String value;
 
-    private PurchaseOrderStatus(String value) {
+    PurchaseOrderStatus(String value) {
         this.value = value;
     }
     

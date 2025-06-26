@@ -21,7 +21,7 @@ public enum PeriodType {
     @JsonValue
     private final String value;
 
-    private PeriodType(String value) {
+    PeriodType(String value) {
         this.value = value;
     }
     

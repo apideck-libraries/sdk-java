@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmOpportunitiesAllRequest;
+import com.apideck.unify.models.operations.CrmOpportunitiesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -55,8 +56,8 @@ public class Application {
         sdk.crm().opportunities().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmOpportunitiesAllResponse item) -> {
+                   // handle page
                 });
 
     }

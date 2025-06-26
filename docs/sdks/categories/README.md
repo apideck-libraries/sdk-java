@@ -20,6 +20,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesAllRequest;
+import com.apideck.unify.models.operations.AccountingCategoriesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -40,8 +41,8 @@ public class Application {
         sdk.accounting().categories().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingCategoriesAllResponse item) -> {
+                   // handle page
                 });
 
     }

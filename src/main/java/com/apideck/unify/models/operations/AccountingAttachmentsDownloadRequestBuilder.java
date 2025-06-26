@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingAttachmentsDownloadOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingAttachmentsDownloadRequestBuilder {
 
     private AccountingAttachmentsDownloadRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingAttachmentsDownload sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingAttachmentsDownloadRequestBuilder(SDKMethodInterfaces.MethodCallAccountingAttachmentsDownload sdk) {
-        this.sdk = sdk;
+    public AccountingAttachmentsDownloadRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingAttachmentsDownloadRequestBuilder request(AccountingAttachmentsDownloadRequest request) {
@@ -39,10 +43,14 @@ public class AccountingAttachmentsDownloadRequestBuilder {
 
     public AccountingAttachmentsDownloadResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.download(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
+              = new AccountingAttachmentsDownloadOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

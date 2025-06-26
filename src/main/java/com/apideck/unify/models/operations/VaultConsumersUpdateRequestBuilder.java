@@ -3,7 +3,11 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.UpdateConsumerRequest;
+import com.apideck.unify.operations.VaultConsumersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultConsumersUpdateRequestBuilder {
     private String consumerId;
     private UpdateConsumerRequest updateConsumerRequest;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConsumersUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConsumersUpdateRequestBuilder(SDKMethodInterfaces.MethodCallVaultConsumersUpdate sdk) {
-        this.sdk = sdk;
+    public VaultConsumersUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConsumersUpdateRequestBuilder appId(String appId) {
@@ -59,14 +63,27 @@ public class VaultConsumersUpdateRequestBuilder {
         return this;
     }
 
+
+    private VaultConsumersUpdateRequest buildRequest() {
+
+        VaultConsumersUpdateRequest request = new VaultConsumersUpdateRequest(appId,
+            consumerId,
+            updateConsumerRequest);
+
+        return request;
+    }
+
     public VaultConsumersUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            appId,
-            consumerId,
-            updateConsumerRequest,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
+              = new VaultConsumersUpdateOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConsumersUpdateRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

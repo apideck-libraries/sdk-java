@@ -20,7 +20,7 @@ public enum LocationStatus {
     @JsonValue
     private final String value;
 
-    private LocationStatus(String value) {
+    LocationStatus(String value) {
         this.value = value;
     }
     

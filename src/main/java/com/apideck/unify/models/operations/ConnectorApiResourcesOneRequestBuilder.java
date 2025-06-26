@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.ConnectorApiResourcesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -16,10 +20,10 @@ public class ConnectorApiResourcesOneRequestBuilder {
     private String id;
     private String resourceId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorApiResourcesOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorApiResourcesOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorApiResourcesOne sdk) {
-        this.sdk = sdk;
+    public ConnectorApiResourcesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorApiResourcesOneRequestBuilder appId(String appId) {
@@ -58,14 +62,27 @@ public class ConnectorApiResourcesOneRequestBuilder {
         return this;
     }
 
+
+    private ConnectorApiResourcesOneRequest buildRequest() {
+
+        ConnectorApiResourcesOneRequest request = new ConnectorApiResourcesOneRequest(appId,
+            id,
+            resourceId);
+
+        return request;
+    }
+
     public ConnectorApiResourcesOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            id,
-            resourceId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
+              = new ConnectorApiResourcesOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorApiResourcesOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

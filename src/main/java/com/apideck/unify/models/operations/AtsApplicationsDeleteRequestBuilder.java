@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AtsApplicationsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AtsApplicationsDeleteRequestBuilder {
 
     private AtsApplicationsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAtsApplicationsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AtsApplicationsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAtsApplicationsDelete sdk) {
-        this.sdk = sdk;
+    public AtsApplicationsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AtsApplicationsDeleteRequestBuilder request(AtsApplicationsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AtsApplicationsDeleteRequestBuilder {
 
     public AtsApplicationsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
+              = new AtsApplicationsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

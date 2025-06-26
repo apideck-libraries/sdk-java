@@ -16,7 +16,7 @@ public enum EcommerceCustomerType {
     @JsonValue
     private final String value;
 
-    private EcommerceCustomerType(String value) {
+    EcommerceCustomerType(String value) {
         this.value = value;
     }
     

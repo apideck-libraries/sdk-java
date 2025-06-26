@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageFilesDownloadOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class FileStorageFilesDownloadRequestBuilder {
 
     private FileStorageFilesDownloadRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageFilesDownload sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageFilesDownloadRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageFilesDownload sdk) {
-        this.sdk = sdk;
+    public FileStorageFilesDownloadRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageFilesDownloadRequestBuilder request(FileStorageFilesDownloadRequest request) {
@@ -39,10 +43,14 @@ public class FileStorageFilesDownloadRequestBuilder {
 
     public FileStorageFilesDownloadResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.download(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
+              = new FileStorageFilesDownloadOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

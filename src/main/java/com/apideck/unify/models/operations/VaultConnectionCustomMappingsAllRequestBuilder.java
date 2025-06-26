@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConnectionCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class VaultConnectionCustomMappingsAllRequestBuilder {
 
     private VaultConnectionCustomMappingsAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConnectionCustomMappingsAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConnectionCustomMappingsAllRequestBuilder(SDKMethodInterfaces.MethodCallVaultConnectionCustomMappingsAll sdk) {
-        this.sdk = sdk;
+    public VaultConnectionCustomMappingsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VaultConnectionCustomMappingsAllRequestBuilder request(VaultConnectionCustomMappingsAllRequest request) {
@@ -39,10 +43,14 @@ public class VaultConnectionCustomMappingsAllRequestBuilder {
 
     public VaultConnectionCustomMappingsAllResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
+              = new VaultConnectionCustomMappingsAllOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

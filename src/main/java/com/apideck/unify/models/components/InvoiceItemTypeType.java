@@ -23,7 +23,7 @@ public enum InvoiceItemTypeType {
     @JsonValue
     private final String value;
 
-    private InvoiceItemTypeType(String value) {
+    InvoiceItemTypeType(String value) {
         this.value = value;
     }
     

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConnectionsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultConnectionsOneRequestBuilder {
     private String serviceId;
     private String unifiedApi;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConnectionsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConnectionsOneRequestBuilder(SDKMethodInterfaces.MethodCallVaultConnectionsOne sdk) {
-        this.sdk = sdk;
+    public VaultConnectionsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConnectionsOneRequestBuilder consumerId(String consumerId) {
@@ -71,15 +75,28 @@ public class VaultConnectionsOneRequestBuilder {
         return this;
     }
 
-    public VaultConnectionsOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            consumerId,
+
+    private VaultConnectionsOneRequest buildRequest() {
+
+        VaultConnectionsOneRequest request = new VaultConnectionsOneRequest(consumerId,
             appId,
             serviceId,
-            unifiedApi,
-            options);
+            unifiedApi);
+
+        return request;
+    }
+
+    public VaultConnectionsOneResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
+              = new VaultConnectionsOneOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConnectionsOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

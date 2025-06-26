@@ -21,7 +21,7 @@ public enum ExpensePaymentType {
     @JsonValue
     private final String value;
 
-    private ExpensePaymentType(String value) {
+    ExpensePaymentType(String value) {
         this.value = value;
     }
     

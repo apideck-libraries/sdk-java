@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmContactsAllRequest;
+import com.apideck.unify.models.operations.CrmContactsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -58,8 +59,8 @@ public class Application {
         sdk.crm().contacts().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmContactsAllResponse item) -> {
+                   // handle page
                 });
 
     }

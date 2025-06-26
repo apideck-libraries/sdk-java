@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingAttachmentsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingAttachmentsDeleteRequestBuilder {
 
     private AccountingAttachmentsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingAttachmentsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingAttachmentsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingAttachmentsDelete sdk) {
-        this.sdk = sdk;
+    public AccountingAttachmentsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingAttachmentsDeleteRequestBuilder request(AccountingAttachmentsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingAttachmentsDeleteRequestBuilder {
 
     public AccountingAttachmentsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
+              = new AccountingAttachmentsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

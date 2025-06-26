@@ -15,7 +15,7 @@ public enum ShowAs {
     @JsonValue
     private final String value;
 
-    private ShowAs(String value) {
+    ShowAs(String value) {
         this.value = value;
     }
     

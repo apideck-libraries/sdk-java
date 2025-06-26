@@ -20,7 +20,7 @@ public enum TrackingCategoryStatus {
     @JsonValue
     private final String value;
 
-    private TrackingCategoryStatus(String value) {
+    TrackingCategoryStatus(String value) {
         this.value = value;
     }
     

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultValidateConnectionStateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class VaultValidateConnectionStateRequestBuilder {
 
     private VaultValidateConnectionStateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultValidateConnectionState sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultValidateConnectionStateRequestBuilder(SDKMethodInterfaces.MethodCallVaultValidateConnectionState sdk) {
-        this.sdk = sdk;
+    public VaultValidateConnectionStateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VaultValidateConnectionStateRequestBuilder request(VaultValidateConnectionStateRequest request) {
@@ -39,10 +43,14 @@ public class VaultValidateConnectionStateRequestBuilder {
 
     public VaultValidateConnectionStateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.state(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
+              = new VaultValidateConnectionStateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

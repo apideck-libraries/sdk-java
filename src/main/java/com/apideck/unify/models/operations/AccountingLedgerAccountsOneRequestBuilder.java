@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingLedgerAccountsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingLedgerAccountsOneRequestBuilder {
 
     private AccountingLedgerAccountsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingLedgerAccountsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingLedgerAccountsOneRequestBuilder(SDKMethodInterfaces.MethodCallAccountingLedgerAccountsOne sdk) {
-        this.sdk = sdk;
+    public AccountingLedgerAccountsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingLedgerAccountsOneRequestBuilder request(AccountingLedgerAccountsOneRequest request) {
@@ -39,10 +43,14 @@ public class AccountingLedgerAccountsOneRequestBuilder {
 
     public AccountingLedgerAccountsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
+              = new AccountingLedgerAccountsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -22,7 +22,7 @@ public enum LeavingReason {
     @JsonValue
     private final String value;
 
-    private LeavingReason(String value) {
+    LeavingReason(String value) {
         this.value = value;
     }
     

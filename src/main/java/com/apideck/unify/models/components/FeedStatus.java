@@ -20,7 +20,7 @@ public enum FeedStatus {
     @JsonValue
     private final String value;
 
-    private FeedStatus(String value) {
+    FeedStatus(String value) {
         this.value = value;
     }
     

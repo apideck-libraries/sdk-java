@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingAttachmentsUploadOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class AccountingAttachmentsUploadRequestBuilder {
     private AccountingAttachmentsUploadRequest request;
     private Optional<String> serverURL = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingAttachmentsUpload sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingAttachmentsUploadRequestBuilder(SDKMethodInterfaces.MethodCallAccountingAttachmentsUpload sdk) {
-        this.sdk = sdk;
+    public AccountingAttachmentsUploadRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingAttachmentsUploadRequestBuilder request(AccountingAttachmentsUploadRequest request) {
@@ -53,11 +57,15 @@ public class AccountingAttachmentsUploadRequestBuilder {
 
     public AccountingAttachmentsUploadResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.upload(
-            request,
-            serverURL,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
+              = new AccountingAttachmentsUploadOperation(
+                 sdkConfiguration,
+                 serverURL,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

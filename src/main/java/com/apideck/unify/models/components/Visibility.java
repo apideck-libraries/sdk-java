@@ -21,7 +21,7 @@ public enum Visibility {
     @JsonValue
     private final String value;
 
-    private Visibility(String value) {
+    Visibility(String value) {
         this.value = value;
     }
     

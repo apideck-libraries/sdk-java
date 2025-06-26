@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmNotesAllRequest;
+import com.apideck.unify.models.operations.CrmNotesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -46,8 +47,8 @@ public class Application {
         sdk.crm().notes().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmNotesAllResponse item) -> {
+                   // handle page
                 });
 
     }

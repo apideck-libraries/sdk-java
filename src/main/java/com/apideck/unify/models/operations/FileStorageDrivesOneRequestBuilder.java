@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageDrivesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class FileStorageDrivesOneRequestBuilder {
 
     private FileStorageDrivesOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageDrivesOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageDrivesOneRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageDrivesOne sdk) {
-        this.sdk = sdk;
+    public FileStorageDrivesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageDrivesOneRequestBuilder request(FileStorageDrivesOneRequest request) {
@@ -39,10 +43,14 @@ public class FileStorageDrivesOneRequestBuilder {
 
     public FileStorageDrivesOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
+              = new FileStorageDrivesOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

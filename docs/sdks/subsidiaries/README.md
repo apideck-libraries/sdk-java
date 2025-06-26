@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingSubsidiariesAllRequest;
+import com.apideck.unify.models.operations.AccountingSubsidiariesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -43,8 +44,8 @@ public class Application {
         sdk.accounting().subsidiaries().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingSubsidiariesAllResponse item) -> {
+                   // handle page
                 });
 
     }

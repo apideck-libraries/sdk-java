@@ -38,7 +38,7 @@ public enum LedgerAccountType {
     @JsonValue
     private final String value;
 
-    private LedgerAccountType(String value) {
+    LedgerAccountType(String value) {
         this.value = value;
     }
     

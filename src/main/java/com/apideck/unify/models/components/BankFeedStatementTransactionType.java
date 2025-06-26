@@ -24,7 +24,7 @@ public enum BankFeedStatementTransactionType {
     @JsonValue
     private final String value;
 
-    private BankFeedStatementTransactionType(String value) {
+    BankFeedStatementTransactionType(String value) {
         this.value = value;
     }
     

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.HrisEmployeeSchedulesAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class HrisEmployeeSchedulesAllRequestBuilder {
 
     private HrisEmployeeSchedulesAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallHrisEmployeeSchedulesAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public HrisEmployeeSchedulesAllRequestBuilder(SDKMethodInterfaces.MethodCallHrisEmployeeSchedulesAll sdk) {
-        this.sdk = sdk;
+    public HrisEmployeeSchedulesAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public HrisEmployeeSchedulesAllRequestBuilder request(HrisEmployeeSchedulesAllRequest request) {
@@ -39,10 +43,14 @@ public class HrisEmployeeSchedulesAllRequestBuilder {
 
     public HrisEmployeeSchedulesAllResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
+              = new HrisEmployeeSchedulesAllOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

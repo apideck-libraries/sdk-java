@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageSharedLinksUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class FileStorageSharedLinksUpdateRequestBuilder {
 
     private FileStorageSharedLinksUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageSharedLinksUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageSharedLinksUpdateRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageSharedLinksUpdate sdk) {
-        this.sdk = sdk;
+    public FileStorageSharedLinksUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageSharedLinksUpdateRequestBuilder request(FileStorageSharedLinksUpdateRequest request) {
@@ -39,10 +43,14 @@ public class FileStorageSharedLinksUpdateRequestBuilder {
 
     public FileStorageSharedLinksUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
+              = new FileStorageSharedLinksUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

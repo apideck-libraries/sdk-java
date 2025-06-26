@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.WebhookWebhooksDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class WebhookWebhooksDeleteRequestBuilder {
     private String id;
     private Optional<String> appId = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallWebhookWebhooksDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public WebhookWebhooksDeleteRequestBuilder(SDKMethodInterfaces.MethodCallWebhookWebhooksDelete sdk) {
-        this.sdk = sdk;
+    public WebhookWebhooksDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public WebhookWebhooksDeleteRequestBuilder id(String id) {
@@ -51,13 +55,26 @@ public class WebhookWebhooksDeleteRequestBuilder {
         return this;
     }
 
+
+    private WebhookWebhooksDeleteRequest buildRequest() {
+
+        WebhookWebhooksDeleteRequest request = new WebhookWebhooksDeleteRequest(id,
+            appId);
+
+        return request;
+    }
+
     public WebhookWebhooksDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            id,
-            appId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
+              = new WebhookWebhooksDeleteOperation(
+                 sdkConfiguration,
+                 options);
+        WebhookWebhooksDeleteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

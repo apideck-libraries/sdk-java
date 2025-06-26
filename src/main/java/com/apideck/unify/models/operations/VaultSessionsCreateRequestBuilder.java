@@ -3,7 +3,11 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.Session;
+import com.apideck.unify.operations.VaultSessionsCreateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -17,10 +21,10 @@ public class VaultSessionsCreateRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private Optional<? extends Session> session = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultSessionsCreate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultSessionsCreateRequestBuilder(SDKMethodInterfaces.MethodCallVaultSessionsCreate sdk) {
-        this.sdk = sdk;
+    public VaultSessionsCreateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultSessionsCreateRequestBuilder consumerId(String consumerId) {
@@ -71,14 +75,27 @@ public class VaultSessionsCreateRequestBuilder {
         return this;
     }
 
+
+    private VaultSessionsCreateRequest buildRequest() {
+
+        VaultSessionsCreateRequest request = new VaultSessionsCreateRequest(consumerId,
+            appId,
+            session);
+
+        return request;
+    }
+
     public VaultSessionsCreateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            consumerId,
-            appId,
-            session,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
+              = new VaultSessionsCreateOperation(
+                 sdkConfiguration,
+                 options);
+        VaultSessionsCreateRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

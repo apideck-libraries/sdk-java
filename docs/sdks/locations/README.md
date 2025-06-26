@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AccountingLocationsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingLocationsAllRequest;
+import com.apideck.unify.models.operations.AccountingLocationsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -47,8 +48,8 @@ public class Application {
         sdk.accounting().locations().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingLocationsAllResponse item) -> {
+                   // handle page
                 });
 
     }

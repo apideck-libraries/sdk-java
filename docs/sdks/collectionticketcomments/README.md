@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllRequest;
+import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -53,8 +54,8 @@ public class Application {
         sdk.issueTracking().collectionTicketComments().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((IssueTrackingCollectionTicketCommentsAllResponse item) -> {
+                   // handle page
                 });
 
     }
@@ -208,6 +209,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsOneRequest;
+import com.apideck.unify.models.operations.IssueTrackingCollectionTicketCommentsOneResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -231,8 +233,8 @@ public class Application {
         sdk.issueTracking().collectionTicketComments().get()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((IssueTrackingCollectionTicketCommentsOneResponse item) -> {
+                   // handle page
                 });
 
     }

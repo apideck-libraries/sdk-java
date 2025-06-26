@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingTaxRatesAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingTaxRatesAddRequestBuilder {
 
     private AccountingTaxRatesAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingTaxRatesAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingTaxRatesAddRequestBuilder(SDKMethodInterfaces.MethodCallAccountingTaxRatesAdd sdk) {
-        this.sdk = sdk;
+    public AccountingTaxRatesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingTaxRatesAddRequestBuilder request(AccountingTaxRatesAddRequest request) {
@@ -39,10 +43,14 @@ public class AccountingTaxRatesAddRequestBuilder {
 
     public AccountingTaxRatesAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
+              = new AccountingTaxRatesAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

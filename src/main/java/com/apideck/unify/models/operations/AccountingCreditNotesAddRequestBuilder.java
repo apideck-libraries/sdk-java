@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingCreditNotesAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingCreditNotesAddRequestBuilder {
 
     private AccountingCreditNotesAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingCreditNotesAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingCreditNotesAddRequestBuilder(SDKMethodInterfaces.MethodCallAccountingCreditNotesAdd sdk) {
-        this.sdk = sdk;
+    public AccountingCreditNotesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingCreditNotesAddRequestBuilder request(AccountingCreditNotesAddRequest request) {
@@ -39,10 +43,14 @@ public class AccountingCreditNotesAddRequestBuilder {
 
     public AccountingCreditNotesAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
+              = new AccountingCreditNotesAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

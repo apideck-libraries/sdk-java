@@ -10,8 +10,6 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.InputStream;
-import java.lang.Deprecated;
-import java.lang.Exception;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
@@ -19,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.Callable;
 
 public class AccountingDepartmentsAllResponse implements Response {
 
@@ -47,8 +44,6 @@ public class AccountingDepartmentsAllResponse implements Response {
      * Unexpected error
      */
     private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
-
-    private Callable<Optional<AccountingDepartmentsAllResponse>> next = () -> Optional.empty();
 
     @JsonCreator
     public AccountingDepartmentsAllResponse(
@@ -116,16 +111,6 @@ public class AccountingDepartmentsAllResponse implements Response {
     @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
-    }
-
-    public Optional<AccountingDepartmentsAllResponse> next() throws Exception {
-        return this.next.call();
-    }
-    
-    // internal use only
-    private AccountingDepartmentsAllResponse withNext(Callable<Optional<AccountingDepartmentsAllResponse>> next) {
-        this.next = next;
-        return this;
     }
 
     public final static Builder builder() {
@@ -234,7 +219,6 @@ public class AccountingDepartmentsAllResponse implements Response {
     }
     
     public final static class Builder {
-        private Callable<Optional<AccountingDepartmentsAllResponse>> next;
  
         private String contentType;
  
@@ -312,18 +296,6 @@ public class AccountingDepartmentsAllResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-
-        /**
-         * Internal API. Not for public use. Sets the provider of the next page.
-         *
-         * @deprecated not part of the public API, may be removed without notice
-         */
-        @Deprecated
-        public Builder next(Callable<Optional<AccountingDepartmentsAllResponse>> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
         
         public AccountingDepartmentsAllResponse build() {
             return new AccountingDepartmentsAllResponse(
@@ -331,8 +303,7 @@ public class AccountingDepartmentsAllResponse implements Response {
                 statusCode,
                 rawResponse,
                 getAccountingDepartmentsResponse,
-                unexpectedErrorResponse)
-                .withNext(next);
+                unexpectedErrorResponse);
         }
     }
 }

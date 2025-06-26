@@ -3,7 +3,11 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.ConsumerInput;
+import com.apideck.unify.operations.VaultConsumersAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -16,10 +20,10 @@ public class VaultConsumersAddRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private ConsumerInput consumer;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConsumersAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConsumersAddRequestBuilder(SDKMethodInterfaces.MethodCallVaultConsumersAdd sdk) {
-        this.sdk = sdk;
+    public VaultConsumersAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConsumersAddRequestBuilder appId(String appId) {
@@ -52,13 +56,26 @@ public class VaultConsumersAddRequestBuilder {
         return this;
     }
 
+
+    private VaultConsumersAddRequest buildRequest() {
+
+        VaultConsumersAddRequest request = new VaultConsumersAddRequest(appId,
+            consumer);
+
+        return request;
+    }
+
     public VaultConsumersAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            appId,
-            consumer,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
+              = new VaultConsumersAddOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConsumersAddRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

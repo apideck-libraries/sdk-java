@@ -25,7 +25,7 @@ public enum CustomObjectSchemaType {
     @JsonValue
     private final String value;
 
-    private CustomObjectSchemaType(String value) {
+    CustomObjectSchemaType(String value) {
         this.value = value;
     }
     

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmCustomObjectsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmCustomObjectsOneRequestBuilder {
 
     private CrmCustomObjectsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmCustomObjectsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmCustomObjectsOneRequestBuilder(SDKMethodInterfaces.MethodCallCrmCustomObjectsOne sdk) {
-        this.sdk = sdk;
+    public CrmCustomObjectsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmCustomObjectsOneRequestBuilder request(CrmCustomObjectsOneRequest request) {
@@ -39,10 +43,14 @@ public class CrmCustomObjectsOneRequestBuilder {
 
     public CrmCustomObjectsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
+              = new CrmCustomObjectsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

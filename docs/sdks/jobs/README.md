@@ -20,6 +20,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsJobsAllRequest;
+import com.apideck.unify.models.operations.AtsJobsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -43,8 +44,8 @@ public class Application {
         sdk.ats().jobs().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AtsJobsAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingBankFeedStatementsAllRequest;
+import com.apideck.unify.models.operations.AccountingBankFeedStatementsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -46,8 +47,8 @@ public class Application {
         sdk.accounting().bankFeedStatements().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingBankFeedStatementsAllResponse item) -> {
+                   // handle page
                 });
 
     }

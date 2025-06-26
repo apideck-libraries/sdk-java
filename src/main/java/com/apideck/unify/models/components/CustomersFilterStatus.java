@@ -22,7 +22,7 @@ public enum CustomersFilterStatus {
     @JsonValue
     private final String value;
 
-    private CustomersFilterStatus(String value) {
+    CustomersFilterStatus(String value) {
         this.value = value;
     }
     

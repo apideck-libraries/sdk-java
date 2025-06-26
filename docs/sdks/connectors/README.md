@@ -21,6 +21,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.models.components.UnifiedApiId;
 import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.ConnectorConnectorsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -38,8 +39,8 @@ public class Application {
                     .unifiedApi(UnifiedApiId.FILE_STORAGE)
                     .build())
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ConnectorConnectorsAllResponse item) -> {
+                   // handle page
                 });
 
     }

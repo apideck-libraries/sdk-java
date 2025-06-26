@@ -17,7 +17,7 @@ public enum HrisCompanyStatus {
     @JsonValue
     private final String value;
 
-    private HrisCompanyStatus(String value) {
+    HrisCompanyStatus(String value) {
         this.value = value;
     }
     

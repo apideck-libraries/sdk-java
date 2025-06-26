@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllRequest;
+import com.apideck.unify.models.operations.IssueTrackingCollectionTicketsAllResponse;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
@@ -57,8 +58,8 @@ public class Application {
         sdk.issueTracking().collectionTickets().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((IssueTrackingCollectionTicketsAllResponse item) -> {
+                   // handle page
                 });
 
     }

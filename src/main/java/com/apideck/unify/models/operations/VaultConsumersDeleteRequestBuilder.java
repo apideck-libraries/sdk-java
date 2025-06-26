@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConsumersDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class VaultConsumersDeleteRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String consumerId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConsumersDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConsumersDeleteRequestBuilder(SDKMethodInterfaces.MethodCallVaultConsumersDelete sdk) {
-        this.sdk = sdk;
+    public VaultConsumersDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public VaultConsumersDeleteRequestBuilder appId(String appId) {
@@ -51,13 +55,26 @@ public class VaultConsumersDeleteRequestBuilder {
         return this;
     }
 
+
+    private VaultConsumersDeleteRequest buildRequest() {
+
+        VaultConsumersDeleteRequest request = new VaultConsumersDeleteRequest(appId,
+            consumerId);
+
+        return request;
+    }
+
     public VaultConsumersDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            appId,
-            consumerId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
+              = new VaultConsumersDeleteOperation(
+                 sdkConfiguration,
+                 options);
+        VaultConsumersDeleteRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

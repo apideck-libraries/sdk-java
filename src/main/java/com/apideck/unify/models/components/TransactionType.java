@@ -23,7 +23,7 @@ public enum TransactionType {
     @JsonValue
     private final String value;
 
-    private TransactionType(String value) {
+    TransactionType(String value) {
         this.value = value;
     }
     

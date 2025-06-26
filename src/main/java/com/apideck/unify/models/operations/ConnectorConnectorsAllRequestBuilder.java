@@ -3,16 +3,28 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+import static com.apideck.unify.utils.Exceptions.unchecked;
+import static com.apideck.unify.utils.Utils.transform;
+import static com.apideck.unify.utils.Utils.toStream;
+
+import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.ConnectorsFilter;
-import com.apideck.unify.models.errors.APIException;
+import com.apideck.unify.operations.ConnectorConnectorsAllOperation;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import com.apideck.unify.utils.pagination.CursorTracker;
+import com.apideck.unify.utils.pagination.Paginator;
 import com.fasterxml.jackson.core.type.TypeReference;
+import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Iterable;
 import java.lang.Long;
 import java.lang.String;
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -27,10 +39,10 @@ public class ConnectorConnectorsAllRequestBuilder {
                             new TypeReference<Optional<Long>>() {});
     private Optional<? extends ConnectorsFilter> filter = Optional.empty();
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorConnectorsAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorConnectorsAllRequestBuilder(SDKMethodInterfaces.MethodCallConnectorConnectorsAll sdk) {
-        this.sdk = sdk;
+    public ConnectorConnectorsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorConnectorsAllRequestBuilder appId(String appId) {
@@ -93,40 +105,74 @@ public class ConnectorConnectorsAllRequestBuilder {
         return this;
     }
 
-    public ConnectorConnectorsAllResponse call() throws Exception {
+
+    private ConnectorConnectorsAllRequest buildRequest() {
         if (limit == null) {
             limit = _SINGLETON_VALUE_Limit.value();
-        }        Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            appId,
+        }
+
+        ConnectorConnectorsAllRequest request = new ConnectorConnectorsAllRequest(appId,
             cursor,
             limit,
-            filter,
-            options);
+            filter);
+
+        return request;
     }
-    
+
+    public ConnectorConnectorsAllResponse call() throws Exception {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
+              = new ConnectorConnectorsAllOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorConnectorsAllRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
+    }
+
+    /**
+    * Returns an iterable that performs next page calls till no more pages
+    * are returned.
+    *
+    * <p>The returned iterable can be used in a for-each loop:
+    * <pre><code>
+    * for (ConnectorConnectorsAllResponse page : builder.callAsIterable()) {
+    *     // Process each page
+    * }
+    * </code></pre>
+    * 
+    * @return An iterable that can be used to iterate through all pages
+    */
+    public Iterable<ConnectorConnectorsAllResponse> callAsIterable() {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
+              = new ConnectorConnectorsAllOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorConnectorsAllRequest request = buildRequest();
+        Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
+            request,
+            new CursorTracker<>("$.meta.cursors.next", String.class),
+                ConnectorConnectorsAllRequest::withCursor,
+            nextRequest -> unchecked(() -> operation.doRequest(request)).get());
+        
+        return () -> transform(iterator, operation::handleResponse);
+    }
+
     /**
      * Returns a stream that performs next page calls till no more pages
-     * are returned. Unlike the {@link #call()} method this method will
-     * throw an {@link APIException} if any page retrieval has an HTTP status 
-     * code >= 300 (Note that 3XX is not an error range but will need 
-     * special handling by the user if for example the HTTP client is 
-     * not configured to follow redirects).
-     * 
-     * @throws {@link APIException} if HTTP status code >= 300 is encountered
+     * are returned.
      **/  
     public Stream<ConnectorConnectorsAllResponse> callAsStream() {
-        return Utils.stream(() -> Optional.of(call()), x -> {
-            if (x.statusCode() >= 300) {
-                byte[] body = Utils.toByteArrayAndClose(x.rawResponse().body());
-                throw new APIException(x.rawResponse(), x.statusCode(), x.contentType(), body);
-            } else {
-                return x.next();
-            }
-        });
+        return toStream(callAsIterable());
     }
+
 
     private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
             new LazySingletonValue<>(

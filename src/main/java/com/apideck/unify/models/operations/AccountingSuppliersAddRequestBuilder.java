@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingSuppliersAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingSuppliersAddRequestBuilder {
 
     private AccountingSuppliersAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingSuppliersAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingSuppliersAddRequestBuilder(SDKMethodInterfaces.MethodCallAccountingSuppliersAdd sdk) {
-        this.sdk = sdk;
+    public AccountingSuppliersAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingSuppliersAddRequestBuilder request(AccountingSuppliersAddRequest request) {
@@ -39,10 +43,14 @@ public class AccountingSuppliersAddRequestBuilder {
 
     public AccountingSuppliersAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
+              = new AccountingSuppliersAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

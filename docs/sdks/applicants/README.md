@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ApplicantsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AtsApplicantsAllRequest;
+import com.apideck.unify.models.operations.AtsApplicantsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -50,8 +51,8 @@ public class Application {
         sdk.ats().applicants().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AtsApplicantsAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -20,7 +20,7 @@ public enum ProfitAndLossType {
     @JsonValue
     private final String value;
 
-    private ProfitAndLossType(String value) {
+    ProfitAndLossType(String value) {
         this.value = value;
     }
     

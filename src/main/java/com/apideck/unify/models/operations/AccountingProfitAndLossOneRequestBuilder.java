@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingProfitAndLossOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingProfitAndLossOneRequestBuilder {
 
     private AccountingProfitAndLossOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingProfitAndLossOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingProfitAndLossOneRequestBuilder(SDKMethodInterfaces.MethodCallAccountingProfitAndLossOne sdk) {
-        this.sdk = sdk;
+    public AccountingProfitAndLossOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingProfitAndLossOneRequestBuilder request(AccountingProfitAndLossOneRequest request) {
@@ -39,10 +43,14 @@ public class AccountingProfitAndLossOneRequestBuilder {
 
     public AccountingProfitAndLossOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
+              = new AccountingProfitAndLossOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmCustomObjectSchemasAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmCustomObjectSchemasAddRequestBuilder {
 
     private CrmCustomObjectSchemasAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmCustomObjectSchemasAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmCustomObjectSchemasAddRequestBuilder(SDKMethodInterfaces.MethodCallCrmCustomObjectSchemasAdd sdk) {
-        this.sdk = sdk;
+    public CrmCustomObjectSchemasAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmCustomObjectSchemasAddRequestBuilder request(CrmCustomObjectSchemasAddRequest request) {
@@ -39,10 +43,14 @@ public class CrmCustomObjectSchemasAddRequestBuilder {
 
     public CrmCustomObjectSchemasAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
+              = new CrmCustomObjectSchemasAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -19,6 +19,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRequest;
+import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -43,8 +44,8 @@ public class Application {
         sdk.issueTracking().collectionTags().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((IssueTrackingCollectionTagsAllResponse item) -> {
+                   // handle page
                 });
 
     }

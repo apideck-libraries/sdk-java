@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingDepartmentsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingDepartmentsDeleteRequestBuilder {
 
     private AccountingDepartmentsDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingDepartmentsDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingDepartmentsDeleteRequestBuilder(SDKMethodInterfaces.MethodCallAccountingDepartmentsDelete sdk) {
-        this.sdk = sdk;
+    public AccountingDepartmentsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingDepartmentsDeleteRequestBuilder request(AccountingDepartmentsDeleteRequest request) {
@@ -39,10 +43,14 @@ public class AccountingDepartmentsDeleteRequestBuilder {
 
     public AccountingDepartmentsDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
+              = new AccountingDepartmentsDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -20,7 +20,7 @@ public enum BankAccountType {
     @JsonValue
     private final String value;
 
-    private BankAccountType(String value) {
+    BankAccountType(String value) {
         this.value = value;
     }
     

@@ -20,7 +20,7 @@ public enum MessageType {
     @JsonValue
     private final String value;
 
-    private MessageType(String value) {
+    MessageType(String value) {
         this.value = value;
     }
     

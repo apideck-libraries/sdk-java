@@ -20,7 +20,7 @@ public enum CreditOrDebit {
     @JsonValue
     private final String value;
 
-    private CreditOrDebit(String value) {
+    CreditOrDebit(String value) {
         this.value = value;
     }
     

@@ -23,7 +23,7 @@ public enum ApplicantType {
     @JsonValue
     private final String value;
 
-    private ApplicantType(String value) {
+    ApplicantType(String value) {
         this.value = value;
     }
     

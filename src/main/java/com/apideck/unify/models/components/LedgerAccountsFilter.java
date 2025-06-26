@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -18,20 +19,38 @@ public class LedgerAccountsFilter {
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
+    /**
+     * Filter by account classification.
+     */
+    @SpeakeasyMetadata("queryParam:name=classification")
+    private Optional<? extends Classification> classification;
+
     @JsonCreator
     public LedgerAccountsFilter(
-            Optional<OffsetDateTime> updatedSince) {
+            Optional<OffsetDateTime> updatedSince,
+            Optional<? extends Classification> classification) {
         Utils.checkNotNull(updatedSince, "updatedSince");
+        Utils.checkNotNull(classification, "classification");
         this.updatedSince = updatedSince;
+        this.classification = classification;
     }
     
     public LedgerAccountsFilter() {
-        this(Optional.empty());
+        this(Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
         return updatedSince;
+    }
+
+    /**
+     * Filter by account classification.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Classification> classification() {
+        return (Optional<Classification>) classification;
     }
 
     public final static Builder builder() {
@@ -50,6 +69,24 @@ public class LedgerAccountsFilter {
         return this;
     }
 
+    /**
+     * Filter by account classification.
+     */
+    public LedgerAccountsFilter withClassification(Classification classification) {
+        Utils.checkNotNull(classification, "classification");
+        this.classification = Optional.ofNullable(classification);
+        return this;
+    }
+
+    /**
+     * Filter by account classification.
+     */
+    public LedgerAccountsFilter withClassification(Optional<? extends Classification> classification) {
+        Utils.checkNotNull(classification, "classification");
+        this.classification = classification;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -61,24 +98,29 @@ public class LedgerAccountsFilter {
         }
         LedgerAccountsFilter other = (LedgerAccountsFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
+            Objects.deepEquals(this.classification, other.classification);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            updatedSince);
+            updatedSince,
+            classification);
     }
     
     @Override
     public String toString() {
         return Utils.toString(LedgerAccountsFilter.class,
-                "updatedSince", updatedSince);
+                "updatedSince", updatedSince,
+                "classification", classification);
     }
     
     public final static class Builder {
  
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
+ 
+        private Optional<? extends Classification> classification = Optional.empty();
         
         private Builder() {
           // force use of static builder() method
@@ -95,10 +137,29 @@ public class LedgerAccountsFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
+        /**
+         * Filter by account classification.
+         */
+        public Builder classification(Classification classification) {
+            Utils.checkNotNull(classification, "classification");
+            this.classification = Optional.ofNullable(classification);
+            return this;
+        }
+
+        /**
+         * Filter by account classification.
+         */
+        public Builder classification(Optional<? extends Classification> classification) {
+            Utils.checkNotNull(classification, "classification");
+            this.classification = classification;
+            return this;
+        }
         
         public LedgerAccountsFilter build() {
             return new LedgerAccountsFilter(
-                updatedSince);
+                updatedSince,
+                classification);
         }
     }
 }

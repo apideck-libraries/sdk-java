@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.HrisEmployeePayrollsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class HrisEmployeePayrollsOneRequestBuilder {
 
     private HrisEmployeePayrollsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallHrisEmployeePayrollsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public HrisEmployeePayrollsOneRequestBuilder(SDKMethodInterfaces.MethodCallHrisEmployeePayrollsOne sdk) {
-        this.sdk = sdk;
+    public HrisEmployeePayrollsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public HrisEmployeePayrollsOneRequestBuilder request(HrisEmployeePayrollsOneRequest request) {
@@ -39,10 +43,14 @@ public class HrisEmployeePayrollsOneRequestBuilder {
 
     public HrisEmployeePayrollsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<HrisEmployeePayrollsOneRequest, HrisEmployeePayrollsOneResponse> operation
+              = new HrisEmployeePayrollsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

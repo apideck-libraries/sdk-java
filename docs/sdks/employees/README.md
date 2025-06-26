@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisEmployeesAllRequest;
+import com.apideck.unify.models.operations.HrisEmployeesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -64,8 +65,8 @@ public class Application {
         sdk.hris().employees().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((HrisEmployeesAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -26,7 +26,7 @@ public enum BillStatus {
     @JsonValue
     private final String value;
 
-    private BillStatus(String value) {
+    BillStatus(String value) {
         this.value = value;
     }
     

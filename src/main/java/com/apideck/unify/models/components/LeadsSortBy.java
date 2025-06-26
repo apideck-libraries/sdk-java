@@ -24,7 +24,7 @@ public enum LeadsSortBy {
     @JsonValue
     private final String value;
 
-    private LeadsSortBy(String value) {
+    LeadsSortBy(String value) {
         this.value = value;
     }
     

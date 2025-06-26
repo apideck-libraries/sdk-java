@@ -20,7 +20,7 @@ public enum SortDirection {
     @JsonValue
     private final String value;
 
-    private SortDirection(String value) {
+    SortDirection(String value) {
         this.value = value;
     }
     

@@ -23,7 +23,7 @@ public enum FlsaStatus {
     @JsonValue
     private final String value;
 
-    private FlsaStatus(String value) {
+    FlsaStatus(String value) {
         this.value = value;
     }
     

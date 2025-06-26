@@ -23,6 +23,7 @@ package hello.world;
 import com.apideck.unify.Apideck;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllRequest;
+import com.apideck.unify.models.operations.AccountingTrackingCategoriesAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -46,8 +47,8 @@ public class Application {
         sdk.accounting().trackingCategories().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingTrackingCategoriesAllResponse item) -> {
+                   // handle page
                 });
 
     }

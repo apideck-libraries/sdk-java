@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmOpportunitiesAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmOpportunitiesAddRequestBuilder {
 
     private CrmOpportunitiesAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmOpportunitiesAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmOpportunitiesAddRequestBuilder(SDKMethodInterfaces.MethodCallCrmOpportunitiesAdd sdk) {
-        this.sdk = sdk;
+    public CrmOpportunitiesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmOpportunitiesAddRequestBuilder request(CrmOpportunitiesAddRequest request) {
@@ -39,10 +43,14 @@ public class CrmOpportunitiesAddRequestBuilder {
 
     public CrmOpportunitiesAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
+              = new CrmOpportunitiesAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

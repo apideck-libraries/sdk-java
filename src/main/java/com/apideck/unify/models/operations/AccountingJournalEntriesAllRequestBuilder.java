@@ -3,11 +3,24 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.errors.APIException;
+import static com.apideck.unify.operations.Operations.RequestOperation;
+import static com.apideck.unify.utils.Exceptions.unchecked;
+import static com.apideck.unify.utils.Utils.transform;
+import static com.apideck.unify.utils.Utils.toStream;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingJournalEntriesAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import com.apideck.unify.utils.pagination.CursorTracker;
+import com.apideck.unify.utils.pagination.Paginator;
+import java.io.InputStream;
 import java.lang.Exception;
+import java.lang.Iterable;
+import java.lang.String;
+import java.net.http.HttpResponse;
+import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -15,10 +28,10 @@ public class AccountingJournalEntriesAllRequestBuilder {
 
     private AccountingJournalEntriesAllRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingJournalEntriesAll sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingJournalEntriesAllRequestBuilder(SDKMethodInterfaces.MethodCallAccountingJournalEntriesAll sdk) {
-        this.sdk = sdk;
+    public AccountingJournalEntriesAllRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingJournalEntriesAllRequestBuilder request(AccountingJournalEntriesAllRequest request) {
@@ -41,31 +54,54 @@ public class AccountingJournalEntriesAllRequestBuilder {
 
     public AccountingJournalEntriesAllResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.list(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
+              = new AccountingJournalEntriesAllOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
-    
+
+    /**
+    * Returns an iterable that performs next page calls till no more pages
+    * are returned.
+    *
+    * <p>The returned iterable can be used in a for-each loop:
+    * <pre><code>
+    * for (AccountingJournalEntriesAllResponse page : builder.callAsIterable()) {
+    *     // Process each page
+    * }
+    * </code></pre>
+    * 
+    * @return An iterable that can be used to iterate through all pages
+    */
+    public Iterable<AccountingJournalEntriesAllResponse> callAsIterable() {
+        Optional<Options> options = Optional.of(Options.builder()
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
+              = new AccountingJournalEntriesAllOperation(
+                 sdkConfiguration,
+                 options);
+        Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
+            request,
+            new CursorTracker<>("$.meta.cursors.next", String.class),
+                AccountingJournalEntriesAllRequest::withCursor,
+            nextRequest -> unchecked(() -> operation.doRequest(request)).get());
+        
+        return () -> transform(iterator, operation::handleResponse);
+    }
+
     /**
      * Returns a stream that performs next page calls till no more pages
-     * are returned. Unlike the {@link #call()} method this method will
-     * throw an {@link APIException} if any page retrieval has an HTTP status 
-     * code >= 300 (Note that 3XX is not an error range but will need 
-     * special handling by the user if for example the HTTP client is 
-     * not configured to follow redirects).
-     * 
-     * @throws {@link APIException} if HTTP status code >= 300 is encountered
+     * are returned.
      **/  
     public Stream<AccountingJournalEntriesAllResponse> callAsStream() {
-        return Utils.stream(() -> Optional.of(call()), x -> {
-            if (x.statusCode() >= 300) {
-                byte[] body = Utils.toByteArrayAndClose(x.rawResponse().body());
-                throw new APIException(x.rawResponse(), x.statusCode(), x.contentType(), body);
-            } else {
-                return x.next();
-            }
-        });
+        return toStream(callAsIterable());
     }
+
 }

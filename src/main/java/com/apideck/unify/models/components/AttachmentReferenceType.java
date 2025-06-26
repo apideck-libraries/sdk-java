@@ -16,7 +16,7 @@ public enum AttachmentReferenceType {
     @JsonValue
     private final String value;
 
-    private AttachmentReferenceType(String value) {
+    AttachmentReferenceType(String value) {
         this.value = value;
     }
     

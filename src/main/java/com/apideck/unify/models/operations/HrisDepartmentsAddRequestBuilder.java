@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.HrisDepartmentsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class HrisDepartmentsAddRequestBuilder {
 
     private HrisDepartmentsAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallHrisDepartmentsAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public HrisDepartmentsAddRequestBuilder(SDKMethodInterfaces.MethodCallHrisDepartmentsAdd sdk) {
-        this.sdk = sdk;
+    public HrisDepartmentsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public HrisDepartmentsAddRequestBuilder request(HrisDepartmentsAddRequest request) {
@@ -39,10 +43,14 @@ public class HrisDepartmentsAddRequestBuilder {
 
     public HrisDepartmentsAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
+              = new HrisDepartmentsAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

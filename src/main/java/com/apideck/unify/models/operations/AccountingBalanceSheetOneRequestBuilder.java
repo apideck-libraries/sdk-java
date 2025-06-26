@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingBalanceSheetOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingBalanceSheetOneRequestBuilder {
 
     private AccountingBalanceSheetOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingBalanceSheetOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingBalanceSheetOneRequestBuilder(SDKMethodInterfaces.MethodCallAccountingBalanceSheetOne sdk) {
-        this.sdk = sdk;
+    public AccountingBalanceSheetOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingBalanceSheetOneRequestBuilder request(AccountingBalanceSheetOneRequest request) {
@@ -39,10 +43,14 @@ public class AccountingBalanceSheetOneRequestBuilder {
 
     public AccountingBalanceSheetOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
+              = new AccountingBalanceSheetOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

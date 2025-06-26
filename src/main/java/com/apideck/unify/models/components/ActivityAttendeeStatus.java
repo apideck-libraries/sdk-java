@@ -21,7 +21,7 @@ public enum ActivityAttendeeStatus {
     @JsonValue
     private final String value;
 
-    private ActivityAttendeeStatus(String value) {
+    ActivityAttendeeStatus(String value) {
         this.value = value;
     }
     

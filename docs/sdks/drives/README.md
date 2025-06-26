@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.DrivesFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageDrivesAllRequest;
+import com.apideck.unify.models.operations.FileStorageDrivesAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -47,8 +48,8 @@ public class Application {
         sdk.fileStorage().drives().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((FileStorageDrivesAllResponse item) -> {
+                   // handle page
                 });
 
     }

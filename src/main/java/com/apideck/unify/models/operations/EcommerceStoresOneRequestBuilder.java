@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.EcommerceStoresOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class EcommerceStoresOneRequestBuilder {
 
     private EcommerceStoresOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallEcommerceStoresOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public EcommerceStoresOneRequestBuilder(SDKMethodInterfaces.MethodCallEcommerceStoresOne sdk) {
-        this.sdk = sdk;
+    public EcommerceStoresOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public EcommerceStoresOneRequestBuilder request(EcommerceStoresOneRequest request) {
@@ -39,10 +43,14 @@ public class EcommerceStoresOneRequestBuilder {
 
     public EcommerceStoresOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
+              = new EcommerceStoresOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

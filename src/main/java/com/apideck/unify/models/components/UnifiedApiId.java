@@ -45,7 +45,7 @@ public enum UnifiedApiId {
     @JsonValue
     private final String value;
 
-    private UnifiedApiId(String value) {
+    UnifiedApiId(String value) {
         this.value = value;
     }
     

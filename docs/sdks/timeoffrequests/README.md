@@ -25,6 +25,7 @@ import com.apideck.unify.models.components.TimeOffRequestStatus;
 import com.apideck.unify.models.components.TimeOffRequestsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.HrisTimeOffRequestsAllRequest;
+import com.apideck.unify.models.operations.HrisTimeOffRequestsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -56,8 +57,8 @@ public class Application {
         sdk.hris().timeOffRequests().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((HrisTimeOffRequestsAllResponse item) -> {
+                   // handle page
                 });
 
     }

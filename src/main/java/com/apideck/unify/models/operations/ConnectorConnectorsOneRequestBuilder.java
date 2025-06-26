@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.ConnectorConnectorsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class ConnectorConnectorsOneRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorConnectorsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorConnectorsOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorConnectorsOne sdk) {
-        this.sdk = sdk;
+    public ConnectorConnectorsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorConnectorsOneRequestBuilder appId(String appId) {
@@ -51,13 +55,26 @@ public class ConnectorConnectorsOneRequestBuilder {
         return this;
     }
 
+
+    private ConnectorConnectorsOneRequest buildRequest() {
+
+        ConnectorConnectorsOneRequest request = new ConnectorConnectorsOneRequest(appId,
+            id);
+
+        return request;
+    }
+
     public ConnectorConnectorsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
+              = new ConnectorConnectorsOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorConnectorsOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

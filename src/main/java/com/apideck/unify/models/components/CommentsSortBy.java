@@ -20,7 +20,7 @@ public enum CommentsSortBy {
     @JsonValue
     private final String value;
 
-    private CommentsSortBy(String value) {
+    CommentsSortBy(String value) {
         this.value = value;
     }
     

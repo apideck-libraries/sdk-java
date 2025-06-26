@@ -22,7 +22,7 @@ public enum Unit {
     @JsonValue
     private final String value;
 
-    private Unit(String value) {
+    Unit(String value) {
         this.value = value;
     }
     

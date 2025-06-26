@@ -20,7 +20,7 @@ public enum InvoiceItemsSortBy {
     @JsonValue
     private final String value;
 
-    private InvoiceItemsSortBy(String value) {
+    InvoiceItemsSortBy(String value) {
         this.value = value;
     }
     

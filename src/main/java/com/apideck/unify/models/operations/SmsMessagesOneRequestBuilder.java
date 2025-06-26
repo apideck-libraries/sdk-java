@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.SmsMessagesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class SmsMessagesOneRequestBuilder {
 
     private SmsMessagesOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallSmsMessagesOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public SmsMessagesOneRequestBuilder(SDKMethodInterfaces.MethodCallSmsMessagesOne sdk) {
-        this.sdk = sdk;
+    public SmsMessagesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public SmsMessagesOneRequestBuilder request(SmsMessagesOneRequest request) {
@@ -39,10 +43,14 @@ public class SmsMessagesOneRequestBuilder {
 
     public SmsMessagesOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
+              = new SmsMessagesOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCreditNotesAllRequest;
+import com.apideck.unify.models.operations.AccountingCreditNotesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class Application {
         sdk.accounting().creditNotes().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingCreditNotesAllResponse item) -> {
+                   // handle page
                 });
 
     }

@@ -20,7 +20,7 @@ public enum ProductStatus {
     @JsonValue
     private final String value;
 
-    private ProductStatus(String value) {
+    ProductStatus(String value) {
         this.value = value;
     }
     

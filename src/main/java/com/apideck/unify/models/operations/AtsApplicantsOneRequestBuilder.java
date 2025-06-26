@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AtsApplicantsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AtsApplicantsOneRequestBuilder {
 
     private AtsApplicantsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAtsApplicantsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AtsApplicantsOneRequestBuilder(SDKMethodInterfaces.MethodCallAtsApplicantsOne sdk) {
-        this.sdk = sdk;
+    public AtsApplicantsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AtsApplicantsOneRequestBuilder request(AtsApplicantsOneRequest request) {
@@ -39,10 +43,14 @@ public class AtsApplicantsOneRequestBuilder {
 
     public AtsApplicantsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
+              = new AtsApplicantsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

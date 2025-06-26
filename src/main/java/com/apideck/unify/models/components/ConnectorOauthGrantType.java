@@ -21,7 +21,7 @@ public enum ConnectorOauthGrantType {
     @JsonValue
     private final String value;
 
-    private ConnectorOauthGrantType(String value) {
+    ConnectorOauthGrantType(String value) {
         this.value = value;
     }
     

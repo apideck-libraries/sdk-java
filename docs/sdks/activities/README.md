@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.*;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.CrmActivitiesAllRequest;
+import com.apideck.unify.models.operations.CrmActivitiesAllResponse;
 import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.Map;
@@ -55,8 +56,8 @@ public class Application {
         sdk.crm().activities().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((CrmActivitiesAllResponse item) -> {
+                   // handle page
                 });
 
     }

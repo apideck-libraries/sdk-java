@@ -21,7 +21,7 @@ public enum DisabledReason {
     @JsonValue
     private final String value;
 
-    private DisabledReason(String value) {
+    DisabledReason(String value) {
         this.value = value;
     }
     

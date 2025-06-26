@@ -25,7 +25,7 @@ public enum BillPaymentAllocationType {
     @JsonValue
     private final String value;
 
-    private BillPaymentAllocationType(String value) {
+    BillPaymentAllocationType(String value) {
         this.value = value;
     }
     

@@ -20,7 +20,7 @@ public enum PaginationCoverageMode {
     @JsonValue
     private final String value;
 
-    private PaginationCoverageMode(String value) {
+    PaginationCoverageMode(String value) {
         this.value = value;
     }
     

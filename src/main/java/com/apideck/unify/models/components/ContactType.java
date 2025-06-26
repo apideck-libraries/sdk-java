@@ -22,7 +22,7 @@ public enum ContactType {
     @JsonValue
     private final String value;
 
-    private ContactType(String value) {
+    ContactType(String value) {
         this.value = value;
     }
     

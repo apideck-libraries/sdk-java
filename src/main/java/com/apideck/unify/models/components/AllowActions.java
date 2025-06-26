@@ -17,7 +17,7 @@ public enum AllowActions {
     @JsonValue
     private final String value;
 
-    private AllowActions(String value) {
+    AllowActions(String value) {
         this.value = value;
     }
     

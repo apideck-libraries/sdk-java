@@ -20,7 +20,7 @@ public enum CreditNoteType {
     @JsonValue
     private final String value;
 
-    private CreditNoteType(String value) {
+    CreditNoteType(String value) {
         this.value = value;
     }
     

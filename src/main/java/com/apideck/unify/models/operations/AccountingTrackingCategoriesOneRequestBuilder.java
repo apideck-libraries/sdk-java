@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingTrackingCategoriesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingTrackingCategoriesOneRequestBuilder {
 
     private AccountingTrackingCategoriesOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingTrackingCategoriesOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingTrackingCategoriesOneRequestBuilder(SDKMethodInterfaces.MethodCallAccountingTrackingCategoriesOne sdk) {
-        this.sdk = sdk;
+    public AccountingTrackingCategoriesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingTrackingCategoriesOneRequestBuilder request(AccountingTrackingCategoriesOneRequest request) {
@@ -39,10 +43,14 @@ public class AccountingTrackingCategoriesOneRequestBuilder {
 
     public AccountingTrackingCategoriesOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
+              = new AccountingTrackingCategoriesOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.IssueTrackingCollectionTicketsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class IssueTrackingCollectionTicketsOneRequestBuilder {
 
     private IssueTrackingCollectionTicketsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallIssueTrackingCollectionTicketsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public IssueTrackingCollectionTicketsOneRequestBuilder(SDKMethodInterfaces.MethodCallIssueTrackingCollectionTicketsOne sdk) {
-        this.sdk = sdk;
+    public IssueTrackingCollectionTicketsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public IssueTrackingCollectionTicketsOneRequestBuilder request(IssueTrackingCollectionTicketsOneRequest request) {
@@ -39,10 +43,14 @@ public class IssueTrackingCollectionTicketsOneRequestBuilder {
 
     public IssueTrackingCollectionTicketsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
+              = new IssueTrackingCollectionTicketsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

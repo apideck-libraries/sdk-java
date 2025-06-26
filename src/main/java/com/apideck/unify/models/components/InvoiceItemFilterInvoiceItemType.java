@@ -21,7 +21,7 @@ public enum InvoiceItemFilterInvoiceItemType {
     @JsonValue
     private final String value;
 
-    private InvoiceItemFilterInvoiceItemType(String value) {
+    InvoiceItemFilterInvoiceItemType(String value) {
         this.value = value;
     }
     

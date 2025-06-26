@@ -29,7 +29,7 @@ public enum PhoneNumberType {
     @JsonValue
     private final String value;
 
-    private PhoneNumberType(String value) {
+    PhoneNumberType(String value) {
         this.value = value;
     }
     

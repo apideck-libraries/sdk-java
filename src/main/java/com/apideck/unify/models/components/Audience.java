@@ -20,7 +20,7 @@ public enum Audience {
     @JsonValue
     private final String value;
 
-    private Audience(String value) {
+    Audience(String value) {
         this.value = value;
     }
     

@@ -11,7 +11,7 @@ import java.util.Optional;
 /**
  * Classification
  * 
- * <p>The classification of account.
+ * <p>Filter by account classification.
  */
 public enum Classification {
     ASSET("asset"),
@@ -28,7 +28,7 @@ public enum Classification {
     @JsonValue
     private final String value;
 
-    private Classification(String value) {
+    Classification(String value) {
         this.value = value;
     }
     

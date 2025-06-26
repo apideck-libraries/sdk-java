@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingPaymentsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingPaymentsAddRequestBuilder {
 
     private AccountingPaymentsAddRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingPaymentsAdd sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingPaymentsAddRequestBuilder(SDKMethodInterfaces.MethodCallAccountingPaymentsAdd sdk) {
-        this.sdk = sdk;
+    public AccountingPaymentsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingPaymentsAddRequestBuilder request(AccountingPaymentsAddRequest request) {
@@ -39,10 +43,14 @@ public class AccountingPaymentsAddRequestBuilder {
 
     public AccountingPaymentsAddResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.create(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
+              = new AccountingPaymentsAddOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

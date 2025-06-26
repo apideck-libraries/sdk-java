@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.VaultConnectionsImportOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class VaultConnectionsImportRequestBuilder {
 
     private VaultConnectionsImportRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallVaultConnectionsImport sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public VaultConnectionsImportRequestBuilder(SDKMethodInterfaces.MethodCallVaultConnectionsImport sdk) {
-        this.sdk = sdk;
+    public VaultConnectionsImportRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public VaultConnectionsImportRequestBuilder request(VaultConnectionsImportRequest request) {
@@ -39,10 +43,14 @@ public class VaultConnectionsImportRequestBuilder {
 
     public VaultConnectionsImportResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.imports(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
+              = new VaultConnectionsImportOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

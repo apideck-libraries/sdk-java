@@ -25,7 +25,7 @@ public enum RequestType {
     @JsonValue
     private final String value;
 
-    private RequestType(String value) {
+    RequestType(String value) {
         this.value = value;
     }
     

@@ -25,7 +25,7 @@ public enum FulfillmentStatus {
     @JsonValue
     private final String value;
 
-    private FulfillmentStatus(String value) {
+    FulfillmentStatus(String value) {
         this.value = value;
     }
     

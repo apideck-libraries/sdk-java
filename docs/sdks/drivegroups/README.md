@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.DriveGroupsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.FileStorageDriveGroupsAllRequest;
+import com.apideck.unify.models.operations.FileStorageDriveGroupsAllResponse;
 import java.lang.Exception;
 import java.util.Map;
 
@@ -50,8 +51,8 @@ public class Application {
         sdk.fileStorage().driveGroups().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((FileStorageDriveGroupsAllResponse item) -> {
+                   // handle page
                 });
 
     }

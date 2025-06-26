@@ -21,6 +21,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.ApiStatus;
 import com.apideck.unify.models.components.ApisFilter;
 import com.apideck.unify.models.errors.*;
+import com.apideck.unify.models.operations.ConnectorApisAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -38,8 +39,8 @@ public class Application {
                     .status(ApiStatus.BETA)
                     .build())
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((ConnectorApisAllResponse item) -> {
+                   // handle page
                 });
 
     }

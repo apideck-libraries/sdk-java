@@ -24,6 +24,7 @@ import com.apideck.unify.Apideck;
 import com.apideck.unify.models.components.AttachmentReferenceType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingAttachmentsAllRequest;
+import com.apideck.unify.models.operations.AccountingAttachmentsAllResponse;
 import java.lang.Exception;
 
 public class Application {
@@ -46,8 +47,8 @@ public class Application {
         sdk.accounting().attachments().list()
                 .request(req)
                 .callAsStream()
-                .forEach(item -> {
-                   // handle item
+                .forEach((AccountingAttachmentsAllResponse item) -> {
+                   // handle page
                 });
 
     }

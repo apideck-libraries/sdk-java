@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AtsJobsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AtsJobsOneRequestBuilder {
 
     private AtsJobsOneRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAtsJobsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AtsJobsOneRequestBuilder(SDKMethodInterfaces.MethodCallAtsJobsOne sdk) {
-        this.sdk = sdk;
+    public AtsJobsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AtsJobsOneRequestBuilder request(AtsJobsOneRequest request) {
@@ -39,10 +43,14 @@ public class AtsJobsOneRequestBuilder {
 
     public AtsJobsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
+              = new AtsJobsOneOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

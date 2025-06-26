@@ -21,7 +21,7 @@ public enum ConnectionStatus {
     @JsonValue
     private final String value;
 
-    private ConnectionStatus(String value) {
+    ConnectionStatus(String value) {
         this.value = value;
     }
     

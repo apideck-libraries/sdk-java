@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.AccountingBankFeedStatementsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class AccountingBankFeedStatementsUpdateRequestBuilder {
 
     private AccountingBankFeedStatementsUpdateRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallAccountingBankFeedStatementsUpdate sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public AccountingBankFeedStatementsUpdateRequestBuilder(SDKMethodInterfaces.MethodCallAccountingBankFeedStatementsUpdate sdk) {
-        this.sdk = sdk;
+    public AccountingBankFeedStatementsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public AccountingBankFeedStatementsUpdateRequestBuilder request(AccountingBankFeedStatementsUpdateRequest request) {
@@ -39,10 +43,14 @@ public class AccountingBankFeedStatementsUpdateRequestBuilder {
 
     public AccountingBankFeedStatementsUpdateResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.update(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<AccountingBankFeedStatementsUpdateRequest, AccountingBankFeedStatementsUpdateResponse> operation
+              = new AccountingBankFeedStatementsUpdateOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

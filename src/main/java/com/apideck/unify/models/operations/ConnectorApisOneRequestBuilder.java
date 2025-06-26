@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.ConnectorApisOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -15,10 +19,10 @@ public class ConnectorApisOneRequestBuilder {
     private Optional<String> appId = Optional.empty();
     private String id;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorApisOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorApisOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorApisOne sdk) {
-        this.sdk = sdk;
+    public ConnectorApisOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorApisOneRequestBuilder appId(String appId) {
@@ -51,13 +55,26 @@ public class ConnectorApisOneRequestBuilder {
         return this;
     }
 
+
+    private ConnectorApisOneRequest buildRequest() {
+
+        ConnectorApisOneRequest request = new ConnectorApisOneRequest(appId,
+            id);
+
+        return request;
+    }
+
     public ConnectorApisOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            id,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
+              = new ConnectorApisOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorApisOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

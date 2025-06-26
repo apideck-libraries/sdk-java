@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.CrmActivitiesDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class CrmActivitiesDeleteRequestBuilder {
 
     private CrmActivitiesDeleteRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallCrmActivitiesDelete sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public CrmActivitiesDeleteRequestBuilder(SDKMethodInterfaces.MethodCallCrmActivitiesDelete sdk) {
-        this.sdk = sdk;
+    public CrmActivitiesDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public CrmActivitiesDeleteRequestBuilder request(CrmActivitiesDeleteRequest request) {
@@ -39,10 +43,14 @@ public class CrmActivitiesDeleteRequestBuilder {
 
     public CrmActivitiesDeleteResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.delete(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<CrmActivitiesDeleteRequest, CrmActivitiesDeleteResponse> operation
+              = new CrmActivitiesDeleteOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

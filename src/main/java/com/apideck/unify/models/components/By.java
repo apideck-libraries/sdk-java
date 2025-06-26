@@ -20,7 +20,7 @@ public enum By {
     @JsonValue
     private final String value;
 
-    private By(String value) {
+    By(String value) {
         this.value = value;
     }
     

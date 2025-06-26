@@ -22,7 +22,7 @@ public enum ApiStatus {
     @JsonValue
     private final String value;
 
-    private ApiStatus(String value) {
+    ApiStatus(String value) {
         this.value = value;
     }
     

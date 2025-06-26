@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.ConnectorConnectorDocsOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -16,10 +20,10 @@ public class ConnectorConnectorDocsOneRequestBuilder {
     private String id;
     private String docId;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallConnectorConnectorDocsOne sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public ConnectorConnectorDocsOneRequestBuilder(SDKMethodInterfaces.MethodCallConnectorConnectorDocsOne sdk) {
-        this.sdk = sdk;
+    public ConnectorConnectorDocsOneRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
                 
     public ConnectorConnectorDocsOneRequestBuilder appId(String appId) {
@@ -58,14 +62,27 @@ public class ConnectorConnectorDocsOneRequestBuilder {
         return this;
     }
 
+
+    private ConnectorConnectorDocsOneRequest buildRequest() {
+
+        ConnectorConnectorDocsOneRequest request = new ConnectorConnectorDocsOneRequest(appId,
+            id,
+            docId);
+
+        return request;
+    }
+
     public ConnectorConnectorDocsOneResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.get(
-            appId,
-            id,
-            docId,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
+              = new ConnectorConnectorDocsOneOperation(
+                 sdkConfiguration,
+                 options);
+        ConnectorConnectorDocsOneRequest request = buildRequest();
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

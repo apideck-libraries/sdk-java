@@ -3,6 +3,10 @@
  */
 package com.apideck.unify.models.operations;
 
+import static com.apideck.unify.operations.Operations.RequestOperation;
+
+import com.apideck.unify.SDKConfiguration;
+import com.apideck.unify.operations.FileStorageFoldersCopyOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
@@ -13,10 +17,10 @@ public class FileStorageFoldersCopyRequestBuilder {
 
     private FileStorageFoldersCopyRequest request;
     private Optional<RetryConfig> retryConfig = Optional.empty();
-    private final SDKMethodInterfaces.MethodCallFileStorageFoldersCopy sdk;
+    private final SDKConfiguration sdkConfiguration;
 
-    public FileStorageFoldersCopyRequestBuilder(SDKMethodInterfaces.MethodCallFileStorageFoldersCopy sdk) {
-        this.sdk = sdk;
+    public FileStorageFoldersCopyRequestBuilder(SDKConfiguration sdkConfiguration) {
+        this.sdkConfiguration = sdkConfiguration;
     }
 
     public FileStorageFoldersCopyRequestBuilder request(FileStorageFoldersCopyRequest request) {
@@ -39,10 +43,14 @@ public class FileStorageFoldersCopyRequestBuilder {
 
     public FileStorageFoldersCopyResponse call() throws Exception {
         Optional<Options> options = Optional.of(Options.builder()
-                                                    .retryConfig(retryConfig)
-                                                    .build());
-        return sdk.copy(
-            request,
-            options);
+            .retryConfig(retryConfig)
+            .build());
+
+        RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
+              = new FileStorageFoldersCopyOperation(
+                 sdkConfiguration,
+                 options);
+
+        return operation.handleResponse(operation.doRequest(request));
     }
 }

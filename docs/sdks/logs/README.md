@@ -37,7 +37,7 @@ public class Application {
         VaultLogsAllRequest req = VaultLogsAllRequest.builder()
                 .filter(LogsFilter.builder()
                     .connectorId("crm+salesforce")
-                    .statusCode(201)
+                    .statusCode(201d)
                     .excludeUnifiedApis("vault,proxy")
                     .build())
                 .build();

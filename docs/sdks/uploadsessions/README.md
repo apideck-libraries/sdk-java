@@ -241,7 +241,7 @@ public class Application {
 
         FileStorageUploadSessionsUploadRequest req = FileStorageUploadSessionsUploadRequest.builder()
                 .id("<id>")
-                .partNumber(0)
+                .partNumber(0d)
                 .requestBody("<binary string>".getBytes(StandardCharsets.UTF_8))
                 .serviceId("salesforce")
                 .digest("sha=fpRyg5eVQletdZqEKaFlqwBXJzM=")

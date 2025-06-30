@@ -155,6 +155,13 @@ public class SupplierInput {
     private JsonNullable<String> paymentMethod;
 
     /**
+     * Terms of payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms")
+    private JsonNullable<String> terms;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -211,6 +218,7 @@ public class SupplierInput {
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -239,6 +247,7 @@ public class SupplierInput {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -267,6 +276,7 @@ public class SupplierInput {
         this.account = account;
         this.status = status;
         this.paymentMethod = paymentMethod;
+        this.terms = terms;
         this.channel = channel;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
@@ -275,7 +285,7 @@ public class SupplierInput {
     }
     
     public SupplierInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -442,6 +452,14 @@ public class SupplierInput {
     @JsonIgnore
     public JsonNullable<String> paymentMethod() {
         return paymentMethod;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> terms() {
+        return terms;
     }
 
     /**
@@ -848,6 +866,24 @@ public class SupplierInput {
     }
 
     /**
+     * Terms of payment.
+     */
+    public SupplierInput withTerms(String terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = JsonNullable.of(terms);
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public SupplierInput withTerms(JsonNullable<String> terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = terms;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public SupplierInput withChannel(String channel) {
@@ -965,6 +1001,7 @@ public class SupplierInput {
             Objects.deepEquals(this.account, other.account) &&
             Objects.deepEquals(this.status, other.status) &&
             Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
+            Objects.deepEquals(this.terms, other.terms) &&
             Objects.deepEquals(this.channel, other.channel) &&
             Objects.deepEquals(this.customFields, other.customFields) &&
             Objects.deepEquals(this.rowVersion, other.rowVersion) &&
@@ -998,6 +1035,7 @@ public class SupplierInput {
             account,
             status,
             paymentMethod,
+            terms,
             channel,
             customFields,
             rowVersion,
@@ -1031,6 +1069,7 @@ public class SupplierInput {
                 "account", account,
                 "status", status,
                 "paymentMethod", paymentMethod,
+                "terms", terms,
                 "channel", channel,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
@@ -1085,6 +1124,8 @@ public class SupplierInput {
         private JsonNullable<? extends SupplierStatus> status = JsonNullable.undefined();
  
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+ 
+        private JsonNullable<String> terms = JsonNullable.undefined();
  
         private JsonNullable<String> channel = JsonNullable.undefined();
  
@@ -1461,6 +1502,24 @@ public class SupplierInput {
         }
 
         /**
+         * Terms of payment.
+         */
+        public Builder terms(String terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = JsonNullable.of(terms);
+            return this;
+        }
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(JsonNullable<String> terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = terms;
+            return this;
+        }
+
+        /**
          * The channel through which the transaction is processed.
          */
         public Builder channel(String channel) {
@@ -1569,6 +1628,7 @@ public class SupplierInput {
                 account,
                 status,
                 paymentMethod,
+                terms,
                 channel,
                 customFields,
                 rowVersion,

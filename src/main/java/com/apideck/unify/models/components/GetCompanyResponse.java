@@ -56,7 +56,7 @@ public class GetCompanyResponse {
     private String operation;
 
     @JsonProperty("data")
-    private Company data;
+    private Company1 data;
 
     /**
      * Raw response from the integration when raw=true query param is provided
@@ -72,7 +72,7 @@ public class GetCompanyResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") Company data,
+            @JsonProperty("data") Company1 data,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
@@ -96,7 +96,7 @@ public class GetCompanyResponse {
             String service,
             String resource,
             String operation,
-            Company data) {
+            Company1 data) {
         this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
     }
 
@@ -141,7 +141,7 @@ public class GetCompanyResponse {
     }
 
     @JsonIgnore
-    public Company data() {
+    public Company1 data() {
         return data;
     }
 
@@ -203,7 +203,7 @@ public class GetCompanyResponse {
         return this;
     }
 
-    public GetCompanyResponse withData(Company data) {
+    public GetCompanyResponse withData(Company1 data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -283,7 +283,7 @@ public class GetCompanyResponse {
  
         private String operation;
  
-        private Company data;
+        private Company1 data;
  
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
         
@@ -336,7 +336,7 @@ public class GetCompanyResponse {
             return this;
         }
 
-        public Builder data(Company data) {
+        public Builder data(Company1 data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

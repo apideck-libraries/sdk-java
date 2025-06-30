@@ -15,7 +15,7 @@ import java.lang.SuppressWarnings;
 import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BankAccount {
+public class BankAccount1 {
 
     /**
      * The name of the bank
@@ -43,7 +43,7 @@ public class BankAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_type")
-    private JsonNullable<? extends AccountType> accountType;
+    private JsonNullable<? extends BankAccount1AccountType> accountType;
 
     /**
      * The International Bank Account Number (IBAN).
@@ -102,11 +102,11 @@ public class BankAccount {
     private JsonNullable<String> country;
 
     @JsonCreator
-    public BankAccount(
+    public BankAccount1(
             @JsonProperty("bank_name") JsonNullable<String> bankName,
             @JsonProperty("account_number") JsonNullable<String> accountNumber,
             @JsonProperty("account_name") JsonNullable<String> accountName,
-            @JsonProperty("account_type") JsonNullable<? extends AccountType> accountType,
+            @JsonProperty("account_type") JsonNullable<? extends BankAccount1AccountType> accountType,
             @JsonProperty("iban") JsonNullable<String> iban,
             @JsonProperty("bic") JsonNullable<String> bic,
             @JsonProperty("routing_number") JsonNullable<String> routingNumber,
@@ -141,7 +141,7 @@ public class BankAccount {
         this.country = country;
     }
     
-    public BankAccount() {
+    public BankAccount1() {
         this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -174,8 +174,8 @@ public class BankAccount {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public JsonNullable<AccountType> accountType() {
-        return (JsonNullable<AccountType>) accountType;
+    public JsonNullable<BankAccount1AccountType> accountType() {
+        return (JsonNullable<BankAccount1AccountType>) accountType;
     }
 
     /**
@@ -250,7 +250,7 @@ public class BankAccount {
     /**
      * The name of the bank
      */
-    public BankAccount withBankName(String bankName) {
+    public BankAccount1 withBankName(String bankName) {
         Utils.checkNotNull(bankName, "bankName");
         this.bankName = JsonNullable.of(bankName);
         return this;
@@ -259,7 +259,7 @@ public class BankAccount {
     /**
      * The name of the bank
      */
-    public BankAccount withBankName(JsonNullable<String> bankName) {
+    public BankAccount1 withBankName(JsonNullable<String> bankName) {
         Utils.checkNotNull(bankName, "bankName");
         this.bankName = bankName;
         return this;
@@ -268,7 +268,7 @@ public class BankAccount {
     /**
      * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
      */
-    public BankAccount withAccountNumber(String accountNumber) {
+    public BankAccount1 withAccountNumber(String accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = JsonNullable.of(accountNumber);
         return this;
@@ -277,7 +277,7 @@ public class BankAccount {
     /**
      * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
      */
-    public BankAccount withAccountNumber(JsonNullable<String> accountNumber) {
+    public BankAccount1 withAccountNumber(JsonNullable<String> accountNumber) {
         Utils.checkNotNull(accountNumber, "accountNumber");
         this.accountNumber = accountNumber;
         return this;
@@ -286,7 +286,7 @@ public class BankAccount {
     /**
      * The name which you used in opening your bank account.
      */
-    public BankAccount withAccountName(String accountName) {
+    public BankAccount1 withAccountName(String accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = JsonNullable.of(accountName);
         return this;
@@ -295,7 +295,7 @@ public class BankAccount {
     /**
      * The name which you used in opening your bank account.
      */
-    public BankAccount withAccountName(JsonNullable<String> accountName) {
+    public BankAccount1 withAccountName(JsonNullable<String> accountName) {
         Utils.checkNotNull(accountName, "accountName");
         this.accountName = accountName;
         return this;
@@ -304,7 +304,7 @@ public class BankAccount {
     /**
      * The type of bank account.
      */
-    public BankAccount withAccountType(AccountType accountType) {
+    public BankAccount1 withAccountType(BankAccount1AccountType accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = JsonNullable.of(accountType);
         return this;
@@ -313,7 +313,7 @@ public class BankAccount {
     /**
      * The type of bank account.
      */
-    public BankAccount withAccountType(JsonNullable<? extends AccountType> accountType) {
+    public BankAccount1 withAccountType(JsonNullable<? extends BankAccount1AccountType> accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = accountType;
         return this;
@@ -322,7 +322,7 @@ public class BankAccount {
     /**
      * The International Bank Account Number (IBAN).
      */
-    public BankAccount withIban(String iban) {
+    public BankAccount1 withIban(String iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = JsonNullable.of(iban);
         return this;
@@ -331,7 +331,7 @@ public class BankAccount {
     /**
      * The International Bank Account Number (IBAN).
      */
-    public BankAccount withIban(JsonNullable<String> iban) {
+    public BankAccount1 withIban(JsonNullable<String> iban) {
         Utils.checkNotNull(iban, "iban");
         this.iban = iban;
         return this;
@@ -340,7 +340,7 @@ public class BankAccount {
     /**
      * The Bank Identifier Code (BIC).
      */
-    public BankAccount withBic(String bic) {
+    public BankAccount1 withBic(String bic) {
         Utils.checkNotNull(bic, "bic");
         this.bic = JsonNullable.of(bic);
         return this;
@@ -349,7 +349,7 @@ public class BankAccount {
     /**
      * The Bank Identifier Code (BIC).
      */
-    public BankAccount withBic(JsonNullable<String> bic) {
+    public BankAccount1 withBic(JsonNullable<String> bic) {
         Utils.checkNotNull(bic, "bic");
         this.bic = bic;
         return this;
@@ -358,7 +358,7 @@ public class BankAccount {
     /**
      * A routing number is a nine-digit code used to identify a financial institution in the United States.
      */
-    public BankAccount withRoutingNumber(String routingNumber) {
+    public BankAccount1 withRoutingNumber(String routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
         this.routingNumber = JsonNullable.of(routingNumber);
         return this;
@@ -367,7 +367,7 @@ public class BankAccount {
     /**
      * A routing number is a nine-digit code used to identify a financial institution in the United States.
      */
-    public BankAccount withRoutingNumber(JsonNullable<String> routingNumber) {
+    public BankAccount1 withRoutingNumber(JsonNullable<String> routingNumber) {
         Utils.checkNotNull(routingNumber, "routingNumber");
         this.routingNumber = routingNumber;
         return this;
@@ -376,7 +376,7 @@ public class BankAccount {
     /**
      * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
      */
-    public BankAccount withBsbNumber(String bsbNumber) {
+    public BankAccount1 withBsbNumber(String bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
         this.bsbNumber = JsonNullable.of(bsbNumber);
         return this;
@@ -385,7 +385,7 @@ public class BankAccount {
     /**
      * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
      */
-    public BankAccount withBsbNumber(JsonNullable<String> bsbNumber) {
+    public BankAccount1 withBsbNumber(JsonNullable<String> bsbNumber) {
         Utils.checkNotNull(bsbNumber, "bsbNumber");
         this.bsbNumber = bsbNumber;
         return this;
@@ -394,7 +394,7 @@ public class BankAccount {
     /**
      * A branch identifier is a unique identifier for a branch of a bank or financial institution.
      */
-    public BankAccount withBranchIdentifier(String branchIdentifier) {
+    public BankAccount1 withBranchIdentifier(String branchIdentifier) {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
         this.branchIdentifier = JsonNullable.of(branchIdentifier);
         return this;
@@ -403,7 +403,7 @@ public class BankAccount {
     /**
      * A branch identifier is a unique identifier for a branch of a bank or financial institution.
      */
-    public BankAccount withBranchIdentifier(JsonNullable<String> branchIdentifier) {
+    public BankAccount1 withBranchIdentifier(JsonNullable<String> branchIdentifier) {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
         this.branchIdentifier = branchIdentifier;
         return this;
@@ -412,7 +412,7 @@ public class BankAccount {
     /**
      * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
      */
-    public BankAccount withBankCode(String bankCode) {
+    public BankAccount1 withBankCode(String bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
         this.bankCode = JsonNullable.of(bankCode);
         return this;
@@ -421,7 +421,7 @@ public class BankAccount {
     /**
      * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
      */
-    public BankAccount withBankCode(JsonNullable<String> bankCode) {
+    public BankAccount1 withBankCode(JsonNullable<String> bankCode) {
         Utils.checkNotNull(bankCode, "bankCode");
         this.bankCode = bankCode;
         return this;
@@ -430,7 +430,7 @@ public class BankAccount {
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public BankAccount withCurrency(Currency currency) {
+    public BankAccount1 withCurrency(Currency currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = JsonNullable.of(currency);
         return this;
@@ -439,7 +439,7 @@ public class BankAccount {
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public BankAccount withCurrency(JsonNullable<? extends Currency> currency) {
+    public BankAccount1 withCurrency(JsonNullable<? extends Currency> currency) {
         Utils.checkNotNull(currency, "currency");
         this.currency = currency;
         return this;
@@ -448,7 +448,7 @@ public class BankAccount {
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    public BankAccount withCountry(String country) {
+    public BankAccount1 withCountry(String country) {
         Utils.checkNotNull(country, "country");
         this.country = JsonNullable.of(country);
         return this;
@@ -457,7 +457,7 @@ public class BankAccount {
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    public BankAccount withCountry(JsonNullable<String> country) {
+    public BankAccount1 withCountry(JsonNullable<String> country) {
         Utils.checkNotNull(country, "country");
         this.country = country;
         return this;
@@ -472,7 +472,7 @@ public class BankAccount {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BankAccount other = (BankAccount) o;
+        BankAccount1 other = (BankAccount1) o;
         return 
             Objects.deepEquals(this.bankName, other.bankName) &&
             Objects.deepEquals(this.accountNumber, other.accountNumber) &&
@@ -507,7 +507,7 @@ public class BankAccount {
     
     @Override
     public String toString() {
-        return Utils.toString(BankAccount.class,
+        return Utils.toString(BankAccount1.class,
                 "bankName", bankName,
                 "accountNumber", accountNumber,
                 "accountName", accountName,
@@ -530,7 +530,7 @@ public class BankAccount {
  
         private JsonNullable<String> accountName = JsonNullable.undefined();
  
-        private JsonNullable<? extends AccountType> accountType = JsonNullable.undefined();
+        private JsonNullable<? extends BankAccount1AccountType> accountType = JsonNullable.undefined();
  
         private JsonNullable<String> iban = JsonNullable.undefined();
  
@@ -609,7 +609,7 @@ public class BankAccount {
         /**
          * The type of bank account.
          */
-        public Builder accountType(AccountType accountType) {
+        public Builder accountType(BankAccount1AccountType accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = JsonNullable.of(accountType);
             return this;
@@ -618,7 +618,7 @@ public class BankAccount {
         /**
          * The type of bank account.
          */
-        public Builder accountType(JsonNullable<? extends AccountType> accountType) {
+        public Builder accountType(JsonNullable<? extends BankAccount1AccountType> accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = accountType;
             return this;
@@ -768,8 +768,8 @@ public class BankAccount {
             return this;
         }
         
-        public BankAccount build() {
-            return new BankAccount(
+        public BankAccount1 build() {
+            return new BankAccount1(
                 bankName,
                 accountNumber,
                 accountName,

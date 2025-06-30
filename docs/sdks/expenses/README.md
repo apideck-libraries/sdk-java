@@ -107,7 +107,7 @@ public class Application {
                     .accountId("123456")
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
-                            .totalAmount(275)
+                            .totalAmount(275d)
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -128,7 +128,7 @@ public class Application {
                             .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10)
+                                .rate(10d)
                                 .build())
                             .description("Travel US.")
                             .billable(true)
@@ -146,9 +146,9 @@ public class Application {
                     .memo("For travel expenses incurred on 2024-05-15")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
-                    .totalAmount(275)
+                    .totalAmount(275d)
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")
@@ -348,7 +348,7 @@ public class Application {
                     .accountId("123456")
                     .lineItems(List.of(
                         ExpenseLineItemInput.builder()
-                            .totalAmount(275)
+                            .totalAmount(275d)
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
                                     .id("123456")
@@ -369,7 +369,7 @@ public class Application {
                             .subsidiaryId("12345")
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10)
+                                .rate(10d)
                                 .build())
                             .description("Travel US.")
                             .billable(true)
@@ -387,9 +387,9 @@ public class Application {
                     .memo("For travel expenses incurred on 2024-05-15")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
-                    .totalAmount(275)
+                    .totalAmount(275d)
                     .customFields(List.of(
                         CustomField.builder()
                             .id("2389328923893298")

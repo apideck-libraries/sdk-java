@@ -58,7 +58,7 @@ public class GetCompaniesResponse {
     private String operation;
 
     @JsonProperty("data")
-    private List<Company> data;
+    private List<Company1> data;
 
     /**
      * Response metadata
@@ -88,7 +88,7 @@ public class GetCompaniesResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") List<Company> data,
+            @JsonProperty("data") List<Company1> data,
             @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("links") Optional<? extends Links> links,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
@@ -118,7 +118,7 @@ public class GetCompaniesResponse {
             String service,
             String resource,
             String operation,
-            List<Company> data) {
+            List<Company1> data) {
         this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
@@ -163,7 +163,7 @@ public class GetCompaniesResponse {
     }
 
     @JsonIgnore
-    public List<Company> data() {
+    public List<Company1> data() {
         return data;
     }
 
@@ -243,7 +243,7 @@ public class GetCompaniesResponse {
         return this;
     }
 
-    public GetCompaniesResponse withData(List<Company> data) {
+    public GetCompaniesResponse withData(List<Company1> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -365,7 +365,7 @@ public class GetCompaniesResponse {
  
         private String operation;
  
-        private List<Company> data;
+        private List<Company1> data;
  
         private Optional<? extends Meta> meta = Optional.empty();
  
@@ -422,7 +422,7 @@ public class GetCompaniesResponse {
             return this;
         }
 
-        public Builder data(List<Company> data) {
+        public Builder data(List<Company1> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;

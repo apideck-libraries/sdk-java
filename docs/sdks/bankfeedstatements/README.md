@@ -117,7 +117,7 @@ public class Application {
                     .transactions(List.of(
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -127,7 +127,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -137,7 +137,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -286,7 +286,7 @@ public class Application {
                     .transactions(List.of(
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -296,7 +296,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")

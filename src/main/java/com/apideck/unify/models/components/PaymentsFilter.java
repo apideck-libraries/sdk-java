@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PaymentsFilter {
@@ -84,13 +83,13 @@ public class PaymentsFilter {
         }
         PaymentsFilter other = (PaymentsFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.invoiceId, other.invoiceId);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             updatedSince,
             invoiceId);
     }

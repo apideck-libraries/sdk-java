@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -110,13 +109,13 @@ public class VirtualWebhooks {
         }
         VirtualWebhooks other = (VirtualWebhooks) o;
         return 
-            Objects.deepEquals(this.requestRate, other.requestRate) &&
-            Objects.deepEquals(this.resources, other.resources);
+            Utils.enhancedDeepEquals(this.requestRate, other.requestRate) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             requestRate,
             resources);
     }

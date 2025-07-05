@@ -30,11 +30,23 @@ public interface HTTPClient {
             throws IOException, InterruptedException, URISyntaxException;
 
     /**
-     * Enables debug logging for HTTP requests and responses, including JSON body content.
-     * Currently implemented in SpeakeasyHTTPClient, custom client implementations are free
-     * to use this method similarly if they wish.
+     * Controls the debug flag that can be used by clients to perform conditional
+     * debugging actions like logging HTTP requests and responses.
+     * This is currently implemented in SpeakeasyHTTPClient but custom client
+     * implementations are free to use this method similarly if they wish.
+     *
+     * @param enabled Whether to enable debug flag
      */
-    default void enableDebugLogging() {
+    default void enableDebugLogging(boolean enabled) {
         // do nothing
+    }
+
+    /**
+     * Returns whether debug logging is enabled.
+     *
+     * @return Whether debug logging is enabled
+     */
+    default boolean isDebugLoggingEnabled() {
+        return false;
     }
 }

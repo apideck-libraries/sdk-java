@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ApisFilter {
@@ -74,12 +73,12 @@ public class ApisFilter {
         }
         ApisFilter other = (ApisFilter) o;
         return 
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status);
     }
     

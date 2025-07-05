@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PhoneNumber {
@@ -248,17 +247,17 @@ public class PhoneNumber {
         }
         PhoneNumber other = (PhoneNumber) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.countryCode, other.countryCode) &&
-            Objects.deepEquals(this.areaCode, other.areaCode) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.extension, other.extension) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode) &&
+            Utils.enhancedDeepEquals(this.areaCode, other.areaCode) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.extension, other.extension) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             countryCode,
             areaCode,

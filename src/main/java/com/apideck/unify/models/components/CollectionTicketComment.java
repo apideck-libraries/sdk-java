@@ -16,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -299,18 +298,18 @@ public class CollectionTicketComment {
         }
         CollectionTicketComment other = (CollectionTicketComment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             body,
             customMappings,

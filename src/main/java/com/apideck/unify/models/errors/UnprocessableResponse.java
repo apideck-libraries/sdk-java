@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -75,7 +74,7 @@ public class UnprocessableResponse extends RuntimeException {
             @JsonProperty("message") Optional<String> message,
             @JsonProperty("detail") Optional<? extends UnprocessableResponseDetail> detail,
             @JsonProperty("ref") Optional<String> ref) {
-        super(message.orElse(null));
+        super(Utils.valueOrElse(message, "API error occurred"));
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(typeName, "typeName");
@@ -272,17 +271,17 @@ public class UnprocessableResponse extends RuntimeException {
         }
         UnprocessableResponse other = (UnprocessableResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.typeName, other.typeName) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.ref, other.ref);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.typeName, other.typeName) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.ref, other.ref);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             statusCode,
             error,
             typeName,

@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class IssueTrackingCollectionTicketCommentsUpdateRequest {
@@ -280,19 +279,19 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         }
         IssueTrackingCollectionTicketCommentsUpdateRequest other = (IssueTrackingCollectionTicketCommentsUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.ticketId, other.ticketId) &&
-            Objects.deepEquals(this.collectionTicketComment, other.collectionTicketComment);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.ticketId, other.ticketId) &&
+            Utils.enhancedDeepEquals(this.collectionTicketComment, other.collectionTicketComment);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             consumerId,
             appId,

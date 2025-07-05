@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -932,42 +931,42 @@ public class ApplicantInput {
         }
         ApplicantInput other = (ApplicantInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.initials, other.initials) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.coverLetter, other.coverLetter) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.headline, other.headline) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.socialLinks, other.socialLinks) &&
-            Objects.deepEquals(this.stageId, other.stageId) &&
-            Objects.deepEquals(this.recruiterId, other.recruiterId) &&
-            Objects.deepEquals(this.coordinatorId, other.coordinatorId) &&
-            Objects.deepEquals(this.applicationIds, other.applicationIds) &&
-            Objects.deepEquals(this.applications, other.applications) &&
-            Objects.deepEquals(this.followers, other.followers) &&
-            Objects.deepEquals(this.sources, other.sources) &&
-            Objects.deepEquals(this.confidential, other.confidential) &&
-            Objects.deepEquals(this.anonymized, other.anonymized) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.recordUrl, other.recordUrl) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.initials, other.initials) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.coverLetter, other.coverLetter) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.headline, other.headline) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.socialLinks, other.socialLinks) &&
+            Utils.enhancedDeepEquals(this.stageId, other.stageId) &&
+            Utils.enhancedDeepEquals(this.recruiterId, other.recruiterId) &&
+            Utils.enhancedDeepEquals(this.coordinatorId, other.coordinatorId) &&
+            Utils.enhancedDeepEquals(this.applicationIds, other.applicationIds) &&
+            Utils.enhancedDeepEquals(this.applications, other.applications) &&
+            Utils.enhancedDeepEquals(this.followers, other.followers) &&
+            Utils.enhancedDeepEquals(this.sources, other.sources) &&
+            Utils.enhancedDeepEquals(this.confidential, other.confidential) &&
+            Utils.enhancedDeepEquals(this.anonymized, other.anonymized) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.recordUrl, other.recordUrl) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             firstName,
             lastName,

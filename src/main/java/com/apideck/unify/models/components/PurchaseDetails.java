@@ -14,7 +14,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -164,15 +163,15 @@ public class PurchaseDetails {
         }
         PurchaseDetails other = (PurchaseDetails) o;
         return 
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.taxRate, other.taxRate);
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             unitPrice,
             unitOfMeasure,
             taxInclusive,

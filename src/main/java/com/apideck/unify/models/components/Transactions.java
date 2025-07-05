@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Transactions {
@@ -295,19 +294,19 @@ public class Transactions {
         }
         Transactions other = (Transactions) o;
         return 
-            Objects.deepEquals(this.postedDate, other.postedDate) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.creditOrDebit, other.creditOrDebit) &&
-            Objects.deepEquals(this.sourceTransactionId, other.sourceTransactionId) &&
-            Objects.deepEquals(this.counterparty, other.counterparty) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.transactionType, other.transactionType);
+            Utils.enhancedDeepEquals(this.postedDate, other.postedDate) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.creditOrDebit, other.creditOrDebit) &&
+            Utils.enhancedDeepEquals(this.sourceTransactionId, other.sourceTransactionId) &&
+            Utils.enhancedDeepEquals(this.counterparty, other.counterparty) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             postedDate,
             description,
             amount,

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ConnectorApisOneRequest {
@@ -99,13 +98,13 @@ public class ConnectorApisOneRequest {
         }
         ConnectorApisOneRequest other = (ConnectorApisOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             id);
     }

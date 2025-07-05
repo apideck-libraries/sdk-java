@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -115,13 +114,13 @@ public class CollectionTicketCommentInput {
         }
         CollectionTicketCommentInput other = (CollectionTicketCommentInput) o;
         return 
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             body,
             passThrough);
     }

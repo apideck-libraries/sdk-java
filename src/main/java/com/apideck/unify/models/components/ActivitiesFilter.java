@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ActivitiesFilter {
@@ -201,16 +200,16 @@ public class ActivitiesFilter {
         }
         ActivitiesFilter other = (ActivitiesFilter) o;
         return 
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyId,
             ownerId,
             contactId,

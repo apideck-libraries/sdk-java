@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -455,22 +454,22 @@ public class Settings {
         }
         Settings other = (Settings) o;
         return 
-            Objects.deepEquals(this.unifiedApis, other.unifiedApis) &&
-            Objects.deepEquals(this.hideResourceSettings, other.hideResourceSettings) &&
-            Objects.deepEquals(this.sandboxMode, other.sandboxMode) &&
-            Objects.deepEquals(this.isolationMode, other.isolationMode) &&
-            Objects.deepEquals(this.sessionLength, other.sessionLength) &&
-            Objects.deepEquals(this.showLogs, other.showLogs) &&
-            Objects.deepEquals(this.showSuggestions, other.showSuggestions) &&
-            Objects.deepEquals(this.showSidebar, other.showSidebar) &&
-            Objects.deepEquals(this.autoRedirect, other.autoRedirect) &&
-            Objects.deepEquals(this.hideGuides, other.hideGuides) &&
-            Objects.deepEquals(this.allowActions, other.allowActions);
+            Utils.enhancedDeepEquals(this.unifiedApis, other.unifiedApis) &&
+            Utils.enhancedDeepEquals(this.hideResourceSettings, other.hideResourceSettings) &&
+            Utils.enhancedDeepEquals(this.sandboxMode, other.sandboxMode) &&
+            Utils.enhancedDeepEquals(this.isolationMode, other.isolationMode) &&
+            Utils.enhancedDeepEquals(this.sessionLength, other.sessionLength) &&
+            Utils.enhancedDeepEquals(this.showLogs, other.showLogs) &&
+            Utils.enhancedDeepEquals(this.showSuggestions, other.showSuggestions) &&
+            Utils.enhancedDeepEquals(this.showSidebar, other.showSidebar) &&
+            Utils.enhancedDeepEquals(this.autoRedirect, other.autoRedirect) &&
+            Utils.enhancedDeepEquals(this.hideGuides, other.hideGuides) &&
+            Utils.enhancedDeepEquals(this.allowActions, other.allowActions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             unifiedApis,
             hideResourceSettings,
             sandboxMode,

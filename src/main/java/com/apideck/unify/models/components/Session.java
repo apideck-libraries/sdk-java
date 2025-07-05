@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Session {
@@ -226,16 +225,16 @@ public class Session {
         }
         Session other = (Session) o;
         return 
-            Objects.deepEquals(this.consumerMetadata, other.consumerMetadata) &&
-            Objects.deepEquals(this.redirectUri, other.redirectUri) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.theme, other.theme) &&
-            Objects.deepEquals(this.customConsumerSettings, other.customConsumerSettings);
+            Utils.enhancedDeepEquals(this.consumerMetadata, other.consumerMetadata) &&
+            Utils.enhancedDeepEquals(this.redirectUri, other.redirectUri) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.theme, other.theme) &&
+            Utils.enhancedDeepEquals(this.customConsumerSettings, other.customConsumerSettings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerMetadata,
             redirectUri,
             settings,

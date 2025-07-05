@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateCallbackStateResponseData {
@@ -75,12 +74,12 @@ public class CreateCallbackStateResponseData {
         }
         CreateCallbackStateResponseData other = (CreateCallbackStateResponseData) o;
         return 
-            Objects.deepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             state);
     }
     

@@ -72,7 +72,7 @@ public class CrmCompaniesUpdateOperation implements RequestOperation<CrmCompanie
                 new TypeReference<CrmCompaniesUpdateRequest>() {});
         SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                 convertedRequest, 
-                "company",
+                "company1",
                 "json",
                 false);
         if (serializedRequestBody == null) {

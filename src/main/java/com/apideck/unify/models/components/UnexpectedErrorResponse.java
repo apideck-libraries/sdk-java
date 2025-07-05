@@ -13,7 +13,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -263,17 +262,17 @@ public class UnexpectedErrorResponse {
         }
         UnexpectedErrorResponse other = (UnexpectedErrorResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.typeName, other.typeName) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.ref, other.ref);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.typeName, other.typeName) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.ref, other.ref);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             statusCode,
             error,
             typeName,

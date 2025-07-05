@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -175,15 +174,15 @@ public class Salary {
         }
         Salary other = (Salary) o;
         return 
-            Objects.deepEquals(this.min, other.min) &&
-            Objects.deepEquals(this.max, other.max) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.interval, other.interval);
+            Utils.enhancedDeepEquals(this.min, other.min) &&
+            Utils.enhancedDeepEquals(this.max, other.max) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.interval, other.interval);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             min,
             max,
             currency,

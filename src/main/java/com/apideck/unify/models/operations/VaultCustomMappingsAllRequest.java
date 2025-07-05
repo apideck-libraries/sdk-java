@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VaultCustomMappingsAllRequest {
@@ -161,15 +160,15 @@ public class VaultCustomMappingsAllRequest {
         }
         VaultCustomMappingsAllRequest other = (VaultCustomMappingsAllRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.serviceId, other.serviceId);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerId,
             appId,
             unifiedApi,

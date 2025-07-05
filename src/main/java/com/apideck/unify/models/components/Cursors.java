@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -152,14 +151,14 @@ public class Cursors {
         }
         Cursors other = (Cursors) o;
         return 
-            Objects.deepEquals(this.previous, other.previous) &&
-            Objects.deepEquals(this.current, other.current) &&
-            Objects.deepEquals(this.next, other.next);
+            Utils.enhancedDeepEquals(this.previous, other.previous) &&
+            Utils.enhancedDeepEquals(this.current, other.current) &&
+            Utils.enhancedDeepEquals(this.next, other.next);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             previous,
             current,
             next);

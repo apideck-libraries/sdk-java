@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -565,27 +564,27 @@ public class ProfitAndLoss {
         }
         ProfitAndLoss other = (ProfitAndLoss) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.reportName, other.reportName) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.income, other.income) &&
-            Objects.deepEquals(this.costOfGoodsSold, other.costOfGoodsSold) &&
-            Objects.deepEquals(this.expenses, other.expenses) &&
-            Objects.deepEquals(this.otherIncome, other.otherIncome) &&
-            Objects.deepEquals(this.otherExpenses, other.otherExpenses) &&
-            Objects.deepEquals(this.uncategorizedAccounts, other.uncategorizedAccounts) &&
-            Objects.deepEquals(this.grossProfit, other.grossProfit) &&
-            Objects.deepEquals(this.netOperatingIncome, other.netOperatingIncome) &&
-            Objects.deepEquals(this.netIncome, other.netIncome) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customer, other.customer);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.income, other.income) &&
+            Utils.enhancedDeepEquals(this.costOfGoodsSold, other.costOfGoodsSold) &&
+            Utils.enhancedDeepEquals(this.expenses, other.expenses) &&
+            Utils.enhancedDeepEquals(this.otherIncome, other.otherIncome) &&
+            Utils.enhancedDeepEquals(this.otherExpenses, other.otherExpenses) &&
+            Utils.enhancedDeepEquals(this.uncategorizedAccounts, other.uncategorizedAccounts) &&
+            Utils.enhancedDeepEquals(this.grossProfit, other.grossProfit) &&
+            Utils.enhancedDeepEquals(this.netOperatingIncome, other.netOperatingIncome) &&
+            Utils.enhancedDeepEquals(this.netIncome, other.netIncome) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             reportName,
             startDate,

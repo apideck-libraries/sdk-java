@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ConnectorApiResourcesOneRequest {
@@ -126,14 +125,14 @@ public class ConnectorApiResourcesOneRequest {
         }
         ConnectorApiResourcesOneRequest other = (ConnectorApiResourcesOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.resourceId, other.resourceId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.resourceId, other.resourceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             id,
             resourceId);

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -310,19 +309,19 @@ public class AccountingLocationInput {
         }
         AccountingLocationInput other = (AccountingLocationInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             parentId,
             companyName,
             displayName,

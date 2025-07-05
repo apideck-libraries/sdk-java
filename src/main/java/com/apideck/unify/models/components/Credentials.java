@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -186,15 +185,15 @@ public class Credentials {
         }
         Credentials other = (Credentials) o;
         return 
-            Objects.deepEquals(this.refreshToken, other.refreshToken) &&
-            Objects.deepEquals(this.accessToken, other.accessToken) &&
-            Objects.deepEquals(this.issuedAt, other.issuedAt) &&
-            Objects.deepEquals(this.expiresIn, other.expiresIn);
+            Utils.enhancedDeepEquals(this.refreshToken, other.refreshToken) &&
+            Utils.enhancedDeepEquals(this.accessToken, other.accessToken) &&
+            Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             refreshToken,
             accessToken,
             issuedAt,

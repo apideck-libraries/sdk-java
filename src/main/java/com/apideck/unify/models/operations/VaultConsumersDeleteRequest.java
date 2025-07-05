@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VaultConsumersDeleteRequest {
@@ -99,13 +98,13 @@ public class VaultConsumersDeleteRequest {
         }
         VaultConsumersDeleteRequest other = (VaultConsumersDeleteRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             consumerId);
     }

@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ProfitAndLossIndicator {
@@ -76,12 +75,12 @@ public class ProfitAndLossIndicator {
         }
         ProfitAndLossIndicator other = (ProfitAndLossIndicator) o;
         return 
-            Objects.deepEquals(this.total, other.total);
+            Utils.enhancedDeepEquals(this.total, other.total);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             total);
     }
     

@@ -11,7 +11,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -309,19 +308,19 @@ public class CustomersFilter {
         }
         CustomersFilter other = (CustomersFilter) o;
         return 
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyName,
             displayName,
             firstName,

@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1057,42 +1056,42 @@ public class Connection {
         }
         Connection other = (Connection) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.tagLine, other.tagLine) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.integrationState, other.integrationState) &&
-            Objects.deepEquals(this.authType, other.authType) &&
-            Objects.deepEquals(this.oauthGrantType, other.oauthGrantType) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.logo, other.logo) &&
-            Objects.deepEquals(this.authorizeUrl, other.authorizeUrl) &&
-            Objects.deepEquals(this.revokeUrl, other.revokeUrl) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.formFields, other.formFields) &&
-            Objects.deepEquals(this.configuration, other.configuration) &&
-            Objects.deepEquals(this.configurableResources, other.configurableResources) &&
-            Objects.deepEquals(this.resourceSchemaSupport, other.resourceSchemaSupport) &&
-            Objects.deepEquals(this.resourceSettingsSupport, other.resourceSettingsSupport) &&
-            Objects.deepEquals(this.validationSupport, other.validationSupport) &&
-            Objects.deepEquals(this.schemaSupport, other.schemaSupport) &&
-            Objects.deepEquals(this.settingsRequiredForAuthorization, other.settingsRequiredForAuthorization) &&
-            Objects.deepEquals(this.subscriptions, other.subscriptions) &&
-            Objects.deepEquals(this.hasGuide, other.hasGuide) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.tagLine, other.tagLine) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.integrationState, other.integrationState) &&
+            Utils.enhancedDeepEquals(this.authType, other.authType) &&
+            Utils.enhancedDeepEquals(this.oauthGrantType, other.oauthGrantType) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.logo, other.logo) &&
+            Utils.enhancedDeepEquals(this.authorizeUrl, other.authorizeUrl) &&
+            Utils.enhancedDeepEquals(this.revokeUrl, other.revokeUrl) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.formFields, other.formFields) &&
+            Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
+            Utils.enhancedDeepEquals(this.configurableResources, other.configurableResources) &&
+            Utils.enhancedDeepEquals(this.resourceSchemaSupport, other.resourceSchemaSupport) &&
+            Utils.enhancedDeepEquals(this.resourceSettingsSupport, other.resourceSettingsSupport) &&
+            Utils.enhancedDeepEquals(this.validationSupport, other.validationSupport) &&
+            Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
+            Utils.enhancedDeepEquals(this.settingsRequiredForAuthorization, other.settingsRequiredForAuthorization) &&
+            Utils.enhancedDeepEquals(this.subscriptions, other.subscriptions) &&
+            Utils.enhancedDeepEquals(this.hasGuide, other.hasGuide) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             serviceId,
             name,

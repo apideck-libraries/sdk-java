@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -347,20 +346,20 @@ public class SharedLink {
         }
         SharedLink other = (SharedLink) o;
         return 
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.downloadUrl, other.downloadUrl) &&
-            Objects.deepEquals(this.target, other.target) &&
-            Objects.deepEquals(this.scope, other.scope) &&
-            Objects.deepEquals(this.passwordProtected, other.passwordProtected) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.downloadUrl, other.downloadUrl) &&
+            Utils.enhancedDeepEquals(this.target, other.target) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.passwordProtected, other.passwordProtected) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             url,
             downloadUrl,
             target,

@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class BankFeedStatementInput {
@@ -371,20 +370,20 @@ public class BankFeedStatementInput {
         }
         BankFeedStatementInput other = (BankFeedStatementInput) o;
         return 
-            Objects.deepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.startBalance, other.startBalance) &&
-            Objects.deepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.endBalance, other.endBalance) &&
-            Objects.deepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.startBalance, other.startBalance) &&
+            Utils.enhancedDeepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.endBalance, other.endBalance) &&
+            Utils.enhancedDeepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bankFeedAccountId,
             status,
             startDate,

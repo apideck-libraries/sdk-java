@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SuppliersFilter {
@@ -236,17 +235,17 @@ public class SuppliersFilter {
         }
         SuppliersFilter other = (SuppliersFilter) o;
         return 
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyName,
             displayName,
             firstName,

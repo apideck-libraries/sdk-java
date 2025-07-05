@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -468,23 +467,23 @@ public class EmployeeJobInput {
         }
         EmployeeJobInput other = (EmployeeJobInput) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.role, other.role) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.compensationRate, other.compensationRate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.paymentUnit, other.paymentUnit) &&
-            Objects.deepEquals(this.hiredAt, other.hiredAt) &&
-            Objects.deepEquals(this.isPrimary, other.isPrimary) &&
-            Objects.deepEquals(this.isManager, other.isManager) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.location, other.location);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.role, other.role) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.compensationRate, other.compensationRate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.paymentUnit, other.paymentUnit) &&
+            Utils.enhancedDeepEquals(this.hiredAt, other.hiredAt) &&
+            Utils.enhancedDeepEquals(this.isPrimary, other.isPrimary) &&
+            Utils.enhancedDeepEquals(this.isManager, other.isManager) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.location, other.location);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             role,
             startDate,

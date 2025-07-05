@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1598,55 +1597,55 @@ public class ActivityInput {
         }
         ActivityInput other = (ActivityInput) o;
         return 
-            Objects.deepEquals(this.activityDatetime, other.activityDatetime) &&
-            Objects.deepEquals(this.durationSeconds, other.durationSeconds) &&
-            Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.opportunityId, other.opportunityId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.campaignId, other.campaignId) &&
-            Objects.deepEquals(this.caseId, other.caseId) &&
-            Objects.deepEquals(this.assetId, other.assetId) &&
-            Objects.deepEquals(this.contractId, other.contractId) &&
-            Objects.deepEquals(this.productId, other.productId) &&
-            Objects.deepEquals(this.solutionId, other.solutionId) &&
-            Objects.deepEquals(this.customObjectId, other.customObjectId) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.locationAddress, other.locationAddress) &&
-            Objects.deepEquals(this.allDayEvent, other.allDayEvent) &&
-            Objects.deepEquals(this.private_, other.private_) &&
-            Objects.deepEquals(this.groupEvent, other.groupEvent) &&
-            Objects.deepEquals(this.eventSubType, other.eventSubType) &&
-            Objects.deepEquals(this.groupEventType, other.groupEventType) &&
-            Objects.deepEquals(this.child, other.child) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.showAs, other.showAs) &&
-            Objects.deepEquals(this.done, other.done) &&
-            Objects.deepEquals(this.startDatetime, other.startDatetime) &&
-            Objects.deepEquals(this.endDatetime, other.endDatetime) &&
-            Objects.deepEquals(this.activityDate, other.activityDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.recurrent, other.recurrent) &&
-            Objects.deepEquals(this.reminderDatetime, other.reminderDatetime) &&
-            Objects.deepEquals(this.reminderSet, other.reminderSet) &&
-            Objects.deepEquals(this.videoConferenceUrl, other.videoConferenceUrl) &&
-            Objects.deepEquals(this.videoConferenceId, other.videoConferenceId) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.attendees, other.attendees) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.activityDatetime, other.activityDatetime) &&
+            Utils.enhancedDeepEquals(this.durationSeconds, other.durationSeconds) &&
+            Utils.enhancedDeepEquals(this.userId, other.userId) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.opportunityId, other.opportunityId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.campaignId, other.campaignId) &&
+            Utils.enhancedDeepEquals(this.caseId, other.caseId) &&
+            Utils.enhancedDeepEquals(this.assetId, other.assetId) &&
+            Utils.enhancedDeepEquals(this.contractId, other.contractId) &&
+            Utils.enhancedDeepEquals(this.productId, other.productId) &&
+            Utils.enhancedDeepEquals(this.solutionId, other.solutionId) &&
+            Utils.enhancedDeepEquals(this.customObjectId, other.customObjectId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.locationAddress, other.locationAddress) &&
+            Utils.enhancedDeepEquals(this.allDayEvent, other.allDayEvent) &&
+            Utils.enhancedDeepEquals(this.private_, other.private_) &&
+            Utils.enhancedDeepEquals(this.groupEvent, other.groupEvent) &&
+            Utils.enhancedDeepEquals(this.eventSubType, other.eventSubType) &&
+            Utils.enhancedDeepEquals(this.groupEventType, other.groupEventType) &&
+            Utils.enhancedDeepEquals(this.child, other.child) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.showAs, other.showAs) &&
+            Utils.enhancedDeepEquals(this.done, other.done) &&
+            Utils.enhancedDeepEquals(this.startDatetime, other.startDatetime) &&
+            Utils.enhancedDeepEquals(this.endDatetime, other.endDatetime) &&
+            Utils.enhancedDeepEquals(this.activityDate, other.activityDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.recurrent, other.recurrent) &&
+            Utils.enhancedDeepEquals(this.reminderDatetime, other.reminderDatetime) &&
+            Utils.enhancedDeepEquals(this.reminderSet, other.reminderSet) &&
+            Utils.enhancedDeepEquals(this.videoConferenceUrl, other.videoConferenceUrl) &&
+            Utils.enhancedDeepEquals(this.videoConferenceId, other.videoConferenceId) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             activityDatetime,
             durationSeconds,
             userId,

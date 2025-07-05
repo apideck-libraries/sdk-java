@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SocialLinks {
@@ -138,14 +137,14 @@ public class SocialLinks {
         }
         SocialLinks other = (SocialLinks) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             url,
             type);

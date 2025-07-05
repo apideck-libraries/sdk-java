@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ProfitAndLossFilter {
@@ -142,14 +141,14 @@ public class ProfitAndLossFilter {
         }
         ProfitAndLossFilter other = (ProfitAndLossFilter) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customerId,
             startDate,
             endDate);

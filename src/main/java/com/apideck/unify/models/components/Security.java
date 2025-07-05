@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class Security implements HasSecurity {
 
@@ -50,12 +49,12 @@ public class Security implements HasSecurity {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey);
+            Utils.enhancedDeepEquals(this.apiKey, other.apiKey);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             apiKey);
     }
     

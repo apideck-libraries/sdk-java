@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Deduction {
@@ -112,13 +111,13 @@ public class Deduction {
         }
         Deduction other = (Deduction) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             amount);
     }

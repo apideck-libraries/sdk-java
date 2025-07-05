@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FilesSearch {
@@ -141,14 +140,14 @@ public class FilesSearch {
         }
         FilesSearch other = (FilesSearch) o;
         return 
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.driveId, other.driveId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             query,
             driveId,
             passThrough);

@@ -17,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -820,33 +819,33 @@ public class TaxRate {
         }
         TaxRate other = (TaxRate) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.effectiveTaxRate, other.effectiveTaxRate) &&
-            Objects.deepEquals(this.totalTaxRate, other.totalTaxRate) &&
-            Objects.deepEquals(this.taxPayableAccountId, other.taxPayableAccountId) &&
-            Objects.deepEquals(this.taxRemittedAccountId, other.taxRemittedAccountId) &&
-            Objects.deepEquals(this.components, other.components) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.reportTaxType, other.reportTaxType) &&
-            Objects.deepEquals(this.originalTaxRateId, other.originalTaxRateId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.customFields, other.customFields);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.effectiveTaxRate, other.effectiveTaxRate) &&
+            Utils.enhancedDeepEquals(this.totalTaxRate, other.totalTaxRate) &&
+            Utils.enhancedDeepEquals(this.taxPayableAccountId, other.taxPayableAccountId) &&
+            Utils.enhancedDeepEquals(this.taxRemittedAccountId, other.taxRemittedAccountId) &&
+            Utils.enhancedDeepEquals(this.components, other.components) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.reportTaxType, other.reportTaxType) &&
+            Utils.enhancedDeepEquals(this.originalTaxRateId, other.originalTaxRateId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             code,

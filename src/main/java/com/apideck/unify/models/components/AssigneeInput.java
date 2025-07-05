@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class AssigneeInput {
 
@@ -58,12 +57,12 @@ public class AssigneeInput {
         }
         AssigneeInput other = (AssigneeInput) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     

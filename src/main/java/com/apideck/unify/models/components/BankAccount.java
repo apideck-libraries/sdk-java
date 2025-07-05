@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class BankAccount {
@@ -94,6 +93,13 @@ public class BankAccount {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("country")
+    private JsonNullable<String> country;
+
     @JsonCreator
     public BankAccount(
             @JsonProperty("bank_name") JsonNullable<String> bankName,
@@ -106,7 +112,8 @@ public class BankAccount {
             @JsonProperty("bsb_number") JsonNullable<String> bsbNumber,
             @JsonProperty("branch_identifier") JsonNullable<String> branchIdentifier,
             @JsonProperty("bank_code") JsonNullable<String> bankCode,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency) {
+            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
+            @JsonProperty("country") JsonNullable<String> country) {
         Utils.checkNotNull(bankName, "bankName");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(accountName, "accountName");
@@ -118,6 +125,7 @@ public class BankAccount {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
         Utils.checkNotNull(bankCode, "bankCode");
         Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(country, "country");
         this.bankName = bankName;
         this.accountNumber = accountNumber;
         this.accountName = accountName;
@@ -129,10 +137,11 @@ public class BankAccount {
         this.branchIdentifier = branchIdentifier;
         this.bankCode = bankCode;
         this.currency = currency;
+        this.country = country;
     }
     
     public BankAccount() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -223,6 +232,14 @@ public class BankAccount {
     @JsonIgnore
     public JsonNullable<Currency> currency() {
         return (JsonNullable<Currency>) currency;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonIgnore
+    public JsonNullable<String> country() {
+        return country;
     }
 
     public final static Builder builder() {
@@ -427,6 +444,24 @@ public class BankAccount {
         return this;
     }
 
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public BankAccount withCountry(String country) {
+        Utils.checkNotNull(country, "country");
+        this.country = JsonNullable.of(country);
+        return this;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public BankAccount withCountry(JsonNullable<String> country) {
+        Utils.checkNotNull(country, "country");
+        this.country = country;
+        return this;
+    }
+
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -438,22 +473,23 @@ public class BankAccount {
         }
         BankAccount other = (BankAccount) o;
         return 
-            Objects.deepEquals(this.bankName, other.bankName) &&
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.accountType, other.accountType) &&
-            Objects.deepEquals(this.iban, other.iban) &&
-            Objects.deepEquals(this.bic, other.bic) &&
-            Objects.deepEquals(this.routingNumber, other.routingNumber) &&
-            Objects.deepEquals(this.bsbNumber, other.bsbNumber) &&
-            Objects.deepEquals(this.branchIdentifier, other.branchIdentifier) &&
-            Objects.deepEquals(this.bankCode, other.bankCode) &&
-            Objects.deepEquals(this.currency, other.currency);
+            Utils.enhancedDeepEquals(this.bankName, other.bankName) &&
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.bic, other.bic) &&
+            Utils.enhancedDeepEquals(this.routingNumber, other.routingNumber) &&
+            Utils.enhancedDeepEquals(this.bsbNumber, other.bsbNumber) &&
+            Utils.enhancedDeepEquals(this.branchIdentifier, other.branchIdentifier) &&
+            Utils.enhancedDeepEquals(this.bankCode, other.bankCode) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bankName,
             accountNumber,
             accountName,
@@ -464,7 +500,8 @@ public class BankAccount {
             bsbNumber,
             branchIdentifier,
             bankCode,
-            currency);
+            currency,
+            country);
     }
     
     @Override
@@ -480,7 +517,8 @@ public class BankAccount {
                 "bsbNumber", bsbNumber,
                 "branchIdentifier", branchIdentifier,
                 "bankCode", bankCode,
-                "currency", currency);
+                "currency", currency,
+                "country", country);
     }
     
     public final static class Builder {
@@ -506,6 +544,8 @@ public class BankAccount {
         private JsonNullable<String> bankCode = JsonNullable.undefined();
  
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+ 
+        private JsonNullable<String> country = JsonNullable.undefined();
         
         private Builder() {
           // force use of static builder() method
@@ -708,6 +748,24 @@ public class BankAccount {
             this.currency = currency;
             return this;
         }
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(String country) {
+            Utils.checkNotNull(country, "country");
+            this.country = JsonNullable.of(country);
+            return this;
+        }
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(JsonNullable<String> country) {
+            Utils.checkNotNull(country, "country");
+            this.country = country;
+            return this;
+        }
         
         public BankAccount build() {
             return new BankAccount(
@@ -721,7 +779,8 @@ public class BankAccount {
                 bsbNumber,
                 branchIdentifier,
                 bankCode,
-                currency);
+                currency,
+                country);
         }
     }
 }

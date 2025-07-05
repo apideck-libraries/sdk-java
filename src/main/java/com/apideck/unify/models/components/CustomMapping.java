@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -365,20 +364,20 @@ public class CustomMapping {
         }
         CustomMapping other = (CustomMapping) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.customField, other.customField) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.example, other.example);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.customField, other.customField) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.example, other.example);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             label,
             description,

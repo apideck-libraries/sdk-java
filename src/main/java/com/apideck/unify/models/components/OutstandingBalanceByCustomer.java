@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class OutstandingBalanceByCustomer {
@@ -138,14 +137,14 @@ public class OutstandingBalanceByCustomer {
         }
         OutstandingBalanceByCustomer other = (OutstandingBalanceByCustomer) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.customerName, other.customerName) &&
-            Objects.deepEquals(this.outstandingBalancesByCurrency, other.outstandingBalancesByCurrency);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.customerName, other.customerName) &&
+            Utils.enhancedDeepEquals(this.outstandingBalancesByCurrency, other.outstandingBalancesByCurrency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             customerId,
             customerName,
             outstandingBalancesByCurrency);

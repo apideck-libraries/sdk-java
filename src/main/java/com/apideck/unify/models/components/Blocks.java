@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Blocks {
@@ -87,13 +86,13 @@ public class Blocks {
         }
         Blocks other = (Blocks) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.content, other.content);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.content, other.content);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             content);
     }

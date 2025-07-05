@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Tax {
@@ -149,14 +148,14 @@ public class Tax {
         }
         Tax other = (Tax) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.employer, other.employer) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.employer, other.employer) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             employer,
             amount);

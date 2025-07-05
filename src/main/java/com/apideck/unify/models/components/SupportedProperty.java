@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SupportedProperty {
@@ -114,13 +113,13 @@ public class SupportedProperty {
         }
         SupportedProperty other = (SupportedProperty) o;
         return 
-            Objects.deepEquals(this.unifiedProperty, other.unifiedProperty) &&
-            Objects.deepEquals(this.childProperties, other.childProperties);
+            Utils.enhancedDeepEquals(this.unifiedProperty, other.unifiedProperty) &&
+            Utils.enhancedDeepEquals(this.childProperties, other.childProperties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             unifiedProperty,
             childProperties);
     }

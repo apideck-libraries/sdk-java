@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AccountingAttachmentsDeleteRequest {
@@ -262,18 +261,18 @@ public class AccountingAttachmentsDeleteRequest {
         }
         AccountingAttachmentsDeleteRequest other = (AccountingAttachmentsDeleteRequest) o;
         return 
-            Objects.deepEquals(this.referenceType, other.referenceType) &&
-            Objects.deepEquals(this.referenceId, other.referenceId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.referenceType, other.referenceType) &&
+            Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             referenceType,
             referenceId,
             id,

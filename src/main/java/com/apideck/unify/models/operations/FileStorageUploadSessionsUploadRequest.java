@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FileStorageUploadSessionsUploadRequest {
@@ -288,19 +287,19 @@ public class FileStorageUploadSessionsUploadRequest {
         }
         FileStorageUploadSessionsUploadRequest other = (FileStorageUploadSessionsUploadRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.partNumber, other.partNumber) &&
-            Objects.deepEquals(this.digest, other.digest) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.partNumber, other.partNumber) &&
+            Utils.enhancedDeepEquals(this.digest, other.digest) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             consumerId,
             appId,

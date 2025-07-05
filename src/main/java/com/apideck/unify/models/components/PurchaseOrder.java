@@ -19,7 +19,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1355,49 +1354,49 @@ public class PurchaseOrder {
         }
         PurchaseOrder other = (PurchaseOrder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.poNumber, other.poNumber) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.issuedDate, other.issuedDate) &&
-            Objects.deepEquals(this.deliveryDate, other.deliveryDate) &&
-            Objects.deepEquals(this.expectedArrivalDate, other.expectedArrivalDate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.templateId, other.templateId) &&
-            Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.issuedDate, other.issuedDate) &&
+            Utils.enhancedDeepEquals(this.deliveryDate, other.deliveryDate) &&
+            Utils.enhancedDeepEquals(this.expectedArrivalDate, other.expectedArrivalDate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
+            Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             downstreamId,
             poNumber,

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Defaults {
@@ -140,15 +139,15 @@ public class Defaults {
         }
         Defaults other = (Defaults) o;
         return 
-            Objects.deepEquals(this.target, other.target) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.target, other.target) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             target,
             id,
             options,

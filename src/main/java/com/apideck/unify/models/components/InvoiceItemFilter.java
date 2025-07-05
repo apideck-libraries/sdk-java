@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class InvoiceItemFilter {
@@ -74,12 +73,12 @@ public class InvoiceItemFilter {
         }
         InvoiceItemFilter other = (InvoiceItemFilter) o;
         return 
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type);
     }
     

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -260,18 +259,18 @@ public class AccountingAttachmentsDownloadRequest {
         }
         AccountingAttachmentsDownloadRequest other = (AccountingAttachmentsDownloadRequest) o;
         return 
-            Objects.deepEquals(this.referenceType, other.referenceType) &&
-            Objects.deepEquals(this.referenceId, other.referenceId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.referenceType, other.referenceType) &&
+            Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             referenceType,
             referenceId,
             id,

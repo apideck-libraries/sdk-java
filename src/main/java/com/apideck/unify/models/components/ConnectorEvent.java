@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -216,16 +215,16 @@ public class ConnectorEvent {
         }
         ConnectorEvent other = (ConnectorEvent) o;
         return 
-            Objects.deepEquals(this.eventType, other.eventType) &&
-            Objects.deepEquals(this.eventSource, other.eventSource) &&
-            Objects.deepEquals(this.downstreamEventType, other.downstreamEventType) &&
-            Objects.deepEquals(this.resources, other.resources) &&
-            Objects.deepEquals(this.entityType, other.entityType);
+            Utils.enhancedDeepEquals(this.eventType, other.eventType) &&
+            Utils.enhancedDeepEquals(this.eventSource, other.eventSource) &&
+            Utils.enhancedDeepEquals(this.downstreamEventType, other.downstreamEventType) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources) &&
+            Utils.enhancedDeepEquals(this.entityType, other.entityType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             eventType,
             eventSource,
             downstreamEventType,

@@ -14,7 +14,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -184,15 +183,15 @@ public class ConnectorConnectorsAllRequest {
         }
         ConnectorConnectorsAllRequest other = (ConnectorConnectorsAllRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.filter, other.filter);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             appId,
             cursor,
             limit,

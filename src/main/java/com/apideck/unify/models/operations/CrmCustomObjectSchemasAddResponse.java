@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CrmCustomObjectSchemasAddResponse implements Response {
@@ -191,16 +190,16 @@ public class CrmCustomObjectSchemasAddResponse implements Response {
         }
         CrmCustomObjectSchemasAddResponse other = (CrmCustomObjectSchemasAddResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.createCustomObjectSchemaResponse, other.createCustomObjectSchemaResponse) &&
-            Objects.deepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.createCustomObjectSchemaResponse, other.createCustomObjectSchemaResponse) &&
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             contentType,
             statusCode,
             rawResponse,

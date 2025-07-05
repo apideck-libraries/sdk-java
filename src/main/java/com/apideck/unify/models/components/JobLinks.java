@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class JobLinks {
@@ -89,13 +88,13 @@ public class JobLinks {
         }
         JobLinks other = (JobLinks) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             url);
     }

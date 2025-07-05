@@ -18,7 +18,6 @@ import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AgedCreditors {
@@ -215,16 +214,16 @@ public class AgedCreditors {
         }
         AgedCreditors other = (AgedCreditors) o;
         return 
-            Objects.deepEquals(this.reportGeneratedAt, other.reportGeneratedAt) &&
-            Objects.deepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
-            Objects.deepEquals(this.periodCount, other.periodCount) &&
-            Objects.deepEquals(this.periodLength, other.periodLength) &&
-            Objects.deepEquals(this.outstandingBalances, other.outstandingBalances);
+            Utils.enhancedDeepEquals(this.reportGeneratedAt, other.reportGeneratedAt) &&
+            Utils.enhancedDeepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
+            Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
+            Utils.enhancedDeepEquals(this.periodLength, other.periodLength) &&
+            Utils.enhancedDeepEquals(this.outstandingBalances, other.outstandingBalances);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reportGeneratedAt,
             reportAsOfDate,
             periodCount,

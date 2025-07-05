@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AttachmentReference {
@@ -101,13 +100,13 @@ public class AttachmentReference {
         }
         AttachmentReference other = (AttachmentReference) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             id);
     }

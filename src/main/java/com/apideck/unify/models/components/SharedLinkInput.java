@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -224,16 +223,16 @@ public class SharedLinkInput {
         }
         SharedLinkInput other = (SharedLinkInput) o;
         return 
-            Objects.deepEquals(this.downloadUrl, other.downloadUrl) &&
-            Objects.deepEquals(this.targetId, other.targetId) &&
-            Objects.deepEquals(this.scope, other.scope) &&
-            Objects.deepEquals(this.password, other.password) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.downloadUrl, other.downloadUrl) &&
+            Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.password, other.password) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             downloadUrl,
             targetId,
             scope,

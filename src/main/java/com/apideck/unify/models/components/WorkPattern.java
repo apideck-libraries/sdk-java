@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class WorkPattern {
@@ -90,13 +89,13 @@ public class WorkPattern {
         }
         WorkPattern other = (WorkPattern) o;
         return 
-            Objects.deepEquals(this.oddWeeks, other.oddWeeks) &&
-            Objects.deepEquals(this.evenWeeks, other.evenWeeks);
+            Utils.enhancedDeepEquals(this.oddWeeks, other.oddWeeks) &&
+            Utils.enhancedDeepEquals(this.evenWeeks, other.evenWeeks);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             oddWeeks,
             evenWeeks);
     }

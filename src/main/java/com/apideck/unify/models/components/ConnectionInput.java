@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -217,16 +216,16 @@ public class ConnectionInput {
         }
         ConnectionInput other = (ConnectionInput) o;
         return 
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.configuration, other.configuration) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             enabled,
             settings,
             metadata,

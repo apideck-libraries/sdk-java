@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -502,24 +501,24 @@ public class Attachment {
         }
         Attachment other = (Attachment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.parentFolderId, other.parentFolderId) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             displayId,
             name,

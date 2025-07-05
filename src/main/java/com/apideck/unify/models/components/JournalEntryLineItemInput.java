@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -530,25 +529,25 @@ public class JournalEntryLineItemInput {
         }
         JournalEntryLineItemInput other = (JournalEntryLineItemInput) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             taxAmount,
             subTotal,

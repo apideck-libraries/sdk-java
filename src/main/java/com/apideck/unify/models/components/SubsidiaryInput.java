@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -224,16 +223,16 @@ public class SubsidiaryInput {
         }
         SubsidiaryInput other = (SubsidiaryInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             parentId,
             name,
             status,

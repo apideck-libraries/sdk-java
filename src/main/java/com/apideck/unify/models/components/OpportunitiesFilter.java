@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class OpportunitiesFilter {
@@ -283,18 +282,18 @@ public class OpportunitiesFilter {
         }
         OpportunitiesFilter other = (OpportunitiesFilter) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.monetaryAmount, other.monetaryAmount) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.primaryContactId, other.primaryContactId);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.primaryContactId, other.primaryContactId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             status,
             monetaryAmount,

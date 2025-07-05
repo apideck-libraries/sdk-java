@@ -12,7 +12,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ContactsSort {
@@ -112,13 +111,13 @@ public class ContactsSort {
         }
         ContactsSort other = (ContactsSort) o;
         return 
-            Objects.deepEquals(this.by, other.by) &&
-            Objects.deepEquals(this.direction, other.direction);
+            Utils.enhancedDeepEquals(this.by, other.by) &&
+            Utils.enhancedDeepEquals(this.direction, other.direction);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             by,
             direction);
     }

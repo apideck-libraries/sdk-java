@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ProbationPeriod {
@@ -112,13 +111,13 @@ public class ProbationPeriod {
         }
         ProbationPeriod other = (ProbationPeriod) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startDate,
             endDate);
     }

@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1416,53 +1415,53 @@ public class Job {
         }
         Job other = (Job) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.slug, other.slug) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.sequence, other.sequence) &&
-            Objects.deepEquals(this.visibility, other.visibility) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.employmentTerms, other.employmentTerms) &&
-            Objects.deepEquals(this.experience, other.experience) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.remote, other.remote) &&
-            Objects.deepEquals(this.requisitionId, other.requisitionId) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.branch, other.branch) &&
-            Objects.deepEquals(this.recruiters, other.recruiters) &&
-            Objects.deepEquals(this.hiringManagers, other.hiringManagers) &&
-            Objects.deepEquals(this.followers, other.followers) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.descriptionHtml, other.descriptionHtml) &&
-            Objects.deepEquals(this.blocks, other.blocks) &&
-            Objects.deepEquals(this.closing, other.closing) &&
-            Objects.deepEquals(this.closingHtml, other.closingHtml) &&
-            Objects.deepEquals(this.closingDate, other.closingDate) &&
-            Objects.deepEquals(this.salary, other.salary) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.jobPortalUrl, other.jobPortalUrl) &&
-            Objects.deepEquals(this.recordUrl, other.recordUrl) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.confidential, other.confidential) &&
-            Objects.deepEquals(this.availableToEmployees, other.availableToEmployees) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.publishedAt, other.publishedAt) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.slug, other.slug) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.sequence, other.sequence) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.employmentTerms, other.employmentTerms) &&
+            Utils.enhancedDeepEquals(this.experience, other.experience) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.remote, other.remote) &&
+            Utils.enhancedDeepEquals(this.requisitionId, other.requisitionId) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.branch, other.branch) &&
+            Utils.enhancedDeepEquals(this.recruiters, other.recruiters) &&
+            Utils.enhancedDeepEquals(this.hiringManagers, other.hiringManagers) &&
+            Utils.enhancedDeepEquals(this.followers, other.followers) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.descriptionHtml, other.descriptionHtml) &&
+            Utils.enhancedDeepEquals(this.blocks, other.blocks) &&
+            Utils.enhancedDeepEquals(this.closing, other.closing) &&
+            Utils.enhancedDeepEquals(this.closingHtml, other.closingHtml) &&
+            Utils.enhancedDeepEquals(this.closingDate, other.closingDate) &&
+            Utils.enhancedDeepEquals(this.salary, other.salary) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.jobPortalUrl, other.jobPortalUrl) &&
+            Utils.enhancedDeepEquals(this.recordUrl, other.recordUrl) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.confidential, other.confidential) &&
+            Utils.enhancedDeepEquals(this.availableToEmployees, other.availableToEmployees) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.publishedAt, other.publishedAt) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             slug,
             title,

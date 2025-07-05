@@ -14,7 +14,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -281,18 +280,18 @@ public class CrmContactsOneRequest {
         }
         CrmContactsOneRequest other = (CrmContactsOneRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.filter, other.filter);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             consumerId,
             appId,

@@ -70,7 +70,7 @@ public class CrmCompaniesAddOperation implements RequestOperation<CrmCompaniesAd
                 new TypeReference<CrmCompaniesAddRequest>() {});
         SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                 convertedRequest, 
-                "company",
+                "company1",
                 "json",
                 false);
         if (serializedRequestBody == null) {

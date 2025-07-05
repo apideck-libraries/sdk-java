@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -177,16 +176,16 @@ public class ApplicationInput {
         }
         ApplicationInput other = (ApplicationInput) o;
         return 
-            Objects.deepEquals(this.applicantId, other.applicantId) &&
-            Objects.deepEquals(this.jobId, other.jobId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.stage, other.stage) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.applicantId, other.applicantId) &&
+            Utils.enhancedDeepEquals(this.jobId, other.jobId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.stage, other.stage) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             applicantId,
             jobId,
             status,

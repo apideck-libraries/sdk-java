@@ -14,7 +14,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -247,17 +246,17 @@ public class OtherIncome {
         }
         OtherIncome other = (OtherIncome) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.records, other.records);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.records, other.records);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             code,
             title,

@@ -16,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -535,25 +534,25 @@ public class EcommerceCustomer {
         }
         EcommerceCustomer other = (EcommerceCustomer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.orders, other.orders) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.orders, other.orders) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             firstName,

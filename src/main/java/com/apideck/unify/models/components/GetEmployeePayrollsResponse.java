@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -239,18 +238,18 @@ public class GetEmployeePayrollsResponse {
         }
         GetEmployeePayrollsResponse other = (GetEmployeePayrollsResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             statusCode,
             status,
             service,

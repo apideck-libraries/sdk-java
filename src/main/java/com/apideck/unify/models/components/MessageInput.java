@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class MessageInput {
@@ -365,21 +364,21 @@ public class MessageInput {
         }
         MessageInput other = (MessageInput) o;
         return 
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.to, other.to) &&
-            Objects.deepEquals(this.subject, other.subject) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.messagingServiceId, other.messagingServiceId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.to, other.to) &&
+            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.messagingServiceId, other.messagingServiceId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             from,
             to,
             subject,

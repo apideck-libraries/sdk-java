@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1436,51 +1435,51 @@ public class InvoiceInput {
         }
         InvoiceInput other = (InvoiceInput) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.invoiceDate, other.invoiceDate) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.terms, other.terms) &&
-            Objects.deepEquals(this.poNumber, other.poNumber) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.invoiceSent, other.invoiceSent) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
-            Objects.deepEquals(this.discountAmount, other.discountAmount) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.deposit, other.deposit) &&
-            Objects.deepEquals(this.customerMemo, other.customerMemo) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.templateId, other.templateId) &&
-            Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
-            Objects.deepEquals(this.paymentAllocations, other.paymentAllocations) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.invoiceDate, other.invoiceDate) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.invoiceSent, other.invoiceSent) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.deposit, other.deposit) &&
+            Utils.enhancedDeepEquals(this.customerMemo, other.customerMemo) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
+            Utils.enhancedDeepEquals(this.paymentAllocations, other.paymentAllocations) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type,
             number,
             customer,

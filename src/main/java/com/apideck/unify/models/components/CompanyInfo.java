@@ -18,7 +18,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -129,6 +128,13 @@ public class CompanyInfo {
     private JsonNullable<? extends Map<String, Object>> customMappings;
 
     /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking_categories_enabled")
+    private Optional<Boolean> trackingCategoriesEnabled;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -182,6 +188,7 @@ public class CompanyInfo {
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
+            @JsonProperty("tracking_categories_enabled") Optional<Boolean> trackingCategoriesEnabled,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -204,6 +211,7 @@ public class CompanyInfo {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -226,6 +234,7 @@ public class CompanyInfo {
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
         this.customMappings = customMappings;
+        this.trackingCategoriesEnabled = trackingCategoriesEnabled;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -234,7 +243,7 @@ public class CompanyInfo {
     }
     
     public CompanyInfo() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -364,6 +373,14 @@ public class CompanyInfo {
     @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
         return (JsonNullable<Map<String, Object>>) customMappings;
+    }
+
+    /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    @JsonIgnore
+    public Optional<Boolean> trackingCategoriesEnabled() {
+        return trackingCategoriesEnabled;
     }
 
     /**
@@ -687,6 +704,24 @@ public class CompanyInfo {
     }
 
     /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
+        return this;
+    }
+
+    /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        this.trackingCategoriesEnabled = trackingCategoriesEnabled;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public CompanyInfo withRowVersion(String rowVersion) {
@@ -787,33 +822,34 @@ public class CompanyInfo {
         }
         CompanyInfo other = (CompanyInfo) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.legalName, other.legalName) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.salesTaxNumber, other.salesTaxNumber) &&
-            Objects.deepEquals(this.automatedSalesTax, other.automatedSalesTax) &&
-            Objects.deepEquals(this.salesTaxEnabled, other.salesTaxEnabled) &&
-            Objects.deepEquals(this.defaultSalesTax, other.defaultSalesTax) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.fiscalYearStartMonth, other.fiscalYearStartMonth) &&
-            Objects.deepEquals(this.companyStartDate, other.companyStartDate) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.legalName, other.legalName) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.salesTaxNumber, other.salesTaxNumber) &&
+            Utils.enhancedDeepEquals(this.automatedSalesTax, other.automatedSalesTax) &&
+            Utils.enhancedDeepEquals(this.salesTaxEnabled, other.salesTaxEnabled) &&
+            Utils.enhancedDeepEquals(this.defaultSalesTax, other.defaultSalesTax) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.fiscalYearStartMonth, other.fiscalYearStartMonth) &&
+            Utils.enhancedDeepEquals(this.companyStartDate, other.companyStartDate) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.trackingCategoriesEnabled, other.trackingCategoriesEnabled) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             companyName,
             status,
@@ -831,6 +867,7 @@ public class CompanyInfo {
             phoneNumbers,
             emails,
             customMappings,
+            trackingCategoriesEnabled,
             rowVersion,
             updatedBy,
             createdBy,
@@ -858,6 +895,7 @@ public class CompanyInfo {
                 "phoneNumbers", phoneNumbers,
                 "emails", emails,
                 "customMappings", customMappings,
+                "trackingCategoriesEnabled", trackingCategoriesEnabled,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
@@ -900,6 +938,8 @@ public class CompanyInfo {
         private Optional<? extends List<Email>> emails = Optional.empty();
  
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+ 
+        private Optional<Boolean> trackingCategoriesEnabled = Optional.empty();
  
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
  
@@ -1192,6 +1232,24 @@ public class CompanyInfo {
         }
 
         /**
+         * Whether tracking categories are enabled for the company on transactions
+         */
+        public Builder trackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
+            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+            this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
+            return this;
+        }
+
+        /**
+         * Whether tracking categories are enabled for the company on transactions
+         */
+        public Builder trackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
+            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+            this.trackingCategoriesEnabled = trackingCategoriesEnabled;
+            return this;
+        }
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -1300,6 +1358,7 @@ public class CompanyInfo {
                 phoneNumbers,
                 emails,
                 customMappings,
+                trackingCategoriesEnabled,
                 rowVersion,
                 updatedBy,
                 createdBy,

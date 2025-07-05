@@ -13,7 +13,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class EmployeeCompensation {
@@ -333,19 +332,19 @@ public class EmployeeCompensation {
         }
         EmployeeCompensation other = (EmployeeCompensation) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.jobId, other.jobId) &&
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.paymentUnit, other.paymentUnit) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.flsaStatus, other.flsaStatus) &&
-            Objects.deepEquals(this.effectiveDate, other.effectiveDate) &&
-            Objects.deepEquals(this.paymentFrequency, other.paymentFrequency);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.jobId, other.jobId) &&
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.paymentUnit, other.paymentUnit) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.flsaStatus, other.flsaStatus) &&
+            Utils.enhancedDeepEquals(this.effectiveDate, other.effectiveDate) &&
+            Utils.enhancedDeepEquals(this.paymentFrequency, other.paymentFrequency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             jobId,
             rate,

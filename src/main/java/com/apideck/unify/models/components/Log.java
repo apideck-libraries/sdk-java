@@ -14,7 +14,6 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -637,32 +636,32 @@ public class Log {
         }
         Log other = (Log) o;
         return 
-            Objects.deepEquals(this.apiStyle, other.apiStyle) &&
-            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
-            Objects.deepEquals(this.childRequest, other.childRequest) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.duration, other.duration) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage) &&
-            Objects.deepEquals(this.execution, other.execution) &&
-            Objects.deepEquals(this.hasChildren, other.hasChildren) &&
-            Objects.deepEquals(this.httpMethod, other.httpMethod) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.latency, other.latency) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.sandbox, other.sandbox) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.sourceIp, other.sourceIp) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi);
+            Utils.enhancedDeepEquals(this.apiStyle, other.apiStyle) &&
+            Utils.enhancedDeepEquals(this.baseUrl, other.baseUrl) &&
+            Utils.enhancedDeepEquals(this.childRequest, other.childRequest) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.duration, other.duration) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage) &&
+            Utils.enhancedDeepEquals(this.execution, other.execution) &&
+            Utils.enhancedDeepEquals(this.hasChildren, other.hasChildren) &&
+            Utils.enhancedDeepEquals(this.httpMethod, other.httpMethod) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.latency, other.latency) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.sandbox, other.sandbox) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.sourceIp, other.sourceIp) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             apiStyle,
             baseUrl,
             childRequest,

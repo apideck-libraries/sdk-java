@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class LinkedConnectorResource {
@@ -221,16 +220,16 @@ public class LinkedConnectorResource {
         }
         LinkedConnectorResource other = (LinkedConnectorResource) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.downstreamName, other.downstreamName);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             status,

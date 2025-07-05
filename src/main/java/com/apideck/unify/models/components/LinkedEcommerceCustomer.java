@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -276,18 +275,18 @@ public class LinkedEcommerceCustomer {
         }
         LinkedEcommerceCustomer other = (LinkedEcommerceCustomer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             firstName,

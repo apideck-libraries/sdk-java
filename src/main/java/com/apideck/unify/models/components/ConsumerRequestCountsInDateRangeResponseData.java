@@ -13,7 +13,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class ConsumerRequestCountsInDateRangeResponseData {
@@ -186,17 +185,17 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         }
         ConsumerRequestCountsInDateRangeResponseData other = (ConsumerRequestCountsInDateRangeResponseData) o;
         return 
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.startDatetime, other.startDatetime) &&
-            Objects.deepEquals(this.endDatetime, other.endDatetime) &&
-            Objects.deepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
-            Objects.deepEquals(this.requestCounts, other.requestCounts);
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.startDatetime, other.startDatetime) &&
+            Utils.enhancedDeepEquals(this.endDatetime, other.endDatetime) &&
+            Utils.enhancedDeepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
+            Utils.enhancedDeepEquals(this.requestCounts, other.requestCounts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             applicationId,
             consumerId,
             startDatetime,

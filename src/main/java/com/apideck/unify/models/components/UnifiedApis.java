@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class UnifiedApis {
@@ -287,18 +286,18 @@ public class UnifiedApis {
         }
         UnifiedApis other = (UnifiedApis) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.authOnly, other.authOnly) &&
-            Objects.deepEquals(this.oauthScopes, other.oauthScopes) &&
-            Objects.deepEquals(this.supportedResources, other.supportedResources) &&
-            Objects.deepEquals(this.downstreamUnsupportedResources, other.downstreamUnsupportedResources) &&
-            Objects.deepEquals(this.supportedEvents, other.supportedEvents);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.authOnly, other.authOnly) &&
+            Utils.enhancedDeepEquals(this.oauthScopes, other.oauthScopes) &&
+            Utils.enhancedDeepEquals(this.supportedResources, other.supportedResources) &&
+            Utils.enhancedDeepEquals(this.downstreamUnsupportedResources, other.downstreamUnsupportedResources) &&
+            Utils.enhancedDeepEquals(this.supportedEvents, other.supportedEvents);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             authOnly,

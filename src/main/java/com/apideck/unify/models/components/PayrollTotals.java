@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -369,20 +368,20 @@ public class PayrollTotals {
         }
         PayrollTotals other = (PayrollTotals) o;
         return 
-            Objects.deepEquals(this.companyDebit, other.companyDebit) &&
-            Objects.deepEquals(this.taxDebit, other.taxDebit) &&
-            Objects.deepEquals(this.checkAmount, other.checkAmount) &&
-            Objects.deepEquals(this.netPay, other.netPay) &&
-            Objects.deepEquals(this.grossPay, other.grossPay) &&
-            Objects.deepEquals(this.employerTaxes, other.employerTaxes) &&
-            Objects.deepEquals(this.employeeTaxes, other.employeeTaxes) &&
-            Objects.deepEquals(this.employerBenefitContributions, other.employerBenefitContributions) &&
-            Objects.deepEquals(this.employeeBenefitDeductions, other.employeeBenefitDeductions);
+            Utils.enhancedDeepEquals(this.companyDebit, other.companyDebit) &&
+            Utils.enhancedDeepEquals(this.taxDebit, other.taxDebit) &&
+            Utils.enhancedDeepEquals(this.checkAmount, other.checkAmount) &&
+            Utils.enhancedDeepEquals(this.netPay, other.netPay) &&
+            Utils.enhancedDeepEquals(this.grossPay, other.grossPay) &&
+            Utils.enhancedDeepEquals(this.employerTaxes, other.employerTaxes) &&
+            Utils.enhancedDeepEquals(this.employeeTaxes, other.employeeTaxes) &&
+            Utils.enhancedDeepEquals(this.employerBenefitContributions, other.employerBenefitContributions) &&
+            Utils.enhancedDeepEquals(this.employeeBenefitDeductions, other.employeeBenefitDeductions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyDebit,
             taxDebit,
             checkAmount,

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -152,14 +151,14 @@ public class EcommerceDiscount {
         }
         EcommerceDiscount other = (EcommerceDiscount) o;
         return 
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.percentage, other.percentage);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.percentage, other.percentage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             code,
             amount,
             percentage);

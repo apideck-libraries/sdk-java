@@ -131,7 +131,7 @@ public class Application {
                     .title("CEO")
                     .language("EN")
                     .status("New")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
                     .fax("+12129876543")
                     .websites(List.of(
@@ -486,7 +486,7 @@ public class Application {
                     .title("CEO")
                     .language("EN")
                     .status("New")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
                     .fax("+12129876543")
                     .websites(List.of(

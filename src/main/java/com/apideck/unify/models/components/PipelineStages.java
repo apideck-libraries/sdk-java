@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class PipelineStages {
@@ -184,15 +183,15 @@ public class PipelineStages {
         }
         PipelineStages other = (PipelineStages) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.displayOrder, other.displayOrder);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             value,
             winProbability,

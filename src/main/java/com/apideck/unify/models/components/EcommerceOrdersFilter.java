@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EcommerceOrdersFilter {
@@ -177,15 +176,15 @@ public class EcommerceOrdersFilter {
         }
         EcommerceOrdersFilter other = (EcommerceOrdersFilter) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.createdSince, other.createdSince);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             customerId,
             updatedSince,

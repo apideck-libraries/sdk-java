@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -373,23 +372,23 @@ public class HrisCompanyInput {
         }
         HrisCompanyInput other = (HrisCompanyInput) o;
         return 
-            Objects.deepEquals(this.legalName, other.legalName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.subdomain, other.subdomain) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.companyNumber, other.companyNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.debtorId, other.debtorId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.legalName, other.legalName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.subdomain, other.subdomain) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.companyNumber, other.companyNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.debtorId, other.debtorId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             legalName,
             displayName,
             subdomain,

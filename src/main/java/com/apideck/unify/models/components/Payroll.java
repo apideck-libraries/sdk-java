@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -408,21 +407,21 @@ public class Payroll {
         }
         Payroll other = (Payroll) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.processed, other.processed) &&
-            Objects.deepEquals(this.processedDate, other.processedDate) &&
-            Objects.deepEquals(this.checkDate, other.checkDate) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.totals, other.totals) &&
-            Objects.deepEquals(this.compensations, other.compensations) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.processed, other.processed) &&
+            Utils.enhancedDeepEquals(this.processedDate, other.processedDate) &&
+            Utils.enhancedDeepEquals(this.checkDate, other.checkDate) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.totals, other.totals) &&
+            Utils.enhancedDeepEquals(this.compensations, other.compensations) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             companyId,
             processed,

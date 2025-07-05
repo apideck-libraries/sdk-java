@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CreateCallbackState {
@@ -75,12 +74,12 @@ public class CreateCallbackState {
         }
         CreateCallbackState other = (CreateCallbackState) o;
         return 
-            Objects.deepEquals(this.redirectUri, other.redirectUri);
+            Utils.enhancedDeepEquals(this.redirectUri, other.redirectUri);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             redirectUri);
     }
     

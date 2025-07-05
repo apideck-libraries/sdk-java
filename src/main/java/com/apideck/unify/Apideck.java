@@ -194,16 +194,17 @@ public class Apideck {
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
          *
-         * This is a convenience method that calls {@link HTTPClient#enableDebugLogging()}.
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
          *
          * @return The builder instance.
          */
-        public Builder enableHTTPDebugLogging() {
-            this.sdkConfiguration.client().enableDebugLogging();
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
             return this;
         }
+
         /**
          * Allows setting the consumerId parameter for all supported operations.
          *

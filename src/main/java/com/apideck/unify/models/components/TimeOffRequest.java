@@ -17,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -796,32 +795,32 @@ public class TimeOffRequest {
         }
         TimeOffRequest other = (TimeOffRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.policyId, other.policyId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.requestDate, other.requestDate) &&
-            Objects.deepEquals(this.requestType, other.requestType) &&
-            Objects.deepEquals(this.approvalDate, other.approvalDate) &&
-            Objects.deepEquals(this.units, other.units) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.dayPart, other.dayPart) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.policyType, other.policyType);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.policyId, other.policyId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.requestDate, other.requestDate) &&
+            Utils.enhancedDeepEquals(this.requestType, other.requestType) &&
+            Utils.enhancedDeepEquals(this.approvalDate, other.approvalDate) &&
+            Utils.enhancedDeepEquals(this.units, other.units) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.dayPart, other.dayPart) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.policyType, other.policyType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             employeeId,
             policyId,

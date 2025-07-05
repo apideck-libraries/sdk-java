@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class SimpleFormFieldOption implements FormFieldOption {
@@ -102,14 +101,14 @@ public class SimpleFormFieldOption implements FormFieldOption {
         }
         SimpleFormFieldOption other = (SimpleFormFieldOption) o;
         return 
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.optionType, other.optionType);
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.optionType, other.optionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             label,
             value,
             optionType);

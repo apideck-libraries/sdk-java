@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 
 public class BalanceByTransaction {
@@ -295,18 +294,18 @@ public class BalanceByTransaction {
         }
         BalanceByTransaction other = (BalanceByTransaction) o;
         return 
-            Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.transactionDate, other.transactionDate) &&
-            Objects.deepEquals(this.transactionType, other.transactionType) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.originalAmount, other.originalAmount) &&
-            Objects.deepEquals(this.outstandingBalance, other.outstandingBalance) &&
-            Objects.deepEquals(this.transactionNumber, other.transactionNumber);
+            Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.originalAmount, other.originalAmount) &&
+            Utils.enhancedDeepEquals(this.outstandingBalance, other.outstandingBalance) &&
+            Utils.enhancedDeepEquals(this.transactionNumber, other.transactionNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             transactionId,
             transactionDate,
             transactionType,

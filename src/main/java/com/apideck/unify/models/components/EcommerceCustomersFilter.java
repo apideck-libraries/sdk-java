@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EcommerceCustomersFilter {
@@ -107,13 +106,13 @@ public class EcommerceCustomersFilter {
         }
         EcommerceCustomersFilter other = (EcommerceCustomersFilter) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             email,
             phoneNumber);
     }

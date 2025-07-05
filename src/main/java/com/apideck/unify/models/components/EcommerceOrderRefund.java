@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -228,16 +227,16 @@ public class EcommerceOrderRefund {
         }
         EcommerceOrderRefund other = (EcommerceOrderRefund) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.reason, other.reason) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.reason, other.reason) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             amount,
             currency,

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -344,20 +343,20 @@ public class Variants {
         }
         Variants other = (Variants) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.price, other.price) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
-            Objects.deepEquals(this.weight, other.weight) &&
-            Objects.deepEquals(this.weightUnit, other.weightUnit) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.images, other.images);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.price, other.price) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
+            Utils.enhancedDeepEquals(this.weight, other.weight) &&
+            Utils.enhancedDeepEquals(this.weightUnit, other.weightUnit) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.images, other.images);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             price,

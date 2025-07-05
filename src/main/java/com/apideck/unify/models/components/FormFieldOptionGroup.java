@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FormFieldOptionGroup implements FormFieldOption {
@@ -119,15 +118,15 @@ public class FormFieldOptionGroup implements FormFieldOption {
         }
         FormFieldOptionGroup other = (FormFieldOptionGroup) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.optionType, other.optionType);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.optionType, other.optionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             label,
             options,

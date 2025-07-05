@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class TaxRatesFilter {
@@ -213,16 +212,16 @@ public class TaxRatesFilter {
         }
         TaxRatesFilter other = (TaxRatesFilter) o;
         return 
-            Objects.deepEquals(this.assets, other.assets) &&
-            Objects.deepEquals(this.equity, other.equity) &&
-            Objects.deepEquals(this.expenses, other.expenses) &&
-            Objects.deepEquals(this.liabilities, other.liabilities) &&
-            Objects.deepEquals(this.revenue, other.revenue);
+            Utils.enhancedDeepEquals(this.assets, other.assets) &&
+            Utils.enhancedDeepEquals(this.equity, other.equity) &&
+            Utils.enhancedDeepEquals(this.expenses, other.expenses) &&
+            Utils.enhancedDeepEquals(this.liabilities, other.liabilities) &&
+            Utils.enhancedDeepEquals(this.revenue, other.revenue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             assets,
             equity,
             expenses,

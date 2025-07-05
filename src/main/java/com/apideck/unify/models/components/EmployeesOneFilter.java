@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EmployeesOneFilter {
@@ -72,12 +71,12 @@ public class EmployeesOneFilter {
         }
         EmployeesOneFilter other = (EmployeesOneFilter) o;
         return 
-            Objects.deepEquals(this.companyId, other.companyId);
+            Utils.enhancedDeepEquals(this.companyId, other.companyId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyId);
     }
     

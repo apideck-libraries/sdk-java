@@ -17,7 +17,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -842,34 +841,34 @@ public class Message {
         }
         Message other = (Message) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.to, other.to) &&
-            Objects.deepEquals(this.subject, other.subject) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.numberOfUnits, other.numberOfUnits) &&
-            Objects.deepEquals(this.numberOfMediaFiles, other.numberOfMediaFiles) &&
-            Objects.deepEquals(this.direction, other.direction) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.sentAt, other.sentAt) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.price, other.price) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.messagingServiceId, other.messagingServiceId) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.to, other.to) &&
+            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.numberOfUnits, other.numberOfUnits) &&
+            Utils.enhancedDeepEquals(this.numberOfMediaFiles, other.numberOfMediaFiles) &&
+            Utils.enhancedDeepEquals(this.direction, other.direction) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.sentAt, other.sentAt) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.price, other.price) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.messagingServiceId, other.messagingServiceId) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             from,
             to,

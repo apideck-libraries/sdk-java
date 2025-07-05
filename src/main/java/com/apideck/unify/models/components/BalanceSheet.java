@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 
 public class BalanceSheet {
 
@@ -50,12 +49,12 @@ public class BalanceSheet {
         }
         BalanceSheet other = (BalanceSheet) o;
         return 
-            Objects.deepEquals(this.reports, other.reports);
+            Utils.enhancedDeepEquals(this.reports, other.reports);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reports);
     }
     

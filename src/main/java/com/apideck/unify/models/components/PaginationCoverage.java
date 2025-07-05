@@ -13,7 +13,6 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PaginationCoverage {
@@ -150,14 +149,14 @@ public class PaginationCoverage {
         }
         PaginationCoverage other = (PaginationCoverage) o;
         return 
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.pagingSupport, other.pagingSupport) &&
-            Objects.deepEquals(this.limitSupport, other.limitSupport);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.pagingSupport, other.pagingSupport) &&
+            Utils.enhancedDeepEquals(this.limitSupport, other.limitSupport);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             mode,
             pagingSupport,
             limitSupport);

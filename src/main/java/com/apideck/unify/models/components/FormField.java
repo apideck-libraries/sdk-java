@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -551,26 +550,26 @@ public class FormField {
         }
         FormField other = (FormField) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.placeholder, other.placeholder) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.customField, other.customField) &&
-            Objects.deepEquals(this.allowCustomValues, other.allowCustomValues) &&
-            Objects.deepEquals(this.disabled, other.disabled) &&
-            Objects.deepEquals(this.hidden, other.hidden) &&
-            Objects.deepEquals(this.deprecated, other.deprecated) &&
-            Objects.deepEquals(this.sensitive, other.sensitive) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.options, other.options);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.placeholder, other.placeholder) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.customField, other.customField) &&
+            Utils.enhancedDeepEquals(this.allowCustomValues, other.allowCustomValues) &&
+            Utils.enhancedDeepEquals(this.disabled, other.disabled) &&
+            Utils.enhancedDeepEquals(this.hidden, other.hidden) &&
+            Utils.enhancedDeepEquals(this.deprecated, other.deprecated) &&
+            Utils.enhancedDeepEquals(this.sensitive, other.sensitive) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.options, other.options);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             label,
             placeholder,

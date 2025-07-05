@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -193,15 +192,15 @@ public class WebhookSupport {
         }
         WebhookSupport other = (WebhookSupport) o;
         return 
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
-            Objects.deepEquals(this.managedVia, other.managedVia) &&
-            Objects.deepEquals(this.virtualWebhooks, other.virtualWebhooks);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
+            Utils.enhancedDeepEquals(this.managedVia, other.managedVia) &&
+            Utils.enhancedDeepEquals(this.virtualWebhooks, other.virtualWebhooks);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             mode,
             subscriptionLevel,
             managedVia,

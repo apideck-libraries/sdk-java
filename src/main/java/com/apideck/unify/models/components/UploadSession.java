@@ -14,7 +14,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -247,17 +246,17 @@ public class UploadSession {
         }
         UploadSession other = (UploadSession) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.partSize, other.partSize) &&
-            Objects.deepEquals(this.parallelUploadSupported, other.parallelUploadSupported) &&
-            Objects.deepEquals(this.uploadedByteRange, other.uploadedByteRange) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.partSize, other.partSize) &&
+            Utils.enhancedDeepEquals(this.parallelUploadSupported, other.parallelUploadSupported) &&
+            Utils.enhancedDeepEquals(this.uploadedByteRange, other.uploadedByteRange) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             success,
             partSize,

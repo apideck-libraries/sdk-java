@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -332,19 +331,19 @@ public class Theme {
         }
         Theme other = (Theme) o;
         return 
-            Objects.deepEquals(this.favicon, other.favicon) &&
-            Objects.deepEquals(this.logo, other.logo) &&
-            Objects.deepEquals(this.primaryColor, other.primaryColor) &&
-            Objects.deepEquals(this.sidepanelBackgroundColor, other.sidepanelBackgroundColor) &&
-            Objects.deepEquals(this.sidepanelTextColor, other.sidepanelTextColor) &&
-            Objects.deepEquals(this.vaultName, other.vaultName) &&
-            Objects.deepEquals(this.privacyUrl, other.privacyUrl) &&
-            Objects.deepEquals(this.termsUrl, other.termsUrl);
+            Utils.enhancedDeepEquals(this.favicon, other.favicon) &&
+            Utils.enhancedDeepEquals(this.logo, other.logo) &&
+            Utils.enhancedDeepEquals(this.primaryColor, other.primaryColor) &&
+            Utils.enhancedDeepEquals(this.sidepanelBackgroundColor, other.sidepanelBackgroundColor) &&
+            Utils.enhancedDeepEquals(this.sidepanelTextColor, other.sidepanelTextColor) &&
+            Utils.enhancedDeepEquals(this.vaultName, other.vaultName) &&
+            Utils.enhancedDeepEquals(this.privacyUrl, other.privacyUrl) &&
+            Utils.enhancedDeepEquals(this.termsUrl, other.termsUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             favicon,
             logo,
             primaryColor,

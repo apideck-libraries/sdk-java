@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Data {
@@ -273,20 +272,20 @@ public class Data {
         }
         Data other = (Data) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
-            Objects.deepEquals(this.requestCounts, other.requestCounts) &&
-            Objects.deepEquals(this.created, other.created) &&
-            Objects.deepEquals(this.modified, other.modified) &&
-            Objects.deepEquals(this.requestCountUpdated, other.requestCountUpdated) &&
-            Objects.deepEquals(this.services, other.services);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
+            Utils.enhancedDeepEquals(this.requestCounts, other.requestCounts) &&
+            Utils.enhancedDeepEquals(this.created, other.created) &&
+            Utils.enhancedDeepEquals(this.modified, other.modified) &&
+            Utils.enhancedDeepEquals(this.requestCountUpdated, other.requestCountUpdated) &&
+            Utils.enhancedDeepEquals(this.services, other.services);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerId,
             applicationId,
             metadata,

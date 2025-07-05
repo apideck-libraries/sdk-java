@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class VaultConnectionsAllRequest {
@@ -178,15 +177,15 @@ public class VaultConnectionsAllRequest {
         }
         VaultConnectionsAllRequest other = (VaultConnectionsAllRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.api, other.api) &&
-            Objects.deepEquals(this.configured, other.configured);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.api, other.api) &&
+            Utils.enhancedDeepEquals(this.configured, other.configured);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerId,
             appId,
             api,

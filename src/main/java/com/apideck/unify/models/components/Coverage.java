@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class Coverage {
@@ -360,20 +359,20 @@ public class Coverage {
         }
         Coverage other = (Coverage) o;
         return 
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.downstreamName, other.downstreamName) &&
-            Objects.deepEquals(this.paginationSupported, other.paginationSupported) &&
-            Objects.deepEquals(this.pagination, other.pagination) &&
-            Objects.deepEquals(this.supportedOperations, other.supportedOperations) &&
-            Objects.deepEquals(this.supportedFilters, other.supportedFilters) &&
-            Objects.deepEquals(this.supportedSortBy, other.supportedSortBy) &&
-            Objects.deepEquals(this.supportedFields, other.supportedFields) &&
-            Objects.deepEquals(this.supportedListFields, other.supportedListFields);
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName) &&
+            Utils.enhancedDeepEquals(this.paginationSupported, other.paginationSupported) &&
+            Utils.enhancedDeepEquals(this.pagination, other.pagination) &&
+            Utils.enhancedDeepEquals(this.supportedOperations, other.supportedOperations) &&
+            Utils.enhancedDeepEquals(this.supportedFilters, other.supportedFilters) &&
+            Utils.enhancedDeepEquals(this.supportedSortBy, other.supportedSortBy) &&
+            Utils.enhancedDeepEquals(this.supportedFields, other.supportedFields) &&
+            Utils.enhancedDeepEquals(this.supportedListFields, other.supportedListFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             downstreamId,
             downstreamName,
             paginationSupported,

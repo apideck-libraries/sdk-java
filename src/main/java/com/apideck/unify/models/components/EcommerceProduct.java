@@ -16,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -643,28 +642,28 @@ public class EcommerceProduct {
         }
         EcommerceProduct other = (EcommerceProduct) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.price, other.price) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
-            Objects.deepEquals(this.images, other.images) &&
-            Objects.deepEquals(this.weight, other.weight) &&
-            Objects.deepEquals(this.weightUnit, other.weightUnit) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.variants, other.variants) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.price, other.price) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
+            Utils.enhancedDeepEquals(this.images, other.images) &&
+            Utils.enhancedDeepEquals(this.weight, other.weight) &&
+            Utils.enhancedDeepEquals(this.weightUnit, other.weightUnit) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.variants, other.variants) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             description,

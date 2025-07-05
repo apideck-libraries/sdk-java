@@ -14,7 +14,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -347,21 +346,21 @@ public class Webhook {
         }
         Webhook other = (Webhook) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.disabledReason, other.disabledReason) &&
-            Objects.deepEquals(this.deliveryUrl, other.deliveryUrl) &&
-            Objects.deepEquals(this.executeBaseUrl, other.executeBaseUrl) &&
-            Objects.deepEquals(this.events, other.events) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.disabledReason, other.disabledReason) &&
+            Utils.enhancedDeepEquals(this.deliveryUrl, other.deliveryUrl) &&
+            Utils.enhancedDeepEquals(this.executeBaseUrl, other.executeBaseUrl) &&
+            Utils.enhancedDeepEquals(this.events, other.events) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             description,
             unifiedApi,

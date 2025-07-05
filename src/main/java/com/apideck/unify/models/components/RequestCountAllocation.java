@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class RequestCountAllocation {
@@ -112,14 +111,14 @@ public class RequestCountAllocation {
         }
         RequestCountAllocation other = (RequestCountAllocation) o;
         return 
-            Objects.deepEquals(this.unify, other.unify) &&
-            Objects.deepEquals(this.proxy, other.proxy) &&
-            Objects.deepEquals(this.vault, other.vault);
+            Utils.enhancedDeepEquals(this.unify, other.unify) &&
+            Utils.enhancedDeepEquals(this.proxy, other.proxy) &&
+            Utils.enhancedDeepEquals(this.vault, other.vault);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             unify,
             proxy,
             vault);

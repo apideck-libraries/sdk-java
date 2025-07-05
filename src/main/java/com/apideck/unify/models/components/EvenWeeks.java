@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class EvenWeeks {
@@ -208,18 +207,18 @@ public class EvenWeeks {
         }
         EvenWeeks other = (EvenWeeks) o;
         return 
-            Objects.deepEquals(this.hoursMonday, other.hoursMonday) &&
-            Objects.deepEquals(this.hoursTuesday, other.hoursTuesday) &&
-            Objects.deepEquals(this.hoursWednesday, other.hoursWednesday) &&
-            Objects.deepEquals(this.hoursThursday, other.hoursThursday) &&
-            Objects.deepEquals(this.hoursFriday, other.hoursFriday) &&
-            Objects.deepEquals(this.hoursSaturday, other.hoursSaturday) &&
-            Objects.deepEquals(this.hoursSunday, other.hoursSunday);
+            Utils.enhancedDeepEquals(this.hoursMonday, other.hoursMonday) &&
+            Utils.enhancedDeepEquals(this.hoursTuesday, other.hoursTuesday) &&
+            Utils.enhancedDeepEquals(this.hoursWednesday, other.hoursWednesday) &&
+            Utils.enhancedDeepEquals(this.hoursThursday, other.hoursThursday) &&
+            Utils.enhancedDeepEquals(this.hoursFriday, other.hoursFriday) &&
+            Utils.enhancedDeepEquals(this.hoursSaturday, other.hoursSaturday) &&
+            Utils.enhancedDeepEquals(this.hoursSunday, other.hoursSunday);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             hoursMonday,
             hoursTuesday,
             hoursWednesday,

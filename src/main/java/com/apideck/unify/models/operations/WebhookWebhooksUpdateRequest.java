@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class WebhookWebhooksUpdateRequest {
@@ -118,14 +117,14 @@ public class WebhookWebhooksUpdateRequest {
         }
         WebhookWebhooksUpdateRequest other = (WebhookWebhooksUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.updateWebhookRequest, other.updateWebhookRequest);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.updateWebhookRequest, other.updateWebhookRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             appId,
             updateWebhookRequest);

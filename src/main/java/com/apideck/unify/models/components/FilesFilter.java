@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class FilesFilter {
@@ -143,14 +142,14 @@ public class FilesFilter {
         }
         FilesFilter other = (FilesFilter) o;
         return 
-            Objects.deepEquals(this.driveId, other.driveId) &&
-            Objects.deepEquals(this.folderId, other.folderId) &&
-            Objects.deepEquals(this.shared, other.shared);
+            Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
+            Utils.enhancedDeepEquals(this.folderId, other.folderId) &&
+            Utils.enhancedDeepEquals(this.shared, other.shared);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             driveId,
             folderId,
             shared);

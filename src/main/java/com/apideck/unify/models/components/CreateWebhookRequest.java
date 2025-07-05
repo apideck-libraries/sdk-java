@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class CreateWebhookRequest {
@@ -184,16 +183,16 @@ public class CreateWebhookRequest {
         }
         CreateWebhookRequest other = (CreateWebhookRequest) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.deliveryUrl, other.deliveryUrl) &&
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.deliveryUrl, other.deliveryUrl) &&
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             description,
             unifiedApi,
             status,

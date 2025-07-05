@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class WebhookSupportResources {
@@ -66,12 +65,12 @@ public class WebhookSupportResources {
         }
         WebhookSupportResources other = (WebhookSupportResources) o;
         return 
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             events);
     }
     

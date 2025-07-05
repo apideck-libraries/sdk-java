@@ -12,7 +12,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class BalanceSheetFilter {
@@ -193,15 +192,15 @@ public class BalanceSheetFilter {
         }
         BalanceSheetFilter other = (BalanceSheetFilter) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.periodCount, other.periodCount) &&
-            Objects.deepEquals(this.periodType, other.periodType);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
+            Utils.enhancedDeepEquals(this.periodType, other.periodType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startDate,
             endDate,
             periodCount,

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * RequestRate
@@ -116,14 +115,14 @@ public class RequestRate {
         }
         RequestRate other = (RequestRate) o;
         return 
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.unit, other.unit);
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.unit, other.unit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             rate,
             size,
             unit);

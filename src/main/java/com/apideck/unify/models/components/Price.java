@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -131,14 +130,14 @@ public class Price {
         }
         Price other = (Price) o;
         return 
-            Objects.deepEquals(this.perUnit, other.perUnit) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.currency, other.currency);
+            Utils.enhancedDeepEquals(this.perUnit, other.perUnit) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             perUnit,
             totalAmount,
             currency);

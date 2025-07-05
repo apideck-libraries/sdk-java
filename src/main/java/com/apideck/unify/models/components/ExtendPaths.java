@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class ExtendPaths {
 
@@ -85,13 +84,13 @@ public class ExtendPaths {
         }
         ExtendPaths other = (ExtendPaths) o;
         return 
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             path,
             value);
     }

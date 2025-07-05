@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -443,22 +442,22 @@ public class Api {
         }
         Api other = (Api) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.specUrl, other.specUrl) &&
-            Objects.deepEquals(this.apiReferenceUrl, other.apiReferenceUrl) &&
-            Objects.deepEquals(this.postmanCollectionId, other.postmanCollectionId) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.resources, other.resources) &&
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.specUrl, other.specUrl) &&
+            Utils.enhancedDeepEquals(this.apiReferenceUrl, other.apiReferenceUrl) &&
+            Utils.enhancedDeepEquals(this.postmanCollectionId, other.postmanCollectionId) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources) &&
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             type,
             name,

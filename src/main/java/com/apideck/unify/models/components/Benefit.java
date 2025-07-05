@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Benefit {
@@ -148,14 +147,14 @@ public class Benefit {
         }
         Benefit other = (Benefit) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.employeeDeduction, other.employeeDeduction) &&
-            Objects.deepEquals(this.employerContribution, other.employerContribution);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.employeeDeduction, other.employeeDeduction) &&
+            Utils.enhancedDeepEquals(this.employerContribution, other.employerContribution);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name,
             employeeDeduction,
             employerContribution);

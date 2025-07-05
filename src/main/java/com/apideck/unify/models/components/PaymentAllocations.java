@@ -13,7 +13,6 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -150,14 +149,14 @@ public class PaymentAllocations {
         }
         PaymentAllocations other = (PaymentAllocations) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.allocatedAmount, other.allocatedAmount) &&
-            Objects.deepEquals(this.date, other.date);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.allocatedAmount, other.allocatedAmount) &&
+            Utils.enhancedDeepEquals(this.date, other.date);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             allocatedAmount,
             date);

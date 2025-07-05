@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.CompanyInput;
+import com.apideck.unify.models.components.Company1Input;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -13,7 +13,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class CrmCompaniesAddRequest {
@@ -43,7 +42,7 @@ public class CrmCompaniesAddRequest {
     private Optional<String> serviceId;
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CompanyInput company;
+    private Company1Input company1;
 
     @JsonCreator
     public CrmCompaniesAddRequest(
@@ -51,22 +50,22 @@ public class CrmCompaniesAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
-            CompanyInput company) {
+            Company1Input company1) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(company, "company");
+        Utils.checkNotNull(company1, "company1");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.company = company;
+        this.company1 = company1;
     }
     
     public CrmCompaniesAddRequest(
-            CompanyInput company) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), company);
+            Company1Input company1) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), company1);
     }
 
     /**
@@ -102,8 +101,8 @@ public class CrmCompaniesAddRequest {
     }
 
     @JsonIgnore
-    public CompanyInput company() {
-        return company;
+    public Company1Input company1() {
+        return company1;
     }
 
     public final static Builder builder() {
@@ -182,9 +181,9 @@ public class CrmCompaniesAddRequest {
         return this;
     }
 
-    public CrmCompaniesAddRequest withCompany(CompanyInput company) {
-        Utils.checkNotNull(company, "company");
-        this.company = company;
+    public CrmCompaniesAddRequest withCompany1(Company1Input company1) {
+        Utils.checkNotNull(company1, "company1");
+        this.company1 = company1;
         return this;
     }
 
@@ -199,21 +198,21 @@ public class CrmCompaniesAddRequest {
         }
         CrmCompaniesAddRequest other = (CrmCompaniesAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.company, other.company);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.company1, other.company1);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             raw,
             consumerId,
             appId,
             serviceId,
-            company);
+            company1);
     }
     
     @Override
@@ -223,7 +222,7 @@ public class CrmCompaniesAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
-                "company", company);
+                "company1", company1);
     }
     
     public final static class Builder {
@@ -236,7 +235,7 @@ public class CrmCompaniesAddRequest {
  
         private Optional<String> serviceId = Optional.empty();
  
-        private CompanyInput company;
+        private Company1Input company1;
         
         private Builder() {
           // force use of static builder() method
@@ -314,9 +313,9 @@ public class CrmCompaniesAddRequest {
             return this;
         }
 
-        public Builder company(CompanyInput company) {
-            Utils.checkNotNull(company, "company");
-            this.company = company;
+        public Builder company1(Company1Input company1) {
+            Utils.checkNotNull(company1, "company1");
+            this.company1 = company1;
             return this;
         }
         
@@ -329,7 +328,7 @@ public class CrmCompaniesAddRequest {
                 consumerId,
                 appId,
                 serviceId,
-                company);
+                company1);
         }
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =

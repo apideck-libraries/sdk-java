@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 public class CreateSessionResponseData {
 
@@ -66,13 +65,13 @@ public class CreateSessionResponseData {
         }
         CreateSessionResponseData other = (CreateSessionResponseData) o;
         return 
-            Objects.deepEquals(this.sessionUri, other.sessionUri) &&
-            Objects.deepEquals(this.sessionToken, other.sessionToken);
+            Utils.enhancedDeepEquals(this.sessionUri, other.sessionUri) &&
+            Utils.enhancedDeepEquals(this.sessionToken, other.sessionToken);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             sessionUri,
             sessionToken);
     }

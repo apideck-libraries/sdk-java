@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -358,20 +357,20 @@ public class BankFeedAccountInput {
         }
         BankFeedAccountInput other = (BankFeedAccountInput) o;
         return 
-            Objects.deepEquals(this.bankAccountType, other.bankAccountType) &&
-            Objects.deepEquals(this.sourceAccountId, other.sourceAccountId) &&
-            Objects.deepEquals(this.targetAccountId, other.targetAccountId) &&
-            Objects.deepEquals(this.targetAccountName, other.targetAccountName) &&
-            Objects.deepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.feedStatus, other.feedStatus) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.customFields, other.customFields);
+            Utils.enhancedDeepEquals(this.bankAccountType, other.bankAccountType) &&
+            Utils.enhancedDeepEquals(this.sourceAccountId, other.sourceAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountId, other.targetAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountName, other.targetAccountName) &&
+            Utils.enhancedDeepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             bankAccountType,
             sourceAccountId,
             targetAccountId,

@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 public class TimeOffRequestsFilter {
@@ -249,17 +248,17 @@ public class TimeOffRequestsFilter {
         }
         TimeOffRequestsFilter other = (TimeOffRequestsFilter) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.timeOffRequestStatus, other.timeOffRequestStatus) &&
-            Objects.deepEquals(this.companyId, other.companyId);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.timeOffRequestStatus, other.timeOffRequestStatus) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             startDate,
             endDate,
             updatedSince,

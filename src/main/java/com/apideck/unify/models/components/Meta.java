@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -119,13 +118,13 @@ public class Meta {
         }
         Meta other = (Meta) o;
         return 
-            Objects.deepEquals(this.itemsOnPage, other.itemsOnPage) &&
-            Objects.deepEquals(this.cursors, other.cursors);
+            Utils.enhancedDeepEquals(this.itemsOnPage, other.itemsOnPage) &&
+            Utils.enhancedDeepEquals(this.cursors, other.cursors);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             itemsOnPage,
             cursors);
     }

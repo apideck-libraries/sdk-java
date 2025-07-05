@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1029,39 +1028,39 @@ public class Connector {
         }
         Connector other = (Connector) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.iconUrl, other.iconUrl) &&
-            Objects.deepEquals(this.logoUrl, other.logoUrl) &&
-            Objects.deepEquals(this.websiteUrl, other.websiteUrl) &&
-            Objects.deepEquals(this.signupUrl, other.signupUrl) &&
-            Objects.deepEquals(this.partnerSignupUrl, other.partnerSignupUrl) &&
-            Objects.deepEquals(this.freeTrialAvailable, other.freeTrialAvailable) &&
-            Objects.deepEquals(this.authType, other.authType) &&
-            Objects.deepEquals(this.authOnly, other.authOnly) &&
-            Objects.deepEquals(this.blindMapped, other.blindMapped) &&
-            Objects.deepEquals(this.oauthGrantType, other.oauthGrantType) &&
-            Objects.deepEquals(this.oauthCredentialsSource, other.oauthCredentialsSource) &&
-            Objects.deepEquals(this.oauthScopes, other.oauthScopes) &&
-            Objects.deepEquals(this.customScopes, other.customScopes) &&
-            Objects.deepEquals(this.hasSandboxCredentials, other.hasSandboxCredentials) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApis, other.unifiedApis) &&
-            Objects.deepEquals(this.supportedResources, other.supportedResources) &&
-            Objects.deepEquals(this.configurableResources, other.configurableResources) &&
-            Objects.deepEquals(this.supportedEvents, other.supportedEvents) &&
-            Objects.deepEquals(this.webhookSupport, other.webhookSupport) &&
-            Objects.deepEquals(this.schemaSupport, other.schemaSupport) &&
-            Objects.deepEquals(this.docs, other.docs) &&
-            Objects.deepEquals(this.tlsSupport, other.tlsSupport);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
+            Utils.enhancedDeepEquals(this.logoUrl, other.logoUrl) &&
+            Utils.enhancedDeepEquals(this.websiteUrl, other.websiteUrl) &&
+            Utils.enhancedDeepEquals(this.signupUrl, other.signupUrl) &&
+            Utils.enhancedDeepEquals(this.partnerSignupUrl, other.partnerSignupUrl) &&
+            Utils.enhancedDeepEquals(this.freeTrialAvailable, other.freeTrialAvailable) &&
+            Utils.enhancedDeepEquals(this.authType, other.authType) &&
+            Utils.enhancedDeepEquals(this.authOnly, other.authOnly) &&
+            Utils.enhancedDeepEquals(this.blindMapped, other.blindMapped) &&
+            Utils.enhancedDeepEquals(this.oauthGrantType, other.oauthGrantType) &&
+            Utils.enhancedDeepEquals(this.oauthCredentialsSource, other.oauthCredentialsSource) &&
+            Utils.enhancedDeepEquals(this.oauthScopes, other.oauthScopes) &&
+            Utils.enhancedDeepEquals(this.customScopes, other.customScopes) &&
+            Utils.enhancedDeepEquals(this.hasSandboxCredentials, other.hasSandboxCredentials) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApis, other.unifiedApis) &&
+            Utils.enhancedDeepEquals(this.supportedResources, other.supportedResources) &&
+            Utils.enhancedDeepEquals(this.configurableResources, other.configurableResources) &&
+            Utils.enhancedDeepEquals(this.supportedEvents, other.supportedEvents) &&
+            Utils.enhancedDeepEquals(this.webhookSupport, other.webhookSupport) &&
+            Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
+            Utils.enhancedDeepEquals(this.docs, other.docs) &&
+            Utils.enhancedDeepEquals(this.tlsSupport, other.tlsSupport);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             status,

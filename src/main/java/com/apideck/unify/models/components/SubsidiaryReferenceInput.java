@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class SubsidiaryReferenceInput {
@@ -75,12 +74,12 @@ public class SubsidiaryReferenceInput {
         }
         SubsidiaryReferenceInput other = (SubsidiaryReferenceInput) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     

@@ -16,7 +16,6 @@ import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -1061,40 +1060,40 @@ public class OpportunityInput {
         }
         OpportunityInput other = (OpportunityInput) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.primaryContactId, other.primaryContactId) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.monetaryAmount, other.monetaryAmount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.closeDate, other.closeDate) &&
-            Objects.deepEquals(this.lossReasonId, other.lossReasonId) &&
-            Objects.deepEquals(this.lossReason, other.lossReason) &&
-            Objects.deepEquals(this.wonReasonId, other.wonReasonId) &&
-            Objects.deepEquals(this.wonReason, other.wonReason) &&
-            Objects.deepEquals(this.pipelineId, other.pipelineId) &&
-            Objects.deepEquals(this.pipelineStageId, other.pipelineStageId) &&
-            Objects.deepEquals(this.sourceId, other.sourceId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.leadSource, other.leadSource) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.contactIds, other.contactIds) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.priority, other.priority) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.statusId, other.statusId) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.stageLastChangedAt, other.stageLastChangedAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.primaryContactId, other.primaryContactId) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.closeDate, other.closeDate) &&
+            Utils.enhancedDeepEquals(this.lossReasonId, other.lossReasonId) &&
+            Utils.enhancedDeepEquals(this.lossReason, other.lossReason) &&
+            Utils.enhancedDeepEquals(this.wonReasonId, other.wonReasonId) &&
+            Utils.enhancedDeepEquals(this.wonReason, other.wonReason) &&
+            Utils.enhancedDeepEquals(this.pipelineId, other.pipelineId) &&
+            Utils.enhancedDeepEquals(this.pipelineStageId, other.pipelineStageId) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.leadSource, other.leadSource) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.contactIds, other.contactIds) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusId, other.statusId) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.stageLastChangedAt, other.stageLastChangedAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             title,
             primaryContactId,
             description,

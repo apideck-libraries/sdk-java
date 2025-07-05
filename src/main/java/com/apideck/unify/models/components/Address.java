@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Address {
@@ -905,35 +904,35 @@ public class Address {
         }
         Address other = (Address) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.string, other.string) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.line1, other.line1) &&
-            Objects.deepEquals(this.line2, other.line2) &&
-            Objects.deepEquals(this.line3, other.line3) &&
-            Objects.deepEquals(this.line4, other.line4) &&
-            Objects.deepEquals(this.streetNumber, other.streetNumber) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.latitude, other.latitude) &&
-            Objects.deepEquals(this.longitude, other.longitude) &&
-            Objects.deepEquals(this.county, other.county) &&
-            Objects.deepEquals(this.contactName, other.contactName) &&
-            Objects.deepEquals(this.salutation, other.salutation) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.fax, other.fax) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.string, other.string) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.line1, other.line1) &&
+            Utils.enhancedDeepEquals(this.line2, other.line2) &&
+            Utils.enhancedDeepEquals(this.line3, other.line3) &&
+            Utils.enhancedDeepEquals(this.line4, other.line4) &&
+            Utils.enhancedDeepEquals(this.streetNumber, other.streetNumber) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.latitude, other.latitude) &&
+            Utils.enhancedDeepEquals(this.longitude, other.longitude) &&
+            Utils.enhancedDeepEquals(this.county, other.county) &&
+            Utils.enhancedDeepEquals(this.contactName, other.contactName) &&
+            Utils.enhancedDeepEquals(this.salutation, other.salutation) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.fax, other.fax) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             type,
             string,

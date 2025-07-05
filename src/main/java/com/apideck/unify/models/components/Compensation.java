@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -262,17 +261,17 @@ public class Compensation {
         }
         Compensation other = (Compensation) o;
         return 
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.netPay, other.netPay) &&
-            Objects.deepEquals(this.grossPay, other.grossPay) &&
-            Objects.deepEquals(this.taxes, other.taxes) &&
-            Objects.deepEquals(this.deductions, other.deductions) &&
-            Objects.deepEquals(this.benefits, other.benefits);
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.netPay, other.netPay) &&
+            Utils.enhancedDeepEquals(this.grossPay, other.grossPay) &&
+            Utils.enhancedDeepEquals(this.taxes, other.taxes) &&
+            Utils.enhancedDeepEquals(this.deductions, other.deductions) &&
+            Utils.enhancedDeepEquals(this.benefits, other.benefits);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             employeeId,
             netPay,
             grossPay,

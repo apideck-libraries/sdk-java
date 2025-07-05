@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -92,13 +91,13 @@ public class EmployeeSchedules {
         }
         EmployeeSchedules other = (EmployeeSchedules) o;
         return 
-            Objects.deepEquals(this.employee, other.employee) &&
-            Objects.deepEquals(this.schedules, other.schedules);
+            Utils.enhancedDeepEquals(this.employee, other.employee) &&
+            Utils.enhancedDeepEquals(this.schedules, other.schedules);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             employee,
             schedules);
     }

@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 public class DriveGroupsFilter {
@@ -72,12 +71,12 @@ public class DriveGroupsFilter {
         }
         DriveGroupsFilter other = (DriveGroupsFilter) o;
         return 
-            Objects.deepEquals(this.parentGroupId, other.parentGroupId);
+            Utils.enhancedDeepEquals(this.parentGroupId, other.parentGroupId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             parentGroupId);
     }
     

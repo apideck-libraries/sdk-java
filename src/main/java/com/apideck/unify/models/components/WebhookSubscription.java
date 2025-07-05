@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class WebhookSubscription {
@@ -223,16 +222,16 @@ public class WebhookSubscription {
         }
         WebhookSubscription other = (WebhookSubscription) o;
         return 
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.unifyEventTypes, other.unifyEventTypes) &&
-            Objects.deepEquals(this.downstreamEventTypes, other.downstreamEventTypes) &&
-            Objects.deepEquals(this.executeUrl, other.executeUrl) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.unifyEventTypes, other.unifyEventTypes) &&
+            Utils.enhancedDeepEquals(this.downstreamEventTypes, other.downstreamEventTypes) &&
+            Utils.enhancedDeepEquals(this.executeUrl, other.executeUrl) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             downstreamId,
             unifyEventTypes,
             downstreamEventTypes,

@@ -17,7 +17,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -944,37 +943,37 @@ public class LedgerAccountInput {
         }
         LedgerAccountInput other = (LedgerAccountInput) o;
         return 
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.nominalCode, other.nominalCode) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.classification, other.classification) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.subType, other.subType) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.fullyQualifiedName, other.fullyQualifiedName) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.openingBalance, other.openingBalance) &&
-            Objects.deepEquals(this.currentBalance, other.currentBalance) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.taxType, other.taxType) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.level, other.level) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.header, other.header) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.parentAccount, other.parentAccount) &&
-            Objects.deepEquals(this.subAccount, other.subAccount) &&
-            Objects.deepEquals(this.lastReconciliationDate, other.lastReconciliationDate) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.nominalCode, other.nominalCode) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.classification, other.classification) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.subType, other.subType) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.fullyQualifiedName, other.fullyQualifiedName) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.openingBalance, other.openingBalance) &&
+            Utils.enhancedDeepEquals(this.currentBalance, other.currentBalance) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.level, other.level) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.header, other.header) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.parentAccount, other.parentAccount) &&
+            Utils.enhancedDeepEquals(this.subAccount, other.subAccount) &&
+            Utils.enhancedDeepEquals(this.lastReconciliationDate, other.lastReconciliationDate) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             displayId,
             nominalCode,
             code,

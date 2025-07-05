@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -188,15 +187,15 @@ public class ConsumerMetadata {
         }
         ConsumerMetadata other = (ConsumerMetadata) o;
         return 
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.userName, other.userName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.image, other.image);
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.userName, other.userName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.image, other.image);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             accountName,
             userName,
             email,

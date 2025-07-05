@@ -12,7 +12,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 public class IssuesFilter {
@@ -146,14 +145,14 @@ public class IssuesFilter {
         }
         IssuesFilter other = (IssuesFilter) o;
         return 
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.since, other.since) &&
-            Objects.deepEquals(this.assigneeId, other.assigneeId);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.since, other.since) &&
+            Utils.enhancedDeepEquals(this.assigneeId, other.assigneeId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status,
             since,
             assigneeId);

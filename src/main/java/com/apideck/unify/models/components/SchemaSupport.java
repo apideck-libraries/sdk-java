@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -81,12 +80,12 @@ public class SchemaSupport {
         }
         SchemaSupport other = (SchemaSupport) o;
         return 
-            Objects.deepEquals(this.supported, other.supported);
+            Utils.enhancedDeepEquals(this.supported, other.supported);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             supported);
     }
     

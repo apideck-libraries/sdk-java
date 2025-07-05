@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class LogsFilter {
@@ -107,14 +106,14 @@ public class LogsFilter {
         }
         LogsFilter other = (LogsFilter) o;
         return 
-            Objects.deepEquals(this.connectorId, other.connectorId) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.excludeUnifiedApis, other.excludeUnifiedApis);
+            Utils.enhancedDeepEquals(this.connectorId, other.connectorId) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.excludeUnifiedApis, other.excludeUnifiedApis);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             connectorId,
             statusCode,
             excludeUnifiedApis);

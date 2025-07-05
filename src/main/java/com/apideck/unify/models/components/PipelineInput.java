@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -362,20 +361,20 @@ public class PipelineInput {
         }
         PipelineInput other = (PipelineInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.displayOrder, other.displayOrder) &&
-            Objects.deepEquals(this.winProbabilityEnabled, other.winProbabilityEnabled) &&
-            Objects.deepEquals(this.stages, other.stages) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder) &&
+            Utils.enhancedDeepEquals(this.winProbabilityEnabled, other.winProbabilityEnabled) &&
+            Utils.enhancedDeepEquals(this.stages, other.stages) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id,
             name,
             currency,

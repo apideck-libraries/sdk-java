@@ -15,7 +15,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class PassThroughBody {
@@ -180,15 +179,15 @@ public class PassThroughBody {
         }
         PassThroughBody other = (PassThroughBody) o;
         return 
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.operationId, other.operationId) &&
-            Objects.deepEquals(this.extendObject, other.extendObject) &&
-            Objects.deepEquals(this.extendPaths, other.extendPaths);
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.operationId, other.operationId) &&
+            Utils.enhancedDeepEquals(this.extendObject, other.extendObject) &&
+            Utils.enhancedDeepEquals(this.extendPaths, other.extendPaths);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             serviceId,
             operationId,
             extendObject,

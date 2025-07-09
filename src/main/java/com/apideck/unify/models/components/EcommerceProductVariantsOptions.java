@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceProductVariantsOptions {
 
+public class EcommerceProductVariantsOptions {
     /**
      * A unique identifier for the option of the variant.
      */
@@ -78,9 +77,10 @@ public class EcommerceProductVariantsOptions {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for the option of the variant.
@@ -136,7 +136,6 @@ public class EcommerceProductVariantsOptions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,17 +146,15 @@ public class EcommerceProductVariantsOptions {
         }
         EcommerceProductVariantsOptions other = (EcommerceProductVariantsOptions) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            value);
+        return Utils.enhancedHash(
+            id, name, value);
     }
     
     @Override
@@ -167,18 +164,20 @@ public class EcommerceProductVariantsOptions {
                 "name", name,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> value = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for the option of the variant.
@@ -198,6 +197,7 @@ public class EcommerceProductVariantsOptions {
             return this;
         }
 
+
         /**
          * The name of the option for the variant.
          */
@@ -216,6 +216,7 @@ public class EcommerceProductVariantsOptions {
             return this;
         }
 
+
         /**
          * The value of the option for the variant.
          */
@@ -233,12 +234,12 @@ public class EcommerceProductVariantsOptions {
             this.value = value;
             return this;
         }
-        
+
         public EcommerceProductVariantsOptions build() {
+
             return new EcommerceProductVariantsOptions(
-                id,
-                name,
-                value);
+                id, name, value);
         }
+
     }
 }

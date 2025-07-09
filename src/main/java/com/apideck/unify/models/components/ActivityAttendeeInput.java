@@ -13,11 +13,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ActivityAttendeeInput {
 
+public class ActivityAttendeeInput {
     /**
      * Full name of the attendee
      */
@@ -113,7 +112,9 @@ public class ActivityAttendeeInput {
     }
     
     public ActivityAttendeeInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -189,9 +190,10 @@ public class ActivityAttendeeInput {
         return (JsonNullable<ActivityAttendeeStatus>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Full name of the attendee
@@ -355,7 +357,6 @@ public class ActivityAttendeeInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -366,29 +367,23 @@ public class ActivityAttendeeInput {
         }
         ActivityAttendeeInput other = (ActivityAttendeeInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
-            Objects.deepEquals(this.isOrganizer, other.isOrganizer) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
+            Utils.enhancedDeepEquals(this.isOrganizer, other.isOrganizer) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            firstName,
-            middleName,
-            lastName,
-            prefix,
-            suffix,
-            emailAddress,
-            isOrganizer,
-            status);
+        return Utils.enhancedHash(
+            name, firstName, middleName,
+            lastName, prefix, suffix,
+            emailAddress, isOrganizer, status);
     }
     
     @Override
@@ -404,30 +399,32 @@ public class ActivityAttendeeInput {
                 "isOrganizer", isOrganizer,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prefix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isOrganizer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ActivityAttendeeStatus> status = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Full name of the attendee
@@ -447,6 +444,7 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+
         /**
          * First name of the attendee
          */
@@ -464,6 +462,7 @@ public class ActivityAttendeeInput {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * Middle name of the attendee
@@ -483,6 +482,7 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+
         /**
          * Last name of the attendee
          */
@@ -500,6 +500,7 @@ public class ActivityAttendeeInput {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Prefix of the attendee
@@ -519,6 +520,7 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+
         /**
          * Suffix of the attendee
          */
@@ -536,6 +538,7 @@ public class ActivityAttendeeInput {
             this.suffix = suffix;
             return this;
         }
+
 
         /**
          * Email address of the attendee
@@ -555,6 +558,7 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+
         /**
          * Whether the attendee is the organizer of the activity
          */
@@ -573,6 +577,7 @@ public class ActivityAttendeeInput {
             return this;
         }
 
+
         /**
          * Status of the attendee
          */
@@ -590,18 +595,14 @@ public class ActivityAttendeeInput {
             this.status = status;
             return this;
         }
-        
+
         public ActivityAttendeeInput build() {
+
             return new ActivityAttendeeInput(
-                name,
-                firstName,
-                middleName,
-                lastName,
-                prefix,
-                suffix,
-                emailAddress,
-                isOrganizer,
-                status);
+                name, firstName, middleName,
+                lastName, prefix, suffix,
+                emailAddress, isOrganizer, status);
         }
+
     }
 }

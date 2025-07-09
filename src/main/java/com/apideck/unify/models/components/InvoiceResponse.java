@@ -11,12 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class InvoiceResponse {
 
+public class InvoiceResponse {
     /**
      * A unique identifier for an object.
      */
@@ -61,9 +60,10 @@ public class InvoiceResponse {
         return downstreamId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -73,6 +73,7 @@ public class InvoiceResponse {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -101,7 +102,6 @@ public class InvoiceResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,15 +112,14 @@ public class InvoiceResponse {
         }
         InvoiceResponse other = (InvoiceResponse) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId);
+        return Utils.enhancedHash(
+            id, downstreamId);
     }
     
     @Override
@@ -129,16 +128,18 @@ public class InvoiceResponse {
                 "id", id,
                 "downstreamId", downstreamId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -158,6 +159,7 @@ public class InvoiceResponse {
             return this;
         }
 
+
         /**
          * The third-party API ID of original entity
          */
@@ -175,11 +177,12 @@ public class InvoiceResponse {
             this.downstreamId = downstreamId;
             return this;
         }
-        
+
         public InvoiceResponse build() {
+
             return new InvoiceResponse(
-                id,
-                downstreamId);
+                id, downstreamId);
         }
+
     }
 }

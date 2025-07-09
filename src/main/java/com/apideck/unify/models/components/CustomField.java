@@ -12,12 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomField {
 
+public class CustomField {
     /**
      * Unique identifier for the custom field.
      */
@@ -38,6 +37,7 @@ public class CustomField {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private JsonNullable<String> description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -60,7 +60,8 @@ public class CustomField {
     }
     
     public CustomField() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -93,9 +94,10 @@ public class CustomField {
         return (JsonNullable<Value>) value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the custom field.
@@ -105,6 +107,7 @@ public class CustomField {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier for the custom field.
@@ -163,7 +166,6 @@ public class CustomField {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -174,18 +176,16 @@ public class CustomField {
         }
         CustomField other = (CustomField) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
+        return Utils.enhancedHash(
+            id, name, description,
             value);
     }
     
@@ -197,20 +197,22 @@ public class CustomField {
                 "description", description,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Value> value = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the custom field.
@@ -230,6 +232,7 @@ public class CustomField {
             return this;
         }
 
+
         /**
          * Name of the custom field.
          */
@@ -247,6 +250,7 @@ public class CustomField {
             this.name = name;
             return this;
         }
+
 
         /**
          * More information about the custom field
@@ -266,6 +270,7 @@ public class CustomField {
             return this;
         }
 
+
         public Builder value(Value value) {
             Utils.checkNotNull(value, "value");
             this.value = JsonNullable.of(value);
@@ -277,13 +282,13 @@ public class CustomField {
             this.value = value;
             return this;
         }
-        
+
         public CustomField build() {
+
             return new CustomField(
-                id,
-                name,
-                description,
+                id, name, description,
                 value);
         }
+
     }
 }

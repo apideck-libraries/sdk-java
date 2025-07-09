@@ -21,7 +21,6 @@ public class CompanyInfo {
     CompanyInfo(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get company info
      * 
@@ -61,8 +60,8 @@ public class CompanyInfo {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation
               = new AccountingCompanyInfoOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

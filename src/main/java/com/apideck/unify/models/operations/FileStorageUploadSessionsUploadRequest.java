@@ -13,11 +13,10 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class FileStorageUploadSessionsUploadRequest {
 
+public class FileStorageUploadSessionsUploadRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -60,6 +59,7 @@ public class FileStorageUploadSessionsUploadRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+
     @SpeakeasyMetadata("request:mediaType=*/*")
     private byte[] requestBody;
 
@@ -95,7 +95,9 @@ public class FileStorageUploadSessionsUploadRequest {
             String id,
             double partNumber,
             byte[] requestBody) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), partNumber, Optional.empty(), Optional.empty(), requestBody);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), partNumber, Optional.empty(),
+            Optional.empty(), requestBody);
     }
 
     /**
@@ -159,9 +161,10 @@ public class FileStorageUploadSessionsUploadRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -181,6 +184,7 @@ public class FileStorageUploadSessionsUploadRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -199,6 +203,7 @@ public class FileStorageUploadSessionsUploadRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -216,6 +221,7 @@ public class FileStorageUploadSessionsUploadRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -244,6 +250,7 @@ public class FileStorageUploadSessionsUploadRequest {
         return this;
     }
 
+
     /**
      * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
@@ -262,6 +269,7 @@ public class FileStorageUploadSessionsUploadRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -277,7 +285,6 @@ public class FileStorageUploadSessionsUploadRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -288,27 +295,22 @@ public class FileStorageUploadSessionsUploadRequest {
         }
         FileStorageUploadSessionsUploadRequest other = (FileStorageUploadSessionsUploadRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.partNumber, other.partNumber) &&
-            Objects.deepEquals(this.digest, other.digest) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.partNumber, other.partNumber) &&
+            Utils.enhancedDeepEquals(this.digest, other.digest) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            partNumber,
-            digest,
-            raw,
-            requestBody);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, partNumber, digest,
+            raw, requestBody);
     }
     
     @Override
@@ -323,28 +325,30 @@ public class FileStorageUploadSessionsUploadRequest {
                 "raw", raw,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Double partNumber;
- 
+
         private Optional<String> digest = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private byte[] requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -354,6 +358,7 @@ public class FileStorageUploadSessionsUploadRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -373,6 +378,7 @@ public class FileStorageUploadSessionsUploadRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -390,6 +396,7 @@ public class FileStorageUploadSessionsUploadRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -409,6 +416,7 @@ public class FileStorageUploadSessionsUploadRequest {
             return this;
         }
 
+
         /**
          * Part number of the file part being uploaded.
          */
@@ -417,6 +425,7 @@ public class FileStorageUploadSessionsUploadRequest {
             this.partNumber = partNumber;
             return this;
         }
+
 
         /**
          * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
@@ -436,6 +445,7 @@ public class FileStorageUploadSessionsUploadRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -454,26 +464,24 @@ public class FileStorageUploadSessionsUploadRequest {
             return this;
         }
 
+
         public Builder requestBody(byte[] requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public FileStorageUploadSessionsUploadRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new FileStorageUploadSessionsUploadRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                partNumber,
-                digest,
-                raw,
-                requestBody);
+                id, consumerId, appId,
+                serviceId, partNumber, digest,
+                raw, requestBody);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

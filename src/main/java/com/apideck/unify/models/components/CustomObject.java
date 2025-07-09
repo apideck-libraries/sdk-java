@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomObject {
 
+public class CustomObject {
     /**
      * The unique identifier of the custom object
      */
@@ -39,6 +38,7 @@ public class CustomObject {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private JsonNullable<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
@@ -111,7 +111,9 @@ public class CustomObject {
     }
     
     public CustomObject() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -185,9 +187,10 @@ public class CustomObject {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the custom object
@@ -197,6 +200,7 @@ public class CustomObject {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the custom object
@@ -215,6 +219,7 @@ public class CustomObject {
         this.ownerId = Optional.ofNullable(ownerId);
         return this;
     }
+
 
     /**
      * The unique identifier of the owner of the custom object
@@ -249,6 +254,7 @@ public class CustomObject {
         return this;
     }
 
+
     public CustomObject withFields(Optional<? extends List<CustomObjectFields>> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = fields;
@@ -263,6 +269,7 @@ public class CustomObject {
         this.updatedBy = Optional.ofNullable(updatedBy);
         return this;
     }
+
 
     /**
      * The unique identifier of the user who last updated the custom object
@@ -281,6 +288,7 @@ public class CustomObject {
         this.createdBy = Optional.ofNullable(createdBy);
         return this;
     }
+
 
     /**
      * The unique identifier of the user who created the custom object
@@ -336,6 +344,7 @@ public class CustomObject {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -345,7 +354,6 @@ public class CustomObject {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -356,29 +364,23 @@ public class CustomObject {
         }
         CustomObject other = (CustomObject) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            ownerId,
-            name,
-            fields,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, ownerId, name,
+            fields, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -394,30 +396,32 @@ public class CustomObject {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> ownerId = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomObjectFields>> fields = Optional.empty();
- 
+
         private Optional<String> updatedBy = Optional.empty();
- 
+
         private Optional<String> createdBy = Optional.empty();
- 
+
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the custom object
@@ -437,6 +441,7 @@ public class CustomObject {
             return this;
         }
 
+
         /**
          * The unique identifier of the owner of the custom object
          */
@@ -454,6 +459,7 @@ public class CustomObject {
             this.ownerId = ownerId;
             return this;
         }
+
 
         /**
          * The name of the custom object
@@ -473,6 +479,7 @@ public class CustomObject {
             return this;
         }
 
+
         public Builder fields(List<CustomObjectFields> fields) {
             Utils.checkNotNull(fields, "fields");
             this.fields = Optional.ofNullable(fields);
@@ -484,6 +491,7 @@ public class CustomObject {
             this.fields = fields;
             return this;
         }
+
 
         /**
          * The unique identifier of the user who last updated the custom object
@@ -503,6 +511,7 @@ public class CustomObject {
             return this;
         }
 
+
         /**
          * The unique identifier of the user who created the custom object
          */
@@ -520,6 +529,7 @@ public class CustomObject {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The timestamp when the custom object was last updated
@@ -539,6 +549,7 @@ public class CustomObject {
             return this;
         }
 
+
         /**
          * The timestamp when the custom object was created
          */
@@ -557,6 +568,7 @@ public class CustomObject {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -574,18 +586,14 @@ public class CustomObject {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CustomObject build() {
+
             return new CustomObject(
-                id,
-                ownerId,
-                name,
-                fields,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, ownerId, name,
+                fields, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
+
     }
 }

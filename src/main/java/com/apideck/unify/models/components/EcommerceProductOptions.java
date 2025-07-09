@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceProductOptions {
 
+public class EcommerceProductOptions {
     /**
      * A unique identifier for the option of the product.
      */
@@ -32,6 +31,7 @@ public class EcommerceProductOptions {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private JsonNullable<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("values")
@@ -76,9 +76,10 @@ public class EcommerceProductOptions {
         return (Optional<List<String>>) values;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for the option of the product.
@@ -122,13 +123,13 @@ public class EcommerceProductOptions {
         return this;
     }
 
+
     public EcommerceProductOptions withValues(Optional<? extends List<String>> values) {
         Utils.checkNotNull(values, "values");
         this.values = values;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -139,17 +140,15 @@ public class EcommerceProductOptions {
         }
         EcommerceProductOptions other = (EcommerceProductOptions) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.values, other.values);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.values, other.values);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            values);
+        return Utils.enhancedHash(
+            id, name, values);
     }
     
     @Override
@@ -159,18 +158,20 @@ public class EcommerceProductOptions {
                 "name", name,
                 "values", values);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> values = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for the option of the product.
@@ -190,6 +191,7 @@ public class EcommerceProductOptions {
             return this;
         }
 
+
         /**
          * The name of the option for the product.
          */
@@ -208,6 +210,7 @@ public class EcommerceProductOptions {
             return this;
         }
 
+
         public Builder values(List<String> values) {
             Utils.checkNotNull(values, "values");
             this.values = Optional.ofNullable(values);
@@ -219,12 +222,12 @@ public class EcommerceProductOptions {
             this.values = values;
             return this;
         }
-        
+
         public EcommerceProductOptions build() {
+
             return new EcommerceProductOptions(
-                id,
-                name,
-                values);
+                id, name, values);
         }
+
     }
 }

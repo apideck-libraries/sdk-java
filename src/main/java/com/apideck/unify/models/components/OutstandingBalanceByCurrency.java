@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class OutstandingBalanceByCurrency {
 
+public class OutstandingBalanceByCurrency {
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
@@ -33,6 +32,7 @@ public class OutstandingBalanceByCurrency {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
     private Optional<Double> totalAmount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances_by_period")
@@ -78,9 +78,10 @@ public class OutstandingBalanceByCurrency {
         return (Optional<List<BalanceByPeriod>>) balancesByPeriod;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -109,6 +110,7 @@ public class OutstandingBalanceByCurrency {
         return this;
     }
 
+
     /**
      * Total amount of the outstanding balance.
      */
@@ -124,13 +126,13 @@ public class OutstandingBalanceByCurrency {
         return this;
     }
 
+
     public OutstandingBalanceByCurrency withBalancesByPeriod(Optional<? extends List<BalanceByPeriod>> balancesByPeriod) {
         Utils.checkNotNull(balancesByPeriod, "balancesByPeriod");
         this.balancesByPeriod = balancesByPeriod;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,17 +143,15 @@ public class OutstandingBalanceByCurrency {
         }
         OutstandingBalanceByCurrency other = (OutstandingBalanceByCurrency) o;
         return 
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.balancesByPeriod, other.balancesByPeriod);
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.balancesByPeriod, other.balancesByPeriod);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            currency,
-            totalAmount,
-            balancesByPeriod);
+        return Utils.enhancedHash(
+            currency, totalAmount, balancesByPeriod);
     }
     
     @Override
@@ -161,18 +161,20 @@ public class OutstandingBalanceByCurrency {
                 "totalAmount", totalAmount,
                 "balancesByPeriod", balancesByPeriod);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<Double> totalAmount = Optional.empty();
- 
+
         private Optional<? extends List<BalanceByPeriod>> balancesByPeriod = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -192,6 +194,7 @@ public class OutstandingBalanceByCurrency {
             return this;
         }
 
+
         /**
          * Total amount of the outstanding balance.
          */
@@ -210,6 +213,7 @@ public class OutstandingBalanceByCurrency {
             return this;
         }
 
+
         public Builder balancesByPeriod(List<BalanceByPeriod> balancesByPeriod) {
             Utils.checkNotNull(balancesByPeriod, "balancesByPeriod");
             this.balancesByPeriod = Optional.ofNullable(balancesByPeriod);
@@ -221,12 +225,12 @@ public class OutstandingBalanceByCurrency {
             this.balancesByPeriod = balancesByPeriod;
             return this;
         }
-        
+
         public OutstandingBalanceByCurrency build() {
+
             return new OutstandingBalanceByCurrency(
-                currency,
-                totalAmount,
-                balancesByPeriod);
+                currency, totalAmount, balancesByPeriod);
         }
+
     }
 }

@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateCallbackState {
 
+public class CreateCallbackState {
     /**
      * The redirect URI to be used after the connection is created.
      */
@@ -42,9 +41,10 @@ public class CreateCallbackState {
         return redirectUri;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The redirect URI to be used after the connection is created.
@@ -55,6 +55,7 @@ public class CreateCallbackState {
         return this;
     }
 
+
     /**
      * The redirect URI to be used after the connection is created.
      */
@@ -64,7 +65,6 @@ public class CreateCallbackState {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class CreateCallbackState {
         }
         CreateCallbackState other = (CreateCallbackState) o;
         return 
-            Objects.deepEquals(this.redirectUri, other.redirectUri);
+            Utils.enhancedDeepEquals(this.redirectUri, other.redirectUri);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             redirectUri);
     }
     
@@ -89,14 +89,16 @@ public class CreateCallbackState {
         return Utils.toString(CreateCallbackState.class,
                 "redirectUri", redirectUri);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> redirectUri = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The redirect URI to be used after the connection is created.
@@ -115,10 +117,12 @@ public class CreateCallbackState {
             this.redirectUri = redirectUri;
             return this;
         }
-        
+
         public CreateCallbackState build() {
+
             return new CreateCallbackState(
                 redirectUri);
         }
+
     }
 }

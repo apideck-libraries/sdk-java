@@ -37,7 +37,6 @@ public class ApideckCompanies {
     ApideckCompanies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Companies
      * 
@@ -77,11 +76,10 @@ public class ApideckCompanies {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
               = new HrisCompaniesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Company
@@ -122,11 +120,10 @@ public class ApideckCompanies {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
               = new HrisCompaniesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Company
@@ -167,11 +164,10 @@ public class ApideckCompanies {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
               = new HrisCompaniesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Company
@@ -212,11 +208,10 @@ public class ApideckCompanies {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
               = new HrisCompaniesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Company
@@ -257,8 +252,8 @@ public class ApideckCompanies {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
               = new HrisCompaniesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

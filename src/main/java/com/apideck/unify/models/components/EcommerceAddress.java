@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -20,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object representing a shipping or billing address.
  */
 public class EcommerceAddress {
-
     /**
      * Address line 1 of the billing address.
      */
@@ -96,7 +94,9 @@ public class EcommerceAddress {
     }
     
     public EcommerceAddress() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -155,9 +155,10 @@ public class EcommerceAddress {
         return country;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Address line 1 of the billing address.
@@ -285,7 +286,6 @@ public class EcommerceAddress {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -296,24 +296,20 @@ public class EcommerceAddress {
         }
         EcommerceAddress other = (EcommerceAddress) o;
         return 
-            Objects.deepEquals(this.line1, other.line1) &&
-            Objects.deepEquals(this.line2, other.line2) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.line1, other.line1) &&
+            Utils.enhancedDeepEquals(this.line2, other.line2) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            line1,
-            line2,
-            companyName,
-            city,
-            state,
-            postalCode,
+        return Utils.enhancedHash(
+            line1, line2, companyName,
+            city, state, postalCode,
             country);
     }
     
@@ -328,26 +324,28 @@ public class EcommerceAddress {
                 "postalCode", postalCode,
                 "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> line1 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line2 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private JsonNullable<String> state = JsonNullable.undefined();
- 
+
         private JsonNullable<String> postalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Address line 1 of the billing address.
@@ -367,6 +365,7 @@ public class EcommerceAddress {
             return this;
         }
 
+
         /**
          * Address line 2 of the billing address.
          */
@@ -384,6 +383,7 @@ public class EcommerceAddress {
             this.line2 = line2;
             return this;
         }
+
 
         /**
          * Company name of the customer
@@ -403,6 +403,7 @@ public class EcommerceAddress {
             return this;
         }
 
+
         /**
          * City of the billing address.
          */
@@ -420,6 +421,7 @@ public class EcommerceAddress {
             this.city = city;
             return this;
         }
+
 
         /**
          * State/province of the billing address.
@@ -439,6 +441,7 @@ public class EcommerceAddress {
             return this;
         }
 
+
         /**
          * Postal/ZIP code of the billing address.
          */
@@ -457,6 +460,7 @@ public class EcommerceAddress {
             return this;
         }
 
+
         /**
          * Country of the billing address.
          */
@@ -474,16 +478,14 @@ public class EcommerceAddress {
             this.country = country;
             return this;
         }
-        
+
         public EcommerceAddress build() {
+
             return new EcommerceAddress(
-                line1,
-                line2,
-                companyName,
-                city,
-                state,
-                postalCode,
+                line1, line2, companyName,
+                city, state, postalCode,
                 country);
         }
+
     }
 }

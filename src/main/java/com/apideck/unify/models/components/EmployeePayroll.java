@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EmployeePayroll {
 
+public class EmployeePayroll {
     /**
      * A unique identifier for an object.
      */
@@ -125,7 +124,10 @@ public class EmployeePayroll {
     }
     
     public EmployeePayroll() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -210,9 +212,10 @@ public class EmployeePayroll {
         return (Optional<List<Compensation>>) compensations;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -222,6 +225,7 @@ public class EmployeePayroll {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -277,6 +281,7 @@ public class EmployeePayroll {
         return this;
     }
 
+
     /**
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
      */
@@ -313,6 +318,7 @@ public class EmployeePayroll {
         return this;
     }
 
+
     /**
      * The date on which employees will be paid for the payroll.
      */
@@ -330,6 +336,7 @@ public class EmployeePayroll {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date, inclusive, of the pay period.
@@ -349,6 +356,7 @@ public class EmployeePayroll {
         return this;
     }
 
+
     /**
      * The end date, inclusive, of the pay period.
      */
@@ -366,6 +374,7 @@ public class EmployeePayroll {
         this.totals = Optional.ofNullable(totals);
         return this;
     }
+
 
     /**
      * The overview of the payroll totals.
@@ -385,6 +394,7 @@ public class EmployeePayroll {
         return this;
     }
 
+
     /**
      * An array of compensations for the payroll.
      */
@@ -394,7 +404,6 @@ public class EmployeePayroll {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -405,30 +414,24 @@ public class EmployeePayroll {
         }
         EmployeePayroll other = (EmployeePayroll) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.processed, other.processed) &&
-            Objects.deepEquals(this.processedDate, other.processedDate) &&
-            Objects.deepEquals(this.checkDate, other.checkDate) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.totals, other.totals) &&
-            Objects.deepEquals(this.compensations, other.compensations);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.processed, other.processed) &&
+            Utils.enhancedDeepEquals(this.processedDate, other.processedDate) &&
+            Utils.enhancedDeepEquals(this.checkDate, other.checkDate) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.totals, other.totals) &&
+            Utils.enhancedDeepEquals(this.compensations, other.compensations);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            employeeId,
-            companyId,
-            processed,
-            processedDate,
-            checkDate,
-            startDate,
-            endDate,
-            totals,
+        return Utils.enhancedHash(
+            id, employeeId, companyId,
+            processed, processedDate, checkDate,
+            startDate, endDate, totals,
             compensations);
     }
     
@@ -446,32 +449,34 @@ public class EmployeePayroll {
                 "totals", totals,
                 "compensations", compensations);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> employeeId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private Optional<Boolean> processed = Optional.empty();
- 
+
         private JsonNullable<String> processedDate = JsonNullable.undefined();
- 
+
         private Optional<String> checkDate = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
- 
+
         private Optional<? extends PayrollTotals> totals = Optional.empty();
- 
+
         private Optional<? extends List<Compensation>> compensations = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -491,6 +496,7 @@ public class EmployeePayroll {
             return this;
         }
 
+
         /**
          * ID of the employee
          */
@@ -508,6 +514,7 @@ public class EmployeePayroll {
             this.employeeId = employeeId;
             return this;
         }
+
 
         /**
          * The unique identifier of the company.
@@ -527,6 +534,7 @@ public class EmployeePayroll {
             return this;
         }
 
+
         /**
          * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
          */
@@ -544,6 +552,7 @@ public class EmployeePayroll {
             this.processed = processed;
             return this;
         }
+
 
         /**
          * The date the payroll was processed.
@@ -563,6 +572,7 @@ public class EmployeePayroll {
             return this;
         }
 
+
         /**
          * The date on which employees will be paid for the payroll.
          */
@@ -580,6 +590,7 @@ public class EmployeePayroll {
             this.checkDate = checkDate;
             return this;
         }
+
 
         /**
          * The start date, inclusive, of the pay period.
@@ -599,6 +610,7 @@ public class EmployeePayroll {
             return this;
         }
 
+
         /**
          * The end date, inclusive, of the pay period.
          */
@@ -616,6 +628,7 @@ public class EmployeePayroll {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * The overview of the payroll totals.
@@ -635,6 +648,7 @@ public class EmployeePayroll {
             return this;
         }
 
+
         /**
          * An array of compensations for the payroll.
          */
@@ -652,19 +666,15 @@ public class EmployeePayroll {
             this.compensations = compensations;
             return this;
         }
-        
+
         public EmployeePayroll build() {
+
             return new EmployeePayroll(
-                id,
-                employeeId,
-                companyId,
-                processed,
-                processedDate,
-                checkDate,
-                startDate,
-                endDate,
-                totals,
+                id, employeeId, companyId,
+                processed, processedDate, checkDate,
+                startDate, endDate, totals,
                 compensations);
         }
+
     }
 }

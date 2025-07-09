@@ -11,12 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Owner {
 
+public class Owner {
     /**
      * ID of the owner
      */
@@ -79,9 +78,10 @@ public class Owner {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the owner
@@ -91,6 +91,7 @@ public class Owner {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the owner
@@ -137,7 +138,6 @@ public class Owner {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -148,17 +148,15 @@ public class Owner {
         }
         Owner other = (Owner) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            email,
-            name);
+        return Utils.enhancedHash(
+            id, email, name);
     }
     
     @Override
@@ -168,18 +166,20 @@ public class Owner {
                 "email", email,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the owner
@@ -199,6 +199,7 @@ public class Owner {
             return this;
         }
 
+
         /**
          * Email of the owner
          */
@@ -217,6 +218,7 @@ public class Owner {
             return this;
         }
 
+
         /**
          * Name of the owner
          */
@@ -234,12 +236,12 @@ public class Owner {
             this.name = name;
             return this;
         }
-        
+
         public Owner build() {
+
             return new Owner(
-                id,
-                email,
-                name);
+                id, email, name);
         }
+
     }
 }

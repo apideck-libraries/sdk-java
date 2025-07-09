@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SharedLinkTarget {
 
+public class SharedLinkTarget {
     /**
      * A unique identifier for an object.
      */
@@ -80,9 +79,10 @@ public class SharedLinkTarget {
         return (JsonNullable<FileType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -129,7 +129,6 @@ public class SharedLinkTarget {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -140,17 +139,15 @@ public class SharedLinkTarget {
         }
         SharedLinkTarget other = (SharedLinkTarget) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            type);
+        return Utils.enhancedHash(
+            id, name, type);
     }
     
     @Override
@@ -160,18 +157,20 @@ public class SharedLinkTarget {
                 "name", name,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends FileType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -181,6 +180,7 @@ public class SharedLinkTarget {
             this.id = id;
             return this;
         }
+
 
         /**
          * The name of the file
@@ -200,6 +200,7 @@ public class SharedLinkTarget {
             return this;
         }
 
+
         /**
          * The type of resource. Could be file, folder or url
          */
@@ -217,12 +218,12 @@ public class SharedLinkTarget {
             this.type = type;
             return this;
         }
-        
+
         public SharedLinkTarget build() {
+
             return new SharedLinkTarget(
-                id,
-                name,
-                type);
+                id, name, type);
         }
+
     }
 }

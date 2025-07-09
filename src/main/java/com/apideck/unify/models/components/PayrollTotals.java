@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -21,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The overview of the payroll totals.
  */
 public class PayrollTotals {
-
     /**
      * The total company debit for the payroll.
      */
@@ -117,7 +115,9 @@ public class PayrollTotals {
     }
     
     public PayrollTotals() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -192,9 +192,10 @@ public class PayrollTotals {
         return employeeBenefitDeductions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The total company debit for the payroll.
@@ -358,7 +359,6 @@ public class PayrollTotals {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -369,29 +369,23 @@ public class PayrollTotals {
         }
         PayrollTotals other = (PayrollTotals) o;
         return 
-            Objects.deepEquals(this.companyDebit, other.companyDebit) &&
-            Objects.deepEquals(this.taxDebit, other.taxDebit) &&
-            Objects.deepEquals(this.checkAmount, other.checkAmount) &&
-            Objects.deepEquals(this.netPay, other.netPay) &&
-            Objects.deepEquals(this.grossPay, other.grossPay) &&
-            Objects.deepEquals(this.employerTaxes, other.employerTaxes) &&
-            Objects.deepEquals(this.employeeTaxes, other.employeeTaxes) &&
-            Objects.deepEquals(this.employerBenefitContributions, other.employerBenefitContributions) &&
-            Objects.deepEquals(this.employeeBenefitDeductions, other.employeeBenefitDeductions);
+            Utils.enhancedDeepEquals(this.companyDebit, other.companyDebit) &&
+            Utils.enhancedDeepEquals(this.taxDebit, other.taxDebit) &&
+            Utils.enhancedDeepEquals(this.checkAmount, other.checkAmount) &&
+            Utils.enhancedDeepEquals(this.netPay, other.netPay) &&
+            Utils.enhancedDeepEquals(this.grossPay, other.grossPay) &&
+            Utils.enhancedDeepEquals(this.employerTaxes, other.employerTaxes) &&
+            Utils.enhancedDeepEquals(this.employeeTaxes, other.employeeTaxes) &&
+            Utils.enhancedDeepEquals(this.employerBenefitContributions, other.employerBenefitContributions) &&
+            Utils.enhancedDeepEquals(this.employeeBenefitDeductions, other.employeeBenefitDeductions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            companyDebit,
-            taxDebit,
-            checkAmount,
-            netPay,
-            grossPay,
-            employerTaxes,
-            employeeTaxes,
-            employerBenefitContributions,
-            employeeBenefitDeductions);
+        return Utils.enhancedHash(
+            companyDebit, taxDebit, checkAmount,
+            netPay, grossPay, employerTaxes,
+            employeeTaxes, employerBenefitContributions, employeeBenefitDeductions);
     }
     
     @Override
@@ -407,30 +401,32 @@ public class PayrollTotals {
                 "employerBenefitContributions", employerBenefitContributions,
                 "employeeBenefitDeductions", employeeBenefitDeductions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Double> companyDebit = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> taxDebit = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> checkAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> netPay = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> grossPay = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employerTaxes = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employeeTaxes = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employerBenefitContributions = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employeeBenefitDeductions = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The total company debit for the payroll.
@@ -450,6 +446,7 @@ public class PayrollTotals {
             return this;
         }
 
+
         /**
          * The total tax debit for the payroll.
          */
@@ -467,6 +464,7 @@ public class PayrollTotals {
             this.taxDebit = taxDebit;
             return this;
         }
+
 
         /**
          * The total check amount for the payroll.
@@ -486,6 +484,7 @@ public class PayrollTotals {
             return this;
         }
 
+
         /**
          * The net pay amount for the payroll.
          */
@@ -503,6 +502,7 @@ public class PayrollTotals {
             this.netPay = netPay;
             return this;
         }
+
 
         /**
          * The gross pay amount for the payroll.
@@ -522,6 +522,7 @@ public class PayrollTotals {
             return this;
         }
 
+
         /**
          * The total amount of employer paid taxes for the payroll.
          */
@@ -539,6 +540,7 @@ public class PayrollTotals {
             this.employerTaxes = employerTaxes;
             return this;
         }
+
 
         /**
          * The total amount of employee paid taxes for the payroll.
@@ -558,6 +560,7 @@ public class PayrollTotals {
             return this;
         }
 
+
         /**
          * The total amount of company contributed benefits for the payroll.
          */
@@ -576,6 +579,7 @@ public class PayrollTotals {
             return this;
         }
 
+
         /**
          * The total amount of employee deducted benefits for the payroll.
          */
@@ -593,18 +597,14 @@ public class PayrollTotals {
             this.employeeBenefitDeductions = employeeBenefitDeductions;
             return this;
         }
-        
+
         public PayrollTotals build() {
+
             return new PayrollTotals(
-                companyDebit,
-                taxDebit,
-                checkAmount,
-                netPay,
-                grossPay,
-                employerTaxes,
-                employeeTaxes,
-                employerBenefitContributions,
-                employeeBenefitDeductions);
+                companyDebit, taxDebit, checkAmount,
+                netPay, grossPay, employerTaxes,
+                employeeTaxes, employerBenefitContributions, employeeBenefitDeductions);
         }
+
     }
 }

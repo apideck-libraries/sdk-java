@@ -48,8 +48,8 @@ public class AccountingAgedDebtorsOneRequestBuilder {
 
         RequestOperation<AccountingAgedDebtorsOneRequest, AccountingAgedDebtorsOneResponse> operation
               = new AccountingAgedDebtorsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

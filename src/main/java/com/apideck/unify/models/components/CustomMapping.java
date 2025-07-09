@@ -12,12 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomMapping {
 
+public class CustomMapping {
     /**
      * Target Field ID
      */
@@ -113,7 +112,9 @@ public class CustomMapping {
     }
     
     public CustomMapping() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -188,9 +189,10 @@ public class CustomMapping {
         return example;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Target Field ID
@@ -200,6 +202,7 @@ public class CustomMapping {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Target Field ID
@@ -218,6 +221,7 @@ public class CustomMapping {
         this.label = Optional.ofNullable(label);
         return this;
     }
+
 
     /**
      * Target Field name to use as a label
@@ -255,6 +259,7 @@ public class CustomMapping {
         return this;
     }
 
+
     /**
      * Target Field Mapping value
      */
@@ -272,6 +277,7 @@ public class CustomMapping {
         this.key = Optional.ofNullable(key);
         return this;
     }
+
 
     /**
      * Target Field Key
@@ -291,6 +297,7 @@ public class CustomMapping {
         return this;
     }
 
+
     /**
      * Target Field Mapping is required
      */
@@ -308,6 +315,7 @@ public class CustomMapping {
         this.customField = Optional.ofNullable(customField);
         return this;
     }
+
 
     /**
      * This mapping represents a finder for a custom field
@@ -354,7 +362,6 @@ public class CustomMapping {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -365,29 +372,23 @@ public class CustomMapping {
         }
         CustomMapping other = (CustomMapping) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.key, other.key) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.customField, other.customField) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.example, other.example);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.key, other.key) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.customField, other.customField) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.example, other.example);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            label,
-            description,
-            value,
-            key,
-            required,
-            customField,
-            consumerId,
-            example);
+        return Utils.enhancedHash(
+            id, label, description,
+            value, key, required,
+            customField, consumerId, example);
     }
     
     @Override
@@ -403,30 +404,32 @@ public class CustomMapping {
                 "consumerId", consumerId,
                 "example", example);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<String> key = Optional.empty();
- 
+
         private Optional<Boolean> required = Optional.empty();
- 
+
         private Optional<Boolean> customField = Optional.empty();
- 
+
         private JsonNullable<String> consumerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> example = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Target Field ID
@@ -446,6 +449,7 @@ public class CustomMapping {
             return this;
         }
 
+
         /**
          * Target Field name to use as a label
          */
@@ -463,6 +467,7 @@ public class CustomMapping {
             this.label = label;
             return this;
         }
+
 
         /**
          * Target Field description
@@ -482,6 +487,7 @@ public class CustomMapping {
             return this;
         }
 
+
         /**
          * Target Field Mapping value
          */
@@ -499,6 +505,7 @@ public class CustomMapping {
             this.value = value;
             return this;
         }
+
 
         /**
          * Target Field Key
@@ -518,6 +525,7 @@ public class CustomMapping {
             return this;
         }
 
+
         /**
          * Target Field Mapping is required
          */
@@ -535,6 +543,7 @@ public class CustomMapping {
             this.required = required;
             return this;
         }
+
 
         /**
          * This mapping represents a finder for a custom field
@@ -554,6 +563,7 @@ public class CustomMapping {
             return this;
         }
 
+
         /**
          * Consumer ID
          */
@@ -572,6 +582,7 @@ public class CustomMapping {
             return this;
         }
 
+
         /**
          * Target Field Mapping example value from downstream
          */
@@ -589,18 +600,14 @@ public class CustomMapping {
             this.example = example;
             return this;
         }
-        
+
         public CustomMapping build() {
+
             return new CustomMapping(
-                id,
-                label,
-                description,
-                value,
-                key,
-                required,
-                customField,
-                consumerId,
-                example);
+                id, label, description,
+                value, key, required,
+                customField, consumerId, example);
         }
+
     }
 }

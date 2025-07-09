@@ -35,7 +35,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmCompaniesAllRequest req = CrmCompaniesAllRequest.builder()
@@ -110,11 +110,11 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmCompaniesAddRequest req = CrmCompaniesAddRequest.builder()
-                .company(CompanyInput.builder()
+                .company1(Company1Input.builder()
                     .name("SpaceX")
                     .ownerId("12345")
                     .image("https://www.spacex.com/static/images/share.jpg")
@@ -135,11 +135,11 @@ public class Application {
                     .firstName("Elon")
                     .lastName("Musk")
                     .bankAccounts(List.of(
-                        BankAccount.builder()
+                        BankAccount1.builder()
                             .bankName("Monzo")
                             .accountNumber("123465")
                             .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
+                            .accountType(BankAccount1AccountType.CREDIT_CARD)
                             .iban("CH2989144532982975332")
                             .bic("AUDSCHGGXXX")
                             .routingNumber("012345678")
@@ -148,11 +148,11 @@ public class Application {
                             .bankCode("BNH")
                             .currency(Currency.USD)
                             .build(),
-                        BankAccount.builder()
+                        BankAccount1.builder()
                             .bankName("Monzo")
                             .accountNumber("123465")
                             .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
+                            .accountType(BankAccount1AccountType.CREDIT_CARD)
                             .iban("CH2989144532982975332")
                             .bic("AUDSCHGGXXX")
                             .routingNumber("012345678")
@@ -161,11 +161,11 @@ public class Application {
                             .bankCode("BNH")
                             .currency(Currency.USD)
                             .build(),
-                        BankAccount.builder()
+                        BankAccount1.builder()
                             .bankName("Monzo")
                             .accountNumber("123465")
                             .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
+                            .accountType(BankAccount1AccountType.CREDIT_CARD)
                             .iban("CH2989144532982975332")
                             .bic("AUDSCHGGXXX")
                             .routingNumber("012345678")
@@ -347,7 +347,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmCompaniesOneRequest req = CrmCompaniesOneRequest.builder()
@@ -414,12 +414,12 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmCompaniesUpdateRequest req = CrmCompaniesUpdateRequest.builder()
                 .id("<id>")
-                .company(CompanyInput.builder()
+                .company1(Company1Input.builder()
                     .name("SpaceX")
                     .ownerId("12345")
                     .image("https://www.spacex.com/static/images/share.jpg")
@@ -440,11 +440,11 @@ public class Application {
                     .firstName("Elon")
                     .lastName("Musk")
                     .bankAccounts(List.of(
-                        BankAccount.builder()
+                        BankAccount1.builder()
                             .bankName("Monzo")
                             .accountNumber("123465")
                             .accountName("SPACEX LLC")
-                            .accountType(AccountType.CREDIT_CARD)
+                            .accountType(BankAccount1AccountType.CREDIT_CARD)
                             .iban("CH2989144532982975332")
                             .bic("AUDSCHGGXXX")
                             .routingNumber("012345678")
@@ -688,7 +688,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmCompaniesDeleteRequest req = CrmCompaniesDeleteRequest.builder()

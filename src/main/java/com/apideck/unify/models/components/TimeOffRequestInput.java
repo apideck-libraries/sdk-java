@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TimeOffRequestInput {
 
+public class TimeOffRequestInput {
     /**
      * ID of the employee
      */
@@ -104,6 +103,7 @@ public class TimeOffRequestInput {
     @JsonProperty("day_part")
     private JsonNullable<String> dayPart;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notes")
     private Optional<? extends Notes> notes;
@@ -172,7 +172,11 @@ public class TimeOffRequestInput {
     }
     
     public TimeOffRequestInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -297,9 +301,10 @@ public class TimeOffRequestInput {
         return policyType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the employee
@@ -523,6 +528,7 @@ public class TimeOffRequestInput {
         return this;
     }
 
+
     public TimeOffRequestInput withNotes(Optional<? extends Notes> notes) {
         Utils.checkNotNull(notes, "notes");
         this.notes = notes;
@@ -537,6 +543,7 @@ public class TimeOffRequestInput {
         this.passThrough = Optional.ofNullable(passThrough);
         return this;
     }
+
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -556,6 +563,7 @@ public class TimeOffRequestInput {
         return this;
     }
 
+
     /**
      * The policy type of the time off request
      */
@@ -565,7 +573,6 @@ public class TimeOffRequestInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -576,41 +583,31 @@ public class TimeOffRequestInput {
         }
         TimeOffRequestInput other = (TimeOffRequestInput) o;
         return 
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.policyId, other.policyId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.requestDate, other.requestDate) &&
-            Objects.deepEquals(this.requestType, other.requestType) &&
-            Objects.deepEquals(this.approvalDate, other.approvalDate) &&
-            Objects.deepEquals(this.units, other.units) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.dayPart, other.dayPart) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.policyType, other.policyType);
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.policyId, other.policyId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.requestDate, other.requestDate) &&
+            Utils.enhancedDeepEquals(this.requestType, other.requestType) &&
+            Utils.enhancedDeepEquals(this.approvalDate, other.approvalDate) &&
+            Utils.enhancedDeepEquals(this.units, other.units) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.dayPart, other.dayPart) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.policyType, other.policyType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            employeeId,
-            policyId,
-            status,
-            description,
-            startDate,
-            endDate,
-            requestDate,
-            requestType,
-            approvalDate,
-            units,
-            amount,
-            dayPart,
-            notes,
-            passThrough,
-            policyType);
+        return Utils.enhancedHash(
+            employeeId, policyId, status,
+            description, startDate, endDate,
+            requestDate, requestType, approvalDate,
+            units, amount, dayPart,
+            notes, passThrough, policyType);
     }
     
     @Override
@@ -632,42 +629,44 @@ public class TimeOffRequestInput {
                 "passThrough", passThrough,
                 "policyType", policyType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> employeeId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> policyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TimeOffRequestStatusStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> startDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> endDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> requestDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends RequestType> requestType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> approvalDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Units> units = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> dayPart = JsonNullable.undefined();
- 
+
         private Optional<? extends Notes> notes = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private Optional<String> policyType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the employee
@@ -687,6 +686,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * ID of the policy
          */
@@ -704,6 +704,7 @@ public class TimeOffRequestInput {
             this.policyId = policyId;
             return this;
         }
+
 
         /**
          * The status of the time off request.
@@ -723,6 +724,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * Description of the time off request.
          */
@@ -740,6 +742,7 @@ public class TimeOffRequestInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * The start date of the time off request.
@@ -759,6 +762,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * The end date of the time off request.
          */
@@ -776,6 +780,7 @@ public class TimeOffRequestInput {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * The date the request was made.
@@ -795,6 +800,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * The type of request
          */
@@ -812,6 +818,7 @@ public class TimeOffRequestInput {
             this.requestType = requestType;
             return this;
         }
+
 
         /**
          * The date the request was approved
@@ -831,6 +838,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
          */
@@ -848,6 +856,7 @@ public class TimeOffRequestInput {
             this.units = units;
             return this;
         }
+
 
         /**
          * The amount of time off requested.
@@ -867,6 +876,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * The day part of the time off request.
          */
@@ -885,6 +895,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         public Builder notes(Notes notes) {
             Utils.checkNotNull(notes, "notes");
             this.notes = Optional.ofNullable(notes);
@@ -896,6 +907,7 @@ public class TimeOffRequestInput {
             this.notes = notes;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -915,6 +927,7 @@ public class TimeOffRequestInput {
             return this;
         }
 
+
         /**
          * The policy type of the time off request
          */
@@ -932,24 +945,16 @@ public class TimeOffRequestInput {
             this.policyType = policyType;
             return this;
         }
-        
+
         public TimeOffRequestInput build() {
+
             return new TimeOffRequestInput(
-                employeeId,
-                policyId,
-                status,
-                description,
-                startDate,
-                endDate,
-                requestDate,
-                requestType,
-                approvalDate,
-                units,
-                amount,
-                dayPart,
-                notes,
-                passThrough,
-                policyType);
+                employeeId, policyId, status,
+                description, startDate, endDate,
+                requestDate, requestType, approvalDate,
+                units, amount, dayPart,
+                notes, passThrough, policyType);
         }
+
     }
 }

@@ -13,12 +13,11 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Allocation {
 
+public class Allocation {
     /**
      * Unique identifier of entity this payment should be attributed to.
      */
@@ -32,6 +31,7 @@ public class Allocation {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends AllocationType> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
@@ -71,7 +71,8 @@ public class Allocation {
     }
     
     public Allocation() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -112,9 +113,10 @@ public class Allocation {
         return allocationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of entity this payment should be attributed to.
@@ -124,6 +126,7 @@ public class Allocation {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier of entity this payment should be attributed to.
@@ -143,6 +146,7 @@ public class Allocation {
         return this;
     }
 
+
     /**
      * Type of entity this payment should be attributed to.
      */
@@ -157,6 +161,7 @@ public class Allocation {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     public Allocation withCode(Optional<String> code) {
         Utils.checkNotNull(code, "code");
@@ -191,6 +196,7 @@ public class Allocation {
         return this;
     }
 
+
     /**
      * Unique identifier of the allocation
      */
@@ -200,7 +206,6 @@ public class Allocation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -211,21 +216,18 @@ public class Allocation {
         }
         Allocation other = (Allocation) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.allocationId, other.allocationId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.allocationId, other.allocationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            type,
-            code,
-            amount,
-            allocationId);
+        return Utils.enhancedHash(
+            id, type, code,
+            amount, allocationId);
     }
     
     @Override
@@ -237,22 +239,24 @@ public class Allocation {
                 "amount", amount,
                 "allocationId", allocationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends AllocationType> type = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
- 
+
         private Optional<String> allocationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of entity this payment should be attributed to.
@@ -272,6 +276,7 @@ public class Allocation {
             return this;
         }
 
+
         /**
          * Type of entity this payment should be attributed to.
          */
@@ -290,6 +295,7 @@ public class Allocation {
             return this;
         }
 
+
         public Builder code(String code) {
             Utils.checkNotNull(code, "code");
             this.code = Optional.ofNullable(code);
@@ -301,6 +307,7 @@ public class Allocation {
             this.code = code;
             return this;
         }
+
 
         /**
          * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
@@ -320,6 +327,7 @@ public class Allocation {
             return this;
         }
 
+
         /**
          * Unique identifier of the allocation
          */
@@ -337,14 +345,13 @@ public class Allocation {
             this.allocationId = allocationId;
             return this;
         }
-        
+
         public Allocation build() {
+
             return new Allocation(
-                id,
-                type,
-                code,
-                amount,
-                allocationId);
+                id, type, code,
+                amount, allocationId);
         }
+
     }
 }

@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ActivitiesFilter {
 
+public class ActivitiesFilter {
     /**
      * Company ID to filter on
      */
@@ -32,6 +31,7 @@ public class ActivitiesFilter {
      */
     @SpeakeasyMetadata("queryParam:name=contact_id")
     private Optional<String> contactId;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -62,7 +62,8 @@ public class ActivitiesFilter {
     }
     
     public ActivitiesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -102,9 +103,10 @@ public class ActivitiesFilter {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Company ID to filter on
@@ -114,6 +116,7 @@ public class ActivitiesFilter {
         this.companyId = Optional.ofNullable(companyId);
         return this;
     }
+
 
     /**
      * Company ID to filter on
@@ -133,6 +136,7 @@ public class ActivitiesFilter {
         return this;
     }
 
+
     /**
      * Owner ID to filter on
      */
@@ -151,6 +155,7 @@ public class ActivitiesFilter {
         return this;
     }
 
+
     /**
      * Primary contact ID to filter on
      */
@@ -165,6 +170,7 @@ public class ActivitiesFilter {
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     public ActivitiesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -181,6 +187,7 @@ public class ActivitiesFilter {
         return this;
     }
 
+
     /**
      * Type to filter on
      */
@@ -190,7 +197,6 @@ public class ActivitiesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -201,21 +207,18 @@ public class ActivitiesFilter {
         }
         ActivitiesFilter other = (ActivitiesFilter) o;
         return 
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            companyId,
-            ownerId,
-            contactId,
-            updatedSince,
-            type);
+        return Utils.enhancedHash(
+            companyId, ownerId, contactId,
+            updatedSince, type);
     }
     
     @Override
@@ -227,22 +230,24 @@ public class ActivitiesFilter {
                 "updatedSince", updatedSince,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> companyId = Optional.empty();
- 
+
         private Optional<String> ownerId = Optional.empty();
- 
+
         private Optional<String> contactId = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<String> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Company ID to filter on
@@ -262,6 +267,7 @@ public class ActivitiesFilter {
             return this;
         }
 
+
         /**
          * Owner ID to filter on
          */
@@ -279,6 +285,7 @@ public class ActivitiesFilter {
             this.ownerId = ownerId;
             return this;
         }
+
 
         /**
          * Primary contact ID to filter on
@@ -298,6 +305,7 @@ public class ActivitiesFilter {
             return this;
         }
 
+
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = Optional.ofNullable(updatedSince);
@@ -309,6 +317,7 @@ public class ActivitiesFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
 
         /**
          * Type to filter on
@@ -327,14 +336,13 @@ public class ActivitiesFilter {
             this.type = type;
             return this;
         }
-        
+
         public ActivitiesFilter build() {
+
             return new ActivitiesFilter(
-                companyId,
-                ownerId,
-                contactId,
-                updatedSince,
-                type);
+                companyId, ownerId, contactId,
+                updatedSince, type);
         }
+
     }
 }

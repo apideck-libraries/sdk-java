@@ -14,12 +14,11 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CrmContactsOneRequest {
 
+public class CrmContactsOneRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -89,7 +88,9 @@ public class CrmContactsOneRequest {
     
     public CrmContactsOneRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -149,9 +150,10 @@ public class CrmContactsOneRequest {
         return (Optional<ContactsFilter>) filter;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -171,6 +173,7 @@ public class CrmContactsOneRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -188,6 +191,7 @@ public class CrmContactsOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -207,6 +211,7 @@ public class CrmContactsOneRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -224,6 +229,7 @@ public class CrmContactsOneRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -261,6 +267,7 @@ public class CrmContactsOneRequest {
         return this;
     }
 
+
     /**
      * Apply filters
      */
@@ -270,7 +277,6 @@ public class CrmContactsOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -281,24 +287,20 @@ public class CrmContactsOneRequest {
         }
         CrmContactsOneRequest other = (CrmContactsOneRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.filter, other.filter);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            fields,
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, fields,
             filter);
     }
     
@@ -313,26 +315,28 @@ public class CrmContactsOneRequest {
                 "fields", fields,
                 "filter", filter);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
- 
+
         private Optional<? extends ContactsFilter> filter = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -342,6 +346,7 @@ public class CrmContactsOneRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -361,6 +366,7 @@ public class CrmContactsOneRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -378,6 +384,7 @@ public class CrmContactsOneRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -397,6 +404,7 @@ public class CrmContactsOneRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -414,6 +422,7 @@ public class CrmContactsOneRequest {
             this.raw = raw;
             return this;
         }
+
 
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -433,6 +442,7 @@ public class CrmContactsOneRequest {
             return this;
         }
 
+
         /**
          * Apply filters
          */
@@ -450,20 +460,18 @@ public class CrmContactsOneRequest {
             this.filter = filter;
             return this;
         }
-        
+
         public CrmContactsOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new CrmContactsOneRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                fields,
+                id, consumerId, appId,
+                serviceId, raw, fields,
                 filter);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

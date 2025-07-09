@@ -15,11 +15,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class HrisCompaniesUpdateResponse implements Response {
 
+public class HrisCompaniesUpdateResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -68,7 +67,8 @@ public class HrisCompaniesUpdateResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty(), Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -113,9 +113,10 @@ public class HrisCompaniesUpdateResponse implements Response {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -153,6 +154,7 @@ public class HrisCompaniesUpdateResponse implements Response {
         return this;
     }
 
+
     /**
      * Companies
      */
@@ -171,6 +173,7 @@ public class HrisCompaniesUpdateResponse implements Response {
         return this;
     }
 
+
     /**
      * Unexpected error
      */
@@ -180,7 +183,6 @@ public class HrisCompaniesUpdateResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,21 +193,18 @@ public class HrisCompaniesUpdateResponse implements Response {
         }
         HrisCompaniesUpdateResponse other = (HrisCompaniesUpdateResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.updateHrisCompanyResponse, other.updateHrisCompanyResponse) &&
-            Objects.deepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.updateHrisCompanyResponse, other.updateHrisCompanyResponse) &&
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
-            updateHrisCompanyResponse,
-            unexpectedErrorResponse);
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
+            updateHrisCompanyResponse, unexpectedErrorResponse);
     }
     
     @Override
@@ -217,22 +216,24 @@ public class HrisCompaniesUpdateResponse implements Response {
                 "updateHrisCompanyResponse", updateHrisCompanyResponse,
                 "unexpectedErrorResponse", unexpectedErrorResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends UpdateHrisCompanyResponse> updateHrisCompanyResponse = Optional.empty();
- 
+
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -243,6 +244,7 @@ public class HrisCompaniesUpdateResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -252,6 +254,7 @@ public class HrisCompaniesUpdateResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -260,6 +263,7 @@ public class HrisCompaniesUpdateResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Companies
@@ -279,6 +283,7 @@ public class HrisCompaniesUpdateResponse implements Response {
             return this;
         }
 
+
         /**
          * Unexpected error
          */
@@ -296,14 +301,13 @@ public class HrisCompaniesUpdateResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-        
+
         public HrisCompaniesUpdateResponse build() {
+
             return new HrisCompaniesUpdateResponse(
-                contentType,
-                statusCode,
-                rawResponse,
-                updateHrisCompanyResponse,
-                unexpectedErrorResponse);
+                contentType, statusCode, rawResponse,
+                updateHrisCompanyResponse, unexpectedErrorResponse);
         }
+
     }
 }

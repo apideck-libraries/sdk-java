@@ -57,7 +57,8 @@ public class CrmCustomObjectsUpdateOperation implements RequestOperation<CrmCust
     
     @Override
     public HttpResponse<InputStream> doRequest(CrmCustomObjectsUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CrmCustomObjectsUpdateRequest.class,

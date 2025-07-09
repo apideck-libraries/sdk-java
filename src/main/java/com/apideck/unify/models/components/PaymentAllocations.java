@@ -13,12 +13,11 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PaymentAllocations {
 
+public class PaymentAllocations {
     /**
      * ID of the payment
      */
@@ -81,9 +80,10 @@ public class PaymentAllocations {
         return date;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the payment
@@ -93,6 +93,7 @@ public class PaymentAllocations {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the payment
@@ -139,7 +140,6 @@ public class PaymentAllocations {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,17 +150,15 @@ public class PaymentAllocations {
         }
         PaymentAllocations other = (PaymentAllocations) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.allocatedAmount, other.allocatedAmount) &&
-            Objects.deepEquals(this.date, other.date);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.allocatedAmount, other.allocatedAmount) &&
+            Utils.enhancedDeepEquals(this.date, other.date);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            allocatedAmount,
-            date);
+        return Utils.enhancedHash(
+            id, allocatedAmount, date);
     }
     
     @Override
@@ -170,18 +168,20 @@ public class PaymentAllocations {
                 "allocatedAmount", allocatedAmount,
                 "date", date);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<Double> allocatedAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> date = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the payment
@@ -201,6 +201,7 @@ public class PaymentAllocations {
             return this;
         }
 
+
         /**
          * Amount of the payment allocated to the invoice
          */
@@ -219,6 +220,7 @@ public class PaymentAllocations {
             return this;
         }
 
+
         /**
          * Date of the payment
          */
@@ -236,12 +238,12 @@ public class PaymentAllocations {
             this.date = date;
             return this;
         }
-        
+
         public PaymentAllocations build() {
+
             return new PaymentAllocations(
-                id,
-                allocatedAmount,
-                date);
+                id, allocatedAmount, date);
         }
+
     }
 }

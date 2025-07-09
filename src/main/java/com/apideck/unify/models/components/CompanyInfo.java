@@ -18,12 +18,11 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CompanyInfo {
 
+public class CompanyInfo {
     /**
      * A unique identifier for an object.
      */
@@ -59,6 +58,7 @@ public class CompanyInfo {
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_tax_number")
     private JsonNullable<String> salesTaxNumber;
@@ -76,6 +76,7 @@ public class CompanyInfo {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_tax_enabled")
     private Optional<Boolean> salesTaxEnabled;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default_sales_tax")
@@ -109,13 +110,16 @@ public class CompanyInfo {
     @JsonProperty("company_start_date")
     private Optional<LocalDate> companyStartDate;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
@@ -127,6 +131,13 @@ public class CompanyInfo {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
+
+    /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tracking_categories_enabled")
+    private Optional<Boolean> trackingCategoriesEnabled;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -182,6 +193,7 @@ public class CompanyInfo {
             @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
             @JsonProperty("emails") Optional<? extends List<Email>> emails,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
+            @JsonProperty("tracking_categories_enabled") Optional<Boolean> trackingCategoriesEnabled,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
             @JsonProperty("updated_by") JsonNullable<String> updatedBy,
             @JsonProperty("created_by") JsonNullable<String> createdBy,
@@ -204,6 +216,7 @@ public class CompanyInfo {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         Utils.checkNotNull(emails, "emails");
         Utils.checkNotNull(customMappings, "customMappings");
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
         Utils.checkNotNull(rowVersion, "rowVersion");
         Utils.checkNotNull(updatedBy, "updatedBy");
         Utils.checkNotNull(createdBy, "createdBy");
@@ -226,6 +239,7 @@ public class CompanyInfo {
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
         this.customMappings = customMappings;
+        this.trackingCategoriesEnabled = trackingCategoriesEnabled;
         this.rowVersion = rowVersion;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
@@ -234,7 +248,14 @@ public class CompanyInfo {
     }
     
     public CompanyInfo() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -367,6 +388,14 @@ public class CompanyInfo {
     }
 
     /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    @JsonIgnore
+    public Optional<Boolean> trackingCategoriesEnabled() {
+        return trackingCategoriesEnabled;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonIgnore
@@ -406,9 +435,10 @@ public class CompanyInfo {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -418,6 +448,7 @@ public class CompanyInfo {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -455,6 +486,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -472,6 +504,7 @@ public class CompanyInfo {
         this.legalName = Optional.ofNullable(legalName);
         return this;
     }
+
 
     /**
      * The legal name of the company
@@ -521,6 +554,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     /**
      * Whether sales tax is calculated automatically for the company
      */
@@ -539,6 +573,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     /**
      * Whether sales tax is enabled for the company
      */
@@ -553,6 +588,7 @@ public class CompanyInfo {
         this.defaultSalesTax = Optional.ofNullable(defaultSalesTax);
         return this;
     }
+
 
     public CompanyInfo withDefaultSalesTax(Optional<? extends TaxRate> defaultSalesTax) {
         Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
@@ -605,6 +641,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     /**
      * The start month of fiscal year.
      */
@@ -623,6 +660,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     /**
      * Date when company file was created
      */
@@ -638,6 +676,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     public CompanyInfo withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -650,6 +689,7 @@ public class CompanyInfo {
         return this;
     }
 
+
     public CompanyInfo withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         this.phoneNumbers = phoneNumbers;
@@ -661,6 +701,7 @@ public class CompanyInfo {
         this.emails = Optional.ofNullable(emails);
         return this;
     }
+
 
     public CompanyInfo withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
@@ -683,6 +724,25 @@ public class CompanyInfo {
     public CompanyInfo withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
         Utils.checkNotNull(customMappings, "customMappings");
         this.customMappings = customMappings;
+        return this;
+    }
+
+    /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
+        return this;
+    }
+
+
+    /**
+     * Whether tracking categories are enabled for the company on transactions
+     */
+    public CompanyInfo withTrackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
+        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        this.trackingCategoriesEnabled = trackingCategoriesEnabled;
         return this;
     }
 
@@ -776,7 +836,6 @@ public class CompanyInfo {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -787,55 +846,42 @@ public class CompanyInfo {
         }
         CompanyInfo other = (CompanyInfo) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.legalName, other.legalName) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.salesTaxNumber, other.salesTaxNumber) &&
-            Objects.deepEquals(this.automatedSalesTax, other.automatedSalesTax) &&
-            Objects.deepEquals(this.salesTaxEnabled, other.salesTaxEnabled) &&
-            Objects.deepEquals(this.defaultSalesTax, other.defaultSalesTax) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.fiscalYearStartMonth, other.fiscalYearStartMonth) &&
-            Objects.deepEquals(this.companyStartDate, other.companyStartDate) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.legalName, other.legalName) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.salesTaxNumber, other.salesTaxNumber) &&
+            Utils.enhancedDeepEquals(this.automatedSalesTax, other.automatedSalesTax) &&
+            Utils.enhancedDeepEquals(this.salesTaxEnabled, other.salesTaxEnabled) &&
+            Utils.enhancedDeepEquals(this.defaultSalesTax, other.defaultSalesTax) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.fiscalYearStartMonth, other.fiscalYearStartMonth) &&
+            Utils.enhancedDeepEquals(this.companyStartDate, other.companyStartDate) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.trackingCategoriesEnabled, other.trackingCategoriesEnabled) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            companyName,
-            status,
-            legalName,
-            country,
-            salesTaxNumber,
-            automatedSalesTax,
-            salesTaxEnabled,
-            defaultSalesTax,
-            currency,
-            language,
-            fiscalYearStartMonth,
-            companyStartDate,
-            addresses,
-            phoneNumbers,
-            emails,
-            customMappings,
-            rowVersion,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt);
+        return Utils.enhancedHash(
+            id, companyName, status,
+            legalName, country, salesTaxNumber,
+            automatedSalesTax, salesTaxEnabled, defaultSalesTax,
+            currency, language, fiscalYearStartMonth,
+            companyStartDate, addresses, phoneNumbers,
+            emails, customMappings, trackingCategoriesEnabled,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt);
     }
     
     @Override
@@ -858,62 +904,67 @@ public class CompanyInfo {
                 "phoneNumbers", phoneNumbers,
                 "emails", emails,
                 "customMappings", customMappings,
+                "trackingCategoriesEnabled", trackingCategoriesEnabled,
                 "rowVersion", rowVersion,
                 "updatedBy", updatedBy,
                 "createdBy", createdBy,
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private Optional<? extends CompanyStatus> status = Optional.empty();
- 
+
         private Optional<String> legalName = Optional.empty();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> salesTaxNumber = JsonNullable.undefined();
- 
+
         private Optional<Boolean> automatedSalesTax = Optional.empty();
- 
+
         private Optional<Boolean> salesTaxEnabled = Optional.empty();
- 
+
         private Optional<? extends TaxRate> defaultSalesTax = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth = Optional.empty();
- 
+
         private Optional<LocalDate> companyStartDate = Optional.empty();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
+        private Optional<Boolean> trackingCategoriesEnabled = Optional.empty();
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -933,6 +984,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * The name of the company.
          */
@@ -950,6 +1002,7 @@ public class CompanyInfo {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * Based on the status some functionality is enabled or disabled.
@@ -969,6 +1022,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * The legal name of the company
          */
@@ -986,6 +1040,7 @@ public class CompanyInfo {
             this.legalName = legalName;
             return this;
         }
+
 
         /**
          * country code according to ISO 3166-1 alpha-2.
@@ -1005,6 +1060,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         public Builder salesTaxNumber(String salesTaxNumber) {
             Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
             this.salesTaxNumber = JsonNullable.of(salesTaxNumber);
@@ -1016,6 +1072,7 @@ public class CompanyInfo {
             this.salesTaxNumber = salesTaxNumber;
             return this;
         }
+
 
         /**
          * Whether sales tax is calculated automatically for the company
@@ -1035,6 +1092,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * Whether sales tax is enabled for the company
          */
@@ -1053,6 +1111,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         public Builder defaultSalesTax(TaxRate defaultSalesTax) {
             Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
             this.defaultSalesTax = Optional.ofNullable(defaultSalesTax);
@@ -1064,6 +1123,7 @@ public class CompanyInfo {
             this.defaultSalesTax = defaultSalesTax;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1083,6 +1143,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * language code according to ISO 639-1. For the United States - EN
          */
@@ -1100,6 +1161,7 @@ public class CompanyInfo {
             this.language = language;
             return this;
         }
+
 
         /**
          * The start month of fiscal year.
@@ -1119,6 +1181,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * Date when company file was created
          */
@@ -1137,6 +1200,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -1148,6 +1212,7 @@ public class CompanyInfo {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1161,6 +1226,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -1172,6 +1238,7 @@ public class CompanyInfo {
             this.emails = emails;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1191,6 +1258,26 @@ public class CompanyInfo {
             return this;
         }
 
+
+        /**
+         * Whether tracking categories are enabled for the company on transactions
+         */
+        public Builder trackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
+            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+            this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
+            return this;
+        }
+
+        /**
+         * Whether tracking categories are enabled for the company on transactions
+         */
+        public Builder trackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
+            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+            this.trackingCategoriesEnabled = trackingCategoriesEnabled;
+            return this;
+        }
+
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -1208,6 +1295,7 @@ public class CompanyInfo {
             this.rowVersion = rowVersion;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -1227,6 +1315,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -1244,6 +1333,7 @@ public class CompanyInfo {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -1263,6 +1353,7 @@ public class CompanyInfo {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1280,31 +1371,19 @@ public class CompanyInfo {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public CompanyInfo build() {
+
             return new CompanyInfo(
-                id,
-                companyName,
-                status,
-                legalName,
-                country,
-                salesTaxNumber,
-                automatedSalesTax,
-                salesTaxEnabled,
-                defaultSalesTax,
-                currency,
-                language,
-                fiscalYearStartMonth,
-                companyStartDate,
-                addresses,
-                phoneNumbers,
-                emails,
-                customMappings,
-                rowVersion,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt);
+                id, companyName, status,
+                legalName, country, salesTaxNumber,
+                automatedSalesTax, salesTaxEnabled, defaultSalesTax,
+                currency, language, fiscalYearStartMonth,
+                companyStartDate, addresses, phoneNumbers,
+                emails, customMappings, trackingCategoriesEnabled,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt);
         }
+
     }
 }

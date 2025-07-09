@@ -48,8 +48,8 @@ public class FileStorageFilesUpdateRequestBuilder {
 
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
               = new FileStorageFilesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -14,12 +14,11 @@ import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Log {
 
+public class Log {
     /**
      * Indicates if the request was made via REST or Graphql endpoint.
      */
@@ -235,7 +234,13 @@ public class Log {
             boolean success,
             String timestamp,
             UnifiedApi unifiedApi) {
-        this(apiStyle, baseUrl, childRequest, consumerId, duration, JsonNullable.undefined(), execution, hasChildren, httpMethod, id, latency, operation, Optional.empty(), path, sandbox, service, JsonNullable.undefined(), statusCode, success, timestamp, unifiedApi);
+        this(apiStyle, baseUrl, childRequest,
+            consumerId, duration, JsonNullable.undefined(),
+            execution, hasChildren, httpMethod,
+            id, latency, operation,
+            Optional.empty(), path, sandbox,
+            service, JsonNullable.undefined(), statusCode,
+            success, timestamp, unifiedApi);
     }
 
     /**
@@ -406,9 +411,10 @@ public class Log {
         return unifiedApi;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Indicates if the request was made via REST or Graphql endpoint.
@@ -536,6 +542,7 @@ public class Log {
         return this;
     }
 
+
     /**
      * When request is a child request, this UUID indicates it's parent request.
      */
@@ -626,7 +633,6 @@ public class Log {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -637,53 +643,39 @@ public class Log {
         }
         Log other = (Log) o;
         return 
-            Objects.deepEquals(this.apiStyle, other.apiStyle) &&
-            Objects.deepEquals(this.baseUrl, other.baseUrl) &&
-            Objects.deepEquals(this.childRequest, other.childRequest) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.duration, other.duration) &&
-            Objects.deepEquals(this.errorMessage, other.errorMessage) &&
-            Objects.deepEquals(this.execution, other.execution) &&
-            Objects.deepEquals(this.hasChildren, other.hasChildren) &&
-            Objects.deepEquals(this.httpMethod, other.httpMethod) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.latency, other.latency) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.sandbox, other.sandbox) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.sourceIp, other.sourceIp) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.timestamp, other.timestamp) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi);
+            Utils.enhancedDeepEquals(this.apiStyle, other.apiStyle) &&
+            Utils.enhancedDeepEquals(this.baseUrl, other.baseUrl) &&
+            Utils.enhancedDeepEquals(this.childRequest, other.childRequest) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.duration, other.duration) &&
+            Utils.enhancedDeepEquals(this.errorMessage, other.errorMessage) &&
+            Utils.enhancedDeepEquals(this.execution, other.execution) &&
+            Utils.enhancedDeepEquals(this.hasChildren, other.hasChildren) &&
+            Utils.enhancedDeepEquals(this.httpMethod, other.httpMethod) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.latency, other.latency) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.sandbox, other.sandbox) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.sourceIp, other.sourceIp) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.timestamp, other.timestamp) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            apiStyle,
-            baseUrl,
-            childRequest,
-            consumerId,
-            duration,
-            errorMessage,
-            execution,
-            hasChildren,
-            httpMethod,
-            id,
-            latency,
-            operation,
-            parentId,
-            path,
-            sandbox,
-            service,
-            sourceIp,
-            statusCode,
-            success,
-            timestamp,
-            unifiedApi);
+        return Utils.enhancedHash(
+            apiStyle, baseUrl, childRequest,
+            consumerId, duration, errorMessage,
+            execution, hasChildren, httpMethod,
+            id, latency, operation,
+            parentId, path, sandbox,
+            service, sourceIp, statusCode,
+            success, timestamp, unifiedApi);
     }
     
     @Override
@@ -711,54 +703,56 @@ public class Log {
                 "timestamp", timestamp,
                 "unifiedApi", unifiedApi);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String apiStyle;
- 
+
         private String baseUrl;
- 
+
         private Boolean childRequest;
- 
+
         private String consumerId;
- 
+
         private Double duration;
- 
+
         private JsonNullable<String> errorMessage = JsonNullable.undefined();
- 
+
         private Long execution;
- 
+
         private Boolean hasChildren;
- 
+
         private String httpMethod;
- 
+
         private String id;
- 
+
         private Double latency;
- 
+
         private Operation operation;
- 
+
         private Optional<String> parentId = Optional.empty();
- 
+
         private String path;
- 
+
         private Boolean sandbox;
- 
+
         private Service service;
- 
+
         private JsonNullable<String> sourceIp = JsonNullable.undefined();
- 
+
         private Long statusCode;
- 
+
         private Boolean success;
- 
+
         private String timestamp;
- 
+
         private UnifiedApi unifiedApi;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Indicates if the request was made via REST or Graphql endpoint.
@@ -769,6 +763,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The Apideck base URL the request was made to.
          */
@@ -777,6 +772,7 @@ public class Log {
             this.baseUrl = baseUrl;
             return this;
         }
+
 
         /**
          * Indicates whether or not this is a child or parent request.
@@ -787,6 +783,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The consumer Id associated with the request.
          */
@@ -796,6 +793,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The entire execution time in milliseconds it took to call the Apideck service provider.
          */
@@ -804,6 +802,7 @@ public class Log {
             this.duration = duration;
             return this;
         }
+
 
         /**
          * If error occurred, this is brief explanation
@@ -823,6 +822,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The entire execution time in milliseconds it took to make the request.
          */
@@ -831,6 +831,7 @@ public class Log {
             this.execution = execution;
             return this;
         }
+
 
         /**
          * When request is a parent request, this indicates if there are child requests associated.
@@ -841,6 +842,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * HTTP Method of request.
          */
@@ -849,6 +851,7 @@ public class Log {
             this.httpMethod = httpMethod;
             return this;
         }
+
 
         /**
          * UUID acting as Request Identifier.
@@ -859,6 +862,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * Latency added by making this request via Unified Api.
          */
@@ -868,6 +872,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The request as defined in OpenApi Spec.
          */
@@ -876,6 +881,7 @@ public class Log {
             this.operation = operation;
             return this;
         }
+
 
         /**
          * When request is a child request, this UUID indicates it's parent request.
@@ -895,6 +901,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * The path component of the URI the request was made to.
          */
@@ -903,6 +910,7 @@ public class Log {
             this.path = path;
             return this;
         }
+
 
         /**
          * Indicates whether the request was made using Apidecks sandbox credentials or not.
@@ -913,6 +921,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * Apideck service provider associated with request.
          */
@@ -921,6 +930,7 @@ public class Log {
             this.service = service;
             return this;
         }
+
 
         /**
          * The IP address of the source of the request.
@@ -940,6 +950,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * HTTP Status code that was returned.
          */
@@ -948,6 +959,7 @@ public class Log {
             this.statusCode = statusCode;
             return this;
         }
+
 
         /**
          * Whether or not the request was successful.
@@ -958,6 +970,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * ISO Date and time when the request was made.
          */
@@ -967,6 +980,7 @@ public class Log {
             return this;
         }
 
+
         /**
          * Which Unified Api request was made to.
          */
@@ -975,30 +989,18 @@ public class Log {
             this.unifiedApi = unifiedApi;
             return this;
         }
-        
+
         public Log build() {
+
             return new Log(
-                apiStyle,
-                baseUrl,
-                childRequest,
-                consumerId,
-                duration,
-                errorMessage,
-                execution,
-                hasChildren,
-                httpMethod,
-                id,
-                latency,
-                operation,
-                parentId,
-                path,
-                sandbox,
-                service,
-                sourceIp,
-                statusCode,
-                success,
-                timestamp,
-                unifiedApi);
+                apiStyle, baseUrl, childRequest,
+                consumerId, duration, errorMessage,
+                execution, hasChildren, httpMethod,
+                id, latency, operation,
+                parentId, path, sandbox,
+                service, sourceIp, statusCode,
+                success, timestamp, unifiedApi);
         }
+
     }
 }

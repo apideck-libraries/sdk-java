@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Attachment {
 
+public class Attachment {
     /**
      * A unique identifier for an object.
      */
@@ -55,6 +54,7 @@ public class Attachment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size")
     private JsonNullable<Long> size;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
@@ -153,7 +153,11 @@ public class Attachment {
     }
     
     public Attachment() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -259,9 +263,10 @@ public class Attachment {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -271,6 +276,7 @@ public class Attachment {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -358,6 +364,7 @@ public class Attachment {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     public Attachment withReference(Optional<? extends AttachmentReference> reference) {
         Utils.checkNotNull(reference, "reference");
@@ -482,6 +489,7 @@ public class Attachment {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -491,7 +499,6 @@ public class Attachment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -502,36 +509,28 @@ public class Attachment {
         }
         Attachment other = (Attachment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.parentFolderId, other.parentFolderId) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayId,
-            name,
-            mimeType,
-            size,
-            reference,
-            description,
-            parentFolderId,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, displayId, name,
+            mimeType, size, reference,
+            description, parentFolderId, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -552,38 +551,40 @@ public class Attachment {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mimeType = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> size = JsonNullable.undefined();
- 
+
         private Optional<? extends AttachmentReference> reference = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> parentFolderId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -603,6 +604,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The display id of the file
          */
@@ -620,6 +622,7 @@ public class Attachment {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * The name of the file
@@ -639,6 +642,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The MIME type of the file.
          */
@@ -656,6 +660,7 @@ public class Attachment {
             this.mimeType = mimeType;
             return this;
         }
+
 
         /**
          * The size of the file in bytes
@@ -675,6 +680,7 @@ public class Attachment {
             return this;
         }
 
+
         public Builder reference(AttachmentReference reference) {
             Utils.checkNotNull(reference, "reference");
             this.reference = Optional.ofNullable(reference);
@@ -686,6 +692,7 @@ public class Attachment {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * Optional description of the file
@@ -705,6 +712,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The folder id where this attachment belong to
          */
@@ -722,6 +730,7 @@ public class Attachment {
             this.parentFolderId = parentFolderId;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -741,6 +750,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -758,6 +768,7 @@ public class Attachment {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -777,6 +788,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -795,6 +807,7 @@ public class Attachment {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -812,22 +825,16 @@ public class Attachment {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Attachment build() {
+
             return new Attachment(
-                id,
-                displayId,
-                name,
-                mimeType,
-                size,
-                reference,
-                description,
-                parentFolderId,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, displayId, name,
+                mimeType, size, reference,
+                description, parentFolderId, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

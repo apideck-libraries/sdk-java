@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LinkedInvoiceItem {
 
+public class LinkedInvoiceItem {
     /**
      * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
      */
@@ -78,9 +77,10 @@ public class LinkedInvoiceItem {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
@@ -136,7 +136,6 @@ public class LinkedInvoiceItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,17 +146,15 @@ public class LinkedInvoiceItem {
         }
         LinkedInvoiceItem other = (LinkedInvoiceItem) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            code,
-            name);
+        return Utils.enhancedHash(
+            id, code, name);
     }
     
     @Override
@@ -167,18 +164,20 @@ public class LinkedInvoiceItem {
                 "code", code,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
@@ -198,6 +197,7 @@ public class LinkedInvoiceItem {
             return this;
         }
 
+
         /**
          * User defined item code
          */
@@ -216,6 +216,7 @@ public class LinkedInvoiceItem {
             return this;
         }
 
+
         /**
          * User defined item name
          */
@@ -233,12 +234,12 @@ public class LinkedInvoiceItem {
             this.name = name;
             return this;
         }
-        
+
         public LinkedInvoiceItem build() {
+
             return new LinkedInvoiceItem(
-                id,
-                code,
-                name);
+                id, code, name);
         }
+
     }
 }

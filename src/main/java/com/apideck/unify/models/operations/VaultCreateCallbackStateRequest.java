@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultCreateCallbackStateRequest {
 
+public class VaultCreateCallbackStateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -68,7 +67,8 @@ public class VaultCreateCallbackStateRequest {
             String serviceId,
             String unifiedApi,
             CreateCallbackState createCallbackState) {
-        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi, createCallbackState);
+        this(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi, createCallbackState);
     }
 
     /**
@@ -111,9 +111,10 @@ public class VaultCreateCallbackStateRequest {
         return createCallbackState;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -123,6 +124,7 @@ public class VaultCreateCallbackStateRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -141,6 +143,7 @@ public class VaultCreateCallbackStateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -178,7 +181,6 @@ public class VaultCreateCallbackStateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,21 +191,18 @@ public class VaultCreateCallbackStateRequest {
         }
         VaultCreateCallbackStateRequest other = (VaultCreateCallbackStateRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.createCallbackState, other.createCallbackState);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.createCallbackState, other.createCallbackState);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
-            unifiedApi,
-            createCallbackState);
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
+            unifiedApi, createCallbackState);
     }
     
     @Override
@@ -215,22 +214,24 @@ public class VaultCreateCallbackStateRequest {
                 "unifiedApi", unifiedApi,
                 "createCallbackState", createCallbackState);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String serviceId;
- 
+
         private String unifiedApi;
- 
+
         private CreateCallbackState createCallbackState;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -250,6 +251,7 @@ public class VaultCreateCallbackStateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -268,6 +270,7 @@ public class VaultCreateCallbackStateRequest {
             return this;
         }
 
+
         /**
          * Service ID of the resource to return
          */
@@ -276,6 +279,7 @@ public class VaultCreateCallbackStateRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Unified API
@@ -286,6 +290,7 @@ public class VaultCreateCallbackStateRequest {
             return this;
         }
 
+
         /**
          * Callback state data
          */
@@ -294,14 +299,13 @@ public class VaultCreateCallbackStateRequest {
             this.createCallbackState = createCallbackState;
             return this;
         }
-        
+
         public VaultCreateCallbackStateRequest build() {
+
             return new VaultCreateCallbackStateRequest(
-                consumerId,
-                appId,
-                serviceId,
-                unifiedApi,
-                createCallbackState);
+                consumerId, appId, serviceId,
+                unifiedApi, createCallbackState);
         }
+
     }
 }

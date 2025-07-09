@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConnectionsImportRequest {
 
+public class VaultConnectionsImportRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -68,7 +67,8 @@ public class VaultConnectionsImportRequest {
             String serviceId,
             String unifiedApi,
             ConnectionImportData connectionImportData) {
-        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi, connectionImportData);
+        this(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi, connectionImportData);
     }
 
     /**
@@ -111,9 +111,10 @@ public class VaultConnectionsImportRequest {
         return connectionImportData;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -123,6 +124,7 @@ public class VaultConnectionsImportRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -141,6 +143,7 @@ public class VaultConnectionsImportRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -178,7 +181,6 @@ public class VaultConnectionsImportRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -189,21 +191,18 @@ public class VaultConnectionsImportRequest {
         }
         VaultConnectionsImportRequest other = (VaultConnectionsImportRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.connectionImportData, other.connectionImportData);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.connectionImportData, other.connectionImportData);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
-            unifiedApi,
-            connectionImportData);
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
+            unifiedApi, connectionImportData);
     }
     
     @Override
@@ -215,22 +214,24 @@ public class VaultConnectionsImportRequest {
                 "unifiedApi", unifiedApi,
                 "connectionImportData", connectionImportData);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String serviceId;
- 
+
         private String unifiedApi;
- 
+
         private ConnectionImportData connectionImportData;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -250,6 +251,7 @@ public class VaultConnectionsImportRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -268,6 +270,7 @@ public class VaultConnectionsImportRequest {
             return this;
         }
 
+
         /**
          * Service ID of the resource to return
          */
@@ -276,6 +279,7 @@ public class VaultConnectionsImportRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Unified API
@@ -286,6 +290,7 @@ public class VaultConnectionsImportRequest {
             return this;
         }
 
+
         /**
          * Fields that need to be persisted on the resource
          */
@@ -294,14 +299,13 @@ public class VaultConnectionsImportRequest {
             this.connectionImportData = connectionImportData;
             return this;
         }
-        
+
         public VaultConnectionsImportRequest build() {
+
             return new VaultConnectionsImportRequest(
-                consumerId,
-                appId,
-                serviceId,
-                unifiedApi,
-                connectionImportData);
+                consumerId, appId, serviceId,
+                unifiedApi, connectionImportData);
         }
+
     }
 }

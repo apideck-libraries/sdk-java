@@ -62,9 +62,9 @@ public class AccountingAttachmentsUploadRequestBuilder {
 
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
               = new AccountingAttachmentsUploadOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

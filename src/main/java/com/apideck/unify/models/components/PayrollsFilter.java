@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class PayrollsFilter {
 
+public class PayrollsFilter {
     /**
      * Return payrolls whose pay period is after the start date
      */
@@ -56,9 +55,10 @@ public class PayrollsFilter {
         return endDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Return payrolls whose pay period is after the start date
@@ -68,6 +68,7 @@ public class PayrollsFilter {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * Return payrolls whose pay period is after the start date
@@ -87,6 +88,7 @@ public class PayrollsFilter {
         return this;
     }
 
+
     /**
      * Return payrolls whose pay period is before the end date
      */
@@ -96,7 +98,6 @@ public class PayrollsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -107,15 +108,14 @@ public class PayrollsFilter {
         }
         PayrollsFilter other = (PayrollsFilter) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            startDate,
-            endDate);
+        return Utils.enhancedHash(
+            startDate, endDate);
     }
     
     @Override
@@ -124,16 +124,18 @@ public class PayrollsFilter {
                 "startDate", startDate,
                 "endDate", endDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Return payrolls whose pay period is after the start date
@@ -153,6 +155,7 @@ public class PayrollsFilter {
             return this;
         }
 
+
         /**
          * Return payrolls whose pay period is before the end date
          */
@@ -170,11 +173,12 @@ public class PayrollsFilter {
             this.endDate = endDate;
             return this;
         }
-        
+
         public PayrollsFilter build() {
+
             return new PayrollsFilter(
-                startDate,
-                endDate);
+                startDate, endDate);
         }
+
     }
 }

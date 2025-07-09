@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         FileStorageUploadSessionsAddRequest req = FileStorageUploadSessionsAddRequest.builder()
@@ -171,7 +171,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         FileStorageUploadSessionsOneRequest req = FileStorageUploadSessionsOneRequest.builder()
@@ -236,12 +236,12 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         FileStorageUploadSessionsUploadRequest req = FileStorageUploadSessionsUploadRequest.builder()
                 .id("<id>")
-                .partNumber(0)
+                .partNumber(0d)
                 .requestBody("<binary string>".getBytes(StandardCharsets.UTF_8))
                 .serviceId("salesforce")
                 .digest("sha=fpRyg5eVQletdZqEKaFlqwBXJzM=")
@@ -302,7 +302,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         FileStorageUploadSessionsDeleteRequest req = FileStorageUploadSessionsDeleteRequest.builder()
@@ -364,7 +364,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         FileStorageUploadSessionsFinishRequest req = FileStorageUploadSessionsFinishRequest.builder()

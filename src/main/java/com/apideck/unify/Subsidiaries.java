@@ -37,7 +37,6 @@ public class Subsidiaries {
     Subsidiaries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Subsidiaries
      * 
@@ -77,11 +76,10 @@ public class Subsidiaries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
               = new AccountingSubsidiariesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Subsidiary
@@ -122,11 +120,10 @@ public class Subsidiaries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
               = new AccountingSubsidiariesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Subsidiary
@@ -167,11 +164,10 @@ public class Subsidiaries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
               = new AccountingSubsidiariesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Subsidiary
@@ -212,11 +208,10 @@ public class Subsidiaries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
               = new AccountingSubsidiariesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Subsidiary
@@ -257,8 +252,8 @@ public class Subsidiaries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
               = new AccountingSubsidiariesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

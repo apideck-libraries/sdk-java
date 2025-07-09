@@ -37,7 +37,6 @@ public class Contacts {
     Contacts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List contacts
      * 
@@ -77,11 +76,10 @@ public class Contacts {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
               = new CrmContactsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create contact
@@ -122,11 +120,10 @@ public class Contacts {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
               = new CrmContactsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get contact
@@ -167,11 +164,10 @@ public class Contacts {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
               = new CrmContactsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update contact
@@ -212,11 +208,10 @@ public class Contacts {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
               = new CrmContactsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete contact
@@ -257,8 +252,8 @@ public class Contacts {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
               = new CrmContactsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

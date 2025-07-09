@@ -35,7 +35,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisEmployeesAllRequest req = HrisEmployeesAllRequest.builder()
@@ -120,7 +120,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisEmployeesAddRequest req = HrisEmployeesAddRequest.builder()
@@ -194,7 +194,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000)
+                            .compensationRate(72000d)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -233,7 +233,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000)
+                            .compensationRate(72000d)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -272,7 +272,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000)
+                            .compensationRate(72000d)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -308,7 +308,7 @@ public class Application {
                             .build()))
                     .compensations(List.of(
                         EmployeeCompensationInput.builder()
-                            .rate(50)
+                            .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
@@ -568,7 +568,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisEmployeesOneRequest req = HrisEmployeesOneRequest.builder()
@@ -640,7 +640,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisEmployeesUpdateRequest req = HrisEmployeesUpdateRequest.builder()
@@ -715,7 +715,7 @@ public class Application {
                             .role("Sales")
                             .startDate(LocalDate.parse("2020-08-12"))
                             .endDate(LocalDate.parse("2020-08-12"))
-                            .compensationRate(72000)
+                            .compensationRate(72000d)
                             .currency(Currency.USD)
                             .paymentUnit(PaymentUnit.YEAR)
                             .hiredAt(LocalDate.parse("2020-08-12"))
@@ -751,7 +751,7 @@ public class Application {
                             .build()))
                     .compensations(List.of(
                         EmployeeCompensationInput.builder()
-                            .rate(50)
+                            .rate(50d)
                             .paymentUnit(PaymentUnit.HOUR)
                             .flsaStatus(FlsaStatus.NONEXEMPT)
                             .effectiveDate("2021-06-11")
@@ -943,7 +943,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisEmployeesDeleteRequest req = HrisEmployeesDeleteRequest.builder()

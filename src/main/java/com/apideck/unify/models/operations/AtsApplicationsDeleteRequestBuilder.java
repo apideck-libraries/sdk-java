@@ -48,8 +48,8 @@ public class AtsApplicationsDeleteRequestBuilder {
 
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
               = new AtsApplicationsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

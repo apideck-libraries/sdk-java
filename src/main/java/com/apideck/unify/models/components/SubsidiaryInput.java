@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SubsidiaryInput {
 
+public class SubsidiaryInput {
     /**
      * A unique identifier for an object.
      */
@@ -74,7 +73,8 @@ public class SubsidiaryInput {
     }
     
     public SubsidiaryInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -119,9 +119,10 @@ public class SubsidiaryInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -168,6 +169,7 @@ public class SubsidiaryInput {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -204,6 +206,7 @@ public class SubsidiaryInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -213,7 +216,6 @@ public class SubsidiaryInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -224,21 +226,18 @@ public class SubsidiaryInput {
         }
         SubsidiaryInput other = (SubsidiaryInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            parentId,
-            name,
-            status,
-            rowVersion,
-            passThrough);
+        return Utils.enhancedHash(
+            parentId, name, status,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -250,22 +249,24 @@ public class SubsidiaryInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends SubsidiaryStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -285,6 +286,7 @@ public class SubsidiaryInput {
             return this;
         }
 
+
         /**
          * The name of the company.
          */
@@ -302,6 +304,7 @@ public class SubsidiaryInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * Based on the status some functionality is enabled or disabled.
@@ -321,6 +324,7 @@ public class SubsidiaryInput {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -339,6 +343,7 @@ public class SubsidiaryInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -356,14 +361,13 @@ public class SubsidiaryInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public SubsidiaryInput build() {
+
             return new SubsidiaryInput(
-                parentId,
-                name,
-                status,
-                rowVersion,
-                passThrough);
+                parentId, name, status,
+                rowVersion, passThrough);
         }
+
     }
 }

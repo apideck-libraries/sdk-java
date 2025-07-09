@@ -62,9 +62,9 @@ public class FileStorageUploadSessionsOneRequestBuilder {
 
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
               = new FileStorageUploadSessionsOneOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

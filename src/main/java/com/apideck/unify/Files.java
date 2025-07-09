@@ -45,7 +45,6 @@ public class Files {
     Files(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Files
      * 
@@ -85,11 +84,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
               = new FileStorageFilesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Search Files
@@ -130,11 +128,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
               = new FileStorageFilesSearchOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get File
@@ -175,11 +172,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
               = new FileStorageFilesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Rename or move File
@@ -220,11 +216,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
               = new FileStorageFilesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete File
@@ -265,11 +260,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
               = new FileStorageFilesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Download File
@@ -310,11 +304,10 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
               = new FileStorageFilesDownloadOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Export File
@@ -355,8 +348,8 @@ public class Files {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
               = new FileStorageFilesExportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

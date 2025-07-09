@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ValidateConnectionStateResponseData {
 
+public class ValidateConnectionStateResponseData {
     /**
      * The unique identifier of the connection.
      */
@@ -62,9 +61,10 @@ public class ValidateConnectionStateResponseData {
         return (Optional<ConnectionState>) state;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the connection.
@@ -74,6 +74,7 @@ public class ValidateConnectionStateResponseData {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the connection.
@@ -93,6 +94,7 @@ public class ValidateConnectionStateResponseData {
         return this;
     }
 
+
     /**
      * [Connection state flow](#section/Connection-state)
      */
@@ -102,7 +104,6 @@ public class ValidateConnectionStateResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,15 +114,14 @@ public class ValidateConnectionStateResponseData {
         }
         ValidateConnectionStateResponseData other = (ValidateConnectionStateResponseData) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            state);
+        return Utils.enhancedHash(
+            id, state);
     }
     
     @Override
@@ -130,16 +130,18 @@ public class ValidateConnectionStateResponseData {
                 "id", id,
                 "state", state);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends ConnectionState> state = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the connection.
@@ -159,6 +161,7 @@ public class ValidateConnectionStateResponseData {
             return this;
         }
 
+
         /**
          * [Connection state flow](#section/Connection-state)
          */
@@ -176,11 +179,12 @@ public class ValidateConnectionStateResponseData {
             this.state = state;
             return this;
         }
-        
+
         public ValidateConnectionStateResponseData build() {
+
             return new ValidateConnectionStateResponseData(
-                id,
-                state);
+                id, state);
         }
+
     }
 }

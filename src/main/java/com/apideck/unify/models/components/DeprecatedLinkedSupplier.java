@@ -13,7 +13,6 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 @Deprecated
 public class DeprecatedLinkedSupplier {
-
     /**
      * A unique identifier for an object.
      */
@@ -55,6 +53,7 @@ public class DeprecatedLinkedSupplier {
     @JsonProperty("company_name")
     private JsonNullable<String> companyName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
     private Optional<? extends Address> address;
@@ -79,7 +78,8 @@ public class DeprecatedLinkedSupplier {
     }
     
     public DeprecatedLinkedSupplier() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -120,9 +120,10 @@ public class DeprecatedLinkedSupplier {
         return (Optional<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -132,6 +133,7 @@ public class DeprecatedLinkedSupplier {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -202,13 +204,13 @@ public class DeprecatedLinkedSupplier {
         return this;
     }
 
+
     public DeprecatedLinkedSupplier withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -219,21 +221,18 @@ public class DeprecatedLinkedSupplier {
         }
         DeprecatedLinkedSupplier other = (DeprecatedLinkedSupplier) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.address, other.address);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.address, other.address);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayId,
-            displayName,
-            companyName,
-            address);
+        return Utils.enhancedHash(
+            id, displayId, displayName,
+            companyName, address);
     }
     
     @Override
@@ -245,22 +244,24 @@ public class DeprecatedLinkedSupplier {
                 "companyName", companyName,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> address = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -280,6 +281,7 @@ public class DeprecatedLinkedSupplier {
             return this;
         }
 
+
         /**
          * The display ID of the supplier.
          */
@@ -297,6 +299,7 @@ public class DeprecatedLinkedSupplier {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * The display name of the supplier.
@@ -316,6 +319,7 @@ public class DeprecatedLinkedSupplier {
             return this;
         }
 
+
         /**
          * The company name of the supplier.
          */
@@ -334,6 +338,7 @@ public class DeprecatedLinkedSupplier {
             return this;
         }
 
+
         public Builder address(Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
@@ -345,14 +350,13 @@ public class DeprecatedLinkedSupplier {
             this.address = address;
             return this;
         }
-        
+
         public DeprecatedLinkedSupplier build() {
+
             return new DeprecatedLinkedSupplier(
-                id,
-                displayId,
-                displayName,
-                companyName,
-                address);
+                id, displayId, displayName,
+                companyName, address);
         }
+
     }
 }

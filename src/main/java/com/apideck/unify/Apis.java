@@ -29,7 +29,6 @@ public class Apis {
     Apis(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List APIs
      * 
@@ -50,7 +49,8 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -82,11 +82,10 @@ public class Apis {
                 .build();
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
               = new ConnectorApisAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get API
@@ -135,8 +134,8 @@ public class Apis {
                 .build();
         RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
               = new ConnectorApisOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

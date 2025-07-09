@@ -21,7 +21,6 @@ public class EmployeeSchedules {
     EmployeeSchedules(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Employee Schedules
      * 
@@ -61,8 +60,8 @@ public class EmployeeSchedules {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
               = new HrisEmployeeSchedulesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

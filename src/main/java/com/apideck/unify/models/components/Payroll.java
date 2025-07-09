@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Payroll {
 
+public class Payroll {
     /**
      * A unique identifier for an object.
      */
@@ -127,7 +126,10 @@ public class Payroll {
     }
     
     public Payroll() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -213,9 +215,10 @@ public class Payroll {
         return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -225,6 +228,7 @@ public class Payroll {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -262,6 +266,7 @@ public class Payroll {
         return this;
     }
 
+
     /**
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
      */
@@ -298,6 +303,7 @@ public class Payroll {
         return this;
     }
 
+
     /**
      * The date on which employees will be paid for the payroll.
      */
@@ -315,6 +321,7 @@ public class Payroll {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date, inclusive, of the pay period.
@@ -334,6 +341,7 @@ public class Payroll {
         return this;
     }
 
+
     /**
      * The end date, inclusive, of the pay period.
      */
@@ -352,6 +360,7 @@ public class Payroll {
         return this;
     }
 
+
     /**
      * The overview of the payroll totals.
      */
@@ -369,6 +378,7 @@ public class Payroll {
         this.compensations = Optional.ofNullable(compensations);
         return this;
     }
+
 
     /**
      * An array of compensations for the payroll.
@@ -397,7 +407,6 @@ public class Payroll {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -408,30 +417,24 @@ public class Payroll {
         }
         Payroll other = (Payroll) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.processed, other.processed) &&
-            Objects.deepEquals(this.processedDate, other.processedDate) &&
-            Objects.deepEquals(this.checkDate, other.checkDate) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.totals, other.totals) &&
-            Objects.deepEquals(this.compensations, other.compensations) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.processed, other.processed) &&
+            Utils.enhancedDeepEquals(this.processedDate, other.processedDate) &&
+            Utils.enhancedDeepEquals(this.checkDate, other.checkDate) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.totals, other.totals) &&
+            Utils.enhancedDeepEquals(this.compensations, other.compensations) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            companyId,
-            processed,
-            processedDate,
-            checkDate,
-            startDate,
-            endDate,
-            totals,
-            compensations,
+        return Utils.enhancedHash(
+            id, companyId, processed,
+            processedDate, checkDate, startDate,
+            endDate, totals, compensations,
             customMappings);
     }
     
@@ -449,32 +452,34 @@ public class Payroll {
                 "compensations", compensations,
                 "customMappings", customMappings);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private Optional<Boolean> processed = Optional.empty();
- 
+
         private JsonNullable<String> processedDate = JsonNullable.undefined();
- 
+
         private Optional<String> checkDate = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
- 
+
         private Optional<? extends PayrollTotals> totals = Optional.empty();
- 
+
         private Optional<? extends List<Compensation>> compensations = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -494,6 +499,7 @@ public class Payroll {
             return this;
         }
 
+
         /**
          * The unique identifier of the company.
          */
@@ -511,6 +517,7 @@ public class Payroll {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
@@ -530,6 +537,7 @@ public class Payroll {
             return this;
         }
 
+
         /**
          * The date the payroll was processed.
          */
@@ -547,6 +555,7 @@ public class Payroll {
             this.processedDate = processedDate;
             return this;
         }
+
 
         /**
          * The date on which employees will be paid for the payroll.
@@ -566,6 +575,7 @@ public class Payroll {
             return this;
         }
 
+
         /**
          * The start date, inclusive, of the pay period.
          */
@@ -583,6 +593,7 @@ public class Payroll {
             this.startDate = startDate;
             return this;
         }
+
 
         /**
          * The end date, inclusive, of the pay period.
@@ -602,6 +613,7 @@ public class Payroll {
             return this;
         }
 
+
         /**
          * The overview of the payroll totals.
          */
@@ -619,6 +631,7 @@ public class Payroll {
             this.totals = totals;
             return this;
         }
+
 
         /**
          * An array of compensations for the payroll.
@@ -638,6 +651,7 @@ public class Payroll {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -655,19 +669,15 @@ public class Payroll {
             this.customMappings = customMappings;
             return this;
         }
-        
+
         public Payroll build() {
+
             return new Payroll(
-                id,
-                companyId,
-                processed,
-                processedDate,
-                checkDate,
-                startDate,
-                endDate,
-                totals,
-                compensations,
+                id, companyId, processed,
+                processedDate, checkDate, startDate,
+                endDate, totals, compensations,
                 customMappings);
         }
+
     }
 }

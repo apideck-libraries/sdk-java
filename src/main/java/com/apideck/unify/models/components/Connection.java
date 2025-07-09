@@ -17,12 +17,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Connection {
 
+public class Connection {
     /**
      * The unique identifier of the connection.
      */
@@ -43,6 +42,7 @@ public class Connection {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tag_line")
@@ -153,25 +153,31 @@ public class Connection {
     @JsonProperty("form_fields")
     private Optional<? extends List<FormField>> formFields;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configuration")
     private Optional<? extends List<Configuration>> configuration;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configurable_resources")
     private Optional<? extends List<String>> configurableResources;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource_schema_support")
     private Optional<? extends List<String>> resourceSchemaSupport;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource_settings_support")
     private Optional<? extends List<String>> resourceSettingsSupport;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("validation_support")
     private Optional<Boolean> validationSupport;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schema_support")
@@ -184,6 +190,7 @@ public class Connection {
     @JsonProperty("settings_required_for_authorization")
     private Optional<? extends List<String>> settingsRequiredForAuthorization;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
     private Optional<? extends List<WebhookSubscription>> subscriptions;
@@ -195,6 +202,7 @@ public class Connection {
     @JsonProperty("has_guide")
     private Optional<Boolean> hasGuide;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
     private Optional<Double> createdAt;
@@ -205,6 +213,7 @@ public class Connection {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private Optional<? extends List<CustomMapping>> customMappings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updated_at")
@@ -308,7 +317,17 @@ public class Connection {
     }
     
     public Connection() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -544,9 +563,10 @@ public class Connection {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the connection.
@@ -556,6 +576,7 @@ public class Connection {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the connection.
@@ -575,6 +596,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * The ID of the service this connection belongs to.
      */
@@ -593,6 +615,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * The name of the connection
      */
@@ -608,6 +631,7 @@ public class Connection {
         return this;
     }
 
+
     public Connection withTagLine(Optional<String> tagLine) {
         Utils.checkNotNull(tagLine, "tagLine");
         this.tagLine = tagLine;
@@ -622,6 +646,7 @@ public class Connection {
         this.unifiedApi = Optional.ofNullable(unifiedApi);
         return this;
     }
+
 
     /**
      * The unified API category where the connection belongs to.
@@ -641,6 +666,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * [Connection state flow](#section/Connection-state)
      */
@@ -658,6 +684,7 @@ public class Connection {
         this.integrationState = Optional.ofNullable(integrationState);
         return this;
     }
+
 
     /**
      * The current state of the Integration.
@@ -677,6 +704,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * Type of authorization used by the connector
      */
@@ -694,6 +722,7 @@ public class Connection {
         this.oauthGrantType = Optional.ofNullable(oauthGrantType);
         return this;
     }
+
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -713,6 +742,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * Status of the connection.
      */
@@ -730,6 +760,7 @@ public class Connection {
         this.enabled = Optional.ofNullable(enabled);
         return this;
     }
+
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
@@ -749,6 +780,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * The website URL of the connection
      */
@@ -767,6 +799,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * A visual icon of the connection, that will be shown in the Vault
      */
@@ -784,6 +817,7 @@ public class Connection {
         this.logo = Optional.ofNullable(logo);
         return this;
     }
+
 
     /**
      * The logo of the connection, that will be shown in the Vault
@@ -875,6 +909,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * The settings that are wanted to create a connection.
      */
@@ -890,6 +925,7 @@ public class Connection {
         return this;
     }
 
+
     public Connection withConfiguration(Optional<? extends List<Configuration>> configuration) {
         Utils.checkNotNull(configuration, "configuration");
         this.configuration = configuration;
@@ -901,6 +937,7 @@ public class Connection {
         this.configurableResources = Optional.ofNullable(configurableResources);
         return this;
     }
+
 
     public Connection withConfigurableResources(Optional<? extends List<String>> configurableResources) {
         Utils.checkNotNull(configurableResources, "configurableResources");
@@ -914,6 +951,7 @@ public class Connection {
         return this;
     }
 
+
     public Connection withResourceSchemaSupport(Optional<? extends List<String>> resourceSchemaSupport) {
         Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
         this.resourceSchemaSupport = resourceSchemaSupport;
@@ -925,6 +963,7 @@ public class Connection {
         this.resourceSettingsSupport = Optional.ofNullable(resourceSettingsSupport);
         return this;
     }
+
 
     public Connection withResourceSettingsSupport(Optional<? extends List<String>> resourceSettingsSupport) {
         Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
@@ -938,6 +977,7 @@ public class Connection {
         return this;
     }
 
+
     public Connection withValidationSupport(Optional<Boolean> validationSupport) {
         Utils.checkNotNull(validationSupport, "validationSupport");
         this.validationSupport = validationSupport;
@@ -949,6 +989,7 @@ public class Connection {
         this.schemaSupport = Optional.ofNullable(schemaSupport);
         return this;
     }
+
 
     public Connection withSchemaSupport(Optional<Boolean> schemaSupport) {
         Utils.checkNotNull(schemaSupport, "schemaSupport");
@@ -965,6 +1006,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * List of settings that are required to be configured on integration before authorization can occur
      */
@@ -979,6 +1021,7 @@ public class Connection {
         this.subscriptions = Optional.ofNullable(subscriptions);
         return this;
     }
+
 
     public Connection withSubscriptions(Optional<? extends List<WebhookSubscription>> subscriptions) {
         Utils.checkNotNull(subscriptions, "subscriptions");
@@ -995,6 +1038,7 @@ public class Connection {
         return this;
     }
 
+
     /**
      * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
@@ -1010,6 +1054,7 @@ public class Connection {
         return this;
     }
 
+
     public Connection withCreatedAt(Optional<Double> createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
@@ -1024,6 +1069,7 @@ public class Connection {
         this.customMappings = Optional.ofNullable(customMappings);
         return this;
     }
+
 
     /**
      * List of custom mappings configured for this connection
@@ -1046,7 +1092,6 @@ public class Connection {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1057,72 +1102,52 @@ public class Connection {
         }
         Connection other = (Connection) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.tagLine, other.tagLine) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.integrationState, other.integrationState) &&
-            Objects.deepEquals(this.authType, other.authType) &&
-            Objects.deepEquals(this.oauthGrantType, other.oauthGrantType) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.icon, other.icon) &&
-            Objects.deepEquals(this.logo, other.logo) &&
-            Objects.deepEquals(this.authorizeUrl, other.authorizeUrl) &&
-            Objects.deepEquals(this.revokeUrl, other.revokeUrl) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.formFields, other.formFields) &&
-            Objects.deepEquals(this.configuration, other.configuration) &&
-            Objects.deepEquals(this.configurableResources, other.configurableResources) &&
-            Objects.deepEquals(this.resourceSchemaSupport, other.resourceSchemaSupport) &&
-            Objects.deepEquals(this.resourceSettingsSupport, other.resourceSettingsSupport) &&
-            Objects.deepEquals(this.validationSupport, other.validationSupport) &&
-            Objects.deepEquals(this.schemaSupport, other.schemaSupport) &&
-            Objects.deepEquals(this.settingsRequiredForAuthorization, other.settingsRequiredForAuthorization) &&
-            Objects.deepEquals(this.subscriptions, other.subscriptions) &&
-            Objects.deepEquals(this.hasGuide, other.hasGuide) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.tagLine, other.tagLine) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.integrationState, other.integrationState) &&
+            Utils.enhancedDeepEquals(this.authType, other.authType) &&
+            Utils.enhancedDeepEquals(this.oauthGrantType, other.oauthGrantType) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.icon, other.icon) &&
+            Utils.enhancedDeepEquals(this.logo, other.logo) &&
+            Utils.enhancedDeepEquals(this.authorizeUrl, other.authorizeUrl) &&
+            Utils.enhancedDeepEquals(this.revokeUrl, other.revokeUrl) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.formFields, other.formFields) &&
+            Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
+            Utils.enhancedDeepEquals(this.configurableResources, other.configurableResources) &&
+            Utils.enhancedDeepEquals(this.resourceSchemaSupport, other.resourceSchemaSupport) &&
+            Utils.enhancedDeepEquals(this.resourceSettingsSupport, other.resourceSettingsSupport) &&
+            Utils.enhancedDeepEquals(this.validationSupport, other.validationSupport) &&
+            Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
+            Utils.enhancedDeepEquals(this.settingsRequiredForAuthorization, other.settingsRequiredForAuthorization) &&
+            Utils.enhancedDeepEquals(this.subscriptions, other.subscriptions) &&
+            Utils.enhancedDeepEquals(this.hasGuide, other.hasGuide) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            serviceId,
-            name,
-            tagLine,
-            unifiedApi,
-            state,
-            integrationState,
-            authType,
-            oauthGrantType,
-            status,
-            enabled,
-            website,
-            icon,
-            logo,
-            authorizeUrl,
-            revokeUrl,
-            settings,
-            metadata,
-            formFields,
-            configuration,
-            configurableResources,
-            resourceSchemaSupport,
-            resourceSettingsSupport,
-            validationSupport,
-            schemaSupport,
-            settingsRequiredForAuthorization,
-            subscriptions,
-            hasGuide,
-            createdAt,
-            customMappings,
+        return Utils.enhancedHash(
+            id, serviceId, name,
+            tagLine, unifiedApi, state,
+            integrationState, authType, oauthGrantType,
+            status, enabled, website,
+            icon, logo, authorizeUrl,
+            revokeUrl, settings, metadata,
+            formFields, configuration, configurableResources,
+            resourceSchemaSupport, resourceSettingsSupport, validationSupport,
+            schemaSupport, settingsRequiredForAuthorization, subscriptions,
+            hasGuide, createdAt, customMappings,
             updatedAt);
     }
     
@@ -1161,74 +1186,76 @@ public class Connection {
                 "customMappings", customMappings,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> tagLine = Optional.empty();
- 
+
         private Optional<String> unifiedApi = Optional.empty();
- 
+
         private Optional<? extends ConnectionState> state = Optional.empty();
- 
+
         private Optional<? extends IntegrationState> integrationState = Optional.empty();
- 
+
         private Optional<? extends AuthType> authType = Optional.empty();
- 
+
         private Optional<? extends OAuthGrantType> oauthGrantType = Optional.empty();
- 
+
         private Optional<? extends ConnectionStatus> status = Optional.empty();
- 
+
         private Optional<Boolean> enabled = Optional.empty();
- 
+
         private Optional<String> website = Optional.empty();
- 
+
         private Optional<String> icon = Optional.empty();
- 
+
         private Optional<String> logo = Optional.empty();
- 
+
         private JsonNullable<String> authorizeUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> revokeUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends List<FormField>> formFields = Optional.empty();
- 
+
         private Optional<? extends List<Configuration>> configuration = Optional.empty();
- 
+
         private Optional<? extends List<String>> configurableResources = Optional.empty();
- 
+
         private Optional<? extends List<String>> resourceSchemaSupport = Optional.empty();
- 
+
         private Optional<? extends List<String>> resourceSettingsSupport = Optional.empty();
- 
+
         private Optional<Boolean> validationSupport = Optional.empty();
- 
+
         private Optional<Boolean> schemaSupport = Optional.empty();
- 
+
         private Optional<? extends List<String>> settingsRequiredForAuthorization = Optional.empty();
- 
+
         private Optional<? extends List<WebhookSubscription>> subscriptions = Optional.empty();
- 
+
         private Optional<Boolean> hasGuide = Optional.empty();
- 
+
         private Optional<Double> createdAt = Optional.empty();
- 
+
         private Optional<? extends List<CustomMapping>> customMappings = Optional.empty();
- 
+
         private JsonNullable<Double> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the connection.
@@ -1248,6 +1275,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * The ID of the service this connection belongs to.
          */
@@ -1265,6 +1293,7 @@ public class Connection {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * The name of the connection
@@ -1284,6 +1313,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder tagLine(String tagLine) {
             Utils.checkNotNull(tagLine, "tagLine");
             this.tagLine = Optional.ofNullable(tagLine);
@@ -1295,6 +1325,7 @@ public class Connection {
             this.tagLine = tagLine;
             return this;
         }
+
 
         /**
          * The unified API category where the connection belongs to.
@@ -1314,6 +1345,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * [Connection state flow](#section/Connection-state)
          */
@@ -1331,6 +1363,7 @@ public class Connection {
             this.state = state;
             return this;
         }
+
 
         /**
          * The current state of the Integration.
@@ -1350,6 +1383,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * Type of authorization used by the connector
          */
@@ -1367,6 +1401,7 @@ public class Connection {
             this.authType = authType;
             return this;
         }
+
 
         /**
          * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -1386,6 +1421,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * Status of the connection.
          */
@@ -1403,6 +1439,7 @@ public class Connection {
             this.status = status;
             return this;
         }
+
 
         /**
          * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
@@ -1422,6 +1459,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * The website URL of the connection
          */
@@ -1439,6 +1477,7 @@ public class Connection {
             this.website = website;
             return this;
         }
+
 
         /**
          * A visual icon of the connection, that will be shown in the Vault
@@ -1458,6 +1497,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * The logo of the connection, that will be shown in the Vault
          */
@@ -1475,6 +1515,7 @@ public class Connection {
             this.logo = logo;
             return this;
         }
+
 
         /**
          * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
@@ -1494,6 +1535,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
          */
@@ -1511,6 +1553,7 @@ public class Connection {
             this.revokeUrl = revokeUrl;
             return this;
         }
+
 
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
@@ -1530,6 +1573,7 @@ public class Connection {
             return this;
         }
 
+
         /**
          * Attach your own consumer specific metadata
          */
@@ -1547,6 +1591,7 @@ public class Connection {
             this.metadata = metadata;
             return this;
         }
+
 
         /**
          * The settings that are wanted to create a connection.
@@ -1566,6 +1611,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder configuration(List<Configuration> configuration) {
             Utils.checkNotNull(configuration, "configuration");
             this.configuration = Optional.ofNullable(configuration);
@@ -1577,6 +1623,7 @@ public class Connection {
             this.configuration = configuration;
             return this;
         }
+
 
         public Builder configurableResources(List<String> configurableResources) {
             Utils.checkNotNull(configurableResources, "configurableResources");
@@ -1590,6 +1637,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder resourceSchemaSupport(List<String> resourceSchemaSupport) {
             Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
             this.resourceSchemaSupport = Optional.ofNullable(resourceSchemaSupport);
@@ -1601,6 +1649,7 @@ public class Connection {
             this.resourceSchemaSupport = resourceSchemaSupport;
             return this;
         }
+
 
         public Builder resourceSettingsSupport(List<String> resourceSettingsSupport) {
             Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
@@ -1614,6 +1663,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder validationSupport(boolean validationSupport) {
             Utils.checkNotNull(validationSupport, "validationSupport");
             this.validationSupport = Optional.ofNullable(validationSupport);
@@ -1626,6 +1676,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder schemaSupport(boolean schemaSupport) {
             Utils.checkNotNull(schemaSupport, "schemaSupport");
             this.schemaSupport = Optional.ofNullable(schemaSupport);
@@ -1637,6 +1688,7 @@ public class Connection {
             this.schemaSupport = schemaSupport;
             return this;
         }
+
 
         /**
          * List of settings that are required to be configured on integration before authorization can occur
@@ -1656,6 +1708,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder subscriptions(List<WebhookSubscription> subscriptions) {
             Utils.checkNotNull(subscriptions, "subscriptions");
             this.subscriptions = Optional.ofNullable(subscriptions);
@@ -1667,6 +1720,7 @@ public class Connection {
             this.subscriptions = subscriptions;
             return this;
         }
+
 
         /**
          * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
@@ -1686,6 +1740,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder createdAt(double createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = Optional.ofNullable(createdAt);
@@ -1697,6 +1752,7 @@ public class Connection {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * List of custom mappings configured for this connection
@@ -1716,6 +1772,7 @@ public class Connection {
             return this;
         }
 
+
         public Builder updatedAt(double updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = JsonNullable.of(updatedAt);
@@ -1727,40 +1784,22 @@ public class Connection {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public Connection build() {
+
             return new Connection(
-                id,
-                serviceId,
-                name,
-                tagLine,
-                unifiedApi,
-                state,
-                integrationState,
-                authType,
-                oauthGrantType,
-                status,
-                enabled,
-                website,
-                icon,
-                logo,
-                authorizeUrl,
-                revokeUrl,
-                settings,
-                metadata,
-                formFields,
-                configuration,
-                configurableResources,
-                resourceSchemaSupport,
-                resourceSettingsSupport,
-                validationSupport,
-                schemaSupport,
-                settingsRequiredForAuthorization,
-                subscriptions,
-                hasGuide,
-                createdAt,
-                customMappings,
+                id, serviceId, name,
+                tagLine, unifiedApi, state,
+                integrationState, authType, oauthGrantType,
+                status, enabled, website,
+                icon, logo, authorizeUrl,
+                revokeUrl, settings, metadata,
+                formFields, configuration, configurableResources,
+                resourceSchemaSupport, resourceSettingsSupport, validationSupport,
+                schemaSupport, settingsRequiredForAuthorization, subscriptions,
+                hasGuide, createdAt, customMappings,
                 updatedAt);
         }
+
     }
 }

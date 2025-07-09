@@ -37,7 +37,6 @@ public class CollectionTicketComments {
     CollectionTicketComments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Comments
      * 
@@ -77,11 +76,10 @@ public class CollectionTicketComments {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
               = new IssueTrackingCollectionTicketCommentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Comment
@@ -122,11 +120,10 @@ public class CollectionTicketComments {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
               = new IssueTrackingCollectionTicketCommentsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Comment
@@ -167,11 +164,10 @@ public class CollectionTicketComments {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
               = new IssueTrackingCollectionTicketCommentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Comment
@@ -212,11 +208,10 @@ public class CollectionTicketComments {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
               = new IssueTrackingCollectionTicketCommentsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Comment
@@ -257,8 +252,8 @@ public class CollectionTicketComments {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
               = new IssueTrackingCollectionTicketCommentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

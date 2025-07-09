@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Connector {
 
+public class Connector {
     /**
      * ID of the connector.
      */
@@ -146,6 +145,7 @@ public class Connector {
     @JsonProperty("has_sandbox_credentials")
     private Optional<Boolean> hasSandboxCredentials;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
     private Optional<? extends List<ConnectorSetting>> settings;
@@ -199,9 +199,11 @@ public class Connector {
     @JsonProperty("schema_support")
     private Optional<? extends SchemaSupport> schemaSupport;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docs")
     private Optional<? extends List<ConnectorDoc>> docs;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tls_support")
@@ -296,7 +298,16 @@ public class Connector {
     }
     
     public Connector() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -528,9 +539,10 @@ public class Connector {
         return (Optional<TlsSupport>) tlsSupport;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the connector.
@@ -540,6 +552,7 @@ public class Connector {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the connector.
@@ -559,6 +572,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Name of the connector.
      */
@@ -576,6 +590,7 @@ public class Connector {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
@@ -613,6 +628,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Link to a small square icon for the connector.
      */
@@ -630,6 +646,7 @@ public class Connector {
         this.logoUrl = Optional.ofNullable(logoUrl);
         return this;
     }
+
 
     /**
      * Link to the full logo for the connector.
@@ -649,6 +666,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Link to the connector's website.
      */
@@ -666,6 +684,7 @@ public class Connector {
         this.signupUrl = Optional.ofNullable(signupUrl);
         return this;
     }
+
 
     /**
      * Link to the connector's signup page.
@@ -685,6 +704,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Link to the connector's partner program signup page.
      */
@@ -702,6 +722,7 @@ public class Connector {
         this.freeTrialAvailable = Optional.ofNullable(freeTrialAvailable);
         return this;
     }
+
 
     /**
      * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
@@ -721,6 +742,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Type of authorization used by the connector
      */
@@ -738,6 +760,7 @@ public class Connector {
         this.authOnly = Optional.ofNullable(authOnly);
         return this;
     }
+
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
@@ -757,6 +780,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
      */
@@ -774,6 +798,7 @@ public class Connector {
         this.oauthGrantType = Optional.ofNullable(oauthGrantType);
         return this;
     }
+
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
@@ -793,6 +818,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
      */
@@ -810,6 +836,7 @@ public class Connector {
         this.oauthScopes = Optional.ofNullable(oauthScopes);
         return this;
     }
+
 
     /**
      * List of OAuth Scopes available for this connector.
@@ -829,6 +856,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Set to `true` when connector allows the definition of custom scopes.
      */
@@ -847,6 +875,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * Indicates whether Apideck Sandbox OAuth credentials are available.
      */
@@ -862,6 +891,7 @@ public class Connector {
         return this;
     }
 
+
     public Connector withSettings(Optional<? extends List<ConnectorSetting>> settings) {
         Utils.checkNotNull(settings, "settings");
         this.settings = settings;
@@ -876,6 +906,7 @@ public class Connector {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Service provider identifier
@@ -895,6 +926,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * List of Unified APIs that feature this connector.
      */
@@ -912,6 +944,7 @@ public class Connector {
         this.supportedResources = Optional.ofNullable(supportedResources);
         return this;
     }
+
 
     /**
      * List of resources that are supported on the connector.
@@ -931,6 +964,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * List of resources that have settings that can be configured.
      */
@@ -948,6 +982,7 @@ public class Connector {
         this.supportedEvents = Optional.ofNullable(supportedEvents);
         return this;
     }
+
 
     /**
      * List of events that are supported on the connector across all Unified APIs.
@@ -967,6 +1002,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
      */
@@ -985,6 +1021,7 @@ public class Connector {
         return this;
     }
 
+
     /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
      */
@@ -1000,6 +1037,7 @@ public class Connector {
         return this;
     }
 
+
     public Connector withDocs(Optional<? extends List<ConnectorDoc>> docs) {
         Utils.checkNotNull(docs, "docs");
         this.docs = docs;
@@ -1012,13 +1050,13 @@ public class Connector {
         return this;
     }
 
+
     public Connector withTlsSupport(Optional<? extends TlsSupport> tlsSupport) {
         Utils.checkNotNull(tlsSupport, "tlsSupport");
         this.tlsSupport = tlsSupport;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1029,66 +1067,48 @@ public class Connector {
         }
         Connector other = (Connector) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.iconUrl, other.iconUrl) &&
-            Objects.deepEquals(this.logoUrl, other.logoUrl) &&
-            Objects.deepEquals(this.websiteUrl, other.websiteUrl) &&
-            Objects.deepEquals(this.signupUrl, other.signupUrl) &&
-            Objects.deepEquals(this.partnerSignupUrl, other.partnerSignupUrl) &&
-            Objects.deepEquals(this.freeTrialAvailable, other.freeTrialAvailable) &&
-            Objects.deepEquals(this.authType, other.authType) &&
-            Objects.deepEquals(this.authOnly, other.authOnly) &&
-            Objects.deepEquals(this.blindMapped, other.blindMapped) &&
-            Objects.deepEquals(this.oauthGrantType, other.oauthGrantType) &&
-            Objects.deepEquals(this.oauthCredentialsSource, other.oauthCredentialsSource) &&
-            Objects.deepEquals(this.oauthScopes, other.oauthScopes) &&
-            Objects.deepEquals(this.customScopes, other.customScopes) &&
-            Objects.deepEquals(this.hasSandboxCredentials, other.hasSandboxCredentials) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApis, other.unifiedApis) &&
-            Objects.deepEquals(this.supportedResources, other.supportedResources) &&
-            Objects.deepEquals(this.configurableResources, other.configurableResources) &&
-            Objects.deepEquals(this.supportedEvents, other.supportedEvents) &&
-            Objects.deepEquals(this.webhookSupport, other.webhookSupport) &&
-            Objects.deepEquals(this.schemaSupport, other.schemaSupport) &&
-            Objects.deepEquals(this.docs, other.docs) &&
-            Objects.deepEquals(this.tlsSupport, other.tlsSupport);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.iconUrl, other.iconUrl) &&
+            Utils.enhancedDeepEquals(this.logoUrl, other.logoUrl) &&
+            Utils.enhancedDeepEquals(this.websiteUrl, other.websiteUrl) &&
+            Utils.enhancedDeepEquals(this.signupUrl, other.signupUrl) &&
+            Utils.enhancedDeepEquals(this.partnerSignupUrl, other.partnerSignupUrl) &&
+            Utils.enhancedDeepEquals(this.freeTrialAvailable, other.freeTrialAvailable) &&
+            Utils.enhancedDeepEquals(this.authType, other.authType) &&
+            Utils.enhancedDeepEquals(this.authOnly, other.authOnly) &&
+            Utils.enhancedDeepEquals(this.blindMapped, other.blindMapped) &&
+            Utils.enhancedDeepEquals(this.oauthGrantType, other.oauthGrantType) &&
+            Utils.enhancedDeepEquals(this.oauthCredentialsSource, other.oauthCredentialsSource) &&
+            Utils.enhancedDeepEquals(this.oauthScopes, other.oauthScopes) &&
+            Utils.enhancedDeepEquals(this.customScopes, other.customScopes) &&
+            Utils.enhancedDeepEquals(this.hasSandboxCredentials, other.hasSandboxCredentials) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApis, other.unifiedApis) &&
+            Utils.enhancedDeepEquals(this.supportedResources, other.supportedResources) &&
+            Utils.enhancedDeepEquals(this.configurableResources, other.configurableResources) &&
+            Utils.enhancedDeepEquals(this.supportedEvents, other.supportedEvents) &&
+            Utils.enhancedDeepEquals(this.webhookSupport, other.webhookSupport) &&
+            Utils.enhancedDeepEquals(this.schemaSupport, other.schemaSupport) &&
+            Utils.enhancedDeepEquals(this.docs, other.docs) &&
+            Utils.enhancedDeepEquals(this.tlsSupport, other.tlsSupport);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            status,
-            description,
-            iconUrl,
-            logoUrl,
-            websiteUrl,
-            signupUrl,
-            partnerSignupUrl,
-            freeTrialAvailable,
-            authType,
-            authOnly,
-            blindMapped,
-            oauthGrantType,
-            oauthCredentialsSource,
-            oauthScopes,
-            customScopes,
-            hasSandboxCredentials,
-            settings,
-            serviceId,
-            unifiedApis,
-            supportedResources,
-            configurableResources,
-            supportedEvents,
-            webhookSupport,
-            schemaSupport,
-            docs,
+        return Utils.enhancedHash(
+            id, name, status,
+            description, iconUrl, logoUrl,
+            websiteUrl, signupUrl, partnerSignupUrl,
+            freeTrialAvailable, authType, authOnly,
+            blindMapped, oauthGrantType, oauthCredentialsSource,
+            oauthScopes, customScopes, hasSandboxCredentials,
+            settings, serviceId, unifiedApis,
+            supportedResources, configurableResources, supportedEvents,
+            webhookSupport, schemaSupport, docs,
             tlsSupport);
     }
     
@@ -1124,68 +1144,70 @@ public class Connector {
                 "docs", docs,
                 "tlsSupport", tlsSupport);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ConnectorStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<String> iconUrl = Optional.empty();
- 
+
         private Optional<String> logoUrl = Optional.empty();
- 
+
         private Optional<String> websiteUrl = Optional.empty();
- 
+
         private Optional<String> signupUrl = Optional.empty();
- 
+
         private Optional<String> partnerSignupUrl = Optional.empty();
- 
+
         private Optional<Boolean> freeTrialAvailable = Optional.empty();
- 
+
         private Optional<? extends ConnectorAuthType> authType = Optional.empty();
- 
+
         private Optional<Boolean> authOnly = Optional.empty();
- 
+
         private Optional<Boolean> blindMapped = Optional.empty();
- 
+
         private Optional<? extends ConnectorOauthGrantType> oauthGrantType = Optional.empty();
- 
+
         private Optional<? extends OauthCredentialsSource> oauthCredentialsSource = Optional.empty();
- 
+
         private Optional<? extends List<OauthScopes>> oauthScopes = Optional.empty();
- 
+
         private Optional<Boolean> customScopes = Optional.empty();
- 
+
         private Optional<Boolean> hasSandboxCredentials = Optional.empty();
- 
+
         private Optional<? extends List<ConnectorSetting>> settings = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<? extends List<UnifiedApis>> unifiedApis = Optional.empty();
- 
+
         private Optional<? extends List<LinkedConnectorResource>> supportedResources = Optional.empty();
- 
+
         private Optional<? extends List<String>> configurableResources = Optional.empty();
- 
+
         private Optional<? extends List<ConnectorEvent>> supportedEvents = Optional.empty();
- 
+
         private Optional<? extends WebhookSupport> webhookSupport = Optional.empty();
- 
+
         private Optional<? extends SchemaSupport> schemaSupport = Optional.empty();
- 
+
         private Optional<? extends List<ConnectorDoc>> docs = Optional.empty();
- 
+
         private Optional<? extends TlsSupport> tlsSupport = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the connector.
@@ -1205,6 +1227,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Name of the connector.
          */
@@ -1222,6 +1245,7 @@ public class Connector {
             this.name = name;
             return this;
         }
+
 
         /**
          * Status of the connector. Connectors with status live or beta are callable.
@@ -1241,6 +1265,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * A description of the object.
          */
@@ -1258,6 +1283,7 @@ public class Connector {
             this.description = description;
             return this;
         }
+
 
         /**
          * Link to a small square icon for the connector.
@@ -1277,6 +1303,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Link to the full logo for the connector.
          */
@@ -1294,6 +1321,7 @@ public class Connector {
             this.logoUrl = logoUrl;
             return this;
         }
+
 
         /**
          * Link to the connector's website.
@@ -1313,6 +1341,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Link to the connector's signup page.
          */
@@ -1330,6 +1359,7 @@ public class Connector {
             this.signupUrl = signupUrl;
             return this;
         }
+
 
         /**
          * Link to the connector's partner program signup page.
@@ -1349,6 +1379,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
          */
@@ -1366,6 +1397,7 @@ public class Connector {
             this.freeTrialAvailable = freeTrialAvailable;
             return this;
         }
+
 
         /**
          * Type of authorization used by the connector
@@ -1385,6 +1417,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
          */
@@ -1402,6 +1435,7 @@ public class Connector {
             this.authOnly = authOnly;
             return this;
         }
+
 
         /**
          * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
@@ -1421,6 +1455,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
          */
@@ -1438,6 +1473,7 @@ public class Connector {
             this.oauthGrantType = oauthGrantType;
             return this;
         }
+
 
         /**
          * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
@@ -1457,6 +1493,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * List of OAuth Scopes available for this connector.
          */
@@ -1474,6 +1511,7 @@ public class Connector {
             this.oauthScopes = oauthScopes;
             return this;
         }
+
 
         /**
          * Set to `true` when connector allows the definition of custom scopes.
@@ -1493,6 +1531,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * Indicates whether Apideck Sandbox OAuth credentials are available.
          */
@@ -1511,6 +1550,7 @@ public class Connector {
             return this;
         }
 
+
         public Builder settings(List<ConnectorSetting> settings) {
             Utils.checkNotNull(settings, "settings");
             this.settings = Optional.ofNullable(settings);
@@ -1522,6 +1562,7 @@ public class Connector {
             this.settings = settings;
             return this;
         }
+
 
         /**
          * Service provider identifier
@@ -1541,6 +1582,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * List of Unified APIs that feature this connector.
          */
@@ -1558,6 +1600,7 @@ public class Connector {
             this.unifiedApis = unifiedApis;
             return this;
         }
+
 
         /**
          * List of resources that are supported on the connector.
@@ -1577,6 +1620,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * List of resources that have settings that can be configured.
          */
@@ -1594,6 +1638,7 @@ public class Connector {
             this.configurableResources = configurableResources;
             return this;
         }
+
 
         /**
          * List of events that are supported on the connector across all Unified APIs.
@@ -1613,6 +1658,7 @@ public class Connector {
             return this;
         }
 
+
         /**
          * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
          */
@@ -1630,6 +1676,7 @@ public class Connector {
             this.webhookSupport = webhookSupport;
             return this;
         }
+
 
         /**
          * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
@@ -1649,6 +1696,7 @@ public class Connector {
             return this;
         }
 
+
         public Builder docs(List<ConnectorDoc> docs) {
             Utils.checkNotNull(docs, "docs");
             this.docs = Optional.ofNullable(docs);
@@ -1661,6 +1709,7 @@ public class Connector {
             return this;
         }
 
+
         public Builder tlsSupport(TlsSupport tlsSupport) {
             Utils.checkNotNull(tlsSupport, "tlsSupport");
             this.tlsSupport = Optional.ofNullable(tlsSupport);
@@ -1672,37 +1721,21 @@ public class Connector {
             this.tlsSupport = tlsSupport;
             return this;
         }
-        
+
         public Connector build() {
+
             return new Connector(
-                id,
-                name,
-                status,
-                description,
-                iconUrl,
-                logoUrl,
-                websiteUrl,
-                signupUrl,
-                partnerSignupUrl,
-                freeTrialAvailable,
-                authType,
-                authOnly,
-                blindMapped,
-                oauthGrantType,
-                oauthCredentialsSource,
-                oauthScopes,
-                customScopes,
-                hasSandboxCredentials,
-                settings,
-                serviceId,
-                unifiedApis,
-                supportedResources,
-                configurableResources,
-                supportedEvents,
-                webhookSupport,
-                schemaSupport,
-                docs,
+                id, name, status,
+                description, iconUrl, logoUrl,
+                websiteUrl, signupUrl, partnerSignupUrl,
+                freeTrialAvailable, authType, authOnly,
+                blindMapped, oauthGrantType, oauthCredentialsSource,
+                oauthScopes, customScopes, hasSandboxCredentials,
+                settings, serviceId, unifiedApis,
+                supportedResources, configurableResources, supportedEvents,
+                webhookSupport, schemaSupport, docs,
                 tlsSupport);
         }
+
     }
 }

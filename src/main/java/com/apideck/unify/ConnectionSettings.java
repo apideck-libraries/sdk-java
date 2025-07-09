@@ -25,7 +25,6 @@ public class ConnectionSettings {
     ConnectionSettings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get resource settings
      * 
@@ -65,11 +64,10 @@ public class ConnectionSettings {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
               = new VaultConnectionSettingsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update settings
@@ -110,8 +108,8 @@ public class ConnectionSettings {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
               = new VaultConnectionSettingsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

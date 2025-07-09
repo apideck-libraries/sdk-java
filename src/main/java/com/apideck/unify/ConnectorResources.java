@@ -23,7 +23,6 @@ public class ConnectorResources {
     ConnectorResources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get Connector Resource
      * 
@@ -48,7 +47,8 @@ public class ConnectorResources {
     public ConnectorConnectorResourcesOneResponse get(
             String id,
             String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId, Optional.empty(), Optional.empty());
+        return get(Optional.empty(), id, resourceId,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -80,8 +80,8 @@ public class ConnectorResources {
                 .build();
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
               = new ConnectorConnectorResourcesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

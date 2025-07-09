@@ -57,7 +57,8 @@ public class VaultSessionsCreateOperation implements RequestOperation<VaultSessi
     
     @Override
     public HttpResponse<InputStream> doRequest(VaultSessionsCreateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

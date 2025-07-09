@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.RuntimeException;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -24,7 +23,6 @@ import java.util.Optional;
  */
 @SuppressWarnings("serial")
 public class BadRequestResponse extends RuntimeException {
-
     /**
      * HTTP status code
      */
@@ -75,7 +73,7 @@ public class BadRequestResponse extends RuntimeException {
             @JsonProperty("message") Optional<String> message,
             @JsonProperty("detail") Optional<? extends Detail> detail,
             @JsonProperty("ref") Optional<String> ref) {
-        super(message.orElse(null));
+        super(Utils.valueOrElse(message, "API error occurred"));
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(error, "error");
         Utils.checkNotNull(typeName, "typeName");
@@ -91,7 +89,8 @@ public class BadRequestResponse extends RuntimeException {
     }
     
     public BadRequestResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -149,9 +148,10 @@ public class BadRequestResponse extends RuntimeException {
         return ref;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP status code
@@ -161,6 +161,7 @@ public class BadRequestResponse extends RuntimeException {
         this.statusCode = Optional.ofNullable(statusCode);
         return this;
     }
+
 
     /**
      * HTTP status code
@@ -180,6 +181,7 @@ public class BadRequestResponse extends RuntimeException {
         return this;
     }
 
+
     /**
      * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
      */
@@ -197,6 +199,7 @@ public class BadRequestResponse extends RuntimeException {
         this.typeName = Optional.ofNullable(typeName);
         return this;
     }
+
 
     /**
      * The type of error returned
@@ -216,6 +219,7 @@ public class BadRequestResponse extends RuntimeException {
         return this;
     }
 
+
     /**
      * A human-readable message providing more details about the error.
      */
@@ -233,6 +237,7 @@ public class BadRequestResponse extends RuntimeException {
         this.detail = Optional.ofNullable(detail);
         return this;
     }
+
 
     /**
      * Contains parameter or domain specific information related to the error and why it occurred.
@@ -252,6 +257,7 @@ public class BadRequestResponse extends RuntimeException {
         return this;
     }
 
+
     /**
      * Link to documentation of error type
      */
@@ -261,7 +267,6 @@ public class BadRequestResponse extends RuntimeException {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -272,23 +277,19 @@ public class BadRequestResponse extends RuntimeException {
         }
         BadRequestResponse other = (BadRequestResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.error, other.error) &&
-            Objects.deepEquals(this.typeName, other.typeName) &&
-            Objects.deepEquals(this.message, other.message) &&
-            Objects.deepEquals(this.detail, other.detail) &&
-            Objects.deepEquals(this.ref, other.ref);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.error, other.error) &&
+            Utils.enhancedDeepEquals(this.typeName, other.typeName) &&
+            Utils.enhancedDeepEquals(this.message, other.message) &&
+            Utils.enhancedDeepEquals(this.detail, other.detail) &&
+            Utils.enhancedDeepEquals(this.ref, other.ref);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            error,
-            typeName,
-            message,
-            detail,
-            ref);
+        return Utils.enhancedHash(
+            statusCode, error, typeName,
+            message, detail, ref);
     }
     
     @Override
@@ -301,24 +302,26 @@ public class BadRequestResponse extends RuntimeException {
                 "detail", detail,
                 "ref", ref);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Double> statusCode = Optional.empty();
- 
+
         private Optional<String> error = Optional.empty();
- 
+
         private Optional<String> typeName = Optional.empty();
- 
+
         private Optional<String> message = Optional.empty();
- 
+
         private Optional<? extends Detail> detail = Optional.empty();
- 
+
         private Optional<String> ref = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP status code
@@ -338,6 +341,7 @@ public class BadRequestResponse extends RuntimeException {
             return this;
         }
 
+
         /**
          * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
          */
@@ -355,6 +359,7 @@ public class BadRequestResponse extends RuntimeException {
             this.error = error;
             return this;
         }
+
 
         /**
          * The type of error returned
@@ -374,6 +379,7 @@ public class BadRequestResponse extends RuntimeException {
             return this;
         }
 
+
         /**
          * A human-readable message providing more details about the error.
          */
@@ -391,6 +397,7 @@ public class BadRequestResponse extends RuntimeException {
             this.message = message;
             return this;
         }
+
 
         /**
          * Contains parameter or domain specific information related to the error and why it occurred.
@@ -410,6 +417,7 @@ public class BadRequestResponse extends RuntimeException {
             return this;
         }
 
+
         /**
          * Link to documentation of error type
          */
@@ -427,16 +435,14 @@ public class BadRequestResponse extends RuntimeException {
             this.ref = ref;
             return this;
         }
-        
+
         public BadRequestResponse build() {
+
             return new BadRequestResponse(
-                statusCode,
-                error,
-                typeName,
-                message,
-                detail,
-                ref);
+                statusCode, error, typeName,
+                message, detail, ref);
         }
+
     }
 }
 

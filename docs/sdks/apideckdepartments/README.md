@@ -34,7 +34,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisDepartmentsAllRequest req = HrisDepartmentsAllRequest.builder()
@@ -101,7 +101,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisDepartmentsAddRequest req = HrisDepartmentsAddRequest.builder()
@@ -198,7 +198,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisDepartmentsOneRequest req = HrisDepartmentsOneRequest.builder()
@@ -264,7 +264,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisDepartmentsUpdateRequest req = HrisDepartmentsUpdateRequest.builder()
@@ -342,7 +342,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         HrisDepartmentsDeleteRequest req = HrisDepartmentsDeleteRequest.builder()

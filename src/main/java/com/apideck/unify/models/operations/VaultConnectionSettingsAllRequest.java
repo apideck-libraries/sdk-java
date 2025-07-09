@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConnectionSettingsAllRequest {
 
+public class VaultConnectionSettingsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -67,7 +66,8 @@ public class VaultConnectionSettingsAllRequest {
             String unifiedApi,
             String serviceId,
             String resource) {
-        this(Optional.empty(), Optional.empty(), unifiedApi, serviceId, resource);
+        this(Optional.empty(), Optional.empty(), unifiedApi,
+            serviceId, resource);
     }
 
     /**
@@ -110,9 +110,10 @@ public class VaultConnectionSettingsAllRequest {
         return resource;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -122,6 +123,7 @@ public class VaultConnectionSettingsAllRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -140,6 +142,7 @@ public class VaultConnectionSettingsAllRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -177,7 +180,6 @@ public class VaultConnectionSettingsAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,21 +190,18 @@ public class VaultConnectionSettingsAllRequest {
         }
         VaultConnectionSettingsAllRequest other = (VaultConnectionSettingsAllRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.resource, other.resource);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            unifiedApi,
-            serviceId,
-            resource);
+        return Utils.enhancedHash(
+            consumerId, appId, unifiedApi,
+            serviceId, resource);
     }
     
     @Override
@@ -214,22 +213,24 @@ public class VaultConnectionSettingsAllRequest {
                 "serviceId", serviceId,
                 "resource", resource);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String unifiedApi;
- 
+
         private String serviceId;
- 
+
         private String resource;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -249,6 +250,7 @@ public class VaultConnectionSettingsAllRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -267,6 +269,7 @@ public class VaultConnectionSettingsAllRequest {
             return this;
         }
 
+
         /**
          * Unified API
          */
@@ -275,6 +278,7 @@ public class VaultConnectionSettingsAllRequest {
             this.unifiedApi = unifiedApi;
             return this;
         }
+
 
         /**
          * Service ID of the resource to return
@@ -285,6 +289,7 @@ public class VaultConnectionSettingsAllRequest {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -293,14 +298,13 @@ public class VaultConnectionSettingsAllRequest {
             this.resource = resource;
             return this;
         }
-        
+
         public VaultConnectionSettingsAllRequest build() {
+
             return new VaultConnectionSettingsAllRequest(
-                consumerId,
-                appId,
-                unifiedApi,
-                serviceId,
-                resource);
+                consumerId, appId, unifiedApi,
+                serviceId, resource);
         }
+
     }
 }

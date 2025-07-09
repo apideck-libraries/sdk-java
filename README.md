@@ -47,7 +47,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'com.apideck:unify:0.16.0'
+implementation 'com.apideck:unify:0.17.0'
 ```
 
 Maven:
@@ -55,7 +55,7 @@ Maven:
 <dependency>
     <groupId>com.apideck</groupId>
     <artifactId>unify</artifactId>
-    <version>0.16.0</version>
+    <version>0.17.0</version>
 </dependency>
 ```
 
@@ -76,10 +76,10 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ### Logging
 A logging framework/facade has not yet been adopted but is under consideration.
 
-For request and response logging (especially json bodies), call `enableHTTPDebugLogging()` on the SDK builder like so:
+For request and response logging (especially json bodies), call `enableHTTPDebugLogging(boolean)` on the SDK builder like so:
 ```java
 SDK.builder()
-    .enableHTTPDebugLogging()
+    .enableHTTPDebugLogging(true)
     .build();
 ```
 Example output:
@@ -124,7 +124,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -751,7 +751,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -819,7 +819,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -889,7 +889,7 @@ public class Application {
                     .build())
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -954,7 +954,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -1008,7 +1008,7 @@ public class Application {
                 .serverURL("https://unify.apideck.com")
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -1057,7 +1057,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingAttachmentsUploadRequest req = AccountingAttachmentsUploadRequest.builder()
@@ -1109,7 +1109,7 @@ public class Application {
     public static void main(String[] args) throws BadRequestResponse, UnauthorizedResponse, PaymentRequiredResponse, NotFoundResponse, UnprocessableResponse, Exception {
 
         Apideck sdk = Apideck.builder()
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
             .build();

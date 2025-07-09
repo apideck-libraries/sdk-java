@@ -48,8 +48,8 @@ public class AccountingJournalEntriesUpdateRequestBuilder {
 
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
               = new AccountingJournalEntriesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

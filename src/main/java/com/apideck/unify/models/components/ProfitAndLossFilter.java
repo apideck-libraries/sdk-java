@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ProfitAndLossFilter {
 
+public class ProfitAndLossFilter {
     /**
      * Filter by customer id
      */
@@ -73,9 +72,10 @@ public class ProfitAndLossFilter {
         return endDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter by customer id
@@ -85,6 +85,7 @@ public class ProfitAndLossFilter {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * Filter by customer id
@@ -104,6 +105,7 @@ public class ProfitAndLossFilter {
         return this;
     }
 
+
     /**
      * Filter by start date. If start date is given, end date is required.
      */
@@ -122,6 +124,7 @@ public class ProfitAndLossFilter {
         return this;
     }
 
+
     /**
      * Filter by end date. If end date is given, start date is required.
      */
@@ -131,7 +134,6 @@ public class ProfitAndLossFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,17 +144,15 @@ public class ProfitAndLossFilter {
         }
         ProfitAndLossFilter other = (ProfitAndLossFilter) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            customerId,
-            startDate,
-            endDate);
+        return Utils.enhancedHash(
+            customerId, startDate, endDate);
     }
     
     @Override
@@ -162,18 +162,20 @@ public class ProfitAndLossFilter {
                 "startDate", startDate,
                 "endDate", endDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter by customer id
@@ -193,6 +195,7 @@ public class ProfitAndLossFilter {
             return this;
         }
 
+
         /**
          * Filter by start date. If start date is given, end date is required.
          */
@@ -211,6 +214,7 @@ public class ProfitAndLossFilter {
             return this;
         }
 
+
         /**
          * Filter by end date. If end date is given, start date is required.
          */
@@ -228,12 +232,12 @@ public class ProfitAndLossFilter {
             this.endDate = endDate;
             return this;
         }
-        
+
         public ProfitAndLossFilter build() {
+
             return new ProfitAndLossFilter(
-                customerId,
-                startDate,
-                endDate);
+                customerId, startDate, endDate);
         }
+
     }
 }

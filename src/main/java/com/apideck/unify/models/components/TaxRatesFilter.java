@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class TaxRatesFilter {
 
+public class TaxRatesFilter {
     /**
      * Boolean to describe if tax rate can be used for asset accounts
      */
@@ -65,7 +64,8 @@ public class TaxRatesFilter {
     }
     
     public TaxRatesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -108,9 +108,10 @@ public class TaxRatesFilter {
         return revenue;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Boolean to describe if tax rate can be used for asset accounts
@@ -120,6 +121,7 @@ public class TaxRatesFilter {
         this.assets = Optional.ofNullable(assets);
         return this;
     }
+
 
     /**
      * Boolean to describe if tax rate can be used for asset accounts
@@ -139,6 +141,7 @@ public class TaxRatesFilter {
         return this;
     }
 
+
     /**
      * Boolean to describe if tax rate can be used for equity accounts
      */
@@ -156,6 +159,7 @@ public class TaxRatesFilter {
         this.expenses = Optional.ofNullable(expenses);
         return this;
     }
+
 
     /**
      * Boolean to describe if tax rate can be used for expense accounts
@@ -175,6 +179,7 @@ public class TaxRatesFilter {
         return this;
     }
 
+
     /**
      * Boolean to describe if tax rate can be used for liability accounts
      */
@@ -193,6 +198,7 @@ public class TaxRatesFilter {
         return this;
     }
 
+
     /**
      * Boolean to describe if tax rate can be used for revenue accounts
      */
@@ -202,7 +208,6 @@ public class TaxRatesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -213,21 +218,18 @@ public class TaxRatesFilter {
         }
         TaxRatesFilter other = (TaxRatesFilter) o;
         return 
-            Objects.deepEquals(this.assets, other.assets) &&
-            Objects.deepEquals(this.equity, other.equity) &&
-            Objects.deepEquals(this.expenses, other.expenses) &&
-            Objects.deepEquals(this.liabilities, other.liabilities) &&
-            Objects.deepEquals(this.revenue, other.revenue);
+            Utils.enhancedDeepEquals(this.assets, other.assets) &&
+            Utils.enhancedDeepEquals(this.equity, other.equity) &&
+            Utils.enhancedDeepEquals(this.expenses, other.expenses) &&
+            Utils.enhancedDeepEquals(this.liabilities, other.liabilities) &&
+            Utils.enhancedDeepEquals(this.revenue, other.revenue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            assets,
-            equity,
-            expenses,
-            liabilities,
-            revenue);
+        return Utils.enhancedHash(
+            assets, equity, expenses,
+            liabilities, revenue);
     }
     
     @Override
@@ -239,22 +241,24 @@ public class TaxRatesFilter {
                 "liabilities", liabilities,
                 "revenue", revenue);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> assets = Optional.empty();
- 
+
         private Optional<Boolean> equity = Optional.empty();
- 
+
         private Optional<Boolean> expenses = Optional.empty();
- 
+
         private Optional<Boolean> liabilities = Optional.empty();
- 
+
         private Optional<Boolean> revenue = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Boolean to describe if tax rate can be used for asset accounts
@@ -274,6 +278,7 @@ public class TaxRatesFilter {
             return this;
         }
 
+
         /**
          * Boolean to describe if tax rate can be used for equity accounts
          */
@@ -291,6 +296,7 @@ public class TaxRatesFilter {
             this.equity = equity;
             return this;
         }
+
 
         /**
          * Boolean to describe if tax rate can be used for expense accounts
@@ -310,6 +316,7 @@ public class TaxRatesFilter {
             return this;
         }
 
+
         /**
          * Boolean to describe if tax rate can be used for liability accounts
          */
@@ -328,6 +335,7 @@ public class TaxRatesFilter {
             return this;
         }
 
+
         /**
          * Boolean to describe if tax rate can be used for revenue accounts
          */
@@ -345,14 +353,13 @@ public class TaxRatesFilter {
             this.revenue = revenue;
             return this;
         }
-        
+
         public TaxRatesFilter build() {
+
             return new TaxRatesFilter(
-                assets,
-                equity,
-                expenses,
-                liabilities,
-                revenue);
+                assets, equity, expenses,
+                liabilities, revenue);
         }
+
     }
 }

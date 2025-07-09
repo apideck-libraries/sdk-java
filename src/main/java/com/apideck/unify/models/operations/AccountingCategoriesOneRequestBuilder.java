@@ -48,8 +48,8 @@ public class AccountingCategoriesOneRequestBuilder {
 
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
               = new AccountingCategoriesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -37,7 +37,6 @@ public class LedgerAccounts {
     LedgerAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Ledger Accounts
      * 
@@ -77,11 +76,10 @@ public class LedgerAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAllRequest, AccountingLedgerAccountsAllResponse> operation
               = new AccountingLedgerAccountsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Ledger Account
@@ -122,11 +120,10 @@ public class LedgerAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
               = new AccountingLedgerAccountsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Ledger Account
@@ -167,11 +164,10 @@ public class LedgerAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
               = new AccountingLedgerAccountsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Ledger Account
@@ -212,11 +208,10 @@ public class LedgerAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
               = new AccountingLedgerAccountsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Ledger Account
@@ -257,8 +252,8 @@ public class LedgerAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
               = new AccountingLedgerAccountsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

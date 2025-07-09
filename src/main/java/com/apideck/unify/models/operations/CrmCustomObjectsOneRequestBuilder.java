@@ -48,8 +48,8 @@ public class CrmCustomObjectsOneRequestBuilder {
 
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
               = new CrmCustomObjectsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

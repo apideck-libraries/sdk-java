@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class HrisEmployeesUpdateRequest {
 
+public class HrisEmployeesUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -48,6 +47,7 @@ public class HrisEmployeesUpdateRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private EmployeeInput employee;
 
@@ -76,7 +76,8 @@ public class HrisEmployeesUpdateRequest {
     public HrisEmployeesUpdateRequest(
             String id,
             EmployeeInput employee) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), employee);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), employee);
     }
 
     /**
@@ -124,9 +125,10 @@ public class HrisEmployeesUpdateRequest {
         return employee;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -146,6 +148,7 @@ public class HrisEmployeesUpdateRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -163,6 +166,7 @@ public class HrisEmployeesUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -182,6 +186,7 @@ public class HrisEmployeesUpdateRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -200,6 +205,7 @@ public class HrisEmployeesUpdateRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -215,7 +221,6 @@ public class HrisEmployeesUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,23 +231,19 @@ public class HrisEmployeesUpdateRequest {
         }
         HrisEmployeesUpdateRequest other = (HrisEmployeesUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.employee, other.employee);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.employee, other.employee);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            employee);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, employee);
     }
     
     @Override
@@ -255,24 +256,26 @@ public class HrisEmployeesUpdateRequest {
                 "raw", raw,
                 "employee", employee);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private EmployeeInput employee;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -282,6 +285,7 @@ public class HrisEmployeesUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -301,6 +305,7 @@ public class HrisEmployeesUpdateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -318,6 +323,7 @@ public class HrisEmployeesUpdateRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -337,6 +343,7 @@ public class HrisEmployeesUpdateRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -355,24 +362,23 @@ public class HrisEmployeesUpdateRequest {
             return this;
         }
 
+
         public Builder employee(EmployeeInput employee) {
             Utils.checkNotNull(employee, "employee");
             this.employee = employee;
             return this;
         }
-        
+
         public HrisEmployeesUpdateRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new HrisEmployeesUpdateRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                employee);
+                id, consumerId, appId,
+                serviceId, raw, employee);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

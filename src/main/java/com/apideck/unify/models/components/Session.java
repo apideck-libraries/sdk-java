@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Session {
 
+public class Session {
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -74,7 +73,8 @@ public class Session {
     }
     
     public Session() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -121,9 +121,10 @@ public class Session {
         return (Optional<Map<String, Object>>) customConsumerSettings;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -133,6 +134,7 @@ public class Session {
         this.consumerMetadata = Optional.ofNullable(consumerMetadata);
         return this;
     }
+
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -152,6 +154,7 @@ public class Session {
         return this;
     }
 
+
     /**
      * The URL to redirect the user to after the session has been configured.
      */
@@ -169,6 +172,7 @@ public class Session {
         this.settings = Optional.ofNullable(settings);
         return this;
     }
+
 
     /**
      * Settings to change the way the Vault is displayed.
@@ -188,6 +192,7 @@ public class Session {
         return this;
     }
 
+
     /**
      * Theming options to change the look and feel of Vault.
      */
@@ -206,6 +211,7 @@ public class Session {
         return this;
     }
 
+
     /**
      * Custom consumer settings that are passed as part of the session.
      */
@@ -215,7 +221,6 @@ public class Session {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,21 +231,18 @@ public class Session {
         }
         Session other = (Session) o;
         return 
-            Objects.deepEquals(this.consumerMetadata, other.consumerMetadata) &&
-            Objects.deepEquals(this.redirectUri, other.redirectUri) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.theme, other.theme) &&
-            Objects.deepEquals(this.customConsumerSettings, other.customConsumerSettings);
+            Utils.enhancedDeepEquals(this.consumerMetadata, other.consumerMetadata) &&
+            Utils.enhancedDeepEquals(this.redirectUri, other.redirectUri) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.theme, other.theme) &&
+            Utils.enhancedDeepEquals(this.customConsumerSettings, other.customConsumerSettings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerMetadata,
-            redirectUri,
-            settings,
-            theme,
-            customConsumerSettings);
+        return Utils.enhancedHash(
+            consumerMetadata, redirectUri, settings,
+            theme, customConsumerSettings);
     }
     
     @Override
@@ -252,22 +254,24 @@ public class Session {
                 "theme", theme,
                 "customConsumerSettings", customConsumerSettings);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ConsumerMetadata> consumerMetadata = Optional.empty();
- 
+
         private Optional<String> redirectUri = Optional.empty();
- 
+
         private Optional<? extends Settings> settings = Optional.empty();
- 
+
         private Optional<? extends Theme> theme = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> customConsumerSettings = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -287,6 +291,7 @@ public class Session {
             return this;
         }
 
+
         /**
          * The URL to redirect the user to after the session has been configured.
          */
@@ -304,6 +309,7 @@ public class Session {
             this.redirectUri = redirectUri;
             return this;
         }
+
 
         /**
          * Settings to change the way the Vault is displayed.
@@ -323,6 +329,7 @@ public class Session {
             return this;
         }
 
+
         /**
          * Theming options to change the look and feel of Vault.
          */
@@ -341,6 +348,7 @@ public class Session {
             return this;
         }
 
+
         /**
          * Custom consumer settings that are passed as part of the session.
          */
@@ -358,14 +366,13 @@ public class Session {
             this.customConsumerSettings = customConsumerSettings;
             return this;
         }
-        
+
         public Session build() {
+
             return new Session(
-                consumerMetadata,
-                redirectUri,
-                settings,
-                theme,
-                customConsumerSettings);
+                consumerMetadata, redirectUri, settings,
+                theme, customConsumerSettings);
         }
+
     }
 }

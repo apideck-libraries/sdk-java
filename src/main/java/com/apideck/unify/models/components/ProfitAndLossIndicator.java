@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ProfitAndLossIndicator {
 
+public class ProfitAndLossIndicator {
     /**
      * The total amount of the transaction or record
      */
@@ -43,9 +42,10 @@ public class ProfitAndLossIndicator {
         return total;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The total amount of the transaction or record
@@ -65,7 +65,6 @@ public class ProfitAndLossIndicator {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -76,12 +75,12 @@ public class ProfitAndLossIndicator {
         }
         ProfitAndLossIndicator other = (ProfitAndLossIndicator) o;
         return 
-            Objects.deepEquals(this.total, other.total);
+            Utils.enhancedDeepEquals(this.total, other.total);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             total);
     }
     
@@ -90,14 +89,16 @@ public class ProfitAndLossIndicator {
         return Utils.toString(ProfitAndLossIndicator.class,
                 "total", total);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Double> total = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The total amount of the transaction or record
@@ -116,10 +117,12 @@ public class ProfitAndLossIndicator {
             this.total = total;
             return this;
         }
-        
+
         public ProfitAndLossIndicator build() {
+
             return new ProfitAndLossIndicator(
                 total);
         }
+
     }
 }

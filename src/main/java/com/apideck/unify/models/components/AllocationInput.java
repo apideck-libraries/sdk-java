@@ -13,12 +13,11 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AllocationInput {
 
+public class AllocationInput {
     /**
      * Unique identifier of entity this payment should be attributed to.
      */
@@ -64,7 +63,8 @@ public class AllocationInput {
     }
     
     public AllocationInput() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +100,10 @@ public class AllocationInput {
         return allocationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of entity this payment should be attributed to.
@@ -112,6 +113,7 @@ public class AllocationInput {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier of entity this payment should be attributed to.
@@ -130,6 +132,7 @@ public class AllocationInput {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Type of entity this payment should be attributed to.
@@ -167,6 +170,7 @@ public class AllocationInput {
         return this;
     }
 
+
     /**
      * Unique identifier of the allocation
      */
@@ -176,7 +180,6 @@ public class AllocationInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,18 +190,16 @@ public class AllocationInput {
         }
         AllocationInput other = (AllocationInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.allocationId, other.allocationId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.allocationId, other.allocationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            type,
-            amount,
+        return Utils.enhancedHash(
+            id, type, amount,
             allocationId);
     }
     
@@ -210,20 +211,22 @@ public class AllocationInput {
                 "amount", amount,
                 "allocationId", allocationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends AllocationType> type = Optional.empty();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
- 
+
         private Optional<String> allocationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of entity this payment should be attributed to.
@@ -243,6 +246,7 @@ public class AllocationInput {
             return this;
         }
 
+
         /**
          * Type of entity this payment should be attributed to.
          */
@@ -260,6 +264,7 @@ public class AllocationInput {
             this.type = type;
             return this;
         }
+
 
         /**
          * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
@@ -279,6 +284,7 @@ public class AllocationInput {
             return this;
         }
 
+
         /**
          * Unique identifier of the allocation
          */
@@ -296,13 +302,13 @@ public class AllocationInput {
             this.allocationId = allocationId;
             return this;
         }
-        
+
         public AllocationInput build() {
+
             return new AllocationInput(
-                id,
-                type,
-                amount,
+                id, type, amount,
                 allocationId);
         }
+
     }
 }

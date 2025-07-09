@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AtsApplicationsAllRequest {
 
+public class AtsApplicationsAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -90,7 +89,9 @@ public class AtsApplicationsAllRequest {
     }
     
     public AtsApplicationsAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -150,9 +151,10 @@ public class AtsApplicationsAllRequest {
         return limit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -162,6 +164,7 @@ public class AtsApplicationsAllRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -181,6 +184,7 @@ public class AtsApplicationsAllRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -199,6 +203,7 @@ public class AtsApplicationsAllRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -216,6 +221,7 @@ public class AtsApplicationsAllRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -253,6 +259,7 @@ public class AtsApplicationsAllRequest {
         return this;
     }
 
+
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
@@ -271,6 +278,7 @@ public class AtsApplicationsAllRequest {
         return this;
     }
 
+
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
@@ -280,7 +288,6 @@ public class AtsApplicationsAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -291,24 +298,20 @@ public class AtsApplicationsAllRequest {
         }
         AtsApplicationsAllRequest other = (AtsApplicationsAllRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            cursor,
-            passThrough,
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, cursor, passThrough,
             limit);
     }
     
@@ -323,26 +326,28 @@ public class AtsApplicationsAllRequest {
                 "passThrough", passThrough,
                 "limit", limit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
- 
+
         private Optional<Long> limit;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -362,6 +367,7 @@ public class AtsApplicationsAllRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -379,6 +385,7 @@ public class AtsApplicationsAllRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -398,6 +405,7 @@ public class AtsApplicationsAllRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -415,6 +423,7 @@ public class AtsApplicationsAllRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
@@ -434,6 +443,7 @@ public class AtsApplicationsAllRequest {
             return this;
         }
 
+
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
@@ -452,6 +462,7 @@ public class AtsApplicationsAllRequest {
             return this;
         }
 
+
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
@@ -469,7 +480,7 @@ public class AtsApplicationsAllRequest {
             this.limit = limit;
             return this;
         }
-        
+
         public AtsApplicationsAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -477,15 +488,13 @@ public class AtsApplicationsAllRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new AtsApplicationsAllRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                cursor,
-                passThrough,
+                raw, consumerId, appId,
+                serviceId, cursor, passThrough,
                 limit);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

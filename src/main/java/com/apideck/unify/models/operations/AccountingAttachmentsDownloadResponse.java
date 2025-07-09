@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingAttachmentsDownloadResponse implements Response {
 
+public class AccountingAttachmentsDownloadResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -67,7 +66,8 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty(), Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -112,9 +112,10 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -152,6 +153,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         return this;
     }
 
+
     /**
      * Attachment Download
      */
@@ -170,6 +172,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         return this;
     }
 
+
     /**
      * Unexpected error
      */
@@ -179,7 +182,6 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,21 +192,18 @@ public class AccountingAttachmentsDownloadResponse implements Response {
         }
         AccountingAttachmentsDownloadResponse other = (AccountingAttachmentsDownloadResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.getAttachmentDownloadResponse, other.getAttachmentDownloadResponse) &&
-            Objects.deepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.getAttachmentDownloadResponse, other.getAttachmentDownloadResponse) &&
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
-            getAttachmentDownloadResponse,
-            unexpectedErrorResponse);
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
+            getAttachmentDownloadResponse, unexpectedErrorResponse);
     }
     
     @Override
@@ -216,22 +215,24 @@ public class AccountingAttachmentsDownloadResponse implements Response {
                 "getAttachmentDownloadResponse", getAttachmentDownloadResponse,
                 "unexpectedErrorResponse", unexpectedErrorResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends InputStream> getAttachmentDownloadResponse = Optional.empty();
- 
+
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -242,6 +243,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -251,6 +253,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -259,6 +262,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Attachment Download
@@ -278,6 +282,7 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             return this;
         }
 
+
         /**
          * Unexpected error
          */
@@ -295,14 +300,13 @@ public class AccountingAttachmentsDownloadResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-        
+
         public AccountingAttachmentsDownloadResponse build() {
+
             return new AccountingAttachmentsDownloadResponse(
-                contentType,
-                statusCode,
-                rawResponse,
-                getAttachmentDownloadResponse,
-                unexpectedErrorResponse);
+                contentType, statusCode, rawResponse,
+                getAttachmentDownloadResponse, unexpectedErrorResponse);
         }
+
     }
 }

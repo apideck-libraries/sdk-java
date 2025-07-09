@@ -12,12 +12,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Email {
 
+public class Email {
     /**
      * Unique identifier for the email address
      */
@@ -81,9 +80,10 @@ public class Email {
         return (JsonNullable<EmailType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the email address
@@ -112,6 +112,7 @@ public class Email {
         return this;
     }
 
+
     /**
      * Email address
      */
@@ -139,7 +140,6 @@ public class Email {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,17 +150,15 @@ public class Email {
         }
         Email other = (Email) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            email,
-            type);
+        return Utils.enhancedHash(
+            id, email, type);
     }
     
     @Override
@@ -170,18 +168,20 @@ public class Email {
                 "email", email,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private JsonNullable<? extends EmailType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the email address
@@ -201,6 +201,7 @@ public class Email {
             return this;
         }
 
+
         /**
          * Email address
          */
@@ -219,6 +220,7 @@ public class Email {
             return this;
         }
 
+
         /**
          * Email type
          */
@@ -236,12 +238,12 @@ public class Email {
             this.type = type;
             return this;
         }
-        
+
         public Email build() {
+
             return new Email(
-                id,
-                email,
-                type);
+                id, email, type);
         }
+
     }
 }

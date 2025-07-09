@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class EcommerceOrdersFilter {
 
+public class EcommerceOrdersFilter {
     /**
      * Customer email address to filter on
      */
@@ -55,7 +54,8 @@ public class EcommerceOrdersFilter {
     }
     
     public EcommerceOrdersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -90,9 +90,10 @@ public class EcommerceOrdersFilter {
         return createdSince;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Customer email address to filter on
@@ -102,6 +103,7 @@ public class EcommerceOrdersFilter {
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * Customer email address to filter on
@@ -121,6 +123,7 @@ public class EcommerceOrdersFilter {
         return this;
     }
 
+
     /**
      * Customer id to filter on
      */
@@ -138,6 +141,7 @@ public class EcommerceOrdersFilter {
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     /**
      * Minimum date the order was last modified
@@ -157,6 +161,7 @@ public class EcommerceOrdersFilter {
         return this;
     }
 
+
     /**
      * Minimum date the order was created
      */
@@ -166,7 +171,6 @@ public class EcommerceOrdersFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,18 +181,16 @@ public class EcommerceOrdersFilter {
         }
         EcommerceOrdersFilter other = (EcommerceOrdersFilter) o;
         return 
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.createdSince, other.createdSince);
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            email,
-            customerId,
-            updatedSince,
+        return Utils.enhancedHash(
+            email, customerId, updatedSince,
             createdSince);
     }
     
@@ -200,20 +202,22 @@ public class EcommerceOrdersFilter {
                 "updatedSince", updatedSince,
                 "createdSince", createdSince);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> updatedSince = Optional.empty();
- 
+
         private Optional<String> createdSince = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Customer email address to filter on
@@ -233,6 +237,7 @@ public class EcommerceOrdersFilter {
             return this;
         }
 
+
         /**
          * Customer id to filter on
          */
@@ -250,6 +255,7 @@ public class EcommerceOrdersFilter {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * Minimum date the order was last modified
@@ -269,6 +275,7 @@ public class EcommerceOrdersFilter {
             return this;
         }
 
+
         /**
          * Minimum date the order was created
          */
@@ -286,13 +293,13 @@ public class EcommerceOrdersFilter {
             this.createdSince = createdSince;
             return this;
         }
-        
+
         public EcommerceOrdersFilter build() {
+
             return new EcommerceOrdersFilter(
-                email,
-                customerId,
-                updatedSince,
+                email, customerId, updatedSince,
                 createdSince);
         }
+
     }
 }

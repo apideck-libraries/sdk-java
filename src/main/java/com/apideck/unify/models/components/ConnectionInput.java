@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ConnectionInput {
 
+public class ConnectionInput {
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
@@ -42,6 +41,7 @@ public class ConnectionInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
     private JsonNullable<? extends Map<String, Object>> metadata;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configuration")
@@ -74,7 +74,8 @@ public class ConnectionInput {
     }
     
     public ConnectionInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +119,10 @@ public class ConnectionInput {
         return (Optional<List<CustomMappingInput>>) customMappings;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
@@ -130,6 +132,7 @@ public class ConnectionInput {
         this.enabled = Optional.ofNullable(enabled);
         return this;
     }
+
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
@@ -182,6 +185,7 @@ public class ConnectionInput {
         return this;
     }
 
+
     public ConnectionInput withConfiguration(Optional<? extends List<ConnectionConfiguration>> configuration) {
         Utils.checkNotNull(configuration, "configuration");
         this.configuration = configuration;
@@ -197,6 +201,7 @@ public class ConnectionInput {
         return this;
     }
 
+
     /**
      * List of custom mappings configured for this connection
      */
@@ -206,7 +211,6 @@ public class ConnectionInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -217,21 +221,18 @@ public class ConnectionInput {
         }
         ConnectionInput other = (ConnectionInput) o;
         return 
-            Objects.deepEquals(this.enabled, other.enabled) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.configuration, other.configuration) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.enabled, other.enabled) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.configuration, other.configuration) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            enabled,
-            settings,
-            metadata,
-            configuration,
-            customMappings);
+        return Utils.enhancedHash(
+            enabled, settings, metadata,
+            configuration, customMappings);
     }
     
     @Override
@@ -243,22 +244,24 @@ public class ConnectionInput {
                 "configuration", configuration,
                 "customMappings", customMappings);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> enabled = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
- 
+
         private Optional<? extends List<ConnectionConfiguration>> configuration = Optional.empty();
- 
+
         private Optional<? extends List<CustomMappingInput>> customMappings = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
@@ -278,6 +281,7 @@ public class ConnectionInput {
             return this;
         }
 
+
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
@@ -295,6 +299,7 @@ public class ConnectionInput {
             this.settings = settings;
             return this;
         }
+
 
         /**
          * Attach your own consumer specific metadata
@@ -314,6 +319,7 @@ public class ConnectionInput {
             return this;
         }
 
+
         public Builder configuration(List<ConnectionConfiguration> configuration) {
             Utils.checkNotNull(configuration, "configuration");
             this.configuration = Optional.ofNullable(configuration);
@@ -325,6 +331,7 @@ public class ConnectionInput {
             this.configuration = configuration;
             return this;
         }
+
 
         /**
          * List of custom mappings configured for this connection
@@ -343,14 +350,13 @@ public class ConnectionInput {
             this.customMappings = customMappings;
             return this;
         }
-        
+
         public ConnectionInput build() {
+
             return new ConnectionInput(
-                enabled,
-                settings,
-                metadata,
-                configuration,
-                customMappings);
+                enabled, settings, metadata,
+                configuration, customMappings);
         }
+
     }
 }

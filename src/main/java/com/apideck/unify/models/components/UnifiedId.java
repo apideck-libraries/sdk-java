@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * UnifiedId
@@ -17,7 +16,6 @@ import java.util.Objects;
  * <p>A object containing a unique identifier for the resource that was created, updated, or deleted.
  */
 public class UnifiedId {
-
     /**
      * The unique identifier of the resource
      */
@@ -39,9 +37,10 @@ public class UnifiedId {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the resource
@@ -52,7 +51,6 @@ public class UnifiedId {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -63,12 +61,12 @@ public class UnifiedId {
         }
         UnifiedId other = (UnifiedId) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -77,14 +75,16 @@ public class UnifiedId {
         return Utils.toString(UnifiedId.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the resource
@@ -94,10 +94,12 @@ public class UnifiedId {
             this.id = id;
             return this;
         }
-        
+
         public UnifiedId build() {
+
             return new UnifiedId(
                 id);
         }
+
     }
 }

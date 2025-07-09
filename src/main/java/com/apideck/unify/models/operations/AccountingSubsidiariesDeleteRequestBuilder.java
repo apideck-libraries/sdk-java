@@ -48,8 +48,8 @@ public class AccountingSubsidiariesDeleteRequestBuilder {
 
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
               = new AccountingSubsidiariesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

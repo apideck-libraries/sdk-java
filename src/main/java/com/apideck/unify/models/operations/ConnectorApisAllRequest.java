@@ -14,12 +14,11 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ConnectorApisAllRequest {
 
+public class ConnectorApisAllRequest {
     /**
      * The ID of your Unify application
      */
@@ -61,7 +60,8 @@ public class ConnectorApisAllRequest {
     }
     
     public ConnectorApisAllRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -97,9 +97,10 @@ public class ConnectorApisAllRequest {
         return (Optional<ApisFilter>) filter;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -109,6 +110,7 @@ public class ConnectorApisAllRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -146,6 +148,7 @@ public class ConnectorApisAllRequest {
         return this;
     }
 
+
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
@@ -164,6 +167,7 @@ public class ConnectorApisAllRequest {
         return this;
     }
 
+
     /**
      * Apply filters
      */
@@ -173,7 +177,6 @@ public class ConnectorApisAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,18 +187,16 @@ public class ConnectorApisAllRequest {
         }
         ConnectorApisAllRequest other = (ConnectorApisAllRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.filter, other.filter);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            cursor,
-            limit,
+        return Utils.enhancedHash(
+            appId, cursor, limit,
             filter);
     }
     
@@ -207,20 +208,22 @@ public class ConnectorApisAllRequest {
                 "limit", limit,
                 "filter", filter);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private Optional<? extends ApisFilter> filter = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -240,6 +243,7 @@ public class ConnectorApisAllRequest {
             return this;
         }
 
+
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
@@ -257,6 +261,7 @@ public class ConnectorApisAllRequest {
             this.cursor = cursor;
             return this;
         }
+
 
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -276,6 +281,7 @@ public class ConnectorApisAllRequest {
             return this;
         }
 
+
         /**
          * Apply filters
          */
@@ -293,17 +299,17 @@ public class ConnectorApisAllRequest {
             this.filter = filter;
             return this;
         }
-        
+
         public ConnectorApisAllRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new ConnectorApisAllRequest(
-                appId,
-                cursor,
-                limit,
+                appId, cursor, limit,
                 filter);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

@@ -12,11 +12,10 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class BalanceSheetFilter {
 
+public class BalanceSheetFilter {
     /**
      * The start date of the period to include in the resource.
      * 
@@ -61,7 +60,8 @@ public class BalanceSheetFilter {
     }
     
     public BalanceSheetFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +100,10 @@ public class BalanceSheetFilter {
         return (Optional<PeriodType>) periodType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The start date of the period to include in the resource.
@@ -115,6 +116,7 @@ public class BalanceSheetFilter {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date of the period to include in the resource.
@@ -137,6 +139,7 @@ public class BalanceSheetFilter {
         return this;
     }
 
+
     /**
      * The end date of the period to include in the resource.
      */
@@ -154,6 +157,7 @@ public class BalanceSheetFilter {
         this.periodCount = Optional.ofNullable(periodCount);
         return this;
     }
+
 
     /**
      * The number of periods to include in the resource.
@@ -173,6 +177,7 @@ public class BalanceSheetFilter {
         return this;
     }
 
+
     /**
      * The type of period to include in the resource: month, quarter, year.
      */
@@ -182,7 +187,6 @@ public class BalanceSheetFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -193,18 +197,16 @@ public class BalanceSheetFilter {
         }
         BalanceSheetFilter other = (BalanceSheetFilter) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.periodCount, other.periodCount) &&
-            Objects.deepEquals(this.periodType, other.periodType);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
+            Utils.enhancedDeepEquals(this.periodType, other.periodType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            startDate,
-            endDate,
-            periodCount,
+        return Utils.enhancedHash(
+            startDate, endDate, periodCount,
             periodType);
     }
     
@@ -216,21 +218,23 @@ public class BalanceSheetFilter {
                 "periodCount", periodCount,
                 "periodType", periodType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         @Deprecated
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
- 
+
         private Optional<Long> periodCount = Optional.empty();
- 
+
         private Optional<? extends PeriodType> periodType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The start date of the period to include in the resource.
@@ -256,6 +260,7 @@ public class BalanceSheetFilter {
             return this;
         }
 
+
         /**
          * The end date of the period to include in the resource.
          */
@@ -273,6 +278,7 @@ public class BalanceSheetFilter {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * The number of periods to include in the resource.
@@ -292,6 +298,7 @@ public class BalanceSheetFilter {
             return this;
         }
 
+
         /**
          * The type of period to include in the resource: month, quarter, year.
          */
@@ -309,13 +316,13 @@ public class BalanceSheetFilter {
             this.periodType = periodType;
             return this;
         }
-        
+
         public BalanceSheetFilter build() {
+
             return new BalanceSheetFilter(
-                startDate,
-                endDate,
-                periodCount,
+                startDate, endDate, periodCount,
                 periodType);
         }
+
     }
 }

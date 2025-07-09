@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DriveInput {
 
+public class DriveInput {
     /**
      * The name of the drive
      */
@@ -82,9 +81,10 @@ public class DriveInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the drive
@@ -122,6 +122,7 @@ public class DriveInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -131,7 +132,6 @@ public class DriveInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,17 +142,15 @@ public class DriveInput {
         }
         DriveInput other = (DriveInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            description,
-            passThrough);
+        return Utils.enhancedHash(
+            name, description, passThrough);
     }
     
     @Override
@@ -162,18 +160,20 @@ public class DriveInput {
                 "description", description,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the drive
@@ -183,6 +183,7 @@ public class DriveInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * A description of the object.
@@ -202,6 +203,7 @@ public class DriveInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -219,12 +221,12 @@ public class DriveInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public DriveInput build() {
+
             return new DriveInput(
-                name,
-                description,
-                passThrough);
+                name, description, passThrough);
         }
+
     }
 }

@@ -23,7 +23,6 @@ public class Sessions {
     Sessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create Session
      * 
@@ -50,7 +49,8 @@ public class Sessions {
      * @throws Exception if the API call fails
      */
     public VaultSessionsCreateResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        return create(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -82,8 +82,8 @@ public class Sessions {
                 .build();
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
               = new VaultSessionsCreateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

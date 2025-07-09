@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingDepartmentsUpdateRequest {
 
+public class AccountingDepartmentsUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -48,6 +47,7 @@ public class AccountingDepartmentsUpdateRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private AccountingDepartmentInput accountingDepartment;
 
@@ -76,7 +76,8 @@ public class AccountingDepartmentsUpdateRequest {
     public AccountingDepartmentsUpdateRequest(
             String id,
             AccountingDepartmentInput accountingDepartment) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), accountingDepartment);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), accountingDepartment);
     }
 
     /**
@@ -124,9 +125,10 @@ public class AccountingDepartmentsUpdateRequest {
         return accountingDepartment;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -146,6 +148,7 @@ public class AccountingDepartmentsUpdateRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -163,6 +166,7 @@ public class AccountingDepartmentsUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -182,6 +186,7 @@ public class AccountingDepartmentsUpdateRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -200,6 +205,7 @@ public class AccountingDepartmentsUpdateRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -215,7 +221,6 @@ public class AccountingDepartmentsUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,23 +231,19 @@ public class AccountingDepartmentsUpdateRequest {
         }
         AccountingDepartmentsUpdateRequest other = (AccountingDepartmentsUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.accountingDepartment, other.accountingDepartment);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.accountingDepartment, other.accountingDepartment);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            accountingDepartment);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, accountingDepartment);
     }
     
     @Override
@@ -255,24 +256,26 @@ public class AccountingDepartmentsUpdateRequest {
                 "raw", raw,
                 "accountingDepartment", accountingDepartment);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private AccountingDepartmentInput accountingDepartment;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -282,6 +285,7 @@ public class AccountingDepartmentsUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -301,6 +305,7 @@ public class AccountingDepartmentsUpdateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -318,6 +323,7 @@ public class AccountingDepartmentsUpdateRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -337,6 +343,7 @@ public class AccountingDepartmentsUpdateRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -355,24 +362,23 @@ public class AccountingDepartmentsUpdateRequest {
             return this;
         }
 
+
         public Builder accountingDepartment(AccountingDepartmentInput accountingDepartment) {
             Utils.checkNotNull(accountingDepartment, "accountingDepartment");
             this.accountingDepartment = accountingDepartment;
             return this;
         }
-        
+
         public AccountingDepartmentsUpdateRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingDepartmentsUpdateRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                accountingDepartment);
+                id, consumerId, appId,
+                serviceId, raw, accountingDepartment);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

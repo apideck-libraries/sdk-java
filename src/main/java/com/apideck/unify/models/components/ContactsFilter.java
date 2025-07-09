@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ContactsFilter {
 
+public class ContactsFilter {
     /**
      * Name of the contact to filter on
      */
@@ -82,7 +81,9 @@ public class ContactsFilter {
     }
     
     public ContactsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -141,9 +142,10 @@ public class ContactsFilter {
         return ownerId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the contact to filter on
@@ -153,6 +155,7 @@ public class ContactsFilter {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the contact to filter on
@@ -172,6 +175,7 @@ public class ContactsFilter {
         return this;
     }
 
+
     /**
      * First name of the contact to filter on
      */
@@ -189,6 +193,7 @@ public class ContactsFilter {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * Last name of the contact to filter on
@@ -208,6 +213,7 @@ public class ContactsFilter {
         return this;
     }
 
+
     /**
      * Email of the contact to filter on
      */
@@ -225,6 +231,7 @@ public class ContactsFilter {
         this.phoneNumber = Optional.ofNullable(phoneNumber);
         return this;
     }
+
 
     /**
      * Phone number of the contact to filter on
@@ -244,6 +251,7 @@ public class ContactsFilter {
         return this;
     }
 
+
     /**
      * Unique identifier for the associated company of the contact to filter on
      */
@@ -262,6 +270,7 @@ public class ContactsFilter {
         return this;
     }
 
+
     /**
      * Unique identifier for the owner of the contact to filter on
      */
@@ -271,7 +280,6 @@ public class ContactsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -282,24 +290,20 @@ public class ContactsFilter {
         }
         ContactsFilter other = (ContactsFilter) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            firstName,
-            lastName,
-            email,
-            phoneNumber,
-            companyId,
+        return Utils.enhancedHash(
+            name, firstName, lastName,
+            email, phoneNumber, companyId,
             ownerId);
     }
     
@@ -314,26 +318,28 @@ public class ContactsFilter {
                 "companyId", companyId,
                 "ownerId", ownerId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
- 
+
         private Optional<String> companyId = Optional.empty();
- 
+
         private Optional<String> ownerId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the contact to filter on
@@ -353,6 +359,7 @@ public class ContactsFilter {
             return this;
         }
 
+
         /**
          * First name of the contact to filter on
          */
@@ -370,6 +377,7 @@ public class ContactsFilter {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * Last name of the contact to filter on
@@ -389,6 +397,7 @@ public class ContactsFilter {
             return this;
         }
 
+
         /**
          * Email of the contact to filter on
          */
@@ -406,6 +415,7 @@ public class ContactsFilter {
             this.email = email;
             return this;
         }
+
 
         /**
          * Phone number of the contact to filter on
@@ -425,6 +435,7 @@ public class ContactsFilter {
             return this;
         }
 
+
         /**
          * Unique identifier for the associated company of the contact to filter on
          */
@@ -443,6 +454,7 @@ public class ContactsFilter {
             return this;
         }
 
+
         /**
          * Unique identifier for the owner of the contact to filter on
          */
@@ -460,16 +472,14 @@ public class ContactsFilter {
             this.ownerId = ownerId;
             return this;
         }
-        
+
         public ContactsFilter build() {
+
             return new ContactsFilter(
-                name,
-                firstName,
-                lastName,
-                email,
-                phoneNumber,
-                companyId,
+                name, firstName, lastName,
+                email, phoneNumber, companyId,
                 ownerId);
         }
+
     }
 }

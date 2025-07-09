@@ -13,11 +13,10 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EmployeeCompensationInput {
 
+public class EmployeeCompensationInput {
     /**
      * The amount paid per payment unit.
      */
@@ -83,7 +82,8 @@ public class EmployeeCompensationInput {
     }
     
     public EmployeeCompensationInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -138,9 +138,10 @@ public class EmployeeCompensationInput {
         return (JsonNullable<PaymentFrequency>) paymentFrequency;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The amount paid per payment unit.
@@ -250,7 +251,6 @@ public class EmployeeCompensationInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,23 +261,19 @@ public class EmployeeCompensationInput {
         }
         EmployeeCompensationInput other = (EmployeeCompensationInput) o;
         return 
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.paymentUnit, other.paymentUnit) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.flsaStatus, other.flsaStatus) &&
-            Objects.deepEquals(this.effectiveDate, other.effectiveDate) &&
-            Objects.deepEquals(this.paymentFrequency, other.paymentFrequency);
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.paymentUnit, other.paymentUnit) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.flsaStatus, other.flsaStatus) &&
+            Utils.enhancedDeepEquals(this.effectiveDate, other.effectiveDate) &&
+            Utils.enhancedDeepEquals(this.paymentFrequency, other.paymentFrequency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            rate,
-            paymentUnit,
-            currency,
-            flsaStatus,
-            effectiveDate,
-            paymentFrequency);
+        return Utils.enhancedHash(
+            rate, paymentUnit, currency,
+            flsaStatus, effectiveDate, paymentFrequency);
     }
     
     @Override
@@ -290,24 +286,26 @@ public class EmployeeCompensationInput {
                 "effectiveDate", effectiveDate,
                 "paymentFrequency", paymentFrequency);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Double> rate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentUnit> paymentUnit = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends FlsaStatus> flsaStatus = JsonNullable.undefined();
- 
+
         private JsonNullable<String> effectiveDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentFrequency> paymentFrequency = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The amount paid per payment unit.
@@ -327,6 +325,7 @@ public class EmployeeCompensationInput {
             return this;
         }
 
+
         /**
          * Unit of measurement for employee compensation.
          */
@@ -344,6 +343,7 @@ public class EmployeeCompensationInput {
             this.paymentUnit = paymentUnit;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -363,6 +363,7 @@ public class EmployeeCompensationInput {
             return this;
         }
 
+
         /**
          * The FLSA status for this compensation.
          */
@@ -380,6 +381,7 @@ public class EmployeeCompensationInput {
             this.flsaStatus = flsaStatus;
             return this;
         }
+
 
         /**
          * The date on which a change to an employee's compensation takes effect.
@@ -399,6 +401,7 @@ public class EmployeeCompensationInput {
             return this;
         }
 
+
         /**
          * Frequency of employee compensation.
          */
@@ -416,15 +419,13 @@ public class EmployeeCompensationInput {
             this.paymentFrequency = paymentFrequency;
             return this;
         }
-        
+
         public EmployeeCompensationInput build() {
+
             return new EmployeeCompensationInput(
-                rate,
-                paymentUnit,
-                currency,
-                flsaStatus,
-                effectiveDate,
-                paymentFrequency);
+                rate, paymentUnit, currency,
+                flsaStatus, effectiveDate, paymentFrequency);
         }
+
     }
 }

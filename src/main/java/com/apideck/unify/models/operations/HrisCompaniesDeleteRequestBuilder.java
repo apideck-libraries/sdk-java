@@ -48,8 +48,8 @@ public class HrisCompaniesDeleteRequestBuilder {
 
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
               = new HrisCompaniesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

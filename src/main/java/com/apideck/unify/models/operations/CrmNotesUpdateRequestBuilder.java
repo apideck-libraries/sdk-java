@@ -48,8 +48,8 @@ public class CrmNotesUpdateRequestBuilder {
 
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
               = new CrmNotesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

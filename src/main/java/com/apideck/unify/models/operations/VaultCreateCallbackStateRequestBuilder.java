@@ -48,8 +48,8 @@ public class VaultCreateCallbackStateRequestBuilder {
 
         RequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> operation
               = new VaultCreateCallbackStateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

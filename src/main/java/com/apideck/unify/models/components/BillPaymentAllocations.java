@@ -13,12 +13,11 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BillPaymentAllocations {
 
+public class BillPaymentAllocations {
     /**
      * A unique identifier for an object.
      */
@@ -64,7 +63,8 @@ public class BillPaymentAllocations {
     }
     
     public BillPaymentAllocations() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +100,10 @@ public class BillPaymentAllocations {
         return allocationId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -130,6 +131,7 @@ public class BillPaymentAllocations {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * Type of entity this payment should be attributed to.
@@ -167,6 +169,7 @@ public class BillPaymentAllocations {
         return this;
     }
 
+
     /**
      * Unique identifier of the allocation
      */
@@ -176,7 +179,6 @@ public class BillPaymentAllocations {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -187,18 +189,16 @@ public class BillPaymentAllocations {
         }
         BillPaymentAllocations other = (BillPaymentAllocations) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.allocationId, other.allocationId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.allocationId, other.allocationId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            type,
-            amount,
+        return Utils.enhancedHash(
+            id, type, amount,
             allocationId);
     }
     
@@ -210,20 +210,22 @@ public class BillPaymentAllocations {
                 "amount", amount,
                 "allocationId", allocationId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Optional<? extends BillPaymentAllocationType> type = Optional.empty();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
- 
+
         private Optional<String> allocationId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -243,6 +245,7 @@ public class BillPaymentAllocations {
             return this;
         }
 
+
         /**
          * Type of entity this payment should be attributed to.
          */
@@ -260,6 +263,7 @@ public class BillPaymentAllocations {
             this.type = type;
             return this;
         }
+
 
         /**
          * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
@@ -279,6 +283,7 @@ public class BillPaymentAllocations {
             return this;
         }
 
+
         /**
          * Unique identifier of the allocation
          */
@@ -296,13 +301,13 @@ public class BillPaymentAllocations {
             this.allocationId = allocationId;
             return this;
         }
-        
+
         public BillPaymentAllocations build() {
+
             return new BillPaymentAllocations(
-                id,
-                type,
-                amount,
+                id, type, amount,
                 allocationId);
         }
+
     }
 }

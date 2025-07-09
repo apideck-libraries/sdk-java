@@ -13,12 +13,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FileStorageFoldersCopyRequest {
 
+public class FileStorageFoldersCopyRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -55,6 +54,7 @@ public class FileStorageFoldersCopyRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CopyFolderRequest copyFolderRequest;
 
@@ -86,7 +86,9 @@ public class FileStorageFoldersCopyRequest {
     public FileStorageFoldersCopyRequest(
             String id,
             CopyFolderRequest copyFolderRequest) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), copyFolderRequest);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            copyFolderRequest);
     }
 
     /**
@@ -142,9 +144,10 @@ public class FileStorageFoldersCopyRequest {
         return copyFolderRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -164,6 +167,7 @@ public class FileStorageFoldersCopyRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -181,6 +185,7 @@ public class FileStorageFoldersCopyRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -200,6 +205,7 @@ public class FileStorageFoldersCopyRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -217,6 +223,7 @@ public class FileStorageFoldersCopyRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -251,7 +258,6 @@ public class FileStorageFoldersCopyRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,24 +268,20 @@ public class FileStorageFoldersCopyRequest {
         }
         FileStorageFoldersCopyRequest other = (FileStorageFoldersCopyRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.copyFolderRequest, other.copyFolderRequest);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.copyFolderRequest, other.copyFolderRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            fields,
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, fields,
             copyFolderRequest);
     }
     
@@ -294,26 +296,28 @@ public class FileStorageFoldersCopyRequest {
                 "fields", fields,
                 "copyFolderRequest", copyFolderRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
- 
+
         private CopyFolderRequest copyFolderRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -323,6 +327,7 @@ public class FileStorageFoldersCopyRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -342,6 +347,7 @@ public class FileStorageFoldersCopyRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -359,6 +365,7 @@ public class FileStorageFoldersCopyRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -378,6 +385,7 @@ public class FileStorageFoldersCopyRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -395,6 +403,7 @@ public class FileStorageFoldersCopyRequest {
             this.raw = raw;
             return this;
         }
+
 
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -414,25 +423,24 @@ public class FileStorageFoldersCopyRequest {
             return this;
         }
 
+
         public Builder copyFolderRequest(CopyFolderRequest copyFolderRequest) {
             Utils.checkNotNull(copyFolderRequest, "copyFolderRequest");
             this.copyFolderRequest = copyFolderRequest;
             return this;
         }
-        
+
         public FileStorageFoldersCopyRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new FileStorageFoldersCopyRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                fields,
+                id, consumerId, appId,
+                serviceId, raw, fields,
                 copyFolderRequest);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

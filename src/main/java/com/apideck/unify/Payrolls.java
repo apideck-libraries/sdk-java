@@ -25,7 +25,6 @@ public class Payrolls {
     Payrolls(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Payroll
      * 
@@ -65,11 +64,10 @@ public class Payrolls {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
               = new HrisPayrollsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Payroll
@@ -110,8 +108,8 @@ public class Payrolls {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
               = new HrisPayrollsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

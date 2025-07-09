@@ -48,8 +48,8 @@ public class AccountingInvoicesAddRequestBuilder {
 
         RequestOperation<AccountingInvoicesAddRequest, AccountingInvoicesAddResponse> operation
               = new AccountingInvoicesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

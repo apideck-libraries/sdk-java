@@ -13,18 +13,18 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomObjectInput {
 
+public class CustomObjectInput {
     /**
      * The name of the custom object
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private JsonNullable<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
@@ -77,9 +77,10 @@ public class CustomObjectInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the custom object
@@ -105,6 +106,7 @@ public class CustomObjectInput {
         return this;
     }
 
+
     public CustomObjectInput withFields(Optional<? extends List<CustomObjectFields>> fields) {
         Utils.checkNotNull(fields, "fields");
         this.fields = fields;
@@ -120,6 +122,7 @@ public class CustomObjectInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -129,7 +132,6 @@ public class CustomObjectInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -140,17 +142,15 @@ public class CustomObjectInput {
         }
         CustomObjectInput other = (CustomObjectInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            fields,
-            passThrough);
+        return Utils.enhancedHash(
+            name, fields, passThrough);
     }
     
     @Override
@@ -160,18 +160,20 @@ public class CustomObjectInput {
                 "fields", fields,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomObjectFields>> fields = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the custom object
@@ -191,6 +193,7 @@ public class CustomObjectInput {
             return this;
         }
 
+
         public Builder fields(List<CustomObjectFields> fields) {
             Utils.checkNotNull(fields, "fields");
             this.fields = Optional.ofNullable(fields);
@@ -202,6 +205,7 @@ public class CustomObjectInput {
             this.fields = fields;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -220,12 +224,12 @@ public class CustomObjectInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CustomObjectInput build() {
+
             return new CustomObjectInput(
-                name,
-                fields,
-                passThrough);
+                name, fields, passThrough);
         }
+
     }
 }

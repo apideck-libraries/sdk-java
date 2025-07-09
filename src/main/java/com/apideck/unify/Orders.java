@@ -25,7 +25,6 @@ public class Orders {
     Orders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Orders
      * 
@@ -65,11 +64,10 @@ public class Orders {
             Optional<Options> options) throws Exception {
         RequestOperation<EcommerceOrdersAllRequest, EcommerceOrdersAllResponse> operation
               = new EcommerceOrdersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Order
@@ -110,8 +108,8 @@ public class Orders {
             Optional<Options> options) throws Exception {
         RequestOperation<EcommerceOrdersOneRequest, EcommerceOrdersOneResponse> operation
               = new EcommerceOrdersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

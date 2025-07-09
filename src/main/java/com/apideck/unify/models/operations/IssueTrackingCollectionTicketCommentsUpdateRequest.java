@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class IssueTrackingCollectionTicketCommentsUpdateRequest {
 
+public class IssueTrackingCollectionTicketCommentsUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -60,6 +59,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=ticket_id")
     private String ticketId;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CollectionTicketCommentInput collectionTicketComment;
 
@@ -96,7 +96,9 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             String collectionId,
             String ticketId,
             CollectionTicketCommentInput collectionTicketComment) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), collectionId, ticketId, collectionTicketComment);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), collectionId,
+            ticketId, collectionTicketComment);
     }
 
     /**
@@ -160,9 +162,10 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         return collectionTicketComment;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -182,6 +185,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -199,6 +203,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -218,6 +223,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -235,6 +241,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -269,7 +276,6 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -280,27 +286,22 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
         }
         IssueTrackingCollectionTicketCommentsUpdateRequest other = (IssueTrackingCollectionTicketCommentsUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.ticketId, other.ticketId) &&
-            Objects.deepEquals(this.collectionTicketComment, other.collectionTicketComment);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.ticketId, other.ticketId) &&
+            Utils.enhancedDeepEquals(this.collectionTicketComment, other.collectionTicketComment);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            collectionId,
-            ticketId,
-            collectionTicketComment);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, collectionId,
+            ticketId, collectionTicketComment);
     }
     
     @Override
@@ -315,28 +316,30 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
                 "ticketId", ticketId,
                 "collectionTicketComment", collectionTicketComment);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private String collectionId;
- 
+
         private String ticketId;
- 
+
         private CollectionTicketCommentInput collectionTicketComment;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -346,6 +349,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -365,6 +369,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -382,6 +387,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -401,6 +407,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -419,6 +426,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             return this;
         }
 
+
         /**
          * The collection ID
          */
@@ -427,6 +435,7 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             this.collectionId = collectionId;
             return this;
         }
+
 
         /**
          * ID of the ticket you are acting upon.
@@ -437,26 +446,24 @@ public class IssueTrackingCollectionTicketCommentsUpdateRequest {
             return this;
         }
 
+
         public Builder collectionTicketComment(CollectionTicketCommentInput collectionTicketComment) {
             Utils.checkNotNull(collectionTicketComment, "collectionTicketComment");
             this.collectionTicketComment = collectionTicketComment;
             return this;
         }
-        
+
         public IssueTrackingCollectionTicketCommentsUpdateRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new IssueTrackingCollectionTicketCommentsUpdateRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                collectionId,
-                ticketId,
-                collectionTicketComment);
+                id, consumerId, appId,
+                serviceId, raw, collectionId,
+                ticketId, collectionTicketComment);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

@@ -15,11 +15,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.Objects;
 import java.util.Optional;
 
-public class SmsMessagesOneResponse implements Response {
 
+public class SmsMessagesOneResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
@@ -68,7 +67,8 @@ public class SmsMessagesOneResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty(), Optional.empty());
+        this(contentType, statusCode, rawResponse,
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -113,9 +113,10 @@ public class SmsMessagesOneResponse implements Response {
         return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP response content type for this operation
@@ -153,6 +154,7 @@ public class SmsMessagesOneResponse implements Response {
         return this;
     }
 
+
     /**
      * Messages
      */
@@ -171,6 +173,7 @@ public class SmsMessagesOneResponse implements Response {
         return this;
     }
 
+
     /**
      * Unexpected error
      */
@@ -180,7 +183,6 @@ public class SmsMessagesOneResponse implements Response {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -191,21 +193,18 @@ public class SmsMessagesOneResponse implements Response {
         }
         SmsMessagesOneResponse other = (SmsMessagesOneResponse) o;
         return 
-            Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.getMessageResponse, other.getMessageResponse) &&
-            Objects.deepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
+            Utils.enhancedDeepEquals(this.contentType, other.contentType) &&
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.rawResponse, other.rawResponse) &&
+            Utils.enhancedDeepEquals(this.getMessageResponse, other.getMessageResponse) &&
+            Utils.enhancedDeepEquals(this.unexpectedErrorResponse, other.unexpectedErrorResponse);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            contentType,
-            statusCode,
-            rawResponse,
-            getMessageResponse,
-            unexpectedErrorResponse);
+        return Utils.enhancedHash(
+            contentType, statusCode, rawResponse,
+            getMessageResponse, unexpectedErrorResponse);
     }
     
     @Override
@@ -217,22 +216,24 @@ public class SmsMessagesOneResponse implements Response {
                 "getMessageResponse", getMessageResponse,
                 "unexpectedErrorResponse", unexpectedErrorResponse);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String contentType;
- 
+
         private Integer statusCode;
- 
+
         private HttpResponse<InputStream> rawResponse;
- 
+
         private Optional<? extends GetMessageResponse> getMessageResponse = Optional.empty();
- 
+
         private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP response content type for this operation
@@ -243,6 +244,7 @@ public class SmsMessagesOneResponse implements Response {
             return this;
         }
 
+
         /**
          * HTTP response status code for this operation
          */
@@ -252,6 +254,7 @@ public class SmsMessagesOneResponse implements Response {
             return this;
         }
 
+
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
@@ -260,6 +263,7 @@ public class SmsMessagesOneResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
+
 
         /**
          * Messages
@@ -279,6 +283,7 @@ public class SmsMessagesOneResponse implements Response {
             return this;
         }
 
+
         /**
          * Unexpected error
          */
@@ -296,14 +301,13 @@ public class SmsMessagesOneResponse implements Response {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
-        
+
         public SmsMessagesOneResponse build() {
+
             return new SmsMessagesOneResponse(
-                contentType,
-                statusCode,
-                rawResponse,
-                getMessageResponse,
-                unexpectedErrorResponse);
+                contentType, statusCode, rawResponse,
+                getMessageResponse, unexpectedErrorResponse);
         }
+
     }
 }

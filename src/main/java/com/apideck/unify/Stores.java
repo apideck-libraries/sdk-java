@@ -21,7 +21,6 @@ public class Stores {
     Stores(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get Store
      * 
@@ -61,8 +60,8 @@ public class Stores {
             Optional<Options> options) throws Exception {
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
               = new EcommerceStoresOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

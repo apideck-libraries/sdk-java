@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class PaymentsFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
+
 
     @SpeakeasyMetadata("queryParam:name=invoice_id")
     private Optional<String> invoiceId;
@@ -45,15 +46,17 @@ public class PaymentsFilter {
         return invoiceId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PaymentsFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     public PaymentsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -67,13 +70,13 @@ public class PaymentsFilter {
         return this;
     }
 
+
     public PaymentsFilter withInvoiceId(Optional<String> invoiceId) {
         Utils.checkNotNull(invoiceId, "invoiceId");
         this.invoiceId = invoiceId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +87,14 @@ public class PaymentsFilter {
         }
         PaymentsFilter other = (PaymentsFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.invoiceId, other.invoiceId);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.invoiceId, other.invoiceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updatedSince,
-            invoiceId);
+        return Utils.enhancedHash(
+            updatedSince, invoiceId);
     }
     
     @Override
@@ -101,16 +103,18 @@ public class PaymentsFilter {
                 "updatedSince", updatedSince,
                 "invoiceId", invoiceId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<String> invoiceId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
@@ -124,6 +128,7 @@ public class PaymentsFilter {
             return this;
         }
 
+
         public Builder invoiceId(String invoiceId) {
             Utils.checkNotNull(invoiceId, "invoiceId");
             this.invoiceId = Optional.ofNullable(invoiceId);
@@ -135,11 +140,12 @@ public class PaymentsFilter {
             this.invoiceId = invoiceId;
             return this;
         }
-        
+
         public PaymentsFilter build() {
+
             return new PaymentsFilter(
-                updatedSince,
-                invoiceId);
+                updatedSince, invoiceId);
         }
+
     }
 }

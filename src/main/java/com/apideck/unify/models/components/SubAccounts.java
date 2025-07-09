@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class SubAccounts {
 
+public class SubAccounts {
     /**
      * The ID of the sub account.
      */
@@ -60,9 +59,10 @@ public class SubAccounts {
         return accountSubName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the sub account.
@@ -72,6 +72,7 @@ public class SubAccounts {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the sub account.
@@ -91,6 +92,7 @@ public class SubAccounts {
         return this;
     }
 
+
     /**
      * The name of the sub account.
      */
@@ -100,7 +102,6 @@ public class SubAccounts {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class SubAccounts {
         }
         SubAccounts other = (SubAccounts) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.accountSubName, other.accountSubName);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.accountSubName, other.accountSubName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            accountSubName);
+        return Utils.enhancedHash(
+            id, accountSubName);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class SubAccounts {
                 "id", id,
                 "accountSubName", accountSubName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> accountSubName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the sub account.
@@ -157,6 +159,7 @@ public class SubAccounts {
             return this;
         }
 
+
         /**
          * The name of the sub account.
          */
@@ -174,11 +177,12 @@ public class SubAccounts {
             this.accountSubName = accountSubName;
             return this;
         }
-        
+
         public SubAccounts build() {
+
             return new SubAccounts(
-                id,
-                accountSubName);
+                id, accountSubName);
         }
+
     }
 }

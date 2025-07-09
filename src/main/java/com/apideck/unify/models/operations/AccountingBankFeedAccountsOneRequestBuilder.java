@@ -48,8 +48,8 @@ public class AccountingBankFeedAccountsOneRequestBuilder {
 
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
               = new AccountingBankFeedAccountsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomObjectSchemaInput {
 
+public class CustomObjectSchemaInput {
     /**
      * The name of the custom object schema
      */
@@ -85,7 +84,8 @@ public class CustomObjectSchemaInput {
     }
     
     public CustomObjectSchemaInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -138,9 +138,10 @@ public class CustomObjectSchemaInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the custom object schema
@@ -186,6 +187,7 @@ public class CustomObjectSchemaInput {
         this.fields = Optional.ofNullable(fields);
         return this;
     }
+
 
     /**
      * The fields defined in the schema
@@ -241,6 +243,7 @@ public class CustomObjectSchemaInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -250,7 +253,6 @@ public class CustomObjectSchemaInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -261,23 +263,19 @@ public class CustomObjectSchemaInput {
         }
         CustomObjectSchemaInput other = (CustomObjectSchemaInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.visible, other.visible) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.visible, other.visible) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            description,
-            fields,
-            visible,
-            active,
-            passThrough);
+        return Utils.enhancedHash(
+            name, description, fields,
+            visible, active, passThrough);
     }
     
     @Override
@@ -290,24 +288,26 @@ public class CustomObjectSchemaInput {
                 "active", active,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Fields>> fields = Optional.empty();
- 
+
         private JsonNullable<Boolean> visible = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the custom object schema
@@ -327,6 +327,7 @@ public class CustomObjectSchemaInput {
             return this;
         }
 
+
         /**
          * The description of the custom object schema
          */
@@ -344,6 +345,7 @@ public class CustomObjectSchemaInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * The fields defined in the schema
@@ -363,6 +365,7 @@ public class CustomObjectSchemaInput {
             return this;
         }
 
+
         /**
          * Whether the custom object schema is visible in the UI
          */
@@ -380,6 +383,7 @@ public class CustomObjectSchemaInput {
             this.visible = visible;
             return this;
         }
+
 
         /**
          * Whether the custom object schema is active
@@ -399,6 +403,7 @@ public class CustomObjectSchemaInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -416,15 +421,13 @@ public class CustomObjectSchemaInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CustomObjectSchemaInput build() {
+
             return new CustomObjectSchemaInput(
-                name,
-                description,
-                fields,
-                visible,
-                active,
-                passThrough);
+                name, description, fields,
+                visible, active, passThrough);
         }
+
     }
 }

@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CollectionTicketCommentInput {
 
+public class CollectionTicketCommentInput {
     /**
      * Body of the comment
      */
@@ -64,9 +63,10 @@ public class CollectionTicketCommentInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Body of the comment
@@ -95,6 +95,7 @@ public class CollectionTicketCommentInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -104,7 +105,6 @@ public class CollectionTicketCommentInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -115,15 +115,14 @@ public class CollectionTicketCommentInput {
         }
         CollectionTicketCommentInput other = (CollectionTicketCommentInput) o;
         return 
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            body,
-            passThrough);
+        return Utils.enhancedHash(
+            body, passThrough);
     }
     
     @Override
@@ -132,16 +131,18 @@ public class CollectionTicketCommentInput {
                 "body", body,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> body = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Body of the comment
@@ -161,6 +162,7 @@ public class CollectionTicketCommentInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -178,11 +180,12 @@ public class CollectionTicketCommentInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CollectionTicketCommentInput build() {
+
             return new CollectionTicketCommentInput(
-                body,
-                passThrough);
+                body, passThrough);
         }
+
     }
 }

@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Address {
 
+public class Address {
     /**
      * Unique identifier for the address.
      */
@@ -262,7 +261,14 @@ public class Address {
     }
     
     public Address() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -458,9 +464,10 @@ public class Address {
         return rowVersion;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the address.
@@ -894,7 +901,6 @@ public class Address {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -905,59 +911,43 @@ public class Address {
         }
         Address other = (Address) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.string, other.string) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.line1, other.line1) &&
-            Objects.deepEquals(this.line2, other.line2) &&
-            Objects.deepEquals(this.line3, other.line3) &&
-            Objects.deepEquals(this.line4, other.line4) &&
-            Objects.deepEquals(this.streetNumber, other.streetNumber) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.latitude, other.latitude) &&
-            Objects.deepEquals(this.longitude, other.longitude) &&
-            Objects.deepEquals(this.county, other.county) &&
-            Objects.deepEquals(this.contactName, other.contactName) &&
-            Objects.deepEquals(this.salutation, other.salutation) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber) &&
-            Objects.deepEquals(this.fax, other.fax) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.website, other.website) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.string, other.string) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.line1, other.line1) &&
+            Utils.enhancedDeepEquals(this.line2, other.line2) &&
+            Utils.enhancedDeepEquals(this.line3, other.line3) &&
+            Utils.enhancedDeepEquals(this.line4, other.line4) &&
+            Utils.enhancedDeepEquals(this.streetNumber, other.streetNumber) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.latitude, other.latitude) &&
+            Utils.enhancedDeepEquals(this.longitude, other.longitude) &&
+            Utils.enhancedDeepEquals(this.county, other.county) &&
+            Utils.enhancedDeepEquals(this.contactName, other.contactName) &&
+            Utils.enhancedDeepEquals(this.salutation, other.salutation) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber) &&
+            Utils.enhancedDeepEquals(this.fax, other.fax) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.website, other.website) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            type,
-            string,
-            name,
-            line1,
-            line2,
-            line3,
-            line4,
-            streetNumber,
-            city,
-            state,
-            postalCode,
-            country,
-            latitude,
-            longitude,
-            county,
-            contactName,
-            salutation,
-            phoneNumber,
-            fax,
-            email,
-            website,
-            notes,
-            rowVersion);
+        return Utils.enhancedHash(
+            id, type, string,
+            name, line1, line2,
+            line3, line4, streetNumber,
+            city, state, postalCode,
+            country, latitude, longitude,
+            county, contactName, salutation,
+            phoneNumber, fax, email,
+            website, notes, rowVersion);
     }
     
     @Override
@@ -988,60 +978,62 @@ public class Address {
                 "notes", notes,
                 "rowVersion", rowVersion);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Type> type = JsonNullable.undefined();
- 
+
         private JsonNullable<String> string = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line1 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line2 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line3 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line4 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> streetNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private JsonNullable<String> state = JsonNullable.undefined();
- 
+
         private JsonNullable<String> postalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private JsonNullable<String> latitude = JsonNullable.undefined();
- 
+
         private JsonNullable<String> longitude = JsonNullable.undefined();
- 
+
         private JsonNullable<String> county = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> salutation = JsonNullable.undefined();
- 
+
         private JsonNullable<String> phoneNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fax = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> website = JsonNullable.undefined();
- 
+
         private JsonNullable<String> notes = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the address.
@@ -1061,6 +1053,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The type of address.
          */
@@ -1078,6 +1071,7 @@ public class Address {
             this.type = type;
             return this;
         }
+
 
         /**
          * The address string. Some APIs don't provide structured address data.
@@ -1097,6 +1091,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * The name of the address.
          */
@@ -1114,6 +1109,7 @@ public class Address {
             this.name = name;
             return this;
         }
+
 
         /**
          * Line 1 of the address e.g. number, street, suite, apt #, etc.
@@ -1133,6 +1129,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Line 2 of the address
          */
@@ -1150,6 +1147,7 @@ public class Address {
             this.line2 = line2;
             return this;
         }
+
 
         /**
          * Line 3 of the address
@@ -1169,6 +1167,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Line 4 of the address
          */
@@ -1186,6 +1185,7 @@ public class Address {
             this.line4 = line4;
             return this;
         }
+
 
         /**
          * Street number
@@ -1205,6 +1205,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Name of city.
          */
@@ -1222,6 +1223,7 @@ public class Address {
             this.city = city;
             return this;
         }
+
 
         /**
          * Name of state
@@ -1241,6 +1243,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Zip code or equivalent.
          */
@@ -1258,6 +1261,7 @@ public class Address {
             this.postalCode = postalCode;
             return this;
         }
+
 
         /**
          * country code according to ISO 3166-1 alpha-2.
@@ -1277,6 +1281,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Latitude of the address
          */
@@ -1294,6 +1299,7 @@ public class Address {
             this.latitude = latitude;
             return this;
         }
+
 
         /**
          * Longitude of the address
@@ -1313,6 +1319,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Address field that holds a sublocality, such as a county
          */
@@ -1330,6 +1337,7 @@ public class Address {
             this.county = county;
             return this;
         }
+
 
         /**
          * Name of the contact person at the address
@@ -1349,6 +1357,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Salutation of the contact person at the address
          */
@@ -1366,6 +1375,7 @@ public class Address {
             this.salutation = salutation;
             return this;
         }
+
 
         /**
          * Phone number of the address
@@ -1385,6 +1395,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Fax number of the address
          */
@@ -1402,6 +1413,7 @@ public class Address {
             this.fax = fax;
             return this;
         }
+
 
         /**
          * Email address of the address
@@ -1421,6 +1433,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * Website of the address
          */
@@ -1438,6 +1451,7 @@ public class Address {
             this.website = website;
             return this;
         }
+
 
         /**
          * Additional notes
@@ -1457,6 +1471,7 @@ public class Address {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -1474,33 +1489,19 @@ public class Address {
             this.rowVersion = rowVersion;
             return this;
         }
-        
+
         public Address build() {
+
             return new Address(
-                id,
-                type,
-                string,
-                name,
-                line1,
-                line2,
-                line3,
-                line4,
-                streetNumber,
-                city,
-                state,
-                postalCode,
-                country,
-                latitude,
-                longitude,
-                county,
-                contactName,
-                salutation,
-                phoneNumber,
-                fax,
-                email,
-                website,
-                notes,
-                rowVersion);
+                id, type, string,
+                name, line1, line2,
+                line3, line4, streetNumber,
+                city, state, postalCode,
+                country, latitude, longitude,
+                county, contactName, salutation,
+                phoneNumber, fax, email,
+                website, notes, rowVersion);
         }
+
     }
 }

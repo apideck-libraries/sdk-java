@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Represents the tracking information associated with an ecommerce order.
  */
 public class TrackingItem {
-
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
@@ -68,7 +66,8 @@ public class TrackingItem {
     }
     
     public TrackingItem() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -103,9 +102,10 @@ public class TrackingItem {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
@@ -115,6 +115,7 @@ public class TrackingItem {
         this.provider = Optional.ofNullable(provider);
         return this;
     }
+
 
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
@@ -133,6 +134,7 @@ public class TrackingItem {
         this.number = Optional.ofNullable(number);
         return this;
     }
+
 
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
@@ -179,7 +181,6 @@ public class TrackingItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -190,18 +191,16 @@ public class TrackingItem {
         }
         TrackingItem other = (TrackingItem) o;
         return 
-            Objects.deepEquals(this.provider, other.provider) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.provider, other.provider) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            provider,
-            number,
-            url,
+        return Utils.enhancedHash(
+            provider, number, url,
             updatedAt);
     }
     
@@ -213,20 +212,22 @@ public class TrackingItem {
                 "url", url,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> provider = Optional.empty();
- 
+
         private Optional<String> number = Optional.empty();
- 
+
         private JsonNullable<String> url = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name or code of the carrier or shipping company that is handling the shipment.
@@ -246,6 +247,7 @@ public class TrackingItem {
             return this;
         }
 
+
         /**
          * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
          */
@@ -263,6 +265,7 @@ public class TrackingItem {
             this.number = number;
             return this;
         }
+
 
         /**
          * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
@@ -282,6 +285,7 @@ public class TrackingItem {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -299,13 +303,13 @@ public class TrackingItem {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public TrackingItem build() {
+
             return new TrackingItem(
-                provider,
-                number,
-                url,
+                provider, number, url,
                 updatedAt);
         }
+
     }
 }

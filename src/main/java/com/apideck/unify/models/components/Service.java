@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Service
@@ -17,7 +16,6 @@ import java.util.Objects;
  * <p>Apideck service provider associated with request.
  */
 public class Service {
-
     /**
      * Apideck service provider id.
      */
@@ -56,9 +54,10 @@ public class Service {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Apideck service provider id.
@@ -78,7 +77,6 @@ public class Service {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +87,14 @@ public class Service {
         }
         Service other = (Service) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -106,16 +103,18 @@ public class Service {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Apideck service provider id.
@@ -126,6 +125,7 @@ public class Service {
             return this;
         }
 
+
         /**
          * Apideck service provider name.
          */
@@ -134,11 +134,12 @@ public class Service {
             this.name = name;
             return this;
         }
-        
+
         public Service build() {
+
             return new Service(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

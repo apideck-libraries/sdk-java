@@ -37,7 +37,6 @@ public class Messages {
     Messages(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Messages
      * 
@@ -77,11 +76,10 @@ public class Messages {
             Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
               = new SmsMessagesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Message
@@ -122,11 +120,10 @@ public class Messages {
             Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
               = new SmsMessagesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Message
@@ -167,11 +164,10 @@ public class Messages {
             Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
               = new SmsMessagesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Message
@@ -212,11 +208,10 @@ public class Messages {
             Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
               = new SmsMessagesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Message
@@ -257,8 +252,8 @@ public class Messages {
             Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
               = new SmsMessagesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

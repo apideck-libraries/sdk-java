@@ -35,14 +35,14 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmOpportunitiesAllRequest req = CrmOpportunitiesAllRequest.builder()
                 .serviceId("salesforce")
                 .filter(OpportunitiesFilter.builder()
                     .status("Completed")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .build())
                 .sort(OpportunitiesSort.builder()
                     .by(OpportunitiesSortBy.CREATED_AT)
@@ -112,7 +112,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmOpportunitiesAddRequest req = CrmOpportunitiesAddRequest.builder()
@@ -121,9 +121,9 @@ public class Application {
                     .primaryContactId("12345")
                     .description("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.")
                     .type("Existing Customer - Upgrade")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
-                    .winProbability(40)
+                    .winProbability(40d)
                     .closeDate(LocalDate.parse("2020-10-30"))
                     .lossReasonId("12345")
                     .lossReason("No budget")
@@ -240,7 +240,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmOpportunitiesOneRequest req = CrmOpportunitiesOneRequest.builder()
@@ -308,7 +308,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmOpportunitiesUpdateRequest req = CrmOpportunitiesUpdateRequest.builder()
@@ -318,9 +318,9 @@ public class Application {
                     .primaryContactId("12345")
                     .description("Opportunities are created for People and Companies that are interested in buying your products or services. Create Opportunities for People and Companies to move them through one of your Pipelines.")
                     .type("Existing Customer - Upgrade")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
-                    .winProbability(40)
+                    .winProbability(40d)
                     .closeDate(LocalDate.parse("2020-10-30"))
                     .lossReasonId("12345")
                     .lossReason("No budget")
@@ -443,7 +443,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmOpportunitiesDeleteRequest req = CrmOpportunitiesDeleteRequest.builder()

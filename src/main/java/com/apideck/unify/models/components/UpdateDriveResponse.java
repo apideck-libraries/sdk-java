@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Drives
  */
 public class UpdateDriveResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -100,7 +98,9 @@ public class UpdateDriveResponse {
             String resource,
             String operation,
             UnifiedId data) {
-        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
+        this(statusCode, status, service,
+            resource, operation, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -160,9 +160,10 @@ public class UpdateDriveResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -236,7 +237,6 @@ public class UpdateDriveResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -247,24 +247,20 @@ public class UpdateDriveResponse {
         }
         UpdateDriveResponse other = (UpdateDriveResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
             raw);
     }
     
@@ -279,26 +275,28 @@ public class UpdateDriveResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
+
         private UnifiedId data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -309,6 +307,7 @@ public class UpdateDriveResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -317,6 +316,7 @@ public class UpdateDriveResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -327,6 +327,7 @@ public class UpdateDriveResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -335,6 +336,7 @@ public class UpdateDriveResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -345,6 +347,7 @@ public class UpdateDriveResponse {
             return this;
         }
 
+
         /**
          * A object containing a unique identifier for the resource that was created, updated, or deleted.
          */
@@ -353,6 +356,7 @@ public class UpdateDriveResponse {
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -371,16 +375,14 @@ public class UpdateDriveResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public UpdateDriveResponse build() {
+
             return new UpdateDriveResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
+                statusCode, status, service,
+                resource, operation, data,
                 raw);
         }
+
     }
 }

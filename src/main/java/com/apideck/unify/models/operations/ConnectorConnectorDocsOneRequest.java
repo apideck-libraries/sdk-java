@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorConnectorDocsOneRequest {
 
+public class ConnectorConnectorDocsOneRequest {
     /**
      * The ID of your Unify application
      */
@@ -75,9 +74,10 @@ public class ConnectorConnectorDocsOneRequest {
         return docId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -87,6 +87,7 @@ public class ConnectorConnectorDocsOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -115,7 +116,6 @@ public class ConnectorConnectorDocsOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,17 +126,15 @@ public class ConnectorConnectorDocsOneRequest {
         }
         ConnectorConnectorDocsOneRequest other = (ConnectorConnectorDocsOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.docId, other.docId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.docId, other.docId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            id,
-            docId);
+        return Utils.enhancedHash(
+            appId, id, docId);
     }
     
     @Override
@@ -146,18 +144,20 @@ public class ConnectorConnectorDocsOneRequest {
                 "id", id,
                 "docId", docId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String id;
- 
+
         private String docId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -177,6 +177,7 @@ public class ConnectorConnectorDocsOneRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -186,6 +187,7 @@ public class ConnectorConnectorDocsOneRequest {
             return this;
         }
 
+
         /**
          * ID of the Doc
          */
@@ -194,12 +196,12 @@ public class ConnectorConnectorDocsOneRequest {
             this.docId = docId;
             return this;
         }
-        
+
         public ConnectorConnectorDocsOneRequest build() {
+
             return new ConnectorConnectorDocsOneRequest(
-                appId,
-                id,
-                docId);
+                appId, id, docId);
         }
+
     }
 }

@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class Schedule {
-
     /**
      * A unique identifier for an object.
      */
@@ -30,6 +29,7 @@ public class Schedule {
      */
     @JsonProperty("end_date")
     private String endDate;
+
 
     @JsonProperty("work_pattern")
     private WorkPattern workPattern;
@@ -79,9 +79,10 @@ public class Schedule {
         return workPattern;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -116,7 +117,6 @@ public class Schedule {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -127,18 +127,16 @@ public class Schedule {
         }
         Schedule other = (Schedule) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.workPattern, other.workPattern);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.workPattern, other.workPattern);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            startDate,
-            endDate,
+        return Utils.enhancedHash(
+            id, startDate, endDate,
             workPattern);
     }
     
@@ -150,20 +148,22 @@ public class Schedule {
                 "endDate", endDate,
                 "workPattern", workPattern);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String startDate;
- 
+
         private String endDate;
- 
+
         private WorkPattern workPattern;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -174,6 +174,7 @@ public class Schedule {
             return this;
         }
 
+
         /**
          * The start date, inclusive, of the schedule period.
          */
@@ -182,6 +183,7 @@ public class Schedule {
             this.startDate = startDate;
             return this;
         }
+
 
         /**
          * The end date, inclusive, of the schedule period.
@@ -192,18 +194,19 @@ public class Schedule {
             return this;
         }
 
+
         public Builder workPattern(WorkPattern workPattern) {
             Utils.checkNotNull(workPattern, "workPattern");
             this.workPattern = workPattern;
             return this;
         }
-        
+
         public Schedule build() {
+
             return new Schedule(
-                id,
-                startDate,
-                endDate,
+                id, startDate, endDate,
                 workPattern);
         }
+
     }
 }

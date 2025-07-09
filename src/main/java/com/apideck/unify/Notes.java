@@ -37,7 +37,6 @@ public class Notes {
     Notes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List notes
      * 
@@ -77,11 +76,10 @@ public class Notes {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
               = new CrmNotesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create note
@@ -122,11 +120,10 @@ public class Notes {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
               = new CrmNotesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get note
@@ -167,11 +164,10 @@ public class Notes {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
               = new CrmNotesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update note
@@ -212,11 +208,10 @@ public class Notes {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
               = new CrmNotesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete note
@@ -257,8 +252,8 @@ public class Notes {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
               = new CrmNotesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

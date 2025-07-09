@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class InvoiceItemFilter {
 
+public class InvoiceItemFilter {
     /**
      * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
      */
@@ -41,9 +40,10 @@ public class InvoiceItemFilter {
         return (JsonNullable<InvoiceItemFilterInvoiceItemType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
@@ -63,7 +63,6 @@ public class InvoiceItemFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,12 +73,12 @@ public class InvoiceItemFilter {
         }
         InvoiceItemFilter other = (InvoiceItemFilter) o;
         return 
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             type);
     }
     
@@ -88,14 +87,16 @@ public class InvoiceItemFilter {
         return Utils.toString(InvoiceItemFilter.class,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
@@ -114,10 +115,12 @@ public class InvoiceItemFilter {
             this.type = type;
             return this;
         }
-        
+
         public InvoiceItemFilter build() {
+
             return new InvoiceItemFilter(
                 type);
         }
+
     }
 }

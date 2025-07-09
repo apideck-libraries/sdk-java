@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConsumerInput {
 
+public class ConsumerInput {
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
@@ -62,9 +61,10 @@ public class ConsumerInput {
         return (Optional<ConsumerMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -84,6 +84,7 @@ public class ConsumerInput {
         return this;
     }
 
+
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -93,7 +94,6 @@ public class ConsumerInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,15 +104,14 @@ public class ConsumerInput {
         }
         ConsumerInput other = (ConsumerInput) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            metadata);
+        return Utils.enhancedHash(
+            consumerId, metadata);
     }
     
     @Override
@@ -121,16 +120,18 @@ public class ConsumerInput {
                 "consumerId", consumerId,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String consumerId;
- 
+
         private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -140,6 +141,7 @@ public class ConsumerInput {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -158,11 +160,12 @@ public class ConsumerInput {
             this.metadata = metadata;
             return this;
         }
-        
+
         public ConsumerInput build() {
+
             return new ConsumerInput(
-                consumerId,
-                metadata);
+                consumerId, metadata);
         }
+
     }
 }

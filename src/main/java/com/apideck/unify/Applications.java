@@ -37,7 +37,6 @@ public class Applications {
     Applications(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Applications
      * 
@@ -77,11 +76,10 @@ public class Applications {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
               = new AtsApplicationsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Application
@@ -122,11 +120,10 @@ public class Applications {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
               = new AtsApplicationsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Application
@@ -167,11 +164,10 @@ public class Applications {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
               = new AtsApplicationsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Application
@@ -212,11 +208,10 @@ public class Applications {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
               = new AtsApplicationsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Application
@@ -257,8 +252,8 @@ public class Applications {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
               = new AtsApplicationsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

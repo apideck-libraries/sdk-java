@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Reports {
 
+public class Reports {
     /**
      * A unique identifier for an object.
      */
@@ -177,7 +176,11 @@ public class Reports {
             BalanceSheetAssetsAccount assets,
             BalanceSheetLiabilitiesAccount liabilities,
             BalanceSheetEquityAccount equity) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), endDate, JsonNullable.undefined(), assets, liabilities, equity, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            endDate, JsonNullable.undefined(), assets,
+            liabilities, equity, Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -303,9 +306,10 @@ public class Reports {
         return (Optional<BalanceSheetUncategorizedItemsAccount>) uncategorizedItems;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -315,6 +319,7 @@ public class Reports {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -334,6 +339,7 @@ public class Reports {
         return this;
     }
 
+
     /**
      * The name of the report
      */
@@ -351,6 +357,7 @@ public class Reports {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * The start date of the report
@@ -423,6 +430,7 @@ public class Reports {
         this.netAssets = Optional.ofNullable(netAssets);
         return this;
     }
+
 
     /**
      * The net assets of the balance sheet
@@ -532,6 +540,7 @@ public class Reports {
         return this;
     }
 
+
     /**
      * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
      */
@@ -541,7 +550,6 @@ public class Reports {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -552,41 +560,31 @@ public class Reports {
         }
         Reports other = (Reports) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.reportName, other.reportName) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.assets, other.assets) &&
-            Objects.deepEquals(this.liabilities, other.liabilities) &&
-            Objects.deepEquals(this.equity, other.equity) &&
-            Objects.deepEquals(this.netAssets, other.netAssets) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.uncategorizedItems, other.uncategorizedItems);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.assets, other.assets) &&
+            Utils.enhancedDeepEquals(this.liabilities, other.liabilities) &&
+            Utils.enhancedDeepEquals(this.equity, other.equity) &&
+            Utils.enhancedDeepEquals(this.netAssets, other.netAssets) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.uncategorizedItems, other.uncategorizedItems);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            reportName,
-            startDate,
-            endDate,
-            currency,
-            assets,
-            liabilities,
-            equity,
-            netAssets,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            uncategorizedItems);
+        return Utils.enhancedHash(
+            id, reportName, startDate,
+            endDate, currency, assets,
+            liabilities, equity, netAssets,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, uncategorizedItems);
     }
     
     @Override
@@ -608,42 +606,44 @@ public class Reports {
                 "createdAt", createdAt,
                 "uncategorizedItems", uncategorizedItems);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> reportName = Optional.empty();
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private String endDate;
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private BalanceSheetAssetsAccount assets;
- 
+
         private BalanceSheetLiabilitiesAccount liabilities;
- 
+
         private BalanceSheetEquityAccount equity;
- 
+
         private Optional<Double> netAssets = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -663,6 +663,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The name of the report
          */
@@ -680,6 +681,7 @@ public class Reports {
             this.reportName = reportName;
             return this;
         }
+
 
         /**
          * The start date of the report
@@ -699,6 +701,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The start date of the report
          */
@@ -707,6 +710,7 @@ public class Reports {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -726,6 +730,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * A balance sheet assets account represents the financial position of a company at a specific point in time.
          */
@@ -734,6 +739,7 @@ public class Reports {
             this.assets = assets;
             return this;
         }
+
 
         /**
          * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
@@ -744,6 +750,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * A balance sheet equity account represents the financial position of a company at a specific point in time.
          */
@@ -752,6 +759,7 @@ public class Reports {
             this.equity = equity;
             return this;
         }
+
 
         /**
          * The net assets of the balance sheet
@@ -771,6 +779,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -788,6 +797,7 @@ public class Reports {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -807,6 +817,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -824,6 +835,7 @@ public class Reports {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -843,6 +855,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -861,6 +874,7 @@ public class Reports {
             return this;
         }
 
+
         /**
          * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
          */
@@ -878,24 +892,16 @@ public class Reports {
             this.uncategorizedItems = uncategorizedItems;
             return this;
         }
-        
+
         public Reports build() {
+
             return new Reports(
-                id,
-                reportName,
-                startDate,
-                endDate,
-                currency,
-                assets,
-                liabilities,
-                equity,
-                netAssets,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                uncategorizedItems);
+                id, reportName, startDate,
+                endDate, currency, assets,
+                liabilities, equity, netAssets,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, uncategorizedItems);
         }
+
     }
 }

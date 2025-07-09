@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ExpenseLineItem {
 
+public class ExpenseLineItem {
     /**
      * A unique identifier for an object.
      */
@@ -70,6 +69,7 @@ public class ExpenseLineItem {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiary_id")
     private JsonNullable<String> subsidiaryId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
@@ -144,7 +144,10 @@ public class ExpenseLineItem {
     }
     
     public ExpenseLineItem() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -242,9 +245,10 @@ public class ExpenseLineItem {
         return lineNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -254,6 +258,7 @@ public class ExpenseLineItem {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -291,6 +296,7 @@ public class ExpenseLineItem {
         return this;
     }
 
+
     /**
      * The unique identifier for the ledger account.
      */
@@ -308,6 +314,7 @@ public class ExpenseLineItem {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * The ID of the customer this expense item is linked to.
@@ -378,6 +385,7 @@ public class ExpenseLineItem {
         return this;
     }
 
+
     public ExpenseLineItem withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -411,6 +419,7 @@ public class ExpenseLineItem {
         return this;
     }
 
+
     /**
      * The total amount of the expense line item.
      */
@@ -428,6 +437,7 @@ public class ExpenseLineItem {
         this.billable = Optional.ofNullable(billable);
         return this;
     }
+
 
     /**
      * Boolean that indicates if the line item is billable or not.
@@ -456,7 +466,6 @@ public class ExpenseLineItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -467,35 +476,27 @@ public class ExpenseLineItem {
         }
         ExpenseLineItem other = (ExpenseLineItem) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.billable, other.billable) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.billable, other.billable) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            trackingCategories,
-            accountId,
-            customerId,
-            departmentId,
-            locationId,
-            subsidiaryId,
-            taxRate,
-            description,
-            totalAmount,
-            billable,
-            lineNumber);
+        return Utils.enhancedHash(
+            id, trackingCategories, accountId,
+            customerId, departmentId, locationId,
+            subsidiaryId, taxRate, description,
+            totalAmount, billable, lineNumber);
     }
     
     @Override
@@ -514,36 +515,38 @@ public class ExpenseLineItem {
                 "billable", billable,
                 "lineNumber", lineNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<String> accountId = Optional.empty();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<Double> totalAmount = Optional.empty();
- 
+
         private Optional<Boolean> billable = Optional.empty();
- 
+
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -563,6 +566,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         /**
          * A list of linked tracking categories.
          */
@@ -580,6 +584,7 @@ public class ExpenseLineItem {
             this.trackingCategories = trackingCategories;
             return this;
         }
+
 
         /**
          * The unique identifier for the ledger account.
@@ -599,6 +604,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         /**
          * The ID of the customer this expense item is linked to.
          */
@@ -616,6 +622,7 @@ public class ExpenseLineItem {
             this.customerId = customerId;
             return this;
         }
+
 
         /**
          * The ID of the department
@@ -635,6 +642,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         /**
          * The ID of the location
          */
@@ -652,6 +660,7 @@ public class ExpenseLineItem {
             this.locationId = locationId;
             return this;
         }
+
 
         /**
          * The ID of the subsidiary
@@ -671,6 +680,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRate taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -682,6 +692,7 @@ public class ExpenseLineItem {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * The expense line item description
@@ -701,6 +712,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         /**
          * The total amount of the expense line item.
          */
@@ -718,6 +730,7 @@ public class ExpenseLineItem {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Boolean that indicates if the line item is billable or not.
@@ -737,6 +750,7 @@ public class ExpenseLineItem {
             return this;
         }
 
+
         /**
          * Line number of the resource
          */
@@ -754,21 +768,15 @@ public class ExpenseLineItem {
             this.lineNumber = lineNumber;
             return this;
         }
-        
+
         public ExpenseLineItem build() {
+
             return new ExpenseLineItem(
-                id,
-                trackingCategories,
-                accountId,
-                customerId,
-                departmentId,
-                locationId,
-                subsidiaryId,
-                taxRate,
-                description,
-                totalAmount,
-                billable,
-                lineNumber);
+                id, trackingCategories, accountId,
+                customerId, departmentId, locationId,
+                subsidiaryId, taxRate, description,
+                totalAmount, billable, lineNumber);
         }
+
     }
 }

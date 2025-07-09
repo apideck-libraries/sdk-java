@@ -48,8 +48,8 @@ public class AccountingTaxRatesDeleteRequestBuilder {
 
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
               = new AccountingTaxRatesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

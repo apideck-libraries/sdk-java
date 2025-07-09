@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class RequestCountAllocation {
 
@@ -21,9 +21,11 @@ public class RequestCountAllocation {
     @JsonProperty("unify")
     private Optional<Double> unify;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("proxy")
     private Optional<Double> proxy;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vault")
@@ -61,15 +63,17 @@ public class RequestCountAllocation {
         return vault;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public RequestCountAllocation withUnify(double unify) {
         Utils.checkNotNull(unify, "unify");
         this.unify = Optional.ofNullable(unify);
         return this;
     }
+
 
     public RequestCountAllocation withUnify(Optional<Double> unify) {
         Utils.checkNotNull(unify, "unify");
@@ -83,6 +87,7 @@ public class RequestCountAllocation {
         return this;
     }
 
+
     public RequestCountAllocation withProxy(Optional<Double> proxy) {
         Utils.checkNotNull(proxy, "proxy");
         this.proxy = proxy;
@@ -95,13 +100,13 @@ public class RequestCountAllocation {
         return this;
     }
 
+
     public RequestCountAllocation withVault(Optional<Double> vault) {
         Utils.checkNotNull(vault, "vault");
         this.vault = vault;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,17 +117,15 @@ public class RequestCountAllocation {
         }
         RequestCountAllocation other = (RequestCountAllocation) o;
         return 
-            Objects.deepEquals(this.unify, other.unify) &&
-            Objects.deepEquals(this.proxy, other.proxy) &&
-            Objects.deepEquals(this.vault, other.vault);
+            Utils.enhancedDeepEquals(this.unify, other.unify) &&
+            Utils.enhancedDeepEquals(this.proxy, other.proxy) &&
+            Utils.enhancedDeepEquals(this.vault, other.vault);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            unify,
-            proxy,
-            vault);
+        return Utils.enhancedHash(
+            unify, proxy, vault);
     }
     
     @Override
@@ -132,18 +135,20 @@ public class RequestCountAllocation {
                 "proxy", proxy,
                 "vault", vault);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Double> unify = Optional.empty();
- 
+
         private Optional<Double> proxy = Optional.empty();
- 
+
         private Optional<Double> vault = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder unify(double unify) {
             Utils.checkNotNull(unify, "unify");
@@ -157,6 +162,7 @@ public class RequestCountAllocation {
             return this;
         }
 
+
         public Builder proxy(double proxy) {
             Utils.checkNotNull(proxy, "proxy");
             this.proxy = Optional.ofNullable(proxy);
@@ -169,6 +175,7 @@ public class RequestCountAllocation {
             return this;
         }
 
+
         public Builder vault(double vault) {
             Utils.checkNotNull(vault, "vault");
             this.vault = Optional.ofNullable(vault);
@@ -180,12 +187,12 @@ public class RequestCountAllocation {
             this.vault = vault;
             return this;
         }
-        
+
         public RequestCountAllocation build() {
+
             return new RequestCountAllocation(
-                unify,
-                proxy,
-                vault);
+                unify, proxy, vault);
         }
+
     }
 }

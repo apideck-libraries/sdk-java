@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorApisOneRequest {
 
+public class ConnectorApisOneRequest {
     /**
      * The ID of your Unify application
      */
@@ -57,9 +56,10 @@ public class ConnectorApisOneRequest {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -69,6 +69,7 @@ public class ConnectorApisOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -88,7 +89,6 @@ public class ConnectorApisOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class ConnectorApisOneRequest {
         }
         ConnectorApisOneRequest other = (ConnectorApisOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            id);
+        return Utils.enhancedHash(
+            appId, id);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class ConnectorApisOneRequest {
                 "appId", appId,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -145,6 +146,7 @@ public class ConnectorApisOneRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -153,11 +155,12 @@ public class ConnectorApisOneRequest {
             this.id = id;
             return this;
         }
-        
+
         public ConnectorApisOneRequest build() {
+
             return new ConnectorApisOneRequest(
-                appId,
-                id);
+                appId, id);
         }
+
     }
 }

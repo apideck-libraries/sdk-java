@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class PurchaseOrdersFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
+
 
     @SpeakeasyMetadata("queryParam:name=supplier_id")
     private Optional<String> supplierId;
@@ -45,15 +46,17 @@ public class PurchaseOrdersFilter {
         return supplierId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public PurchaseOrdersFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     public PurchaseOrdersFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -67,13 +70,13 @@ public class PurchaseOrdersFilter {
         return this;
     }
 
+
     public PurchaseOrdersFilter withSupplierId(Optional<String> supplierId) {
         Utils.checkNotNull(supplierId, "supplierId");
         this.supplierId = supplierId;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -84,15 +87,14 @@ public class PurchaseOrdersFilter {
         }
         PurchaseOrdersFilter other = (PurchaseOrdersFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updatedSince,
-            supplierId);
+        return Utils.enhancedHash(
+            updatedSince, supplierId);
     }
     
     @Override
@@ -101,16 +103,18 @@ public class PurchaseOrdersFilter {
                 "updatedSince", updatedSince,
                 "supplierId", supplierId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<String> supplierId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
@@ -124,6 +128,7 @@ public class PurchaseOrdersFilter {
             return this;
         }
 
+
         public Builder supplierId(String supplierId) {
             Utils.checkNotNull(supplierId, "supplierId");
             this.supplierId = Optional.ofNullable(supplierId);
@@ -135,11 +140,12 @@ public class PurchaseOrdersFilter {
             this.supplierId = supplierId;
             return this;
         }
-        
+
         public PurchaseOrdersFilter build() {
+
             return new PurchaseOrdersFilter(
-                updatedSince,
-                supplierId);
+                updatedSince, supplierId);
         }
+
     }
 }

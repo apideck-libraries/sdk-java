@@ -57,7 +57,8 @@ public class FileStorageDriveGroupsUpdateOperation implements RequestOperation<F
     
     @Override
     public HttpResponse<InputStream> doRequest(FileStorageDriveGroupsUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 FileStorageDriveGroupsUpdateRequest.class,

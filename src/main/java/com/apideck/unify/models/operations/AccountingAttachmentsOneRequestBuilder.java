@@ -48,8 +48,8 @@ public class AccountingAttachmentsOneRequestBuilder {
 
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
               = new AccountingAttachmentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

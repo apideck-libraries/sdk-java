@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class JournalEntryLineItemInput {
 
+public class JournalEntryLineItemInput {
     /**
      * User defined description
      */
@@ -56,6 +55,7 @@ public class JournalEntryLineItemInput {
     @JsonProperty("type")
     private JournalEntryLineItemType type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRateInput> taxRate;
@@ -75,6 +75,7 @@ public class JournalEntryLineItemInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("ledger_account")
@@ -163,7 +164,11 @@ public class JournalEntryLineItemInput {
     
     public JournalEntryLineItemInput(
             JournalEntryLineItemType type) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), type, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), type, Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -280,9 +285,10 @@ public class JournalEntryLineItemInput {
         return lineNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * User defined description
@@ -371,6 +377,7 @@ public class JournalEntryLineItemInput {
         return this;
     }
 
+
     public JournalEntryLineItemInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -422,6 +429,7 @@ public class JournalEntryLineItemInput {
         this.ledgerAccount = Optional.ofNullable(ledgerAccount);
         return this;
     }
+
 
     public JournalEntryLineItemInput withLedgerAccount(Optional<? extends LinkedLedgerAccountInput> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
@@ -519,7 +527,6 @@ public class JournalEntryLineItemInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -530,39 +537,30 @@ public class JournalEntryLineItemInput {
         }
         JournalEntryLineItemInput other = (JournalEntryLineItemInput) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            taxAmount,
-            subTotal,
-            totalAmount,
-            type,
-            taxRate,
-            trackingCategory,
-            trackingCategories,
-            ledgerAccount,
-            customer,
-            supplier,
-            departmentId,
-            locationId,
-            lineNumber);
+        return Utils.enhancedHash(
+            description, taxAmount, subTotal,
+            totalAmount, type, taxRate,
+            trackingCategory, trackingCategories, ledgerAccount,
+            customer, supplier, departmentId,
+            locationId, lineNumber);
     }
     
     @Override
@@ -583,41 +581,43 @@ public class JournalEntryLineItemInput {
                 "locationId", locationId,
                 "lineNumber", lineNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> taxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
- 
+
         private JournalEntryLineItemType type;
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedLedgerAccountInput> ledgerAccount = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedSupplierInput> supplier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * User defined description
@@ -637,6 +637,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * Tax amount
          */
@@ -654,6 +655,7 @@ public class JournalEntryLineItemInput {
             this.taxAmount = taxAmount;
             return this;
         }
+
 
         /**
          * Sub-total amount, normally before tax.
@@ -673,6 +675,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * Debit entries are considered positive, and credit entries are considered negative.
          */
@@ -691,6 +694,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * Debit entries are considered positive, and credit entries are considered negative.
          */
@@ -699,6 +703,7 @@ public class JournalEntryLineItemInput {
             this.type = type;
             return this;
         }
+
 
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
@@ -711,6 +716,7 @@ public class JournalEntryLineItemInput {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * 
@@ -734,6 +740,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * A list of linked tracking categories.
          */
@@ -752,6 +759,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = Optional.ofNullable(ledgerAccount);
@@ -763,6 +771,7 @@ public class JournalEntryLineItemInput {
             this.ledgerAccount = ledgerAccount;
             return this;
         }
+
 
         /**
          * The customer this entity is linked to.
@@ -782,6 +791,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * The supplier this entity is linked to.
          */
@@ -799,6 +809,7 @@ public class JournalEntryLineItemInput {
             this.supplier = supplier;
             return this;
         }
+
 
         /**
          * The ID of the department
@@ -818,6 +829,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * The ID of the location
          */
@@ -836,6 +848,7 @@ public class JournalEntryLineItemInput {
             return this;
         }
 
+
         /**
          * Line number of the resource
          */
@@ -853,23 +866,16 @@ public class JournalEntryLineItemInput {
             this.lineNumber = lineNumber;
             return this;
         }
-        
+
         public JournalEntryLineItemInput build() {
+
             return new JournalEntryLineItemInput(
-                description,
-                taxAmount,
-                subTotal,
-                totalAmount,
-                type,
-                taxRate,
-                trackingCategory,
-                trackingCategories,
-                ledgerAccount,
-                customer,
-                supplier,
-                departmentId,
-                locationId,
-                lineNumber);
+                description, taxAmount, subTotal,
+                totalAmount, type, taxRate,
+                trackingCategory, trackingCategories, ledgerAccount,
+                customer, supplier, departmentId,
+                locationId, lineNumber);
         }
+
     }
 }

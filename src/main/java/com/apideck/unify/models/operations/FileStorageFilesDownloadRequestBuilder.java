@@ -48,8 +48,8 @@ public class FileStorageFilesDownloadRequestBuilder {
 
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
               = new FileStorageFilesDownloadOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

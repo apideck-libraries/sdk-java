@@ -52,7 +52,8 @@ public class ConnectorApisOneOperation implements RequestOperation<ConnectorApis
     
     @Override
     public HttpResponse<InputStream> doRequest(ConnectorApisOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 ConnectorApisOneRequest.class,

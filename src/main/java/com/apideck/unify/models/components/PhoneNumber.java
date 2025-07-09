@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PhoneNumber {
 
+public class PhoneNumber {
     /**
      * Unique identifier of the phone number
      */
@@ -82,7 +81,8 @@ public class PhoneNumber {
     
     public PhoneNumber(
             String number) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), number, JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            number, JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -134,9 +134,10 @@ public class PhoneNumber {
         return (JsonNullable<PhoneNumberType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of the phone number
@@ -237,7 +238,6 @@ public class PhoneNumber {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -248,23 +248,19 @@ public class PhoneNumber {
         }
         PhoneNumber other = (PhoneNumber) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.countryCode, other.countryCode) &&
-            Objects.deepEquals(this.areaCode, other.areaCode) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.extension, other.extension) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.countryCode, other.countryCode) &&
+            Utils.enhancedDeepEquals(this.areaCode, other.areaCode) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.extension, other.extension) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            countryCode,
-            areaCode,
-            number,
-            extension,
-            type);
+        return Utils.enhancedHash(
+            id, countryCode, areaCode,
+            number, extension, type);
     }
     
     @Override
@@ -277,24 +273,26 @@ public class PhoneNumber {
                 "extension", extension,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> countryCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> areaCode = JsonNullable.undefined();
- 
+
         private String number;
- 
+
         private JsonNullable<String> extension = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PhoneNumberType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of the phone number
@@ -314,6 +312,7 @@ public class PhoneNumber {
             return this;
         }
 
+
         /**
          * The country code of the phone number, e.g. +1
          */
@@ -331,6 +330,7 @@ public class PhoneNumber {
             this.countryCode = countryCode;
             return this;
         }
+
 
         /**
          * The area code of the phone number, e.g. 323
@@ -350,6 +350,7 @@ public class PhoneNumber {
             return this;
         }
 
+
         /**
          * The phone number
          */
@@ -358,6 +359,7 @@ public class PhoneNumber {
             this.number = number;
             return this;
         }
+
 
         /**
          * The extension of the phone number
@@ -377,6 +379,7 @@ public class PhoneNumber {
             return this;
         }
 
+
         /**
          * The type of phone number
          */
@@ -394,15 +397,13 @@ public class PhoneNumber {
             this.type = type;
             return this;
         }
-        
+
         public PhoneNumber build() {
+
             return new PhoneNumber(
-                id,
-                countryCode,
-                areaCode,
-                number,
-                extension,
-                type);
+                id, countryCode, areaCode,
+                number, extension, type);
         }
+
     }
 }

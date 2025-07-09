@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PersonInput {
 
+public class PersonInput {
     /**
      * The first name of the person.
      */
@@ -93,7 +92,9 @@ public class PersonInput {
     }
     
     public PersonInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -153,9 +154,10 @@ public class PersonInput {
         return deceasedOn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The first name of the person.
@@ -283,7 +285,6 @@ public class PersonInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -294,24 +295,20 @@ public class PersonInput {
         }
         PersonInput other = (PersonInput) o;
         return 
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.gender, other.gender) &&
-            Objects.deepEquals(this.initials, other.initials) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.deceasedOn, other.deceasedOn);
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.gender, other.gender) &&
+            Utils.enhancedDeepEquals(this.initials, other.initials) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.deceasedOn, other.deceasedOn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            firstName,
-            lastName,
-            middleName,
-            gender,
-            initials,
-            birthday,
+        return Utils.enhancedHash(
+            firstName, lastName, middleName,
+            gender, initials, birthday,
             deceasedOn);
     }
     
@@ -326,26 +323,28 @@ public class PersonInput {
                 "birthday", birthday,
                 "deceasedOn", deceasedOn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
- 
+
         private JsonNullable<String> initials = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The first name of the person.
@@ -365,6 +364,7 @@ public class PersonInput {
             return this;
         }
 
+
         /**
          * The last name of the person.
          */
@@ -382,6 +382,7 @@ public class PersonInput {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Middle name of the person.
@@ -401,6 +402,7 @@ public class PersonInput {
             return this;
         }
 
+
         /**
          * The gender represents the gender identity of a person.
          */
@@ -418,6 +420,7 @@ public class PersonInput {
             this.gender = gender;
             return this;
         }
+
 
         /**
          * Initials of the person
@@ -437,6 +440,7 @@ public class PersonInput {
             return this;
         }
 
+
         /**
          * Date of birth
          */
@@ -455,6 +459,7 @@ public class PersonInput {
             return this;
         }
 
+
         /**
          * Date of death
          */
@@ -472,16 +477,14 @@ public class PersonInput {
             this.deceasedOn = deceasedOn;
             return this;
         }
-        
+
         public PersonInput build() {
+
             return new PersonInput(
-                firstName,
-                lastName,
-                middleName,
-                gender,
-                initials,
-                birthday,
+                firstName, lastName, middleName,
+                gender, initials, birthday,
                 deceasedOn);
         }
+
     }
 }

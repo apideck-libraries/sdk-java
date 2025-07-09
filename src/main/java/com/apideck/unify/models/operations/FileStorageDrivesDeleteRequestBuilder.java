@@ -48,8 +48,8 @@ public class FileStorageDrivesDeleteRequestBuilder {
 
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
               = new FileStorageDrivesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

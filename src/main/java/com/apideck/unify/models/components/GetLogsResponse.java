@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Logs
  */
 public class GetLogsResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -38,6 +36,7 @@ public class GetLogsResponse {
      */
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("data")
     private List<Log> data;
@@ -89,7 +88,8 @@ public class GetLogsResponse {
             long statusCode,
             String status,
             List<Log> data) {
-        this(statusCode, status, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(statusCode, status, data,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -140,9 +140,10 @@ public class GetLogsResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -177,6 +178,7 @@ public class GetLogsResponse {
         return this;
     }
 
+
     /**
      * Response metadata
      */
@@ -194,6 +196,7 @@ public class GetLogsResponse {
         this.links = Optional.ofNullable(links);
         return this;
     }
+
 
     /**
      * Links to navigate to previous or next pages through the API
@@ -222,7 +225,6 @@ public class GetLogsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -233,23 +235,19 @@ public class GetLogsResponse {
         }
         GetLogsResponse other = (GetLogsResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            data,
-            meta,
-            links,
-            raw);
+        return Utils.enhancedHash(
+            statusCode, status, data,
+            meta, links, raw);
     }
     
     @Override
@@ -262,24 +260,26 @@ public class GetLogsResponse {
                 "links", links,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private List<Log> data;
- 
+
         private Optional<? extends Meta> meta = Optional.empty();
- 
+
         private Optional<? extends Links> links = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -290,6 +290,7 @@ public class GetLogsResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -299,11 +300,13 @@ public class GetLogsResponse {
             return this;
         }
 
+
         public Builder data(List<Log> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Response metadata
@@ -323,6 +326,7 @@ public class GetLogsResponse {
             return this;
         }
 
+
         /**
          * Links to navigate to previous or next pages through the API
          */
@@ -341,6 +345,7 @@ public class GetLogsResponse {
             return this;
         }
 
+
         /**
          * Raw response from the integration when raw=true query param is provided
          */
@@ -358,15 +363,13 @@ public class GetLogsResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetLogsResponse build() {
+
             return new GetLogsResponse(
-                statusCode,
-                status,
-                data,
-                meta,
-                links,
-                raw);
+                statusCode, status, data,
+                meta, links, raw);
         }
+
     }
 }

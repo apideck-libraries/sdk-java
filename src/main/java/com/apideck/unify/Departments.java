@@ -37,7 +37,6 @@ public class Departments {
     Departments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Departments
      * 
@@ -77,11 +76,10 @@ public class Departments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
               = new AccountingDepartmentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Department
@@ -122,11 +120,10 @@ public class Departments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
               = new AccountingDepartmentsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Department
@@ -167,11 +164,10 @@ public class Departments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
               = new AccountingDepartmentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Department
@@ -212,11 +208,10 @@ public class Departments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
               = new AccountingDepartmentsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Department
@@ -257,8 +252,8 @@ public class Departments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
               = new AccountingDepartmentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

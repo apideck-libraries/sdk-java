@@ -14,7 +14,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -23,7 +22,6 @@ import java.util.Optional;
  * <p>A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
  */
 public class BalanceSheetUncategorizedItemsAccount {
-
     /**
      * The unique identifier for the account.
      */
@@ -79,7 +77,8 @@ public class BalanceSheetUncategorizedItemsAccount {
     }
     
     public BalanceSheetUncategorizedItemsAccount() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -123,9 +122,10 @@ public class BalanceSheetUncategorizedItemsAccount {
         return (Optional<Object>) items;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the account.
@@ -135,6 +135,7 @@ public class BalanceSheetUncategorizedItemsAccount {
         this.accountId = Optional.ofNullable(accountId);
         return this;
     }
+
 
     /**
      * The unique identifier for the account.
@@ -154,6 +155,7 @@ public class BalanceSheetUncategorizedItemsAccount {
         return this;
     }
 
+
     /**
      * The account code of the account
      */
@@ -171,6 +173,7 @@ public class BalanceSheetUncategorizedItemsAccount {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the account.
@@ -190,6 +193,7 @@ public class BalanceSheetUncategorizedItemsAccount {
         return this;
     }
 
+
     /**
      * The amount or value of the item
      */
@@ -208,6 +212,7 @@ public class BalanceSheetUncategorizedItemsAccount {
         return this;
     }
 
+
     /**
      * A list of balance sheet accounts
      */
@@ -217,7 +222,6 @@ public class BalanceSheetUncategorizedItemsAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,21 +232,18 @@ public class BalanceSheetUncategorizedItemsAccount {
         }
         BalanceSheetUncategorizedItemsAccount other = (BalanceSheetUncategorizedItemsAccount) o;
         return 
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.items, other.items);
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.items, other.items);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountId,
-            code,
-            name,
-            value,
-            items);
+        return Utils.enhancedHash(
+            accountId, code, name,
+            value, items);
     }
     
     @Override
@@ -254,22 +255,24 @@ public class BalanceSheetUncategorizedItemsAccount {
                 "value", value,
                 "items", items);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountId = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<Double> value = Optional.empty();
- 
+
         private Optional<? extends Object> items = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the account.
@@ -289,6 +292,7 @@ public class BalanceSheetUncategorizedItemsAccount {
             return this;
         }
 
+
         /**
          * The account code of the account
          */
@@ -306,6 +310,7 @@ public class BalanceSheetUncategorizedItemsAccount {
             this.code = code;
             return this;
         }
+
 
         /**
          * The name of the account.
@@ -325,6 +330,7 @@ public class BalanceSheetUncategorizedItemsAccount {
             return this;
         }
 
+
         /**
          * The amount or value of the item
          */
@@ -343,6 +349,7 @@ public class BalanceSheetUncategorizedItemsAccount {
             return this;
         }
 
+
         /**
          * A list of balance sheet accounts
          */
@@ -360,14 +367,13 @@ public class BalanceSheetUncategorizedItemsAccount {
             this.items = items;
             return this;
         }
-        
+
         public BalanceSheetUncategorizedItemsAccount build() {
+
             return new BalanceSheetUncategorizedItemsAccount(
-                accountId,
-                code,
-                name,
-                value,
-                items);
+                accountId, code, name,
+                value, items);
         }
+
     }
 }

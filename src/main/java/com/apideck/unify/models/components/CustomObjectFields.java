@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CustomObjectFields {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -48,15 +49,17 @@ public class CustomObjectFields {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomObjectFields withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public CustomObjectFields withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -70,13 +73,13 @@ public class CustomObjectFields {
         return this;
     }
 
+
     public CustomObjectFields withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class CustomObjectFields {
         }
         CustomObjectFields other = (CustomObjectFields) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            value);
+        return Utils.enhancedHash(
+            name, value);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class CustomObjectFields {
                 "name", name,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
@@ -127,6 +131,7 @@ public class CustomObjectFields {
             return this;
         }
 
+
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -138,11 +143,12 @@ public class CustomObjectFields {
             this.value = value;
             return this;
         }
-        
+
         public CustomObjectFields build() {
+
             return new CustomObjectFields(
-                name,
-                value);
+                name, value);
         }
+
     }
 }

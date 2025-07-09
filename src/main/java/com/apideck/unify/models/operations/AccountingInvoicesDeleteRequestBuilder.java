@@ -48,8 +48,8 @@ public class AccountingInvoicesDeleteRequestBuilder {
 
         RequestOperation<AccountingInvoicesDeleteRequest, AccountingInvoicesDeleteResponse> operation
               = new AccountingInvoicesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -21,7 +21,6 @@ public class AgedCreditors {
     AgedCreditors(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get Aged Creditors
      * 
@@ -61,8 +60,8 @@ public class AgedCreditors {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAgedCreditorsOneRequest, AccountingAgedCreditorsOneResponse> operation
               = new AccountingAgedCreditorsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

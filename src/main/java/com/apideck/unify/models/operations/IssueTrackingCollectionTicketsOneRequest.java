@@ -12,12 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class IssueTrackingCollectionTicketsOneRequest {
 
+public class IssueTrackingCollectionTicketsOneRequest {
     /**
      * ID of the ticket you are acting upon.
      */
@@ -88,7 +87,9 @@ public class IssueTrackingCollectionTicketsOneRequest {
     public IssueTrackingCollectionTicketsOneRequest(
             String ticketId,
             String collectionId) {
-        this(ticketId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), collectionId, JsonNullable.undefined());
+        this(ticketId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), collectionId,
+            JsonNullable.undefined());
     }
 
     /**
@@ -147,9 +148,10 @@ public class IssueTrackingCollectionTicketsOneRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the ticket you are acting upon.
@@ -169,6 +171,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -186,6 +189,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -205,6 +209,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -222,6 +227,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -259,7 +265,6 @@ public class IssueTrackingCollectionTicketsOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -270,24 +275,20 @@ public class IssueTrackingCollectionTicketsOneRequest {
         }
         IssueTrackingCollectionTicketsOneRequest other = (IssueTrackingCollectionTicketsOneRequest) o;
         return 
-            Objects.deepEquals(this.ticketId, other.ticketId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.collectionId, other.collectionId) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.ticketId, other.ticketId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            ticketId,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            collectionId,
+        return Utils.enhancedHash(
+            ticketId, consumerId, appId,
+            serviceId, raw, collectionId,
             fields);
     }
     
@@ -302,26 +303,28 @@ public class IssueTrackingCollectionTicketsOneRequest {
                 "collectionId", collectionId,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String ticketId;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private String collectionId;
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the ticket you are acting upon.
@@ -331,6 +334,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             this.ticketId = ticketId;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -350,6 +354,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -367,6 +372,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -386,6 +392,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -404,6 +411,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             return this;
         }
 
+
         /**
          * The collection ID
          */
@@ -412,6 +420,7 @@ public class IssueTrackingCollectionTicketsOneRequest {
             this.collectionId = collectionId;
             return this;
         }
+
 
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -430,20 +439,18 @@ public class IssueTrackingCollectionTicketsOneRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public IssueTrackingCollectionTicketsOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new IssueTrackingCollectionTicketsOneRequest(
-                ticketId,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                collectionId,
+                ticketId, consumerId, appId,
+                serviceId, raw, collectionId,
                 fields);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

@@ -37,7 +37,6 @@ public class Customers {
     Customers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Customers
      * 
@@ -77,11 +76,10 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAllRequest, AccountingCustomersAllResponse> operation
               = new AccountingCustomersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Customer
@@ -122,11 +120,10 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAddRequest, AccountingCustomersAddResponse> operation
               = new AccountingCustomersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Customer
@@ -167,11 +164,10 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersOneRequest, AccountingCustomersOneResponse> operation
               = new AccountingCustomersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Customer
@@ -212,11 +208,10 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
               = new AccountingCustomersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Customer
@@ -257,8 +252,8 @@ public class Customers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
               = new AccountingCustomersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

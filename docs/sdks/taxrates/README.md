@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAllRequest req = AccountingTaxRatesAllRequest.builder()
@@ -110,7 +110,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesAddRequest req = AccountingTaxRatesAddRequest.builder()
@@ -119,15 +119,15 @@ public class Application {
                     .name("GST on Purchases")
                     .code("ABN")
                     .description("Reduced rate GST Purchases")
-                    .effectiveTaxRate(10)
-                    .totalTaxRate(10)
+                    .effectiveTaxRate(10d)
+                    .totalTaxRate(10d)
                     .taxPayableAccountId("123456")
                     .taxRemittedAccountId("123456")
                     .components(List.of(
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10)
+                            .rate(10d)
                             .compound(true)
                             .build()))
                     .type("NONE")
@@ -232,7 +232,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesOneRequest req = AccountingTaxRatesOneRequest.builder()
@@ -298,7 +298,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesUpdateRequest req = AccountingTaxRatesUpdateRequest.builder()
@@ -308,27 +308,27 @@ public class Application {
                     .name("GST on Purchases")
                     .code("ABN")
                     .description("Reduced rate GST Purchases")
-                    .effectiveTaxRate(10)
-                    .totalTaxRate(10)
+                    .effectiveTaxRate(10d)
+                    .totalTaxRate(10d)
                     .taxPayableAccountId("123456")
                     .taxRemittedAccountId("123456")
                     .components(List.of(
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10)
+                            .rate(10d)
                             .compound(true)
                             .build(),
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10)
+                            .rate(10d)
                             .compound(true)
                             .build(),
                         Components.builder()
                             .id("10")
                             .name("GST")
-                            .rate(10)
+                            .rate(10d)
                             .compound(true)
                             .build()))
                     .type("NONE")
@@ -452,7 +452,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingTaxRatesDeleteRequest req = AccountingTaxRatesDeleteRequest.builder()

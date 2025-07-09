@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class UnifiedApis {
 
+public class UnifiedApis {
     /**
      * Name of Apideck Unified API
      */
@@ -39,6 +38,7 @@ public class UnifiedApis {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_only")
     private Optional<Boolean> authOnly;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_scopes")
@@ -91,7 +91,9 @@ public class UnifiedApis {
     }
     
     public UnifiedApis() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -152,9 +154,10 @@ public class UnifiedApis {
         return (Optional<List<ConnectorEvent>>) supportedEvents;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of Apideck Unified API
@@ -164,6 +167,7 @@ public class UnifiedApis {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Name of Apideck Unified API
@@ -183,6 +187,7 @@ public class UnifiedApis {
         return this;
     }
 
+
     /**
      * Name of the API.
      */
@@ -201,6 +206,7 @@ public class UnifiedApis {
         return this;
     }
 
+
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
@@ -216,6 +222,7 @@ public class UnifiedApis {
         return this;
     }
 
+
     public UnifiedApis withOauthScopes(Optional<? extends List<ConnectorOauthScopes>> oauthScopes) {
         Utils.checkNotNull(oauthScopes, "oauthScopes");
         this.oauthScopes = oauthScopes;
@@ -230,6 +237,7 @@ public class UnifiedApis {
         this.supportedResources = Optional.ofNullable(supportedResources);
         return this;
     }
+
 
     /**
      * List of resources that are supported on the connector.
@@ -249,6 +257,7 @@ public class UnifiedApis {
         return this;
     }
 
+
     /**
      * List of resources that are not supported on the downstream.
      */
@@ -267,6 +276,7 @@ public class UnifiedApis {
         return this;
     }
 
+
     /**
      * List of events that are supported on the connector for this Unified API.
      */
@@ -276,7 +286,6 @@ public class UnifiedApis {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -287,24 +296,20 @@ public class UnifiedApis {
         }
         UnifiedApis other = (UnifiedApis) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.authOnly, other.authOnly) &&
-            Objects.deepEquals(this.oauthScopes, other.oauthScopes) &&
-            Objects.deepEquals(this.supportedResources, other.supportedResources) &&
-            Objects.deepEquals(this.downstreamUnsupportedResources, other.downstreamUnsupportedResources) &&
-            Objects.deepEquals(this.supportedEvents, other.supportedEvents);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.authOnly, other.authOnly) &&
+            Utils.enhancedDeepEquals(this.oauthScopes, other.oauthScopes) &&
+            Utils.enhancedDeepEquals(this.supportedResources, other.supportedResources) &&
+            Utils.enhancedDeepEquals(this.downstreamUnsupportedResources, other.downstreamUnsupportedResources) &&
+            Utils.enhancedDeepEquals(this.supportedEvents, other.supportedEvents);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            authOnly,
-            oauthScopes,
-            supportedResources,
-            downstreamUnsupportedResources,
+        return Utils.enhancedHash(
+            id, name, authOnly,
+            oauthScopes, supportedResources, downstreamUnsupportedResources,
             supportedEvents);
     }
     
@@ -319,26 +324,28 @@ public class UnifiedApis {
                 "downstreamUnsupportedResources", downstreamUnsupportedResources,
                 "supportedEvents", supportedEvents);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UnifiedApiId> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<Boolean> authOnly = Optional.empty();
- 
+
         private Optional<? extends List<ConnectorOauthScopes>> oauthScopes = Optional.empty();
- 
+
         private Optional<? extends List<LinkedConnectorResource>> supportedResources = Optional.empty();
- 
+
         private Optional<? extends List<String>> downstreamUnsupportedResources = Optional.empty();
- 
+
         private Optional<? extends List<ConnectorEvent>> supportedEvents = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of Apideck Unified API
@@ -358,6 +365,7 @@ public class UnifiedApis {
             return this;
         }
 
+
         /**
          * Name of the API.
          */
@@ -375,6 +383,7 @@ public class UnifiedApis {
             this.name = name;
             return this;
         }
+
 
         /**
          * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
@@ -394,6 +403,7 @@ public class UnifiedApis {
             return this;
         }
 
+
         public Builder oauthScopes(List<ConnectorOauthScopes> oauthScopes) {
             Utils.checkNotNull(oauthScopes, "oauthScopes");
             this.oauthScopes = Optional.ofNullable(oauthScopes);
@@ -405,6 +415,7 @@ public class UnifiedApis {
             this.oauthScopes = oauthScopes;
             return this;
         }
+
 
         /**
          * List of resources that are supported on the connector.
@@ -424,6 +435,7 @@ public class UnifiedApis {
             return this;
         }
 
+
         /**
          * List of resources that are not supported on the downstream.
          */
@@ -442,6 +454,7 @@ public class UnifiedApis {
             return this;
         }
 
+
         /**
          * List of events that are supported on the connector for this Unified API.
          */
@@ -459,16 +472,14 @@ public class UnifiedApis {
             this.supportedEvents = supportedEvents;
             return this;
         }
-        
+
         public UnifiedApis build() {
+
             return new UnifiedApis(
-                id,
-                name,
-                authOnly,
-                oauthScopes,
-                supportedResources,
-                downstreamUnsupportedResources,
+                id, name, authOnly,
+                oauthScopes, supportedResources, downstreamUnsupportedResources,
                 supportedEvents);
         }
+
     }
 }

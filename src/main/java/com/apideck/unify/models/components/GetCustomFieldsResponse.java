@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -25,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Custom mapping
  */
 public class GetCustomFieldsResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -37,6 +35,7 @@ public class GetCustomFieldsResponse {
      */
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("data")
     private List<CustomFieldFinder> data;
@@ -68,7 +67,8 @@ public class GetCustomFieldsResponse {
             long statusCode,
             String status,
             List<CustomFieldFinder> data) {
-        this(statusCode, status, data, JsonNullable.undefined());
+        this(statusCode, status, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -101,9 +101,10 @@ public class GetCustomFieldsResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -147,7 +148,6 @@ public class GetCustomFieldsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -158,18 +158,16 @@ public class GetCustomFieldsResponse {
         }
         GetCustomFieldsResponse other = (GetCustomFieldsResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, data,
             raw);
     }
     
@@ -181,20 +179,22 @@ public class GetCustomFieldsResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private List<CustomFieldFinder> data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -205,6 +205,7 @@ public class GetCustomFieldsResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -214,11 +215,13 @@ public class GetCustomFieldsResponse {
             return this;
         }
 
+
         public Builder data(List<CustomFieldFinder> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -237,13 +240,13 @@ public class GetCustomFieldsResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetCustomFieldsResponse build() {
+
             return new GetCustomFieldsResponse(
-                statusCode,
-                status,
-                data,
+                statusCode, status, data,
                 raw);
         }
+
     }
 }

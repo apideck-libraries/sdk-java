@@ -22,7 +22,6 @@ public class ConnectorDocs {
     ConnectorDocs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get Connector Doc content
      * 
@@ -47,7 +46,8 @@ public class ConnectorDocs {
     public ConnectorConnectorDocsOneResponse get(
             String id,
             String docId) throws Exception {
-        return get(Optional.empty(), id, docId, Optional.empty());
+        return get(Optional.empty(), id, docId,
+            Optional.empty());
     }
 
     /**
@@ -76,8 +76,8 @@ public class ConnectorDocs {
                 .build();
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
               = new ConnectorConnectorDocsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

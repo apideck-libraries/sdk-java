@@ -14,9 +14,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class ConnectionImportData {
 
@@ -79,15 +79,17 @@ public class ConnectionImportData {
         return (JsonNullable<Map<String, Object>>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectionImportData withCredentials(Credentials credentials) {
         Utils.checkNotNull(credentials, "credentials");
         this.credentials = Optional.ofNullable(credentials);
         return this;
     }
+
 
     public ConnectionImportData withCredentials(Optional<? extends Credentials> credentials) {
         Utils.checkNotNull(credentials, "credentials");
@@ -131,7 +133,6 @@ public class ConnectionImportData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -142,17 +143,15 @@ public class ConnectionImportData {
         }
         ConnectionImportData other = (ConnectionImportData) o;
         return 
-            Objects.deepEquals(this.credentials, other.credentials) &&
-            Objects.deepEquals(this.settings, other.settings) &&
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.credentials, other.credentials) &&
+            Utils.enhancedDeepEquals(this.settings, other.settings) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            credentials,
-            settings,
-            metadata);
+        return Utils.enhancedHash(
+            credentials, settings, metadata);
     }
     
     @Override
@@ -162,18 +161,20 @@ public class ConnectionImportData {
                 "settings", settings,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Credentials> credentials = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder credentials(Credentials credentials) {
             Utils.checkNotNull(credentials, "credentials");
@@ -186,6 +187,7 @@ public class ConnectionImportData {
             this.credentials = credentials;
             return this;
         }
+
 
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
@@ -205,6 +207,7 @@ public class ConnectionImportData {
             return this;
         }
 
+
         /**
          * Attach your own consumer specific metadata
          */
@@ -222,12 +225,12 @@ public class ConnectionImportData {
             this.metadata = metadata;
             return this;
         }
-        
+
         public ConnectionImportData build() {
+
             return new ConnectionImportData(
-                credentials,
-                settings,
-                metadata);
+                credentials, settings, metadata);
         }
+
     }
 }

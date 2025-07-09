@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Credit Notes
  */
 public class GetCreditNotesResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -56,6 +54,7 @@ public class GetCreditNotesResponse {
      */
     @JsonProperty("operation")
     private String operation;
+
 
     @JsonProperty("data")
     private List<CreditNote> data;
@@ -119,7 +118,9 @@ public class GetCreditNotesResponse {
             String resource,
             String operation,
             List<CreditNote> data) {
-        this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(statusCode, status, service,
+            resource, operation, data,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -194,9 +195,10 @@ public class GetCreditNotesResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -258,6 +260,7 @@ public class GetCreditNotesResponse {
         return this;
     }
 
+
     /**
      * Response metadata
      */
@@ -275,6 +278,7 @@ public class GetCreditNotesResponse {
         this.links = Optional.ofNullable(links);
         return this;
     }
+
 
     /**
      * Links to navigate to previous or next pages through the API
@@ -303,7 +307,6 @@ public class GetCreditNotesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -314,29 +317,23 @@ public class GetCreditNotesResponse {
         }
         GetCreditNotesResponse other = (GetCreditNotesResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
-            meta,
-            links,
-            raw);
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
+            meta, links, raw);
     }
     
     @Override
@@ -352,30 +349,32 @@ public class GetCreditNotesResponse {
                 "links", links,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
+
         private List<CreditNote> data;
- 
+
         private Optional<? extends Meta> meta = Optional.empty();
- 
+
         private Optional<? extends Links> links = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -386,6 +385,7 @@ public class GetCreditNotesResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -394,6 +394,7 @@ public class GetCreditNotesResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -404,6 +405,7 @@ public class GetCreditNotesResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -412,6 +414,7 @@ public class GetCreditNotesResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -422,11 +425,13 @@ public class GetCreditNotesResponse {
             return this;
         }
 
+
         public Builder data(List<CreditNote> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Response metadata
@@ -446,6 +451,7 @@ public class GetCreditNotesResponse {
             return this;
         }
 
+
         /**
          * Links to navigate to previous or next pages through the API
          */
@@ -464,6 +470,7 @@ public class GetCreditNotesResponse {
             return this;
         }
 
+
         /**
          * Raw response from the integration when raw=true query param is provided
          */
@@ -481,18 +488,14 @@ public class GetCreditNotesResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetCreditNotesResponse build() {
+
             return new GetCreditNotesResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
-                meta,
-                links,
-                raw);
+                statusCode, status, service,
+                resource, operation, data,
+                meta, links, raw);
         }
+
     }
 }

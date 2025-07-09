@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class EmployeesOneFilter {
 
+public class EmployeesOneFilter {
     /**
      * Company ID to filter on
      */
@@ -39,9 +38,10 @@ public class EmployeesOneFilter {
         return companyId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Company ID to filter on
@@ -52,6 +52,7 @@ public class EmployeesOneFilter {
         return this;
     }
 
+
     /**
      * Company ID to filter on
      */
@@ -61,7 +62,6 @@ public class EmployeesOneFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class EmployeesOneFilter {
         }
         EmployeesOneFilter other = (EmployeesOneFilter) o;
         return 
-            Objects.deepEquals(this.companyId, other.companyId);
+            Utils.enhancedDeepEquals(this.companyId, other.companyId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             companyId);
     }
     
@@ -86,14 +86,16 @@ public class EmployeesOneFilter {
         return Utils.toString(EmployeesOneFilter.class,
                 "companyId", companyId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> companyId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Company ID to filter on
@@ -112,10 +114,12 @@ public class EmployeesOneFilter {
             this.companyId = companyId;
             return this;
         }
-        
+
         public EmployeesOneFilter build() {
+
             return new EmployeesOneFilter(
                 companyId);
         }
+
     }
 }

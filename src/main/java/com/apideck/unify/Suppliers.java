@@ -37,7 +37,6 @@ public class Suppliers {
     Suppliers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Suppliers
      * 
@@ -77,11 +76,10 @@ public class Suppliers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
               = new AccountingSuppliersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Supplier
@@ -122,11 +120,10 @@ public class Suppliers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
               = new AccountingSuppliersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Supplier
@@ -167,11 +164,10 @@ public class Suppliers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersOneRequest, AccountingSuppliersOneResponse> operation
               = new AccountingSuppliersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Supplier
@@ -212,11 +208,10 @@ public class Suppliers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersUpdateRequest, AccountingSuppliersUpdateResponse> operation
               = new AccountingSuppliersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Supplier
@@ -257,8 +252,8 @@ public class Suppliers {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
               = new AccountingSuppliersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

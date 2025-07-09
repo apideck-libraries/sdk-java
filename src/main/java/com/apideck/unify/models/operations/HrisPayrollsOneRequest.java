@@ -12,12 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class HrisPayrollsOneRequest {
 
+public class HrisPayrollsOneRequest {
     /**
      * ID of the payroll you are acting upon.
      */
@@ -78,7 +77,8 @@ public class HrisPayrollsOneRequest {
     
     public HrisPayrollsOneRequest(
             String payrollId) {
-        this(payrollId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(payrollId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -129,9 +129,10 @@ public class HrisPayrollsOneRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the payroll you are acting upon.
@@ -151,6 +152,7 @@ public class HrisPayrollsOneRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -168,6 +170,7 @@ public class HrisPayrollsOneRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -187,6 +190,7 @@ public class HrisPayrollsOneRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -204,6 +208,7 @@ public class HrisPayrollsOneRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -232,7 +237,6 @@ public class HrisPayrollsOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -243,23 +247,19 @@ public class HrisPayrollsOneRequest {
         }
         HrisPayrollsOneRequest other = (HrisPayrollsOneRequest) o;
         return 
-            Objects.deepEquals(this.payrollId, other.payrollId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.payrollId, other.payrollId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            payrollId,
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            fields);
+        return Utils.enhancedHash(
+            payrollId, raw, consumerId,
+            appId, serviceId, fields);
     }
     
     @Override
@@ -272,24 +272,26 @@ public class HrisPayrollsOneRequest {
                 "serviceId", serviceId,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String payrollId;
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the payroll you are acting upon.
@@ -299,6 +301,7 @@ public class HrisPayrollsOneRequest {
             this.payrollId = payrollId;
             return this;
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -318,6 +321,7 @@ public class HrisPayrollsOneRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -335,6 +339,7 @@ public class HrisPayrollsOneRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -354,6 +359,7 @@ public class HrisPayrollsOneRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -372,6 +378,7 @@ public class HrisPayrollsOneRequest {
             return this;
         }
 
+
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
@@ -389,19 +396,17 @@ public class HrisPayrollsOneRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public HrisPayrollsOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new HrisPayrollsOneRequest(
-                payrollId,
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                fields);
+                payrollId, raw, consumerId,
+                appId, serviceId, fields);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

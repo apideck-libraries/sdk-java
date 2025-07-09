@@ -21,7 +21,6 @@ public class ProfitAndLoss {
     ProfitAndLoss(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get Profit and Loss
      * 
@@ -61,8 +60,8 @@ public class ProfitAndLoss {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
               = new AccountingProfitAndLossOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

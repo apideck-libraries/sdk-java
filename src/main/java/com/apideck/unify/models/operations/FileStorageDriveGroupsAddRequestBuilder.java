@@ -48,8 +48,8 @@ public class FileStorageDriveGroupsAddRequestBuilder {
 
         RequestOperation<FileStorageDriveGroupsAddRequest, FileStorageDriveGroupsAddResponse> operation
               = new FileStorageDriveGroupsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

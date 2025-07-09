@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BankFeedAccount {
 
+public class BankFeedAccount {
     /**
      * A unique identifier for an object.
      */
@@ -83,6 +82,7 @@ public class BankFeedAccount {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("country")
     private JsonNullable<String> country;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -174,7 +174,11 @@ public class BankFeedAccount {
     
     public BankFeedAccount(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -299,9 +303,10 @@ public class BankFeedAccount {
         return createdBy;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -321,6 +326,7 @@ public class BankFeedAccount {
         return this;
     }
 
+
     /**
      * Type of the bank account.
      */
@@ -338,6 +344,7 @@ public class BankFeedAccount {
         this.sourceAccountId = Optional.ofNullable(sourceAccountId);
         return this;
     }
+
 
     /**
      * The source account's unique identifier.
@@ -357,6 +364,7 @@ public class BankFeedAccount {
         return this;
     }
 
+
     /**
      * The target account's unique identifier in the accounting connector.
      */
@@ -375,6 +383,7 @@ public class BankFeedAccount {
         return this;
     }
 
+
     /**
      * Name associated with the target account.
      */
@@ -392,6 +401,7 @@ public class BankFeedAccount {
         this.targetAccountNumber = Optional.ofNullable(targetAccountNumber);
         return this;
     }
+
 
     /**
      * Account number of the destination bank account.
@@ -429,6 +439,7 @@ public class BankFeedAccount {
         return this;
     }
 
+
     /**
      * Current status of the bank feed.
      */
@@ -461,6 +472,7 @@ public class BankFeedAccount {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public BankFeedAccount withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -558,7 +570,6 @@ public class BankFeedAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -569,41 +580,31 @@ public class BankFeedAccount {
         }
         BankFeedAccount other = (BankFeedAccount) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.bankAccountType, other.bankAccountType) &&
-            Objects.deepEquals(this.sourceAccountId, other.sourceAccountId) &&
-            Objects.deepEquals(this.targetAccountId, other.targetAccountId) &&
-            Objects.deepEquals(this.targetAccountName, other.targetAccountName) &&
-            Objects.deepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.feedStatus, other.feedStatus) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.bankAccountType, other.bankAccountType) &&
+            Utils.enhancedDeepEquals(this.sourceAccountId, other.sourceAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountId, other.targetAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountName, other.targetAccountName) &&
+            Utils.enhancedDeepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            bankAccountType,
-            sourceAccountId,
-            targetAccountId,
-            targetAccountName,
-            targetAccountNumber,
-            currency,
-            feedStatus,
-            country,
-            customFields,
-            customMappings,
-            createdAt,
-            updatedAt,
-            updatedBy,
-            createdBy);
+        return Utils.enhancedHash(
+            id, bankAccountType, sourceAccountId,
+            targetAccountId, targetAccountName, targetAccountNumber,
+            currency, feedStatus, country,
+            customFields, customMappings, createdAt,
+            updatedAt, updatedBy, createdBy);
     }
     
     @Override
@@ -625,42 +626,44 @@ public class BankFeedAccount {
                 "updatedBy", updatedBy,
                 "createdBy", createdBy);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<? extends BankAccountType> bankAccountType = Optional.empty();
- 
+
         private Optional<String> sourceAccountId = Optional.empty();
- 
+
         private Optional<String> targetAccountId = Optional.empty();
- 
+
         private Optional<String> targetAccountName = Optional.empty();
- 
+
         private Optional<String> targetAccountNumber = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<? extends FeedStatus> feedStatus = Optional.empty();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -670,6 +673,7 @@ public class BankFeedAccount {
             this.id = id;
             return this;
         }
+
 
         /**
          * Type of the bank account.
@@ -689,6 +693,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * The source account's unique identifier.
          */
@@ -706,6 +711,7 @@ public class BankFeedAccount {
             this.sourceAccountId = sourceAccountId;
             return this;
         }
+
 
         /**
          * The target account's unique identifier in the accounting connector.
@@ -725,6 +731,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * Name associated with the target account.
          */
@@ -742,6 +749,7 @@ public class BankFeedAccount {
             this.targetAccountName = targetAccountName;
             return this;
         }
+
 
         /**
          * Account number of the destination bank account.
@@ -761,6 +769,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -778,6 +787,7 @@ public class BankFeedAccount {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Current status of the bank feed.
@@ -797,6 +807,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * Country code according to ISO 3166-1 alpha-2.
          */
@@ -815,6 +826,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -826,6 +838,7 @@ public class BankFeedAccount {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -845,6 +858,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -862,6 +876,7 @@ public class BankFeedAccount {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -881,6 +896,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -899,6 +915,7 @@ public class BankFeedAccount {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -916,24 +933,16 @@ public class BankFeedAccount {
             this.createdBy = createdBy;
             return this;
         }
-        
+
         public BankFeedAccount build() {
+
             return new BankFeedAccount(
-                id,
-                bankAccountType,
-                sourceAccountId,
-                targetAccountId,
-                targetAccountName,
-                targetAccountNumber,
-                currency,
-                feedStatus,
-                country,
-                customFields,
-                customMappings,
-                createdAt,
-                updatedAt,
-                updatedBy,
-                createdBy);
+                id, bankAccountType, sourceAccountId,
+                targetAccountId, targetAccountName, targetAccountNumber,
+                currency, feedStatus, country,
+                customFields, customMappings, createdAt,
+                updatedAt, updatedBy, createdBy);
         }
+
     }
 }

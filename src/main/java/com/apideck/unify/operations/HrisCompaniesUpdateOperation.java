@@ -57,7 +57,8 @@ public class HrisCompaniesUpdateOperation implements RequestOperation<HrisCompan
     
     @Override
     public HttpResponse<InputStream> doRequest(HrisCompaniesUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 HrisCompaniesUpdateRequest.class,

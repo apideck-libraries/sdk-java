@@ -48,8 +48,8 @@ public class HrisTimeOffRequestsOneRequestBuilder {
 
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
               = new HrisTimeOffRequestsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

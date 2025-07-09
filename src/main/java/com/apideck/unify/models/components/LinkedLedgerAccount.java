@@ -11,12 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LinkedLedgerAccount {
 
+public class LinkedLedgerAccount {
     /**
      * The unique identifier for the account.
      */
@@ -62,7 +61,8 @@ public class LinkedLedgerAccount {
     }
     
     public LinkedLedgerAccount() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -97,9 +97,10 @@ public class LinkedLedgerAccount {
         return code;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the account.
@@ -109,6 +110,7 @@ public class LinkedLedgerAccount {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier for the account.
@@ -173,7 +175,6 @@ public class LinkedLedgerAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,18 +185,16 @@ public class LinkedLedgerAccount {
         }
         LinkedLedgerAccount other = (LinkedLedgerAccount) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.nominalCode, other.nominalCode) &&
-            Objects.deepEquals(this.code, other.code);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.nominalCode, other.nominalCode) &&
+            Utils.enhancedDeepEquals(this.code, other.code);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            nominalCode,
+        return Utils.enhancedHash(
+            id, name, nominalCode,
             code);
     }
     
@@ -207,20 +206,22 @@ public class LinkedLedgerAccount {
                 "nominalCode", nominalCode,
                 "code", code);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> nominalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the account.
@@ -240,6 +241,7 @@ public class LinkedLedgerAccount {
             return this;
         }
 
+
         /**
          * The name of the account.
          */
@@ -257,6 +259,7 @@ public class LinkedLedgerAccount {
             this.name = name;
             return this;
         }
+
 
         /**
          * The nominal code of the account.
@@ -276,6 +279,7 @@ public class LinkedLedgerAccount {
             return this;
         }
 
+
         /**
          * The code assigned to the account.
          */
@@ -293,13 +297,13 @@ public class LinkedLedgerAccount {
             this.code = code;
             return this;
         }
-        
+
         public LinkedLedgerAccount build() {
+
             return new LinkedLedgerAccount(
-                id,
-                name,
-                nominalCode,
+                id, name, nominalCode,
                 code);
         }
+
     }
 }

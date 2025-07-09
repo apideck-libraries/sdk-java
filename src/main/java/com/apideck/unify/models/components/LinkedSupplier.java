@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The supplier this entity is linked to.
  */
 public class LinkedSupplier {
-
     /**
      * The ID of the supplier this entity is linked to.
      */
@@ -51,6 +49,7 @@ public class LinkedSupplier {
     @JsonProperty("company_name")
     private JsonNullable<String> companyName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
     private Optional<? extends Address> address;
@@ -75,7 +74,8 @@ public class LinkedSupplier {
     }
     
     public LinkedSupplier() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -116,9 +116,10 @@ public class LinkedSupplier {
         return (Optional<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -128,6 +129,7 @@ public class LinkedSupplier {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -198,13 +200,13 @@ public class LinkedSupplier {
         return this;
     }
 
+
     public LinkedSupplier withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -215,21 +217,18 @@ public class LinkedSupplier {
         }
         LinkedSupplier other = (LinkedSupplier) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.address, other.address);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.address, other.address);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayId,
-            displayName,
-            companyName,
-            address);
+        return Utils.enhancedHash(
+            id, displayId, displayName,
+            companyName, address);
     }
     
     @Override
@@ -241,22 +240,24 @@ public class LinkedSupplier {
                 "companyName", companyName,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> address = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the supplier this entity is linked to.
@@ -276,6 +277,7 @@ public class LinkedSupplier {
             return this;
         }
 
+
         /**
          * The display ID of the supplier.
          */
@@ -293,6 +295,7 @@ public class LinkedSupplier {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * The display name of the supplier.
@@ -312,6 +315,7 @@ public class LinkedSupplier {
             return this;
         }
 
+
         /**
          * The company name of the supplier.
          */
@@ -330,6 +334,7 @@ public class LinkedSupplier {
             return this;
         }
 
+
         public Builder address(Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
@@ -341,14 +346,13 @@ public class LinkedSupplier {
             this.address = address;
             return this;
         }
-        
+
         public LinkedSupplier build() {
+
             return new LinkedSupplier(
-                id,
-                displayId,
-                displayName,
-                companyName,
-                address);
+                id, displayId, displayName,
+                companyName, address);
         }
+
     }
 }

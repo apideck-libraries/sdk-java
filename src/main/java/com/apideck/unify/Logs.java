@@ -21,7 +21,6 @@ public class Logs {
     Logs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get all consumer request logs
      * 
@@ -61,8 +60,8 @@ public class Logs {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
               = new VaultLogsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

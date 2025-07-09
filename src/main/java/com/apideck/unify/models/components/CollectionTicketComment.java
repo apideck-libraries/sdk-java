@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CollectionTicketComment {
 
+public class CollectionTicketComment {
     /**
      * A unique identifier for an object.
      */
@@ -97,7 +96,9 @@ public class CollectionTicketComment {
     }
     
     public CollectionTicketComment() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -158,9 +159,10 @@ public class CollectionTicketComment {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -170,6 +172,7 @@ public class CollectionTicketComment {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -279,6 +282,7 @@ public class CollectionTicketComment {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -288,7 +292,6 @@ public class CollectionTicketComment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -299,24 +302,20 @@ public class CollectionTicketComment {
         }
         CollectionTicketComment other = (CollectionTicketComment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            body,
-            customMappings,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, body, customMappings,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -331,26 +330,28 @@ public class CollectionTicketComment {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> body = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -370,6 +371,7 @@ public class CollectionTicketComment {
             return this;
         }
 
+
         /**
          * Body of the comment
          */
@@ -387,6 +389,7 @@ public class CollectionTicketComment {
             this.body = body;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -406,6 +409,7 @@ public class CollectionTicketComment {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -423,6 +427,7 @@ public class CollectionTicketComment {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -442,6 +447,7 @@ public class CollectionTicketComment {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -460,6 +466,7 @@ public class CollectionTicketComment {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -477,16 +484,14 @@ public class CollectionTicketComment {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CollectionTicketComment build() {
+
             return new CollectionTicketComment(
-                id,
-                body,
-                customMappings,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, body, customMappings,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

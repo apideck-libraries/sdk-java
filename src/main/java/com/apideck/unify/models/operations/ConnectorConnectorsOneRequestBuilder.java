@@ -71,8 +71,8 @@ public class ConnectorConnectorsOneRequestBuilder {
 
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
               = new ConnectorConnectorsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ConnectorConnectorsOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

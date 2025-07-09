@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class BankFeedStatementInput {
 
+public class BankFeedStatementInput {
     /**
      * The ID of the bank feed account this statement belongs to.
      */
@@ -115,7 +114,9 @@ public class BankFeedStatementInput {
     }
     
     public BankFeedStatementInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -194,9 +195,10 @@ public class BankFeedStatementInput {
         return (Optional<List<Transactions>>) transactions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the bank feed account this statement belongs to.
@@ -206,6 +208,7 @@ public class BankFeedStatementInput {
         this.bankFeedAccountId = Optional.ofNullable(bankFeedAccountId);
         return this;
     }
+
 
     /**
      * The ID of the bank feed account this statement belongs to.
@@ -225,6 +228,7 @@ public class BankFeedStatementInput {
         return this;
     }
 
+
     /**
      * The current status of the bank feed statement.
      */
@@ -242,6 +246,7 @@ public class BankFeedStatementInput {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * Start date of the bank feed statement.
@@ -261,6 +266,7 @@ public class BankFeedStatementInput {
         return this;
     }
 
+
     /**
      * End date of the bank feed statement.
      */
@@ -278,6 +284,7 @@ public class BankFeedStatementInput {
         this.startBalance = Optional.ofNullable(startBalance);
         return this;
     }
+
 
     /**
      * Balance amount at the start of the period.
@@ -297,6 +304,7 @@ public class BankFeedStatementInput {
         return this;
     }
 
+
     /**
      * Whether the amount is a credit or debit.
      */
@@ -314,6 +322,7 @@ public class BankFeedStatementInput {
         this.endBalance = Optional.ofNullable(endBalance);
         return this;
     }
+
 
     /**
      * Balance amount at the end of the period.
@@ -333,6 +342,7 @@ public class BankFeedStatementInput {
         return this;
     }
 
+
     /**
      * Whether the amount is a credit or debit.
      */
@@ -351,6 +361,7 @@ public class BankFeedStatementInput {
         return this;
     }
 
+
     /**
      * List of transactions in the bank feed statement.
      */
@@ -360,7 +371,6 @@ public class BankFeedStatementInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -371,29 +381,23 @@ public class BankFeedStatementInput {
         }
         BankFeedStatementInput other = (BankFeedStatementInput) o;
         return 
-            Objects.deepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.startBalance, other.startBalance) &&
-            Objects.deepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.endBalance, other.endBalance) &&
-            Objects.deepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.transactions, other.transactions);
+            Utils.enhancedDeepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.startBalance, other.startBalance) &&
+            Utils.enhancedDeepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.endBalance, other.endBalance) &&
+            Utils.enhancedDeepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.transactions, other.transactions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bankFeedAccountId,
-            status,
-            startDate,
-            endDate,
-            startBalance,
-            startBalanceCreditOrDebit,
-            endBalance,
-            endBalanceCreditOrDebit,
-            transactions);
+        return Utils.enhancedHash(
+            bankFeedAccountId, status, startDate,
+            endDate, startBalance, startBalanceCreditOrDebit,
+            endBalance, endBalanceCreditOrDebit, transactions);
     }
     
     @Override
@@ -409,30 +413,32 @@ public class BankFeedStatementInput {
                 "endBalanceCreditOrDebit", endBalanceCreditOrDebit,
                 "transactions", transactions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> bankFeedAccountId = Optional.empty();
- 
+
         private Optional<? extends StatementStatus> status = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startDate = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endDate = Optional.empty();
- 
+
         private Optional<Double> startBalance = Optional.empty();
- 
+
         private Optional<? extends CreditOrDebit> startBalanceCreditOrDebit = Optional.empty();
- 
+
         private Optional<Double> endBalance = Optional.empty();
- 
+
         private Optional<? extends CreditOrDebit> endBalanceCreditOrDebit = Optional.empty();
- 
+
         private Optional<? extends List<Transactions>> transactions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the bank feed account this statement belongs to.
@@ -452,6 +458,7 @@ public class BankFeedStatementInput {
             return this;
         }
 
+
         /**
          * The current status of the bank feed statement.
          */
@@ -469,6 +476,7 @@ public class BankFeedStatementInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * Start date of the bank feed statement.
@@ -488,6 +496,7 @@ public class BankFeedStatementInput {
             return this;
         }
 
+
         /**
          * End date of the bank feed statement.
          */
@@ -505,6 +514,7 @@ public class BankFeedStatementInput {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Balance amount at the start of the period.
@@ -524,6 +534,7 @@ public class BankFeedStatementInput {
             return this;
         }
 
+
         /**
          * Whether the amount is a credit or debit.
          */
@@ -541,6 +552,7 @@ public class BankFeedStatementInput {
             this.startBalanceCreditOrDebit = startBalanceCreditOrDebit;
             return this;
         }
+
 
         /**
          * Balance amount at the end of the period.
@@ -560,6 +572,7 @@ public class BankFeedStatementInput {
             return this;
         }
 
+
         /**
          * Whether the amount is a credit or debit.
          */
@@ -578,6 +591,7 @@ public class BankFeedStatementInput {
             return this;
         }
 
+
         /**
          * List of transactions in the bank feed statement.
          */
@@ -595,18 +609,14 @@ public class BankFeedStatementInput {
             this.transactions = transactions;
             return this;
         }
-        
+
         public BankFeedStatementInput build() {
+
             return new BankFeedStatementInput(
-                bankFeedAccountId,
-                status,
-                startDate,
-                endDate,
-                startBalance,
-                startBalanceCreditOrDebit,
-                endBalance,
-                endBalanceCreditOrDebit,
-                transactions);
+                bankFeedAccountId, status, startDate,
+                endDate, startBalance, startBalanceCreditOrDebit,
+                endBalance, endBalanceCreditOrDebit, transactions);
         }
+
     }
 }

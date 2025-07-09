@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateCallbackStateResponseData {
 
+public class CreateCallbackStateResponseData {
     /**
      * Callback state
      */
@@ -42,9 +41,10 @@ public class CreateCallbackStateResponseData {
         return state;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Callback state
@@ -55,6 +55,7 @@ public class CreateCallbackStateResponseData {
         return this;
     }
 
+
     /**
      * Callback state
      */
@@ -64,7 +65,6 @@ public class CreateCallbackStateResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class CreateCallbackStateResponseData {
         }
         CreateCallbackStateResponseData other = (CreateCallbackStateResponseData) o;
         return 
-            Objects.deepEquals(this.state, other.state);
+            Utils.enhancedDeepEquals(this.state, other.state);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             state);
     }
     
@@ -89,14 +89,16 @@ public class CreateCallbackStateResponseData {
         return Utils.toString(CreateCallbackStateResponseData.class,
                 "state", state);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> state = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Callback state
@@ -115,10 +117,12 @@ public class CreateCallbackStateResponseData {
             this.state = state;
             return this;
         }
-        
+
         public CreateCallbackStateResponseData build() {
+
             return new CreateCallbackStateResponseData(
                 state);
         }
+
     }
 }

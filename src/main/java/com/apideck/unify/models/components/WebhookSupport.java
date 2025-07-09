@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Optional;
  * <p>How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
  */
 public class WebhookSupport {
-
     /**
      * Mode of the webhook support.
      */
@@ -67,7 +65,8 @@ public class WebhookSupport {
     }
     
     public WebhookSupport() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -106,9 +105,10 @@ public class WebhookSupport {
         return (Optional<VirtualWebhooks>) virtualWebhooks;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Mode of the webhook support.
@@ -118,6 +118,7 @@ public class WebhookSupport {
         this.mode = Optional.ofNullable(mode);
         return this;
     }
+
 
     /**
      * Mode of the webhook support.
@@ -137,6 +138,7 @@ public class WebhookSupport {
         return this;
     }
 
+
     /**
      * Received events are scoped to connection or across integration.
      */
@@ -154,6 +156,7 @@ public class WebhookSupport {
         this.managedVia = Optional.ofNullable(managedVia);
         return this;
     }
+
 
     /**
      * How the subscription is managed in the downstream.
@@ -173,6 +176,7 @@ public class WebhookSupport {
         return this;
     }
 
+
     /**
      * Virtual webhook config for the connector.
      */
@@ -182,7 +186,6 @@ public class WebhookSupport {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -193,18 +196,16 @@ public class WebhookSupport {
         }
         WebhookSupport other = (WebhookSupport) o;
         return 
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
-            Objects.deepEquals(this.managedVia, other.managedVia) &&
-            Objects.deepEquals(this.virtualWebhooks, other.virtualWebhooks);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.subscriptionLevel, other.subscriptionLevel) &&
+            Utils.enhancedDeepEquals(this.managedVia, other.managedVia) &&
+            Utils.enhancedDeepEquals(this.virtualWebhooks, other.virtualWebhooks);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            mode,
-            subscriptionLevel,
-            managedVia,
+        return Utils.enhancedHash(
+            mode, subscriptionLevel, managedVia,
             virtualWebhooks);
     }
     
@@ -216,20 +217,22 @@ public class WebhookSupport {
                 "managedVia", managedVia,
                 "virtualWebhooks", virtualWebhooks);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Mode> mode = Optional.empty();
- 
+
         private Optional<? extends SubscriptionLevel> subscriptionLevel = Optional.empty();
- 
+
         private Optional<? extends ManagedVia> managedVia = Optional.empty();
- 
+
         private Optional<? extends VirtualWebhooks> virtualWebhooks = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Mode of the webhook support.
@@ -249,6 +252,7 @@ public class WebhookSupport {
             return this;
         }
 
+
         /**
          * Received events are scoped to connection or across integration.
          */
@@ -266,6 +270,7 @@ public class WebhookSupport {
             this.subscriptionLevel = subscriptionLevel;
             return this;
         }
+
 
         /**
          * How the subscription is managed in the downstream.
@@ -285,6 +290,7 @@ public class WebhookSupport {
             return this;
         }
 
+
         /**
          * Virtual webhook config for the connector.
          */
@@ -302,13 +308,13 @@ public class WebhookSupport {
             this.virtualWebhooks = virtualWebhooks;
             return this;
         }
-        
+
         public WebhookSupport build() {
+
             return new WebhookSupport(
-                mode,
-                subscriptionLevel,
-                managedVia,
+                mode, subscriptionLevel, managedVia,
                 virtualWebhooks);
         }
+
     }
 }

@@ -16,7 +16,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -25,7 +24,6 @@ import java.util.Optional;
  * <p>Settings to change the way the Vault is displayed.
  */
 public class Settings {
-
     /**
      * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
      */
@@ -143,7 +141,10 @@ public class Settings {
     }
     
     public Settings() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -238,9 +239,10 @@ public class Settings {
         return (Optional<List<AllowActions>>) allowActions;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
@@ -250,6 +252,7 @@ public class Settings {
         this.unifiedApis = Optional.ofNullable(unifiedApis);
         return this;
     }
+
 
     /**
      * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
@@ -269,6 +272,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
      */
@@ -286,6 +290,7 @@ public class Settings {
         this.sandboxMode = Optional.ofNullable(sandboxMode);
         return this;
     }
+
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
@@ -305,6 +310,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
      */
@@ -322,6 +328,7 @@ public class Settings {
         this.sessionLength = Optional.ofNullable(sessionLength);
         return this;
     }
+
 
     /**
      * The duration of time the session is valid for (maximum 1 week).
@@ -341,6 +348,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
      */
@@ -358,6 +366,7 @@ public class Settings {
         this.showSuggestions = Optional.ofNullable(showSuggestions);
         return this;
     }
+
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
@@ -377,6 +386,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
      */
@@ -395,6 +405,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
      */
@@ -412,6 +423,7 @@ public class Settings {
         this.hideGuides = Optional.ofNullable(hideGuides);
         return this;
     }
+
 
     /**
      * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
@@ -433,6 +445,7 @@ public class Settings {
         return this;
     }
 
+
     /**
      * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
@@ -444,7 +457,6 @@ public class Settings {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -455,33 +467,26 @@ public class Settings {
         }
         Settings other = (Settings) o;
         return 
-            Objects.deepEquals(this.unifiedApis, other.unifiedApis) &&
-            Objects.deepEquals(this.hideResourceSettings, other.hideResourceSettings) &&
-            Objects.deepEquals(this.sandboxMode, other.sandboxMode) &&
-            Objects.deepEquals(this.isolationMode, other.isolationMode) &&
-            Objects.deepEquals(this.sessionLength, other.sessionLength) &&
-            Objects.deepEquals(this.showLogs, other.showLogs) &&
-            Objects.deepEquals(this.showSuggestions, other.showSuggestions) &&
-            Objects.deepEquals(this.showSidebar, other.showSidebar) &&
-            Objects.deepEquals(this.autoRedirect, other.autoRedirect) &&
-            Objects.deepEquals(this.hideGuides, other.hideGuides) &&
-            Objects.deepEquals(this.allowActions, other.allowActions);
+            Utils.enhancedDeepEquals(this.unifiedApis, other.unifiedApis) &&
+            Utils.enhancedDeepEquals(this.hideResourceSettings, other.hideResourceSettings) &&
+            Utils.enhancedDeepEquals(this.sandboxMode, other.sandboxMode) &&
+            Utils.enhancedDeepEquals(this.isolationMode, other.isolationMode) &&
+            Utils.enhancedDeepEquals(this.sessionLength, other.sessionLength) &&
+            Utils.enhancedDeepEquals(this.showLogs, other.showLogs) &&
+            Utils.enhancedDeepEquals(this.showSuggestions, other.showSuggestions) &&
+            Utils.enhancedDeepEquals(this.showSidebar, other.showSidebar) &&
+            Utils.enhancedDeepEquals(this.autoRedirect, other.autoRedirect) &&
+            Utils.enhancedDeepEquals(this.hideGuides, other.hideGuides) &&
+            Utils.enhancedDeepEquals(this.allowActions, other.allowActions);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            unifiedApis,
-            hideResourceSettings,
-            sandboxMode,
-            isolationMode,
-            sessionLength,
-            showLogs,
-            showSuggestions,
-            showSidebar,
-            autoRedirect,
-            hideGuides,
-            allowActions);
+        return Utils.enhancedHash(
+            unifiedApis, hideResourceSettings, sandboxMode,
+            isolationMode, sessionLength, showLogs,
+            showSuggestions, showSidebar, autoRedirect,
+            hideGuides, allowActions);
     }
     
     @Override
@@ -499,34 +504,36 @@ public class Settings {
                 "hideGuides", hideGuides,
                 "allowActions", allowActions);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<UnifiedApiId>> unifiedApis = Optional.empty();
- 
+
         private Optional<Boolean> hideResourceSettings;
- 
+
         private Optional<Boolean> sandboxMode;
- 
+
         private Optional<Boolean> isolationMode;
- 
+
         private Optional<String> sessionLength;
- 
+
         private Optional<Boolean> showLogs;
- 
+
         private Optional<Boolean> showSuggestions;
- 
+
         private Optional<Boolean> showSidebar;
- 
+
         private Optional<Boolean> autoRedirect;
- 
+
         private Optional<Boolean> hideGuides;
- 
+
         private Optional<? extends List<AllowActions>> allowActions = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
@@ -546,6 +553,7 @@ public class Settings {
             return this;
         }
 
+
         /**
          * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
          */
@@ -563,6 +571,7 @@ public class Settings {
             this.hideResourceSettings = hideResourceSettings;
             return this;
         }
+
 
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
@@ -582,6 +591,7 @@ public class Settings {
             return this;
         }
 
+
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
          */
@@ -599,6 +609,7 @@ public class Settings {
             this.isolationMode = isolationMode;
             return this;
         }
+
 
         /**
          * The duration of time the session is valid for (maximum 1 week).
@@ -618,6 +629,7 @@ public class Settings {
             return this;
         }
 
+
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
          */
@@ -635,6 +647,7 @@ public class Settings {
             this.showLogs = showLogs;
             return this;
         }
+
 
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
@@ -654,6 +667,7 @@ public class Settings {
             return this;
         }
 
+
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
          */
@@ -671,6 +685,7 @@ public class Settings {
             this.showSidebar = showSidebar;
             return this;
         }
+
 
         /**
          * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
@@ -690,6 +705,7 @@ public class Settings {
             return this;
         }
 
+
         /**
          * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
          */
@@ -707,6 +723,7 @@ public class Settings {
             this.hideGuides = hideGuides;
             return this;
         }
+
 
         /**
          * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
@@ -729,7 +746,7 @@ public class Settings {
             this.allowActions = allowActions;
             return this;
         }
-        
+
         public Settings build() {
             if (hideResourceSettings == null) {
                 hideResourceSettings = _SINGLETON_VALUE_HideResourceSettings.value();
@@ -758,19 +775,14 @@ public class Settings {
             if (hideGuides == null) {
                 hideGuides = _SINGLETON_VALUE_HideGuides.value();
             }
+
             return new Settings(
-                unifiedApis,
-                hideResourceSettings,
-                sandboxMode,
-                isolationMode,
-                sessionLength,
-                showLogs,
-                showSuggestions,
-                showSidebar,
-                autoRedirect,
-                hideGuides,
-                allowActions);
+                unifiedApis, hideResourceSettings, sandboxMode,
+                isolationMode, sessionLength, showLogs,
+                showSuggestions, showSidebar, autoRedirect,
+                hideGuides, allowActions);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_HideResourceSettings =
                 new LazySingletonValue<>(

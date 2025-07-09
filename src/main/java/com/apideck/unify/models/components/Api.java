@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Api {
 
+public class Api {
     /**
      * ID of the API.
      */
@@ -134,7 +133,10 @@ public class Api {
     }
     
     public Api() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -230,9 +232,10 @@ public class Api {
         return (Optional<List<String>>) events;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the API.
@@ -242,6 +245,7 @@ public class Api {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the API.
@@ -261,6 +265,7 @@ public class Api {
         return this;
     }
 
+
     /**
      * Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
      */
@@ -278,6 +283,7 @@ public class Api {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the API.
@@ -315,6 +321,7 @@ public class Api {
         return this;
     }
 
+
     /**
      * Status of the API. APIs with status live or beta are callable.
      */
@@ -333,6 +340,7 @@ public class Api {
         return this;
     }
 
+
     /**
      * Link to the latest OpenAPI specification of the API.
      */
@@ -350,6 +358,7 @@ public class Api {
         this.apiReferenceUrl = Optional.ofNullable(apiReferenceUrl);
         return this;
     }
+
 
     /**
      * Link to the API reference of the API.
@@ -387,6 +396,7 @@ public class Api {
         return this;
     }
 
+
     /**
      * List of categories the API belongs to.
      */
@@ -404,6 +414,7 @@ public class Api {
         this.resources = Optional.ofNullable(resources);
         return this;
     }
+
 
     /**
      * List of resources supported in this API.
@@ -423,6 +434,7 @@ public class Api {
         return this;
     }
 
+
     /**
      * List of event types this API supports.
      */
@@ -432,7 +444,6 @@ public class Api {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -443,33 +454,26 @@ public class Api {
         }
         Api other = (Api) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.specUrl, other.specUrl) &&
-            Objects.deepEquals(this.apiReferenceUrl, other.apiReferenceUrl) &&
-            Objects.deepEquals(this.postmanCollectionId, other.postmanCollectionId) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.resources, other.resources) &&
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.specUrl, other.specUrl) &&
+            Utils.enhancedDeepEquals(this.apiReferenceUrl, other.apiReferenceUrl) &&
+            Utils.enhancedDeepEquals(this.postmanCollectionId, other.postmanCollectionId) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources) &&
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            type,
-            name,
-            description,
-            status,
-            specUrl,
-            apiReferenceUrl,
-            postmanCollectionId,
-            categories,
-            resources,
-            events);
+        return Utils.enhancedHash(
+            id, type, name,
+            description, status, specUrl,
+            apiReferenceUrl, postmanCollectionId, categories,
+            resources, events);
     }
     
     @Override
@@ -487,34 +491,36 @@ public class Api {
                 "resources", resources,
                 "events", events);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends ApiType> type = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends ApiStatus> status = Optional.empty();
- 
+
         private Optional<String> specUrl = Optional.empty();
- 
+
         private Optional<String> apiReferenceUrl = Optional.empty();
- 
+
         private JsonNullable<String> postmanCollectionId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> categories = Optional.empty();
- 
+
         private Optional<? extends List<Resources>> resources = Optional.empty();
- 
+
         private Optional<? extends List<String>> events = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the API.
@@ -534,6 +540,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * Indicates whether the API is a Unified API. If unified_api is false, the API is a Platform API.
          */
@@ -551,6 +558,7 @@ public class Api {
             this.type = type;
             return this;
         }
+
 
         /**
          * Name of the API.
@@ -570,6 +578,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * Description of the API.
          */
@@ -587,6 +596,7 @@ public class Api {
             this.description = description;
             return this;
         }
+
 
         /**
          * Status of the API. APIs with status live or beta are callable.
@@ -606,6 +616,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * Link to the latest OpenAPI specification of the API.
          */
@@ -623,6 +634,7 @@ public class Api {
             this.specUrl = specUrl;
             return this;
         }
+
 
         /**
          * Link to the API reference of the API.
@@ -642,6 +654,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * ID of the Postman collection of the API.
          */
@@ -659,6 +672,7 @@ public class Api {
             this.postmanCollectionId = postmanCollectionId;
             return this;
         }
+
 
         /**
          * List of categories the API belongs to.
@@ -678,6 +692,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * List of resources supported in this API.
          */
@@ -696,6 +711,7 @@ public class Api {
             return this;
         }
 
+
         /**
          * List of event types this API supports.
          */
@@ -713,20 +729,15 @@ public class Api {
             this.events = events;
             return this;
         }
-        
+
         public Api build() {
+
             return new Api(
-                id,
-                type,
-                name,
-                description,
-                status,
-                specUrl,
-                apiReferenceUrl,
-                postmanCollectionId,
-                categories,
-                resources,
-                events);
+                id, type, name,
+                description, status, specUrl,
+                apiReferenceUrl, postmanCollectionId, categories,
+                resources, events);
         }
+
     }
 }

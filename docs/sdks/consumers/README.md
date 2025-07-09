@@ -33,7 +33,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         VaultConsumersAddResponse res = sdk.vault().consumers().create()
@@ -98,7 +98,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         sdk.vault().consumers().list()
@@ -156,7 +156,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         VaultConsumersOneResponse res = sdk.vault().consumers().get()
@@ -214,7 +214,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         VaultConsumersUpdateResponse res = sdk.vault().consumers().update()
@@ -279,7 +279,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         VaultConsumersDeleteResponse res = sdk.vault().consumers().delete()

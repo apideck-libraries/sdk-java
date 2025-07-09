@@ -21,7 +21,6 @@ public class ValidateConnection {
     ValidateConnection(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Validate Connection State
      * 
@@ -76,8 +75,8 @@ public class ValidateConnection {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
               = new VaultValidateConnectionStateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

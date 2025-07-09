@@ -48,8 +48,8 @@ public class AccountingBalanceSheetOneRequestBuilder {
 
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
               = new AccountingBalanceSheetOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

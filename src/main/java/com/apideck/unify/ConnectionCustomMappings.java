@@ -21,7 +21,6 @@ public class ConnectionCustomMappings {
     ConnectionCustomMappings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List connection custom mappings
      * 
@@ -61,8 +60,8 @@ public class ConnectionCustomMappings {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
               = new VaultConnectionCustomMappingsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

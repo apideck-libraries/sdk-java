@@ -17,12 +17,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Supplier {
 
+public class Supplier {
     /**
      * A unique identifier for an object.
      */
@@ -99,6 +98,7 @@ public class Supplier {
     @JsonProperty("last_name")
     private JsonNullable<String> lastName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("suffix")
     private JsonNullable<String> suffix;
@@ -110,21 +110,26 @@ public class Supplier {
     @JsonProperty("individual")
     private JsonNullable<Boolean> individual;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
@@ -137,9 +142,11 @@ public class Supplier {
     @JsonProperty("notes")
     private JsonNullable<String> notes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRate> taxRate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_number")
@@ -151,6 +158,7 @@ public class Supplier {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
@@ -171,6 +179,13 @@ public class Supplier {
     private JsonNullable<String> paymentMethod;
 
     /**
+     * Terms of payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms")
+    private JsonNullable<String> terms;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -183,6 +198,7 @@ public class Supplier {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -264,6 +280,7 @@ public class Supplier {
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
@@ -299,6 +316,7 @@ public class Supplier {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(customFields, "customFields");
@@ -334,6 +352,7 @@ public class Supplier {
         this.account = account;
         this.status = status;
         this.paymentMethod = paymentMethod;
+        this.terms = terms;
         this.channel = channel;
         this.customMappings = customMappings;
         this.customFields = customFields;
@@ -348,7 +367,18 @@ public class Supplier {
     
     public Supplier(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -534,6 +564,14 @@ public class Supplier {
     }
 
     /**
+     * Terms of payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> terms() {
+        return terms;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonIgnore
@@ -613,9 +651,10 @@ public class Supplier {
         return subsidiaryId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -842,6 +881,7 @@ public class Supplier {
         return this;
     }
 
+
     public Supplier withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -853,6 +893,7 @@ public class Supplier {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public Supplier withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -866,6 +907,7 @@ public class Supplier {
         return this;
     }
 
+
     public Supplier withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -878,6 +920,7 @@ public class Supplier {
         return this;
     }
 
+
     public Supplier withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
         this.websites = websites;
@@ -889,6 +932,7 @@ public class Supplier {
         this.bankAccounts = Optional.ofNullable(bankAccounts);
         return this;
     }
+
 
     public Supplier withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
@@ -919,6 +963,7 @@ public class Supplier {
         this.taxRate = Optional.ofNullable(taxRate);
         return this;
     }
+
 
     public Supplier withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
@@ -1005,6 +1050,24 @@ public class Supplier {
     }
 
     /**
+     * Terms of payment.
+     */
+    public Supplier withTerms(String terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = JsonNullable.of(terms);
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public Supplier withTerms(JsonNullable<String> terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = terms;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public Supplier withChannel(String channel) {
@@ -1045,6 +1108,7 @@ public class Supplier {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public Supplier withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -1151,6 +1215,7 @@ public class Supplier {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1169,6 +1234,7 @@ public class Supplier {
         return this;
     }
 
+
     /**
      * The subsidiary the supplier belongs to.
      */
@@ -1178,7 +1244,6 @@ public class Supplier {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1189,81 +1254,59 @@ public class Supplier {
         }
         Supplier other = (Supplier) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.supplierCategory, other.supplierCategory) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.individual, other.individual) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.bankAccounts, other.bankAccounts) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.taxNumber, other.taxNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.supplierCategory, other.supplierCategory) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.individual, other.individual) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.bankAccounts, other.bankAccounts) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            displayId,
-            displayName,
-            companyName,
-            companyId,
-            supplierCategory,
-            title,
-            firstName,
-            middleName,
-            lastName,
-            suffix,
-            individual,
-            addresses,
-            phoneNumbers,
-            emails,
-            websites,
-            bankAccounts,
-            notes,
-            taxRate,
-            taxNumber,
-            currency,
-            account,
-            status,
-            paymentMethod,
-            channel,
-            customMappings,
-            customFields,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            rowVersion,
-            passThrough,
-            subsidiaryId);
+        return Utils.enhancedHash(
+            id, downstreamId, displayId,
+            displayName, companyName, companyId,
+            supplierCategory, title, firstName,
+            middleName, lastName, suffix,
+            individual, addresses, phoneNumbers,
+            emails, websites, bankAccounts,
+            notes, taxRate, taxNumber,
+            currency, account, status,
+            paymentMethod, terms, channel,
+            customMappings, customFields, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, passThrough, subsidiaryId);
     }
     
     @Override
@@ -1294,6 +1337,7 @@ public class Supplier {
                 "account", account,
                 "status", status,
                 "paymentMethod", paymentMethod,
+                "terms", terms,
                 "channel", channel,
                 "customMappings", customMappings,
                 "customFields", customFields,
@@ -1305,82 +1349,86 @@ public class Supplier {
                 "passThrough", passThrough,
                 "subsidiaryId", subsidiaryId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> supplierCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> individual = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
- 
+
         private JsonNullable<String> notes = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
- 
+
         private JsonNullable<String> taxNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends SupplierStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
+        private JsonNullable<String> terms = JsonNullable.undefined();
+
         private JsonNullable<String> channel = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private Optional<String> subsidiaryId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1390,6 +1438,7 @@ public class Supplier {
             this.id = id;
             return this;
         }
+
 
         /**
          * The third-party API ID of original entity
@@ -1409,6 +1458,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * Display ID
          */
@@ -1426,6 +1476,7 @@ public class Supplier {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * Display name
@@ -1445,6 +1496,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The name of the company.
          */
@@ -1462,6 +1514,7 @@ public class Supplier {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1481,6 +1534,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The category/type of the supplier
          */
@@ -1498,6 +1552,7 @@ public class Supplier {
             this.supplierCategory = supplierCategory;
             return this;
         }
+
 
         /**
          * The job title of the person.
@@ -1517,6 +1572,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The first name of the person.
          */
@@ -1534,6 +1590,7 @@ public class Supplier {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * Middle name of the person.
@@ -1553,6 +1610,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The last name of the person.
          */
@@ -1571,6 +1629,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder suffix(String suffix) {
             Utils.checkNotNull(suffix, "suffix");
             this.suffix = JsonNullable.of(suffix);
@@ -1582,6 +1641,7 @@ public class Supplier {
             this.suffix = suffix;
             return this;
         }
+
 
         /**
          * Is this an individual or business supplier
@@ -1601,6 +1661,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -1612,6 +1673,7 @@ public class Supplier {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1625,6 +1687,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -1636,6 +1699,7 @@ public class Supplier {
             this.emails = emails;
             return this;
         }
+
 
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
@@ -1649,6 +1713,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder bankAccounts(List<BankAccount> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
             this.bankAccounts = Optional.ofNullable(bankAccounts);
@@ -1660,6 +1725,7 @@ public class Supplier {
             this.bankAccounts = bankAccounts;
             return this;
         }
+
 
         /**
          * Some notes about this supplier
@@ -1679,6 +1745,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRate taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1691,6 +1758,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder taxNumber(String taxNumber) {
             Utils.checkNotNull(taxNumber, "taxNumber");
             this.taxNumber = JsonNullable.of(taxNumber);
@@ -1702,6 +1770,7 @@ public class Supplier {
             this.taxNumber = taxNumber;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1721,6 +1790,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -1732,6 +1802,7 @@ public class Supplier {
             this.account = account;
             return this;
         }
+
 
         /**
          * Supplier status
@@ -1751,6 +1822,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
@@ -1768,6 +1840,26 @@ public class Supplier {
             this.paymentMethod = paymentMethod;
             return this;
         }
+
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(String terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = JsonNullable.of(terms);
+            return this;
+        }
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(JsonNullable<String> terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = terms;
+            return this;
+        }
+
 
         /**
          * The channel through which the transaction is processed.
@@ -1787,6 +1879,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -1805,6 +1898,7 @@ public class Supplier {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1816,6 +1910,7 @@ public class Supplier {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -1835,6 +1930,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -1852,6 +1948,7 @@ public class Supplier {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -1871,6 +1968,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1888,6 +1986,7 @@ public class Supplier {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1907,6 +2006,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1925,6 +2025,7 @@ public class Supplier {
             return this;
         }
 
+
         /**
          * The subsidiary the supplier belongs to.
          */
@@ -1942,44 +2043,23 @@ public class Supplier {
             this.subsidiaryId = subsidiaryId;
             return this;
         }
-        
+
         public Supplier build() {
+
             return new Supplier(
-                id,
-                downstreamId,
-                displayId,
-                displayName,
-                companyName,
-                companyId,
-                supplierCategory,
-                title,
-                firstName,
-                middleName,
-                lastName,
-                suffix,
-                individual,
-                addresses,
-                phoneNumbers,
-                emails,
-                websites,
-                bankAccounts,
-                notes,
-                taxRate,
-                taxNumber,
-                currency,
-                account,
-                status,
-                paymentMethod,
-                channel,
-                customMappings,
-                customFields,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                rowVersion,
-                passThrough,
-                subsidiaryId);
+                id, downstreamId, displayId,
+                displayName, companyName, companyId,
+                supplierCategory, title, firstName,
+                middleName, lastName, suffix,
+                individual, addresses, phoneNumbers,
+                emails, websites, bankAccounts,
+                notes, taxRate, taxNumber,
+                currency, account, status,
+                paymentMethod, terms, channel,
+                customMappings, customFields, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, passThrough, subsidiaryId);
         }
+
     }
 }

@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ActivityAttendee {
 
+public class ActivityAttendee {
     /**
      * Unique identifier for the attendee
      */
@@ -164,7 +163,11 @@ public class ActivityAttendee {
     }
     
     public ActivityAttendee() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -280,9 +283,10 @@ public class ActivityAttendee {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the attendee
@@ -536,7 +540,6 @@ public class ActivityAttendee {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -547,39 +550,30 @@ public class ActivityAttendee {
         }
         ActivityAttendee other = (ActivityAttendee) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.emailAddress, other.emailAddress) &&
-            Objects.deepEquals(this.isOrganizer, other.isOrganizer) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.emailAddress, other.emailAddress) &&
+            Utils.enhancedDeepEquals(this.isOrganizer, other.isOrganizer) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.userId, other.userId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            firstName,
-            middleName,
-            lastName,
-            prefix,
-            suffix,
-            emailAddress,
-            isOrganizer,
-            status,
-            userId,
-            contactId,
-            updatedAt,
-            createdAt);
+        return Utils.enhancedHash(
+            id, name, firstName,
+            middleName, lastName, prefix,
+            suffix, emailAddress, isOrganizer,
+            status, userId, contactId,
+            updatedAt, createdAt);
     }
     
     @Override
@@ -600,40 +594,42 @@ public class ActivityAttendee {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prefix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> emailAddress = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isOrganizer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ActivityAttendeeStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> userId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactId = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the attendee
@@ -653,6 +649,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * Full name of the attendee
          */
@@ -670,6 +667,7 @@ public class ActivityAttendee {
             this.name = name;
             return this;
         }
+
 
         /**
          * First name of the attendee
@@ -689,6 +687,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * Middle name of the attendee
          */
@@ -706,6 +705,7 @@ public class ActivityAttendee {
             this.middleName = middleName;
             return this;
         }
+
 
         /**
          * Last name of the attendee
@@ -725,6 +725,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * Prefix of the attendee
          */
@@ -742,6 +743,7 @@ public class ActivityAttendee {
             this.prefix = prefix;
             return this;
         }
+
 
         /**
          * Suffix of the attendee
@@ -761,6 +763,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * Email address of the attendee
          */
@@ -778,6 +781,7 @@ public class ActivityAttendee {
             this.emailAddress = emailAddress;
             return this;
         }
+
 
         /**
          * Whether the attendee is the organizer of the activity
@@ -797,6 +801,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * Status of the attendee
          */
@@ -814,6 +819,7 @@ public class ActivityAttendee {
             this.status = status;
             return this;
         }
+
 
         /**
          * The identifier for a related user
@@ -833,6 +839,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * The identifier for a related contact
          */
@@ -850,6 +857,7 @@ public class ActivityAttendee {
             this.contactId = contactId;
             return this;
         }
+
 
         /**
          * The last time the attendee was updated (ISO 8601)
@@ -869,6 +877,7 @@ public class ActivityAttendee {
             return this;
         }
 
+
         /**
          * The time the attendee was created (ISO 8601)
          */
@@ -886,23 +895,16 @@ public class ActivityAttendee {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public ActivityAttendee build() {
+
             return new ActivityAttendee(
-                id,
-                name,
-                firstName,
-                middleName,
-                lastName,
-                prefix,
-                suffix,
-                emailAddress,
-                isOrganizer,
-                status,
-                userId,
-                contactId,
-                updatedAt,
-                createdAt);
+                id, name, firstName,
+                middleName, lastName, prefix,
+                suffix, emailAddress, isOrganizer,
+                status, userId, contactId,
+                updatedAt, createdAt);
         }
+
     }
 }

@@ -3,7 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
-import com.apideck.unify.models.components.CompanyInput;
+import com.apideck.unify.models.components.Company1Input;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CrmCompaniesAddRequest {
 
+public class CrmCompaniesAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -42,8 +41,9 @@ public class CrmCompaniesAddRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private CompanyInput company;
+    private Company1Input company1;
 
     @JsonCreator
     public CrmCompaniesAddRequest(
@@ -51,22 +51,23 @@ public class CrmCompaniesAddRequest {
             Optional<String> consumerId,
             Optional<String> appId,
             Optional<String> serviceId,
-            CompanyInput company) {
+            Company1Input company1) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(company, "company");
+        Utils.checkNotNull(company1, "company1");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.company = company;
+        this.company1 = company1;
     }
     
     public CrmCompaniesAddRequest(
-            CompanyInput company) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), company);
+            Company1Input company1) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), company1);
     }
 
     /**
@@ -102,13 +103,14 @@ public class CrmCompaniesAddRequest {
     }
 
     @JsonIgnore
-    public CompanyInput company() {
-        return company;
+    public Company1Input company1() {
+        return company1;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -118,6 +120,7 @@ public class CrmCompaniesAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -137,6 +140,7 @@ public class CrmCompaniesAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -154,6 +158,7 @@ public class CrmCompaniesAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -173,6 +178,7 @@ public class CrmCompaniesAddRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -182,13 +188,12 @@ public class CrmCompaniesAddRequest {
         return this;
     }
 
-    public CrmCompaniesAddRequest withCompany(CompanyInput company) {
-        Utils.checkNotNull(company, "company");
-        this.company = company;
+    public CrmCompaniesAddRequest withCompany1(Company1Input company1) {
+        Utils.checkNotNull(company1, "company1");
+        this.company1 = company1;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +204,18 @@ public class CrmCompaniesAddRequest {
         }
         CrmCompaniesAddRequest other = (CrmCompaniesAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.company, other.company);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.company1, other.company1);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            company);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, company1);
     }
     
     @Override
@@ -223,24 +225,26 @@ public class CrmCompaniesAddRequest {
                 "consumerId", consumerId,
                 "appId", appId,
                 "serviceId", serviceId,
-                "company", company);
+                "company1", company1);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
-        private CompanyInput company;
-        
+
+        private Company1Input company1;
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -260,6 +264,7 @@ public class CrmCompaniesAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -277,6 +282,7 @@ public class CrmCompaniesAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -296,6 +302,7 @@ public class CrmCompaniesAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -314,23 +321,23 @@ public class CrmCompaniesAddRequest {
             return this;
         }
 
-        public Builder company(CompanyInput company) {
-            Utils.checkNotNull(company, "company");
-            this.company = company;
+
+        public Builder company1(Company1Input company1) {
+            Utils.checkNotNull(company1, "company1");
+            this.company1 = company1;
             return this;
         }
-        
+
         public CrmCompaniesAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new CrmCompaniesAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                company);
+                raw, consumerId, appId,
+                serviceId, company1);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

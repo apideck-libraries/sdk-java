@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class DrivesFilter {
 
+public class DrivesFilter {
     /**
      * ID of the drive group to filter on
      */
@@ -39,9 +38,10 @@ public class DrivesFilter {
         return groupId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the drive group to filter on
@@ -52,6 +52,7 @@ public class DrivesFilter {
         return this;
     }
 
+
     /**
      * ID of the drive group to filter on
      */
@@ -61,7 +62,6 @@ public class DrivesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class DrivesFilter {
         }
         DrivesFilter other = (DrivesFilter) o;
         return 
-            Objects.deepEquals(this.groupId, other.groupId);
+            Utils.enhancedDeepEquals(this.groupId, other.groupId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             groupId);
     }
     
@@ -86,14 +86,16 @@ public class DrivesFilter {
         return Utils.toString(DrivesFilter.class,
                 "groupId", groupId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> groupId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the drive group to filter on
@@ -112,10 +114,12 @@ public class DrivesFilter {
             this.groupId = groupId;
             return this;
         }
-        
+
         public DrivesFilter build() {
+
             return new DrivesFilter(
                 groupId);
         }
+
     }
 }

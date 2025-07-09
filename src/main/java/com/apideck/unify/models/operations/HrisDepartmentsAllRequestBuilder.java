@@ -59,8 +59,8 @@ public class HrisDepartmentsAllRequestBuilder {
 
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
               = new HrisDepartmentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -85,8 +85,8 @@ public class HrisDepartmentsAllRequestBuilder {
 
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
               = new HrisDepartmentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Note {
 
+public class Note {
     /**
      * The unique identifier of the note
      */
@@ -187,7 +186,12 @@ public class Note {
     }
     
     public Note() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -320,9 +324,10 @@ public class Note {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the note
@@ -332,6 +337,7 @@ public class Note {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the note
@@ -603,6 +609,7 @@ public class Note {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -612,7 +619,6 @@ public class Note {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -623,42 +629,32 @@ public class Note {
         }
         Note other = (Note) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.opportunityId, other.opportunityId) &&
-            Objects.deepEquals(this.activityId, other.activityId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.opportunityId, other.opportunityId) &&
+            Utils.enhancedDeepEquals(this.activityId, other.activityId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            title,
-            content,
-            ownerId,
-            contactId,
-            companyId,
-            opportunityId,
-            activityId,
-            leadId,
-            active,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, title, content,
+            ownerId, contactId, companyId,
+            opportunityId, activityId, leadId,
+            active, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -682,44 +678,46 @@ public class Note {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> content = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> opportunityId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> activityId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the note
@@ -739,6 +737,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The title of the note
          */
@@ -756,6 +755,7 @@ public class Note {
             this.title = title;
             return this;
         }
+
 
         /**
          * The content of the note.
@@ -775,6 +775,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The user that owns the note.
          */
@@ -792,6 +793,7 @@ public class Note {
             this.ownerId = ownerId;
             return this;
         }
+
 
         /**
          * The contact that is related to the note.
@@ -811,6 +813,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The company that is related to the note.
          */
@@ -828,6 +831,7 @@ public class Note {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * The opportunity that is related to the note.
@@ -847,6 +851,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The activity that is related to the note.
          */
@@ -864,6 +869,7 @@ public class Note {
             this.activityId = activityId;
             return this;
         }
+
 
         /**
          * The lead that is related to the note.
@@ -883,6 +889,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * Whether the Note is active or not.
          */
@@ -900,6 +907,7 @@ public class Note {
             this.active = active;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -919,6 +927,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The user that last updated the note.
          */
@@ -936,6 +945,7 @@ public class Note {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user that created the note.
@@ -955,6 +965,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The timestamp when the note was last updated
          */
@@ -972,6 +983,7 @@ public class Note {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The timestamp when the note was created
@@ -991,6 +1003,7 @@ public class Note {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1008,25 +1021,17 @@ public class Note {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Note build() {
+
             return new Note(
-                id,
-                title,
-                content,
-                ownerId,
-                contactId,
-                companyId,
-                opportunityId,
-                activityId,
-                leadId,
-                active,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, title, content,
+                ownerId, contactId, companyId,
+                opportunityId, activityId, leadId,
+                active, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

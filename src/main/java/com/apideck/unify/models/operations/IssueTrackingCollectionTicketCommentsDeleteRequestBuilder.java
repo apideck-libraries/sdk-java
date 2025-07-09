@@ -48,8 +48,8 @@ public class IssueTrackingCollectionTicketCommentsDeleteRequestBuilder {
 
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
               = new IssueTrackingCollectionTicketCommentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

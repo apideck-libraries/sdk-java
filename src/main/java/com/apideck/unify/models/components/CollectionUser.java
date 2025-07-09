@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CollectionUser {
 
+public class CollectionUser {
     /**
      * A unique identifier for an object.
      */
@@ -115,7 +114,9 @@ public class CollectionUser {
     }
     
     public CollectionUser() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -191,9 +192,10 @@ public class CollectionUser {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -357,7 +359,6 @@ public class CollectionUser {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -368,29 +369,23 @@ public class CollectionUser {
         }
         CollectionUser other = (CollectionUser) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            firstName,
-            lastName,
-            email,
-            photoUrl,
-            customMappings,
-            updatedAt,
-            createdAt);
+        return Utils.enhancedHash(
+            id, name, firstName,
+            lastName, email, photoUrl,
+            customMappings, updatedAt, createdAt);
     }
     
     @Override
@@ -406,30 +401,32 @@ public class CollectionUser {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<String> photoUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -449,6 +446,7 @@ public class CollectionUser {
             return this;
         }
 
+
         /**
          * Full name of the user
          */
@@ -466,6 +464,7 @@ public class CollectionUser {
             this.name = name;
             return this;
         }
+
 
         /**
          * First name of the user
@@ -485,6 +484,7 @@ public class CollectionUser {
             return this;
         }
 
+
         /**
          * Last name of the user
          */
@@ -502,6 +502,7 @@ public class CollectionUser {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Email address of the user
@@ -521,6 +522,7 @@ public class CollectionUser {
             return this;
         }
 
+
         /**
          * The URL of the photo of a person.
          */
@@ -538,6 +540,7 @@ public class CollectionUser {
             this.photoUrl = photoUrl;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -557,6 +560,7 @@ public class CollectionUser {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -575,6 +579,7 @@ public class CollectionUser {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -592,18 +597,14 @@ public class CollectionUser {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public CollectionUser build() {
+
             return new CollectionUser(
-                id,
-                name,
-                firstName,
-                lastName,
-                email,
-                photoUrl,
-                customMappings,
-                updatedAt,
-                createdAt);
+                id, name, firstName,
+                lastName, email, photoUrl,
+                customMappings, updatedAt, createdAt);
         }
+
     }
 }

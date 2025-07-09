@@ -48,8 +48,8 @@ public class AccountingJournalEntriesDeleteRequestBuilder {
 
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

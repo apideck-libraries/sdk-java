@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CompaniesFilter {
 
+public class CompaniesFilter {
     /**
      * Name of the company to filter on
      */
@@ -39,9 +38,10 @@ public class CompaniesFilter {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the company to filter on
@@ -52,6 +52,7 @@ public class CompaniesFilter {
         return this;
     }
 
+
     /**
      * Name of the company to filter on
      */
@@ -61,7 +62,6 @@ public class CompaniesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class CompaniesFilter {
         }
         CompaniesFilter other = (CompaniesFilter) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     
@@ -86,14 +86,16 @@ public class CompaniesFilter {
         return Utils.toString(CompaniesFilter.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the company to filter on
@@ -112,10 +114,12 @@ public class CompaniesFilter {
             this.name = name;
             return this;
         }
-        
+
         public CompaniesFilter build() {
+
             return new CompaniesFilter(
                 name);
         }
+
     }
 }

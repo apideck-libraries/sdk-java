@@ -48,8 +48,8 @@ public class HrisTimeOffRequestsDeleteRequestBuilder {
 
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
               = new HrisTimeOffRequestsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

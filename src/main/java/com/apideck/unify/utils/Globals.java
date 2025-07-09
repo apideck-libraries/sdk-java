@@ -46,15 +46,21 @@ public final class Globals {
     }    
 
     public void putQueryParam(String name, Object value) {
-        queryParams.put(name, Utils.valToString(value));
+        if (value != null) {
+            queryParams.put(name, Utils.valToString(value));
+        }
     }
 
     public void putPathParam(String name, Object value) {
-        pathParams.put(name, Utils.valToString(value));
+        if (value != null) {
+            pathParams.put(name, Utils.valToString(value));
+        }
     }
 
     public void putHeader(String name, Object value) {
-        headerParams.put(name, Utils.valToString(value));
+        if (value != null) {
+            headerParams.put(name, Utils.valToString(value));
+        }
     }
 
     public Optional<String> getQueryParam(String name) {

@@ -7,21 +7,18 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class VaultConnectionsTokenRequestBody {
-
     @JsonCreator
     public VaultConnectionsTokenRequestBody() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -35,7 +32,7 @@ public class VaultConnectionsTokenRequestBody {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -43,16 +40,19 @@ public class VaultConnectionsTokenRequestBody {
     public String toString() {
         return Utils.toString(VaultConnectionsTokenRequestBody.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public VaultConnectionsTokenRequestBody build() {
+
             return new VaultConnectionsTokenRequestBody(
                 );
         }
+
     }
 }

@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class LinkedResources {
 
+public class LinkedResources {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
@@ -60,9 +59,10 @@ public class LinkedResources {
         return unifiedProperty;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -72,6 +72,7 @@ public class LinkedResources {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -91,6 +92,7 @@ public class LinkedResources {
         return this;
     }
 
+
     /**
      * Name of the property in our Unified API.
      */
@@ -100,7 +102,6 @@ public class LinkedResources {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +112,14 @@ public class LinkedResources {
         }
         LinkedResources other = (LinkedResources) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.unifiedProperty, other.unifiedProperty);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.unifiedProperty, other.unifiedProperty);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            unifiedProperty);
+        return Utils.enhancedHash(
+            id, unifiedProperty);
     }
     
     @Override
@@ -128,16 +128,18 @@ public class LinkedResources {
                 "id", id,
                 "unifiedProperty", unifiedProperty);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> unifiedProperty = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of name.
@@ -157,6 +159,7 @@ public class LinkedResources {
             return this;
         }
 
+
         /**
          * Name of the property in our Unified API.
          */
@@ -174,11 +177,12 @@ public class LinkedResources {
             this.unifiedProperty = unifiedProperty;
             return this;
         }
-        
+
         public LinkedResources build() {
+
             return new LinkedResources(
-                id,
-                unifiedProperty);
+                id, unifiedProperty);
         }
+
     }
 }

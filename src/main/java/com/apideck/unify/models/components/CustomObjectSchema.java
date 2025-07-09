@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomObjectSchema {
 
+public class CustomObjectSchema {
     /**
      * The unique identifier of the custom object schema
      */
@@ -135,7 +134,10 @@ public class CustomObjectSchema {
     }
     
     public CustomObjectSchema() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -228,9 +230,10 @@ public class CustomObjectSchema {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the custom object schema
@@ -240,6 +243,7 @@ public class CustomObjectSchema {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the custom object schema
@@ -294,6 +298,7 @@ public class CustomObjectSchema {
         this.fields = Optional.ofNullable(fields);
         return this;
     }
+
 
     /**
      * The fields defined in the schema
@@ -421,6 +426,7 @@ public class CustomObjectSchema {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -430,7 +436,6 @@ public class CustomObjectSchema {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -441,33 +446,26 @@ public class CustomObjectSchema {
         }
         CustomObjectSchema other = (CustomObjectSchema) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.visible, other.visible) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.visible, other.visible) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            fields,
-            visible,
-            active,
-            createdBy,
-            updatedBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, name, description,
+            fields, visible, active,
+            createdBy, updatedBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -485,34 +483,36 @@ public class CustomObjectSchema {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Fields>> fields = Optional.empty();
- 
+
         private JsonNullable<Boolean> visible = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the custom object schema
@@ -532,6 +532,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * The name of the custom object schema
          */
@@ -549,6 +550,7 @@ public class CustomObjectSchema {
             this.name = name;
             return this;
         }
+
 
         /**
          * The description of the custom object schema
@@ -568,6 +570,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * The fields defined in the schema
          */
@@ -585,6 +588,7 @@ public class CustomObjectSchema {
             this.fields = fields;
             return this;
         }
+
 
         /**
          * Whether the custom object schema is visible in the UI
@@ -604,6 +608,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * Whether the custom object schema is active
          */
@@ -621,6 +626,7 @@ public class CustomObjectSchema {
             this.active = active;
             return this;
         }
+
 
         /**
          * The ID of the user who created the custom object schema
@@ -640,6 +646,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * The ID of the user who last updated the custom object schema
          */
@@ -657,6 +664,7 @@ public class CustomObjectSchema {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The timestamp when the custom object schema was last updated
@@ -676,6 +684,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * The timestamp when the custom object schema was created
          */
@@ -694,6 +703,7 @@ public class CustomObjectSchema {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -711,20 +721,15 @@ public class CustomObjectSchema {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CustomObjectSchema build() {
+
             return new CustomObjectSchema(
-                id,
-                name,
-                description,
-                fields,
-                visible,
-                active,
-                createdBy,
-                updatedBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, name, description,
+                fields, visible, active,
+                createdBy, updatedBy, updatedAt,
+                createdAt, passThrough);
         }
+
     }
 }

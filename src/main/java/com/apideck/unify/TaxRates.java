@@ -37,7 +37,6 @@ public class TaxRates {
     TaxRates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Tax Rates
      * 
@@ -77,11 +76,10 @@ public class TaxRates {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
               = new AccountingTaxRatesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Tax Rate
@@ -122,11 +120,10 @@ public class TaxRates {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
               = new AccountingTaxRatesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Tax Rate
@@ -167,11 +164,10 @@ public class TaxRates {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
               = new AccountingTaxRatesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Tax Rate
@@ -212,11 +208,10 @@ public class TaxRates {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
               = new AccountingTaxRatesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Tax Rate
@@ -257,8 +252,8 @@ public class TaxRates {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
               = new AccountingTaxRatesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

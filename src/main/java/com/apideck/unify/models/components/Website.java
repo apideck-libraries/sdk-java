@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Website {
 
+public class Website {
     /**
      * Unique identifier for the website
      */
@@ -80,9 +79,10 @@ public class Website {
         return (JsonNullable<WebsiteType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the website
@@ -129,7 +129,6 @@ public class Website {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -140,17 +139,15 @@ public class Website {
         }
         Website other = (Website) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            url,
-            type);
+        return Utils.enhancedHash(
+            id, url, type);
     }
     
     @Override
@@ -160,18 +157,20 @@ public class Website {
                 "url", url,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String url;
- 
+
         private JsonNullable<? extends WebsiteType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the website
@@ -191,6 +190,7 @@ public class Website {
             return this;
         }
 
+
         /**
          * The website URL
          */
@@ -199,6 +199,7 @@ public class Website {
             this.url = url;
             return this;
         }
+
 
         /**
          * The type of website
@@ -217,12 +218,12 @@ public class Website {
             this.type = type;
             return this;
         }
-        
+
         public Website build() {
+
             return new Website(
-                id,
-                url,
-                type);
+                id, url, type);
         }
+
     }
 }

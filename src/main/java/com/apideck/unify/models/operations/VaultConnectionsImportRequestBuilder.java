@@ -48,8 +48,8 @@ public class VaultConnectionsImportRequestBuilder {
 
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
               = new VaultConnectionsImportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

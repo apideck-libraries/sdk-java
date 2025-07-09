@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Deduction {
 
+public class Deduction {
     /**
      * The name of the deduction.
      */
@@ -61,9 +60,10 @@ public class Deduction {
         return amount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the deduction.
@@ -101,7 +101,6 @@ public class Deduction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,15 +111,14 @@ public class Deduction {
         }
         Deduction other = (Deduction) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            amount);
+        return Utils.enhancedHash(
+            name, amount);
     }
     
     @Override
@@ -129,16 +127,18 @@ public class Deduction {
                 "name", name,
                 "amount", amount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the deduction.
@@ -158,6 +158,7 @@ public class Deduction {
             return this;
         }
 
+
         /**
          * The amount deducted.
          */
@@ -175,11 +176,12 @@ public class Deduction {
             this.amount = amount;
             return this;
         }
-        
+
         public Deduction build() {
+
             return new Deduction(
-                name,
-                amount);
+                name, amount);
         }
+
     }
 }

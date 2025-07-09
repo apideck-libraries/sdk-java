@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class SuppliersFilter {
 
+public class SuppliersFilter {
     /**
      * Company Name of supplier to search for
      */
@@ -45,6 +44,7 @@ public class SuppliersFilter {
     @SpeakeasyMetadata("queryParam:name=email")
     private Optional<String> email;
 
+
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
 
@@ -71,7 +71,8 @@ public class SuppliersFilter {
     }
     
     public SuppliersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -119,9 +120,10 @@ public class SuppliersFilter {
         return updatedSince;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Company Name of supplier to search for
@@ -131,6 +133,7 @@ public class SuppliersFilter {
         this.companyName = Optional.ofNullable(companyName);
         return this;
     }
+
 
     /**
      * Company Name of supplier to search for
@@ -150,6 +153,7 @@ public class SuppliersFilter {
         return this;
     }
 
+
     /**
      * Display Name of supplier to search for
      */
@@ -167,6 +171,7 @@ public class SuppliersFilter {
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     /**
      * First name of supplier to search for
@@ -186,6 +191,7 @@ public class SuppliersFilter {
         return this;
     }
 
+
     /**
      * Last name of supplier to search for
      */
@@ -204,6 +210,7 @@ public class SuppliersFilter {
         return this;
     }
 
+
     /**
      * Email of supplier to search for
      */
@@ -219,13 +226,13 @@ public class SuppliersFilter {
         return this;
     }
 
+
     public SuppliersFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -236,23 +243,19 @@ public class SuppliersFilter {
         }
         SuppliersFilter other = (SuppliersFilter) o;
         return 
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            companyName,
-            displayName,
-            firstName,
-            lastName,
-            email,
-            updatedSince);
+        return Utils.enhancedHash(
+            companyName, displayName, firstName,
+            lastName, email, updatedSince);
     }
     
     @Override
@@ -265,24 +268,26 @@ public class SuppliersFilter {
                 "email", email,
                 "updatedSince", updatedSince);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> companyName = Optional.empty();
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Company Name of supplier to search for
@@ -302,6 +307,7 @@ public class SuppliersFilter {
             return this;
         }
 
+
         /**
          * Display Name of supplier to search for
          */
@@ -319,6 +325,7 @@ public class SuppliersFilter {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * First name of supplier to search for
@@ -338,6 +345,7 @@ public class SuppliersFilter {
             return this;
         }
 
+
         /**
          * Last name of supplier to search for
          */
@@ -355,6 +363,7 @@ public class SuppliersFilter {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Email of supplier to search for
@@ -374,6 +383,7 @@ public class SuppliersFilter {
             return this;
         }
 
+
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = Optional.ofNullable(updatedSince);
@@ -385,15 +395,13 @@ public class SuppliersFilter {
             this.updatedSince = updatedSince;
             return this;
         }
-        
+
         public SuppliersFilter build() {
+
             return new SuppliersFilter(
-                companyName,
-                displayName,
-                firstName,
-                lastName,
-                email,
-                updatedSince);
+                companyName, displayName, firstName,
+                lastName, email, updatedSince);
         }
+
     }
 }

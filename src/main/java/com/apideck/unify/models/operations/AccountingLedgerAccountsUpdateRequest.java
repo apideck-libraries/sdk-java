@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingLedgerAccountsUpdateRequest {
 
+public class AccountingLedgerAccountsUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -48,6 +47,7 @@ public class AccountingLedgerAccountsUpdateRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private LedgerAccountInput ledgerAccount;
 
@@ -76,7 +76,8 @@ public class AccountingLedgerAccountsUpdateRequest {
     public AccountingLedgerAccountsUpdateRequest(
             String id,
             LedgerAccountInput ledgerAccount) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), ledgerAccount);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), ledgerAccount);
     }
 
     /**
@@ -124,9 +125,10 @@ public class AccountingLedgerAccountsUpdateRequest {
         return ledgerAccount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -146,6 +148,7 @@ public class AccountingLedgerAccountsUpdateRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -163,6 +166,7 @@ public class AccountingLedgerAccountsUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -182,6 +186,7 @@ public class AccountingLedgerAccountsUpdateRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -200,6 +205,7 @@ public class AccountingLedgerAccountsUpdateRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -215,7 +221,6 @@ public class AccountingLedgerAccountsUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,23 +231,19 @@ public class AccountingLedgerAccountsUpdateRequest {
         }
         AccountingLedgerAccountsUpdateRequest other = (AccountingLedgerAccountsUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            ledgerAccount);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, ledgerAccount);
     }
     
     @Override
@@ -255,24 +256,26 @@ public class AccountingLedgerAccountsUpdateRequest {
                 "raw", raw,
                 "ledgerAccount", ledgerAccount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private LedgerAccountInput ledgerAccount;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -282,6 +285,7 @@ public class AccountingLedgerAccountsUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -301,6 +305,7 @@ public class AccountingLedgerAccountsUpdateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -318,6 +323,7 @@ public class AccountingLedgerAccountsUpdateRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -337,6 +343,7 @@ public class AccountingLedgerAccountsUpdateRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -355,24 +362,23 @@ public class AccountingLedgerAccountsUpdateRequest {
             return this;
         }
 
+
         public Builder ledgerAccount(LedgerAccountInput ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
             return this;
         }
-        
+
         public AccountingLedgerAccountsUpdateRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingLedgerAccountsUpdateRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                ledgerAccount);
+                id, consumerId, appId,
+                serviceId, raw, ledgerAccount);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

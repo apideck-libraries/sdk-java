@@ -13,12 +13,11 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Credentials {
 
+public class Credentials {
     /**
      * The refresh token can be used to obtain a new access token.
      */
@@ -64,7 +63,8 @@ public class Credentials {
     }
     
     public Credentials() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -99,9 +99,10 @@ public class Credentials {
         return expiresIn;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The refresh token can be used to obtain a new access token.
@@ -129,6 +130,7 @@ public class Credentials {
         this.accessToken = Optional.ofNullable(accessToken);
         return this;
     }
+
 
     /**
      * Access token
@@ -175,7 +177,6 @@ public class Credentials {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,18 +187,16 @@ public class Credentials {
         }
         Credentials other = (Credentials) o;
         return 
-            Objects.deepEquals(this.refreshToken, other.refreshToken) &&
-            Objects.deepEquals(this.accessToken, other.accessToken) &&
-            Objects.deepEquals(this.issuedAt, other.issuedAt) &&
-            Objects.deepEquals(this.expiresIn, other.expiresIn);
+            Utils.enhancedDeepEquals(this.refreshToken, other.refreshToken) &&
+            Utils.enhancedDeepEquals(this.accessToken, other.accessToken) &&
+            Utils.enhancedDeepEquals(this.issuedAt, other.issuedAt) &&
+            Utils.enhancedDeepEquals(this.expiresIn, other.expiresIn);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            refreshToken,
-            accessToken,
-            issuedAt,
+        return Utils.enhancedHash(
+            refreshToken, accessToken, issuedAt,
             expiresIn);
     }
     
@@ -209,20 +208,22 @@ public class Credentials {
                 "issuedAt", issuedAt,
                 "expiresIn", expiresIn);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> refreshToken = JsonNullable.undefined();
- 
+
         private Optional<String> accessToken = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> issuedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> expiresIn = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The refresh token can be used to obtain a new access token.
@@ -242,6 +243,7 @@ public class Credentials {
             return this;
         }
 
+
         /**
          * Access token
          */
@@ -259,6 +261,7 @@ public class Credentials {
             this.accessToken = accessToken;
             return this;
         }
+
 
         /**
          * The datetime at which the token was issued. If omitted the token will be queued for refresh.
@@ -278,6 +281,7 @@ public class Credentials {
             return this;
         }
 
+
         /**
          * The number of seconds until the token expires. If omitted the token will be queued for refresh.
          */
@@ -295,13 +299,13 @@ public class Credentials {
             this.expiresIn = expiresIn;
             return this;
         }
-        
+
         public Credentials build() {
+
             return new Credentials(
-                refreshToken,
-                accessToken,
-                issuedAt,
+                refreshToken, accessToken, issuedAt,
                 expiresIn);
         }
+
     }
 }

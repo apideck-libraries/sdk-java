@@ -37,7 +37,6 @@ public class InvoiceItems {
     InvoiceItems(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Invoice Items
      * 
@@ -77,11 +76,10 @@ public class InvoiceItems {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAllRequest, AccountingInvoiceItemsAllResponse> operation
               = new AccountingInvoiceItemsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Invoice Item
@@ -122,11 +120,10 @@ public class InvoiceItems {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
               = new AccountingInvoiceItemsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Invoice Item
@@ -167,11 +164,10 @@ public class InvoiceItems {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsOneRequest, AccountingInvoiceItemsOneResponse> operation
               = new AccountingInvoiceItemsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Invoice Item
@@ -212,11 +208,10 @@ public class InvoiceItems {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
               = new AccountingInvoiceItemsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Invoice Item
@@ -257,8 +252,8 @@ public class InvoiceItems {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
               = new AccountingInvoiceItemsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

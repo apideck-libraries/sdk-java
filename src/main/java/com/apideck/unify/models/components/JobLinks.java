@@ -12,14 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class JobLinks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends JobType> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
@@ -50,15 +51,17 @@ public class JobLinks {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public JobLinks withType(JobType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public JobLinks withType(Optional<? extends JobType> type) {
         Utils.checkNotNull(type, "type");
@@ -72,13 +75,13 @@ public class JobLinks {
         return this;
     }
 
+
     public JobLinks withUrl(Optional<String> url) {
         Utils.checkNotNull(url, "url");
         this.url = url;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +92,14 @@ public class JobLinks {
         }
         JobLinks other = (JobLinks) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            type,
-            url);
+        return Utils.enhancedHash(
+            type, url);
     }
     
     @Override
@@ -106,16 +108,18 @@ public class JobLinks {
                 "type", type,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends JobType> type = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(JobType type) {
             Utils.checkNotNull(type, "type");
@@ -129,6 +133,7 @@ public class JobLinks {
             return this;
         }
 
+
         public Builder url(String url) {
             Utils.checkNotNull(url, "url");
             this.url = Optional.ofNullable(url);
@@ -140,11 +145,12 @@ public class JobLinks {
             this.url = url;
             return this;
         }
-        
+
         public JobLinks build() {
+
             return new JobLinks(
-                type,
-                url);
+                type, url);
         }
+
     }
 }

@@ -21,7 +21,6 @@ public class BalanceSheet {
     BalanceSheet(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get BalanceSheet
      * 
@@ -61,8 +60,8 @@ public class BalanceSheet {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
               = new AccountingBalanceSheetOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

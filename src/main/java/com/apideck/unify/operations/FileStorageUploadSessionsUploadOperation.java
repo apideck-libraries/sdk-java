@@ -68,7 +68,8 @@ public class FileStorageUploadSessionsUploadOperation implements RequestOperatio
     
     @Override
     public HttpResponse<InputStream> doRequest(FileStorageUploadSessionsUploadRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = serverURL
                 .filter(u -> !u.isBlank())
                 .orElse(Utils.templateUrl(

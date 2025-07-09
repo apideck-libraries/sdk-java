@@ -54,7 +54,8 @@ public class IssueTrackingCollectionTicketsDeleteOperation implements RequestOpe
     
     @Override
     public HttpResponse<InputStream> doRequest(IssueTrackingCollectionTicketsDeleteRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 IssueTrackingCollectionTicketsDeleteRequest.class,

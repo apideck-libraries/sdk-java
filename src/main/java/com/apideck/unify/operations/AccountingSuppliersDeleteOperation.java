@@ -54,7 +54,8 @@ public class AccountingSuppliersDeleteOperation implements RequestOperation<Acco
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingSuppliersDeleteRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 AccountingSuppliersDeleteRequest.class,

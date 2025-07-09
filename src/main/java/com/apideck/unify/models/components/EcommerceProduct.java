@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceProduct {
 
+public class EcommerceProduct {
     /**
      * A unique identifier for an object.
      */
@@ -97,6 +96,7 @@ public class EcommerceProduct {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
     private Optional<? extends List<EcommerceProductOptions>> options;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variants")
@@ -194,7 +194,12 @@ public class EcommerceProduct {
     
     public EcommerceProduct(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -337,9 +342,10 @@ public class EcommerceProduct {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -521,6 +527,7 @@ public class EcommerceProduct {
         return this;
     }
 
+
     /**
      * An array of options for the product.
      */
@@ -536,6 +543,7 @@ public class EcommerceProduct {
         return this;
     }
 
+
     public EcommerceProduct withVariants(Optional<? extends List<Variants>> variants) {
         Utils.checkNotNull(variants, "variants");
         this.variants = variants;
@@ -550,6 +558,7 @@ public class EcommerceProduct {
         this.tags = Optional.ofNullable(tags);
         return this;
     }
+
 
     /**
      * An array of tags for the product, used for organization and searching.
@@ -568,6 +577,7 @@ public class EcommerceProduct {
         this.categories = Optional.ofNullable(categories);
         return this;
     }
+
 
     /**
      * An array of categories for the product, used for organization and searching.
@@ -632,7 +642,6 @@ public class EcommerceProduct {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -643,45 +652,34 @@ public class EcommerceProduct {
         }
         EcommerceProduct other = (EcommerceProduct) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.price, other.price) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
-            Objects.deepEquals(this.images, other.images) &&
-            Objects.deepEquals(this.weight, other.weight) &&
-            Objects.deepEquals(this.weightUnit, other.weightUnit) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.variants, other.variants) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.categories, other.categories) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.price, other.price) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
+            Utils.enhancedDeepEquals(this.images, other.images) &&
+            Utils.enhancedDeepEquals(this.weight, other.weight) &&
+            Utils.enhancedDeepEquals(this.weightUnit, other.weightUnit) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.variants, other.variants) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.categories, other.categories) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            status,
-            price,
-            sku,
-            inventoryQuantity,
-            images,
-            weight,
-            weightUnit,
-            options,
-            variants,
-            tags,
-            categories,
-            customMappings,
-            createdAt,
-            updatedAt);
+        return Utils.enhancedHash(
+            id, name, description,
+            status, price, sku,
+            inventoryQuantity, images, weight,
+            weightUnit, options, variants,
+            tags, categories, customMappings,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -705,46 +703,48 @@ public class EcommerceProduct {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ProductStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> price = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sku = JsonNullable.undefined();
- 
+
         private JsonNullable<String> inventoryQuantity = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Images>> images = JsonNullable.undefined();
- 
+
         private JsonNullable<String> weight = JsonNullable.undefined();
- 
+
         private JsonNullable<String> weightUnit = JsonNullable.undefined();
- 
+
         private Optional<? extends List<EcommerceProductOptions>> options = Optional.empty();
- 
+
         private Optional<? extends List<Variants>> variants = Optional.empty();
- 
+
         private Optional<? extends List<String>> tags = Optional.empty();
- 
+
         private Optional<? extends List<EcommerceProductCategories>> categories = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -754,6 +754,7 @@ public class EcommerceProduct {
             this.id = id;
             return this;
         }
+
 
         /**
          * The name of the product as it should be displayed to customers.
@@ -773,6 +774,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * A detailed description of the product.
          */
@@ -790,6 +792,7 @@ public class EcommerceProduct {
             this.description = description;
             return this;
         }
+
 
         /**
          * The current status of the product (active or archived).
@@ -809,6 +812,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * The price of the product.
          */
@@ -826,6 +830,7 @@ public class EcommerceProduct {
             this.price = price;
             return this;
         }
+
 
         /**
          * The stock keeping unit of the product.
@@ -845,6 +850,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * The quantity of the product in stock.
          */
@@ -862,6 +868,7 @@ public class EcommerceProduct {
             this.inventoryQuantity = inventoryQuantity;
             return this;
         }
+
 
         /**
          * An array of image URLs for the product.
@@ -881,6 +888,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * The weight of the product.
          */
@@ -898,6 +906,7 @@ public class EcommerceProduct {
             this.weight = weight;
             return this;
         }
+
 
         /**
          * The unit of measurement for the weight of the product.
@@ -917,6 +926,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * An array of options for the product.
          */
@@ -935,6 +945,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         public Builder variants(List<Variants> variants) {
             Utils.checkNotNull(variants, "variants");
             this.variants = Optional.ofNullable(variants);
@@ -946,6 +957,7 @@ public class EcommerceProduct {
             this.variants = variants;
             return this;
         }
+
 
         /**
          * An array of tags for the product, used for organization and searching.
@@ -965,6 +977,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * An array of categories for the product, used for organization and searching.
          */
@@ -982,6 +995,7 @@ public class EcommerceProduct {
             this.categories = categories;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1001,6 +1015,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1019,6 +1034,7 @@ public class EcommerceProduct {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -1036,26 +1052,17 @@ public class EcommerceProduct {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public EcommerceProduct build() {
+
             return new EcommerceProduct(
-                id,
-                name,
-                description,
-                status,
-                price,
-                sku,
-                inventoryQuantity,
-                images,
-                weight,
-                weightUnit,
-                options,
-                variants,
-                tags,
-                categories,
-                customMappings,
-                createdAt,
-                updatedAt);
+                id, name, description,
+                status, price, sku,
+                inventoryQuantity, images, weight,
+                weightUnit, options, variants,
+                tags, categories, customMappings,
+                createdAt, updatedAt);
         }
+
     }
 }

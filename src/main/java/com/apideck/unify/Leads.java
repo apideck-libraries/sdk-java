@@ -37,7 +37,6 @@ public class Leads {
     Leads(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List leads
      * 
@@ -77,11 +76,10 @@ public class Leads {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsAllRequest, CrmLeadsAllResponse> operation
               = new CrmLeadsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create lead
@@ -122,11 +120,10 @@ public class Leads {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsAddRequest, CrmLeadsAddResponse> operation
               = new CrmLeadsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get lead
@@ -167,11 +164,10 @@ public class Leads {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsOneRequest, CrmLeadsOneResponse> operation
               = new CrmLeadsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update lead
@@ -212,11 +208,10 @@ public class Leads {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
               = new CrmLeadsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete lead
@@ -257,8 +252,8 @@ public class Leads {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation
               = new CrmLeadsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

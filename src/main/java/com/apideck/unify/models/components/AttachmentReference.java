@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class AttachmentReference {
 
@@ -56,15 +56,17 @@ public class AttachmentReference {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public AttachmentReference withType(AttachmentReferenceType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public AttachmentReference withType(Optional<? extends AttachmentReferenceType> type) {
         Utils.checkNotNull(type, "type");
@@ -81,6 +83,7 @@ public class AttachmentReference {
         return this;
     }
 
+
     /**
      * A unique identifier for an object.
      */
@@ -90,7 +93,6 @@ public class AttachmentReference {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -101,15 +103,14 @@ public class AttachmentReference {
         }
         AttachmentReference other = (AttachmentReference) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            type,
-            id);
+        return Utils.enhancedHash(
+            type, id);
     }
     
     @Override
@@ -118,16 +119,18 @@ public class AttachmentReference {
                 "type", type,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends AttachmentReferenceType> type = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(AttachmentReferenceType type) {
             Utils.checkNotNull(type, "type");
@@ -140,6 +143,7 @@ public class AttachmentReference {
             this.type = type;
             return this;
         }
+
 
         /**
          * A unique identifier for an object.
@@ -158,11 +162,12 @@ public class AttachmentReference {
             this.id = id;
             return this;
         }
-        
+
         public AttachmentReference build() {
+
             return new AttachmentReference(
-                type,
-                id);
+                type, id);
         }
+
     }
 }

@@ -14,11 +14,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class MessageInput {
 
+public class MessageInput {
     /**
      * The phone number that initiated the message.
      */
@@ -30,6 +29,7 @@ public class MessageInput {
      */
     @JsonProperty("to")
     private String to;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subject")
@@ -121,7 +121,10 @@ public class MessageInput {
             String from,
             String to,
             String body) {
-        this(from, to, Optional.empty(), body, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(from, to, Optional.empty(),
+            body, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -203,9 +206,10 @@ public class MessageInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The phone number that initiated the message.
@@ -231,6 +235,7 @@ public class MessageInput {
         return this;
     }
 
+
     public MessageInput withSubject(Optional<String> subject) {
         Utils.checkNotNull(subject, "subject");
         this.subject = subject;
@@ -255,6 +260,7 @@ public class MessageInput {
         return this;
     }
 
+
     /**
      * Set to sms for SMS messages and mms for MMS messages.
      */
@@ -272,6 +278,7 @@ public class MessageInput {
         this.scheduledAt = Optional.ofNullable(scheduledAt);
         return this;
     }
+
 
     /**
      * The scheduled date and time of the message.
@@ -291,6 +298,7 @@ public class MessageInput {
         return this;
     }
 
+
     /**
      * Define a webhook to receive delivery notifications.
      */
@@ -308,6 +316,7 @@ public class MessageInput {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     /**
      * A client reference.
@@ -327,6 +336,7 @@ public class MessageInput {
         return this;
     }
 
+
     /**
      * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
      */
@@ -345,6 +355,7 @@ public class MessageInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -354,7 +365,6 @@ public class MessageInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -365,30 +375,24 @@ public class MessageInput {
         }
         MessageInput other = (MessageInput) o;
         return 
-            Objects.deepEquals(this.from, other.from) &&
-            Objects.deepEquals(this.to, other.to) &&
-            Objects.deepEquals(this.subject, other.subject) &&
-            Objects.deepEquals(this.body, other.body) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.scheduledAt, other.scheduledAt) &&
-            Objects.deepEquals(this.webhookUrl, other.webhookUrl) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.messagingServiceId, other.messagingServiceId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.from, other.from) &&
+            Utils.enhancedDeepEquals(this.to, other.to) &&
+            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.body, other.body) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.scheduledAt, other.scheduledAt) &&
+            Utils.enhancedDeepEquals(this.webhookUrl, other.webhookUrl) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.messagingServiceId, other.messagingServiceId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            from,
-            to,
-            subject,
-            body,
-            type,
-            scheduledAt,
-            webhookUrl,
-            reference,
-            messagingServiceId,
+        return Utils.enhancedHash(
+            from, to, subject,
+            body, type, scheduledAt,
+            webhookUrl, reference, messagingServiceId,
             passThrough);
     }
     
@@ -406,32 +410,34 @@ public class MessageInput {
                 "messagingServiceId", messagingServiceId,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String from;
- 
+
         private String to;
- 
+
         private Optional<String> subject = Optional.empty();
- 
+
         private String body;
- 
+
         private Optional<? extends MessageType> type = Optional.empty();
- 
+
         private Optional<OffsetDateTime> scheduledAt = Optional.empty();
- 
+
         private Optional<String> webhookUrl = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<String> messagingServiceId = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The phone number that initiated the message.
@@ -442,6 +448,7 @@ public class MessageInput {
             return this;
         }
 
+
         /**
          * The phone number that received the message.
          */
@@ -450,6 +457,7 @@ public class MessageInput {
             this.to = to;
             return this;
         }
+
 
         public Builder subject(String subject) {
             Utils.checkNotNull(subject, "subject");
@@ -463,6 +471,7 @@ public class MessageInput {
             return this;
         }
 
+
         /**
          * The message text.
          */
@@ -471,6 +480,7 @@ public class MessageInput {
             this.body = body;
             return this;
         }
+
 
         /**
          * Set to sms for SMS messages and mms for MMS messages.
@@ -490,6 +500,7 @@ public class MessageInput {
             return this;
         }
 
+
         /**
          * The scheduled date and time of the message.
          */
@@ -507,6 +518,7 @@ public class MessageInput {
             this.scheduledAt = scheduledAt;
             return this;
         }
+
 
         /**
          * Define a webhook to receive delivery notifications.
@@ -526,6 +538,7 @@ public class MessageInput {
             return this;
         }
 
+
         /**
          * A client reference.
          */
@@ -543,6 +556,7 @@ public class MessageInput {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
@@ -562,6 +576,7 @@ public class MessageInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -579,19 +594,15 @@ public class MessageInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public MessageInput build() {
+
             return new MessageInput(
-                from,
-                to,
-                subject,
-                body,
-                type,
-                scheduledAt,
-                webhookUrl,
-                reference,
-                messagingServiceId,
+                from, to, subject,
+                body, type, scheduledAt,
+                webhookUrl, reference, messagingServiceId,
                 passThrough);
         }
+
     }
 }

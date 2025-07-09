@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceCustomer {
 
+public class EcommerceCustomer {
     /**
      * A unique identifier for an object.
      */
@@ -90,6 +89,7 @@ public class EcommerceCustomer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Addresses>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("orders")
@@ -164,7 +164,11 @@ public class EcommerceCustomer {
     
     public EcommerceCustomer(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -283,9 +287,10 @@ public class EcommerceCustomer {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -449,6 +454,7 @@ public class EcommerceCustomer {
         return this;
     }
 
+
     /**
      * An array of addresses for the customer.
      */
@@ -463,6 +469,7 @@ public class EcommerceCustomer {
         this.orders = Optional.ofNullable(orders);
         return this;
     }
+
 
     public EcommerceCustomer withOrders(Optional<? extends List<LinkedEcommerceOrder>> orders) {
         Utils.checkNotNull(orders, "orders");
@@ -524,7 +531,6 @@ public class EcommerceCustomer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -535,39 +541,30 @@ public class EcommerceCustomer {
         }
         EcommerceCustomer other = (EcommerceCustomer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.orders, other.orders) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.orders, other.orders) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            firstName,
-            lastName,
-            companyName,
-            status,
-            currency,
-            emails,
-            phoneNumbers,
-            addresses,
-            orders,
-            customMappings,
-            createdAt,
-            updatedAt);
+        return Utils.enhancedHash(
+            id, name, firstName,
+            lastName, companyName, status,
+            currency, emails, phoneNumbers,
+            addresses, orders, customMappings,
+            createdAt, updatedAt);
     }
     
     @Override
@@ -588,40 +585,42 @@ public class EcommerceCustomer {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends CustomerStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Email>> emails = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<PhoneNumber>> phoneNumbers = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Addresses>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<LinkedEcommerceOrder>> orders = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -631,6 +630,7 @@ public class EcommerceCustomer {
             this.id = id;
             return this;
         }
+
 
         /**
          * Full name of the customer
@@ -650,6 +650,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * First name of the customer
          */
@@ -667,6 +668,7 @@ public class EcommerceCustomer {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * Last name of the customer
@@ -686,6 +688,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * Company name of the customer
          */
@@ -703,6 +706,7 @@ public class EcommerceCustomer {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * The current status of the customer
@@ -722,6 +726,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -739,6 +744,7 @@ public class EcommerceCustomer {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * An array of email addresses for the customer.
@@ -758,6 +764,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * An array of phone numbers for the customer.
          */
@@ -775,6 +782,7 @@ public class EcommerceCustomer {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
+
 
         /**
          * An array of addresses for the customer.
@@ -794,6 +802,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         public Builder orders(List<LinkedEcommerceOrder> orders) {
             Utils.checkNotNull(orders, "orders");
             this.orders = Optional.ofNullable(orders);
@@ -805,6 +814,7 @@ public class EcommerceCustomer {
             this.orders = orders;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -824,6 +834,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -842,6 +853,7 @@ public class EcommerceCustomer {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -859,23 +871,16 @@ public class EcommerceCustomer {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public EcommerceCustomer build() {
+
             return new EcommerceCustomer(
-                id,
-                name,
-                firstName,
-                lastName,
-                companyName,
-                status,
-                currency,
-                emails,
-                phoneNumbers,
-                addresses,
-                orders,
-                customMappings,
-                createdAt,
-                updatedAt);
+                id, name, firstName,
+                lastName, companyName, status,
+                currency, emails, phoneNumbers,
+                addresses, orders, customMappings,
+                createdAt, updatedAt);
         }
+
     }
 }

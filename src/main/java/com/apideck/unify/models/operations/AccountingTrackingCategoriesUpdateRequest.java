@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingTrackingCategoriesUpdateRequest {
 
+public class AccountingTrackingCategoriesUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -48,6 +47,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
     private Optional<Boolean> raw;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TrackingCategoryInput trackingCategory;
 
@@ -76,7 +76,8 @@ public class AccountingTrackingCategoriesUpdateRequest {
     public AccountingTrackingCategoriesUpdateRequest(
             String id,
             TrackingCategoryInput trackingCategory) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), trackingCategory);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), trackingCategory);
     }
 
     /**
@@ -124,9 +125,10 @@ public class AccountingTrackingCategoriesUpdateRequest {
         return trackingCategory;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -146,6 +148,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -163,6 +166,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -182,6 +186,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -200,6 +205,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -215,7 +221,6 @@ public class AccountingTrackingCategoriesUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,23 +231,19 @@ public class AccountingTrackingCategoriesUpdateRequest {
         }
         AccountingTrackingCategoriesUpdateRequest other = (AccountingTrackingCategoriesUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            trackingCategory);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, trackingCategory);
     }
     
     @Override
@@ -255,24 +256,26 @@ public class AccountingTrackingCategoriesUpdateRequest {
                 "raw", raw,
                 "trackingCategory", trackingCategory);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private TrackingCategoryInput trackingCategory;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -282,6 +285,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -301,6 +305,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -318,6 +323,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -337,6 +343,7 @@ public class AccountingTrackingCategoriesUpdateRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -355,24 +362,23 @@ public class AccountingTrackingCategoriesUpdateRequest {
             return this;
         }
 
+
         public Builder trackingCategory(TrackingCategoryInput trackingCategory) {
             Utils.checkNotNull(trackingCategory, "trackingCategory");
             this.trackingCategory = trackingCategory;
             return this;
         }
-        
+
         public AccountingTrackingCategoriesUpdateRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingTrackingCategoriesUpdateRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                trackingCategory);
+                id, consumerId, appId,
+                serviceId, raw, trackingCategory);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

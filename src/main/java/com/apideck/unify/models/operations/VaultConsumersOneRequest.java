@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConsumersOneRequest {
 
+public class VaultConsumersOneRequest {
     /**
      * The ID of your Unify application
      */
@@ -57,9 +56,10 @@ public class VaultConsumersOneRequest {
         return consumerId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -69,6 +69,7 @@ public class VaultConsumersOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -88,7 +89,6 @@ public class VaultConsumersOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class VaultConsumersOneRequest {
         }
         VaultConsumersOneRequest other = (VaultConsumersOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            consumerId);
+        return Utils.enhancedHash(
+            appId, consumerId);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class VaultConsumersOneRequest {
                 "appId", appId,
                 "consumerId", consumerId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String consumerId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -145,6 +146,7 @@ public class VaultConsumersOneRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer to return
          */
@@ -153,11 +155,12 @@ public class VaultConsumersOneRequest {
             this.consumerId = consumerId;
             return this;
         }
-        
+
         public VaultConsumersOneRequest build() {
+
             return new VaultConsumersOneRequest(
-                appId,
-                consumerId);
+                appId, consumerId);
         }
+
     }
 }

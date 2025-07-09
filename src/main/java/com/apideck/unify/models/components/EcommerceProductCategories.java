@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceProductCategories {
 
+public class EcommerceProductCategories {
     /**
      * A unique identifier for an object.
      */
@@ -60,9 +59,10 @@ public class EcommerceProductCategories {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -100,7 +100,6 @@ public class EcommerceProductCategories {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +110,14 @@ public class EcommerceProductCategories {
         }
         EcommerceProductCategories other = (EcommerceProductCategories) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -128,16 +126,18 @@ public class EcommerceProductCategories {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -157,6 +157,7 @@ public class EcommerceProductCategories {
             return this;
         }
 
+
         /**
          * The name of the category.
          */
@@ -174,11 +175,12 @@ public class EcommerceProductCategories {
             this.name = name;
             return this;
         }
-        
+
         public EcommerceProductCategories build() {
+
             return new EcommerceProductCategories(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

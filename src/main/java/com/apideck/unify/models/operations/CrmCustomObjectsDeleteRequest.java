@@ -12,11 +12,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CrmCustomObjectsDeleteRequest {
 
+public class CrmCustomObjectsDeleteRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -78,7 +77,8 @@ public class CrmCustomObjectsDeleteRequest {
     public CrmCustomObjectsDeleteRequest(
             String id,
             String objectId) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), objectId);
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), objectId);
     }
 
     /**
@@ -129,9 +129,10 @@ public class CrmCustomObjectsDeleteRequest {
         return objectId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -151,6 +152,7 @@ public class CrmCustomObjectsDeleteRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -168,6 +170,7 @@ public class CrmCustomObjectsDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -187,6 +190,7 @@ public class CrmCustomObjectsDeleteRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -204,6 +208,7 @@ public class CrmCustomObjectsDeleteRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -223,7 +228,6 @@ public class CrmCustomObjectsDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,23 +238,19 @@ public class CrmCustomObjectsDeleteRequest {
         }
         CrmCustomObjectsDeleteRequest other = (CrmCustomObjectsDeleteRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.objectId, other.objectId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.objectId, other.objectId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            objectId);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw, objectId);
     }
     
     @Override
@@ -263,24 +263,26 @@ public class CrmCustomObjectsDeleteRequest {
                 "raw", raw,
                 "objectId", objectId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private String objectId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -290,6 +292,7 @@ public class CrmCustomObjectsDeleteRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -309,6 +312,7 @@ public class CrmCustomObjectsDeleteRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -326,6 +330,7 @@ public class CrmCustomObjectsDeleteRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -345,6 +350,7 @@ public class CrmCustomObjectsDeleteRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -363,6 +369,7 @@ public class CrmCustomObjectsDeleteRequest {
             return this;
         }
 
+
         /**
          * The id of the custom object to query
          */
@@ -371,19 +378,17 @@ public class CrmCustomObjectsDeleteRequest {
             this.objectId = objectId;
             return this;
         }
-        
+
         public CrmCustomObjectsDeleteRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new CrmCustomObjectsDeleteRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                objectId);
+                id, consumerId, appId,
+                serviceId, raw, objectId);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

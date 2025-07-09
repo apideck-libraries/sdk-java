@@ -21,7 +21,6 @@ public class CollectionTags {
     CollectionTags(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Tags
      * 
@@ -61,8 +60,8 @@ public class CollectionTags {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation
               = new IssueTrackingCollectionTagsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

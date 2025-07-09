@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ApisFilter {
 
+public class ApisFilter {
     /**
      * Status of the API. APIs with status live or beta are callable.
      */
@@ -41,9 +40,10 @@ public class ApisFilter {
         return (Optional<ApiStatus>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Status of the API. APIs with status live or beta are callable.
@@ -54,6 +54,7 @@ public class ApisFilter {
         return this;
     }
 
+
     /**
      * Status of the API. APIs with status live or beta are callable.
      */
@@ -63,7 +64,6 @@ public class ApisFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -74,12 +74,12 @@ public class ApisFilter {
         }
         ApisFilter other = (ApisFilter) o;
         return 
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             status);
     }
     
@@ -88,14 +88,16 @@ public class ApisFilter {
         return Utils.toString(ApisFilter.class,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ApiStatus> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Status of the API. APIs with status live or beta are callable.
@@ -114,10 +116,12 @@ public class ApisFilter {
             this.status = status;
             return this;
         }
-        
+
         public ApisFilter build() {
+
             return new ApisFilter(
                 status);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class IssueTrackingCollectionTicketsOneRequestBuilder {
 
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
               = new IssueTrackingCollectionTicketsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

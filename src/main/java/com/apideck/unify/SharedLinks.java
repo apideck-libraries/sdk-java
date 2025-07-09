@@ -37,7 +37,6 @@ public class SharedLinks {
     SharedLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List SharedLinks
      * 
@@ -77,11 +76,10 @@ public class SharedLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
               = new FileStorageSharedLinksAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Shared Link
@@ -122,11 +120,10 @@ public class SharedLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
               = new FileStorageSharedLinksAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Shared Link
@@ -167,11 +164,10 @@ public class SharedLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
               = new FileStorageSharedLinksOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Shared Link
@@ -212,11 +208,10 @@ public class SharedLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
               = new FileStorageSharedLinksUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Shared Link
@@ -257,8 +252,8 @@ public class SharedLinks {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
               = new FileStorageSharedLinksDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

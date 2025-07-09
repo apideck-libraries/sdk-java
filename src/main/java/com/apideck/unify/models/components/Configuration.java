@@ -13,14 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Configuration {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaults")
@@ -51,15 +52,17 @@ public class Configuration {
         return (Optional<List<Defaults>>) defaults;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Configuration withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     public Configuration withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -73,13 +76,13 @@ public class Configuration {
         return this;
     }
 
+
     public Configuration withDefaults(Optional<? extends List<Defaults>> defaults) {
         Utils.checkNotNull(defaults, "defaults");
         this.defaults = defaults;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +93,14 @@ public class Configuration {
         }
         Configuration other = (Configuration) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.defaults, other.defaults);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.defaults, other.defaults);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            resource,
-            defaults);
+        return Utils.enhancedHash(
+            resource, defaults);
     }
     
     @Override
@@ -107,16 +109,18 @@ public class Configuration {
                 "resource", resource,
                 "defaults", defaults);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource = Optional.empty();
- 
+
         private Optional<? extends List<Defaults>> defaults = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -130,6 +134,7 @@ public class Configuration {
             return this;
         }
 
+
         public Builder defaults(List<Defaults> defaults) {
             Utils.checkNotNull(defaults, "defaults");
             this.defaults = Optional.ofNullable(defaults);
@@ -141,11 +146,12 @@ public class Configuration {
             this.defaults = defaults;
             return this;
         }
-        
+
         public Configuration build() {
+
             return new Configuration(
-                resource,
-                defaults);
+                resource, defaults);
         }
+
     }
 }

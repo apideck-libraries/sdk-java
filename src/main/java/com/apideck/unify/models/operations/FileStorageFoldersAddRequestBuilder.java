@@ -48,8 +48,8 @@ public class FileStorageFoldersAddRequestBuilder {
 
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
               = new FileStorageFoldersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

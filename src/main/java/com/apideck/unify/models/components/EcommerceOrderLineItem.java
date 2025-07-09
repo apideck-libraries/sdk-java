@@ -14,7 +14,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A single line item of an ecommerce order, representing a product or variant with associated options, quantity, and pricing information.
  */
 public class EcommerceOrderLineItem {
-
     /**
      * A unique identifier for an object.
      */
@@ -66,6 +64,7 @@ public class EcommerceOrderLineItem {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private JsonNullable<String> description;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
@@ -134,6 +133,7 @@ public class EcommerceOrderLineItem {
     @JsonProperty("total_amount")
     private JsonNullable<String> totalAmount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discounts")
     private Optional<? extends List<EcommerceDiscount>> discounts;
@@ -194,7 +194,12 @@ public class EcommerceOrderLineItem {
     }
     
     public EcommerceOrderLineItem() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -329,9 +334,10 @@ public class EcommerceOrderLineItem {
         return (Optional<List<EcommerceDiscount>>) discounts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -414,6 +420,7 @@ public class EcommerceOrderLineItem {
         return this;
     }
 
+
     /**
      * The name of the product or variant associated with the line item.
      */
@@ -447,6 +454,7 @@ public class EcommerceOrderLineItem {
         return this;
     }
 
+
     public EcommerceOrderLineItem withOptions(Optional<? extends List<Options>> options) {
         Utils.checkNotNull(options, "options");
         this.options = options;
@@ -461,6 +469,7 @@ public class EcommerceOrderLineItem {
         this.quantity = Optional.ofNullable(quantity);
         return this;
     }
+
 
     /**
      * The quantity of the product or variant associated with the line item.
@@ -621,13 +630,13 @@ public class EcommerceOrderLineItem {
         return this;
     }
 
+
     public EcommerceOrderLineItem withDiscounts(Optional<? extends List<EcommerceDiscount>> discounts) {
         Utils.checkNotNull(discounts, "discounts");
         this.discounts = discounts;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -638,45 +647,34 @@ public class EcommerceOrderLineItem {
         }
         EcommerceOrderLineItem other = (EcommerceOrderLineItem) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.productId, other.productId) &&
-            Objects.deepEquals(this.variantId, other.variantId) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.isRefunded, other.isRefunded) &&
-            Objects.deepEquals(this.refundedAmount, other.refundedAmount) &&
-            Objects.deepEquals(this.refundedQuantity, other.refundedQuantity) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.discounts, other.discounts);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.productId, other.productId) &&
+            Utils.enhancedDeepEquals(this.variantId, other.variantId) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.isRefunded, other.isRefunded) &&
+            Utils.enhancedDeepEquals(this.refundedAmount, other.refundedAmount) &&
+            Utils.enhancedDeepEquals(this.refundedQuantity, other.refundedQuantity) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.discounts, other.discounts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            productId,
-            variantId,
-            sku,
-            name,
-            description,
-            options,
-            quantity,
-            unitPrice,
-            taxRate,
-            taxAmount,
-            isRefunded,
-            refundedAmount,
-            refundedQuantity,
-            subTotal,
-            totalAmount,
-            discounts);
+        return Utils.enhancedHash(
+            id, productId, variantId,
+            sku, name, description,
+            options, quantity, unitPrice,
+            taxRate, taxAmount, isRefunded,
+            refundedAmount, refundedQuantity, subTotal,
+            totalAmount, discounts);
     }
     
     @Override
@@ -700,46 +698,48 @@ public class EcommerceOrderLineItem {
                 "totalAmount", totalAmount,
                 "discounts", discounts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> productId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> variantId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sku = JsonNullable.undefined();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Options>> options = Optional.empty();
- 
+
         private Optional<String> quantity = Optional.empty();
- 
+
         private JsonNullable<String> unitPrice = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxRate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isRefunded = JsonNullable.undefined();
- 
+
         private JsonNullable<String> refundedAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> refundedQuantity = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<String> totalAmount = JsonNullable.undefined();
- 
+
         private Optional<? extends List<EcommerceDiscount>> discounts = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -759,6 +759,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * A unique identifier for the product associated with the line item.
          */
@@ -776,6 +777,7 @@ public class EcommerceOrderLineItem {
             this.productId = productId;
             return this;
         }
+
 
         /**
          * A unique identifier for the variant of the product associated with the line item, if applicable.
@@ -795,6 +797,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The SKU of the product or variant associated with the line item.
          */
@@ -812,6 +815,7 @@ public class EcommerceOrderLineItem {
             this.sku = sku;
             return this;
         }
+
 
         /**
          * The name of the product or variant associated with the line item.
@@ -831,6 +835,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The description of the product or variant associated with the line item.
          */
@@ -849,6 +854,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         public Builder options(List<Options> options) {
             Utils.checkNotNull(options, "options");
             this.options = Optional.ofNullable(options);
@@ -860,6 +866,7 @@ public class EcommerceOrderLineItem {
             this.options = options;
             return this;
         }
+
 
         /**
          * The quantity of the product or variant associated with the line item.
@@ -879,6 +886,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The unit price of the product or variant associated with the line item.
          */
@@ -896,6 +904,7 @@ public class EcommerceOrderLineItem {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * The tax rate applied to the product or variant associated with the line item.
@@ -915,6 +924,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The total tax amount applied to the product or variant associated with the line item.
          */
@@ -932,6 +942,7 @@ public class EcommerceOrderLineItem {
             this.taxAmount = taxAmount;
             return this;
         }
+
 
         /**
          * Whether the line item has been refunded.
@@ -951,6 +962,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The amount of the line item that has been refunded.
          */
@@ -968,6 +980,7 @@ public class EcommerceOrderLineItem {
             this.refundedAmount = refundedAmount;
             return this;
         }
+
 
         /**
          * The quantity of the line item that has been refunded.
@@ -987,6 +1000,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         /**
          * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
          */
@@ -1004,6 +1018,7 @@ public class EcommerceOrderLineItem {
             this.subTotal = subTotal;
             return this;
         }
+
 
         /**
          * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
@@ -1023,6 +1038,7 @@ public class EcommerceOrderLineItem {
             return this;
         }
 
+
         public Builder discounts(List<EcommerceDiscount> discounts) {
             Utils.checkNotNull(discounts, "discounts");
             this.discounts = Optional.ofNullable(discounts);
@@ -1034,26 +1050,17 @@ public class EcommerceOrderLineItem {
             this.discounts = discounts;
             return this;
         }
-        
+
         public EcommerceOrderLineItem build() {
+
             return new EcommerceOrderLineItem(
-                id,
-                productId,
-                variantId,
-                sku,
-                name,
-                description,
-                options,
-                quantity,
-                unitPrice,
-                taxRate,
-                taxAmount,
-                isRefunded,
-                refundedAmount,
-                refundedQuantity,
-                subTotal,
-                totalAmount,
-                discounts);
+                id, productId, variantId,
+                sku, name, description,
+                options, quantity, unitPrice,
+                taxRate, taxAmount, isRefunded,
+                refundedAmount, refundedQuantity, subTotal,
+                totalAmount, discounts);
         }
+
     }
 }

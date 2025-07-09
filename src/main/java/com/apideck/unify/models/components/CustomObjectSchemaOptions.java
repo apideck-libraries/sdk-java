@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class CustomObjectSchemaOptions {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
     private Optional<String> value;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
@@ -48,15 +49,17 @@ public class CustomObjectSchemaOptions {
         return label;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public CustomObjectSchemaOptions withValue(String value) {
         Utils.checkNotNull(value, "value");
         this.value = Optional.ofNullable(value);
         return this;
     }
+
 
     public CustomObjectSchemaOptions withValue(Optional<String> value) {
         Utils.checkNotNull(value, "value");
@@ -70,13 +73,13 @@ public class CustomObjectSchemaOptions {
         return this;
     }
 
+
     public CustomObjectSchemaOptions withLabel(Optional<String> label) {
         Utils.checkNotNull(label, "label");
         this.label = label;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class CustomObjectSchemaOptions {
         }
         CustomObjectSchemaOptions other = (CustomObjectSchemaOptions) o;
         return 
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.label, other.label);
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.label, other.label);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            value,
-            label);
+        return Utils.enhancedHash(
+            value, label);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class CustomObjectSchemaOptions {
                 "value", value,
                 "label", label);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> value = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder value(String value) {
             Utils.checkNotNull(value, "value");
@@ -127,6 +131,7 @@ public class CustomObjectSchemaOptions {
             return this;
         }
 
+
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
             this.label = Optional.ofNullable(label);
@@ -138,11 +143,12 @@ public class CustomObjectSchemaOptions {
             this.label = label;
             return this;
         }
-        
+
         public CustomObjectSchemaOptions build() {
+
             return new CustomObjectSchemaOptions(
-                value,
-                label);
+                value, label);
         }
+
     }
 }

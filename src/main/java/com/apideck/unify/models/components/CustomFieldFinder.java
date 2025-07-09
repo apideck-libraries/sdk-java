@@ -13,12 +13,11 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomFieldFinder {
 
+public class CustomFieldFinder {
     /**
      * Custom Field ID
      */
@@ -74,7 +73,8 @@ public class CustomFieldFinder {
     }
     
     public CustomFieldFinder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +118,10 @@ public class CustomFieldFinder {
         return finder;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Custom Field ID
@@ -130,6 +131,7 @@ public class CustomFieldFinder {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Custom Field ID
@@ -185,6 +187,7 @@ public class CustomFieldFinder {
         return this;
     }
 
+
     /**
      * Custom Field value
      */
@@ -203,6 +206,7 @@ public class CustomFieldFinder {
         return this;
     }
 
+
     /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
@@ -212,7 +216,6 @@ public class CustomFieldFinder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -223,21 +226,18 @@ public class CustomFieldFinder {
         }
         CustomFieldFinder other = (CustomFieldFinder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.finder, other.finder);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.finder, other.finder);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            value,
-            finder);
+        return Utils.enhancedHash(
+            id, name, description,
+            value, finder);
     }
     
     @Override
@@ -249,22 +249,24 @@ public class CustomFieldFinder {
                 "value", value,
                 "finder", finder);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends Object> value = Optional.empty();
- 
+
         private Optional<String> finder = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Custom Field ID
@@ -284,6 +286,7 @@ public class CustomFieldFinder {
             return this;
         }
 
+
         /**
          * Custom Field name to use as a label if provided
          */
@@ -301,6 +304,7 @@ public class CustomFieldFinder {
             this.name = name;
             return this;
         }
+
 
         /**
          * More information about the custom field
@@ -320,6 +324,7 @@ public class CustomFieldFinder {
             return this;
         }
 
+
         /**
          * Custom Field value
          */
@@ -338,6 +343,7 @@ public class CustomFieldFinder {
             return this;
         }
 
+
         /**
          * JSONPath finder for retrieving this value when mapping a response payload from downstream
          */
@@ -355,14 +361,13 @@ public class CustomFieldFinder {
             this.finder = finder;
             return this;
         }
-        
+
         public CustomFieldFinder build() {
+
             return new CustomFieldFinder(
-                id,
-                name,
-                description,
-                value,
-                finder);
+                id, name, description,
+                value, finder);
         }
+
     }
 }

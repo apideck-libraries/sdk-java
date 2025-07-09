@@ -13,15 +13,16 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class EmployeeSchedules {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee")
     private Optional<? extends Employee> employee;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schedules")
@@ -53,15 +54,17 @@ public class EmployeeSchedules {
         return (JsonNullable<List<Schedule>>) schedules;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public EmployeeSchedules withEmployee(Employee employee) {
         Utils.checkNotNull(employee, "employee");
         this.employee = Optional.ofNullable(employee);
         return this;
     }
+
 
     public EmployeeSchedules withEmployee(Optional<? extends Employee> employee) {
         Utils.checkNotNull(employee, "employee");
@@ -81,7 +84,6 @@ public class EmployeeSchedules {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -92,15 +94,14 @@ public class EmployeeSchedules {
         }
         EmployeeSchedules other = (EmployeeSchedules) o;
         return 
-            Objects.deepEquals(this.employee, other.employee) &&
-            Objects.deepEquals(this.schedules, other.schedules);
+            Utils.enhancedDeepEquals(this.employee, other.employee) &&
+            Utils.enhancedDeepEquals(this.schedules, other.schedules);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            employee,
-            schedules);
+        return Utils.enhancedHash(
+            employee, schedules);
     }
     
     @Override
@@ -109,16 +110,18 @@ public class EmployeeSchedules {
                 "employee", employee,
                 "schedules", schedules);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Employee> employee = Optional.empty();
- 
+
         private JsonNullable<? extends List<Schedule>> schedules = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder employee(Employee employee) {
             Utils.checkNotNull(employee, "employee");
@@ -132,6 +135,7 @@ public class EmployeeSchedules {
             return this;
         }
 
+
         public Builder schedules(List<Schedule> schedules) {
             Utils.checkNotNull(schedules, "schedules");
             this.schedules = JsonNullable.of(schedules);
@@ -143,11 +147,12 @@ public class EmployeeSchedules {
             this.schedules = schedules;
             return this;
         }
-        
+
         public EmployeeSchedules build() {
+
             return new EmployeeSchedules(
-                employee,
-                schedules);
+                employee, schedules);
         }
+
     }
 }

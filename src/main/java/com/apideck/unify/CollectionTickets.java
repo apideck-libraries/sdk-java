@@ -37,7 +37,6 @@ public class CollectionTickets {
     CollectionTickets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Tickets
      * 
@@ -77,11 +76,10 @@ public class CollectionTickets {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
               = new IssueTrackingCollectionTicketsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Ticket
@@ -122,11 +120,10 @@ public class CollectionTickets {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
               = new IssueTrackingCollectionTicketsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Ticket
@@ -167,11 +164,10 @@ public class CollectionTickets {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
               = new IssueTrackingCollectionTicketsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Ticket
@@ -212,11 +208,10 @@ public class CollectionTickets {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
               = new IssueTrackingCollectionTicketsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Ticket
@@ -257,8 +252,8 @@ public class CollectionTickets {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
               = new IssueTrackingCollectionTicketsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

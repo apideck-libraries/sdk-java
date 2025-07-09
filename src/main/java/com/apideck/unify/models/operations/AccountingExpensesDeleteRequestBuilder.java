@@ -48,8 +48,8 @@ public class AccountingExpensesDeleteRequestBuilder {
 
         RequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation
               = new AccountingExpensesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

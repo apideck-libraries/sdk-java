@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingLocationsFilter {
 
+public class AccountingLocationsFilter {
     /**
      * Id of the subsidiary to search for
      */
@@ -39,9 +38,10 @@ public class AccountingLocationsFilter {
         return subsidiary;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Id of the subsidiary to search for
@@ -52,6 +52,7 @@ public class AccountingLocationsFilter {
         return this;
     }
 
+
     /**
      * Id of the subsidiary to search for
      */
@@ -61,7 +62,6 @@ public class AccountingLocationsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class AccountingLocationsFilter {
         }
         AccountingLocationsFilter other = (AccountingLocationsFilter) o;
         return 
-            Objects.deepEquals(this.subsidiary, other.subsidiary);
+            Utils.enhancedDeepEquals(this.subsidiary, other.subsidiary);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             subsidiary);
     }
     
@@ -86,14 +86,16 @@ public class AccountingLocationsFilter {
         return Utils.toString(AccountingLocationsFilter.class,
                 "subsidiary", subsidiary);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> subsidiary = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Id of the subsidiary to search for
@@ -112,10 +114,12 @@ public class AccountingLocationsFilter {
             this.subsidiary = subsidiary;
             return this;
         }
-        
+
         public AccountingLocationsFilter build() {
+
             return new AccountingLocationsFilter(
                 subsidiary);
         }
+
     }
 }

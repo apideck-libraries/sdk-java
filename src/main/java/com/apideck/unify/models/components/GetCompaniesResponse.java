@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Companies
  */
 public class GetCompaniesResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -57,8 +55,9 @@ public class GetCompaniesResponse {
     @JsonProperty("operation")
     private String operation;
 
+
     @JsonProperty("data")
-    private List<Company> data;
+    private List<Company1> data;
 
     /**
      * Response metadata
@@ -88,7 +87,7 @@ public class GetCompaniesResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") List<Company> data,
+            @JsonProperty("data") List<Company1> data,
             @JsonProperty("meta") Optional<? extends Meta> meta,
             @JsonProperty("links") Optional<? extends Links> links,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
@@ -118,8 +117,10 @@ public class GetCompaniesResponse {
             String service,
             String resource,
             String operation,
-            List<Company> data) {
-        this(statusCode, status, service, resource, operation, data, Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            List<Company1> data) {
+        this(statusCode, status, service,
+            resource, operation, data,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -163,7 +164,7 @@ public class GetCompaniesResponse {
     }
 
     @JsonIgnore
-    public List<Company> data() {
+    public List<Company1> data() {
         return data;
     }
 
@@ -194,9 +195,10 @@ public class GetCompaniesResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -243,7 +245,7 @@ public class GetCompaniesResponse {
         return this;
     }
 
-    public GetCompaniesResponse withData(List<Company> data) {
+    public GetCompaniesResponse withData(List<Company1> data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -257,6 +259,7 @@ public class GetCompaniesResponse {
         this.meta = Optional.ofNullable(meta);
         return this;
     }
+
 
     /**
      * Response metadata
@@ -275,6 +278,7 @@ public class GetCompaniesResponse {
         this.links = Optional.ofNullable(links);
         return this;
     }
+
 
     /**
      * Links to navigate to previous or next pages through the API
@@ -303,7 +307,6 @@ public class GetCompaniesResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -314,29 +317,23 @@ public class GetCompaniesResponse {
         }
         GetCompaniesResponse other = (GetCompaniesResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
-            meta,
-            links,
-            raw);
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
+            meta, links, raw);
     }
     
     @Override
@@ -352,30 +349,32 @@ public class GetCompaniesResponse {
                 "links", links,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
-        private List<Company> data;
- 
+
+        private List<Company1> data;
+
         private Optional<? extends Meta> meta = Optional.empty();
- 
+
         private Optional<? extends Links> links = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -386,6 +385,7 @@ public class GetCompaniesResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -394,6 +394,7 @@ public class GetCompaniesResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -404,6 +405,7 @@ public class GetCompaniesResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -412,6 +414,7 @@ public class GetCompaniesResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -422,11 +425,13 @@ public class GetCompaniesResponse {
             return this;
         }
 
-        public Builder data(List<Company> data) {
+
+        public Builder data(List<Company1> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Response metadata
@@ -446,6 +451,7 @@ public class GetCompaniesResponse {
             return this;
         }
 
+
         /**
          * Links to navigate to previous or next pages through the API
          */
@@ -464,6 +470,7 @@ public class GetCompaniesResponse {
             return this;
         }
 
+
         /**
          * Raw response from the integration when raw=true query param is provided
          */
@@ -481,18 +488,14 @@ public class GetCompaniesResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetCompaniesResponse build() {
+
             return new GetCompaniesResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
-                meta,
-                links,
-                raw);
+                statusCode, status, service,
+                resource, operation, data,
+                meta, links, raw);
         }
+
     }
 }

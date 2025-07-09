@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+
 
 public class BalanceSheet {
 
@@ -29,9 +29,10 @@ public class BalanceSheet {
         return reports;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public BalanceSheet withReports(List<Reports> reports) {
         Utils.checkNotNull(reports, "reports");
@@ -39,7 +40,6 @@ public class BalanceSheet {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -50,12 +50,12 @@ public class BalanceSheet {
         }
         BalanceSheet other = (BalanceSheet) o;
         return 
-            Objects.deepEquals(this.reports, other.reports);
+            Utils.enhancedDeepEquals(this.reports, other.reports);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             reports);
     }
     
@@ -64,24 +64,28 @@ public class BalanceSheet {
         return Utils.toString(BalanceSheet.class,
                 "reports", reports);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private List<Reports> reports;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder reports(List<Reports> reports) {
             Utils.checkNotNull(reports, "reports");
             this.reports = reports;
             return this;
         }
-        
+
         public BalanceSheet build() {
+
             return new BalanceSheet(
                 reports);
         }
+
     }
 }

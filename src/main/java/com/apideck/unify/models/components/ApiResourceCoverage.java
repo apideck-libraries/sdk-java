@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ApiResourceCoverage {
 
+public class ApiResourceCoverage {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
@@ -38,6 +37,7 @@ public class ApiResourceCoverage {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends ResourceStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("coverage")
@@ -60,7 +60,8 @@ public class ApiResourceCoverage {
     }
     
     public ApiResourceCoverage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -94,9 +95,10 @@ public class ApiResourceCoverage {
         return (Optional<List<Coverage>>) coverage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -106,6 +108,7 @@ public class ApiResourceCoverage {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -125,6 +128,7 @@ public class ApiResourceCoverage {
         return this;
     }
 
+
     /**
      * Name of the resource (plural)
      */
@@ -143,6 +147,7 @@ public class ApiResourceCoverage {
         return this;
     }
 
+
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
@@ -158,13 +163,13 @@ public class ApiResourceCoverage {
         return this;
     }
 
+
     public ApiResourceCoverage withCoverage(Optional<? extends List<Coverage>> coverage) {
         Utils.checkNotNull(coverage, "coverage");
         this.coverage = coverage;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -175,18 +180,16 @@ public class ApiResourceCoverage {
         }
         ApiResourceCoverage other = (ApiResourceCoverage) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.coverage, other.coverage);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.coverage, other.coverage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            status,
+        return Utils.enhancedHash(
+            id, name, status,
             coverage);
     }
     
@@ -198,20 +201,22 @@ public class ApiResourceCoverage {
                 "status", status,
                 "coverage", coverage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ResourceStatus> status = Optional.empty();
- 
+
         private Optional<? extends List<Coverage>> coverage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of name.
@@ -231,6 +236,7 @@ public class ApiResourceCoverage {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -248,6 +254,7 @@ public class ApiResourceCoverage {
             this.name = name;
             return this;
         }
+
 
         /**
          * Status of the resource. Resources with status live or beta are callable.
@@ -267,6 +274,7 @@ public class ApiResourceCoverage {
             return this;
         }
 
+
         public Builder coverage(List<Coverage> coverage) {
             Utils.checkNotNull(coverage, "coverage");
             this.coverage = Optional.ofNullable(coverage);
@@ -278,13 +286,13 @@ public class ApiResourceCoverage {
             this.coverage = coverage;
             return this;
         }
-        
+
         public ApiResourceCoverage build() {
+
             return new ApiResourceCoverage(
-                id,
-                name,
-                status,
+                id, name, status,
                 coverage);
         }
+
     }
 }

@@ -57,7 +57,8 @@ public class FileStorageDrivesAddOperation implements RequestOperation<FileStora
     
     @Override
     public HttpResponse<InputStream> doRequest(FileStorageDrivesAddRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

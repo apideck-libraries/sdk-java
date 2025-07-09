@@ -48,8 +48,8 @@ public class FileStorageDriveGroupsDeleteRequestBuilder {
 
         RequestOperation<FileStorageDriveGroupsDeleteRequest, FileStorageDriveGroupsDeleteResponse> operation
               = new FileStorageDriveGroupsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

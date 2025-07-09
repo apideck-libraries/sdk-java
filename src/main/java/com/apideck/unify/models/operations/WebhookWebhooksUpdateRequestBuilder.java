@@ -80,8 +80,8 @@ public class WebhookWebhooksUpdateRequestBuilder {
 
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
               = new WebhookWebhooksUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         WebhookWebhooksUpdateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

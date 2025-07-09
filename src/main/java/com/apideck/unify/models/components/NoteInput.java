@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class NoteInput {
 
+public class NoteInput {
     /**
      * The title of the note
      */
@@ -125,7 +124,10 @@ public class NoteInput {
     }
     
     public NoteInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -209,9 +211,10 @@ public class NoteInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The title of the note
@@ -384,6 +387,7 @@ public class NoteInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -393,7 +397,6 @@ public class NoteInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -404,30 +407,24 @@ public class NoteInput {
         }
         NoteInput other = (NoteInput) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.content, other.content) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.opportunityId, other.opportunityId) &&
-            Objects.deepEquals(this.activityId, other.activityId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.content, other.content) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.opportunityId, other.opportunityId) &&
+            Utils.enhancedDeepEquals(this.activityId, other.activityId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            title,
-            content,
-            ownerId,
-            contactId,
-            companyId,
-            opportunityId,
-            activityId,
-            leadId,
-            active,
+        return Utils.enhancedHash(
+            title, content, ownerId,
+            contactId, companyId, opportunityId,
+            activityId, leadId, active,
             passThrough);
     }
     
@@ -445,32 +442,34 @@ public class NoteInput {
                 "active", active,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> content = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> opportunityId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> activityId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The title of the note
@@ -490,6 +489,7 @@ public class NoteInput {
             return this;
         }
 
+
         /**
          * The content of the note.
          */
@@ -507,6 +507,7 @@ public class NoteInput {
             this.content = content;
             return this;
         }
+
 
         /**
          * The user that owns the note.
@@ -526,6 +527,7 @@ public class NoteInput {
             return this;
         }
 
+
         /**
          * The contact that is related to the note.
          */
@@ -543,6 +545,7 @@ public class NoteInput {
             this.contactId = contactId;
             return this;
         }
+
 
         /**
          * The company that is related to the note.
@@ -562,6 +565,7 @@ public class NoteInput {
             return this;
         }
 
+
         /**
          * The opportunity that is related to the note.
          */
@@ -579,6 +583,7 @@ public class NoteInput {
             this.opportunityId = opportunityId;
             return this;
         }
+
 
         /**
          * The activity that is related to the note.
@@ -598,6 +603,7 @@ public class NoteInput {
             return this;
         }
 
+
         /**
          * The lead that is related to the note.
          */
@@ -615,6 +621,7 @@ public class NoteInput {
             this.leadId = leadId;
             return this;
         }
+
 
         /**
          * Whether the Note is active or not.
@@ -634,6 +641,7 @@ public class NoteInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -651,19 +659,15 @@ public class NoteInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public NoteInput build() {
+
             return new NoteInput(
-                title,
-                content,
-                ownerId,
-                contactId,
-                companyId,
-                opportunityId,
-                activityId,
-                leadId,
-                active,
+                title, content, ownerId,
+                contactId, companyId, opportunityId,
+                activityId, leadId, active,
                 passThrough);
         }
+
     }
 }

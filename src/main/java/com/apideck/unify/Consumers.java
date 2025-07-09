@@ -42,7 +42,6 @@ public class Consumers {
     Consumers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create consumer
      * 
@@ -90,11 +89,10 @@ public class Consumers {
                 .build();
         RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
               = new VaultConsumersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get all consumers
@@ -116,7 +114,8 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -145,11 +144,10 @@ public class Consumers {
                 .build();
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
               = new VaultConsumersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get consumer
@@ -198,11 +196,10 @@ public class Consumers {
                 .build();
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
               = new VaultConsumersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update consumer
@@ -228,7 +225,8 @@ public class Consumers {
     public VaultConsumersUpdateResponse update(
             String consumerId,
             UpdateConsumerRequest updateConsumerRequest) throws Exception {
-        return update(Optional.empty(), consumerId, updateConsumerRequest, Optional.empty());
+        return update(Optional.empty(), consumerId, updateConsumerRequest,
+            Optional.empty());
     }
 
     /**
@@ -257,11 +255,10 @@ public class Consumers {
                 .build();
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
               = new VaultConsumersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete consumer
@@ -310,8 +307,8 @@ public class Consumers {
                 .build();
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
               = new VaultConsumersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

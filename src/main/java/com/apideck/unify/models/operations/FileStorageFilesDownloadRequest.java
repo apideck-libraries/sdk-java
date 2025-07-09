@@ -9,12 +9,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FileStorageFilesDownloadRequest {
 
+public class FileStorageFilesDownloadRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -66,7 +65,8 @@ public class FileStorageFilesDownloadRequest {
     
     public FileStorageFilesDownloadRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -109,9 +109,10 @@ public class FileStorageFilesDownloadRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -131,6 +132,7 @@ public class FileStorageFilesDownloadRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -149,6 +151,7 @@ public class FileStorageFilesDownloadRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -166,6 +169,7 @@ public class FileStorageFilesDownloadRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -194,7 +198,6 @@ public class FileStorageFilesDownloadRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -205,21 +208,18 @@ public class FileStorageFilesDownloadRequest {
         }
         FileStorageFilesDownloadRequest other = (FileStorageFilesDownloadRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            fields);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, fields);
     }
     
     @Override
@@ -231,22 +231,24 @@ public class FileStorageFilesDownloadRequest {
                 "serviceId", serviceId,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -256,6 +258,7 @@ public class FileStorageFilesDownloadRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -275,6 +278,7 @@ public class FileStorageFilesDownloadRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -292,6 +296,7 @@ public class FileStorageFilesDownloadRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -311,6 +316,7 @@ public class FileStorageFilesDownloadRequest {
             return this;
         }
 
+
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
@@ -328,14 +334,13 @@ public class FileStorageFilesDownloadRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public FileStorageFilesDownloadRequest build() {
+
             return new FileStorageFilesDownloadRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                fields);
+                id, consumerId, appId,
+                serviceId, fields);
         }
+
     }
 }

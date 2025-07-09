@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorApiResourceCoverageOneRequest {
 
+public class ConnectorApiResourceCoverageOneRequest {
     /**
      * The ID of your Unify application
      */
@@ -75,9 +74,10 @@ public class ConnectorApiResourceCoverageOneRequest {
         return resourceId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -87,6 +87,7 @@ public class ConnectorApiResourceCoverageOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -115,7 +116,6 @@ public class ConnectorApiResourceCoverageOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -126,17 +126,15 @@ public class ConnectorApiResourceCoverageOneRequest {
         }
         ConnectorApiResourceCoverageOneRequest other = (ConnectorApiResourceCoverageOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.resourceId, other.resourceId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.resourceId, other.resourceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            id,
-            resourceId);
+        return Utils.enhancedHash(
+            appId, id, resourceId);
     }
     
     @Override
@@ -146,18 +144,20 @@ public class ConnectorApiResourceCoverageOneRequest {
                 "id", id,
                 "resourceId", resourceId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String id;
- 
+
         private String resourceId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -177,6 +177,7 @@ public class ConnectorApiResourceCoverageOneRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -186,6 +187,7 @@ public class ConnectorApiResourceCoverageOneRequest {
             return this;
         }
 
+
         /**
          * ID of the resource you are acting upon.
          */
@@ -194,12 +196,12 @@ public class ConnectorApiResourceCoverageOneRequest {
             this.resourceId = resourceId;
             return this;
         }
-        
+
         public ConnectorApiResourceCoverageOneRequest build() {
+
             return new ConnectorApiResourceCoverageOneRequest(
-                appId,
-                id,
-                resourceId);
+                appId, id, resourceId);
         }
+
     }
 }

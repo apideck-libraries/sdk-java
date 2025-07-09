@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Consumer {
 
+public class Consumer {
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
@@ -39,29 +38,36 @@ public class Consumer {
     @JsonProperty("metadata")
     private Optional<? extends ConsumerMetadata> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connections")
     private Optional<? extends List<ConsumerConnection>> connections;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("services")
     private Optional<? extends List<String>> services;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregated_request_count")
     private Optional<Double> aggregatedRequestCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_counts")
     private Optional<? extends RequestCountAllocation> requestCounts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created")
     private Optional<String> created;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("modified")
     private Optional<String> modified;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_count_updated")
@@ -103,7 +109,10 @@ public class Consumer {
     
     public Consumer(
             String consumerId) {
-        this(consumerId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(consumerId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -169,9 +178,10 @@ public class Consumer {
         return requestCountUpdated;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -191,6 +201,7 @@ public class Consumer {
         return this;
     }
 
+
     /**
      * ID of your Apideck Application
      */
@@ -209,6 +220,7 @@ public class Consumer {
         return this;
     }
 
+
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -224,6 +236,7 @@ public class Consumer {
         return this;
     }
 
+
     public Consumer withConnections(Optional<? extends List<ConsumerConnection>> connections) {
         Utils.checkNotNull(connections, "connections");
         this.connections = connections;
@@ -235,6 +248,7 @@ public class Consumer {
         this.services = Optional.ofNullable(services);
         return this;
     }
+
 
     public Consumer withServices(Optional<? extends List<String>> services) {
         Utils.checkNotNull(services, "services");
@@ -248,6 +262,7 @@ public class Consumer {
         return this;
     }
 
+
     public Consumer withAggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
         Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
         this.aggregatedRequestCount = aggregatedRequestCount;
@@ -259,6 +274,7 @@ public class Consumer {
         this.requestCounts = Optional.ofNullable(requestCounts);
         return this;
     }
+
 
     public Consumer withRequestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
         Utils.checkNotNull(requestCounts, "requestCounts");
@@ -272,6 +288,7 @@ public class Consumer {
         return this;
     }
 
+
     public Consumer withCreated(Optional<String> created) {
         Utils.checkNotNull(created, "created");
         this.created = created;
@@ -283,6 +300,7 @@ public class Consumer {
         this.modified = Optional.ofNullable(modified);
         return this;
     }
+
 
     public Consumer withModified(Optional<String> modified) {
         Utils.checkNotNull(modified, "modified");
@@ -296,13 +314,13 @@ public class Consumer {
         return this;
     }
 
+
     public Consumer withRequestCountUpdated(Optional<String> requestCountUpdated) {
         Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
         this.requestCountUpdated = requestCountUpdated;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -313,30 +331,24 @@ public class Consumer {
         }
         Consumer other = (Consumer) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.connections, other.connections) &&
-            Objects.deepEquals(this.services, other.services) &&
-            Objects.deepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
-            Objects.deepEquals(this.requestCounts, other.requestCounts) &&
-            Objects.deepEquals(this.created, other.created) &&
-            Objects.deepEquals(this.modified, other.modified) &&
-            Objects.deepEquals(this.requestCountUpdated, other.requestCountUpdated);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.connections, other.connections) &&
+            Utils.enhancedDeepEquals(this.services, other.services) &&
+            Utils.enhancedDeepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
+            Utils.enhancedDeepEquals(this.requestCounts, other.requestCounts) &&
+            Utils.enhancedDeepEquals(this.created, other.created) &&
+            Utils.enhancedDeepEquals(this.modified, other.modified) &&
+            Utils.enhancedDeepEquals(this.requestCountUpdated, other.requestCountUpdated);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            applicationId,
-            metadata,
-            connections,
-            services,
-            aggregatedRequestCount,
-            requestCounts,
-            created,
-            modified,
+        return Utils.enhancedHash(
+            consumerId, applicationId, metadata,
+            connections, services, aggregatedRequestCount,
+            requestCounts, created, modified,
             requestCountUpdated);
     }
     
@@ -354,32 +366,34 @@ public class Consumer {
                 "modified", modified,
                 "requestCountUpdated", requestCountUpdated);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String consumerId;
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
- 
+
         private Optional<? extends List<ConsumerConnection>> connections = Optional.empty();
- 
+
         private Optional<? extends List<String>> services = Optional.empty();
- 
+
         private Optional<Double> aggregatedRequestCount = Optional.empty();
- 
+
         private Optional<? extends RequestCountAllocation> requestCounts = Optional.empty();
- 
+
         private Optional<String> created = Optional.empty();
- 
+
         private Optional<String> modified = Optional.empty();
- 
+
         private Optional<String> requestCountUpdated = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -389,6 +403,7 @@ public class Consumer {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * ID of your Apideck Application
@@ -408,6 +423,7 @@ public class Consumer {
             return this;
         }
 
+
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
          */
@@ -426,6 +442,7 @@ public class Consumer {
             return this;
         }
 
+
         public Builder connections(List<ConsumerConnection> connections) {
             Utils.checkNotNull(connections, "connections");
             this.connections = Optional.ofNullable(connections);
@@ -437,6 +454,7 @@ public class Consumer {
             this.connections = connections;
             return this;
         }
+
 
         public Builder services(List<String> services) {
             Utils.checkNotNull(services, "services");
@@ -450,6 +468,7 @@ public class Consumer {
             return this;
         }
 
+
         public Builder aggregatedRequestCount(double aggregatedRequestCount) {
             Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
             this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
@@ -461,6 +480,7 @@ public class Consumer {
             this.aggregatedRequestCount = aggregatedRequestCount;
             return this;
         }
+
 
         public Builder requestCounts(RequestCountAllocation requestCounts) {
             Utils.checkNotNull(requestCounts, "requestCounts");
@@ -474,6 +494,7 @@ public class Consumer {
             return this;
         }
 
+
         public Builder created(String created) {
             Utils.checkNotNull(created, "created");
             this.created = Optional.ofNullable(created);
@@ -485,6 +506,7 @@ public class Consumer {
             this.created = created;
             return this;
         }
+
 
         public Builder modified(String modified) {
             Utils.checkNotNull(modified, "modified");
@@ -498,6 +520,7 @@ public class Consumer {
             return this;
         }
 
+
         public Builder requestCountUpdated(String requestCountUpdated) {
             Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
             this.requestCountUpdated = Optional.ofNullable(requestCountUpdated);
@@ -509,19 +532,15 @@ public class Consumer {
             this.requestCountUpdated = requestCountUpdated;
             return this;
         }
-        
+
         public Consumer build() {
+
             return new Consumer(
-                consumerId,
-                applicationId,
-                metadata,
-                connections,
-                services,
-                aggregatedRequestCount,
-                requestCounts,
-                created,
-                modified,
+                consumerId, applicationId, metadata,
+                connections, services, aggregatedRequestCount,
+                requestCounts, created, modified,
                 requestCountUpdated);
         }
+
     }
 }

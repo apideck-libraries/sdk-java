@@ -37,7 +37,6 @@ public class Pipelines {
     Pipelines(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List pipelines
      * 
@@ -77,11 +76,10 @@ public class Pipelines {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
               = new CrmPipelinesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create pipeline
@@ -122,11 +120,10 @@ public class Pipelines {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
               = new CrmPipelinesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get pipeline
@@ -167,11 +164,10 @@ public class Pipelines {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
               = new CrmPipelinesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update pipeline
@@ -212,11 +208,10 @@ public class Pipelines {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
               = new CrmPipelinesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete pipeline
@@ -257,8 +252,8 @@ public class Pipelines {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
               = new CrmPipelinesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -87,8 +87,8 @@ public class VaultConsumerRequestCountsAllRequestBuilder {
 
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
               = new VaultConsumerRequestCountsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         VaultConsumerRequestCountsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

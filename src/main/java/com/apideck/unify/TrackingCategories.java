@@ -37,7 +37,6 @@ public class TrackingCategories {
     TrackingCategories(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Tracking Categories
      * 
@@ -77,11 +76,10 @@ public class TrackingCategories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
               = new AccountingTrackingCategoriesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Tracking Category
@@ -122,11 +120,10 @@ public class TrackingCategories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
               = new AccountingTrackingCategoriesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Tracking Category
@@ -167,11 +164,10 @@ public class TrackingCategories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
               = new AccountingTrackingCategoriesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Tracking Category
@@ -212,11 +208,10 @@ public class TrackingCategories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
               = new AccountingTrackingCategoriesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Tracking Category
@@ -257,8 +252,8 @@ public class TrackingCategories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

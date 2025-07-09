@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -20,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Cursors to navigate to previous or next pages through the API
  */
 public class Cursors {
-
     /**
      * Cursor to navigate to the previous page of results through the API
      */
@@ -83,9 +81,10 @@ public class Cursors {
         return next;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Cursor to navigate to the previous page of results through the API
@@ -141,7 +140,6 @@ public class Cursors {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,17 +150,15 @@ public class Cursors {
         }
         Cursors other = (Cursors) o;
         return 
-            Objects.deepEquals(this.previous, other.previous) &&
-            Objects.deepEquals(this.current, other.current) &&
-            Objects.deepEquals(this.next, other.next);
+            Utils.enhancedDeepEquals(this.previous, other.previous) &&
+            Utils.enhancedDeepEquals(this.current, other.current) &&
+            Utils.enhancedDeepEquals(this.next, other.next);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            previous,
-            current,
-            next);
+        return Utils.enhancedHash(
+            previous, current, next);
     }
     
     @Override
@@ -172,18 +168,20 @@ public class Cursors {
                 "current", current,
                 "next", next);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> previous = JsonNullable.undefined();
- 
+
         private JsonNullable<String> current = JsonNullable.undefined();
- 
+
         private JsonNullable<String> next = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Cursor to navigate to the previous page of results through the API
@@ -203,6 +201,7 @@ public class Cursors {
             return this;
         }
 
+
         /**
          * Cursor to navigate to the current page of results through the API
          */
@@ -221,6 +220,7 @@ public class Cursors {
             return this;
         }
 
+
         /**
          * Cursor to navigate to the next page of results through the API
          */
@@ -238,12 +238,12 @@ public class Cursors {
             this.next = next;
             return this;
         }
-        
+
         public Cursors build() {
+
             return new Cursors(
-                previous,
-                current,
-                next);
+                previous, current, next);
         }
+
     }
 }

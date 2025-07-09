@@ -54,7 +54,8 @@ public class AccountingAttachmentsOneOperation implements RequestOperation<Accou
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingAttachmentsOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 AccountingAttachmentsOneRequest.class,

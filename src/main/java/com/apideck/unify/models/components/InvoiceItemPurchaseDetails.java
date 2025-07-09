@@ -14,9 +14,9 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class InvoiceItemPurchaseDetails {
 
@@ -37,6 +37,7 @@ public class InvoiceItemPurchaseDetails {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_inclusive")
     private JsonNullable<Boolean> taxInclusive;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
@@ -59,7 +60,8 @@ public class InvoiceItemPurchaseDetails {
     }
     
     public InvoiceItemPurchaseDetails() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -89,9 +91,10 @@ public class InvoiceItemPurchaseDetails {
         return (Optional<LinkedTaxRateInput>) taxRate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InvoiceItemPurchaseDetails withUnitPrice(double unitPrice) {
         Utils.checkNotNull(unitPrice, "unitPrice");
@@ -147,13 +150,13 @@ public class InvoiceItemPurchaseDetails {
         return this;
     }
 
+
     public InvoiceItemPurchaseDetails withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -164,18 +167,16 @@ public class InvoiceItemPurchaseDetails {
         }
         InvoiceItemPurchaseDetails other = (InvoiceItemPurchaseDetails) o;
         return 
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.taxRate, other.taxRate);
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            unitPrice,
-            unitOfMeasure,
-            taxInclusive,
+        return Utils.enhancedHash(
+            unitPrice, unitOfMeasure, taxInclusive,
             taxRate);
     }
     
@@ -187,20 +188,22 @@ public class InvoiceItemPurchaseDetails {
                 "taxInclusive", taxInclusive,
                 "taxRate", taxRate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
- 
+
         private JsonNullable<String> unitOfMeasure = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder unitPrice(double unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
@@ -213,6 +216,7 @@ public class InvoiceItemPurchaseDetails {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * Description of the unit type the item is sold as, ie: kg, hour.
@@ -232,6 +236,7 @@ public class InvoiceItemPurchaseDetails {
             return this;
         }
 
+
         /**
          * Amounts are including tax
          */
@@ -250,6 +255,7 @@ public class InvoiceItemPurchaseDetails {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -261,13 +267,13 @@ public class InvoiceItemPurchaseDetails {
             this.taxRate = taxRate;
             return this;
         }
-        
+
         public InvoiceItemPurchaseDetails build() {
+
             return new InvoiceItemPurchaseDetails(
-                unitPrice,
-                unitOfMeasure,
-                taxInclusive,
+                unitPrice, unitOfMeasure, taxInclusive,
                 taxRate);
         }
+
     }
 }

@@ -57,7 +57,8 @@ public class CrmCompaniesUpdateOperation implements RequestOperation<CrmCompanie
     
     @Override
     public HttpResponse<InputStream> doRequest(CrmCompaniesUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CrmCompaniesUpdateRequest.class,
@@ -72,7 +73,7 @@ public class CrmCompaniesUpdateOperation implements RequestOperation<CrmCompanie
                 new TypeReference<CrmCompaniesUpdateRequest>() {});
         SerializedBody serializedRequestBody = Utils.serializeRequestBody(
                 convertedRequest, 
-                "company",
+                "company1",
                 "json",
                 false);
         if (serializedRequestBody == null) {

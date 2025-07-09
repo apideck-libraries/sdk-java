@@ -12,11 +12,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class IssuesFilter {
 
+public class IssuesFilter {
     /**
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
      */
@@ -77,9 +76,10 @@ public class IssuesFilter {
         return assigneeId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
@@ -89,6 +89,7 @@ public class IssuesFilter {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
@@ -108,6 +109,7 @@ public class IssuesFilter {
         return this;
     }
 
+
     /**
      * Only return tickets since a specific date
      */
@@ -126,6 +128,7 @@ public class IssuesFilter {
         return this;
     }
 
+
     /**
      * Only return tickets assigned to a specific user
      */
@@ -135,7 +138,6 @@ public class IssuesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,17 +148,15 @@ public class IssuesFilter {
         }
         IssuesFilter other = (IssuesFilter) o;
         return 
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.since, other.since) &&
-            Objects.deepEquals(this.assigneeId, other.assigneeId);
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.since, other.since) &&
+            Utils.enhancedDeepEquals(this.assigneeId, other.assigneeId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            status,
-            since,
-            assigneeId);
+        return Utils.enhancedHash(
+            status, since, assigneeId);
     }
     
     @Override
@@ -166,18 +166,20 @@ public class IssuesFilter {
                 "since", since,
                 "assigneeId", assigneeId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> status = Optional.empty();
- 
+
         private Optional<OffsetDateTime> since = Optional.empty();
- 
+
         private Optional<String> assigneeId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
@@ -197,6 +199,7 @@ public class IssuesFilter {
             return this;
         }
 
+
         /**
          * Only return tickets since a specific date
          */
@@ -215,6 +218,7 @@ public class IssuesFilter {
             return this;
         }
 
+
         /**
          * Only return tickets assigned to a specific user
          */
@@ -232,12 +236,12 @@ public class IssuesFilter {
             this.assigneeId = assigneeId;
             return this;
         }
-        
+
         public IssuesFilter build() {
+
             return new IssuesFilter(
-                status,
-                since,
-                assigneeId);
+                status, since, assigneeId);
         }
+
     }
 }

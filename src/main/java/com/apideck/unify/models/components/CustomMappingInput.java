@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CustomMappingInput {
 
+public class CustomMappingInput {
     /**
      * Target Field Mapping value
      */
@@ -42,9 +41,10 @@ public class CustomMappingInput {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Target Field Mapping value
@@ -55,6 +55,7 @@ public class CustomMappingInput {
         return this;
     }
 
+
     /**
      * Target Field Mapping value
      */
@@ -64,7 +65,6 @@ public class CustomMappingInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class CustomMappingInput {
         }
         CustomMappingInput other = (CustomMappingInput) o;
         return 
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             value);
     }
     
@@ -89,14 +89,16 @@ public class CustomMappingInput {
         return Utils.toString(CustomMappingInput.class,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Target Field Mapping value
@@ -115,10 +117,12 @@ public class CustomMappingInput {
             this.value = value;
             return this;
         }
-        
+
         public CustomMappingInput build() {
+
             return new CustomMappingInput(
                 value);
         }
+
     }
 }

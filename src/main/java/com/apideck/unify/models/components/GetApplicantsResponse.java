@@ -16,7 +16,6 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Applicants
  */
 public class GetApplicantsResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -56,6 +54,7 @@ public class GetApplicantsResponse {
      */
     @JsonProperty("operation")
     private String operation;
+
 
     @JsonProperty("data")
     private List<Applicant> data;
@@ -119,7 +118,9 @@ public class GetApplicantsResponse {
             String resource,
             String operation,
             List<Applicant> data) {
-        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(statusCode, status, service,
+            resource, operation, data,
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -194,9 +195,10 @@ public class GetApplicantsResponse {
         return (Optional<Links>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -276,6 +278,7 @@ public class GetApplicantsResponse {
         return this;
     }
 
+
     /**
      * Response metadata
      */
@@ -294,6 +297,7 @@ public class GetApplicantsResponse {
         return this;
     }
 
+
     /**
      * Links to navigate to previous or next pages through the API
      */
@@ -303,7 +307,6 @@ public class GetApplicantsResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -314,29 +317,23 @@ public class GetApplicantsResponse {
         }
         GetApplicantsResponse other = (GetApplicantsResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
-            raw,
-            meta,
-            links);
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
+            raw, meta, links);
     }
     
     @Override
@@ -352,30 +349,32 @@ public class GetApplicantsResponse {
                 "meta", meta,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
+
         private List<Applicant> data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
- 
+
         private Optional<? extends Meta> meta = Optional.empty();
- 
+
         private Optional<? extends Links> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -386,6 +385,7 @@ public class GetApplicantsResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -394,6 +394,7 @@ public class GetApplicantsResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -404,6 +405,7 @@ public class GetApplicantsResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -412,6 +414,7 @@ public class GetApplicantsResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -422,11 +425,13 @@ public class GetApplicantsResponse {
             return this;
         }
 
+
         public Builder data(List<Applicant> data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -446,6 +451,7 @@ public class GetApplicantsResponse {
             return this;
         }
 
+
         /**
          * Response metadata
          */
@@ -464,6 +470,7 @@ public class GetApplicantsResponse {
             return this;
         }
 
+
         /**
          * Links to navigate to previous or next pages through the API
          */
@@ -481,18 +488,14 @@ public class GetApplicantsResponse {
             this.links = links;
             return this;
         }
-        
+
         public GetApplicantsResponse build() {
+
             return new GetApplicantsResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
-                raw,
-                meta,
-                links);
+                statusCode, status, service,
+                resource, operation, data,
+                raw, meta, links);
         }
+
     }
 }

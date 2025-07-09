@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConsumersDeleteRequest {
 
+public class VaultConsumersDeleteRequest {
     /**
      * The ID of your Unify application
      */
@@ -57,9 +56,10 @@ public class VaultConsumersDeleteRequest {
         return consumerId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -69,6 +69,7 @@ public class VaultConsumersDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -88,7 +89,6 @@ public class VaultConsumersDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class VaultConsumersDeleteRequest {
         }
         VaultConsumersDeleteRequest other = (VaultConsumersDeleteRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            consumerId);
+        return Utils.enhancedHash(
+            appId, consumerId);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class VaultConsumersDeleteRequest {
                 "appId", appId,
                 "consumerId", consumerId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String consumerId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -145,6 +146,7 @@ public class VaultConsumersDeleteRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer to return
          */
@@ -153,11 +155,12 @@ public class VaultConsumersDeleteRequest {
             this.consumerId = consumerId;
             return this;
         }
-        
+
         public VaultConsumersDeleteRequest build() {
+
             return new VaultConsumersDeleteRequest(
-                appId,
-                consumerId);
+                appId, consumerId);
         }
+
     }
 }

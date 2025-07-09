@@ -11,16 +11,16 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Assignee {
 
+public class Assignee {
     /**
      * A unique identifier for an object.
      */
     @JsonProperty("id")
     private String id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("username")
@@ -54,9 +54,10 @@ public class Assignee {
         return username;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -79,7 +80,6 @@ public class Assignee {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +90,14 @@ public class Assignee {
         }
         Assignee other = (Assignee) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.username, other.username);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.username, other.username);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            username);
+        return Utils.enhancedHash(
+            id, username);
     }
     
     @Override
@@ -107,16 +106,18 @@ public class Assignee {
                 "id", id,
                 "username", username);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> username = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -126,6 +127,7 @@ public class Assignee {
             this.id = id;
             return this;
         }
+
 
         public Builder username(String username) {
             Utils.checkNotNull(username, "username");
@@ -138,11 +140,12 @@ public class Assignee {
             this.username = username;
             return this;
         }
-        
+
         public Assignee build() {
+
             return new Assignee(
-                id,
-                username);
+                id, username);
         }
+
     }
 }

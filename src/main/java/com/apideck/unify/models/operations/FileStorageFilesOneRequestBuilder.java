@@ -48,8 +48,8 @@ public class FileStorageFilesOneRequestBuilder {
 
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
               = new FileStorageFilesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

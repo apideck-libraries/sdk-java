@@ -37,7 +37,6 @@ public class ApideckDepartments {
     ApideckDepartments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Departments
      * 
@@ -77,11 +76,10 @@ public class ApideckDepartments {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
               = new HrisDepartmentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Department
@@ -122,11 +120,10 @@ public class ApideckDepartments {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
               = new HrisDepartmentsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Department
@@ -167,11 +164,10 @@ public class ApideckDepartments {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
               = new HrisDepartmentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Department
@@ -212,11 +208,10 @@ public class ApideckDepartments {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
               = new HrisDepartmentsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Department
@@ -257,8 +252,8 @@ public class ApideckDepartments {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation
               = new HrisDepartmentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

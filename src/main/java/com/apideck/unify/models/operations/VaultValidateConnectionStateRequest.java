@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultValidateConnectionStateRequest {
 
+public class VaultValidateConnectionStateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -38,6 +37,7 @@ public class VaultValidateConnectionStateRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=unified_api")
     private String unifiedApi;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private Optional<? extends VaultValidateConnectionStateRequestBody> requestBody;
@@ -64,7 +64,8 @@ public class VaultValidateConnectionStateRequest {
     public VaultValidateConnectionStateRequest(
             String serviceId,
             String unifiedApi) {
-        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi, Optional.empty());
+        this(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi, Optional.empty());
     }
 
     /**
@@ -105,9 +106,10 @@ public class VaultValidateConnectionStateRequest {
         return (Optional<VaultValidateConnectionStateRequestBody>) requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -117,6 +119,7 @@ public class VaultValidateConnectionStateRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -135,6 +138,7 @@ public class VaultValidateConnectionStateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -169,13 +173,13 @@ public class VaultValidateConnectionStateRequest {
         return this;
     }
 
+
     public VaultValidateConnectionStateRequest withRequestBody(Optional<? extends VaultValidateConnectionStateRequestBody> requestBody) {
         Utils.checkNotNull(requestBody, "requestBody");
         this.requestBody = requestBody;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,21 +190,18 @@ public class VaultValidateConnectionStateRequest {
         }
         VaultValidateConnectionStateRequest other = (VaultValidateConnectionStateRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
-            unifiedApi,
-            requestBody);
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
+            unifiedApi, requestBody);
     }
     
     @Override
@@ -212,22 +213,24 @@ public class VaultValidateConnectionStateRequest {
                 "unifiedApi", unifiedApi,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String serviceId;
- 
+
         private String unifiedApi;
- 
+
         private Optional<? extends VaultValidateConnectionStateRequestBody> requestBody = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -247,6 +250,7 @@ public class VaultValidateConnectionStateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -265,6 +269,7 @@ public class VaultValidateConnectionStateRequest {
             return this;
         }
 
+
         /**
          * Service ID of the resource to return
          */
@@ -274,6 +279,7 @@ public class VaultValidateConnectionStateRequest {
             return this;
         }
 
+
         /**
          * Unified API
          */
@@ -282,6 +288,7 @@ public class VaultValidateConnectionStateRequest {
             this.unifiedApi = unifiedApi;
             return this;
         }
+
 
         public Builder requestBody(VaultValidateConnectionStateRequestBody requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
@@ -294,14 +301,13 @@ public class VaultValidateConnectionStateRequest {
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public VaultValidateConnectionStateRequest build() {
+
             return new VaultValidateConnectionStateRequest(
-                consumerId,
-                appId,
-                serviceId,
-                unifiedApi,
-                requestBody);
+                consumerId, appId, serviceId,
+                unifiedApi, requestBody);
         }
+
     }
 }

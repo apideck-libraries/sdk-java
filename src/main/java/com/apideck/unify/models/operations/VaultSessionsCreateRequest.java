@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultSessionsCreateRequest {
 
+public class VaultSessionsCreateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -76,9 +75,10 @@ public class VaultSessionsCreateRequest {
         return (Optional<Session>) session;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -88,6 +88,7 @@ public class VaultSessionsCreateRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -107,6 +108,7 @@ public class VaultSessionsCreateRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -125,6 +127,7 @@ public class VaultSessionsCreateRequest {
         return this;
     }
 
+
     /**
      * Additional redirect uri and/or consumer metadata
      */
@@ -134,7 +137,6 @@ public class VaultSessionsCreateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -145,17 +147,15 @@ public class VaultSessionsCreateRequest {
         }
         VaultSessionsCreateRequest other = (VaultSessionsCreateRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.session, other.session);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.session, other.session);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            session);
+        return Utils.enhancedHash(
+            consumerId, appId, session);
     }
     
     @Override
@@ -165,18 +165,20 @@ public class VaultSessionsCreateRequest {
                 "appId", appId,
                 "session", session);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<? extends Session> session = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -196,6 +198,7 @@ public class VaultSessionsCreateRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -214,6 +217,7 @@ public class VaultSessionsCreateRequest {
             return this;
         }
 
+
         /**
          * Additional redirect uri and/or consumer metadata
          */
@@ -231,12 +235,12 @@ public class VaultSessionsCreateRequest {
             this.session = session;
             return this;
         }
-        
+
         public VaultSessionsCreateRequest build() {
+
             return new VaultSessionsCreateRequest(
-                consumerId,
-                appId,
-                session);
+                consumerId, appId, session);
         }
+
     }
 }

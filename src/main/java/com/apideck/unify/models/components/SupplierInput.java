@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SupplierInput {
 
+public class SupplierInput {
     /**
      * Display ID
      */
@@ -83,6 +82,7 @@ public class SupplierInput {
     @JsonProperty("last_name")
     private JsonNullable<String> lastName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("suffix")
     private JsonNullable<String> suffix;
@@ -94,21 +94,26 @@ public class SupplierInput {
     @JsonProperty("individual")
     private JsonNullable<Boolean> individual;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
@@ -121,9 +126,11 @@ public class SupplierInput {
     @JsonProperty("notes")
     private JsonNullable<String> notes;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRateInput> taxRate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_number")
@@ -135,6 +142,7 @@ public class SupplierInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
@@ -155,11 +163,19 @@ public class SupplierInput {
     private JsonNullable<String> paymentMethod;
 
     /**
+     * Terms of payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms")
+    private JsonNullable<String> terms;
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("channel")
     private JsonNullable<String> channel;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -211,6 +227,7 @@ public class SupplierInput {
             @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccountInput> account,
             @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -239,6 +256,7 @@ public class SupplierInput {
         Utils.checkNotNull(account, "account");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -267,6 +285,7 @@ public class SupplierInput {
         this.account = account;
         this.status = status;
         this.paymentMethod = paymentMethod;
+        this.terms = terms;
         this.channel = channel;
         this.customFields = customFields;
         this.rowVersion = rowVersion;
@@ -275,7 +294,16 @@ public class SupplierInput {
     }
     
     public SupplierInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -445,6 +473,14 @@ public class SupplierInput {
     }
 
     /**
+     * Terms of payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> terms() {
+        return terms;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     @JsonIgnore
@@ -483,9 +519,10 @@ public class SupplierInput {
         return subsidiaryId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Display ID
@@ -685,6 +722,7 @@ public class SupplierInput {
         return this;
     }
 
+
     public SupplierInput withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -696,6 +734,7 @@ public class SupplierInput {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public SupplierInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -709,6 +748,7 @@ public class SupplierInput {
         return this;
     }
 
+
     public SupplierInput withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -721,6 +761,7 @@ public class SupplierInput {
         return this;
     }
 
+
     public SupplierInput withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
         this.websites = websites;
@@ -732,6 +773,7 @@ public class SupplierInput {
         this.bankAccounts = Optional.ofNullable(bankAccounts);
         return this;
     }
+
 
     public SupplierInput withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
@@ -762,6 +804,7 @@ public class SupplierInput {
         this.taxRate = Optional.ofNullable(taxRate);
         return this;
     }
+
 
     public SupplierInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
@@ -848,6 +891,24 @@ public class SupplierInput {
     }
 
     /**
+     * Terms of payment.
+     */
+    public SupplierInput withTerms(String terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = JsonNullable.of(terms);
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public SupplierInput withTerms(JsonNullable<String> terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = terms;
+        return this;
+    }
+
+    /**
      * The channel through which the transaction is processed.
      */
     public SupplierInput withChannel(String channel) {
@@ -870,6 +931,7 @@ public class SupplierInput {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public SupplierInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -904,6 +966,7 @@ public class SupplierInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -922,6 +985,7 @@ public class SupplierInput {
         return this;
     }
 
+
     /**
      * The subsidiary the supplier belongs to.
      */
@@ -931,7 +995,6 @@ public class SupplierInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -942,67 +1005,50 @@ public class SupplierInput {
         }
         SupplierInput other = (SupplierInput) o;
         return 
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.supplierCategory, other.supplierCategory) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.individual, other.individual) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.bankAccounts, other.bankAccounts) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.taxNumber, other.taxNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId);
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.supplierCategory, other.supplierCategory) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.individual, other.individual) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.bankAccounts, other.bankAccounts) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.taxNumber, other.taxNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            displayId,
-            displayName,
-            companyName,
-            companyId,
-            supplierCategory,
-            title,
-            firstName,
-            middleName,
-            lastName,
-            suffix,
-            individual,
-            addresses,
-            phoneNumbers,
-            emails,
-            websites,
-            bankAccounts,
-            notes,
-            taxRate,
-            taxNumber,
-            currency,
-            account,
-            status,
-            paymentMethod,
-            channel,
-            customFields,
-            rowVersion,
-            passThrough,
-            subsidiaryId);
+        return Utils.enhancedHash(
+            displayId, displayName, companyName,
+            companyId, supplierCategory, title,
+            firstName, middleName, lastName,
+            suffix, individual, addresses,
+            phoneNumbers, emails, websites,
+            bankAccounts, notes, taxRate,
+            taxNumber, currency, account,
+            status, paymentMethod, terms,
+            channel, customFields, rowVersion,
+            passThrough, subsidiaryId);
     }
     
     @Override
@@ -1031,74 +1077,79 @@ public class SupplierInput {
                 "account", account,
                 "status", status,
                 "paymentMethod", paymentMethod,
+                "terms", terms,
                 "channel", channel,
                 "customFields", customFields,
                 "rowVersion", rowVersion,
                 "passThrough", passThrough,
                 "subsidiaryId", subsidiaryId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> supplierCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> individual = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
- 
+
         private JsonNullable<String> notes = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         private JsonNullable<String> taxNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends SupplierStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
+        private JsonNullable<String> terms = JsonNullable.undefined();
+
         private JsonNullable<String> channel = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private Optional<String> subsidiaryId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Display ID
@@ -1118,6 +1169,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * Display name
          */
@@ -1135,6 +1187,7 @@ public class SupplierInput {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The name of the company.
@@ -1154,6 +1207,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * The company or subsidiary id the transaction belongs to
          */
@@ -1171,6 +1225,7 @@ public class SupplierInput {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * The category/type of the supplier
@@ -1190,6 +1245,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * The job title of the person.
          */
@@ -1207,6 +1263,7 @@ public class SupplierInput {
             this.title = title;
             return this;
         }
+
 
         /**
          * The first name of the person.
@@ -1226,6 +1283,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * Middle name of the person.
          */
@@ -1243,6 +1301,7 @@ public class SupplierInput {
             this.middleName = middleName;
             return this;
         }
+
 
         /**
          * The last name of the person.
@@ -1262,6 +1321,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder suffix(String suffix) {
             Utils.checkNotNull(suffix, "suffix");
             this.suffix = JsonNullable.of(suffix);
@@ -1273,6 +1333,7 @@ public class SupplierInput {
             this.suffix = suffix;
             return this;
         }
+
 
         /**
          * Is this an individual or business supplier
@@ -1292,6 +1353,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -1303,6 +1365,7 @@ public class SupplierInput {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1316,6 +1379,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -1327,6 +1391,7 @@ public class SupplierInput {
             this.emails = emails;
             return this;
         }
+
 
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
@@ -1340,6 +1405,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder bankAccounts(List<BankAccount> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
             this.bankAccounts = Optional.ofNullable(bankAccounts);
@@ -1351,6 +1417,7 @@ public class SupplierInput {
             this.bankAccounts = bankAccounts;
             return this;
         }
+
 
         /**
          * Some notes about this supplier
@@ -1370,6 +1437,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1382,6 +1450,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder taxNumber(String taxNumber) {
             Utils.checkNotNull(taxNumber, "taxNumber");
             this.taxNumber = JsonNullable.of(taxNumber);
@@ -1393,6 +1462,7 @@ public class SupplierInput {
             this.taxNumber = taxNumber;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1412,6 +1482,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder account(LinkedLedgerAccountInput account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -1423,6 +1494,7 @@ public class SupplierInput {
             this.account = account;
             return this;
         }
+
 
         /**
          * Supplier status
@@ -1442,6 +1514,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
@@ -1459,6 +1532,26 @@ public class SupplierInput {
             this.paymentMethod = paymentMethod;
             return this;
         }
+
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(String terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = JsonNullable.of(terms);
+            return this;
+        }
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(JsonNullable<String> terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = terms;
+            return this;
+        }
+
 
         /**
          * The channel through which the transaction is processed.
@@ -1478,6 +1571,7 @@ public class SupplierInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1489,6 +1583,7 @@ public class SupplierInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1508,6 +1603,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1526,6 +1622,7 @@ public class SupplierInput {
             return this;
         }
 
+
         /**
          * The subsidiary the supplier belongs to.
          */
@@ -1543,37 +1640,21 @@ public class SupplierInput {
             this.subsidiaryId = subsidiaryId;
             return this;
         }
-        
+
         public SupplierInput build() {
+
             return new SupplierInput(
-                displayId,
-                displayName,
-                companyName,
-                companyId,
-                supplierCategory,
-                title,
-                firstName,
-                middleName,
-                lastName,
-                suffix,
-                individual,
-                addresses,
-                phoneNumbers,
-                emails,
-                websites,
-                bankAccounts,
-                notes,
-                taxRate,
-                taxNumber,
-                currency,
-                account,
-                status,
-                paymentMethod,
-                channel,
-                customFields,
-                rowVersion,
-                passThrough,
-                subsidiaryId);
+                displayId, displayName, companyName,
+                companyId, supplierCategory, title,
+                firstName, middleName, lastName,
+                suffix, individual, addresses,
+                phoneNumbers, emails, websites,
+                bankAccounts, notes, taxRate,
+                taxNumber, currency, account,
+                status, paymentMethod, terms,
+                channel, customFields, rowVersion,
+                passThrough, subsidiaryId);
         }
+
     }
 }

@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class OpportunitiesFilter {
 
+public class OpportunitiesFilter {
     /**
      * Title of the opportunity to filter on
      */
@@ -83,7 +82,9 @@ public class OpportunitiesFilter {
     }
     
     public OpportunitiesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -142,9 +143,10 @@ public class OpportunitiesFilter {
         return primaryContactId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Title of the opportunity to filter on
@@ -154,6 +156,7 @@ public class OpportunitiesFilter {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * Title of the opportunity to filter on
@@ -173,6 +176,7 @@ public class OpportunitiesFilter {
         return this;
     }
 
+
     /**
      * Status to filter on
      */
@@ -190,6 +194,7 @@ public class OpportunitiesFilter {
         this.monetaryAmount = Optional.ofNullable(monetaryAmount);
         return this;
     }
+
 
     /**
      * Monetary amount to filter on
@@ -209,6 +214,7 @@ public class OpportunitiesFilter {
         return this;
     }
 
+
     /**
      * Win probability to filter on
      */
@@ -226,6 +232,7 @@ public class OpportunitiesFilter {
         this.companyId = Optional.ofNullable(companyId);
         return this;
     }
+
 
     /**
      * Company ID to filter on
@@ -245,6 +252,7 @@ public class OpportunitiesFilter {
         return this;
     }
 
+
     /**
      * Owner ID to filter on
      */
@@ -263,6 +271,7 @@ public class OpportunitiesFilter {
         return this;
     }
 
+
     /**
      * Primary contact ID to filter on
      */
@@ -272,7 +281,6 @@ public class OpportunitiesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -283,24 +291,20 @@ public class OpportunitiesFilter {
         }
         OpportunitiesFilter other = (OpportunitiesFilter) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.monetaryAmount, other.monetaryAmount) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.primaryContactId, other.primaryContactId);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.primaryContactId, other.primaryContactId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            title,
-            status,
-            monetaryAmount,
-            winProbability,
-            companyId,
-            ownerId,
+        return Utils.enhancedHash(
+            title, status, monetaryAmount,
+            winProbability, companyId, ownerId,
             primaryContactId);
     }
     
@@ -315,26 +319,28 @@ public class OpportunitiesFilter {
                 "ownerId", ownerId,
                 "primaryContactId", primaryContactId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> status = Optional.empty();
- 
+
         private Optional<Double> monetaryAmount = Optional.empty();
- 
+
         private Optional<Double> winProbability = Optional.empty();
- 
+
         private Optional<String> companyId = Optional.empty();
- 
+
         private Optional<String> ownerId = Optional.empty();
- 
+
         private Optional<String> primaryContactId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Title of the opportunity to filter on
@@ -354,6 +360,7 @@ public class OpportunitiesFilter {
             return this;
         }
 
+
         /**
          * Status to filter on
          */
@@ -371,6 +378,7 @@ public class OpportunitiesFilter {
             this.status = status;
             return this;
         }
+
 
         /**
          * Monetary amount to filter on
@@ -390,6 +398,7 @@ public class OpportunitiesFilter {
             return this;
         }
 
+
         /**
          * Win probability to filter on
          */
@@ -407,6 +416,7 @@ public class OpportunitiesFilter {
             this.winProbability = winProbability;
             return this;
         }
+
 
         /**
          * Company ID to filter on
@@ -426,6 +436,7 @@ public class OpportunitiesFilter {
             return this;
         }
 
+
         /**
          * Owner ID to filter on
          */
@@ -444,6 +455,7 @@ public class OpportunitiesFilter {
             return this;
         }
 
+
         /**
          * Primary contact ID to filter on
          */
@@ -461,16 +473,14 @@ public class OpportunitiesFilter {
             this.primaryContactId = primaryContactId;
             return this;
         }
-        
+
         public OpportunitiesFilter build() {
+
             return new OpportunitiesFilter(
-                title,
-                status,
-                monetaryAmount,
-                winProbability,
-                companyId,
-                ownerId,
+                title, status, monetaryAmount,
+                winProbability, companyId, ownerId,
                 primaryContactId);
         }
+
     }
 }

@@ -18,12 +18,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Folder {
 
+public class Folder {
     /**
      * A unique identifier for an object.
      */
@@ -57,6 +56,7 @@ public class Folder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size")
     private JsonNullable<Long> size;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
@@ -156,7 +156,11 @@ public class Folder {
     public Folder(
             String name,
             List<LinkedFolder> parentFolders) {
-        this(Optional.empty(), name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), parentFolders, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), name, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            parentFolders, Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -262,9 +266,10 @@ public class Folder {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -274,6 +279,7 @@ public class Folder {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -353,6 +359,7 @@ public class Folder {
         return this;
     }
 
+
     public Folder withOwner(Optional<? extends Owner> owner) {
         Utils.checkNotNull(owner, "owner");
         this.owner = owner;
@@ -376,6 +383,7 @@ public class Folder {
         this.parentFoldersComplete = Optional.ofNullable(parentFoldersComplete);
         return this;
     }
+
 
     /**
      * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
@@ -476,7 +484,6 @@ public class Folder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -487,36 +494,28 @@ public class Folder {
         }
         Folder other = (Folder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.owner, other.owner) &&
-            Objects.deepEquals(this.parentFolders, other.parentFolders) &&
-            Objects.deepEquals(this.parentFoldersComplete, other.parentFoldersComplete) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.owner, other.owner) &&
+            Utils.enhancedDeepEquals(this.parentFolders, other.parentFolders) &&
+            Utils.enhancedDeepEquals(this.parentFoldersComplete, other.parentFoldersComplete) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            path,
-            size,
-            owner,
-            parentFolders,
-            parentFoldersComplete,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
+        return Utils.enhancedHash(
+            id, name, description,
+            path, size, owner,
+            parentFolders, parentFoldersComplete, customMappings,
+            updatedBy, createdBy, updatedAt,
             createdAt);
     }
     
@@ -537,38 +536,40 @@ public class Folder {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String name;
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> path = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> size = JsonNullable.undefined();
- 
+
         private Optional<? extends Owner> owner = Optional.empty();
- 
+
         private List<LinkedFolder> parentFolders;
- 
+
         private Optional<Boolean> parentFoldersComplete = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -588,6 +589,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * The name of the folder
          */
@@ -596,6 +598,7 @@ public class Folder {
             this.name = name;
             return this;
         }
+
 
         /**
          * Optional description of the folder
@@ -615,6 +618,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * The full path of the folder (includes the folder name)
          */
@@ -632,6 +636,7 @@ public class Folder {
             this.path = path;
             return this;
         }
+
 
         /**
          * The size of the folder in bytes
@@ -651,6 +656,7 @@ public class Folder {
             return this;
         }
 
+
         public Builder owner(Owner owner) {
             Utils.checkNotNull(owner, "owner");
             this.owner = Optional.ofNullable(owner);
@@ -663,6 +669,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * The parent folders of the file, starting from the root
          */
@@ -671,6 +678,7 @@ public class Folder {
             this.parentFolders = parentFolders;
             return this;
         }
+
 
         /**
          * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
@@ -690,6 +698,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -707,6 +716,7 @@ public class Folder {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -726,6 +736,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -743,6 +754,7 @@ public class Folder {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -762,6 +774,7 @@ public class Folder {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -779,22 +792,16 @@ public class Folder {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public Folder build() {
+
             return new Folder(
-                id,
-                name,
-                description,
-                path,
-                size,
-                owner,
-                parentFolders,
-                parentFoldersComplete,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
+                id, name, description,
+                path, size, owner,
+                parentFolders, parentFoldersComplete, customMappings,
+                updatedBy, createdBy, updatedAt,
                 createdAt);
         }
+
     }
 }

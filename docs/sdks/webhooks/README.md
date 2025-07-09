@@ -31,7 +31,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         sdk.webhook().webhooks().list()
@@ -90,7 +90,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         WebhookWebhooksAddResponse res = sdk.webhook().webhooks().create()
@@ -154,7 +154,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         WebhookWebhooksOneResponse res = sdk.webhook().webhooks().get()
@@ -212,7 +212,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         WebhookWebhooksUpdateResponse res = sdk.webhook().webhooks().update()
@@ -277,7 +277,7 @@ public class Application {
 
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         WebhookWebhooksDeleteResponse res = sdk.webhook().webhooks().delete()

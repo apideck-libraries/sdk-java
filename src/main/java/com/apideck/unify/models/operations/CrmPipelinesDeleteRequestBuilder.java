@@ -48,8 +48,8 @@ public class CrmPipelinesDeleteRequestBuilder {
 
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
               = new CrmPipelinesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

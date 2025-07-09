@@ -48,8 +48,8 @@ public class CrmActivitiesAddRequestBuilder {
 
         RequestOperation<CrmActivitiesAddRequest, CrmActivitiesAddResponse> operation
               = new CrmActivitiesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

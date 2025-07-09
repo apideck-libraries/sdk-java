@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Benefit {
 
+public class Benefit {
     /**
      * The name of the benefit.
      */
@@ -79,9 +78,10 @@ public class Benefit {
         return employerContribution;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the benefit.
@@ -137,7 +137,6 @@ public class Benefit {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -148,17 +147,15 @@ public class Benefit {
         }
         Benefit other = (Benefit) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.employeeDeduction, other.employeeDeduction) &&
-            Objects.deepEquals(this.employerContribution, other.employerContribution);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.employeeDeduction, other.employeeDeduction) &&
+            Utils.enhancedDeepEquals(this.employerContribution, other.employerContribution);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            employeeDeduction,
-            employerContribution);
+        return Utils.enhancedHash(
+            name, employeeDeduction, employerContribution);
     }
     
     @Override
@@ -168,18 +165,20 @@ public class Benefit {
                 "employeeDeduction", employeeDeduction,
                 "employerContribution", employerContribution);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employeeDeduction = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> employerContribution = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the benefit.
@@ -199,6 +198,7 @@ public class Benefit {
             return this;
         }
 
+
         /**
          * The amount deducted for benefit.
          */
@@ -217,6 +217,7 @@ public class Benefit {
             return this;
         }
 
+
         /**
          * The amount of employer contribution.
          */
@@ -234,12 +235,12 @@ public class Benefit {
             this.employerContribution = employerContribution;
             return this;
         }
-        
+
         public Benefit build() {
+
             return new Benefit(
-                name,
-                employeeDeduction,
-                employerContribution);
+                name, employeeDeduction, employerContribution);
         }
+
     }
 }

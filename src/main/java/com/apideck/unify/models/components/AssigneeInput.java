@@ -9,10 +9,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class AssigneeInput {
-
     /**
      * A unique identifier for an object.
      */
@@ -34,9 +33,10 @@ public class AssigneeInput {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -47,7 +47,6 @@ public class AssigneeInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -58,12 +57,12 @@ public class AssigneeInput {
         }
         AssigneeInput other = (AssigneeInput) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -72,14 +71,16 @@ public class AssigneeInput {
         return Utils.toString(AssigneeInput.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -89,10 +90,12 @@ public class AssigneeInput {
             this.id = id;
             return this;
         }
-        
+
         public AssigneeInput build() {
+
             return new AssigneeInput(
                 id);
         }
+
     }
 }

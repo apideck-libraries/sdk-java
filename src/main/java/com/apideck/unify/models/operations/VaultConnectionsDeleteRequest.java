@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConnectionsDeleteRequest {
 
+public class VaultConnectionsDeleteRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -57,7 +56,8 @@ public class VaultConnectionsDeleteRequest {
     public VaultConnectionsDeleteRequest(
             String serviceId,
             String unifiedApi) {
-        this(Optional.empty(), Optional.empty(), serviceId, unifiedApi);
+        this(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi);
     }
 
     /**
@@ -92,9 +92,10 @@ public class VaultConnectionsDeleteRequest {
         return unifiedApi;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -104,6 +105,7 @@ public class VaultConnectionsDeleteRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -122,6 +124,7 @@ public class VaultConnectionsDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -150,7 +153,6 @@ public class VaultConnectionsDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,18 +163,16 @@ public class VaultConnectionsDeleteRequest {
         }
         VaultConnectionsDeleteRequest other = (VaultConnectionsDeleteRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
             unifiedApi);
     }
     
@@ -184,20 +184,22 @@ public class VaultConnectionsDeleteRequest {
                 "serviceId", serviceId,
                 "unifiedApi", unifiedApi);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String serviceId;
- 
+
         private String unifiedApi;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -217,6 +219,7 @@ public class VaultConnectionsDeleteRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -235,6 +238,7 @@ public class VaultConnectionsDeleteRequest {
             return this;
         }
 
+
         /**
          * Service ID of the resource to return
          */
@@ -244,6 +248,7 @@ public class VaultConnectionsDeleteRequest {
             return this;
         }
 
+
         /**
          * Unified API
          */
@@ -252,13 +257,13 @@ public class VaultConnectionsDeleteRequest {
             this.unifiedApi = unifiedApi;
             return this;
         }
-        
+
         public VaultConnectionsDeleteRequest build() {
+
             return new VaultConnectionsDeleteRequest(
-                consumerId,
-                appId,
-                serviceId,
+                consumerId, appId, serviceId,
                 unifiedApi);
         }
+
     }
 }

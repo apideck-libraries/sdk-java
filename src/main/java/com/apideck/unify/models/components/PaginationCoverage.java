@@ -13,11 +13,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class PaginationCoverage {
 
+public class PaginationCoverage {
     /**
      * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
      */
@@ -81,9 +80,10 @@ public class PaginationCoverage {
         return limitSupport;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
@@ -93,6 +93,7 @@ public class PaginationCoverage {
         this.mode = Optional.ofNullable(mode);
         return this;
     }
+
 
     /**
      * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
@@ -112,6 +113,7 @@ public class PaginationCoverage {
         return this;
     }
 
+
     /**
      * Indicates whether the connector supports paging through results using the cursor parameter.
      */
@@ -130,6 +132,7 @@ public class PaginationCoverage {
         return this;
     }
 
+
     /**
      * Indicates whether the connector supports changing the page size by using the limit parameter.
      */
@@ -139,7 +142,6 @@ public class PaginationCoverage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -150,17 +152,15 @@ public class PaginationCoverage {
         }
         PaginationCoverage other = (PaginationCoverage) o;
         return 
-            Objects.deepEquals(this.mode, other.mode) &&
-            Objects.deepEquals(this.pagingSupport, other.pagingSupport) &&
-            Objects.deepEquals(this.limitSupport, other.limitSupport);
+            Utils.enhancedDeepEquals(this.mode, other.mode) &&
+            Utils.enhancedDeepEquals(this.pagingSupport, other.pagingSupport) &&
+            Utils.enhancedDeepEquals(this.limitSupport, other.limitSupport);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            mode,
-            pagingSupport,
-            limitSupport);
+        return Utils.enhancedHash(
+            mode, pagingSupport, limitSupport);
     }
     
     @Override
@@ -170,18 +170,20 @@ public class PaginationCoverage {
                 "pagingSupport", pagingSupport,
                 "limitSupport", limitSupport);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends PaginationCoverageMode> mode = Optional.empty();
- 
+
         private Optional<Boolean> pagingSupport = Optional.empty();
- 
+
         private Optional<Boolean> limitSupport = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
@@ -201,6 +203,7 @@ public class PaginationCoverage {
             return this;
         }
 
+
         /**
          * Indicates whether the connector supports paging through results using the cursor parameter.
          */
@@ -219,6 +222,7 @@ public class PaginationCoverage {
             return this;
         }
 
+
         /**
          * Indicates whether the connector supports changing the page size by using the limit parameter.
          */
@@ -236,12 +240,12 @@ public class PaginationCoverage {
             this.limitSupport = limitSupport;
             return this;
         }
-        
+
         public PaginationCoverage build() {
+
             return new PaginationCoverage(
-                mode,
-                pagingSupport,
-                limitSupport);
+                mode, pagingSupport, limitSupport);
         }
+
     }
 }

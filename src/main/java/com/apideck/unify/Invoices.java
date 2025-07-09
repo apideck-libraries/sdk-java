@@ -37,7 +37,6 @@ public class Invoices {
     Invoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Invoices
      * 
@@ -77,11 +76,10 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAllRequest, AccountingInvoicesAllResponse> operation
               = new AccountingInvoicesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Invoice
@@ -122,11 +120,10 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAddRequest, AccountingInvoicesAddResponse> operation
               = new AccountingInvoicesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Invoice
@@ -167,11 +164,10 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesOneRequest, AccountingInvoicesOneResponse> operation
               = new AccountingInvoicesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Invoice
@@ -212,11 +208,10 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesUpdateRequest, AccountingInvoicesUpdateResponse> operation
               = new AccountingInvoicesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Invoice
@@ -257,8 +252,8 @@ public class Invoices {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesDeleteRequest, AccountingInvoicesDeleteResponse> operation
               = new AccountingInvoicesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

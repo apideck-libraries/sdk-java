@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class FileStorageUploadSessionsAddRequest {
 
+public class FileStorageUploadSessionsAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -41,6 +40,7 @@ public class FileStorageUploadSessionsAddRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateUploadSessionRequest createUploadSessionRequest;
@@ -66,7 +66,8 @@ public class FileStorageUploadSessionsAddRequest {
     
     public FileStorageUploadSessionsAddRequest(
             CreateUploadSessionRequest createUploadSessionRequest) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), createUploadSessionRequest);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), createUploadSessionRequest);
     }
 
     /**
@@ -106,9 +107,10 @@ public class FileStorageUploadSessionsAddRequest {
         return createUploadSessionRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -118,6 +120,7 @@ public class FileStorageUploadSessionsAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -137,6 +140,7 @@ public class FileStorageUploadSessionsAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -154,6 +158,7 @@ public class FileStorageUploadSessionsAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -173,6 +178,7 @@ public class FileStorageUploadSessionsAddRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -188,7 +194,6 @@ public class FileStorageUploadSessionsAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +204,18 @@ public class FileStorageUploadSessionsAddRequest {
         }
         FileStorageUploadSessionsAddRequest other = (FileStorageUploadSessionsAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.createUploadSessionRequest, other.createUploadSessionRequest);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.createUploadSessionRequest, other.createUploadSessionRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            createUploadSessionRequest);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, createUploadSessionRequest);
     }
     
     @Override
@@ -225,22 +227,24 @@ public class FileStorageUploadSessionsAddRequest {
                 "serviceId", serviceId,
                 "createUploadSessionRequest", createUploadSessionRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private CreateUploadSessionRequest createUploadSessionRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -260,6 +264,7 @@ public class FileStorageUploadSessionsAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -277,6 +282,7 @@ public class FileStorageUploadSessionsAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -296,6 +302,7 @@ public class FileStorageUploadSessionsAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -314,23 +321,23 @@ public class FileStorageUploadSessionsAddRequest {
             return this;
         }
 
+
         public Builder createUploadSessionRequest(CreateUploadSessionRequest createUploadSessionRequest) {
             Utils.checkNotNull(createUploadSessionRequest, "createUploadSessionRequest");
             this.createUploadSessionRequest = createUploadSessionRequest;
             return this;
         }
-        
+
         public FileStorageUploadSessionsAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new FileStorageUploadSessionsAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                createUploadSessionRequest);
+                raw, consumerId, appId,
+                serviceId, createUploadSessionRequest);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

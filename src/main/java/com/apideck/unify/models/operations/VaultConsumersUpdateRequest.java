@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConsumersUpdateRequest {
 
+public class VaultConsumersUpdateRequest {
     /**
      * The ID of your Unify application
      */
@@ -26,6 +25,7 @@ public class VaultConsumersUpdateRequest {
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=consumer_id")
     private String consumerId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateConsumerRequest updateConsumerRequest;
@@ -70,9 +70,10 @@ public class VaultConsumersUpdateRequest {
         return updateConsumerRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -82,6 +83,7 @@ public class VaultConsumersUpdateRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -107,7 +109,6 @@ public class VaultConsumersUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,17 +119,15 @@ public class VaultConsumersUpdateRequest {
         }
         VaultConsumersUpdateRequest other = (VaultConsumersUpdateRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.updateConsumerRequest, other.updateConsumerRequest);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.updateConsumerRequest, other.updateConsumerRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            consumerId,
-            updateConsumerRequest);
+        return Utils.enhancedHash(
+            appId, consumerId, updateConsumerRequest);
     }
     
     @Override
@@ -138,18 +137,20 @@ public class VaultConsumersUpdateRequest {
                 "consumerId", consumerId,
                 "updateConsumerRequest", updateConsumerRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String consumerId;
- 
+
         private UpdateConsumerRequest updateConsumerRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -169,6 +170,7 @@ public class VaultConsumersUpdateRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer to return
          */
@@ -178,17 +180,18 @@ public class VaultConsumersUpdateRequest {
             return this;
         }
 
+
         public Builder updateConsumerRequest(UpdateConsumerRequest updateConsumerRequest) {
             Utils.checkNotNull(updateConsumerRequest, "updateConsumerRequest");
             this.updateConsumerRequest = updateConsumerRequest;
             return this;
         }
-        
+
         public VaultConsumersUpdateRequest build() {
+
             return new VaultConsumersUpdateRequest(
-                appId,
-                consumerId,
-                updateConsumerRequest);
+                appId, consumerId, updateConsumerRequest);
         }
+
     }
 }

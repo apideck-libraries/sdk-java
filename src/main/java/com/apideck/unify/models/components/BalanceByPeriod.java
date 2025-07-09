@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BalanceByPeriod {
 
+public class BalanceByPeriod {
     /**
      * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
@@ -41,6 +40,7 @@ public class BalanceByPeriod {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
     private Optional<Double> totalAmount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances_by_transaction")
@@ -63,7 +63,8 @@ public class BalanceByPeriod {
     }
     
     public BalanceByPeriod() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -96,9 +97,10 @@ public class BalanceByPeriod {
         return (Optional<List<BalanceByTransaction>>) balancesByTransaction;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
@@ -145,6 +147,7 @@ public class BalanceByPeriod {
         return this;
     }
 
+
     /**
      * Total amount of the period.
      */
@@ -160,13 +163,13 @@ public class BalanceByPeriod {
         return this;
     }
 
+
     public BalanceByPeriod withBalancesByTransaction(Optional<? extends List<BalanceByTransaction>> balancesByTransaction) {
         Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
         this.balancesByTransaction = balancesByTransaction;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -177,18 +180,16 @@ public class BalanceByPeriod {
         }
         BalanceByPeriod other = (BalanceByPeriod) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.balancesByTransaction, other.balancesByTransaction);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.balancesByTransaction, other.balancesByTransaction);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            startDate,
-            endDate,
-            totalAmount,
+        return Utils.enhancedHash(
+            startDate, endDate, totalAmount,
             balancesByTransaction);
     }
     
@@ -200,20 +201,22 @@ public class BalanceByPeriod {
                 "totalAmount", totalAmount,
                 "balancesByTransaction", balancesByTransaction);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
- 
+
         private Optional<Double> totalAmount = Optional.empty();
- 
+
         private Optional<? extends List<BalanceByTransaction>> balancesByTransaction = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
@@ -233,6 +236,7 @@ public class BalanceByPeriod {
             return this;
         }
 
+
         /**
          * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
          */
@@ -250,6 +254,7 @@ public class BalanceByPeriod {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Total amount of the period.
@@ -269,6 +274,7 @@ public class BalanceByPeriod {
             return this;
         }
 
+
         public Builder balancesByTransaction(List<BalanceByTransaction> balancesByTransaction) {
             Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
             this.balancesByTransaction = Optional.ofNullable(balancesByTransaction);
@@ -280,13 +286,13 @@ public class BalanceByPeriod {
             this.balancesByTransaction = balancesByTransaction;
             return this;
         }
-        
+
         public BalanceByPeriod build() {
+
             return new BalanceByPeriod(
-                startDate,
-                endDate,
-                totalAmount,
+                startDate, endDate, totalAmount,
                 balancesByTransaction);
         }
+
     }
 }

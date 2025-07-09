@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class FilesFilter {
 
+public class FilesFilter {
     /**
      * ID of the drive to filter on
      */
@@ -74,9 +73,10 @@ public class FilesFilter {
         return shared;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the drive to filter on
@@ -86,6 +86,7 @@ public class FilesFilter {
         this.driveId = Optional.ofNullable(driveId);
         return this;
     }
+
 
     /**
      * ID of the drive to filter on
@@ -105,6 +106,7 @@ public class FilesFilter {
         return this;
     }
 
+
     /**
      * ID of the folder to filter on. The root folder has an alias "root"
      */
@@ -123,6 +125,7 @@ public class FilesFilter {
         return this;
     }
 
+
     /**
      * Only return files and folders that are shared
      */
@@ -132,7 +135,6 @@ public class FilesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,17 +145,15 @@ public class FilesFilter {
         }
         FilesFilter other = (FilesFilter) o;
         return 
-            Objects.deepEquals(this.driveId, other.driveId) &&
-            Objects.deepEquals(this.folderId, other.folderId) &&
-            Objects.deepEquals(this.shared, other.shared);
+            Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
+            Utils.enhancedDeepEquals(this.folderId, other.folderId) &&
+            Utils.enhancedDeepEquals(this.shared, other.shared);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            driveId,
-            folderId,
-            shared);
+        return Utils.enhancedHash(
+            driveId, folderId, shared);
     }
     
     @Override
@@ -163,18 +163,20 @@ public class FilesFilter {
                 "folderId", folderId,
                 "shared", shared);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> driveId = Optional.empty();
- 
+
         private Optional<String> folderId = Optional.empty();
- 
+
         private Optional<Boolean> shared = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the drive to filter on
@@ -194,6 +196,7 @@ public class FilesFilter {
             return this;
         }
 
+
         /**
          * ID of the folder to filter on. The root folder has an alias "root"
          */
@@ -212,6 +215,7 @@ public class FilesFilter {
             return this;
         }
 
+
         /**
          * Only return files and folders that are shared
          */
@@ -229,12 +233,12 @@ public class FilesFilter {
             this.shared = shared;
             return this;
         }
-        
+
         public FilesFilter build() {
+
             return new FilesFilter(
-                driveId,
-                folderId,
-                shared);
+                driveId, folderId, shared);
         }
+
     }
 }

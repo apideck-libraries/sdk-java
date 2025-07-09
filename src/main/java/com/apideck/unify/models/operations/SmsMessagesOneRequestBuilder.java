@@ -48,8 +48,8 @@ public class SmsMessagesOneRequestBuilder {
 
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
               = new SmsMessagesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

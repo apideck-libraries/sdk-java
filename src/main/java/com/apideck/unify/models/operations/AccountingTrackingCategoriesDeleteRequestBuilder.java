@@ -48,8 +48,8 @@ public class AccountingTrackingCategoriesDeleteRequestBuilder {
 
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

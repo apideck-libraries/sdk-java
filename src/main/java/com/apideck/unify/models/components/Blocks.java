@@ -11,14 +11,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Blocks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
     private Optional<String> title;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
@@ -48,15 +49,17 @@ public class Blocks {
         return content;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Blocks withTitle(String title) {
         Utils.checkNotNull(title, "title");
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     public Blocks withTitle(Optional<String> title) {
         Utils.checkNotNull(title, "title");
@@ -70,13 +73,13 @@ public class Blocks {
         return this;
     }
 
+
     public Blocks withContent(Optional<String> content) {
         Utils.checkNotNull(content, "content");
         this.content = content;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -87,15 +90,14 @@ public class Blocks {
         }
         Blocks other = (Blocks) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.content, other.content);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.content, other.content);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            title,
-            content);
+        return Utils.enhancedHash(
+            title, content);
     }
     
     @Override
@@ -104,16 +106,18 @@ public class Blocks {
                 "title", title,
                 "content", content);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> content = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder title(String title) {
             Utils.checkNotNull(title, "title");
@@ -127,6 +131,7 @@ public class Blocks {
             return this;
         }
 
+
         public Builder content(String content) {
             Utils.checkNotNull(content, "content");
             this.content = Optional.ofNullable(content);
@@ -138,11 +143,12 @@ public class Blocks {
             this.content = content;
             return this;
         }
-        
+
         public Blocks build() {
+
             return new Blocks(
-                title,
-                content);
+                title, content);
         }
+
     }
 }

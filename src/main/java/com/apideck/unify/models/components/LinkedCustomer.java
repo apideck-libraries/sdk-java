@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The customer this entity is linked to.
  */
 public class LinkedCustomer {
-
     /**
      * The ID of the customer this entity is linked to.
      */
@@ -91,7 +89,8 @@ public class LinkedCustomer {
     }
     
     public LinkedCustomer() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -145,9 +144,10 @@ public class LinkedCustomer {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the customer this entity is linked to.
@@ -157,6 +157,7 @@ public class LinkedCustomer {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the customer this entity is linked to.
@@ -215,6 +216,7 @@ public class LinkedCustomer {
         return this;
     }
 
+
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
@@ -254,6 +256,7 @@ public class LinkedCustomer {
         return this;
     }
 
+
     /**
      * The email address of the customer.
      */
@@ -263,7 +266,6 @@ public class LinkedCustomer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -274,23 +276,19 @@ public class LinkedCustomer {
         }
         LinkedCustomer other = (LinkedCustomer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.email, other.email);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayId,
-            displayName,
-            name,
-            companyName,
-            email);
+        return Utils.enhancedHash(
+            id, displayId, displayName,
+            name, companyName, email);
     }
     
     @Override
@@ -303,25 +301,27 @@ public class LinkedCustomer {
                 "companyName", companyName,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         @Deprecated
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private Optional<String> email = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the customer this entity is linked to.
@@ -341,6 +341,7 @@ public class LinkedCustomer {
             return this;
         }
 
+
         /**
          * The display ID of the customer.
          */
@@ -359,6 +360,7 @@ public class LinkedCustomer {
             return this;
         }
 
+
         /**
          * The display name of the customer.
          */
@@ -376,6 +378,7 @@ public class LinkedCustomer {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The name of the customer. Deprecated, use display_name instead.
@@ -401,6 +404,7 @@ public class LinkedCustomer {
             return this;
         }
 
+
         /**
          * The company name of the customer.
          */
@@ -419,6 +423,7 @@ public class LinkedCustomer {
             return this;
         }
 
+
         /**
          * The email address of the customer.
          */
@@ -436,15 +441,13 @@ public class LinkedCustomer {
             this.email = email;
             return this;
         }
-        
+
         public LinkedCustomer build() {
+
             return new LinkedCustomer(
-                id,
-                displayId,
-                displayName,
-                name,
-                companyName,
-                email);
+                id, displayId, displayName,
+                name, companyName, email);
         }
+
     }
 }

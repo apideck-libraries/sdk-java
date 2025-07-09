@@ -48,8 +48,8 @@ public class VaultConnectionSettingsUpdateRequestBuilder {
 
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
               = new VaultConnectionSettingsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

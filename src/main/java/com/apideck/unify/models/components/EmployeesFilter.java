@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class EmployeesFilter {
 
+public class EmployeesFilter {
     /**
      * Company ID to filter on
      */
@@ -119,7 +118,10 @@ public class EmployeesFilter {
     }
     
     public EmployeesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -211,9 +213,10 @@ public class EmployeesFilter {
         return country;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Company ID to filter on
@@ -223,6 +226,7 @@ public class EmployeesFilter {
         this.companyId = Optional.ofNullable(companyId);
         return this;
     }
+
 
     /**
      * Company ID to filter on
@@ -242,6 +246,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * Email to filter on
      */
@@ -259,6 +264,7 @@ public class EmployeesFilter {
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     /**
      * First Name to filter on
@@ -278,6 +284,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * Job title to filter on
      */
@@ -295,6 +302,7 @@ public class EmployeesFilter {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * Last Name to filter on
@@ -314,6 +322,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * Manager id to filter on
      */
@@ -331,6 +340,7 @@ public class EmployeesFilter {
         this.employmentStatus = Optional.ofNullable(employmentStatus);
         return this;
     }
+
 
     /**
      * Employment status to filter on
@@ -350,6 +360,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * Employee number to filter on
      */
@@ -367,6 +378,7 @@ public class EmployeesFilter {
         this.departmentId = Optional.ofNullable(departmentId);
         return this;
     }
+
 
     /**
      * ID of the department to filter on
@@ -386,6 +398,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * City to filter on
      */
@@ -404,6 +417,7 @@ public class EmployeesFilter {
         return this;
     }
 
+
     /**
      * Country to filter on
      */
@@ -413,7 +427,6 @@ public class EmployeesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -424,33 +437,26 @@ public class EmployeesFilter {
         }
         EmployeesFilter other = (EmployeesFilter) o;
         return 
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.managerId, other.managerId) &&
-            Objects.deepEquals(this.employmentStatus, other.employmentStatus) &&
-            Objects.deepEquals(this.employeeNumber, other.employeeNumber) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.managerId, other.managerId) &&
+            Utils.enhancedDeepEquals(this.employmentStatus, other.employmentStatus) &&
+            Utils.enhancedDeepEquals(this.employeeNumber, other.employeeNumber) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            companyId,
-            email,
-            firstName,
-            title,
-            lastName,
-            managerId,
-            employmentStatus,
-            employeeNumber,
-            departmentId,
-            city,
-            country);
+        return Utils.enhancedHash(
+            companyId, email, firstName,
+            title, lastName, managerId,
+            employmentStatus, employeeNumber, departmentId,
+            city, country);
     }
     
     @Override
@@ -468,34 +474,36 @@ public class EmployeesFilter {
                 "city", city,
                 "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> companyId = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> managerId = Optional.empty();
- 
+
         private Optional<? extends EmployeesFilterEmploymentStatus> employmentStatus = Optional.empty();
- 
+
         private Optional<String> employeeNumber = Optional.empty();
- 
+
         private Optional<String> departmentId = Optional.empty();
- 
+
         private Optional<String> city = Optional.empty();
- 
+
         private Optional<String> country = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Company ID to filter on
@@ -515,6 +523,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * Email to filter on
          */
@@ -532,6 +541,7 @@ public class EmployeesFilter {
             this.email = email;
             return this;
         }
+
 
         /**
          * First Name to filter on
@@ -551,6 +561,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * Job title to filter on
          */
@@ -568,6 +579,7 @@ public class EmployeesFilter {
             this.title = title;
             return this;
         }
+
 
         /**
          * Last Name to filter on
@@ -587,6 +599,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * Manager id to filter on
          */
@@ -604,6 +617,7 @@ public class EmployeesFilter {
             this.managerId = managerId;
             return this;
         }
+
 
         /**
          * Employment status to filter on
@@ -623,6 +637,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * Employee number to filter on
          */
@@ -640,6 +655,7 @@ public class EmployeesFilter {
             this.employeeNumber = employeeNumber;
             return this;
         }
+
 
         /**
          * ID of the department to filter on
@@ -659,6 +675,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * City to filter on
          */
@@ -677,6 +694,7 @@ public class EmployeesFilter {
             return this;
         }
 
+
         /**
          * Country to filter on
          */
@@ -694,20 +712,15 @@ public class EmployeesFilter {
             this.country = country;
             return this;
         }
-        
+
         public EmployeesFilter build() {
+
             return new EmployeesFilter(
-                companyId,
-                email,
-                firstName,
-                title,
-                lastName,
-                managerId,
-                employmentStatus,
-                employeeNumber,
-                departmentId,
-                city,
-                country);
+                companyId, email, firstName,
+                title, lastName, managerId,
+                employmentStatus, employeeNumber, departmentId,
+                city, country);
         }
+
     }
 }

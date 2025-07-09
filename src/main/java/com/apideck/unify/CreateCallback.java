@@ -21,7 +21,6 @@ public class CreateCallback {
     CreateCallback(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create Callback State
      * 
@@ -61,8 +60,8 @@ public class CreateCallback {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> operation
               = new VaultCreateCallbackStateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

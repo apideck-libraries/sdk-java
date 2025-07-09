@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -20,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The team the person is currently in.
  */
 public class Team {
-
     /**
      * The unique identifier of the team.
      */
@@ -65,9 +63,10 @@ public class Team {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the team.
@@ -105,7 +104,6 @@ public class Team {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,15 +114,14 @@ public class Team {
         }
         Team other = (Team) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -133,16 +130,18 @@ public class Team {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the team.
@@ -162,6 +161,7 @@ public class Team {
             return this;
         }
 
+
         /**
          * The name of the team.
          */
@@ -179,11 +179,12 @@ public class Team {
             this.name = name;
             return this;
         }
-        
+
         public Team build() {
+
             return new Team(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

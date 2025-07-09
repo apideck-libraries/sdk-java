@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingAttachmentsDeleteRequest {
 
+public class AccountingAttachmentsDeleteRequest {
     /**
      * The reference type of the document.
      */
@@ -89,7 +88,9 @@ public class AccountingAttachmentsDeleteRequest {
             AttachmentReferenceType referenceType,
             String referenceId,
             String id) {
-        this(referenceType, referenceId, id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(referenceType, referenceId, id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -148,9 +149,10 @@ public class AccountingAttachmentsDeleteRequest {
         return raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The reference type of the document.
@@ -188,6 +190,7 @@ public class AccountingAttachmentsDeleteRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -205,6 +208,7 @@ public class AccountingAttachmentsDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -224,6 +228,7 @@ public class AccountingAttachmentsDeleteRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -242,6 +247,7 @@ public class AccountingAttachmentsDeleteRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -251,7 +257,6 @@ public class AccountingAttachmentsDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,24 +267,20 @@ public class AccountingAttachmentsDeleteRequest {
         }
         AccountingAttachmentsDeleteRequest other = (AccountingAttachmentsDeleteRequest) o;
         return 
-            Objects.deepEquals(this.referenceType, other.referenceType) &&
-            Objects.deepEquals(this.referenceId, other.referenceId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.referenceType, other.referenceType) &&
+            Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            referenceType,
-            referenceId,
-            id,
-            consumerId,
-            appId,
-            serviceId,
+        return Utils.enhancedHash(
+            referenceType, referenceId, id,
+            consumerId, appId, serviceId,
             raw);
     }
     
@@ -294,26 +295,28 @@ public class AccountingAttachmentsDeleteRequest {
                 "serviceId", serviceId,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AttachmentReferenceType referenceType;
- 
+
         private String referenceId;
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The reference type of the document.
@@ -324,6 +327,7 @@ public class AccountingAttachmentsDeleteRequest {
             return this;
         }
 
+
         /**
          * The reference id of the object to retrieve.
          */
@@ -333,6 +337,7 @@ public class AccountingAttachmentsDeleteRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -341,6 +346,7 @@ public class AccountingAttachmentsDeleteRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -360,6 +366,7 @@ public class AccountingAttachmentsDeleteRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -377,6 +384,7 @@ public class AccountingAttachmentsDeleteRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -396,6 +404,7 @@ public class AccountingAttachmentsDeleteRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -413,20 +422,18 @@ public class AccountingAttachmentsDeleteRequest {
             this.raw = raw;
             return this;
         }
-        
+
         public AccountingAttachmentsDeleteRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingAttachmentsDeleteRequest(
-                referenceType,
-                referenceId,
-                id,
-                consumerId,
-                appId,
-                serviceId,
+                referenceType, referenceId, id,
+                consumerId, appId, serviceId,
                 raw);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

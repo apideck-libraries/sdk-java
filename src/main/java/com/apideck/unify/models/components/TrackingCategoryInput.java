@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TrackingCategoryInput {
 
+public class TrackingCategoryInput {
     /**
      * A unique identifier for an object.
      */
@@ -94,7 +93,9 @@ public class TrackingCategoryInput {
     }
     
     public TrackingCategoryInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -156,9 +157,10 @@ public class TrackingCategoryInput {
         return (Optional<List<TrackingCategorySubsidiaries>>) subsidiaries;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -186,6 +188,7 @@ public class TrackingCategoryInput {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the tracking category.
@@ -223,6 +226,7 @@ public class TrackingCategoryInput {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -259,6 +263,7 @@ public class TrackingCategoryInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -277,6 +282,7 @@ public class TrackingCategoryInput {
         return this;
     }
 
+
     /**
      * The subsidiaries the account belongs to.
      */
@@ -286,7 +292,6 @@ public class TrackingCategoryInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -297,24 +302,20 @@ public class TrackingCategoryInput {
         }
         TrackingCategoryInput other = (TrackingCategoryInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            parentId,
-            name,
-            code,
-            status,
-            rowVersion,
-            passThrough,
+        return Utils.enhancedHash(
+            parentId, name, code,
+            status, rowVersion, passThrough,
             subsidiaries);
     }
     
@@ -329,26 +330,28 @@ public class TrackingCategoryInput {
                 "passThrough", passThrough,
                 "subsidiaries", subsidiaries);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private Optional<? extends TrackingCategoryStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -368,6 +371,7 @@ public class TrackingCategoryInput {
             return this;
         }
 
+
         /**
          * The name of the tracking category.
          */
@@ -385,6 +389,7 @@ public class TrackingCategoryInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * The code of the tracking category.
@@ -404,6 +409,7 @@ public class TrackingCategoryInput {
             return this;
         }
 
+
         /**
          * Based on the status some functionality is enabled or disabled.
          */
@@ -421,6 +427,7 @@ public class TrackingCategoryInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -440,6 +447,7 @@ public class TrackingCategoryInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -458,6 +466,7 @@ public class TrackingCategoryInput {
             return this;
         }
 
+
         /**
          * The subsidiaries the account belongs to.
          */
@@ -475,16 +484,14 @@ public class TrackingCategoryInput {
             this.subsidiaries = subsidiaries;
             return this;
         }
-        
+
         public TrackingCategoryInput build() {
+
             return new TrackingCategoryInput(
-                parentId,
-                name,
-                code,
-                status,
-                rowVersion,
-                passThrough,
+                parentId, name, code,
+                status, rowVersion, passThrough,
                 subsidiaries);
         }
+
     }
 }

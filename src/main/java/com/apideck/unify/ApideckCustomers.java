@@ -25,7 +25,6 @@ public class ApideckCustomers {
     ApideckCustomers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Customers
      * 
@@ -65,11 +64,10 @@ public class ApideckCustomers {
             Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
               = new EcommerceCustomersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Customer
@@ -110,8 +108,8 @@ public class ApideckCustomers {
             Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
               = new EcommerceCustomersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

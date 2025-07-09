@@ -48,8 +48,8 @@ public class VaultValidateConnectionStateRequestBuilder {
 
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
               = new VaultValidateConnectionStateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

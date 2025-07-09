@@ -18,12 +18,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AccountingPurchaseOrdersAllRequest {
 
+public class AccountingPurchaseOrdersAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -110,7 +109,9 @@ public class AccountingPurchaseOrdersAllRequest {
     }
     
     public AccountingPurchaseOrdersAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -188,9 +189,10 @@ public class AccountingPurchaseOrdersAllRequest {
         return (Optional<PurchaseOrdersSort>) sort;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -200,6 +202,7 @@ public class AccountingPurchaseOrdersAllRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -219,6 +222,7 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -237,6 +241,7 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -254,6 +259,7 @@ public class AccountingPurchaseOrdersAllRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -291,6 +297,7 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
+
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
@@ -308,6 +315,7 @@ public class AccountingPurchaseOrdersAllRequest {
         this.limit = Optional.ofNullable(limit);
         return this;
     }
+
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -327,6 +335,7 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
+
     /**
      * Apply filters
      */
@@ -345,6 +354,7 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
+
     /**
      * Apply sorting
      */
@@ -354,7 +364,6 @@ public class AccountingPurchaseOrdersAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -365,29 +374,23 @@ public class AccountingPurchaseOrdersAllRequest {
         }
         AccountingPurchaseOrdersAllRequest other = (AccountingPurchaseOrdersAllRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.sort, other.sort);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.sort, other.sort);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            cursor,
-            passThrough,
-            limit,
-            filter,
-            sort);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, cursor, passThrough,
+            limit, filter, sort);
     }
     
     @Override
@@ -403,30 +406,32 @@ public class AccountingPurchaseOrdersAllRequest {
                 "filter", filter,
                 "sort", sort);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
- 
+
         private Optional<Long> limit;
- 
+
         private Optional<? extends PurchaseOrdersFilter> filter = Optional.empty();
- 
+
         private Optional<? extends PurchaseOrdersSort> sort = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -446,6 +451,7 @@ public class AccountingPurchaseOrdersAllRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -463,6 +469,7 @@ public class AccountingPurchaseOrdersAllRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -482,6 +489,7 @@ public class AccountingPurchaseOrdersAllRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -499,6 +507,7 @@ public class AccountingPurchaseOrdersAllRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
@@ -518,6 +527,7 @@ public class AccountingPurchaseOrdersAllRequest {
             return this;
         }
 
+
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
@@ -535,6 +545,7 @@ public class AccountingPurchaseOrdersAllRequest {
             this.passThrough = passThrough;
             return this;
         }
+
 
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -554,6 +565,7 @@ public class AccountingPurchaseOrdersAllRequest {
             return this;
         }
 
+
         /**
          * Apply filters
          */
@@ -572,6 +584,7 @@ public class AccountingPurchaseOrdersAllRequest {
             return this;
         }
 
+
         /**
          * Apply sorting
          */
@@ -589,7 +602,7 @@ public class AccountingPurchaseOrdersAllRequest {
             this.sort = sort;
             return this;
         }
-        
+
         public AccountingPurchaseOrdersAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -597,17 +610,13 @@ public class AccountingPurchaseOrdersAllRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new AccountingPurchaseOrdersAllRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                cursor,
-                passThrough,
-                limit,
-                filter,
-                sort);
+                raw, consumerId, appId,
+                serviceId, cursor, passThrough,
+                limit, filter, sort);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

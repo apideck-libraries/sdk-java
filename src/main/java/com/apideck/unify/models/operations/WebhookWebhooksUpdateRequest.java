@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class WebhookWebhooksUpdateRequest {
 
+public class WebhookWebhooksUpdateRequest {
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      */
@@ -26,6 +25,7 @@ public class WebhookWebhooksUpdateRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private UpdateWebhookRequest updateWebhookRequest;
@@ -70,9 +70,10 @@ public class WebhookWebhooksUpdateRequest {
         return updateWebhookRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
@@ -92,6 +93,7 @@ public class WebhookWebhooksUpdateRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -107,7 +109,6 @@ public class WebhookWebhooksUpdateRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -118,17 +119,15 @@ public class WebhookWebhooksUpdateRequest {
         }
         WebhookWebhooksUpdateRequest other = (WebhookWebhooksUpdateRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.updateWebhookRequest, other.updateWebhookRequest);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.updateWebhookRequest, other.updateWebhookRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            appId,
-            updateWebhookRequest);
+        return Utils.enhancedHash(
+            id, appId, updateWebhookRequest);
     }
     
     @Override
@@ -138,18 +137,20 @@ public class WebhookWebhooksUpdateRequest {
                 "appId", appId,
                 "updateWebhookRequest", updateWebhookRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private UpdateWebhookRequest updateWebhookRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
@@ -159,6 +160,7 @@ public class WebhookWebhooksUpdateRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -178,17 +180,18 @@ public class WebhookWebhooksUpdateRequest {
             return this;
         }
 
+
         public Builder updateWebhookRequest(UpdateWebhookRequest updateWebhookRequest) {
             Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
             this.updateWebhookRequest = updateWebhookRequest;
             return this;
         }
-        
+
         public WebhookWebhooksUpdateRequest build() {
+
             return new WebhookWebhooksUpdateRequest(
-                id,
-                appId,
-                updateWebhookRequest);
+                id, appId, updateWebhookRequest);
         }
+
     }
 }

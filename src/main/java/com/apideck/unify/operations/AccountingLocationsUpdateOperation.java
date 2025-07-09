@@ -57,7 +57,8 @@ public class AccountingLocationsUpdateOperation implements RequestOperation<Acco
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingLocationsUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 AccountingLocationsUpdateRequest.class,

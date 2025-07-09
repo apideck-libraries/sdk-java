@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorConnectorResourcesOneRequest {
 
+public class ConnectorConnectorResourcesOneRequest {
     /**
      * The ID of your Unify application
      */
@@ -59,7 +58,8 @@ public class ConnectorConnectorResourcesOneRequest {
     public ConnectorConnectorResourcesOneRequest(
             String id,
             String resourceId) {
-        this(Optional.empty(), id, resourceId, Optional.empty());
+        this(Optional.empty(), id, resourceId,
+            Optional.empty());
     }
 
     /**
@@ -95,9 +95,10 @@ public class ConnectorConnectorResourcesOneRequest {
         return (Optional<UnifiedApiId>) unifiedApi;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -107,6 +108,7 @@ public class ConnectorConnectorResourcesOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -144,6 +146,7 @@ public class ConnectorConnectorResourcesOneRequest {
         return this;
     }
 
+
     /**
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
      */
@@ -153,7 +156,6 @@ public class ConnectorConnectorResourcesOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -164,18 +166,16 @@ public class ConnectorConnectorResourcesOneRequest {
         }
         ConnectorConnectorResourcesOneRequest other = (ConnectorConnectorResourcesOneRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.resourceId, other.resourceId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.resourceId, other.resourceId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            id,
-            resourceId,
+        return Utils.enhancedHash(
+            appId, id, resourceId,
             unifiedApi);
     }
     
@@ -187,20 +187,22 @@ public class ConnectorConnectorResourcesOneRequest {
                 "resourceId", resourceId,
                 "unifiedApi", unifiedApi);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String id;
- 
+
         private String resourceId;
- 
+
         private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -220,6 +222,7 @@ public class ConnectorConnectorResourcesOneRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -229,6 +232,7 @@ public class ConnectorConnectorResourcesOneRequest {
             return this;
         }
 
+
         /**
          * ID of the resource you are acting upon.
          */
@@ -237,6 +241,7 @@ public class ConnectorConnectorResourcesOneRequest {
             this.resourceId = resourceId;
             return this;
         }
+
 
         /**
          * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
@@ -255,13 +260,13 @@ public class ConnectorConnectorResourcesOneRequest {
             this.unifiedApi = unifiedApi;
             return this;
         }
-        
+
         public ConnectorConnectorResourcesOneRequest build() {
+
             return new ConnectorConnectorResourcesOneRequest(
-                appId,
-                id,
-                resourceId,
+                appId, id, resourceId,
                 unifiedApi);
         }
+
     }
 }

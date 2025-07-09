@@ -79,8 +79,8 @@ public class ConnectorApiResourceCoverageOneRequestBuilder {
 
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
               = new ConnectorApiResourceCoverageOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         ConnectorApiResourceCoverageOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

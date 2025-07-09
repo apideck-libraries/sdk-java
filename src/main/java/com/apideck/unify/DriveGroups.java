@@ -37,7 +37,6 @@ public class DriveGroups {
     DriveGroups(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List DriveGroups
      * 
@@ -77,11 +76,10 @@ public class DriveGroups {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAllRequest, FileStorageDriveGroupsAllResponse> operation
               = new FileStorageDriveGroupsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create DriveGroup
@@ -122,11 +120,10 @@ public class DriveGroups {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAddRequest, FileStorageDriveGroupsAddResponse> operation
               = new FileStorageDriveGroupsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get DriveGroup
@@ -167,11 +164,10 @@ public class DriveGroups {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsOneRequest, FileStorageDriveGroupsOneResponse> operation
               = new FileStorageDriveGroupsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update DriveGroup
@@ -212,11 +208,10 @@ public class DriveGroups {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsUpdateRequest, FileStorageDriveGroupsUpdateResponse> operation
               = new FileStorageDriveGroupsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete DriveGroup
@@ -257,8 +252,8 @@ public class DriveGroups {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDriveGroupsDeleteRequest, FileStorageDriveGroupsDeleteResponse> operation
               = new FileStorageDriveGroupsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Manager {
 
+public class Manager {
     /**
      * A unique identifier for an object.
      */
@@ -82,7 +81,8 @@ public class Manager {
     }
     
     public Manager() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -134,9 +134,10 @@ public class Manager {
         return (JsonNullable<EmploymentStatus>) employmentStatus;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -246,7 +247,6 @@ public class Manager {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -257,23 +257,19 @@ public class Manager {
         }
         Manager other = (Manager) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.employmentStatus, other.employmentStatus);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.employmentStatus, other.employmentStatus);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            firstName,
-            lastName,
-            email,
-            employmentStatus);
+        return Utils.enhancedHash(
+            id, name, firstName,
+            lastName, email, employmentStatus);
     }
     
     @Override
@@ -286,24 +282,26 @@ public class Manager {
                 "email", email,
                 "employmentStatus", employmentStatus);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> email = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmploymentStatus> employmentStatus = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -323,6 +321,7 @@ public class Manager {
             return this;
         }
 
+
         /**
          * The name of the manager, often a combination of their first and last names.
          */
@@ -340,6 +339,7 @@ public class Manager {
             this.name = name;
             return this;
         }
+
 
         /**
          * The first name of the person.
@@ -359,6 +359,7 @@ public class Manager {
             return this;
         }
 
+
         /**
          * The last name of the person.
          */
@@ -376,6 +377,7 @@ public class Manager {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The email address of the manager.
@@ -395,6 +397,7 @@ public class Manager {
             return this;
         }
 
+
         /**
          * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
          */
@@ -412,15 +415,13 @@ public class Manager {
             this.employmentStatus = employmentStatus;
             return this;
         }
-        
+
         public Manager build() {
+
             return new Manager(
-                id,
-                name,
-                firstName,
-                lastName,
-                email,
-                employmentStatus);
+                id, name, firstName,
+                lastName, email, employmentStatus);
         }
+
     }
 }

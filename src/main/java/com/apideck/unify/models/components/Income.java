@@ -14,7 +14,6 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The operating income accounts
  */
 public class Income {
-
     /**
      * A unique identifier for an object.
      */
@@ -60,6 +58,7 @@ public class Income {
     @JsonProperty("total")
     private Optional<Double> total;
 
+
     @JsonProperty("records")
     private Object records;
 
@@ -87,7 +86,8 @@ public class Income {
     
     public Income(
             Object records) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), records);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), records);
     }
 
     /**
@@ -136,9 +136,10 @@ public class Income {
         return records;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -148,6 +149,7 @@ public class Income {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -167,6 +169,7 @@ public class Income {
         return this;
     }
 
+
     /**
      * The account code of the account
      */
@@ -184,6 +187,7 @@ public class Income {
         this.title = Optional.ofNullable(title);
         return this;
     }
+
 
     /**
      * The name of the account.
@@ -221,6 +225,7 @@ public class Income {
         return this;
     }
 
+
     /**
      * The aggregated total of all accounts within this category.
      */
@@ -236,7 +241,6 @@ public class Income {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -247,23 +251,19 @@ public class Income {
         }
         Income other = (Income) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.records, other.records);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.records, other.records);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            code,
-            title,
-            type,
-            total,
-            records);
+        return Utils.enhancedHash(
+            id, code, title,
+            type, total, records);
     }
     
     @Override
@@ -276,24 +276,26 @@ public class Income {
                 "total", total,
                 "records", records);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private Optional<String> title = Optional.empty();
- 
+
         private JsonNullable<? extends ProfitAndLossType> type = JsonNullable.undefined();
- 
+
         private Optional<Double> total = Optional.empty();
- 
+
         private Object records;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -313,6 +315,7 @@ public class Income {
             return this;
         }
 
+
         /**
          * The account code of the account
          */
@@ -330,6 +333,7 @@ public class Income {
             this.code = code;
             return this;
         }
+
 
         /**
          * The name of the account.
@@ -349,6 +353,7 @@ public class Income {
             return this;
         }
 
+
         /**
          * The type of profit and loss
          */
@@ -366,6 +371,7 @@ public class Income {
             this.type = type;
             return this;
         }
+
 
         /**
          * The aggregated total of all accounts within this category.
@@ -385,20 +391,19 @@ public class Income {
             return this;
         }
 
+
         public Builder records(Object records) {
             Utils.checkNotNull(records, "records");
             this.records = records;
             return this;
         }
-        
+
         public Income build() {
+
             return new Income(
-                id,
-                code,
-                title,
-                type,
-                total,
-                records);
+                id, code, title,
+                type, total, records);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class CrmLeadsDeleteRequestBuilder {
 
         RequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation
               = new CrmLeadsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

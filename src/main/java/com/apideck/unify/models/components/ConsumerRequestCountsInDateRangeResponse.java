@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Consumers Request Counts within Date Range
  */
 public class ConsumerRequestCountsInDateRangeResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -36,6 +34,7 @@ public class ConsumerRequestCountsInDateRangeResponse {
      */
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("data")
     private ConsumerRequestCountsInDateRangeResponseData data;
@@ -67,7 +66,8 @@ public class ConsumerRequestCountsInDateRangeResponse {
             long statusCode,
             String status,
             ConsumerRequestCountsInDateRangeResponseData data) {
-        this(statusCode, status, data, JsonNullable.undefined());
+        this(statusCode, status, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +100,10 @@ public class ConsumerRequestCountsInDateRangeResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -146,7 +147,6 @@ public class ConsumerRequestCountsInDateRangeResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,18 +157,16 @@ public class ConsumerRequestCountsInDateRangeResponse {
         }
         ConsumerRequestCountsInDateRangeResponse other = (ConsumerRequestCountsInDateRangeResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, data,
             raw);
     }
     
@@ -180,20 +178,22 @@ public class ConsumerRequestCountsInDateRangeResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private ConsumerRequestCountsInDateRangeResponseData data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -204,6 +204,7 @@ public class ConsumerRequestCountsInDateRangeResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -213,11 +214,13 @@ public class ConsumerRequestCountsInDateRangeResponse {
             return this;
         }
 
+
         public Builder data(ConsumerRequestCountsInDateRangeResponseData data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -236,13 +239,13 @@ public class ConsumerRequestCountsInDateRangeResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public ConsumerRequestCountsInDateRangeResponse build() {
+
             return new ConsumerRequestCountsInDateRangeResponse(
-                statusCode,
-                status,
-                data,
+                statusCode, status, data,
                 raw);
         }
+
     }
 }

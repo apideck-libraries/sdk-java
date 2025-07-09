@@ -48,8 +48,8 @@ public class AtsApplicationsAddRequestBuilder {
 
         RequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
               = new AtsApplicationsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

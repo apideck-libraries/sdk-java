@@ -37,7 +37,6 @@ public class Locations {
     Locations(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Locations
      * 
@@ -77,11 +76,10 @@ public class Locations {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
               = new AccountingLocationsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Location
@@ -122,11 +120,10 @@ public class Locations {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
               = new AccountingLocationsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Location
@@ -167,11 +164,10 @@ public class Locations {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
               = new AccountingLocationsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Location
@@ -212,11 +208,10 @@ public class Locations {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
               = new AccountingLocationsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Location
@@ -257,8 +252,8 @@ public class Locations {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
               = new AccountingLocationsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

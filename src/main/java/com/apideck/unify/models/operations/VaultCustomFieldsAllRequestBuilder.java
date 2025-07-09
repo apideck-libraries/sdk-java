@@ -48,8 +48,8 @@ public class VaultCustomFieldsAllRequestBuilder {
 
         RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
               = new VaultCustomFieldsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -48,8 +48,8 @@ public class AccountingPurchaseOrdersUpdateRequestBuilder {
 
         RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
               = new AccountingPurchaseOrdersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

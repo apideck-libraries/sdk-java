@@ -20,18 +20,18 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Job {
 
+public class Job {
     /**
      * A unique identifier for an object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("slug")
@@ -79,6 +79,7 @@ public class Job {
     @JsonProperty("language")
     private JsonNullable<String> language;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_terms")
     private JsonNullable<? extends EmploymentTerms> employmentTerms;
@@ -111,6 +112,7 @@ public class Job {
     @JsonProperty("requisition_id")
     private Optional<String> requisitionId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("department")
     private Optional<? extends Department> department;
@@ -129,9 +131,11 @@ public class Job {
     @JsonProperty("recruiters")
     private JsonNullable<? extends List<String>> recruiters;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hiring_managers")
     private Optional<? extends List<String>> hiringManagers;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("followers")
@@ -151,9 +155,11 @@ public class Job {
     @JsonProperty("description_html")
     private JsonNullable<String> descriptionHtml;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("blocks")
     private Optional<? extends List<Blocks>> blocks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("closing")
@@ -166,9 +172,11 @@ public class Job {
     @JsonProperty("closing_html")
     private JsonNullable<String> closingHtml;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("closing_date")
     private JsonNullable<LocalDate> closingDate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("salary")
@@ -203,9 +211,11 @@ public class Job {
     @Deprecated
     private JsonNullable<String> recordUrl;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("links")
     private Optional<? extends List<JobLinks>> links;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("confidential")
@@ -218,13 +228,16 @@ public class Job {
     @JsonProperty("available_to_employees")
     private Optional<Boolean> availableToEmployees;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
     private JsonNullable<? extends List<String>> tags;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -237,9 +250,11 @@ public class Job {
     @JsonProperty("deleted")
     private JsonNullable<Boolean> deleted;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner_id")
     private JsonNullable<String> ownerId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("published_at")
@@ -411,7 +426,20 @@ public class Job {
     }
     
     public Job() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -725,9 +753,10 @@ public class Job {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -737,6 +766,7 @@ public class Job {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -786,6 +816,7 @@ public class Job {
         return this;
     }
 
+
     /**
      * Sequence in relation to other jobs.
      */
@@ -803,6 +834,7 @@ public class Job {
         this.visibility = Optional.ofNullable(visibility);
         return this;
     }
+
 
     /**
      * The visibility of the job
@@ -822,6 +854,7 @@ public class Job {
         return this;
     }
 
+
     /**
      * The status of the job.
      */
@@ -839,6 +872,7 @@ public class Job {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * The code of the job.
@@ -887,6 +921,7 @@ public class Job {
         this.experience = Optional.ofNullable(experience);
         return this;
     }
+
 
     /**
      * Level of experience required for the job role.
@@ -942,6 +977,7 @@ public class Job {
         return this;
     }
 
+
     /**
      * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
      */
@@ -957,6 +993,7 @@ public class Job {
         return this;
     }
 
+
     public Job withDepartment(Optional<? extends Department> department) {
         Utils.checkNotNull(department, "department");
         this.department = department;
@@ -971,6 +1008,7 @@ public class Job {
         this.branch = Optional.ofNullable(branch);
         return this;
     }
+
 
     /**
      * Details of the branch for which the job is created.
@@ -1004,6 +1042,7 @@ public class Job {
         this.hiringManagers = Optional.ofNullable(hiringManagers);
         return this;
     }
+
 
     public Job withHiringManagers(Optional<? extends List<String>> hiringManagers) {
         Utils.checkNotNull(hiringManagers, "hiringManagers");
@@ -1065,6 +1104,7 @@ public class Job {
         return this;
     }
 
+
     public Job withBlocks(Optional<? extends List<Blocks>> blocks) {
         Utils.checkNotNull(blocks, "blocks");
         this.blocks = blocks;
@@ -1118,6 +1158,7 @@ public class Job {
         this.salary = Optional.ofNullable(salary);
         return this;
     }
+
 
     public Job withSalary(Optional<? extends Salary> salary) {
         Utils.checkNotNull(salary, "salary");
@@ -1201,6 +1242,7 @@ public class Job {
         return this;
     }
 
+
     public Job withLinks(Optional<? extends List<JobLinks>> links) {
         Utils.checkNotNull(links, "links");
         this.links = links;
@@ -1212,6 +1254,7 @@ public class Job {
         this.confidential = Optional.ofNullable(confidential);
         return this;
     }
+
 
     public Job withConfidential(Optional<Boolean> confidential) {
         Utils.checkNotNull(confidential, "confidential");
@@ -1227,6 +1270,7 @@ public class Job {
         this.availableToEmployees = Optional.ofNullable(availableToEmployees);
         return this;
     }
+
 
     /**
      * Specifies whether an employee of the organization can apply for the job.
@@ -1255,6 +1299,7 @@ public class Job {
         return this;
     }
 
+
     public Job withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -1266,6 +1311,7 @@ public class Job {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public Job withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -1405,7 +1451,6 @@ public class Job {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1416,95 +1461,67 @@ public class Job {
         }
         Job other = (Job) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.slug, other.slug) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.sequence, other.sequence) &&
-            Objects.deepEquals(this.visibility, other.visibility) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.employmentTerms, other.employmentTerms) &&
-            Objects.deepEquals(this.experience, other.experience) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.remote, other.remote) &&
-            Objects.deepEquals(this.requisitionId, other.requisitionId) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.branch, other.branch) &&
-            Objects.deepEquals(this.recruiters, other.recruiters) &&
-            Objects.deepEquals(this.hiringManagers, other.hiringManagers) &&
-            Objects.deepEquals(this.followers, other.followers) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.descriptionHtml, other.descriptionHtml) &&
-            Objects.deepEquals(this.blocks, other.blocks) &&
-            Objects.deepEquals(this.closing, other.closing) &&
-            Objects.deepEquals(this.closingHtml, other.closingHtml) &&
-            Objects.deepEquals(this.closingDate, other.closingDate) &&
-            Objects.deepEquals(this.salary, other.salary) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.jobPortalUrl, other.jobPortalUrl) &&
-            Objects.deepEquals(this.recordUrl, other.recordUrl) &&
-            Objects.deepEquals(this.links, other.links) &&
-            Objects.deepEquals(this.confidential, other.confidential) &&
-            Objects.deepEquals(this.availableToEmployees, other.availableToEmployees) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.publishedAt, other.publishedAt) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.slug, other.slug) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.sequence, other.sequence) &&
+            Utils.enhancedDeepEquals(this.visibility, other.visibility) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.employmentTerms, other.employmentTerms) &&
+            Utils.enhancedDeepEquals(this.experience, other.experience) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.remote, other.remote) &&
+            Utils.enhancedDeepEquals(this.requisitionId, other.requisitionId) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.branch, other.branch) &&
+            Utils.enhancedDeepEquals(this.recruiters, other.recruiters) &&
+            Utils.enhancedDeepEquals(this.hiringManagers, other.hiringManagers) &&
+            Utils.enhancedDeepEquals(this.followers, other.followers) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.descriptionHtml, other.descriptionHtml) &&
+            Utils.enhancedDeepEquals(this.blocks, other.blocks) &&
+            Utils.enhancedDeepEquals(this.closing, other.closing) &&
+            Utils.enhancedDeepEquals(this.closingHtml, other.closingHtml) &&
+            Utils.enhancedDeepEquals(this.closingDate, other.closingDate) &&
+            Utils.enhancedDeepEquals(this.salary, other.salary) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.jobPortalUrl, other.jobPortalUrl) &&
+            Utils.enhancedDeepEquals(this.recordUrl, other.recordUrl) &&
+            Utils.enhancedDeepEquals(this.links, other.links) &&
+            Utils.enhancedDeepEquals(this.confidential, other.confidential) &&
+            Utils.enhancedDeepEquals(this.availableToEmployees, other.availableToEmployees) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.publishedAt, other.publishedAt) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            slug,
-            title,
-            sequence,
-            visibility,
-            status,
-            code,
-            language,
-            employmentTerms,
-            experience,
-            location,
-            remote,
-            requisitionId,
-            department,
-            branch,
-            recruiters,
-            hiringManagers,
-            followers,
-            description,
-            descriptionHtml,
-            blocks,
-            closing,
-            closingHtml,
-            closingDate,
-            salary,
-            url,
-            jobPortalUrl,
-            recordUrl,
-            links,
-            confidential,
-            availableToEmployees,
-            tags,
-            addresses,
-            customFields,
-            deleted,
-            ownerId,
-            publishedAt,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt);
+        return Utils.enhancedHash(
+            id, slug, title,
+            sequence, visibility, status,
+            code, language, employmentTerms,
+            experience, location, remote,
+            requisitionId, department, branch,
+            recruiters, hiringManagers, followers,
+            description, descriptionHtml, blocks,
+            closing, closingHtml, closingDate,
+            salary, url, jobPortalUrl,
+            recordUrl, links, confidential,
+            availableToEmployees, tags, addresses,
+            customFields, deleted, ownerId,
+            publishedAt, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt);
     }
     
     @Override
@@ -1553,99 +1570,101 @@ public class Job {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> slug = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private Optional<Long> sequence = Optional.empty();
- 
+
         private Optional<? extends Visibility> visibility = Optional.empty();
- 
+
         private Optional<? extends JobStatus> status = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmploymentTerms> employmentTerms = JsonNullable.undefined();
- 
+
         private Optional<String> experience = Optional.empty();
- 
+
         private JsonNullable<String> location = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> remote = JsonNullable.undefined();
- 
+
         private Optional<String> requisitionId = Optional.empty();
- 
+
         private Optional<? extends Department> department = Optional.empty();
- 
+
         private Optional<? extends Branch> branch = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> recruiters = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> hiringManagers = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> followers = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> descriptionHtml = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Blocks>> blocks = Optional.empty();
- 
+
         private JsonNullable<String> closing = JsonNullable.undefined();
- 
+
         private JsonNullable<String> closingHtml = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> closingDate = JsonNullable.undefined();
- 
+
         private Optional<? extends Salary> salary = Optional.empty();
- 
+
         @Deprecated
         private JsonNullable<String> url = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> jobPortalUrl = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> recordUrl = JsonNullable.undefined();
- 
+
         private Optional<? extends List<JobLinks>> links = Optional.empty();
- 
+
         private Optional<Boolean> confidential = Optional.empty();
- 
+
         private Optional<Boolean> availableToEmployees = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> publishedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1665,6 +1684,7 @@ public class Job {
             return this;
         }
 
+
         public Builder slug(String slug) {
             Utils.checkNotNull(slug, "slug");
             this.slug = JsonNullable.of(slug);
@@ -1676,6 +1696,7 @@ public class Job {
             this.slug = slug;
             return this;
         }
+
 
         /**
          * The job title of the person.
@@ -1695,6 +1716,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * Sequence in relation to other jobs.
          */
@@ -1712,6 +1734,7 @@ public class Job {
             this.sequence = sequence;
             return this;
         }
+
 
         /**
          * The visibility of the job
@@ -1731,6 +1754,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The status of the job.
          */
@@ -1748,6 +1772,7 @@ public class Job {
             this.status = status;
             return this;
         }
+
 
         /**
          * The code of the job.
@@ -1767,6 +1792,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * language code according to ISO 639-1. For the United States - EN
          */
@@ -1785,6 +1811,7 @@ public class Job {
             return this;
         }
 
+
         public Builder employmentTerms(EmploymentTerms employmentTerms) {
             Utils.checkNotNull(employmentTerms, "employmentTerms");
             this.employmentTerms = JsonNullable.of(employmentTerms);
@@ -1796,6 +1823,7 @@ public class Job {
             this.employmentTerms = employmentTerms;
             return this;
         }
+
 
         /**
          * Level of experience required for the job role.
@@ -1815,6 +1843,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * Specifies the location for the job posting.
          */
@@ -1832,6 +1861,7 @@ public class Job {
             this.location = location;
             return this;
         }
+
 
         /**
          * Specifies whether the posting is for a remote job.
@@ -1851,6 +1881,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
          */
@@ -1869,6 +1900,7 @@ public class Job {
             return this;
         }
 
+
         public Builder department(Department department) {
             Utils.checkNotNull(department, "department");
             this.department = Optional.ofNullable(department);
@@ -1880,6 +1912,7 @@ public class Job {
             this.department = department;
             return this;
         }
+
 
         /**
          * Details of the branch for which the job is created.
@@ -1899,6 +1932,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
          */
@@ -1917,6 +1951,7 @@ public class Job {
             return this;
         }
 
+
         public Builder hiringManagers(List<String> hiringManagers) {
             Utils.checkNotNull(hiringManagers, "hiringManagers");
             this.hiringManagers = Optional.ofNullable(hiringManagers);
@@ -1929,6 +1964,7 @@ public class Job {
             return this;
         }
 
+
         public Builder followers(List<String> followers) {
             Utils.checkNotNull(followers, "followers");
             this.followers = JsonNullable.of(followers);
@@ -1940,6 +1976,7 @@ public class Job {
             this.followers = followers;
             return this;
         }
+
 
         /**
          * A description of the object.
@@ -1959,6 +1996,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The job description in HTML format
          */
@@ -1977,6 +2015,7 @@ public class Job {
             return this;
         }
 
+
         public Builder blocks(List<Blocks> blocks) {
             Utils.checkNotNull(blocks, "blocks");
             this.blocks = Optional.ofNullable(blocks);
@@ -1989,6 +2028,7 @@ public class Job {
             return this;
         }
 
+
         public Builder closing(String closing) {
             Utils.checkNotNull(closing, "closing");
             this.closing = JsonNullable.of(closing);
@@ -2000,6 +2040,7 @@ public class Job {
             this.closing = closing;
             return this;
         }
+
 
         /**
          * The closing section of the job description in HTML format
@@ -2019,6 +2060,7 @@ public class Job {
             return this;
         }
 
+
         public Builder closingDate(LocalDate closingDate) {
             Utils.checkNotNull(closingDate, "closingDate");
             this.closingDate = JsonNullable.of(closingDate);
@@ -2031,6 +2073,7 @@ public class Job {
             return this;
         }
 
+
         public Builder salary(Salary salary) {
             Utils.checkNotNull(salary, "salary");
             this.salary = Optional.ofNullable(salary);
@@ -2042,6 +2085,7 @@ public class Job {
             this.salary = salary;
             return this;
         }
+
 
         /**
          * URL of the job description
@@ -2067,6 +2111,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * URL of the job portal
          * 
@@ -2091,6 +2136,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
@@ -2113,6 +2159,7 @@ public class Job {
             return this;
         }
 
+
         public Builder links(List<JobLinks> links) {
             Utils.checkNotNull(links, "links");
             this.links = Optional.ofNullable(links);
@@ -2125,6 +2172,7 @@ public class Job {
             return this;
         }
 
+
         public Builder confidential(boolean confidential) {
             Utils.checkNotNull(confidential, "confidential");
             this.confidential = Optional.ofNullable(confidential);
@@ -2136,6 +2184,7 @@ public class Job {
             this.confidential = confidential;
             return this;
         }
+
 
         /**
          * Specifies whether an employee of the organization can apply for the job.
@@ -2155,6 +2204,7 @@ public class Job {
             return this;
         }
 
+
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = JsonNullable.of(tags);
@@ -2166,6 +2216,7 @@ public class Job {
             this.tags = tags;
             return this;
         }
+
 
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -2179,6 +2230,7 @@ public class Job {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -2190,6 +2242,7 @@ public class Job {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * Flag to indicate if the object is deleted.
@@ -2209,6 +2262,7 @@ public class Job {
             return this;
         }
 
+
         public Builder ownerId(String ownerId) {
             Utils.checkNotNull(ownerId, "ownerId");
             this.ownerId = JsonNullable.of(ownerId);
@@ -2221,6 +2275,7 @@ public class Job {
             return this;
         }
 
+
         public Builder publishedAt(OffsetDateTime publishedAt) {
             Utils.checkNotNull(publishedAt, "publishedAt");
             this.publishedAt = JsonNullable.of(publishedAt);
@@ -2232,6 +2287,7 @@ public class Job {
             this.publishedAt = publishedAt;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -2251,6 +2307,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -2268,6 +2325,7 @@ public class Job {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -2287,6 +2345,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -2305,6 +2364,7 @@ public class Job {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -2322,51 +2382,25 @@ public class Job {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public Job build() {
+
             return new Job(
-                id,
-                slug,
-                title,
-                sequence,
-                visibility,
-                status,
-                code,
-                language,
-                employmentTerms,
-                experience,
-                location,
-                remote,
-                requisitionId,
-                department,
-                branch,
-                recruiters,
-                hiringManagers,
-                followers,
-                description,
-                descriptionHtml,
-                blocks,
-                closing,
-                closingHtml,
-                closingDate,
-                salary,
-                url,
-                jobPortalUrl,
-                recordUrl,
-                links,
-                confidential,
-                availableToEmployees,
-                tags,
-                addresses,
-                customFields,
-                deleted,
-                ownerId,
-                publishedAt,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt);
+                id, slug, title,
+                sequence, visibility, status,
+                code, language, employmentTerms,
+                experience, location, remote,
+                requisitionId, department, branch,
+                recruiters, hiringManagers, followers,
+                description, descriptionHtml, blocks,
+                closing, closingHtml, closingDate,
+                salary, url, jobPortalUrl,
+                recordUrl, links, confidential,
+                availableToEmployees, tags, addresses,
+                customFields, deleted, ownerId,
+                publishedAt, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt);
         }
+
     }
 }

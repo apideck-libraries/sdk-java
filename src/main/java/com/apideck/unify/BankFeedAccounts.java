@@ -37,7 +37,6 @@ public class BankFeedAccounts {
     BankFeedAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Bank Feed Accounts
      * 
@@ -77,11 +76,10 @@ public class BankFeedAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
               = new AccountingBankFeedAccountsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Bank Feed Account
@@ -122,11 +120,10 @@ public class BankFeedAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
               = new AccountingBankFeedAccountsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Bank Feed Account
@@ -167,11 +164,10 @@ public class BankFeedAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
               = new AccountingBankFeedAccountsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Bank Feed Account
@@ -212,11 +208,10 @@ public class BankFeedAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
               = new AccountingBankFeedAccountsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Bank Feed Account
@@ -257,8 +252,8 @@ public class BankFeedAccounts {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
               = new AccountingBankFeedAccountsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SharedLink {
 
+public class SharedLink {
     /**
      * The URL that can be used to view the file.
      */
@@ -34,6 +33,7 @@ public class SharedLink {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("download_url")
     private JsonNullable<String> downloadUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target")
@@ -52,6 +52,7 @@ public class SharedLink {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("password_protected")
     private JsonNullable<Boolean> passwordProtected;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expires_at")
@@ -110,7 +111,9 @@ public class SharedLink {
     }
     
     public SharedLink() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -182,9 +185,10 @@ public class SharedLink {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL that can be used to view the file.
@@ -227,6 +231,7 @@ public class SharedLink {
         this.target = Optional.ofNullable(target);
         return this;
     }
+
 
     public SharedLink withTarget(Optional<? extends SharedLinkTarget> target) {
         Utils.checkNotNull(target, "target");
@@ -327,6 +332,7 @@ public class SharedLink {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -336,7 +342,6 @@ public class SharedLink {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -347,29 +352,23 @@ public class SharedLink {
         }
         SharedLink other = (SharedLink) o;
         return 
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.downloadUrl, other.downloadUrl) &&
-            Objects.deepEquals(this.target, other.target) &&
-            Objects.deepEquals(this.scope, other.scope) &&
-            Objects.deepEquals(this.passwordProtected, other.passwordProtected) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.downloadUrl, other.downloadUrl) &&
+            Utils.enhancedDeepEquals(this.target, other.target) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.passwordProtected, other.passwordProtected) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            url,
-            downloadUrl,
-            target,
-            scope,
-            passwordProtected,
-            expiresAt,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            url, downloadUrl, target,
+            scope, passwordProtected, expiresAt,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -385,30 +384,32 @@ public class SharedLink {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> url = JsonNullable.undefined();
- 
+
         private JsonNullable<String> downloadUrl = JsonNullable.undefined();
- 
+
         private Optional<? extends SharedLinkTarget> target = Optional.empty();
- 
+
         private JsonNullable<? extends Scope> scope = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> passwordProtected = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL that can be used to view the file.
@@ -428,6 +429,7 @@ public class SharedLink {
             return this;
         }
 
+
         /**
          * The URL that can be used to download the file.
          */
@@ -446,6 +448,7 @@ public class SharedLink {
             return this;
         }
 
+
         public Builder target(SharedLinkTarget target) {
             Utils.checkNotNull(target, "target");
             this.target = Optional.ofNullable(target);
@@ -457,6 +460,7 @@ public class SharedLink {
             this.target = target;
             return this;
         }
+
 
         /**
          * The scope of the shared link.
@@ -476,6 +480,7 @@ public class SharedLink {
             return this;
         }
 
+
         /**
          * Indicated if the shared link is password protected.
          */
@@ -494,6 +499,7 @@ public class SharedLink {
             return this;
         }
 
+
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = JsonNullable.of(expiresAt);
@@ -505,6 +511,7 @@ public class SharedLink {
             this.expiresAt = expiresAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -524,6 +531,7 @@ public class SharedLink {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -542,6 +550,7 @@ public class SharedLink {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -559,18 +568,14 @@ public class SharedLink {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public SharedLink build() {
+
             return new SharedLink(
-                url,
-                downloadUrl,
-                target,
-                scope,
-                passwordProtected,
-                expiresAt,
-                updatedAt,
-                createdAt,
-                passThrough);
+                url, downloadUrl, target,
+                scope, passwordProtected, expiresAt,
+                updatedAt, createdAt, passThrough);
         }
+
     }
 }

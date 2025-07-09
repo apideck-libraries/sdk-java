@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UpdateWebhookRequest {
 
+public class UpdateWebhookRequest {
     /**
      * A description of the object.
      */
@@ -64,7 +63,8 @@ public class UpdateWebhookRequest {
     }
     
     public UpdateWebhookRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -101,9 +101,10 @@ public class UpdateWebhookRequest {
         return (Optional<List<WebhookEventType>>) events;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the object.
@@ -132,6 +133,7 @@ public class UpdateWebhookRequest {
         return this;
     }
 
+
     /**
      * The status of the webhook.
      */
@@ -149,6 +151,7 @@ public class UpdateWebhookRequest {
         this.deliveryUrl = Optional.ofNullable(deliveryUrl);
         return this;
     }
+
 
     /**
      * The delivery url of the webhook endpoint.
@@ -168,6 +171,7 @@ public class UpdateWebhookRequest {
         return this;
     }
 
+
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
@@ -177,7 +181,6 @@ public class UpdateWebhookRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,18 +191,16 @@ public class UpdateWebhookRequest {
         }
         UpdateWebhookRequest other = (UpdateWebhookRequest) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.deliveryUrl, other.deliveryUrl) &&
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.deliveryUrl, other.deliveryUrl) &&
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            status,
-            deliveryUrl,
+        return Utils.enhancedHash(
+            description, status, deliveryUrl,
             events);
     }
     
@@ -211,20 +212,22 @@ public class UpdateWebhookRequest {
                 "deliveryUrl", deliveryUrl,
                 "events", events);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends Status> status = Optional.empty();
- 
+
         private Optional<String> deliveryUrl = Optional.empty();
- 
+
         private Optional<? extends List<WebhookEventType>> events = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the object.
@@ -244,6 +247,7 @@ public class UpdateWebhookRequest {
             return this;
         }
 
+
         /**
          * The status of the webhook.
          */
@@ -261,6 +265,7 @@ public class UpdateWebhookRequest {
             this.status = status;
             return this;
         }
+
 
         /**
          * The delivery url of the webhook endpoint.
@@ -280,6 +285,7 @@ public class UpdateWebhookRequest {
             return this;
         }
 
+
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
@@ -297,13 +303,13 @@ public class UpdateWebhookRequest {
             this.events = events;
             return this;
         }
-        
+
         public UpdateWebhookRequest build() {
+
             return new UpdateWebhookRequest(
-                description,
-                status,
-                deliveryUrl,
+                description, status, deliveryUrl,
                 events);
         }
+
     }
 }

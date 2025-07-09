@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CopyFolderRequest {
 
+public class CopyFolderRequest {
     /**
      * The name of the folder.
      */
@@ -81,9 +80,10 @@ public class CopyFolderRequest {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the folder.
@@ -93,6 +93,7 @@ public class CopyFolderRequest {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the folder.
@@ -121,6 +122,7 @@ public class CopyFolderRequest {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -130,7 +132,6 @@ public class CopyFolderRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,17 +142,15 @@ public class CopyFolderRequest {
         }
         CopyFolderRequest other = (CopyFolderRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.parentFolderId, other.parentFolderId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            parentFolderId,
-            passThrough);
+        return Utils.enhancedHash(
+            name, parentFolderId, passThrough);
     }
     
     @Override
@@ -161,18 +160,20 @@ public class CopyFolderRequest {
                 "parentFolderId", parentFolderId,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private String parentFolderId;
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the folder.
@@ -192,6 +193,7 @@ public class CopyFolderRequest {
             return this;
         }
 
+
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
@@ -200,6 +202,7 @@ public class CopyFolderRequest {
             this.parentFolderId = parentFolderId;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -218,12 +221,12 @@ public class CopyFolderRequest {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CopyFolderRequest build() {
+
             return new CopyFolderRequest(
-                name,
-                parentFolderId,
-                passThrough);
+                name, parentFolderId, passThrough);
         }
+
     }
 }

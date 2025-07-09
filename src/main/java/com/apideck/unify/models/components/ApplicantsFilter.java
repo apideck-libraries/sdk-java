@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ApplicantsFilter {
 
+public class ApplicantsFilter {
     /**
      * Id of the job to filter on
      */
@@ -39,9 +38,10 @@ public class ApplicantsFilter {
         return jobId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Id of the job to filter on
@@ -52,6 +52,7 @@ public class ApplicantsFilter {
         return this;
     }
 
+
     /**
      * Id of the job to filter on
      */
@@ -61,7 +62,6 @@ public class ApplicantsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class ApplicantsFilter {
         }
         ApplicantsFilter other = (ApplicantsFilter) o;
         return 
-            Objects.deepEquals(this.jobId, other.jobId);
+            Utils.enhancedDeepEquals(this.jobId, other.jobId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             jobId);
     }
     
@@ -86,14 +86,16 @@ public class ApplicantsFilter {
         return Utils.toString(ApplicantsFilter.class,
                 "jobId", jobId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> jobId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Id of the job to filter on
@@ -112,10 +114,12 @@ public class ApplicantsFilter {
             this.jobId = jobId;
             return this;
         }
-        
+
         public ApplicantsFilter build() {
+
             return new ApplicantsFilter(
                 jobId);
         }
+
     }
 }

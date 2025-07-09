@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ParentAccount {
 
+public class ParentAccount {
     /**
      * The ID of the parent account.
      */
@@ -78,9 +77,10 @@ public class ParentAccount {
         return displayId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the parent account.
@@ -90,6 +90,7 @@ public class ParentAccount {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the parent account.
@@ -109,6 +110,7 @@ public class ParentAccount {
         return this;
     }
 
+
     /**
      * The name of the parent account.
      */
@@ -127,6 +129,7 @@ public class ParentAccount {
         return this;
     }
 
+
     /**
      * The human readable display ID used when displaying the parent account
      */
@@ -136,7 +139,6 @@ public class ParentAccount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -147,17 +149,15 @@ public class ParentAccount {
         }
         ParentAccount other = (ParentAccount) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayId, other.displayId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            displayId);
+        return Utils.enhancedHash(
+            id, name, displayId);
     }
     
     @Override
@@ -167,18 +167,20 @@ public class ParentAccount {
                 "name", name,
                 "displayId", displayId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> displayId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the parent account.
@@ -198,6 +200,7 @@ public class ParentAccount {
             return this;
         }
 
+
         /**
          * The name of the parent account.
          */
@@ -216,6 +219,7 @@ public class ParentAccount {
             return this;
         }
 
+
         /**
          * The human readable display ID used when displaying the parent account
          */
@@ -233,12 +237,12 @@ public class ParentAccount {
             this.displayId = displayId;
             return this;
         }
-        
+
         public ParentAccount build() {
+
             return new ParentAccount(
-                id,
-                name,
-                displayId);
+                id, name, displayId);
         }
+
     }
 }

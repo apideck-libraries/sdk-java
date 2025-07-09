@@ -25,77 +25,99 @@ public class Apideck {
      * SERVERS contains the list of server urls available to the SDK.
      */
     public static final String[] SERVERS = {
+
         "https://unify.apideck.com",
     };
 
-    
 
     private final Accounting accounting;
 
+
     private final Ats ats;
+
 
     private final Crm crm;
 
+
     private final Ecommerce ecommerce;
+
 
     private final FileStorage fileStorage;
 
+
     private final Hris hris;
+
 
     private final Sms sms;
 
+
     private final IssueTracking issueTracking;
+
 
     private final Connector connector;
 
+
     private final Vault vault;
 
+
     private final Webhook webhook;
+
 
     public Accounting accounting() {
         return accounting;
     }
 
+
     public Ats ats() {
         return ats;
     }
+
 
     public Crm crm() {
         return crm;
     }
 
+
     public Ecommerce ecommerce() {
         return ecommerce;
     }
+
 
     public FileStorage fileStorage() {
         return fileStorage;
     }
 
+
     public Hris hris() {
         return hris;
     }
+
 
     public Sms sms() {
         return sms;
     }
 
+
     public IssueTracking issueTracking() {
         return issueTracking;
     }
+
 
     public Connector connector() {
         return connector;
     }
 
+
     public Vault vault() {
         return vault;
     }
 
+
     public Webhook webhook() {
         return webhook;
     }
-    private SDKConfiguration sdkConfiguration;
+
+    private final SDKConfiguration sdkConfiguration;
 
     /**
      * The Builder class allows the configuration of a new instance of the SDK.
@@ -193,17 +215,20 @@ public class Apideck {
 
         /**
          * Enables debug logging for HTTP requests and responses, including JSON body content.
-         *
-         * This is a convenience method that calls {@link HTTPClient#enableDebugLogging()}.
+         * <p>
+         * Convenience method that calls {@link HTTPClient#enableDebugLogging(boolean)}.
          * {@link SpeakeasyHTTPClient} honors this setting. If you are using a custom HTTP client,
          * it is up to the custom client to honor this setting.
+         * </p>
          *
+         * @param enabled Whether to enable debug logging.
          * @return The builder instance.
          */
-        public Builder enableHTTPDebugLogging() {
-            this.sdkConfiguration.client().enableDebugLogging();
+        public Builder enableHTTPDebugLogging(boolean enabled) {
+            this.sdkConfiguration.client().enableDebugLogging(enabled);
             return this;
         }
+
         /**
          * Allows setting the consumerId parameter for all supported operations.
          *
@@ -276,8 +301,10 @@ public class Apideck {
         this.connector = new Connector(sdkConfiguration);
         this.vault = new Vault(sdkConfiguration);
         this.webhook = new Webhook(sdkConfiguration);
-        
-        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(new SdkInitData(this.sdkConfiguration.resolvedServerUrl(), this.sdkConfiguration.client()));
+        SdkInitData data = this.sdkConfiguration.hooks().sdkInit(
+                new SdkInitData(
+                        this.sdkConfiguration.resolvedServerUrl(), 
+                        this.sdkConfiguration.client()));
         this.sdkConfiguration.setServerUrl(data.baseUrl());
         this.sdkConfiguration.setClient(data.client());
     }

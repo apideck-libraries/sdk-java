@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Operation
@@ -17,7 +16,6 @@ import java.util.Objects;
  * <p>The request as defined in OpenApi Spec.
  */
 public class Operation {
-
     /**
      * The OpenApi Operation Id associated with the request
      */
@@ -56,9 +54,10 @@ public class Operation {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The OpenApi Operation Id associated with the request
@@ -78,7 +77,6 @@ public class Operation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -89,15 +87,14 @@ public class Operation {
         }
         Operation other = (Operation) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -106,16 +103,18 @@ public class Operation {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The OpenApi Operation Id associated with the request
@@ -126,6 +125,7 @@ public class Operation {
             return this;
         }
 
+
         /**
          * The OpenApi Operation name associated with the request
          */
@@ -134,11 +134,12 @@ public class Operation {
             this.name = name;
             return this;
         }
-        
+
         public Operation build() {
+
             return new Operation(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

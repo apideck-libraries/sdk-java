@@ -37,7 +37,6 @@ public class JournalEntries {
     JournalEntries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Journal Entries
      * 
@@ -77,11 +76,10 @@ public class JournalEntries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
               = new AccountingJournalEntriesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Journal Entry
@@ -122,11 +120,10 @@ public class JournalEntries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
               = new AccountingJournalEntriesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Journal Entry
@@ -167,11 +164,10 @@ public class JournalEntries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
               = new AccountingJournalEntriesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Journal Entry
@@ -212,11 +208,10 @@ public class JournalEntries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
               = new AccountingJournalEntriesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Journal Entry
@@ -257,8 +252,8 @@ public class JournalEntries {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

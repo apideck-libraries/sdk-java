@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>Theming options to change the look and feel of Vault.
  */
 public class Theme {
-
     /**
      * The URL to the favicon to use for Vault.
      */
@@ -106,7 +104,9 @@ public class Theme {
     }
     
     public Theme() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -173,9 +173,10 @@ public class Theme {
         return termsUrl;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL to the favicon to use for Vault.
@@ -185,6 +186,7 @@ public class Theme {
         this.favicon = Optional.ofNullable(favicon);
         return this;
     }
+
 
     /**
      * The URL to the favicon to use for Vault.
@@ -204,6 +206,7 @@ public class Theme {
         return this;
     }
 
+
     /**
      * The URL to the logo to use for Vault.
      */
@@ -221,6 +224,7 @@ public class Theme {
         this.primaryColor = Optional.ofNullable(primaryColor);
         return this;
     }
+
 
     /**
      * The primary color to use for Vault.
@@ -240,6 +244,7 @@ public class Theme {
         return this;
     }
 
+
     /**
      * The background color to use for the sidebar.
      */
@@ -257,6 +262,7 @@ public class Theme {
         this.sidepanelTextColor = Optional.ofNullable(sidepanelTextColor);
         return this;
     }
+
 
     /**
      * The text color to use for the sidebar.
@@ -276,6 +282,7 @@ public class Theme {
         return this;
     }
 
+
     /**
      * The name that will be shown in the sidebar.
      */
@@ -293,6 +300,7 @@ public class Theme {
         this.privacyUrl = Optional.ofNullable(privacyUrl);
         return this;
     }
+
 
     /**
      * The URL to the privacy policy that will be shown in the sidebar.
@@ -312,6 +320,7 @@ public class Theme {
         return this;
     }
 
+
     /**
      * The URL to the terms and conditions that will be shown in the sidebar.
      */
@@ -321,7 +330,6 @@ public class Theme {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -332,27 +340,22 @@ public class Theme {
         }
         Theme other = (Theme) o;
         return 
-            Objects.deepEquals(this.favicon, other.favicon) &&
-            Objects.deepEquals(this.logo, other.logo) &&
-            Objects.deepEquals(this.primaryColor, other.primaryColor) &&
-            Objects.deepEquals(this.sidepanelBackgroundColor, other.sidepanelBackgroundColor) &&
-            Objects.deepEquals(this.sidepanelTextColor, other.sidepanelTextColor) &&
-            Objects.deepEquals(this.vaultName, other.vaultName) &&
-            Objects.deepEquals(this.privacyUrl, other.privacyUrl) &&
-            Objects.deepEquals(this.termsUrl, other.termsUrl);
+            Utils.enhancedDeepEquals(this.favicon, other.favicon) &&
+            Utils.enhancedDeepEquals(this.logo, other.logo) &&
+            Utils.enhancedDeepEquals(this.primaryColor, other.primaryColor) &&
+            Utils.enhancedDeepEquals(this.sidepanelBackgroundColor, other.sidepanelBackgroundColor) &&
+            Utils.enhancedDeepEquals(this.sidepanelTextColor, other.sidepanelTextColor) &&
+            Utils.enhancedDeepEquals(this.vaultName, other.vaultName) &&
+            Utils.enhancedDeepEquals(this.privacyUrl, other.privacyUrl) &&
+            Utils.enhancedDeepEquals(this.termsUrl, other.termsUrl);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            favicon,
-            logo,
-            primaryColor,
-            sidepanelBackgroundColor,
-            sidepanelTextColor,
-            vaultName,
-            privacyUrl,
-            termsUrl);
+        return Utils.enhancedHash(
+            favicon, logo, primaryColor,
+            sidepanelBackgroundColor, sidepanelTextColor, vaultName,
+            privacyUrl, termsUrl);
     }
     
     @Override
@@ -367,28 +370,30 @@ public class Theme {
                 "privacyUrl", privacyUrl,
                 "termsUrl", termsUrl);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> favicon = Optional.empty();
- 
+
         private Optional<String> logo = Optional.empty();
- 
+
         private Optional<String> primaryColor = Optional.empty();
- 
+
         private Optional<String> sidepanelBackgroundColor = Optional.empty();
- 
+
         private Optional<String> sidepanelTextColor = Optional.empty();
- 
+
         private Optional<String> vaultName = Optional.empty();
- 
+
         private Optional<String> privacyUrl = Optional.empty();
- 
+
         private Optional<String> termsUrl = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL to the favicon to use for Vault.
@@ -408,6 +413,7 @@ public class Theme {
             return this;
         }
 
+
         /**
          * The URL to the logo to use for Vault.
          */
@@ -425,6 +431,7 @@ public class Theme {
             this.logo = logo;
             return this;
         }
+
 
         /**
          * The primary color to use for Vault.
@@ -444,6 +451,7 @@ public class Theme {
             return this;
         }
 
+
         /**
          * The background color to use for the sidebar.
          */
@@ -461,6 +469,7 @@ public class Theme {
             this.sidepanelBackgroundColor = sidepanelBackgroundColor;
             return this;
         }
+
 
         /**
          * The text color to use for the sidebar.
@@ -480,6 +489,7 @@ public class Theme {
             return this;
         }
 
+
         /**
          * The name that will be shown in the sidebar.
          */
@@ -497,6 +507,7 @@ public class Theme {
             this.vaultName = vaultName;
             return this;
         }
+
 
         /**
          * The URL to the privacy policy that will be shown in the sidebar.
@@ -516,6 +527,7 @@ public class Theme {
             return this;
         }
 
+
         /**
          * The URL to the terms and conditions that will be shown in the sidebar.
          */
@@ -533,17 +545,14 @@ public class Theme {
             this.termsUrl = termsUrl;
             return this;
         }
-        
+
         public Theme build() {
+
             return new Theme(
-                favicon,
-                logo,
-                primaryColor,
-                sidepanelBackgroundColor,
-                sidepanelTextColor,
-                vaultName,
-                privacyUrl,
-                termsUrl);
+                favicon, logo, primaryColor,
+                sidepanelBackgroundColor, sidepanelTextColor, vaultName,
+                privacyUrl, termsUrl);
         }
+
     }
 }

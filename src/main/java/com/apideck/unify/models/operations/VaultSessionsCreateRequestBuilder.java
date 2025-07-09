@@ -92,8 +92,8 @@ public class VaultSessionsCreateRequestBuilder {
 
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
               = new VaultSessionsCreateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         VaultSessionsCreateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

@@ -19,12 +19,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Payment {
 
+public class Payment {
     /**
      * A unique identifier for an object.
      */
@@ -107,6 +106,7 @@ public class Payment {
     @Deprecated
     private JsonNullable<String> accountsReceivableAccountId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private JsonNullable<? extends LinkedLedgerAccount> account;
@@ -163,6 +163,7 @@ public class Payment {
     @JsonProperty("type")
     private Optional<? extends PaymentType> type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allocations")
     private Optional<? extends List<Allocation>> allocations;
@@ -187,6 +188,7 @@ public class Payment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -350,7 +352,17 @@ public class Payment {
     
     public Payment(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -620,9 +632,10 @@ public class Payment {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -695,6 +708,7 @@ public class Payment {
         this.totalAmount = Optional.ofNullable(totalAmount);
         return this;
     }
+
 
     /**
      * The total amount of the transaction or record
@@ -846,6 +860,7 @@ public class Payment {
         return this;
     }
 
+
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
@@ -942,6 +957,7 @@ public class Payment {
         return this;
     }
 
+
     /**
      * Status of payment
      */
@@ -960,6 +976,7 @@ public class Payment {
         return this;
     }
 
+
     /**
      * Type of payment
      */
@@ -974,6 +991,7 @@ public class Payment {
         this.allocations = Optional.ofNullable(allocations);
         return this;
     }
+
 
     public Payment withAllocations(Optional<? extends List<Allocation>> allocations) {
         Utils.checkNotNull(allocations, "allocations");
@@ -1040,6 +1058,7 @@ public class Payment {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public Payment withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -1182,6 +1201,7 @@ public class Payment {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1191,7 +1211,6 @@ public class Payment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1202,75 +1221,54 @@ public class Payment {
         }
         Payment other = (Payment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.paymentMethodReference, other.paymentMethodReference) &&
-            Objects.deepEquals(this.paymentMethodId, other.paymentMethodId) &&
-            Objects.deepEquals(this.accountsReceivableAccountType, other.accountsReceivableAccountType) &&
-            Objects.deepEquals(this.accountsReceivableAccountId, other.accountsReceivableAccountId) &&
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.transactionDate, other.transactionDate) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.reconciled, other.reconciled) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.allocations, other.allocations) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.paymentMethodReference, other.paymentMethodReference) &&
+            Utils.enhancedDeepEquals(this.paymentMethodId, other.paymentMethodId) &&
+            Utils.enhancedDeepEquals(this.accountsReceivableAccountType, other.accountsReceivableAccountType) &&
+            Utils.enhancedDeepEquals(this.accountsReceivableAccountId, other.accountsReceivableAccountId) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.reconciled, other.reconciled) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            currency,
-            currencyRate,
-            totalAmount,
-            reference,
-            paymentMethod,
-            paymentMethodReference,
-            paymentMethodId,
-            accountsReceivableAccountType,
-            accountsReceivableAccountId,
-            account,
-            transactionDate,
-            customer,
-            supplier,
-            companyId,
-            reconciled,
-            status,
-            type,
-            allocations,
-            note,
-            number,
-            trackingCategories,
-            customFields,
-            rowVersion,
-            displayId,
-            customMappings,
-            updatedBy,
-            createdBy,
-            createdAt,
-            updatedAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, downstreamId, currency,
+            currencyRate, totalAmount, reference,
+            paymentMethod, paymentMethodReference, paymentMethodId,
+            accountsReceivableAccountType, accountsReceivableAccountId, account,
+            transactionDate, customer, supplier,
+            companyId, reconciled, status,
+            type, allocations, note,
+            number, trackingCategories, customFields,
+            rowVersion, displayId, customMappings,
+            updatedBy, createdBy, createdAt,
+            updatedAt, passThrough);
     }
     
     @Override
@@ -1309,79 +1307,81 @@ public class Payment {
                 "updatedAt", updatedAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private Optional<Double> totalAmount = Optional.empty();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodReference = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethodId = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> accountsReceivableAccountType = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> accountsReceivableAccountId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedSupplier> supplier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> reconciled = JsonNullable.undefined();
- 
+
         private Optional<? extends PaymentStatus> status = Optional.empty();
- 
+
         private Optional<? extends PaymentType> type = Optional.empty();
- 
+
         private Optional<? extends List<Allocation>> allocations = Optional.empty();
- 
+
         private JsonNullable<String> note = JsonNullable.undefined();
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1391,6 +1391,7 @@ public class Payment {
             this.id = id;
             return this;
         }
+
 
         /**
          * The third-party API ID of original entity
@@ -1410,6 +1411,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1427,6 +1429,7 @@ public class Payment {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1446,6 +1449,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The total amount of the transaction or record
          */
@@ -1463,6 +1467,7 @@ public class Payment {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Optional transaction reference message ie: Debit remittance detail.
@@ -1482,6 +1487,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
@@ -1499,6 +1505,7 @@ public class Payment {
             this.paymentMethod = paymentMethod;
             return this;
         }
+
 
         /**
          * Optional reference message returned by payment method on processing
@@ -1518,6 +1525,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * A unique identifier for an object.
          */
@@ -1535,6 +1543,7 @@ public class Payment {
             this.paymentMethodId = paymentMethodId;
             return this;
         }
+
 
         /**
          * Type of accounts receivable account.
@@ -1560,6 +1569,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Unique identifier for the account to allocate payment to.
          * 
@@ -1584,6 +1594,7 @@ public class Payment {
             return this;
         }
 
+
         public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -1595,6 +1606,7 @@ public class Payment {
             this.account = account;
             return this;
         }
+
 
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -1614,6 +1626,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The customer this entity is linked to.
          */
@@ -1631,6 +1644,7 @@ public class Payment {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * The supplier this entity is linked to.
@@ -1656,6 +1670,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The company or subsidiary id the transaction belongs to
          */
@@ -1673,6 +1688,7 @@ public class Payment {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * Indicates if the transaction has been reconciled.
@@ -1692,6 +1708,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Status of payment
          */
@@ -1709,6 +1726,7 @@ public class Payment {
             this.status = status;
             return this;
         }
+
 
         /**
          * Type of payment
@@ -1728,6 +1746,7 @@ public class Payment {
             return this;
         }
 
+
         public Builder allocations(List<Allocation> allocations) {
             Utils.checkNotNull(allocations, "allocations");
             this.allocations = Optional.ofNullable(allocations);
@@ -1739,6 +1758,7 @@ public class Payment {
             this.allocations = allocations;
             return this;
         }
+
 
         /**
          * Note associated with the transaction
@@ -1758,6 +1778,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Number associated with the transaction
          */
@@ -1775,6 +1796,7 @@ public class Payment {
             this.number = number;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -1794,6 +1816,7 @@ public class Payment {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1805,6 +1828,7 @@ public class Payment {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1824,6 +1848,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * Id to be displayed.
          */
@@ -1841,6 +1866,7 @@ public class Payment {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1860,6 +1886,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -1877,6 +1904,7 @@ public class Payment {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -1896,6 +1924,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1913,6 +1942,7 @@ public class Payment {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -1932,6 +1962,7 @@ public class Payment {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1949,41 +1980,22 @@ public class Payment {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Payment build() {
+
             return new Payment(
-                id,
-                downstreamId,
-                currency,
-                currencyRate,
-                totalAmount,
-                reference,
-                paymentMethod,
-                paymentMethodReference,
-                paymentMethodId,
-                accountsReceivableAccountType,
-                accountsReceivableAccountId,
-                account,
-                transactionDate,
-                customer,
-                supplier,
-                companyId,
-                reconciled,
-                status,
-                type,
-                allocations,
-                note,
-                number,
-                trackingCategories,
-                customFields,
-                rowVersion,
-                displayId,
-                customMappings,
-                updatedBy,
-                createdBy,
-                createdAt,
-                updatedAt,
-                passThrough);
+                id, downstreamId, currency,
+                currencyRate, totalAmount, reference,
+                paymentMethod, paymentMethodReference, paymentMethodId,
+                accountsReceivableAccountType, accountsReceivableAccountId, account,
+                transactionDate, customer, supplier,
+                companyId, reconciled, status,
+                type, allocations, note,
+                number, trackingCategories, customFields,
+                rowVersion, displayId, customMappings,
+                updatedBy, createdBy, createdAt,
+                updatedAt, passThrough);
         }
+
     }
 }

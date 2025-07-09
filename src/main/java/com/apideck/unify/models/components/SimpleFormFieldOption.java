@@ -12,17 +12,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class SimpleFormFieldOption implements FormFieldOption {
 
     @JsonProperty("label")
     private String label;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
     private Optional<? extends SimpleFormFieldOptionValue> value;
+
 
     @JsonProperty("option_type")
     private OptionType optionType;
@@ -63,9 +65,10 @@ public class SimpleFormFieldOption implements FormFieldOption {
         return Utils.discriminatorToString(optionType);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public SimpleFormFieldOption withLabel(String label) {
         Utils.checkNotNull(label, "label");
@@ -79,6 +82,7 @@ public class SimpleFormFieldOption implements FormFieldOption {
         return this;
     }
 
+
     public SimpleFormFieldOption withValue(Optional<? extends SimpleFormFieldOptionValue> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
@@ -91,7 +95,6 @@ public class SimpleFormFieldOption implements FormFieldOption {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -102,17 +105,15 @@ public class SimpleFormFieldOption implements FormFieldOption {
         }
         SimpleFormFieldOption other = (SimpleFormFieldOption) o;
         return 
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.optionType, other.optionType);
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.optionType, other.optionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            label,
-            value,
-            optionType);
+        return Utils.enhancedHash(
+            label, value, optionType);
     }
     
     @Override
@@ -122,24 +123,27 @@ public class SimpleFormFieldOption implements FormFieldOption {
                 "value", value,
                 "optionType", optionType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String label;
- 
+
         private Optional<? extends SimpleFormFieldOptionValue> value = Optional.empty();
- 
+
         private OptionType optionType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
             this.label = label;
             return this;
         }
+
 
         public Builder value(SimpleFormFieldOptionValue value) {
             Utils.checkNotNull(value, "value");
@@ -153,17 +157,18 @@ public class SimpleFormFieldOption implements FormFieldOption {
             return this;
         }
 
+
         public Builder optionType(OptionType optionType) {
             Utils.checkNotNull(optionType, "optionType");
             this.optionType = optionType;
             return this;
         }
-        
+
         public SimpleFormFieldOption build() {
+
             return new SimpleFormFieldOption(
-                label,
-                value,
-                optionType);
+                label, value, optionType);
         }
+
     }
 }

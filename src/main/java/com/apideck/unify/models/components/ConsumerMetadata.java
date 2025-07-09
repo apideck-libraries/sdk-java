@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
  */
 public class ConsumerMetadata {
-
     /**
      * The name of the account as shown in the sidebar.
      */
@@ -66,7 +64,8 @@ public class ConsumerMetadata {
     }
     
     public ConsumerMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -101,9 +100,10 @@ public class ConsumerMetadata {
         return image;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the account as shown in the sidebar.
@@ -113,6 +113,7 @@ public class ConsumerMetadata {
         this.accountName = Optional.ofNullable(accountName);
         return this;
     }
+
 
     /**
      * The name of the account as shown in the sidebar.
@@ -132,6 +133,7 @@ public class ConsumerMetadata {
         return this;
     }
 
+
     /**
      * The name of the user as shown in the sidebar.
      */
@@ -149,6 +151,7 @@ public class ConsumerMetadata {
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * The email of the user as shown in the sidebar.
@@ -168,6 +171,7 @@ public class ConsumerMetadata {
         return this;
     }
 
+
     /**
      * The avatar of the user in the sidebar. Must be a valid URL
      */
@@ -177,7 +181,6 @@ public class ConsumerMetadata {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -188,18 +191,16 @@ public class ConsumerMetadata {
         }
         ConsumerMetadata other = (ConsumerMetadata) o;
         return 
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.userName, other.userName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.image, other.image);
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.userName, other.userName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.image, other.image);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            accountName,
-            userName,
-            email,
+        return Utils.enhancedHash(
+            accountName, userName, email,
             image);
     }
     
@@ -211,20 +212,22 @@ public class ConsumerMetadata {
                 "email", email,
                 "image", image);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> accountName = Optional.empty();
- 
+
         private Optional<String> userName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> image = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the account as shown in the sidebar.
@@ -244,6 +247,7 @@ public class ConsumerMetadata {
             return this;
         }
 
+
         /**
          * The name of the user as shown in the sidebar.
          */
@@ -261,6 +265,7 @@ public class ConsumerMetadata {
             this.userName = userName;
             return this;
         }
+
 
         /**
          * The email of the user as shown in the sidebar.
@@ -280,6 +285,7 @@ public class ConsumerMetadata {
             return this;
         }
 
+
         /**
          * The avatar of the user in the sidebar. Must be a valid URL
          */
@@ -297,13 +303,13 @@ public class ConsumerMetadata {
             this.image = image;
             return this;
         }
-        
+
         public ConsumerMetadata build() {
+
             return new ConsumerMetadata(
-                accountName,
-                userName,
-                email,
+                accountName, userName, email,
                 image);
         }
+
     }
 }

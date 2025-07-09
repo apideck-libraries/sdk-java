@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SharedLinkInput {
 
+public class SharedLinkInput {
     /**
      * The URL that can be used to download the file.
      */
@@ -74,7 +73,8 @@ public class SharedLinkInput {
     }
     
     public SharedLinkInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -119,9 +119,10 @@ public class SharedLinkInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The URL that can be used to download the file.
@@ -149,6 +150,7 @@ public class SharedLinkInput {
         this.targetId = Optional.ofNullable(targetId);
         return this;
     }
+
 
     /**
      * The ID of the file or folder to link.
@@ -204,6 +206,7 @@ public class SharedLinkInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -213,7 +216,6 @@ public class SharedLinkInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -224,21 +226,18 @@ public class SharedLinkInput {
         }
         SharedLinkInput other = (SharedLinkInput) o;
         return 
-            Objects.deepEquals(this.downloadUrl, other.downloadUrl) &&
-            Objects.deepEquals(this.targetId, other.targetId) &&
-            Objects.deepEquals(this.scope, other.scope) &&
-            Objects.deepEquals(this.password, other.password) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.downloadUrl, other.downloadUrl) &&
+            Utils.enhancedDeepEquals(this.targetId, other.targetId) &&
+            Utils.enhancedDeepEquals(this.scope, other.scope) &&
+            Utils.enhancedDeepEquals(this.password, other.password) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            downloadUrl,
-            targetId,
-            scope,
-            password,
-            passThrough);
+        return Utils.enhancedHash(
+            downloadUrl, targetId, scope,
+            password, passThrough);
     }
     
     @Override
@@ -250,22 +249,24 @@ public class SharedLinkInput {
                 "password", password,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> downloadUrl = JsonNullable.undefined();
- 
+
         private Optional<String> targetId = Optional.empty();
- 
+
         private JsonNullable<? extends Scope> scope = JsonNullable.undefined();
- 
+
         private JsonNullable<String> password = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The URL that can be used to download the file.
@@ -285,6 +286,7 @@ public class SharedLinkInput {
             return this;
         }
 
+
         /**
          * The ID of the file or folder to link.
          */
@@ -302,6 +304,7 @@ public class SharedLinkInput {
             this.targetId = targetId;
             return this;
         }
+
 
         /**
          * The scope of the shared link.
@@ -321,6 +324,7 @@ public class SharedLinkInput {
             return this;
         }
 
+
         /**
          * Optional password for the shared link.
          */
@@ -339,6 +343,7 @@ public class SharedLinkInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -356,14 +361,13 @@ public class SharedLinkInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public SharedLinkInput build() {
+
             return new SharedLinkInput(
-                downloadUrl,
-                targetId,
-                scope,
-                password,
-                passThrough);
+                downloadUrl, targetId, scope,
+                password, passThrough);
         }
+
     }
 }

@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class WebhookWebhooksOneRequest {
 
+public class WebhookWebhooksOneRequest {
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      */
@@ -57,9 +56,10 @@ public class WebhookWebhooksOneRequest {
         return appId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
@@ -79,6 +79,7 @@ public class WebhookWebhooksOneRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -88,7 +89,6 @@ public class WebhookWebhooksOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +99,14 @@ public class WebhookWebhooksOneRequest {
         }
         WebhookWebhooksOneRequest other = (WebhookWebhooksOneRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.appId, other.appId);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            appId);
+        return Utils.enhancedHash(
+            id, appId);
     }
     
     @Override
@@ -116,16 +115,18 @@ public class WebhookWebhooksOneRequest {
                 "id", id,
                 "appId", appId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> appId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
@@ -135,6 +136,7 @@ public class WebhookWebhooksOneRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -153,11 +155,12 @@ public class WebhookWebhooksOneRequest {
             this.appId = appId;
             return this;
         }
-        
+
         public WebhookWebhooksOneRequest build() {
+
             return new WebhookWebhooksOneRequest(
-                id,
-                appId);
+                id, appId);
         }
+
     }
 }

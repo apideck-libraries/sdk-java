@@ -37,7 +37,6 @@ public class Users {
     Users(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List users
      * 
@@ -77,11 +76,10 @@ public class Users {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
               = new CrmUsersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create user
@@ -122,11 +120,10 @@ public class Users {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
               = new CrmUsersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get user
@@ -167,11 +164,10 @@ public class Users {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
               = new CrmUsersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update user
@@ -212,11 +208,10 @@ public class Users {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
               = new CrmUsersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete user
@@ -257,8 +252,8 @@ public class Users {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
               = new CrmUsersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

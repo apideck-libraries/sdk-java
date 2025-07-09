@@ -57,7 +57,8 @@ public class AccountingPurchaseOrdersAddOperation implements RequestOperation<Ac
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingPurchaseOrdersAddRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

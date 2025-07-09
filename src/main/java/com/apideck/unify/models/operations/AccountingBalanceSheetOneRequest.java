@@ -16,11 +16,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingBalanceSheetOneRequest {
 
+public class AccountingBalanceSheetOneRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -80,7 +79,8 @@ public class AccountingBalanceSheetOneRequest {
     }
     
     public AccountingBalanceSheetOneRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -133,9 +133,10 @@ public class AccountingBalanceSheetOneRequest {
         return raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -145,6 +146,7 @@ public class AccountingBalanceSheetOneRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -164,6 +166,7 @@ public class AccountingBalanceSheetOneRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -181,6 +184,7 @@ public class AccountingBalanceSheetOneRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -200,6 +204,7 @@ public class AccountingBalanceSheetOneRequest {
         return this;
     }
 
+
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
@@ -217,6 +222,7 @@ public class AccountingBalanceSheetOneRequest {
         this.filter = Optional.ofNullable(filter);
         return this;
     }
+
 
     /**
      * Apply filters
@@ -236,6 +242,7 @@ public class AccountingBalanceSheetOneRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -245,7 +252,6 @@ public class AccountingBalanceSheetOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -256,23 +262,19 @@ public class AccountingBalanceSheetOneRequest {
         }
         AccountingBalanceSheetOneRequest other = (AccountingBalanceSheetOneRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
-            passThrough,
-            filter,
-            raw);
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
+            passThrough, filter, raw);
     }
     
     @Override
@@ -285,24 +287,26 @@ public class AccountingBalanceSheetOneRequest {
                 "filter", filter,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
- 
+
         private Optional<? extends BalanceSheetFilter> filter = Optional.empty();
- 
+
         private Optional<Boolean> raw;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -322,6 +326,7 @@ public class AccountingBalanceSheetOneRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -339,6 +344,7 @@ public class AccountingBalanceSheetOneRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -358,6 +364,7 @@ public class AccountingBalanceSheetOneRequest {
             return this;
         }
 
+
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
@@ -375,6 +382,7 @@ public class AccountingBalanceSheetOneRequest {
             this.passThrough = passThrough;
             return this;
         }
+
 
         /**
          * Apply filters
@@ -394,6 +402,7 @@ public class AccountingBalanceSheetOneRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -411,19 +420,17 @@ public class AccountingBalanceSheetOneRequest {
             this.raw = raw;
             return this;
         }
-        
+
         public AccountingBalanceSheetOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingBalanceSheetOneRequest(
-                consumerId,
-                appId,
-                serviceId,
-                passThrough,
-                filter,
-                raw);
+                consumerId, appId, serviceId,
+                passThrough, filter, raw);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

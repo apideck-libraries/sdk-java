@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Drive {
 
+public class Drive {
     /**
      * A unique identifier for an object.
      */
@@ -117,7 +116,9 @@ public class Drive {
     public Drive(
             String id,
             String name) {
-        this(id, name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(id, name, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -194,9 +195,10 @@ public class Drive {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -333,6 +335,7 @@ public class Drive {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -342,7 +345,6 @@ public class Drive {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -353,29 +355,23 @@ public class Drive {
         }
         Drive other = (Drive) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, name, description,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -391,30 +387,32 @@ public class Drive {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -425,6 +423,7 @@ public class Drive {
             return this;
         }
 
+
         /**
          * The name of the drive
          */
@@ -433,6 +432,7 @@ public class Drive {
             this.name = name;
             return this;
         }
+
 
         /**
          * A description of the object.
@@ -452,6 +452,7 @@ public class Drive {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -469,6 +470,7 @@ public class Drive {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -488,6 +490,7 @@ public class Drive {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -505,6 +508,7 @@ public class Drive {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -524,6 +528,7 @@ public class Drive {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -542,6 +547,7 @@ public class Drive {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -559,18 +565,14 @@ public class Drive {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Drive build() {
+
             return new Drive(
-                id,
-                name,
-                description,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, name, description,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
+
     }
 }

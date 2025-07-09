@@ -43,7 +43,6 @@ public class Connections {
     Connections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get all connections
      * 
@@ -68,7 +67,8 @@ public class Connections {
      * @throws Exception if the API call fails
      */
     public VaultConnectionsAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -102,11 +102,10 @@ public class Connections {
                 .build();
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
               = new VaultConnectionsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get connection
@@ -132,7 +131,8 @@ public class Connections {
     public VaultConnectionsOneResponse get(
             String serviceId,
             String unifiedApi) throws Exception {
-        return get(Optional.empty(), Optional.empty(), serviceId, unifiedApi, Optional.empty());
+        return get(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi, Optional.empty());
     }
 
     /**
@@ -164,11 +164,10 @@ public class Connections {
                 .build();
         RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
               = new VaultConnectionsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update connection
@@ -209,11 +208,10 @@ public class Connections {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
               = new VaultConnectionsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Deletes a connection
@@ -239,7 +237,8 @@ public class Connections {
     public VaultConnectionsDeleteResponse delete(
             String serviceId,
             String unifiedApi) throws Exception {
-        return delete(Optional.empty(), Optional.empty(), serviceId, unifiedApi, Optional.empty());
+        return delete(Optional.empty(), Optional.empty(), serviceId,
+            unifiedApi, Optional.empty());
     }
 
     /**
@@ -271,11 +270,10 @@ public class Connections {
                 .build();
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
               = new VaultConnectionsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Import connection
@@ -316,11 +314,10 @@ public class Connections {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
               = new VaultConnectionsImportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Authorize Access Token
@@ -376,8 +373,8 @@ public class Connections {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
               = new VaultConnectionsTokenOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

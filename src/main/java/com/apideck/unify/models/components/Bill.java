@@ -19,12 +19,11 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Bill {
 
+public class Bill {
     /**
      * A unique identifier for an object.
      */
@@ -116,6 +115,7 @@ public class Bill {
     @JsonProperty("reference")
     private JsonNullable<String> reference;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
     private Optional<? extends List<BillLineItem>> lineItems;
@@ -169,6 +169,7 @@ public class Bill {
     @JsonProperty("tax_code")
     private JsonNullable<String> taxCode;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notes")
     private JsonNullable<String> notes;
@@ -179,6 +180,7 @@ public class Bill {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private JsonNullable<? extends BillStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
@@ -211,6 +213,7 @@ public class Bill {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("accounting_by_row")
     private JsonNullable<Boolean> accountingByRow;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account")
@@ -271,6 +274,7 @@ public class Bill {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -425,7 +429,20 @@ public class Bill {
     }
     
     public Bill() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -751,9 +768,10 @@ public class Bill {
         return accountingPeriod;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -763,6 +781,7 @@ public class Bill {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -994,6 +1013,7 @@ public class Bill {
         this.lineItems = Optional.ofNullable(lineItems);
         return this;
     }
+
 
     public Bill withLineItems(Optional<? extends List<BillLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
@@ -1247,6 +1267,7 @@ public class Bill {
         return this;
     }
 
+
     public Bill withBankAccount(Optional<? extends BankAccount> bankAccount) {
         Utils.checkNotNull(bankAccount, "bankAccount");
         this.bankAccount = bankAccount;
@@ -1403,6 +1424,7 @@ public class Bill {
         return this;
     }
 
+
     public Bill withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -1436,6 +1458,7 @@ public class Bill {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1463,7 +1486,6 @@ public class Bill {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1474,93 +1496,66 @@ public class Bill {
         }
         Bill other = (Bill) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.billNumber, other.billNumber) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.billDate, other.billDate) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.paidDate, other.paidDate) &&
-            Objects.deepEquals(this.poNumber, other.poNumber) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.terms, other.terms) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.deposit, other.deposit) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
-            Objects.deepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.accountingPeriod, other.accountingPeriod);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.billNumber, other.billNumber) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.billDate, other.billDate) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.paidDate, other.paidDate) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.deposit, other.deposit) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            billNumber,
-            supplier,
-            companyId,
-            currency,
-            currencyRate,
-            taxInclusive,
-            billDate,
-            dueDate,
-            paidDate,
-            poNumber,
-            reference,
-            lineItems,
-            terms,
-            balance,
-            deposit,
-            subTotal,
-            totalTax,
-            total,
-            taxCode,
-            notes,
-            status,
-            ledgerAccount,
-            paymentMethod,
-            channel,
-            language,
-            accountingByRow,
-            bankAccount,
-            discountPercentage,
-            sourceDocumentUrl,
-            trackingCategories,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            rowVersion,
-            customFields,
-            customMappings,
-            passThrough,
-            accountingPeriod);
+        return Utils.enhancedHash(
+            id, downstreamId, billNumber,
+            supplier, companyId, currency,
+            currencyRate, taxInclusive, billDate,
+            dueDate, paidDate, poNumber,
+            reference, lineItems, terms,
+            balance, deposit, subTotal,
+            totalTax, total, taxCode,
+            notes, status, ledgerAccount,
+            paymentMethod, channel, language,
+            accountingByRow, bankAccount, discountPercentage,
+            sourceDocumentUrl, trackingCategories, updatedBy,
+            createdBy, updatedAt, createdAt,
+            rowVersion, customFields, customMappings,
+            passThrough, accountingPeriod);
     }
     
     @Override
@@ -1608,94 +1603,96 @@ public class Bill {
                 "passThrough", passThrough,
                 "accountingPeriod", accountingPeriod);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> billNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> billDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> paidDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> poNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private Optional<? extends List<BillLineItem>> lineItems = Optional.empty();
- 
+
         private JsonNullable<String> terms = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> balance = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> deposit = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> total = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> notes = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends BillStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<String> channel = JsonNullable.undefined();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> accountingByRow = JsonNullable.undefined();
- 
+
         private Optional<? extends BankAccount> bankAccount = Optional.empty();
- 
+
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1715,6 +1712,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The third-party API ID of original entity
          */
@@ -1732,6 +1730,7 @@ public class Bill {
             this.downstreamId = downstreamId;
             return this;
         }
+
 
         /**
          * Reference to supplier bill number
@@ -1751,6 +1750,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The supplier this entity is linked to.
          */
@@ -1768,6 +1768,7 @@ public class Bill {
             this.supplier = supplier;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1787,6 +1788,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1804,6 +1806,7 @@ public class Bill {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1823,6 +1826,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Amounts are including tax
          */
@@ -1840,6 +1844,7 @@ public class Bill {
             this.taxInclusive = taxInclusive;
             return this;
         }
+
 
         /**
          * Date bill was issued - YYYY-MM-DD.
@@ -1859,6 +1864,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
          */
@@ -1876,6 +1882,7 @@ public class Bill {
             this.dueDate = dueDate;
             return this;
         }
+
 
         /**
          * The paid date is the date on which a payment was sent to the supplier - YYYY-MM-DD.
@@ -1895,6 +1902,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
          */
@@ -1912,6 +1920,7 @@ public class Bill {
             this.poNumber = poNumber;
             return this;
         }
+
 
         /**
          * Optional reference identifier for the transaction.
@@ -1931,6 +1940,7 @@ public class Bill {
             return this;
         }
 
+
         public Builder lineItems(List<BillLineItem> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = Optional.ofNullable(lineItems);
@@ -1942,6 +1952,7 @@ public class Bill {
             this.lineItems = lineItems;
             return this;
         }
+
 
         /**
          * Terms of payment.
@@ -1961,6 +1972,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Balance of bill due.
          */
@@ -1978,6 +1990,7 @@ public class Bill {
             this.balance = balance;
             return this;
         }
+
 
         /**
          * Amount of deposit made to this bill.
@@ -1997,6 +2010,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Sub-total amount, normally before tax.
          */
@@ -2014,6 +2028,7 @@ public class Bill {
             this.subTotal = subTotal;
             return this;
         }
+
 
         /**
          * Total tax amount applied to this bill.
@@ -2033,6 +2048,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Total amount of bill, including tax.
          */
@@ -2050,6 +2066,7 @@ public class Bill {
             this.total = total;
             return this;
         }
+
 
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -2069,6 +2086,7 @@ public class Bill {
             return this;
         }
 
+
         public Builder notes(String notes) {
             Utils.checkNotNull(notes, "notes");
             this.notes = JsonNullable.of(notes);
@@ -2080,6 +2098,7 @@ public class Bill {
             this.notes = notes;
             return this;
         }
+
 
         /**
          * Invoice status
@@ -2099,6 +2118,7 @@ public class Bill {
             return this;
         }
 
+
         public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
@@ -2110,6 +2130,7 @@ public class Bill {
             this.ledgerAccount = ledgerAccount;
             return this;
         }
+
 
         /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -2129,6 +2150,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The channel through which the transaction is processed.
          */
@@ -2146,6 +2168,7 @@ public class Bill {
             this.channel = channel;
             return this;
         }
+
 
         /**
          * language code according to ISO 639-1. For the United States - EN
@@ -2165,6 +2188,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
          */
@@ -2183,6 +2207,7 @@ public class Bill {
             return this;
         }
 
+
         public Builder bankAccount(BankAccount bankAccount) {
             Utils.checkNotNull(bankAccount, "bankAccount");
             this.bankAccount = Optional.ofNullable(bankAccount);
@@ -2194,6 +2219,7 @@ public class Bill {
             this.bankAccount = bankAccount;
             return this;
         }
+
 
         /**
          * Discount percentage applied to this transaction.
@@ -2213,6 +2239,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
          */
@@ -2230,6 +2257,7 @@ public class Bill {
             this.sourceDocumentUrl = sourceDocumentUrl;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -2249,6 +2277,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -2266,6 +2295,7 @@ public class Bill {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -2285,6 +2315,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -2302,6 +2333,7 @@ public class Bill {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -2321,6 +2353,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -2339,6 +2372,7 @@ public class Bill {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -2350,6 +2384,7 @@ public class Bill {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -2369,6 +2404,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -2387,6 +2423,7 @@ public class Bill {
             return this;
         }
 
+
         /**
          * Accounting period
          */
@@ -2404,50 +2441,25 @@ public class Bill {
             this.accountingPeriod = accountingPeriod;
             return this;
         }
-        
+
         public Bill build() {
+
             return new Bill(
-                id,
-                downstreamId,
-                billNumber,
-                supplier,
-                companyId,
-                currency,
-                currencyRate,
-                taxInclusive,
-                billDate,
-                dueDate,
-                paidDate,
-                poNumber,
-                reference,
-                lineItems,
-                terms,
-                balance,
-                deposit,
-                subTotal,
-                totalTax,
-                total,
-                taxCode,
-                notes,
-                status,
-                ledgerAccount,
-                paymentMethod,
-                channel,
-                language,
-                accountingByRow,
-                bankAccount,
-                discountPercentage,
-                sourceDocumentUrl,
-                trackingCategories,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                rowVersion,
-                customFields,
-                customMappings,
-                passThrough,
-                accountingPeriod);
+                id, downstreamId, billNumber,
+                supplier, companyId, currency,
+                currencyRate, taxInclusive, billDate,
+                dueDate, paidDate, poNumber,
+                reference, lineItems, terms,
+                balance, deposit, subTotal,
+                totalTax, total, taxCode,
+                notes, status, ledgerAccount,
+                paymentMethod, channel, language,
+                accountingByRow, bankAccount, discountPercentage,
+                sourceDocumentUrl, trackingCategories, updatedBy,
+                createdBy, updatedAt, createdAt,
+                rowVersion, customFields, customMappings,
+                passThrough, accountingPeriod);
         }
+
     }
 }

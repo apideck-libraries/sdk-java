@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DepartmentInput {
 
+public class DepartmentInput {
     /**
      * Department name
      */
@@ -26,9 +25,11 @@ public class DepartmentInput {
     @JsonProperty("name")
     private JsonNullable<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private JsonNullable<String> code;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
@@ -58,7 +59,8 @@ public class DepartmentInput {
     }
     
     public DepartmentInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -88,9 +90,10 @@ public class DepartmentInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Department name
@@ -143,6 +146,7 @@ public class DepartmentInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -152,7 +156,6 @@ public class DepartmentInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -163,18 +166,16 @@ public class DepartmentInput {
         }
         DepartmentInput other = (DepartmentInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            code,
-            description,
+        return Utils.enhancedHash(
+            name, code, description,
             passThrough);
     }
     
@@ -186,20 +187,22 @@ public class DepartmentInput {
                 "description", description,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Department name
@@ -219,6 +222,7 @@ public class DepartmentInput {
             return this;
         }
 
+
         public Builder code(String code) {
             Utils.checkNotNull(code, "code");
             this.code = JsonNullable.of(code);
@@ -231,6 +235,7 @@ public class DepartmentInput {
             return this;
         }
 
+
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
             this.description = JsonNullable.of(description);
@@ -242,6 +247,7 @@ public class DepartmentInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -260,13 +266,13 @@ public class DepartmentInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public DepartmentInput build() {
+
             return new DepartmentInput(
-                name,
-                code,
-                description,
+                name, code, description,
                 passThrough);
         }
+
     }
 }

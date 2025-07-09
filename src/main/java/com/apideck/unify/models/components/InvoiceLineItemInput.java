@@ -15,12 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class InvoiceLineItemInput {
 
+public class InvoiceLineItemInput {
     /**
      * A unique identifier for an object.
      */
@@ -77,9 +76,11 @@ public class InvoiceLineItemInput {
     @JsonProperty("total_amount")
     private JsonNullable<Double> totalAmount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
     private JsonNullable<Double> quantity;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unit_price")
@@ -120,9 +121,11 @@ public class InvoiceLineItemInput {
     @JsonProperty("department_id")
     private JsonNullable<String> departmentId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("item")
     private Optional<? extends LinkedInvoiceItem> item;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
@@ -135,9 +138,11 @@ public class InvoiceLineItemInput {
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
     private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -218,7 +223,13 @@ public class InvoiceLineItemInput {
     }
     
     public InvoiceLineItemInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -377,9 +388,10 @@ public class InvoiceLineItemInput {
         return rowVersion;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -407,6 +419,7 @@ public class InvoiceLineItemInput {
         this.rowId = Optional.ofNullable(rowId);
         return this;
     }
+
 
     /**
      * Row ID
@@ -645,6 +658,7 @@ public class InvoiceLineItemInput {
         return this;
     }
 
+
     public InvoiceLineItemInput withItem(Optional<? extends LinkedInvoiceItem> item) {
         Utils.checkNotNull(item, "item");
         this.item = item;
@@ -656,6 +670,7 @@ public class InvoiceLineItemInput {
         this.taxRate = Optional.ofNullable(taxRate);
         return this;
     }
+
 
     public InvoiceLineItemInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
@@ -699,6 +714,7 @@ public class InvoiceLineItemInput {
         return this;
     }
 
+
     public InvoiceLineItemInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -723,7 +739,6 @@ public class InvoiceLineItemInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -734,53 +749,39 @@ public class InvoiceLineItemInput {
         }
         InvoiceLineItemInput other = (InvoiceLineItemInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.rowId, other.rowId) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
-            Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
-            Objects.deepEquals(this.discountAmount, other.discountAmount) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.item, other.item) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.rowId, other.rowId) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
+            Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.item, other.item) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            rowId,
-            code,
-            lineNumber,
-            description,
-            type,
-            taxAmount,
-            totalAmount,
-            quantity,
-            unitPrice,
-            unitOfMeasure,
-            discountPercentage,
-            discountAmount,
-            locationId,
-            departmentId,
-            item,
-            taxRate,
-            trackingCategories,
-            ledgerAccount,
-            customFields,
-            rowVersion);
+        return Utils.enhancedHash(
+            id, rowId, code,
+            lineNumber, description, type,
+            taxAmount, totalAmount, quantity,
+            unitPrice, unitOfMeasure, discountPercentage,
+            discountAmount, locationId, departmentId,
+            item, taxRate, trackingCategories,
+            ledgerAccount, customFields, rowVersion);
     }
     
     @Override
@@ -808,54 +809,56 @@ public class InvoiceLineItemInput {
                 "customFields", customFields,
                 "rowVersion", rowVersion);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Optional<String> rowId = Optional.empty();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends InvoiceLineItemType> type = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> taxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> quantity = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
- 
+
         private JsonNullable<String> unitOfMeasure = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> discountAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -875,6 +878,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * Row ID
          */
@@ -892,6 +896,7 @@ public class InvoiceLineItemInput {
             this.rowId = rowId;
             return this;
         }
+
 
         /**
          * User defined item code
@@ -911,6 +916,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * Line number of the resource
          */
@@ -928,6 +934,7 @@ public class InvoiceLineItemInput {
             this.lineNumber = lineNumber;
             return this;
         }
+
 
         /**
          * User defined description
@@ -947,6 +954,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * Item type
          */
@@ -964,6 +972,7 @@ public class InvoiceLineItemInput {
             this.type = type;
             return this;
         }
+
 
         /**
          * Tax amount
@@ -983,6 +992,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * Total amount of the line item
          */
@@ -1001,6 +1011,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder quantity(double quantity) {
             Utils.checkNotNull(quantity, "quantity");
             this.quantity = JsonNullable.of(quantity);
@@ -1013,6 +1024,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder unitPrice(double unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
             this.unitPrice = JsonNullable.of(unitPrice);
@@ -1024,6 +1036,7 @@ public class InvoiceLineItemInput {
             this.unitPrice = unitPrice;
             return this;
         }
+
 
         /**
          * Description of the unit type the item is sold as, ie: kg, hour.
@@ -1043,6 +1056,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * Discount percentage applied to the line item when supported downstream.
          */
@@ -1060,6 +1074,7 @@ public class InvoiceLineItemInput {
             this.discountPercentage = discountPercentage;
             return this;
         }
+
 
         /**
          * Discount amount applied to the line item when supported downstream.
@@ -1079,6 +1094,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         /**
          * The ID of the location
          */
@@ -1096,6 +1112,7 @@ public class InvoiceLineItemInput {
             this.locationId = locationId;
             return this;
         }
+
 
         /**
          * The ID of the department
@@ -1115,6 +1132,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder item(LinkedInvoiceItem item) {
             Utils.checkNotNull(item, "item");
             this.item = Optional.ofNullable(item);
@@ -1127,6 +1145,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1138,6 +1157,7 @@ public class InvoiceLineItemInput {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -1157,6 +1177,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
@@ -1169,6 +1190,7 @@ public class InvoiceLineItemInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1180,6 +1202,7 @@ public class InvoiceLineItemInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1198,30 +1221,18 @@ public class InvoiceLineItemInput {
             this.rowVersion = rowVersion;
             return this;
         }
-        
+
         public InvoiceLineItemInput build() {
+
             return new InvoiceLineItemInput(
-                id,
-                rowId,
-                code,
-                lineNumber,
-                description,
-                type,
-                taxAmount,
-                totalAmount,
-                quantity,
-                unitPrice,
-                unitOfMeasure,
-                discountPercentage,
-                discountAmount,
-                locationId,
-                departmentId,
-                item,
-                taxRate,
-                trackingCategories,
-                ledgerAccount,
-                customFields,
-                rowVersion);
+                id, rowId, code,
+                lineNumber, description, type,
+                taxAmount, totalAmount, quantity,
+                unitPrice, unitOfMeasure, discountPercentage,
+                discountAmount, locationId, departmentId,
+                item, taxRate, trackingCategories,
+                ledgerAccount, customFields, rowVersion);
         }
+
     }
 }

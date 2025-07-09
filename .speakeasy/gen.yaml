@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.16.0
+  version: 0.17.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -44,10 +44,12 @@ java:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
+  languageVersion: 11
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   maxMethodParams: 4
+  nullFriendlyParameters: false
   outputModelSuffix: output
   projectName: Apideck
   templateVersion: v2

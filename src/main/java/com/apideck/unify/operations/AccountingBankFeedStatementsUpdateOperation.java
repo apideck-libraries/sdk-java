@@ -57,7 +57,8 @@ public class AccountingBankFeedStatementsUpdateOperation implements RequestOpera
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingBankFeedStatementsUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 AccountingBankFeedStatementsUpdateRequest.class,

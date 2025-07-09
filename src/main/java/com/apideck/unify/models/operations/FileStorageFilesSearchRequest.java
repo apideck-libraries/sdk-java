@@ -18,12 +18,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FileStorageFilesSearchRequest {
 
+public class FileStorageFilesSearchRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -78,6 +77,7 @@ public class FileStorageFilesSearchRequest {
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
     private Optional<? extends FilesFilter> filter;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private FilesSearch filesSearch;
 
@@ -117,7 +117,10 @@ public class FileStorageFilesSearchRequest {
     
     public FileStorageFilesSearchRequest(
             FilesSearch filesSearch) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), filesSearch);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            filesSearch);
     }
 
     /**
@@ -199,9 +202,10 @@ public class FileStorageFilesSearchRequest {
         return filesSearch;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -211,6 +215,7 @@ public class FileStorageFilesSearchRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -230,6 +235,7 @@ public class FileStorageFilesSearchRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -248,6 +254,7 @@ public class FileStorageFilesSearchRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -265,6 +272,7 @@ public class FileStorageFilesSearchRequest {
         this.passThrough = Optional.ofNullable(passThrough);
         return this;
     }
+
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
@@ -320,6 +328,7 @@ public class FileStorageFilesSearchRequest {
         return this;
     }
 
+
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
@@ -337,6 +346,7 @@ public class FileStorageFilesSearchRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -356,6 +366,7 @@ public class FileStorageFilesSearchRequest {
         return this;
     }
 
+
     /**
      * Apply filters
      */
@@ -371,7 +382,6 @@ public class FileStorageFilesSearchRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -382,30 +392,24 @@ public class FileStorageFilesSearchRequest {
         }
         FileStorageFilesSearchRequest other = (FileStorageFilesSearchRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.filesSearch, other.filesSearch);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.filesSearch, other.filesSearch);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            serviceId,
-            passThrough,
-            fields,
-            cursor,
-            limit,
-            raw,
-            filter,
+        return Utils.enhancedHash(
+            consumerId, appId, serviceId,
+            passThrough, fields, cursor,
+            limit, raw, filter,
             filesSearch);
     }
     
@@ -423,32 +427,34 @@ public class FileStorageFilesSearchRequest {
                 "filter", filter,
                 "filesSearch", filesSearch);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<? extends FilesFilter> filter = Optional.empty();
- 
+
         private FilesSearch filesSearch;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -468,6 +474,7 @@ public class FileStorageFilesSearchRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -485,6 +492,7 @@ public class FileStorageFilesSearchRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -504,6 +512,7 @@ public class FileStorageFilesSearchRequest {
             return this;
         }
 
+
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
@@ -521,6 +530,7 @@ public class FileStorageFilesSearchRequest {
             this.passThrough = passThrough;
             return this;
         }
+
 
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -540,6 +550,7 @@ public class FileStorageFilesSearchRequest {
             return this;
         }
 
+
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
@@ -557,6 +568,7 @@ public class FileStorageFilesSearchRequest {
             this.cursor = cursor;
             return this;
         }
+
 
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
@@ -576,6 +588,7 @@ public class FileStorageFilesSearchRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -593,6 +606,7 @@ public class FileStorageFilesSearchRequest {
             this.raw = raw;
             return this;
         }
+
 
         /**
          * Apply filters
@@ -612,12 +626,13 @@ public class FileStorageFilesSearchRequest {
             return this;
         }
 
+
         public Builder filesSearch(FilesSearch filesSearch) {
             Utils.checkNotNull(filesSearch, "filesSearch");
             this.filesSearch = filesSearch;
             return this;
         }
-        
+
         public FileStorageFilesSearchRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
@@ -625,18 +640,14 @@ public class FileStorageFilesSearchRequest {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new FileStorageFilesSearchRequest(
-                consumerId,
-                appId,
-                serviceId,
-                passThrough,
-                fields,
-                cursor,
-                limit,
-                raw,
-                filter,
+                consumerId, appId, serviceId,
+                passThrough, fields, cursor,
+                limit, raw, filter,
                 filesSearch);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

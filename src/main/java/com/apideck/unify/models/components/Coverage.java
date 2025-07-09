@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Coverage {
 
+public class Coverage {
     /**
      * ID of the resource in the Connector's API (downstream)
      */
@@ -39,6 +38,7 @@ public class Coverage {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination_supported")
     private Optional<Boolean> paginationSupported;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination")
@@ -111,7 +111,9 @@ public class Coverage {
     }
     
     public Coverage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -189,9 +191,10 @@ public class Coverage {
         return (Optional<List<SupportedProperty>>) supportedListFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource in the Connector's API (downstream)
@@ -201,6 +204,7 @@ public class Coverage {
         this.downstreamId = Optional.ofNullable(downstreamId);
         return this;
     }
+
 
     /**
      * ID of the resource in the Connector's API (downstream)
@@ -220,6 +224,7 @@ public class Coverage {
         return this;
     }
 
+
     /**
      * Name of the resource in the Connector's API (downstream)
      */
@@ -238,6 +243,7 @@ public class Coverage {
         return this;
     }
 
+
     /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
      */
@@ -253,6 +259,7 @@ public class Coverage {
         return this;
     }
 
+
     public Coverage withPagination(Optional<? extends PaginationCoverage> pagination) {
         Utils.checkNotNull(pagination, "pagination");
         this.pagination = pagination;
@@ -267,6 +274,7 @@ public class Coverage {
         this.supportedOperations = Optional.ofNullable(supportedOperations);
         return this;
     }
+
 
     /**
      * List of supported operations on the resource.
@@ -286,6 +294,7 @@ public class Coverage {
         return this;
     }
 
+
     /**
      * Supported filters on the list endpoint of the resource.
      */
@@ -303,6 +312,7 @@ public class Coverage {
         this.supportedSortBy = Optional.ofNullable(supportedSortBy);
         return this;
     }
+
 
     /**
      * Supported sorting properties on the list endpoint of the resource.
@@ -322,6 +332,7 @@ public class Coverage {
         return this;
     }
 
+
     /**
      * Supported fields on the detail endpoint.
      */
@@ -340,6 +351,7 @@ public class Coverage {
         return this;
     }
 
+
     /**
      * Supported fields on the list endpoint.
      */
@@ -349,7 +361,6 @@ public class Coverage {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -360,29 +371,23 @@ public class Coverage {
         }
         Coverage other = (Coverage) o;
         return 
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.downstreamName, other.downstreamName) &&
-            Objects.deepEquals(this.paginationSupported, other.paginationSupported) &&
-            Objects.deepEquals(this.pagination, other.pagination) &&
-            Objects.deepEquals(this.supportedOperations, other.supportedOperations) &&
-            Objects.deepEquals(this.supportedFilters, other.supportedFilters) &&
-            Objects.deepEquals(this.supportedSortBy, other.supportedSortBy) &&
-            Objects.deepEquals(this.supportedFields, other.supportedFields) &&
-            Objects.deepEquals(this.supportedListFields, other.supportedListFields);
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName) &&
+            Utils.enhancedDeepEquals(this.paginationSupported, other.paginationSupported) &&
+            Utils.enhancedDeepEquals(this.pagination, other.pagination) &&
+            Utils.enhancedDeepEquals(this.supportedOperations, other.supportedOperations) &&
+            Utils.enhancedDeepEquals(this.supportedFilters, other.supportedFilters) &&
+            Utils.enhancedDeepEquals(this.supportedSortBy, other.supportedSortBy) &&
+            Utils.enhancedDeepEquals(this.supportedFields, other.supportedFields) &&
+            Utils.enhancedDeepEquals(this.supportedListFields, other.supportedListFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            downstreamId,
-            downstreamName,
-            paginationSupported,
-            pagination,
-            supportedOperations,
-            supportedFilters,
-            supportedSortBy,
-            supportedFields,
-            supportedListFields);
+        return Utils.enhancedHash(
+            downstreamId, downstreamName, paginationSupported,
+            pagination, supportedOperations, supportedFilters,
+            supportedSortBy, supportedFields, supportedListFields);
     }
     
     @Override
@@ -398,30 +403,32 @@ public class Coverage {
                 "supportedFields", supportedFields,
                 "supportedListFields", supportedListFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> downstreamId = Optional.empty();
- 
+
         private Optional<String> downstreamName = Optional.empty();
- 
+
         private Optional<Boolean> paginationSupported = Optional.empty();
- 
+
         private Optional<? extends PaginationCoverage> pagination = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedOperations = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedFilters = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedSortBy = Optional.empty();
- 
+
         private Optional<? extends List<SupportedProperty>> supportedFields = Optional.empty();
- 
+
         private Optional<? extends List<SupportedProperty>> supportedListFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource in the Connector's API (downstream)
@@ -441,6 +448,7 @@ public class Coverage {
             return this;
         }
 
+
         /**
          * Name of the resource in the Connector's API (downstream)
          */
@@ -458,6 +466,7 @@ public class Coverage {
             this.downstreamName = downstreamName;
             return this;
         }
+
 
         /**
          * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
@@ -477,6 +486,7 @@ public class Coverage {
             return this;
         }
 
+
         public Builder pagination(PaginationCoverage pagination) {
             Utils.checkNotNull(pagination, "pagination");
             this.pagination = Optional.ofNullable(pagination);
@@ -488,6 +498,7 @@ public class Coverage {
             this.pagination = pagination;
             return this;
         }
+
 
         /**
          * List of supported operations on the resource.
@@ -507,6 +518,7 @@ public class Coverage {
             return this;
         }
 
+
         /**
          * Supported filters on the list endpoint of the resource.
          */
@@ -524,6 +536,7 @@ public class Coverage {
             this.supportedFilters = supportedFilters;
             return this;
         }
+
 
         /**
          * Supported sorting properties on the list endpoint of the resource.
@@ -543,6 +556,7 @@ public class Coverage {
             return this;
         }
 
+
         /**
          * Supported fields on the detail endpoint.
          */
@@ -561,6 +575,7 @@ public class Coverage {
             return this;
         }
 
+
         /**
          * Supported fields on the list endpoint.
          */
@@ -578,18 +593,14 @@ public class Coverage {
             this.supportedListFields = supportedListFields;
             return this;
         }
-        
+
         public Coverage build() {
+
             return new Coverage(
-                downstreamId,
-                downstreamName,
-                paginationSupported,
-                pagination,
-                supportedOperations,
-                supportedFilters,
-                supportedSortBy,
-                supportedFields,
-                supportedListFields);
+                downstreamId, downstreamName, paginationSupported,
+                pagination, supportedOperations, supportedFilters,
+                supportedSortBy, supportedFields, supportedListFields);
         }
+
     }
 }

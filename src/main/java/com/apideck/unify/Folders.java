@@ -37,7 +37,6 @@ public class Folders {
     Folders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Create Folder
      * 
@@ -77,11 +76,10 @@ public class Folders {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
               = new FileStorageFoldersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Folder
@@ -122,11 +120,10 @@ public class Folders {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
               = new FileStorageFoldersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Rename or move Folder
@@ -167,11 +164,10 @@ public class Folders {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
               = new FileStorageFoldersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Folder
@@ -212,11 +208,10 @@ public class Folders {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
               = new FileStorageFoldersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Copy Folder
@@ -257,8 +252,8 @@ public class Folders {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
               = new FileStorageFoldersCopyOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

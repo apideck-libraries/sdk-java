@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ApplicantInput {
 
+public class ApplicantInput {
     /**
      * The name of an applicant.
      */
@@ -63,6 +62,7 @@ public class ApplicantInput {
     @JsonProperty("birthday")
     private JsonNullable<LocalDate> birthday;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cover_letter")
     private Optional<String> coverLetter;
@@ -88,77 +88,96 @@ public class ApplicantInput {
     @JsonProperty("title")
     private JsonNullable<String> title;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Websites>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
     private Optional<? extends List<SocialLinks>> socialLinks;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stage_id")
     private Optional<String> stageId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recruiter_id")
     private Optional<String> recruiterId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("coordinator_id")
     private Optional<String> coordinatorId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_ids")
     private JsonNullable<? extends List<String>> applicationIds;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applications")
     private JsonNullable<? extends List<String>> applications;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("followers")
     private JsonNullable<? extends List<String>> followers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sources")
     private JsonNullable<? extends List<String>> sources;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("confidential")
     private Optional<Boolean> confidential;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("anonymized")
     private Optional<Boolean> anonymized;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
     private JsonNullable<? extends List<String>> tags;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("archived")
     private JsonNullable<Boolean> archived;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner_id")
     private JsonNullable<String> ownerId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("record_url")
@@ -276,7 +295,17 @@ public class ApplicantInput {
     }
     
     public ApplicantInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -479,9 +508,10 @@ public class ApplicantInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of an applicant.
@@ -491,6 +521,7 @@ public class ApplicantInput {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of an applicant.
@@ -597,6 +628,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withCoverLetter(Optional<String> coverLetter) {
         Utils.checkNotNull(coverLetter, "coverLetter");
         this.coverLetter = coverLetter;
@@ -629,6 +661,7 @@ public class ApplicantInput {
         this.headline = Optional.ofNullable(headline);
         return this;
     }
+
 
     /**
      * Typically a list of previous companies where the contact has worked or schools that the contact has attended
@@ -663,6 +696,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -674,6 +708,7 @@ public class ApplicantInput {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public ApplicantInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -687,6 +722,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         this.phoneNumbers = phoneNumbers;
@@ -698,6 +734,7 @@ public class ApplicantInput {
         this.addresses = Optional.ofNullable(addresses);
         return this;
     }
+
 
     public ApplicantInput withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -711,6 +748,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withWebsites(Optional<? extends List<Websites>> websites) {
         Utils.checkNotNull(websites, "websites");
         this.websites = websites;
@@ -722,6 +760,7 @@ public class ApplicantInput {
         this.socialLinks = Optional.ofNullable(socialLinks);
         return this;
     }
+
 
     public ApplicantInput withSocialLinks(Optional<? extends List<SocialLinks>> socialLinks) {
         Utils.checkNotNull(socialLinks, "socialLinks");
@@ -735,6 +774,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withStageId(Optional<String> stageId) {
         Utils.checkNotNull(stageId, "stageId");
         this.stageId = stageId;
@@ -747,6 +787,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withRecruiterId(Optional<String> recruiterId) {
         Utils.checkNotNull(recruiterId, "recruiterId");
         this.recruiterId = recruiterId;
@@ -758,6 +799,7 @@ public class ApplicantInput {
         this.coordinatorId = Optional.ofNullable(coordinatorId);
         return this;
     }
+
 
     public ApplicantInput withCoordinatorId(Optional<String> coordinatorId) {
         Utils.checkNotNull(coordinatorId, "coordinatorId");
@@ -819,6 +861,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     public ApplicantInput withConfidential(Optional<Boolean> confidential) {
         Utils.checkNotNull(confidential, "confidential");
         this.confidential = confidential;
@@ -830,6 +873,7 @@ public class ApplicantInput {
         this.anonymized = Optional.ofNullable(anonymized);
         return this;
     }
+
 
     public ApplicantInput withAnonymized(Optional<Boolean> anonymized) {
         Utils.checkNotNull(anonymized, "anonymized");
@@ -912,6 +956,7 @@ public class ApplicantInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -921,7 +966,6 @@ public class ApplicantInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -932,72 +976,52 @@ public class ApplicantInput {
         }
         ApplicantInput other = (ApplicantInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.initials, other.initials) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.coverLetter, other.coverLetter) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.headline, other.headline) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.socialLinks, other.socialLinks) &&
-            Objects.deepEquals(this.stageId, other.stageId) &&
-            Objects.deepEquals(this.recruiterId, other.recruiterId) &&
-            Objects.deepEquals(this.coordinatorId, other.coordinatorId) &&
-            Objects.deepEquals(this.applicationIds, other.applicationIds) &&
-            Objects.deepEquals(this.applications, other.applications) &&
-            Objects.deepEquals(this.followers, other.followers) &&
-            Objects.deepEquals(this.sources, other.sources) &&
-            Objects.deepEquals(this.confidential, other.confidential) &&
-            Objects.deepEquals(this.anonymized, other.anonymized) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.recordUrl, other.recordUrl) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.initials, other.initials) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.coverLetter, other.coverLetter) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.headline, other.headline) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.socialLinks, other.socialLinks) &&
+            Utils.enhancedDeepEquals(this.stageId, other.stageId) &&
+            Utils.enhancedDeepEquals(this.recruiterId, other.recruiterId) &&
+            Utils.enhancedDeepEquals(this.coordinatorId, other.coordinatorId) &&
+            Utils.enhancedDeepEquals(this.applicationIds, other.applicationIds) &&
+            Utils.enhancedDeepEquals(this.applications, other.applications) &&
+            Utils.enhancedDeepEquals(this.followers, other.followers) &&
+            Utils.enhancedDeepEquals(this.sources, other.sources) &&
+            Utils.enhancedDeepEquals(this.confidential, other.confidential) &&
+            Utils.enhancedDeepEquals(this.anonymized, other.anonymized) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.recordUrl, other.recordUrl) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            firstName,
-            lastName,
-            middleName,
-            initials,
-            birthday,
-            coverLetter,
-            photoUrl,
-            headline,
-            title,
-            emails,
-            customFields,
-            phoneNumbers,
-            addresses,
-            websites,
-            socialLinks,
-            stageId,
-            recruiterId,
-            coordinatorId,
-            applicationIds,
-            applications,
-            followers,
-            sources,
-            confidential,
-            anonymized,
-            tags,
-            archived,
-            ownerId,
-            recordUrl,
-            deleted,
+        return Utils.enhancedHash(
+            name, firstName, lastName,
+            middleName, initials, birthday,
+            coverLetter, photoUrl, headline,
+            title, emails, customFields,
+            phoneNumbers, addresses, websites,
+            socialLinks, stageId, recruiterId,
+            coordinatorId, applicationIds, applications,
+            followers, sources, confidential,
+            anonymized, tags, archived,
+            ownerId, recordUrl, deleted,
             passThrough);
     }
     
@@ -1036,74 +1060,76 @@ public class ApplicantInput {
                 "deleted", deleted,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> initials = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
- 
+
         private Optional<String> coverLetter = Optional.empty();
- 
+
         private JsonNullable<String> photoUrl = JsonNullable.undefined();
- 
+
         private Optional<String> headline = Optional.empty();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<Websites>> websites = Optional.empty();
- 
+
         private Optional<? extends List<SocialLinks>> socialLinks = Optional.empty();
- 
+
         private Optional<String> stageId = Optional.empty();
- 
+
         private Optional<String> recruiterId = Optional.empty();
- 
+
         private Optional<String> coordinatorId = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> applicationIds = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> applications = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> followers = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> sources = JsonNullable.undefined();
- 
+
         private Optional<Boolean> confidential = Optional.empty();
- 
+
         private Optional<Boolean> anonymized = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> archived = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> recordUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of an applicant.
@@ -1123,6 +1149,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         /**
          * The first name of the person.
          */
@@ -1140,6 +1167,7 @@ public class ApplicantInput {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The last name of the person.
@@ -1159,6 +1187,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         /**
          * Middle name of the person.
          */
@@ -1176,6 +1205,7 @@ public class ApplicantInput {
             this.middleName = middleName;
             return this;
         }
+
 
         /**
          * The initials of the person, usually derived from their first, middle, and last names.
@@ -1195,6 +1225,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         /**
          * The date of birth of the person.
          */
@@ -1213,6 +1244,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder coverLetter(String coverLetter) {
             Utils.checkNotNull(coverLetter, "coverLetter");
             this.coverLetter = Optional.ofNullable(coverLetter);
@@ -1224,6 +1256,7 @@ public class ApplicantInput {
             this.coverLetter = coverLetter;
             return this;
         }
+
 
         /**
          * The URL of the photo of a person.
@@ -1243,6 +1276,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         /**
          * Typically a list of previous companies where the contact has worked or schools that the contact has attended
          */
@@ -1260,6 +1294,7 @@ public class ApplicantInput {
             this.headline = headline;
             return this;
         }
+
 
         /**
          * The job title of the person.
@@ -1279,6 +1314,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -1290,6 +1326,7 @@ public class ApplicantInput {
             this.emails = emails;
             return this;
         }
+
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
@@ -1303,6 +1340,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
             this.phoneNumbers = Optional.ofNullable(phoneNumbers);
@@ -1314,6 +1352,7 @@ public class ApplicantInput {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
+
 
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -1327,6 +1366,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder websites(List<Websites> websites) {
             Utils.checkNotNull(websites, "websites");
             this.websites = Optional.ofNullable(websites);
@@ -1338,6 +1378,7 @@ public class ApplicantInput {
             this.websites = websites;
             return this;
         }
+
 
         public Builder socialLinks(List<SocialLinks> socialLinks) {
             Utils.checkNotNull(socialLinks, "socialLinks");
@@ -1351,6 +1392,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder stageId(String stageId) {
             Utils.checkNotNull(stageId, "stageId");
             this.stageId = Optional.ofNullable(stageId);
@@ -1362,6 +1404,7 @@ public class ApplicantInput {
             this.stageId = stageId;
             return this;
         }
+
 
         public Builder recruiterId(String recruiterId) {
             Utils.checkNotNull(recruiterId, "recruiterId");
@@ -1375,6 +1418,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder coordinatorId(String coordinatorId) {
             Utils.checkNotNull(coordinatorId, "coordinatorId");
             this.coordinatorId = Optional.ofNullable(coordinatorId);
@@ -1386,6 +1430,7 @@ public class ApplicantInput {
             this.coordinatorId = coordinatorId;
             return this;
         }
+
 
         public Builder applicationIds(List<String> applicationIds) {
             Utils.checkNotNull(applicationIds, "applicationIds");
@@ -1399,6 +1444,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder applications(List<String> applications) {
             Utils.checkNotNull(applications, "applications");
             this.applications = JsonNullable.of(applications);
@@ -1410,6 +1456,7 @@ public class ApplicantInput {
             this.applications = applications;
             return this;
         }
+
 
         public Builder followers(List<String> followers) {
             Utils.checkNotNull(followers, "followers");
@@ -1423,6 +1470,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder sources(List<String> sources) {
             Utils.checkNotNull(sources, "sources");
             this.sources = JsonNullable.of(sources);
@@ -1434,6 +1482,7 @@ public class ApplicantInput {
             this.sources = sources;
             return this;
         }
+
 
         public Builder confidential(boolean confidential) {
             Utils.checkNotNull(confidential, "confidential");
@@ -1447,6 +1496,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder anonymized(boolean anonymized) {
             Utils.checkNotNull(anonymized, "anonymized");
             this.anonymized = Optional.ofNullable(anonymized);
@@ -1458,6 +1508,7 @@ public class ApplicantInput {
             this.anonymized = anonymized;
             return this;
         }
+
 
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
@@ -1471,6 +1522,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder archived(boolean archived) {
             Utils.checkNotNull(archived, "archived");
             this.archived = JsonNullable.of(archived);
@@ -1482,6 +1534,7 @@ public class ApplicantInput {
             this.archived = archived;
             return this;
         }
+
 
         public Builder ownerId(String ownerId) {
             Utils.checkNotNull(ownerId, "ownerId");
@@ -1495,6 +1548,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         public Builder recordUrl(String recordUrl) {
             Utils.checkNotNull(recordUrl, "recordUrl");
             this.recordUrl = JsonNullable.of(recordUrl);
@@ -1506,6 +1560,7 @@ public class ApplicantInput {
             this.recordUrl = recordUrl;
             return this;
         }
+
 
         /**
          * Flag to indicate if the object is deleted.
@@ -1525,6 +1580,7 @@ public class ApplicantInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1542,40 +1598,22 @@ public class ApplicantInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public ApplicantInput build() {
+
             return new ApplicantInput(
-                name,
-                firstName,
-                lastName,
-                middleName,
-                initials,
-                birthday,
-                coverLetter,
-                photoUrl,
-                headline,
-                title,
-                emails,
-                customFields,
-                phoneNumbers,
-                addresses,
-                websites,
-                socialLinks,
-                stageId,
-                recruiterId,
-                coordinatorId,
-                applicationIds,
-                applications,
-                followers,
-                sources,
-                confidential,
-                anonymized,
-                tags,
-                archived,
-                ownerId,
-                recordUrl,
-                deleted,
+                name, firstName, lastName,
+                middleName, initials, birthday,
+                coverLetter, photoUrl, headline,
+                title, emails, customFields,
+                phoneNumbers, addresses, websites,
+                socialLinks, stageId, recruiterId,
+                coordinatorId, applicationIds, applications,
+                followers, sources, confidential,
+                anonymized, tags, archived,
+                ownerId, recordUrl, deleted,
                 passThrough);
         }
+
     }
 }

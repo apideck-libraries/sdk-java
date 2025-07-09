@@ -22,7 +22,6 @@ public class ApiResources {
     ApiResources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get API Resource
      * 
@@ -47,7 +46,8 @@ public class ApiResources {
     public ConnectorApiResourcesOneResponse get(
             String id,
             String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId, Optional.empty());
+        return get(Optional.empty(), id, resourceId,
+            Optional.empty());
     }
 
     /**
@@ -76,8 +76,8 @@ public class ApiResources {
                 .build();
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
               = new ConnectorApiResourcesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

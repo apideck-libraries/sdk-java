@@ -17,12 +17,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class HrisCompany {
 
+public class HrisCompany {
     /**
      * A unique identifier for an object.
      */
@@ -30,17 +29,21 @@ public class HrisCompany {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("legal_name")
     private Optional<String> legalName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_name")
     private JsonNullable<String> displayName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subdomain")
     private JsonNullable<String> subdomain;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -60,21 +63,26 @@ public class HrisCompany {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("debtor_id")
@@ -86,6 +94,7 @@ public class HrisCompany {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deleted")
@@ -188,7 +197,13 @@ public class HrisCompany {
     }
     
     public HrisCompany() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -321,9 +336,10 @@ public class HrisCompany {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -333,6 +349,7 @@ public class HrisCompany {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -348,6 +365,7 @@ public class HrisCompany {
         this.legalName = Optional.ofNullable(legalName);
         return this;
     }
+
 
     public HrisCompany withLegalName(Optional<String> legalName) {
         Utils.checkNotNull(legalName, "legalName");
@@ -384,6 +402,7 @@ public class HrisCompany {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public HrisCompany withStatus(Optional<? extends HrisCompanyStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -433,6 +452,7 @@ public class HrisCompany {
         return this;
     }
 
+
     public HrisCompany withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -444,6 +464,7 @@ public class HrisCompany {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public HrisCompany withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -457,6 +478,7 @@ public class HrisCompany {
         return this;
     }
 
+
     public HrisCompany withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -468,6 +490,7 @@ public class HrisCompany {
         this.websites = Optional.ofNullable(websites);
         return this;
     }
+
 
     public HrisCompany withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
@@ -510,6 +533,7 @@ public class HrisCompany {
         this.deleted = Optional.ofNullable(deleted);
         return this;
     }
+
 
     public HrisCompany withDeleted(Optional<Boolean> deleted) {
         Utils.checkNotNull(deleted, "deleted");
@@ -598,6 +622,7 @@ public class HrisCompany {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -607,7 +632,6 @@ public class HrisCompany {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -618,48 +642,36 @@ public class HrisCompany {
         }
         HrisCompany other = (HrisCompany) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.legalName, other.legalName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.subdomain, other.subdomain) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.companyNumber, other.companyNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.debtorId, other.debtorId) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.legalName, other.legalName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.subdomain, other.subdomain) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.companyNumber, other.companyNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.debtorId, other.debtorId) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            legalName,
-            displayName,
-            subdomain,
-            status,
-            companyNumber,
-            currency,
-            addresses,
-            phoneNumbers,
-            emails,
-            websites,
-            debtorId,
-            customMappings,
-            deleted,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, legalName, displayName,
+            subdomain, status, companyNumber,
+            currency, addresses, phoneNumbers,
+            emails, websites, debtorId,
+            customMappings, deleted, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -686,50 +698,52 @@ public class HrisCompany {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> legalName = Optional.empty();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subdomain = JsonNullable.undefined();
- 
+
         private Optional<? extends HrisCompanyStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> companyNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private JsonNullable<String> debtorId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<Boolean> deleted = Optional.empty();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -749,6 +763,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder legalName(String legalName) {
             Utils.checkNotNull(legalName, "legalName");
             this.legalName = Optional.ofNullable(legalName);
@@ -760,6 +775,7 @@ public class HrisCompany {
             this.legalName = legalName;
             return this;
         }
+
 
         public Builder displayName(String displayName) {
             Utils.checkNotNull(displayName, "displayName");
@@ -773,6 +789,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder subdomain(String subdomain) {
             Utils.checkNotNull(subdomain, "subdomain");
             this.subdomain = JsonNullable.of(subdomain);
@@ -785,6 +802,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder status(HrisCompanyStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -796,6 +814,7 @@ public class HrisCompany {
             this.status = status;
             return this;
         }
+
 
         /**
          * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
@@ -815,6 +834,7 @@ public class HrisCompany {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -833,6 +853,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -844,6 +865,7 @@ public class HrisCompany {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -857,6 +879,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -868,6 +891,7 @@ public class HrisCompany {
             this.emails = emails;
             return this;
         }
+
 
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
@@ -881,6 +905,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder debtorId(String debtorId) {
             Utils.checkNotNull(debtorId, "debtorId");
             this.debtorId = JsonNullable.of(debtorId);
@@ -892,6 +917,7 @@ public class HrisCompany {
             this.debtorId = debtorId;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -911,6 +937,7 @@ public class HrisCompany {
             return this;
         }
 
+
         public Builder deleted(boolean deleted) {
             Utils.checkNotNull(deleted, "deleted");
             this.deleted = Optional.ofNullable(deleted);
@@ -922,6 +949,7 @@ public class HrisCompany {
             this.deleted = deleted;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -941,6 +969,7 @@ public class HrisCompany {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -958,6 +987,7 @@ public class HrisCompany {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -977,6 +1007,7 @@ public class HrisCompany {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -995,6 +1026,7 @@ public class HrisCompany {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1012,28 +1044,18 @@ public class HrisCompany {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public HrisCompany build() {
+
             return new HrisCompany(
-                id,
-                legalName,
-                displayName,
-                subdomain,
-                status,
-                companyNumber,
-                currency,
-                addresses,
-                phoneNumbers,
-                emails,
-                websites,
-                debtorId,
-                customMappings,
-                deleted,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, legalName, displayName,
+                subdomain, status, companyNumber,
+                currency, addresses, phoneNumbers,
+                emails, websites, debtorId,
+                customMappings, deleted, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

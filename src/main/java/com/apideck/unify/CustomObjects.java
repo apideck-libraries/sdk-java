@@ -37,7 +37,6 @@ public class CustomObjects {
     CustomObjects(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List custom objects
      * 
@@ -77,11 +76,10 @@ public class CustomObjects {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
               = new CrmCustomObjectsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create custom object
@@ -122,11 +120,10 @@ public class CustomObjects {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
               = new CrmCustomObjectsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get custom object
@@ -167,11 +164,10 @@ public class CustomObjects {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
               = new CrmCustomObjectsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update custom object
@@ -212,11 +208,10 @@ public class CustomObjects {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
               = new CrmCustomObjectsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete custom object
@@ -257,8 +252,8 @@ public class CustomObjects {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
               = new CrmCustomObjectsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

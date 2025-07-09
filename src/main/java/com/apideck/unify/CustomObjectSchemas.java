@@ -37,7 +37,6 @@ public class CustomObjectSchemas {
     CustomObjectSchemas(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List custom object schemas
      * 
@@ -77,11 +76,10 @@ public class CustomObjectSchemas {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
               = new CrmCustomObjectSchemasAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create custom object schema
@@ -122,11 +120,10 @@ public class CustomObjectSchemas {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
               = new CrmCustomObjectSchemasAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get custom object schema
@@ -167,11 +164,10 @@ public class CustomObjectSchemas {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
               = new CrmCustomObjectSchemasOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update custom object schema
@@ -212,11 +208,10 @@ public class CustomObjectSchemas {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
               = new CrmCustomObjectSchemasUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete custom object schema
@@ -257,8 +252,8 @@ public class CustomObjectSchemas {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
               = new CrmCustomObjectSchemasDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

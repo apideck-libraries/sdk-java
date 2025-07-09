@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class TimeOffRequestsFilter {
 
+public class TimeOffRequestsFilter {
     /**
      * Start date
      */
@@ -74,7 +73,8 @@ public class TimeOffRequestsFilter {
     }
     
     public TimeOffRequestsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -126,9 +126,10 @@ public class TimeOffRequestsFilter {
         return companyId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Start date
@@ -138,6 +139,7 @@ public class TimeOffRequestsFilter {
         this.startDate = Optional.ofNullable(startDate);
         return this;
     }
+
 
     /**
      * Start date
@@ -157,6 +159,7 @@ public class TimeOffRequestsFilter {
         return this;
     }
 
+
     /**
      * End date
      */
@@ -174,6 +177,7 @@ public class TimeOffRequestsFilter {
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     /**
      * Minimum date the time off request was last created or modified
@@ -193,6 +197,7 @@ public class TimeOffRequestsFilter {
         return this;
     }
 
+
     /**
      * Employee ID
      */
@@ -210,6 +215,7 @@ public class TimeOffRequestsFilter {
         this.timeOffRequestStatus = Optional.ofNullable(timeOffRequestStatus);
         return this;
     }
+
 
     /**
      * Time off request status to filter on
@@ -229,6 +235,7 @@ public class TimeOffRequestsFilter {
         return this;
     }
 
+
     /**
      * Company ID
      */
@@ -238,7 +245,6 @@ public class TimeOffRequestsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -249,23 +255,19 @@ public class TimeOffRequestsFilter {
         }
         TimeOffRequestsFilter other = (TimeOffRequestsFilter) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.timeOffRequestStatus, other.timeOffRequestStatus) &&
-            Objects.deepEquals(this.companyId, other.companyId);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.timeOffRequestStatus, other.timeOffRequestStatus) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            startDate,
-            endDate,
-            updatedSince,
-            employeeId,
-            timeOffRequestStatus,
-            companyId);
+        return Utils.enhancedHash(
+            startDate, endDate, updatedSince,
+            employeeId, timeOffRequestStatus, companyId);
     }
     
     @Override
@@ -278,24 +280,26 @@ public class TimeOffRequestsFilter {
                 "timeOffRequestStatus", timeOffRequestStatus,
                 "companyId", companyId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
- 
+
         private Optional<String> updatedSince = Optional.empty();
- 
+
         private Optional<String> employeeId = Optional.empty();
- 
+
         private Optional<? extends TimeOffRequestStatus> timeOffRequestStatus = Optional.empty();
- 
+
         private Optional<String> companyId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Start date
@@ -315,6 +319,7 @@ public class TimeOffRequestsFilter {
             return this;
         }
 
+
         /**
          * End date
          */
@@ -332,6 +337,7 @@ public class TimeOffRequestsFilter {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Minimum date the time off request was last created or modified
@@ -351,6 +357,7 @@ public class TimeOffRequestsFilter {
             return this;
         }
 
+
         /**
          * Employee ID
          */
@@ -368,6 +375,7 @@ public class TimeOffRequestsFilter {
             this.employeeId = employeeId;
             return this;
         }
+
 
         /**
          * Time off request status to filter on
@@ -387,6 +395,7 @@ public class TimeOffRequestsFilter {
             return this;
         }
 
+
         /**
          * Company ID
          */
@@ -404,15 +413,13 @@ public class TimeOffRequestsFilter {
             this.companyId = companyId;
             return this;
         }
-        
+
         public TimeOffRequestsFilter build() {
+
             return new TimeOffRequestsFilter(
-                startDate,
-                endDate,
-                updatedSince,
-                employeeId,
-                timeOffRequestStatus,
-                companyId);
+                startDate, endDate, updatedSince,
+                employeeId, timeOffRequestStatus, companyId);
         }
+
     }
 }

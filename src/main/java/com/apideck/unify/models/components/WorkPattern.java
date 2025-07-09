@@ -12,14 +12,15 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WorkPattern {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("odd_weeks")
     private Optional<? extends OddWeeks> oddWeeks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("even_weeks")
@@ -51,15 +52,17 @@ public class WorkPattern {
         return (Optional<EvenWeeks>) evenWeeks;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WorkPattern withOddWeeks(OddWeeks oddWeeks) {
         Utils.checkNotNull(oddWeeks, "oddWeeks");
         this.oddWeeks = Optional.ofNullable(oddWeeks);
         return this;
     }
+
 
     public WorkPattern withOddWeeks(Optional<? extends OddWeeks> oddWeeks) {
         Utils.checkNotNull(oddWeeks, "oddWeeks");
@@ -73,13 +76,13 @@ public class WorkPattern {
         return this;
     }
 
+
     public WorkPattern withEvenWeeks(Optional<? extends EvenWeeks> evenWeeks) {
         Utils.checkNotNull(evenWeeks, "evenWeeks");
         this.evenWeeks = evenWeeks;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +93,14 @@ public class WorkPattern {
         }
         WorkPattern other = (WorkPattern) o;
         return 
-            Objects.deepEquals(this.oddWeeks, other.oddWeeks) &&
-            Objects.deepEquals(this.evenWeeks, other.evenWeeks);
+            Utils.enhancedDeepEquals(this.oddWeeks, other.oddWeeks) &&
+            Utils.enhancedDeepEquals(this.evenWeeks, other.evenWeeks);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            oddWeeks,
-            evenWeeks);
+        return Utils.enhancedHash(
+            oddWeeks, evenWeeks);
     }
     
     @Override
@@ -107,16 +109,18 @@ public class WorkPattern {
                 "oddWeeks", oddWeeks,
                 "evenWeeks", evenWeeks);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends OddWeeks> oddWeeks = Optional.empty();
- 
+
         private Optional<? extends EvenWeeks> evenWeeks = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder oddWeeks(OddWeeks oddWeeks) {
             Utils.checkNotNull(oddWeeks, "oddWeeks");
@@ -130,6 +134,7 @@ public class WorkPattern {
             return this;
         }
 
+
         public Builder evenWeeks(EvenWeeks evenWeeks) {
             Utils.checkNotNull(evenWeeks, "evenWeeks");
             this.evenWeeks = Optional.ofNullable(evenWeeks);
@@ -141,11 +146,12 @@ public class WorkPattern {
             this.evenWeeks = evenWeeks;
             return this;
         }
-        
+
         public WorkPattern build() {
+
             return new WorkPattern(
-                oddWeeks,
-                evenWeeks);
+                oddWeeks, evenWeeks);
         }
+
     }
 }

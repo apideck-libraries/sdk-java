@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConsumersAddRequest {
 
+public class VaultConsumersAddRequest {
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private ConsumerInput consumer;
@@ -52,9 +52,10 @@ public class VaultConsumersAddRequest {
         return consumer;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -64,6 +65,7 @@ public class VaultConsumersAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -80,7 +82,6 @@ public class VaultConsumersAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,15 +92,14 @@ public class VaultConsumersAddRequest {
         }
         VaultConsumersAddRequest other = (VaultConsumersAddRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumer, other.consumer);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumer, other.consumer);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            consumer);
+        return Utils.enhancedHash(
+            appId, consumer);
     }
     
     @Override
@@ -108,16 +108,18 @@ public class VaultConsumersAddRequest {
                 "appId", appId,
                 "consumer", consumer);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private ConsumerInput consumer;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -137,16 +139,18 @@ public class VaultConsumersAddRequest {
             return this;
         }
 
+
         public Builder consumer(ConsumerInput consumer) {
             Utils.checkNotNull(consumer, "consumer");
             this.consumer = consumer;
             return this;
         }
-        
+
         public VaultConsumersAddRequest build() {
+
             return new VaultConsumersAddRequest(
-                appId,
-                consumer);
+                appId, consumer);
         }
+
     }
 }

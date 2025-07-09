@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,6 @@ import java.util.Optional;
  * <p>Unify event that is supported on the connector. Events are delivered via Webhooks.
  */
 public class ConnectorEvent {
-
     /**
      * Unify event type
      */
@@ -43,6 +41,7 @@ public class ConnectorEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_event_type")
     private Optional<String> downstreamEventType;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
@@ -75,7 +74,8 @@ public class ConnectorEvent {
     }
     
     public ConnectorEvent() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,9 +117,10 @@ public class ConnectorEvent {
         return entityType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unify event type
@@ -129,6 +130,7 @@ public class ConnectorEvent {
         this.eventType = Optional.ofNullable(eventType);
         return this;
     }
+
 
     /**
      * Unify event type
@@ -148,6 +150,7 @@ public class ConnectorEvent {
         return this;
     }
 
+
     /**
      * Unify event source
      */
@@ -166,6 +169,7 @@ public class ConnectorEvent {
         return this;
     }
 
+
     /**
      * Downstream event type
      */
@@ -180,6 +184,7 @@ public class ConnectorEvent {
         this.resources = Optional.ofNullable(resources);
         return this;
     }
+
 
     public ConnectorEvent withResources(Optional<? extends List<String>> resources) {
         Utils.checkNotNull(resources, "resources");
@@ -196,6 +201,7 @@ public class ConnectorEvent {
         return this;
     }
 
+
     /**
      * Unify entity type
      */
@@ -205,7 +211,6 @@ public class ConnectorEvent {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -216,21 +221,18 @@ public class ConnectorEvent {
         }
         ConnectorEvent other = (ConnectorEvent) o;
         return 
-            Objects.deepEquals(this.eventType, other.eventType) &&
-            Objects.deepEquals(this.eventSource, other.eventSource) &&
-            Objects.deepEquals(this.downstreamEventType, other.downstreamEventType) &&
-            Objects.deepEquals(this.resources, other.resources) &&
-            Objects.deepEquals(this.entityType, other.entityType);
+            Utils.enhancedDeepEquals(this.eventType, other.eventType) &&
+            Utils.enhancedDeepEquals(this.eventSource, other.eventSource) &&
+            Utils.enhancedDeepEquals(this.downstreamEventType, other.downstreamEventType) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources) &&
+            Utils.enhancedDeepEquals(this.entityType, other.entityType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            eventType,
-            eventSource,
-            downstreamEventType,
-            resources,
-            entityType);
+        return Utils.enhancedHash(
+            eventType, eventSource, downstreamEventType,
+            resources, entityType);
     }
     
     @Override
@@ -242,22 +244,24 @@ public class ConnectorEvent {
                 "resources", resources,
                 "entityType", entityType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> eventType = Optional.empty();
- 
+
         private Optional<? extends EventSource> eventSource = Optional.empty();
- 
+
         private Optional<String> downstreamEventType = Optional.empty();
- 
+
         private Optional<? extends List<String>> resources = Optional.empty();
- 
+
         private Optional<String> entityType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unify event type
@@ -277,6 +281,7 @@ public class ConnectorEvent {
             return this;
         }
 
+
         /**
          * Unify event source
          */
@@ -294,6 +299,7 @@ public class ConnectorEvent {
             this.eventSource = eventSource;
             return this;
         }
+
 
         /**
          * Downstream event type
@@ -313,6 +319,7 @@ public class ConnectorEvent {
             return this;
         }
 
+
         public Builder resources(List<String> resources) {
             Utils.checkNotNull(resources, "resources");
             this.resources = Optional.ofNullable(resources);
@@ -324,6 +331,7 @@ public class ConnectorEvent {
             this.resources = resources;
             return this;
         }
+
 
         /**
          * Unify entity type
@@ -342,14 +350,13 @@ public class ConnectorEvent {
             this.entityType = entityType;
             return this;
         }
-        
+
         public ConnectorEvent build() {
+
             return new ConnectorEvent(
-                eventType,
-                eventSource,
-                downstreamEventType,
-                resources,
-                entityType);
+                eventType, eventSource, downstreamEventType,
+                resources, entityType);
         }
+
     }
 }

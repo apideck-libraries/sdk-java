@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorDoc {
 
+public class ConnectorDoc {
     /**
      * A unique identifier for an object.
      */
@@ -72,7 +71,8 @@ public class ConnectorDoc {
     }
     
     public ConnectorDoc() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -117,9 +117,10 @@ public class ConnectorDoc {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -129,6 +130,7 @@ public class ConnectorDoc {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -148,6 +150,7 @@ public class ConnectorDoc {
         return this;
     }
 
+
     /**
      * Name of the doc.
      */
@@ -165,6 +168,7 @@ public class ConnectorDoc {
         this.audience = Optional.ofNullable(audience);
         return this;
     }
+
 
     /**
      * Audience for the doc.
@@ -184,6 +188,7 @@ public class ConnectorDoc {
         return this;
     }
 
+
     /**
      * Format of the doc.
      */
@@ -202,6 +207,7 @@ public class ConnectorDoc {
         return this;
     }
 
+
     /**
      * Link to fetch the content of the doc.
      */
@@ -211,7 +217,6 @@ public class ConnectorDoc {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -222,21 +227,18 @@ public class ConnectorDoc {
         }
         ConnectorDoc other = (ConnectorDoc) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.audience, other.audience) &&
-            Objects.deepEquals(this.format, other.format) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.audience, other.audience) &&
+            Utils.enhancedDeepEquals(this.format, other.format) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            audience,
-            format,
-            url);
+        return Utils.enhancedHash(
+            id, name, audience,
+            format, url);
     }
     
     @Override
@@ -248,22 +250,24 @@ public class ConnectorDoc {
                 "format", format,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends Audience> audience = Optional.empty();
- 
+
         private Optional<? extends Format> format = Optional.empty();
- 
+
         private Optional<String> url = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -283,6 +287,7 @@ public class ConnectorDoc {
             return this;
         }
 
+
         /**
          * Name of the doc.
          */
@@ -300,6 +305,7 @@ public class ConnectorDoc {
             this.name = name;
             return this;
         }
+
 
         /**
          * Audience for the doc.
@@ -319,6 +325,7 @@ public class ConnectorDoc {
             return this;
         }
 
+
         /**
          * Format of the doc.
          */
@@ -337,6 +344,7 @@ public class ConnectorDoc {
             return this;
         }
 
+
         /**
          * Link to fetch the content of the doc.
          */
@@ -354,14 +362,13 @@ public class ConnectorDoc {
             this.url = url;
             return this;
         }
-        
+
         public ConnectorDoc build() {
+
             return new ConnectorDoc(
-                id,
-                name,
-                audience,
-                format,
-                url);
+                id, name, audience,
+                format, url);
         }
+
     }
 }

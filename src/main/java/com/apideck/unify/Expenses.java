@@ -37,7 +37,6 @@ public class Expenses {
     Expenses(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Expenses
      * 
@@ -77,11 +76,10 @@ public class Expenses {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesAllRequest, AccountingExpensesAllResponse> operation
               = new AccountingExpensesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Expense
@@ -122,11 +120,10 @@ public class Expenses {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesAddRequest, AccountingExpensesAddResponse> operation
               = new AccountingExpensesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Expense
@@ -167,11 +164,10 @@ public class Expenses {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesOneRequest, AccountingExpensesOneResponse> operation
               = new AccountingExpensesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Expense
@@ -212,11 +208,10 @@ public class Expenses {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesUpdateRequest, AccountingExpensesUpdateResponse> operation
               = new AccountingExpensesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Expense
@@ -257,8 +252,8 @@ public class Expenses {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation
               = new AccountingExpensesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

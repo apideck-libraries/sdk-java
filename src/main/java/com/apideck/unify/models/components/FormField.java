@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FormField {
 
+public class FormField {
     /**
      * The unique identifier of the form field.
      */
@@ -50,6 +49,7 @@ public class FormField {
     @JsonProperty("description")
     private JsonNullable<String> description;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends FormFieldType> type;
@@ -60,6 +60,7 @@ public class FormField {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
     private Optional<Boolean> required;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_field")
@@ -113,6 +114,7 @@ public class FormField {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("suffix")
     private JsonNullable<String> suffix;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
@@ -168,7 +170,11 @@ public class FormField {
     }
     
     public FormField() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -284,9 +290,10 @@ public class FormField {
         return (Optional<List<FormFieldOption>>) options;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the form field.
@@ -296,6 +303,7 @@ public class FormField {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the form field.
@@ -314,6 +322,7 @@ public class FormField {
         this.label = Optional.ofNullable(label);
         return this;
     }
+
 
     /**
      * The label of the field
@@ -366,6 +375,7 @@ public class FormField {
         return this;
     }
 
+
     public FormField withType(Optional<? extends FormFieldType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -380,6 +390,7 @@ public class FormField {
         this.required = Optional.ofNullable(required);
         return this;
     }
+
 
     /**
      * Indicates if the form field is required, which means it must be filled in before the form can be submitted
@@ -396,6 +407,7 @@ public class FormField {
         return this;
     }
 
+
     public FormField withCustomField(Optional<Boolean> customField) {
         Utils.checkNotNull(customField, "customField");
         this.customField = customField;
@@ -410,6 +422,7 @@ public class FormField {
         this.allowCustomValues = Optional.ofNullable(allowCustomValues);
         return this;
     }
+
 
     /**
      * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
@@ -534,13 +547,13 @@ public class FormField {
         return this;
     }
 
+
     public FormField withOptions(Optional<? extends List<FormFieldOption>> options) {
         Utils.checkNotNull(options, "options");
         this.options = options;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -551,41 +564,31 @@ public class FormField {
         }
         FormField other = (FormField) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.placeholder, other.placeholder) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.customField, other.customField) &&
-            Objects.deepEquals(this.allowCustomValues, other.allowCustomValues) &&
-            Objects.deepEquals(this.disabled, other.disabled) &&
-            Objects.deepEquals(this.hidden, other.hidden) &&
-            Objects.deepEquals(this.deprecated, other.deprecated) &&
-            Objects.deepEquals(this.sensitive, other.sensitive) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.options, other.options);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.placeholder, other.placeholder) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.customField, other.customField) &&
+            Utils.enhancedDeepEquals(this.allowCustomValues, other.allowCustomValues) &&
+            Utils.enhancedDeepEquals(this.disabled, other.disabled) &&
+            Utils.enhancedDeepEquals(this.hidden, other.hidden) &&
+            Utils.enhancedDeepEquals(this.deprecated, other.deprecated) &&
+            Utils.enhancedDeepEquals(this.sensitive, other.sensitive) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.options, other.options);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            label,
-            placeholder,
-            description,
-            type,
-            required,
-            customField,
-            allowCustomValues,
-            disabled,
-            hidden,
-            deprecated,
-            sensitive,
-            prefix,
-            suffix,
-            options);
+        return Utils.enhancedHash(
+            id, label, placeholder,
+            description, type, required,
+            customField, allowCustomValues, disabled,
+            hidden, deprecated, sensitive,
+            prefix, suffix, options);
     }
     
     @Override
@@ -607,42 +610,44 @@ public class FormField {
                 "suffix", suffix,
                 "options", options);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
- 
+
         private JsonNullable<String> placeholder = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends FormFieldType> type = Optional.empty();
- 
+
         private Optional<Boolean> required = Optional.empty();
- 
+
         private Optional<Boolean> customField = Optional.empty();
- 
+
         private Optional<Boolean> allowCustomValues;
- 
+
         private JsonNullable<Boolean> disabled = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> hidden = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> deprecated = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> sensitive = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prefix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private Optional<? extends List<FormFieldOption>> options = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the form field.
@@ -662,6 +667,7 @@ public class FormField {
             return this;
         }
 
+
         /**
          * The label of the field
          */
@@ -679,6 +685,7 @@ public class FormField {
             this.label = label;
             return this;
         }
+
 
         /**
          * The placeholder for the form field
@@ -698,6 +705,7 @@ public class FormField {
             return this;
         }
 
+
         /**
          * The description of the form field
          */
@@ -716,6 +724,7 @@ public class FormField {
             return this;
         }
 
+
         public Builder type(FormFieldType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -727,6 +736,7 @@ public class FormField {
             this.type = type;
             return this;
         }
+
 
         /**
          * Indicates if the form field is required, which means it must be filled in before the form can be submitted
@@ -746,6 +756,7 @@ public class FormField {
             return this;
         }
 
+
         public Builder customField(boolean customField) {
             Utils.checkNotNull(customField, "customField");
             this.customField = Optional.ofNullable(customField);
@@ -757,6 +768,7 @@ public class FormField {
             this.customField = customField;
             return this;
         }
+
 
         /**
          * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
@@ -776,6 +788,7 @@ public class FormField {
             return this;
         }
 
+
         /**
          * Indicates if the form field is displayed in a “read-only” mode.
          */
@@ -793,6 +806,7 @@ public class FormField {
             this.disabled = disabled;
             return this;
         }
+
 
         /**
          * Indicates if the form field is not displayed but the value that is being stored on the connection.
@@ -812,6 +826,7 @@ public class FormField {
             return this;
         }
 
+
         /**
          * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
          */
@@ -829,6 +844,7 @@ public class FormField {
             this.deprecated = deprecated;
             return this;
         }
+
 
         /**
          * Indicates if the form field contains sensitive data, which will display the value as a masked input.
@@ -848,6 +864,7 @@ public class FormField {
             return this;
         }
 
+
         /**
          * Prefix to display in front of the form field.
          */
@@ -865,6 +882,7 @@ public class FormField {
             this.prefix = prefix;
             return this;
         }
+
 
         /**
          * Suffix to display next to the form field.
@@ -884,6 +902,7 @@ public class FormField {
             return this;
         }
 
+
         public Builder options(List<FormFieldOption> options) {
             Utils.checkNotNull(options, "options");
             this.options = Optional.ofNullable(options);
@@ -895,28 +914,20 @@ public class FormField {
             this.options = options;
             return this;
         }
-        
+
         public FormField build() {
             if (allowCustomValues == null) {
                 allowCustomValues = _SINGLETON_VALUE_AllowCustomValues.value();
             }
+
             return new FormField(
-                id,
-                label,
-                placeholder,
-                description,
-                type,
-                required,
-                customField,
-                allowCustomValues,
-                disabled,
-                hidden,
-                deprecated,
-                sensitive,
-                prefix,
-                suffix,
-                options);
+                id, label, placeholder,
+                description, type, required,
+                customField, allowCustomValues, disabled,
+                hidden, deprecated, sensitive,
+                prefix, suffix, options);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AllowCustomValues =
                 new LazySingletonValue<>(

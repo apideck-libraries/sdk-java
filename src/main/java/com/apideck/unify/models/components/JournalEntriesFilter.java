@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class JournalEntriesFilter {
 
@@ -34,9 +34,10 @@ public class JournalEntriesFilter {
         return updatedSince;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public JournalEntriesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -44,13 +45,13 @@ public class JournalEntriesFilter {
         return this;
     }
 
+
     public JournalEntriesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -61,12 +62,12 @@ public class JournalEntriesFilter {
         }
         JournalEntriesFilter other = (JournalEntriesFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             updatedSince);
     }
     
@@ -75,14 +76,16 @@ public class JournalEntriesFilter {
         return Utils.toString(JournalEntriesFilter.class,
                 "updatedSince", updatedSince);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
@@ -95,10 +98,12 @@ public class JournalEntriesFilter {
             this.updatedSince = updatedSince;
             return this;
         }
-        
+
         public JournalEntriesFilter build() {
+
             return new JournalEntriesFilter(
                 updatedSince);
         }
+
     }
 }

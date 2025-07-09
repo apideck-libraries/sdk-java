@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Company
  */
 public class GetCompanyResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -55,8 +53,9 @@ public class GetCompanyResponse {
     @JsonProperty("operation")
     private String operation;
 
+
     @JsonProperty("data")
-    private Company data;
+    private Company1 data;
 
     /**
      * Raw response from the integration when raw=true query param is provided
@@ -72,7 +71,7 @@ public class GetCompanyResponse {
             @JsonProperty("service") String service,
             @JsonProperty("resource") String resource,
             @JsonProperty("operation") String operation,
-            @JsonProperty("data") Company data,
+            @JsonProperty("data") Company1 data,
             @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(status, "status");
@@ -96,8 +95,10 @@ public class GetCompanyResponse {
             String service,
             String resource,
             String operation,
-            Company data) {
-        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
+            Company1 data) {
+        this(statusCode, status, service,
+            resource, operation, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -141,7 +142,7 @@ public class GetCompanyResponse {
     }
 
     @JsonIgnore
-    public Company data() {
+    public Company1 data() {
         return data;
     }
 
@@ -154,9 +155,10 @@ public class GetCompanyResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -203,7 +205,7 @@ public class GetCompanyResponse {
         return this;
     }
 
-    public GetCompanyResponse withData(Company data) {
+    public GetCompanyResponse withData(Company1 data) {
         Utils.checkNotNull(data, "data");
         this.data = data;
         return this;
@@ -227,7 +229,6 @@ public class GetCompanyResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,24 +239,20 @@ public class GetCompanyResponse {
         }
         GetCompanyResponse other = (GetCompanyResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
             raw);
     }
     
@@ -270,26 +267,28 @@ public class GetCompanyResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
-        private Company data;
- 
+
+        private Company1 data;
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -300,6 +299,7 @@ public class GetCompanyResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -308,6 +308,7 @@ public class GetCompanyResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -318,6 +319,7 @@ public class GetCompanyResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -326,6 +328,7 @@ public class GetCompanyResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -336,11 +339,13 @@ public class GetCompanyResponse {
             return this;
         }
 
-        public Builder data(Company data) {
+
+        public Builder data(Company1 data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -359,16 +364,14 @@ public class GetCompanyResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetCompanyResponse build() {
+
             return new GetCompanyResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
+                statusCode, status, service,
+                resource, operation, data,
                 raw);
         }
+
     }
 }

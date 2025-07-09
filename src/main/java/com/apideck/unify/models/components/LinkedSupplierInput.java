@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The supplier this entity is linked to.
  */
 public class LinkedSupplierInput {
-
     /**
      * The ID of the supplier this entity is linked to.
      */
@@ -36,6 +34,7 @@ public class LinkedSupplierInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_name")
     private JsonNullable<String> displayName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
@@ -80,9 +79,10 @@ public class LinkedSupplierInput {
         return (Optional<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -92,6 +92,7 @@ public class LinkedSupplierInput {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -126,13 +127,13 @@ public class LinkedSupplierInput {
         return this;
     }
 
+
     public LinkedSupplierInput withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -143,17 +144,15 @@ public class LinkedSupplierInput {
         }
         LinkedSupplierInput other = (LinkedSupplierInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.address, other.address);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.address, other.address);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayName,
-            address);
+        return Utils.enhancedHash(
+            id, displayName, address);
     }
     
     @Override
@@ -163,18 +162,20 @@ public class LinkedSupplierInput {
                 "displayName", displayName,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> address = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the supplier this entity is linked to.
@@ -194,6 +195,7 @@ public class LinkedSupplierInput {
             return this;
         }
 
+
         /**
          * The display name of the supplier.
          */
@@ -212,6 +214,7 @@ public class LinkedSupplierInput {
             return this;
         }
 
+
         public Builder address(Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
@@ -223,12 +226,12 @@ public class LinkedSupplierInput {
             this.address = address;
             return this;
         }
-        
+
         public LinkedSupplierInput build() {
+
             return new LinkedSupplierInput(
-                id,
-                displayName,
-                address);
+                id, displayName, address);
         }
+
     }
 }

@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LinkedTaxRateInput {
 
+public class LinkedTaxRateInput {
     /**
      * The ID of the object.
      */
@@ -61,9 +60,10 @@ public class LinkedTaxRateInput {
         return rate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the object.
@@ -101,7 +101,6 @@ public class LinkedTaxRateInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,15 +111,14 @@ public class LinkedTaxRateInput {
         }
         LinkedTaxRateInput other = (LinkedTaxRateInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.rate, other.rate);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.rate, other.rate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            rate);
+        return Utils.enhancedHash(
+            id, rate);
     }
     
     @Override
@@ -129,16 +127,18 @@ public class LinkedTaxRateInput {
                 "id", id,
                 "rate", rate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> rate = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the object.
@@ -158,6 +158,7 @@ public class LinkedTaxRateInput {
             return this;
         }
 
+
         /**
          * Rate of the tax rate
          */
@@ -175,11 +176,12 @@ public class LinkedTaxRateInput {
             this.rate = rate;
             return this;
         }
-        
+
         public LinkedTaxRateInput build() {
+
             return new LinkedTaxRateInput(
-                id,
-                rate);
+                id, rate);
         }
+
     }
 }

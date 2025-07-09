@@ -37,7 +37,6 @@ public class Payments {
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Payments
      * 
@@ -77,11 +76,10 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
               = new AccountingPaymentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Payment
@@ -122,11 +120,10 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
               = new AccountingPaymentsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Payment
@@ -167,11 +164,10 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
               = new AccountingPaymentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Payment
@@ -212,11 +208,10 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
               = new AccountingPaymentsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Payment
@@ -257,8 +252,8 @@ public class Payments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
               = new AccountingPaymentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

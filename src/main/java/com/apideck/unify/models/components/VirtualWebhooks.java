@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,6 @@ import java.util.Optional;
  * <p>Virtual webhook config for the connector.
  */
 public class VirtualWebhooks {
-
     /**
      * The rate at which requests for resources will be made to downstream.
      */
@@ -68,9 +66,10 @@ public class VirtualWebhooks {
         return (Optional<Map<String, WebhookSupportResources>>) resources;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The rate at which requests for resources will be made to downstream.
@@ -90,6 +89,7 @@ public class VirtualWebhooks {
         return this;
     }
 
+
     /**
      * The resources that will be requested from downstream.
      */
@@ -99,7 +99,6 @@ public class VirtualWebhooks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,15 +109,14 @@ public class VirtualWebhooks {
         }
         VirtualWebhooks other = (VirtualWebhooks) o;
         return 
-            Objects.deepEquals(this.requestRate, other.requestRate) &&
-            Objects.deepEquals(this.resources, other.resources);
+            Utils.enhancedDeepEquals(this.requestRate, other.requestRate) &&
+            Utils.enhancedDeepEquals(this.resources, other.resources);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            requestRate,
-            resources);
+        return Utils.enhancedHash(
+            requestRate, resources);
     }
     
     @Override
@@ -127,16 +125,18 @@ public class VirtualWebhooks {
                 "requestRate", requestRate,
                 "resources", resources);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private RequestRate requestRate;
- 
+
         private Optional<? extends Map<String, WebhookSupportResources>> resources = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The rate at which requests for resources will be made to downstream.
@@ -146,6 +146,7 @@ public class VirtualWebhooks {
             this.requestRate = requestRate;
             return this;
         }
+
 
         /**
          * The resources that will be requested from downstream.
@@ -164,11 +165,12 @@ public class VirtualWebhooks {
             this.resources = resources;
             return this;
         }
-        
+
         public VirtualWebhooks build() {
+
             return new VirtualWebhooks(
-                requestRate,
-                resources);
+                requestRate, resources);
         }
+
     }
 }

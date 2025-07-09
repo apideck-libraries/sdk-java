@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PipelineStages {
 
+public class PipelineStages {
     /**
      * The name of the Pipeline Stage.
      */
@@ -62,7 +61,8 @@ public class PipelineStages {
     }
     
     public PipelineStages() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -97,9 +97,10 @@ public class PipelineStages {
         return displayOrder;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the Pipeline Stage.
@@ -173,7 +174,6 @@ public class PipelineStages {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,18 +184,16 @@ public class PipelineStages {
         }
         PipelineStages other = (PipelineStages) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.value, other.value) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.displayOrder, other.displayOrder);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.value, other.value) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            value,
-            winProbability,
+        return Utils.enhancedHash(
+            name, value, winProbability,
             displayOrder);
     }
     
@@ -207,20 +205,22 @@ public class PipelineStages {
                 "winProbability", winProbability,
                 "displayOrder", displayOrder);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> value = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> winProbability = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> displayOrder = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the Pipeline Stage.
@@ -240,6 +240,7 @@ public class PipelineStages {
             return this;
         }
 
+
         /**
          * The value of the Pipeline Stage.
          */
@@ -257,6 +258,7 @@ public class PipelineStages {
             this.value = value;
             return this;
         }
+
 
         /**
          * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
@@ -276,6 +278,7 @@ public class PipelineStages {
             return this;
         }
 
+
         /**
          * The order in which the Pipeline Stage is displayed in the UI.
          */
@@ -293,13 +296,13 @@ public class PipelineStages {
             this.displayOrder = displayOrder;
             return this;
         }
-        
+
         public PipelineStages build() {
+
             return new PipelineStages(
-                name,
-                value,
-                winProbability,
+                name, value, winProbability,
                 displayOrder);
         }
+
     }
 }

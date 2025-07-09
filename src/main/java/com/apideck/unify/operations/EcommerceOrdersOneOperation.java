@@ -54,7 +54,8 @@ public class EcommerceOrdersOneOperation implements RequestOperation<EcommerceOr
     
     @Override
     public HttpResponse<InputStream> doRequest(EcommerceOrdersOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 EcommerceOrdersOneRequest.class,

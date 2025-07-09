@@ -13,11 +13,10 @@ import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Resources {
 
+public class Resources {
     /**
      * ID of the resource, typically a lowercased version of its name.
      */
@@ -63,7 +62,8 @@ public class Resources {
     }
     
     public Resources() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -99,9 +99,10 @@ public class Resources {
         return excludedFromCoverage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of its name.
@@ -111,6 +112,7 @@ public class Resources {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of its name.
@@ -130,6 +132,7 @@ public class Resources {
         return this;
     }
 
+
     /**
      * Name of the resource (plural)
      */
@@ -147,6 +150,7 @@ public class Resources {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
@@ -166,6 +170,7 @@ public class Resources {
         return this;
     }
 
+
     /**
      * Exclude from mapping coverage
      */
@@ -175,7 +180,6 @@ public class Resources {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,18 +190,16 @@ public class Resources {
         }
         Resources other = (Resources) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.excludedFromCoverage, other.excludedFromCoverage);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.excludedFromCoverage, other.excludedFromCoverage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            status,
+        return Utils.enhancedHash(
+            id, name, status,
             excludedFromCoverage);
     }
     
@@ -209,20 +211,22 @@ public class Resources {
                 "status", status,
                 "excludedFromCoverage", excludedFromCoverage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ResourceStatus> status = Optional.empty();
- 
+
         private Optional<Boolean> excludedFromCoverage = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of its name.
@@ -242,6 +246,7 @@ public class Resources {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -259,6 +264,7 @@ public class Resources {
             this.name = name;
             return this;
         }
+
 
         /**
          * Status of the resource. Resources with status live or beta are callable.
@@ -278,6 +284,7 @@ public class Resources {
             return this;
         }
 
+
         /**
          * Exclude from mapping coverage
          */
@@ -295,13 +302,13 @@ public class Resources {
             this.excludedFromCoverage = excludedFromCoverage;
             return this;
         }
-        
+
         public Resources build() {
+
             return new Resources(
-                id,
-                name,
-                status,
+                id, name, status,
                 excludedFromCoverage);
         }
+
     }
 }

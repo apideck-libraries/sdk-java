@@ -37,7 +37,6 @@ public class PurchaseOrders {
     PurchaseOrders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Purchase Orders
      * 
@@ -77,11 +76,10 @@ public class PurchaseOrders {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
               = new AccountingPurchaseOrdersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Purchase Order
@@ -122,11 +120,10 @@ public class PurchaseOrders {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
               = new AccountingPurchaseOrdersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Purchase Order
@@ -167,11 +164,10 @@ public class PurchaseOrders {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
               = new AccountingPurchaseOrdersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Purchase Order
@@ -212,11 +208,10 @@ public class PurchaseOrders {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
               = new AccountingPurchaseOrdersUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Purchase Order
@@ -257,8 +252,8 @@ public class PurchaseOrders {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
               = new AccountingPurchaseOrdersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

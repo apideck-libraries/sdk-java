@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class WebhookSubscription {
 
+public class WebhookSubscription {
     /**
      * The ID of the downstream service
      */
@@ -73,7 +72,8 @@ public class WebhookSubscription {
     }
     
     public WebhookSubscription() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +118,10 @@ public class WebhookSubscription {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the downstream service
@@ -130,6 +131,7 @@ public class WebhookSubscription {
         this.downstreamId = Optional.ofNullable(downstreamId);
         return this;
     }
+
 
     /**
      * The ID of the downstream service
@@ -149,6 +151,7 @@ public class WebhookSubscription {
         return this;
     }
 
+
     /**
      * The list of Unify Events this connection is subscribed to
      */
@@ -166,6 +169,7 @@ public class WebhookSubscription {
         this.downstreamEventTypes = Optional.ofNullable(downstreamEventTypes);
         return this;
     }
+
 
     /**
      * The list of downstream Events this connection is subscribed to
@@ -185,6 +189,7 @@ public class WebhookSubscription {
         return this;
     }
 
+
     /**
      * The URL the downstream is sending to when the event is triggered
      */
@@ -203,6 +208,7 @@ public class WebhookSubscription {
         return this;
     }
 
+
     /**
      * The date and time the webhook subscription was created downstream
      */
@@ -212,7 +218,6 @@ public class WebhookSubscription {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -223,21 +228,18 @@ public class WebhookSubscription {
         }
         WebhookSubscription other = (WebhookSubscription) o;
         return 
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.unifyEventTypes, other.unifyEventTypes) &&
-            Objects.deepEquals(this.downstreamEventTypes, other.downstreamEventTypes) &&
-            Objects.deepEquals(this.executeUrl, other.executeUrl) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.unifyEventTypes, other.unifyEventTypes) &&
+            Utils.enhancedDeepEquals(this.downstreamEventTypes, other.downstreamEventTypes) &&
+            Utils.enhancedDeepEquals(this.executeUrl, other.executeUrl) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            downstreamId,
-            unifyEventTypes,
-            downstreamEventTypes,
-            executeUrl,
-            createdAt);
+        return Utils.enhancedHash(
+            downstreamId, unifyEventTypes, downstreamEventTypes,
+            executeUrl, createdAt);
     }
     
     @Override
@@ -249,22 +251,24 @@ public class WebhookSubscription {
                 "executeUrl", executeUrl,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> downstreamId = Optional.empty();
- 
+
         private Optional<? extends List<String>> unifyEventTypes = Optional.empty();
- 
+
         private Optional<? extends List<String>> downstreamEventTypes = Optional.empty();
- 
+
         private Optional<String> executeUrl = Optional.empty();
- 
+
         private Optional<String> createdAt = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the downstream service
@@ -284,6 +288,7 @@ public class WebhookSubscription {
             return this;
         }
 
+
         /**
          * The list of Unify Events this connection is subscribed to
          */
@@ -301,6 +306,7 @@ public class WebhookSubscription {
             this.unifyEventTypes = unifyEventTypes;
             return this;
         }
+
 
         /**
          * The list of downstream Events this connection is subscribed to
@@ -320,6 +326,7 @@ public class WebhookSubscription {
             return this;
         }
 
+
         /**
          * The URL the downstream is sending to when the event is triggered
          */
@@ -338,6 +345,7 @@ public class WebhookSubscription {
             return this;
         }
 
+
         /**
          * The date and time the webhook subscription was created downstream
          */
@@ -355,14 +363,13 @@ public class WebhookSubscription {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public WebhookSubscription build() {
+
             return new WebhookSubscription(
-                downstreamId,
-                unifyEventTypes,
-                downstreamEventTypes,
-                executeUrl,
-                createdAt);
+                downstreamId, unifyEventTypes, downstreamEventTypes,
+                executeUrl, createdAt);
         }
+
     }
 }

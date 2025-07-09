@@ -19,12 +19,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Contact {
 
+public class Contact {
     /**
      * Unique identifier for the contact.
      */
@@ -202,33 +201,41 @@ public class Contact {
     @JsonProperty("active")
     private JsonNullable<Boolean> active;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
     private Optional<? extends List<SocialLink>> socialLinks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email_domain")
     private JsonNullable<String> emailDomain;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private JsonNullable<? extends List<CustomField>> customFields;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -418,7 +425,20 @@ public class Contact {
     }
     
     public Contact() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -739,9 +759,10 @@ public class Contact {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the contact.
@@ -751,6 +772,7 @@ public class Contact {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * Unique identifier for the contact.
@@ -1203,6 +1225,7 @@ public class Contact {
         return this;
     }
 
+
     public Contact withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
         this.websites = websites;
@@ -1214,6 +1237,7 @@ public class Contact {
         this.addresses = Optional.ofNullable(addresses);
         return this;
     }
+
 
     public Contact withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -1227,6 +1251,7 @@ public class Contact {
         return this;
     }
 
+
     public Contact withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
         Utils.checkNotNull(socialLinks, "socialLinks");
         this.socialLinks = socialLinks;
@@ -1239,6 +1264,7 @@ public class Contact {
         return this;
     }
 
+
     public Contact withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         this.phoneNumbers = phoneNumbers;
@@ -1250,6 +1276,7 @@ public class Contact {
         this.emails = Optional.ofNullable(emails);
         return this;
     }
+
 
     public Contact withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
@@ -1410,6 +1437,7 @@ public class Contact {
         return this;
     }
 
+
     /**
      * The opportunity ids of the contact.
      */
@@ -1428,6 +1456,7 @@ public class Contact {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1437,7 +1466,6 @@ public class Contact {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1448,93 +1476,66 @@ public class Contact {
         }
         Contact other = (Contact) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.suffix, other.suffix) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.gender, other.gender) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.image, other.image) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.leadSource, other.leadSource) &&
-            Objects.deepEquals(this.fax, other.fax) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.currentBalance, other.currentBalance) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.socialLinks, other.socialLinks) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.emailDomain, other.emailDomain) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.firstCallAt, other.firstCallAt) &&
-            Objects.deepEquals(this.firstEmailAt, other.firstEmailAt) &&
-            Objects.deepEquals(this.lastActivityAt, other.lastActivityAt) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.opportunityIds, other.opportunityIds) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.suffix, other.suffix) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.gender, other.gender) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.image, other.image) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.leadSource, other.leadSource) &&
+            Utils.enhancedDeepEquals(this.fax, other.fax) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.currentBalance, other.currentBalance) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.socialLinks, other.socialLinks) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.emailDomain, other.emailDomain) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.firstCallAt, other.firstCallAt) &&
+            Utils.enhancedDeepEquals(this.firstEmailAt, other.firstEmailAt) &&
+            Utils.enhancedDeepEquals(this.lastActivityAt, other.lastActivityAt) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.opportunityIds, other.opportunityIds) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            ownerId,
-            type,
-            companyId,
-            companyName,
-            leadId,
-            firstName,
-            middleName,
-            lastName,
-            prefix,
-            suffix,
-            title,
-            department,
-            language,
-            gender,
-            birthday,
-            image,
-            photoUrl,
-            leadSource,
-            fax,
-            description,
-            currentBalance,
-            status,
-            active,
-            websites,
-            addresses,
-            socialLinks,
-            phoneNumbers,
-            emails,
-            emailDomain,
-            customFields,
-            tags,
-            firstCallAt,
-            firstEmailAt,
-            lastActivityAt,
-            customMappings,
-            updatedAt,
-            createdAt,
-            opportunityIds,
-            passThrough);
+        return Utils.enhancedHash(
+            id, name, ownerId,
+            type, companyId, companyName,
+            leadId, firstName, middleName,
+            lastName, prefix, suffix,
+            title, department, language,
+            gender, birthday, image,
+            photoUrl, leadSource, fax,
+            description, currentBalance, status,
+            active, websites, addresses,
+            socialLinks, phoneNumbers, emails,
+            emailDomain, customFields, tags,
+            firstCallAt, firstEmailAt, lastActivityAt,
+            customMappings, updatedAt, createdAt,
+            opportunityIds, passThrough);
     }
     
     @Override
@@ -1582,95 +1583,97 @@ public class Contact {
                 "opportunityIds", opportunityIds,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ContactType> type = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prefix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> suffix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> department = JsonNullable.undefined();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ContactGender> gender = JsonNullable.undefined();
- 
+
         private JsonNullable<String> birthday = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> image = JsonNullable.undefined();
- 
+
         private JsonNullable<String> photoUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadSource = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fax = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currentBalance = JsonNullable.undefined();
- 
+
         private JsonNullable<String> status = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private JsonNullable<String> emailDomain = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> firstCallAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> firstEmailAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> lastActivityAt = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> opportunityIds = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the contact.
@@ -1690,6 +1693,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * Full name of the contact.
          */
@@ -1707,6 +1711,7 @@ public class Contact {
             this.name = name;
             return this;
         }
+
 
         /**
          * The owner of the contact.
@@ -1726,6 +1731,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The type of the contact.
          */
@@ -1743,6 +1749,7 @@ public class Contact {
             this.type = type;
             return this;
         }
+
 
         /**
          * The company the contact is associated with.
@@ -1762,6 +1769,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The name of the company the contact is associated with.
          */
@@ -1779,6 +1787,7 @@ public class Contact {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * The lead the contact is associated with.
@@ -1798,6 +1807,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The first name of the contact.
          */
@@ -1815,6 +1825,7 @@ public class Contact {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The middle name of the contact.
@@ -1834,6 +1845,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The last name of the contact.
          */
@@ -1851,6 +1863,7 @@ public class Contact {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The prefix of the contact.
@@ -1870,6 +1883,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The suffix of the contact.
          */
@@ -1887,6 +1901,7 @@ public class Contact {
             this.suffix = suffix;
             return this;
         }
+
 
         /**
          * The job title of the contact.
@@ -1906,6 +1921,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The department of the contact.
          */
@@ -1923,6 +1939,7 @@ public class Contact {
             this.department = department;
             return this;
         }
+
 
         /**
          * language code according to ISO 639-1. For the United States - EN
@@ -1942,6 +1959,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The gender of the contact.
          */
@@ -1960,6 +1978,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The birthday of the contact.
          */
@@ -1977,6 +1996,7 @@ public class Contact {
             this.birthday = birthday;
             return this;
         }
+
 
         /**
          * 
@@ -2000,6 +2020,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The URL of the photo of a person.
          */
@@ -2017,6 +2038,7 @@ public class Contact {
             this.photoUrl = photoUrl;
             return this;
         }
+
 
         /**
          * The lead source of the contact.
@@ -2036,6 +2058,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The fax number of the contact.
          */
@@ -2053,6 +2076,7 @@ public class Contact {
             this.fax = fax;
             return this;
         }
+
 
         /**
          * The description of the contact.
@@ -2072,6 +2096,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The current balance of the contact.
          */
@@ -2089,6 +2114,7 @@ public class Contact {
             this.currentBalance = currentBalance;
             return this;
         }
+
 
         /**
          * The status of the contact.
@@ -2108,6 +2134,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The active status of the contact.
          */
@@ -2126,6 +2153,7 @@ public class Contact {
             return this;
         }
 
+
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
             this.websites = Optional.ofNullable(websites);
@@ -2137,6 +2165,7 @@ public class Contact {
             this.websites = websites;
             return this;
         }
+
 
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -2150,6 +2179,7 @@ public class Contact {
             return this;
         }
 
+
         public Builder socialLinks(List<SocialLink> socialLinks) {
             Utils.checkNotNull(socialLinks, "socialLinks");
             this.socialLinks = Optional.ofNullable(socialLinks);
@@ -2161,6 +2191,7 @@ public class Contact {
             this.socialLinks = socialLinks;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -2174,6 +2205,7 @@ public class Contact {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -2185,6 +2217,7 @@ public class Contact {
             this.emails = emails;
             return this;
         }
+
 
         public Builder emailDomain(String emailDomain) {
             Utils.checkNotNull(emailDomain, "emailDomain");
@@ -2198,6 +2231,7 @@ public class Contact {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = JsonNullable.of(customFields);
@@ -2210,6 +2244,7 @@ public class Contact {
             return this;
         }
 
+
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = JsonNullable.of(tags);
@@ -2221,6 +2256,7 @@ public class Contact {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * The first call date of the contact.
@@ -2240,6 +2276,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The first email date of the contact.
          */
@@ -2257,6 +2294,7 @@ public class Contact {
             this.firstEmailAt = firstEmailAt;
             return this;
         }
+
 
         /**
          * The last activity date of the contact.
@@ -2276,6 +2314,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -2293,6 +2332,7 @@ public class Contact {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The last update date of the contact.
@@ -2312,6 +2352,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The creation date of the contact.
          */
@@ -2329,6 +2370,7 @@ public class Contact {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The opportunity ids of the contact.
@@ -2348,6 +2390,7 @@ public class Contact {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -2365,50 +2408,25 @@ public class Contact {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Contact build() {
+
             return new Contact(
-                id,
-                name,
-                ownerId,
-                type,
-                companyId,
-                companyName,
-                leadId,
-                firstName,
-                middleName,
-                lastName,
-                prefix,
-                suffix,
-                title,
-                department,
-                language,
-                gender,
-                birthday,
-                image,
-                photoUrl,
-                leadSource,
-                fax,
-                description,
-                currentBalance,
-                status,
-                active,
-                websites,
-                addresses,
-                socialLinks,
-                phoneNumbers,
-                emails,
-                emailDomain,
-                customFields,
-                tags,
-                firstCallAt,
-                firstEmailAt,
-                lastActivityAt,
-                customMappings,
-                updatedAt,
-                createdAt,
-                opportunityIds,
-                passThrough);
+                id, name, ownerId,
+                type, companyId, companyName,
+                leadId, firstName, middleName,
+                lastName, prefix, suffix,
+                title, department, language,
+                gender, birthday, image,
+                photoUrl, leadSource, fax,
+                description, currentBalance, status,
+                active, websites, addresses,
+                socialLinks, phoneNumbers, emails,
+                emailDomain, customFields, tags,
+                firstCallAt, firstEmailAt, lastActivityAt,
+                customMappings, updatedAt, createdAt,
+                opportunityIds, passThrough);
         }
+
     }
 }

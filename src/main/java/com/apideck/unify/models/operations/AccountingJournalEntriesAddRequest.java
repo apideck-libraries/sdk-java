@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingJournalEntriesAddRequest {
 
+public class AccountingJournalEntriesAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -41,6 +40,7 @@ public class AccountingJournalEntriesAddRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private JournalEntryInput journalEntry;
@@ -66,7 +66,8 @@ public class AccountingJournalEntriesAddRequest {
     
     public AccountingJournalEntriesAddRequest(
             JournalEntryInput journalEntry) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), journalEntry);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), journalEntry);
     }
 
     /**
@@ -106,9 +107,10 @@ public class AccountingJournalEntriesAddRequest {
         return journalEntry;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -118,6 +120,7 @@ public class AccountingJournalEntriesAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -137,6 +140,7 @@ public class AccountingJournalEntriesAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -154,6 +158,7 @@ public class AccountingJournalEntriesAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -173,6 +178,7 @@ public class AccountingJournalEntriesAddRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -188,7 +194,6 @@ public class AccountingJournalEntriesAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +204,18 @@ public class AccountingJournalEntriesAddRequest {
         }
         AccountingJournalEntriesAddRequest other = (AccountingJournalEntriesAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.journalEntry, other.journalEntry);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.journalEntry, other.journalEntry);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            journalEntry);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, journalEntry);
     }
     
     @Override
@@ -225,22 +227,24 @@ public class AccountingJournalEntriesAddRequest {
                 "serviceId", serviceId,
                 "journalEntry", journalEntry);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JournalEntryInput journalEntry;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -260,6 +264,7 @@ public class AccountingJournalEntriesAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -277,6 +282,7 @@ public class AccountingJournalEntriesAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -296,6 +302,7 @@ public class AccountingJournalEntriesAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -314,23 +321,23 @@ public class AccountingJournalEntriesAddRequest {
             return this;
         }
 
+
         public Builder journalEntry(JournalEntryInput journalEntry) {
             Utils.checkNotNull(journalEntry, "journalEntry");
             this.journalEntry = journalEntry;
             return this;
         }
-        
+
         public AccountingJournalEntriesAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingJournalEntriesAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                journalEntry);
+                raw, consumerId, appId,
+                serviceId, journalEntry);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

@@ -17,12 +17,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LedgerAccountInput {
 
+public class LedgerAccountInput {
     /**
      * The human readable display ID used when displaying the account
      */
@@ -117,9 +116,11 @@ public class LedgerAccountInput {
     @JsonProperty("tax_type")
     private JsonNullable<String> taxType;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRateInput> taxRate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("level")
@@ -146,9 +147,11 @@ public class LedgerAccountInput {
     @JsonProperty("header")
     private JsonNullable<Boolean> header;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account")
     private Optional<? extends BankAccount> bankAccount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_account")
@@ -174,6 +177,7 @@ public class LedgerAccountInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
     private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -276,7 +280,15 @@ public class LedgerAccountInput {
     }
     
     public LedgerAccountInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -485,9 +497,10 @@ public class LedgerAccountInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The human readable display ID used when displaying the account
@@ -497,6 +510,7 @@ public class LedgerAccountInput {
         this.displayId = Optional.ofNullable(displayId);
         return this;
     }
+
 
     /**
      * The human readable display ID used when displaying the account
@@ -575,6 +589,7 @@ public class LedgerAccountInput {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of account.
@@ -735,6 +750,7 @@ public class LedgerAccountInput {
         return this;
     }
 
+
     public LedgerAccountInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -813,6 +829,7 @@ public class LedgerAccountInput {
         return this;
     }
 
+
     public LedgerAccountInput withBankAccount(Optional<? extends BankAccount> bankAccount) {
         Utils.checkNotNull(bankAccount, "bankAccount");
         this.bankAccount = bankAccount;
@@ -824,6 +841,7 @@ public class LedgerAccountInput {
         this.parentAccount = Optional.ofNullable(parentAccount);
         return this;
     }
+
 
     public LedgerAccountInput withParentAccount(Optional<? extends ParentAccount> parentAccount) {
         Utils.checkNotNull(parentAccount, "parentAccount");
@@ -876,6 +894,7 @@ public class LedgerAccountInput {
         return this;
     }
 
+
     /**
      * The subsidiaries the account belongs to.
      */
@@ -890,6 +909,7 @@ public class LedgerAccountInput {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public LedgerAccountInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -924,6 +944,7 @@ public class LedgerAccountInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -933,7 +954,6 @@ public class LedgerAccountInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -944,63 +964,46 @@ public class LedgerAccountInput {
         }
         LedgerAccountInput other = (LedgerAccountInput) o;
         return 
-            Objects.deepEquals(this.displayId, other.displayId) &&
-            Objects.deepEquals(this.nominalCode, other.nominalCode) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.classification, other.classification) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.subType, other.subType) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.fullyQualifiedName, other.fullyQualifiedName) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.openingBalance, other.openingBalance) &&
-            Objects.deepEquals(this.currentBalance, other.currentBalance) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.taxType, other.taxType) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.level, other.level) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.header, other.header) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.parentAccount, other.parentAccount) &&
-            Objects.deepEquals(this.subAccount, other.subAccount) &&
-            Objects.deepEquals(this.lastReconciliationDate, other.lastReconciliationDate) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.displayId, other.displayId) &&
+            Utils.enhancedDeepEquals(this.nominalCode, other.nominalCode) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.classification, other.classification) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.subType, other.subType) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.fullyQualifiedName, other.fullyQualifiedName) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.openingBalance, other.openingBalance) &&
+            Utils.enhancedDeepEquals(this.currentBalance, other.currentBalance) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.level, other.level) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.header, other.header) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.parentAccount, other.parentAccount) &&
+            Utils.enhancedDeepEquals(this.subAccount, other.subAccount) &&
+            Utils.enhancedDeepEquals(this.lastReconciliationDate, other.lastReconciliationDate) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            displayId,
-            nominalCode,
-            code,
-            classification,
-            type,
-            subType,
-            name,
-            fullyQualifiedName,
-            description,
-            openingBalance,
-            currentBalance,
-            currency,
-            taxType,
-            taxRate,
-            level,
-            active,
-            status,
-            header,
-            bankAccount,
-            parentAccount,
-            subAccount,
-            lastReconciliationDate,
-            subsidiaries,
-            customFields,
-            rowVersion,
-            passThrough);
+        return Utils.enhancedHash(
+            displayId, nominalCode, code,
+            classification, type, subType,
+            name, fullyQualifiedName, description,
+            openingBalance, currentBalance, currency,
+            taxType, taxRate, level,
+            active, status, header,
+            bankAccount, parentAccount, subAccount,
+            lastReconciliationDate, subsidiaries, customFields,
+            rowVersion, passThrough);
     }
     
     @Override
@@ -1033,65 +1036,67 @@ public class LedgerAccountInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> displayId = Optional.empty();
- 
+
         @Deprecated
         private JsonNullable<String> nominalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LedgerAccountClassification> classification = JsonNullable.undefined();
- 
+
         private Optional<? extends LedgerAccountType> type = Optional.empty();
- 
+
         private JsonNullable<String> subType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fullyQualifiedName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> openingBalance = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currentBalance = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxType = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         private JsonNullable<Double> level = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends AccountStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> header = JsonNullable.undefined();
- 
+
         private Optional<? extends BankAccount> bankAccount = Optional.empty();
- 
+
         private Optional<? extends ParentAccount> parentAccount = Optional.empty();
- 
+
         private JsonNullable<Boolean> subAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> lastReconciliationDate = JsonNullable.undefined();
- 
+
         private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries = Optional.empty();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The human readable display ID used when displaying the account
@@ -1110,6 +1115,7 @@ public class LedgerAccountInput {
             this.displayId = displayId;
             return this;
         }
+
 
         /**
          * The nominal code of the ledger account.
@@ -1135,6 +1141,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The code assigned to the account.
          */
@@ -1152,6 +1159,7 @@ public class LedgerAccountInput {
             this.code = code;
             return this;
         }
+
 
         /**
          * The classification of account.
@@ -1171,6 +1179,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The type of account.
          */
@@ -1188,6 +1197,7 @@ public class LedgerAccountInput {
             this.type = type;
             return this;
         }
+
 
         /**
          * The sub type of account.
@@ -1207,6 +1217,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The name of the account.
          */
@@ -1224,6 +1235,7 @@ public class LedgerAccountInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * The fully qualified name of the account.
@@ -1243,6 +1255,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The description of the account.
          */
@@ -1260,6 +1273,7 @@ public class LedgerAccountInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * The opening balance of the account.
@@ -1279,6 +1293,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The current balance of the account.
          */
@@ -1296,6 +1311,7 @@ public class LedgerAccountInput {
             this.currentBalance = currentBalance;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1315,6 +1331,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The tax type of the account.
          */
@@ -1333,6 +1350,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1345,6 +1363,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         public Builder level(double level) {
             Utils.checkNotNull(level, "level");
             this.level = JsonNullable.of(level);
@@ -1356,6 +1375,7 @@ public class LedgerAccountInput {
             this.level = level;
             return this;
         }
+
 
         /**
          * Whether the account is active or not.
@@ -1375,6 +1395,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The status of the account.
          */
@@ -1392,6 +1413,7 @@ public class LedgerAccountInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * Whether the account is a header or not.
@@ -1411,6 +1433,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         public Builder bankAccount(BankAccount bankAccount) {
             Utils.checkNotNull(bankAccount, "bankAccount");
             this.bankAccount = Optional.ofNullable(bankAccount);
@@ -1423,6 +1446,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         public Builder parentAccount(ParentAccount parentAccount) {
             Utils.checkNotNull(parentAccount, "parentAccount");
             this.parentAccount = Optional.ofNullable(parentAccount);
@@ -1434,6 +1458,7 @@ public class LedgerAccountInput {
             this.parentAccount = parentAccount;
             return this;
         }
+
 
         /**
          * Whether the account is a sub account or not.
@@ -1453,6 +1478,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * Reconciliation Date means the last calendar day of each Reconciliation Period.
          */
@@ -1470,6 +1496,7 @@ public class LedgerAccountInput {
             this.lastReconciliationDate = lastReconciliationDate;
             return this;
         }
+
 
         /**
          * The subsidiaries the account belongs to.
@@ -1489,6 +1516,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1500,6 +1528,7 @@ public class LedgerAccountInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1519,6 +1548,7 @@ public class LedgerAccountInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1536,35 +1566,20 @@ public class LedgerAccountInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public LedgerAccountInput build() {
+
             return new LedgerAccountInput(
-                displayId,
-                nominalCode,
-                code,
-                classification,
-                type,
-                subType,
-                name,
-                fullyQualifiedName,
-                description,
-                openingBalance,
-                currentBalance,
-                currency,
-                taxType,
-                taxRate,
-                level,
-                active,
-                status,
-                header,
-                bankAccount,
-                parentAccount,
-                subAccount,
-                lastReconciliationDate,
-                subsidiaries,
-                customFields,
-                rowVersion,
-                passThrough);
+                displayId, nominalCode, code,
+                classification, type, subType,
+                name, fullyQualifiedName, description,
+                openingBalance, currentBalance, currency,
+                taxType, taxRate, level,
+                active, status, header,
+                bankAccount, parentAccount, subAccount,
+                lastReconciliationDate, subsidiaries, customFields,
+                rowVersion, passThrough);
         }
+
     }
 }

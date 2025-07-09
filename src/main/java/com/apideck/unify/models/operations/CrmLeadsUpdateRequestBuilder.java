@@ -48,8 +48,8 @@ public class CrmLeadsUpdateRequestBuilder {
 
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
               = new CrmLeadsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

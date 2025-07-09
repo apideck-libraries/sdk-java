@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Transactions {
 
+public class Transactions {
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
@@ -104,7 +103,9 @@ public class Transactions {
             double amount,
             CreditOrDebit creditOrDebit,
             String sourceTransactionId) {
-        this(postedDate, Optional.empty(), amount, creditOrDebit, sourceTransactionId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(postedDate, Optional.empty(), amount,
+            creditOrDebit, sourceTransactionId, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -172,9 +173,10 @@ public class Transactions {
         return (Optional<BankFeedStatementTransactionType>) transactionType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -193,6 +195,7 @@ public class Transactions {
         this.description = Optional.ofNullable(description);
         return this;
     }
+
 
     /**
      * A description of the transaction.
@@ -239,6 +242,7 @@ public class Transactions {
         return this;
     }
 
+
     /**
      * The counterparty of the transaction.
      */
@@ -256,6 +260,7 @@ public class Transactions {
         this.reference = Optional.ofNullable(reference);
         return this;
     }
+
 
     /**
      * The reference of the transaction.
@@ -275,6 +280,7 @@ public class Transactions {
         return this;
     }
 
+
     /**
      * Type of transaction.
      */
@@ -284,7 +290,6 @@ public class Transactions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -295,27 +300,22 @@ public class Transactions {
         }
         Transactions other = (Transactions) o;
         return 
-            Objects.deepEquals(this.postedDate, other.postedDate) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.creditOrDebit, other.creditOrDebit) &&
-            Objects.deepEquals(this.sourceTransactionId, other.sourceTransactionId) &&
-            Objects.deepEquals(this.counterparty, other.counterparty) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.transactionType, other.transactionType);
+            Utils.enhancedDeepEquals(this.postedDate, other.postedDate) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.creditOrDebit, other.creditOrDebit) &&
+            Utils.enhancedDeepEquals(this.sourceTransactionId, other.sourceTransactionId) &&
+            Utils.enhancedDeepEquals(this.counterparty, other.counterparty) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            postedDate,
-            description,
-            amount,
-            creditOrDebit,
-            sourceTransactionId,
-            counterparty,
-            reference,
-            transactionType);
+        return Utils.enhancedHash(
+            postedDate, description, amount,
+            creditOrDebit, sourceTransactionId, counterparty,
+            reference, transactionType);
     }
     
     @Override
@@ -330,28 +330,30 @@ public class Transactions {
                 "reference", reference,
                 "transactionType", transactionType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private OffsetDateTime postedDate;
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Double amount;
- 
+
         private CreditOrDebit creditOrDebit;
- 
+
         private String sourceTransactionId;
- 
+
         private Optional<String> counterparty = Optional.empty();
- 
+
         private Optional<String> reference = Optional.empty();
- 
+
         private Optional<? extends BankFeedStatementTransactionType> transactionType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -361,6 +363,7 @@ public class Transactions {
             this.postedDate = postedDate;
             return this;
         }
+
 
         /**
          * A description of the transaction.
@@ -380,6 +383,7 @@ public class Transactions {
             return this;
         }
 
+
         /**
          * The amount of the transaction.
          */
@@ -388,6 +392,7 @@ public class Transactions {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Whether the amount is a credit or debit.
@@ -398,6 +403,7 @@ public class Transactions {
             return this;
         }
 
+
         /**
          * The ID of the source transaction.
          */
@@ -406,6 +412,7 @@ public class Transactions {
             this.sourceTransactionId = sourceTransactionId;
             return this;
         }
+
 
         /**
          * The counterparty of the transaction.
@@ -425,6 +432,7 @@ public class Transactions {
             return this;
         }
 
+
         /**
          * The reference of the transaction.
          */
@@ -443,6 +451,7 @@ public class Transactions {
             return this;
         }
 
+
         /**
          * Type of transaction.
          */
@@ -460,17 +469,14 @@ public class Transactions {
             this.transactionType = transactionType;
             return this;
         }
-        
+
         public Transactions build() {
+
             return new Transactions(
-                postedDate,
-                description,
-                amount,
-                creditOrDebit,
-                sourceTransactionId,
-                counterparty,
-                reference,
-                transactionType);
+                postedDate, description, amount,
+                creditOrDebit, sourceTransactionId, counterparty,
+                reference, transactionType);
         }
+
     }
 }

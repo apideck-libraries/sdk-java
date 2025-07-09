@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class FilesSearch {
 
+public class FilesSearch {
     /**
      * The query to search for. May match across multiple fields.
      */
@@ -81,9 +80,10 @@ public class FilesSearch {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The query to search for. May match across multiple fields.
@@ -103,6 +103,7 @@ public class FilesSearch {
         return this;
     }
 
+
     /**
      * ID of the drive to filter on
      */
@@ -121,6 +122,7 @@ public class FilesSearch {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -130,7 +132,6 @@ public class FilesSearch {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -141,17 +142,15 @@ public class FilesSearch {
         }
         FilesSearch other = (FilesSearch) o;
         return 
-            Objects.deepEquals(this.query, other.query) &&
-            Objects.deepEquals(this.driveId, other.driveId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.query, other.query) &&
+            Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            query,
-            driveId,
-            passThrough);
+        return Utils.enhancedHash(
+            query, driveId, passThrough);
     }
     
     @Override
@@ -161,18 +160,20 @@ public class FilesSearch {
                 "driveId", driveId,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String query;
- 
+
         private Optional<String> driveId = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The query to search for. May match across multiple fields.
@@ -182,6 +183,7 @@ public class FilesSearch {
             this.query = query;
             return this;
         }
+
 
         /**
          * ID of the drive to filter on
@@ -201,6 +203,7 @@ public class FilesSearch {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -218,12 +221,12 @@ public class FilesSearch {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public FilesSearch build() {
+
             return new FilesSearch(
-                query,
-                driveId,
-                passThrough);
+                query, driveId, passThrough);
         }
+
     }
 }

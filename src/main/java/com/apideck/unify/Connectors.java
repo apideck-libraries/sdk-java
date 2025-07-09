@@ -29,7 +29,6 @@ public class Connectors {
     Connectors(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Connectors
      * 
@@ -50,7 +49,8 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -82,11 +82,10 @@ public class Connectors {
                 .build();
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
               = new ConnectorConnectorsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Connector
@@ -135,8 +134,8 @@ public class Connectors {
                 .build();
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
               = new ConnectorConnectorsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

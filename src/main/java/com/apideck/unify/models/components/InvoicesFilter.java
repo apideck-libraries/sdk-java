@@ -10,13 +10,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class InvoicesFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
+
 
     @SpeakeasyMetadata("queryParam:name=created_since")
     private Optional<OffsetDateTime> createdSince;
@@ -62,15 +63,17 @@ public class InvoicesFilter {
         return number;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public InvoicesFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     public InvoicesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -83,6 +86,7 @@ public class InvoicesFilter {
         this.createdSince = Optional.ofNullable(createdSince);
         return this;
     }
+
 
     public InvoicesFilter withCreatedSince(Optional<OffsetDateTime> createdSince) {
         Utils.checkNotNull(createdSince, "createdSince");
@@ -99,6 +103,7 @@ public class InvoicesFilter {
         return this;
     }
 
+
     /**
      * Invoice number to search for
      */
@@ -108,7 +113,6 @@ public class InvoicesFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,17 +123,15 @@ public class InvoicesFilter {
         }
         InvoicesFilter other = (InvoicesFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.createdSince, other.createdSince) &&
-            Objects.deepEquals(this.number, other.number);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.createdSince, other.createdSince) &&
+            Utils.enhancedDeepEquals(this.number, other.number);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updatedSince,
-            createdSince,
-            number);
+        return Utils.enhancedHash(
+            updatedSince, createdSince, number);
     }
     
     @Override
@@ -139,18 +141,20 @@ public class InvoicesFilter {
                 "createdSince", createdSince,
                 "number", number);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<OffsetDateTime> createdSince = Optional.empty();
- 
+
         private Optional<String> number = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
@@ -164,6 +168,7 @@ public class InvoicesFilter {
             return this;
         }
 
+
         public Builder createdSince(OffsetDateTime createdSince) {
             Utils.checkNotNull(createdSince, "createdSince");
             this.createdSince = Optional.ofNullable(createdSince);
@@ -175,6 +180,7 @@ public class InvoicesFilter {
             this.createdSince = createdSince;
             return this;
         }
+
 
         /**
          * Invoice number to search for
@@ -193,12 +199,12 @@ public class InvoicesFilter {
             this.number = number;
             return this;
         }
-        
+
         public InvoicesFilter build() {
+
             return new InvoicesFilter(
-                updatedSince,
-                createdSince,
-                number);
+                updatedSince, createdSince, number);
         }
+
     }
 }

@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreditNoteInput {
 
+public class CreditNoteInput {
     /**
      * Credit note number.
      */
@@ -140,13 +139,16 @@ public class CreditNoteInput {
     @JsonProperty("type")
     private Optional<? extends CreditNoteType> type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private JsonNullable<? extends LinkedLedgerAccountInput> account;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
     private Optional<? extends List<InvoiceLineItemInput>> lineItems;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allocations")
@@ -166,9 +168,11 @@ public class CreditNoteInput {
     @JsonProperty("terms")
     private JsonNullable<String> terms;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
     private Optional<? extends Address> billingAddress;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
@@ -180,6 +184,7 @@ public class CreditNoteInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -289,7 +294,16 @@ public class CreditNoteInput {
     
     public CreditNoteInput(
             double totalAmount) {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), totalAmount, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), totalAmount, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -510,9 +524,10 @@ public class CreditNoteInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Credit note number.
@@ -730,6 +745,7 @@ public class CreditNoteInput {
         return this;
     }
 
+
     /**
      * Status of credit notes
      */
@@ -765,6 +781,7 @@ public class CreditNoteInput {
         this.dateIssued = Optional.ofNullable(dateIssued);
         return this;
     }
+
 
     /**
      * Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -802,6 +819,7 @@ public class CreditNoteInput {
         return this;
     }
 
+
     /**
      * Type of payment
      */
@@ -829,6 +847,7 @@ public class CreditNoteInput {
         return this;
     }
 
+
     public CreditNoteInput withLineItems(Optional<? extends List<InvoiceLineItemInput>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
@@ -840,6 +859,7 @@ public class CreditNoteInput {
         this.allocations = Optional.ofNullable(allocations);
         return this;
     }
+
 
     public CreditNoteInput withAllocations(Optional<? extends List<AllocationInput>> allocations) {
         Utils.checkNotNull(allocations, "allocations");
@@ -889,6 +909,7 @@ public class CreditNoteInput {
         return this;
     }
 
+
     public CreditNoteInput withBillingAddress(Optional<? extends Address> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
@@ -900,6 +921,7 @@ public class CreditNoteInput {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     public CreditNoteInput withShippingAddress(Optional<? extends Address> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -930,6 +952,7 @@ public class CreditNoteInput {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public CreditNoteInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -964,6 +987,7 @@ public class CreditNoteInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -973,7 +997,6 @@ public class CreditNoteInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -984,66 +1007,48 @@ public class CreditNoteInput {
         }
         CreditNoteInput other = (CreditNoteInput) o;
         return 
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.remainingCredit, other.remainingCredit) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.dateIssued, other.dateIssued) &&
-            Objects.deepEquals(this.datePaid, other.datePaid) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.allocations, other.allocations) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.terms, other.terms) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.remainingCredit, other.remainingCredit) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.dateIssued, other.dateIssued) &&
+            Utils.enhancedDeepEquals(this.datePaid, other.datePaid) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            number,
-            customer,
-            companyId,
-            currency,
-            currencyRate,
-            taxInclusive,
-            subTotal,
-            totalAmount,
-            totalTax,
-            taxCode,
-            balance,
-            remainingCredit,
-            status,
-            reference,
-            dateIssued,
-            datePaid,
-            type,
-            account,
-            lineItems,
-            allocations,
-            note,
-            terms,
-            billingAddress,
-            shippingAddress,
-            trackingCategories,
-            customFields,
-            rowVersion,
+        return Utils.enhancedHash(
+            number, customer, companyId,
+            currency, currencyRate, taxInclusive,
+            subTotal, totalAmount, totalTax,
+            taxCode, balance, remainingCredit,
+            status, reference, dateIssued,
+            datePaid, type, account,
+            lineItems, allocations, note,
+            terms, billingAddress, shippingAddress,
+            trackingCategories, customFields, rowVersion,
             passThrough);
     }
     
@@ -1079,68 +1084,70 @@ public class CreditNoteInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private Double totalAmount;
- 
+
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> balance = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> remainingCredit = JsonNullable.undefined();
- 
+
         private Optional<? extends CreditNoteStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> dateIssued = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> datePaid = JsonNullable.undefined();
- 
+
         private Optional<? extends CreditNoteType> type = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> account = JsonNullable.undefined();
- 
+
         private Optional<? extends List<InvoiceLineItemInput>> lineItems = Optional.empty();
- 
+
         private Optional<? extends List<AllocationInput>> allocations = Optional.empty();
- 
+
         private JsonNullable<String> note = JsonNullable.undefined();
- 
+
         private JsonNullable<String> terms = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> billingAddress = Optional.empty();
- 
+
         private Optional<? extends Address> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Credit note number.
@@ -1160,6 +1167,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * The customer this entity is linked to.
          */
@@ -1177,6 +1185,7 @@ public class CreditNoteInput {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1196,6 +1205,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1213,6 +1223,7 @@ public class CreditNoteInput {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1232,6 +1243,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Amounts are including tax
          */
@@ -1249,6 +1261,7 @@ public class CreditNoteInput {
             this.taxInclusive = taxInclusive;
             return this;
         }
+
 
         /**
          * Sub-total amount, normally before tax.
@@ -1268,6 +1281,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Amount of transaction
          */
@@ -1276,6 +1290,7 @@ public class CreditNoteInput {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Total tax amount applied to this invoice.
@@ -1295,6 +1310,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
@@ -1312,6 +1328,7 @@ public class CreditNoteInput {
             this.taxCode = taxCode;
             return this;
         }
+
 
         /**
          * The balance reflecting any payments made against the transaction.
@@ -1331,6 +1348,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Indicates the total credit amount still available to apply towards the payment.
          */
@@ -1348,6 +1366,7 @@ public class CreditNoteInput {
             this.remainingCredit = remainingCredit;
             return this;
         }
+
 
         /**
          * Status of credit notes
@@ -1367,6 +1386,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Optional reference message ie: Debit remittance detail.
          */
@@ -1384,6 +1404,7 @@ public class CreditNoteInput {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -1403,6 +1424,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
          */
@@ -1420,6 +1442,7 @@ public class CreditNoteInput {
             this.datePaid = datePaid;
             return this;
         }
+
 
         /**
          * Type of payment
@@ -1439,6 +1462,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         public Builder account(LinkedLedgerAccountInput account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -1450,6 +1474,7 @@ public class CreditNoteInput {
             this.account = account;
             return this;
         }
+
 
         public Builder lineItems(List<InvoiceLineItemInput> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
@@ -1463,6 +1488,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         public Builder allocations(List<AllocationInput> allocations) {
             Utils.checkNotNull(allocations, "allocations");
             this.allocations = Optional.ofNullable(allocations);
@@ -1474,6 +1500,7 @@ public class CreditNoteInput {
             this.allocations = allocations;
             return this;
         }
+
 
         /**
          * Optional note to be associated with the credit note.
@@ -1493,6 +1520,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * Optional terms to be associated with the credit note.
          */
@@ -1511,6 +1539,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         public Builder billingAddress(Address billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1523,6 +1552,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         public Builder shippingAddress(Address shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
@@ -1534,6 +1564,7 @@ public class CreditNoteInput {
             this.shippingAddress = shippingAddress;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -1553,6 +1584,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1564,6 +1596,7 @@ public class CreditNoteInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1583,6 +1616,7 @@ public class CreditNoteInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1600,37 +1634,21 @@ public class CreditNoteInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CreditNoteInput build() {
+
             return new CreditNoteInput(
-                number,
-                customer,
-                companyId,
-                currency,
-                currencyRate,
-                taxInclusive,
-                subTotal,
-                totalAmount,
-                totalTax,
-                taxCode,
-                balance,
-                remainingCredit,
-                status,
-                reference,
-                dateIssued,
-                datePaid,
-                type,
-                account,
-                lineItems,
-                allocations,
-                note,
-                terms,
-                billingAddress,
-                shippingAddress,
-                trackingCategories,
-                customFields,
-                rowVersion,
+                number, customer, companyId,
+                currency, currencyRate, taxInclusive,
+                subTotal, totalAmount, totalTax,
+                taxCode, balance, remainingCredit,
+                status, reference, dateIssued,
+                datePaid, type, account,
+                lineItems, allocations, note,
+                terms, billingAddress, shippingAddress,
+                trackingCategories, customFields, rowVersion,
                 passThrough);
         }
+
     }
 }

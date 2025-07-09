@@ -37,7 +37,6 @@ public class Drives {
     Drives(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Drives
      * 
@@ -77,11 +76,10 @@ public class Drives {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
               = new FileStorageDrivesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Drive
@@ -122,11 +120,10 @@ public class Drives {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
               = new FileStorageDrivesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Drive
@@ -167,11 +164,10 @@ public class Drives {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
               = new FileStorageDrivesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Drive
@@ -212,11 +208,10 @@ public class Drives {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
               = new FileStorageDrivesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Drive
@@ -257,8 +252,8 @@ public class Drives {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
               = new FileStorageDrivesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

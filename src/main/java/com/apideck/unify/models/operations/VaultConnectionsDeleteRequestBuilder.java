@@ -93,8 +93,8 @@ public class VaultConnectionsDeleteRequestBuilder {
 
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
               = new VaultConnectionsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         VaultConnectionsDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

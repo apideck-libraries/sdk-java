@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AgedReportFilter {
 
+public class AgedReportFilter {
     /**
      * Filter by customer id
      */
@@ -65,7 +64,8 @@ public class AgedReportFilter {
     }
     
     public AgedReportFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -108,9 +108,10 @@ public class AgedReportFilter {
         return periodLength;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Filter by customer id
@@ -120,6 +121,7 @@ public class AgedReportFilter {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * Filter by customer id
@@ -139,6 +141,7 @@ public class AgedReportFilter {
         return this;
     }
 
+
     /**
      * Filter by supplier id
      */
@@ -156,6 +159,7 @@ public class AgedReportFilter {
         this.reportAsOfDate = Optional.ofNullable(reportAsOfDate);
         return this;
     }
+
 
     /**
      * The cutoff date for considering transactions
@@ -175,6 +179,7 @@ public class AgedReportFilter {
         return this;
     }
 
+
     /**
      * Number of periods to split the aged creditors report into
      */
@@ -193,6 +198,7 @@ public class AgedReportFilter {
         return this;
     }
 
+
     /**
      * Length of each period in days
      */
@@ -202,7 +208,6 @@ public class AgedReportFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -213,21 +218,18 @@ public class AgedReportFilter {
         }
         AgedReportFilter other = (AgedReportFilter) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.supplierId, other.supplierId) &&
-            Objects.deepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
-            Objects.deepEquals(this.periodCount, other.periodCount) &&
-            Objects.deepEquals(this.periodLength, other.periodLength);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
+            Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
+            Utils.enhancedDeepEquals(this.periodLength, other.periodLength);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            customerId,
-            supplierId,
-            reportAsOfDate,
-            periodCount,
-            periodLength);
+        return Utils.enhancedHash(
+            customerId, supplierId, reportAsOfDate,
+            periodCount, periodLength);
     }
     
     @Override
@@ -239,22 +241,24 @@ public class AgedReportFilter {
                 "periodCount", periodCount,
                 "periodLength", periodLength);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> supplierId = Optional.empty();
- 
+
         private Optional<String> reportAsOfDate = Optional.empty();
- 
+
         private Optional<Long> periodCount = Optional.empty();
- 
+
         private Optional<Long> periodLength = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Filter by customer id
@@ -274,6 +278,7 @@ public class AgedReportFilter {
             return this;
         }
 
+
         /**
          * Filter by supplier id
          */
@@ -291,6 +296,7 @@ public class AgedReportFilter {
             this.supplierId = supplierId;
             return this;
         }
+
 
         /**
          * The cutoff date for considering transactions
@@ -310,6 +316,7 @@ public class AgedReportFilter {
             return this;
         }
 
+
         /**
          * Number of periods to split the aged creditors report into
          */
@@ -328,6 +335,7 @@ public class AgedReportFilter {
             return this;
         }
 
+
         /**
          * Length of each period in days
          */
@@ -345,14 +353,13 @@ public class AgedReportFilter {
             this.periodLength = periodLength;
             return this;
         }
-        
+
         public AgedReportFilter build() {
+
             return new AgedReportFilter(
-                customerId,
-                supplierId,
-                reportAsOfDate,
-                periodCount,
-                periodLength);
+                customerId, supplierId, reportAsOfDate,
+                periodCount, periodLength);
         }
+
     }
 }

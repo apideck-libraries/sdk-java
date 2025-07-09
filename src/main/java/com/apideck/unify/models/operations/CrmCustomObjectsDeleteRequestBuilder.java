@@ -48,8 +48,8 @@ public class CrmCustomObjectsDeleteRequestBuilder {
 
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
               = new CrmCustomObjectsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

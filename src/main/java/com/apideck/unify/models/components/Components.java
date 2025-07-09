@@ -13,9 +13,9 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Components {
 
@@ -23,13 +23,16 @@ public class Components {
     @JsonProperty("id")
     private JsonNullable<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("rate")
     private JsonNullable<Double> rate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("compound")
@@ -52,7 +55,8 @@ public class Components {
     }
     
     public Components() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -75,9 +79,10 @@ public class Components {
         return compound;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Components withId(String id) {
         Utils.checkNotNull(id, "id");
@@ -96,6 +101,7 @@ public class Components {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public Components withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -127,7 +133,6 @@ public class Components {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,18 +143,16 @@ public class Components {
         }
         Components other = (Components) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.compound, other.compound);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.compound, other.compound);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            rate,
+        return Utils.enhancedHash(
+            id, name, rate,
             compound);
     }
     
@@ -161,20 +164,22 @@ public class Components {
                 "rate", rate,
                 "compound", compound);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<Double> rate = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> compound = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -188,6 +193,7 @@ public class Components {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -199,6 +205,7 @@ public class Components {
             this.name = name;
             return this;
         }
+
 
         public Builder rate(double rate) {
             Utils.checkNotNull(rate, "rate");
@@ -212,6 +219,7 @@ public class Components {
             return this;
         }
 
+
         public Builder compound(boolean compound) {
             Utils.checkNotNull(compound, "compound");
             this.compound = JsonNullable.of(compound);
@@ -223,13 +231,13 @@ public class Components {
             this.compound = compound;
             return this;
         }
-        
+
         public Components build() {
+
             return new Components(
-                id,
-                name,
-                rate,
+                id, name, rate,
                 compound);
         }
+
     }
 }

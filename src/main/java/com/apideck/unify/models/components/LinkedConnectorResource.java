@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class LinkedConnectorResource {
 
+public class LinkedConnectorResource {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
@@ -72,7 +71,8 @@ public class LinkedConnectorResource {
     }
     
     public LinkedConnectorResource() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -116,9 +116,10 @@ public class LinkedConnectorResource {
         return downstreamName;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -128,6 +129,7 @@ public class LinkedConnectorResource {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -147,6 +149,7 @@ public class LinkedConnectorResource {
         return this;
     }
 
+
     /**
      * Name of the resource (plural)
      */
@@ -164,6 +167,7 @@ public class LinkedConnectorResource {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
@@ -183,6 +187,7 @@ public class LinkedConnectorResource {
         return this;
     }
 
+
     /**
      * ID of the resource in the Connector's API (downstream)
      */
@@ -201,6 +206,7 @@ public class LinkedConnectorResource {
         return this;
     }
 
+
     /**
      * Name of the resource in the Connector's API (downstream)
      */
@@ -210,7 +216,6 @@ public class LinkedConnectorResource {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -221,21 +226,18 @@ public class LinkedConnectorResource {
         }
         LinkedConnectorResource other = (LinkedConnectorResource) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.downstreamName, other.downstreamName);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            status,
-            downstreamId,
-            downstreamName);
+        return Utils.enhancedHash(
+            id, name, status,
+            downstreamId, downstreamName);
     }
     
     @Override
@@ -247,22 +249,24 @@ public class LinkedConnectorResource {
                 "downstreamId", downstreamId,
                 "downstreamName", downstreamName);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ResourceStatus> status = Optional.empty();
- 
+
         private Optional<String> downstreamId = Optional.empty();
- 
+
         private Optional<String> downstreamName = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of name.
@@ -282,6 +286,7 @@ public class LinkedConnectorResource {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -299,6 +304,7 @@ public class LinkedConnectorResource {
             this.name = name;
             return this;
         }
+
 
         /**
          * Status of the resource. Resources with status live or beta are callable.
@@ -318,6 +324,7 @@ public class LinkedConnectorResource {
             return this;
         }
 
+
         /**
          * ID of the resource in the Connector's API (downstream)
          */
@@ -336,6 +343,7 @@ public class LinkedConnectorResource {
             return this;
         }
 
+
         /**
          * Name of the resource in the Connector's API (downstream)
          */
@@ -353,14 +361,13 @@ public class LinkedConnectorResource {
             this.downstreamName = downstreamName;
             return this;
         }
-        
+
         public LinkedConnectorResource build() {
+
             return new LinkedConnectorResource(
-                id,
-                name,
-                status,
-                downstreamId,
-                downstreamName);
+                id, name, status,
+                downstreamId, downstreamName);
         }
+
     }
 }

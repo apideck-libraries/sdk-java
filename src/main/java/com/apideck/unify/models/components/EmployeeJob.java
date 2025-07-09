@@ -15,12 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EmployeeJob {
 
+public class EmployeeJob {
     /**
      * A unique identifier for an object.
      */
@@ -112,6 +111,7 @@ public class EmployeeJob {
     @JsonProperty("status")
     private JsonNullable<? extends EmployeeJobStatus> status;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location")
     private Optional<? extends Address> location;
@@ -163,7 +163,11 @@ public class EmployeeJob {
     }
     
     public EmployeeJob() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -279,9 +283,10 @@ public class EmployeeJob {
         return (Optional<Address>) location;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -523,13 +528,13 @@ public class EmployeeJob {
         return this;
     }
 
+
     public EmployeeJob withLocation(Optional<? extends Address> location) {
         Utils.checkNotNull(location, "location");
         this.location = location;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -540,39 +545,30 @@ public class EmployeeJob {
         }
         EmployeeJob other = (EmployeeJob) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.role, other.role) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.compensationRate, other.compensationRate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.paymentUnit, other.paymentUnit) &&
-            Objects.deepEquals(this.hiredAt, other.hiredAt) &&
-            Objects.deepEquals(this.isPrimary, other.isPrimary) &&
-            Objects.deepEquals(this.isManager, other.isManager) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.location, other.location);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.role, other.role) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.compensationRate, other.compensationRate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.paymentUnit, other.paymentUnit) &&
+            Utils.enhancedDeepEquals(this.hiredAt, other.hiredAt) &&
+            Utils.enhancedDeepEquals(this.isPrimary, other.isPrimary) &&
+            Utils.enhancedDeepEquals(this.isManager, other.isManager) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.location, other.location);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            employeeId,
-            title,
-            role,
-            startDate,
-            endDate,
-            compensationRate,
-            currency,
-            paymentUnit,
-            hiredAt,
-            isPrimary,
-            isManager,
-            status,
-            location);
+        return Utils.enhancedHash(
+            id, employeeId, title,
+            role, startDate, endDate,
+            compensationRate, currency, paymentUnit,
+            hiredAt, isPrimary, isManager,
+            status, location);
     }
     
     @Override
@@ -593,40 +589,42 @@ public class EmployeeJob {
                 "status", status,
                 "location", location);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> employeeId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> role = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> compensationRate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PaymentUnit> paymentUnit = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> hiredAt = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isPrimary = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> isManager = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmployeeJobStatus> status = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> location = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -646,6 +644,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * A unique identifier for an object.
          */
@@ -663,6 +662,7 @@ public class EmployeeJob {
             this.employeeId = employeeId;
             return this;
         }
+
 
         /**
          * The job title of the person.
@@ -682,6 +682,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * The position and responsibilities of the person within the organization.
          */
@@ -699,6 +700,7 @@ public class EmployeeJob {
             this.role = role;
             return this;
         }
+
 
         /**
          * The date on which the employee starts working in their current job role.
@@ -718,6 +720,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * The date on which the employee leaves or is expected to leave their current job role.
          */
@@ -735,6 +738,7 @@ public class EmployeeJob {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * The rate of pay for the employee in their current job role.
@@ -754,6 +758,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -771,6 +776,7 @@ public class EmployeeJob {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Unit of measurement for employee compensation.
@@ -790,6 +796,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * The date on which the employee was hired by the organization
          */
@@ -807,6 +814,7 @@ public class EmployeeJob {
             this.hiredAt = hiredAt;
             return this;
         }
+
 
         /**
          * Indicates whether this the employee's primary job.
@@ -826,6 +834,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         /**
          * Indicates whether this the employee has a manager role.
          */
@@ -843,6 +852,7 @@ public class EmployeeJob {
             this.isManager = isManager;
             return this;
         }
+
 
         /**
          * Indicates the status of the job.
@@ -862,6 +872,7 @@ public class EmployeeJob {
             return this;
         }
 
+
         public Builder location(Address location) {
             Utils.checkNotNull(location, "location");
             this.location = Optional.ofNullable(location);
@@ -873,23 +884,16 @@ public class EmployeeJob {
             this.location = location;
             return this;
         }
-        
+
         public EmployeeJob build() {
+
             return new EmployeeJob(
-                id,
-                employeeId,
-                title,
-                role,
-                startDate,
-                endDate,
-                compensationRate,
-                currency,
-                paymentUnit,
-                hiredAt,
-                isPrimary,
-                isManager,
-                status,
-                location);
+                id, employeeId, title,
+                role, startDate, endDate,
+                compensationRate, currency, paymentUnit,
+                hiredAt, isPrimary, isManager,
+                status, location);
         }
+
     }
 }

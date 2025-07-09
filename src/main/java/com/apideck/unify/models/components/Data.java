@@ -14,14 +14,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Data {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
     private Optional<String> consumerId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_id")
@@ -34,25 +35,31 @@ public class Data {
     @JsonProperty("metadata")
     private Optional<? extends ConsumerMetadata> metadata;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregated_request_count")
     private Optional<Double> aggregatedRequestCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_counts")
     private Optional<? extends RequestCountAllocation> requestCounts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created")
     private Optional<String> created;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("modified")
     private Optional<String> modified;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_count_updated")
     private Optional<String> requestCountUpdated;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("services")
@@ -90,7 +97,9 @@ public class Data {
     }
     
     public Data() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -144,15 +153,17 @@ public class Data {
         return (Optional<List<String>>) services;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Data withConsumerId(String consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     public Data withConsumerId(Optional<String> consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
@@ -165,6 +176,7 @@ public class Data {
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     public Data withApplicationId(Optional<String> applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -181,6 +193,7 @@ public class Data {
         return this;
     }
 
+
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -196,6 +209,7 @@ public class Data {
         return this;
     }
 
+
     public Data withAggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
         Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
         this.aggregatedRequestCount = aggregatedRequestCount;
@@ -207,6 +221,7 @@ public class Data {
         this.requestCounts = Optional.ofNullable(requestCounts);
         return this;
     }
+
 
     public Data withRequestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
         Utils.checkNotNull(requestCounts, "requestCounts");
@@ -220,6 +235,7 @@ public class Data {
         return this;
     }
 
+
     public Data withCreated(Optional<String> created) {
         Utils.checkNotNull(created, "created");
         this.created = created;
@@ -231,6 +247,7 @@ public class Data {
         this.modified = Optional.ofNullable(modified);
         return this;
     }
+
 
     public Data withModified(Optional<String> modified) {
         Utils.checkNotNull(modified, "modified");
@@ -244,6 +261,7 @@ public class Data {
         return this;
     }
 
+
     public Data withRequestCountUpdated(Optional<String> requestCountUpdated) {
         Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
         this.requestCountUpdated = requestCountUpdated;
@@ -256,13 +274,13 @@ public class Data {
         return this;
     }
 
+
     public Data withServices(Optional<? extends List<String>> services) {
         Utils.checkNotNull(services, "services");
         this.services = services;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -273,29 +291,23 @@ public class Data {
         }
         Data other = (Data) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.metadata, other.metadata) &&
-            Objects.deepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
-            Objects.deepEquals(this.requestCounts, other.requestCounts) &&
-            Objects.deepEquals(this.created, other.created) &&
-            Objects.deepEquals(this.modified, other.modified) &&
-            Objects.deepEquals(this.requestCountUpdated, other.requestCountUpdated) &&
-            Objects.deepEquals(this.services, other.services);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.metadata, other.metadata) &&
+            Utils.enhancedDeepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
+            Utils.enhancedDeepEquals(this.requestCounts, other.requestCounts) &&
+            Utils.enhancedDeepEquals(this.created, other.created) &&
+            Utils.enhancedDeepEquals(this.modified, other.modified) &&
+            Utils.enhancedDeepEquals(this.requestCountUpdated, other.requestCountUpdated) &&
+            Utils.enhancedDeepEquals(this.services, other.services);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            applicationId,
-            metadata,
-            aggregatedRequestCount,
-            requestCounts,
-            created,
-            modified,
-            requestCountUpdated,
-            services);
+        return Utils.enhancedHash(
+            consumerId, applicationId, metadata,
+            aggregatedRequestCount, requestCounts, created,
+            modified, requestCountUpdated, services);
     }
     
     @Override
@@ -311,30 +323,32 @@ public class Data {
                 "requestCountUpdated", requestCountUpdated,
                 "services", services);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
- 
+
         private Optional<Double> aggregatedRequestCount = Optional.empty();
- 
+
         private Optional<? extends RequestCountAllocation> requestCounts = Optional.empty();
- 
+
         private Optional<String> created = Optional.empty();
- 
+
         private Optional<String> modified = Optional.empty();
- 
+
         private Optional<String> requestCountUpdated = Optional.empty();
- 
+
         private Optional<? extends List<String>> services = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder consumerId(String consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");
@@ -348,6 +362,7 @@ public class Data {
             return this;
         }
 
+
         public Builder applicationId(String applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");
             this.applicationId = Optional.ofNullable(applicationId);
@@ -359,6 +374,7 @@ public class Data {
             this.applicationId = applicationId;
             return this;
         }
+
 
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -378,6 +394,7 @@ public class Data {
             return this;
         }
 
+
         public Builder aggregatedRequestCount(double aggregatedRequestCount) {
             Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
             this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
@@ -389,6 +406,7 @@ public class Data {
             this.aggregatedRequestCount = aggregatedRequestCount;
             return this;
         }
+
 
         public Builder requestCounts(RequestCountAllocation requestCounts) {
             Utils.checkNotNull(requestCounts, "requestCounts");
@@ -402,6 +420,7 @@ public class Data {
             return this;
         }
 
+
         public Builder created(String created) {
             Utils.checkNotNull(created, "created");
             this.created = Optional.ofNullable(created);
@@ -413,6 +432,7 @@ public class Data {
             this.created = created;
             return this;
         }
+
 
         public Builder modified(String modified) {
             Utils.checkNotNull(modified, "modified");
@@ -426,6 +446,7 @@ public class Data {
             return this;
         }
 
+
         public Builder requestCountUpdated(String requestCountUpdated) {
             Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
             this.requestCountUpdated = Optional.ofNullable(requestCountUpdated);
@@ -438,6 +459,7 @@ public class Data {
             return this;
         }
 
+
         public Builder services(List<String> services) {
             Utils.checkNotNull(services, "services");
             this.services = Optional.ofNullable(services);
@@ -449,18 +471,14 @@ public class Data {
             this.services = services;
             return this;
         }
-        
+
         public Data build() {
+
             return new Data(
-                consumerId,
-                applicationId,
-                metadata,
-                aggregatedRequestCount,
-                requestCounts,
-                created,
-                modified,
-                requestCountUpdated,
-                services);
+                consumerId, applicationId, metadata,
+                aggregatedRequestCount, requestCounts, created,
+                modified, requestCountUpdated, services);
         }
+
     }
 }

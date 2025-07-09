@@ -10,10 +10,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
+
 
 public class ExtendPaths {
-
     /**
      * JSONPath string specifying where to apply the value.
      */
@@ -52,9 +51,10 @@ public class ExtendPaths {
         return value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * JSONPath string specifying where to apply the value.
@@ -74,7 +74,6 @@ public class ExtendPaths {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -85,15 +84,14 @@ public class ExtendPaths {
         }
         ExtendPaths other = (ExtendPaths) o;
         return 
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            path,
-            value);
+        return Utils.enhancedHash(
+            path, value);
     }
     
     @Override
@@ -102,16 +100,18 @@ public class ExtendPaths {
                 "path", path,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String path;
- 
+
         private Object value;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * JSONPath string specifying where to apply the value.
@@ -122,6 +122,7 @@ public class ExtendPaths {
             return this;
         }
 
+
         /**
          * The value to set at the specified path, can be any type.
          */
@@ -130,11 +131,12 @@ public class ExtendPaths {
             this.value = value;
             return this;
         }
-        
+
         public ExtendPaths build() {
+
             return new ExtendPaths(
-                path,
-                value);
+                path, value);
         }
+
     }
 }

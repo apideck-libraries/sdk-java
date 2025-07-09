@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingTaxRatesAddRequest {
 
+public class AccountingTaxRatesAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -41,6 +40,7 @@ public class AccountingTaxRatesAddRequest {
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private TaxRateInput taxRate;
@@ -66,7 +66,8 @@ public class AccountingTaxRatesAddRequest {
     
     public AccountingTaxRatesAddRequest(
             TaxRateInput taxRate) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), taxRate);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), taxRate);
     }
 
     /**
@@ -106,9 +107,10 @@ public class AccountingTaxRatesAddRequest {
         return taxRate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -118,6 +120,7 @@ public class AccountingTaxRatesAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -137,6 +140,7 @@ public class AccountingTaxRatesAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -154,6 +158,7 @@ public class AccountingTaxRatesAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -173,6 +178,7 @@ public class AccountingTaxRatesAddRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -188,7 +194,6 @@ public class AccountingTaxRatesAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -199,21 +204,18 @@ public class AccountingTaxRatesAddRequest {
         }
         AccountingTaxRatesAddRequest other = (AccountingTaxRatesAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.taxRate, other.taxRate);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            taxRate);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, taxRate);
     }
     
     @Override
@@ -225,22 +227,24 @@ public class AccountingTaxRatesAddRequest {
                 "serviceId", serviceId,
                 "taxRate", taxRate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private TaxRateInput taxRate;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -260,6 +264,7 @@ public class AccountingTaxRatesAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -277,6 +282,7 @@ public class AccountingTaxRatesAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -296,6 +302,7 @@ public class AccountingTaxRatesAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -314,23 +321,23 @@ public class AccountingTaxRatesAddRequest {
             return this;
         }
 
+
         public Builder taxRate(TaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = taxRate;
             return this;
         }
-        
+
         public AccountingTaxRatesAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingTaxRatesAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                taxRate);
+                raw, consumerId, appId,
+                serviceId, taxRate);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

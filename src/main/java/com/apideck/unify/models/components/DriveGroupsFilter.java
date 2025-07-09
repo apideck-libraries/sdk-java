@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class DriveGroupsFilter {
 
+public class DriveGroupsFilter {
     /**
      * ID of the drive group to filter on
      */
@@ -39,9 +38,10 @@ public class DriveGroupsFilter {
         return parentGroupId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the drive group to filter on
@@ -52,6 +52,7 @@ public class DriveGroupsFilter {
         return this;
     }
 
+
     /**
      * ID of the drive group to filter on
      */
@@ -61,7 +62,6 @@ public class DriveGroupsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -72,12 +72,12 @@ public class DriveGroupsFilter {
         }
         DriveGroupsFilter other = (DriveGroupsFilter) o;
         return 
-            Objects.deepEquals(this.parentGroupId, other.parentGroupId);
+            Utils.enhancedDeepEquals(this.parentGroupId, other.parentGroupId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             parentGroupId);
     }
     
@@ -86,14 +86,16 @@ public class DriveGroupsFilter {
         return Utils.toString(DriveGroupsFilter.class,
                 "parentGroupId", parentGroupId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> parentGroupId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the drive group to filter on
@@ -112,10 +114,12 @@ public class DriveGroupsFilter {
             this.parentGroupId = parentGroupId;
             return this;
         }
-        
+
         public DriveGroupsFilter build() {
+
             return new DriveGroupsFilter(
                 parentGroupId);
         }
+
     }
 }

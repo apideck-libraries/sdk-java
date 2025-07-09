@@ -48,8 +48,8 @@ public class CrmContactsDeleteRequestBuilder {
 
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
               = new CrmContactsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

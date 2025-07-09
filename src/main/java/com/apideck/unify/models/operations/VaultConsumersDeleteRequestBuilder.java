@@ -71,8 +71,8 @@ public class VaultConsumersDeleteRequestBuilder {
 
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
               = new VaultConsumersDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         VaultConsumersDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

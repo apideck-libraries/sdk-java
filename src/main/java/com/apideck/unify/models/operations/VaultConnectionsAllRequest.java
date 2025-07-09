@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConnectionsAllRequest {
 
+public class VaultConnectionsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -56,7 +55,8 @@ public class VaultConnectionsAllRequest {
     }
     
     public VaultConnectionsAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -91,9 +91,10 @@ public class VaultConnectionsAllRequest {
         return configured;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -103,6 +104,7 @@ public class VaultConnectionsAllRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -122,6 +124,7 @@ public class VaultConnectionsAllRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -139,6 +142,7 @@ public class VaultConnectionsAllRequest {
         this.api = Optional.ofNullable(api);
         return this;
     }
+
 
     /**
      * Scope results to Unified API
@@ -158,6 +162,7 @@ public class VaultConnectionsAllRequest {
         return this;
     }
 
+
     /**
      * Scopes results to connections that have been configured or not
      */
@@ -167,7 +172,6 @@ public class VaultConnectionsAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -178,18 +182,16 @@ public class VaultConnectionsAllRequest {
         }
         VaultConnectionsAllRequest other = (VaultConnectionsAllRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.api, other.api) &&
-            Objects.deepEquals(this.configured, other.configured);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.api, other.api) &&
+            Utils.enhancedDeepEquals(this.configured, other.configured);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            api,
+        return Utils.enhancedHash(
+            consumerId, appId, api,
             configured);
     }
     
@@ -201,20 +203,22 @@ public class VaultConnectionsAllRequest {
                 "api", api,
                 "configured", configured);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> api = Optional.empty();
- 
+
         private Optional<Boolean> configured = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -234,6 +238,7 @@ public class VaultConnectionsAllRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -251,6 +256,7 @@ public class VaultConnectionsAllRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Scope results to Unified API
@@ -270,6 +276,7 @@ public class VaultConnectionsAllRequest {
             return this;
         }
 
+
         /**
          * Scopes results to connections that have been configured or not
          */
@@ -287,13 +294,13 @@ public class VaultConnectionsAllRequest {
             this.configured = configured;
             return this;
         }
-        
+
         public VaultConnectionsAllRequest build() {
+
             return new VaultConnectionsAllRequest(
-                consumerId,
-                appId,
-                api,
+                consumerId, appId, api,
                 configured);
         }
+
     }
 }

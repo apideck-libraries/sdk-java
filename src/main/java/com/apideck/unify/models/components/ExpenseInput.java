@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ExpenseInput {
 
+public class ExpenseInput {
     /**
      * Number.
      */
@@ -104,6 +103,7 @@ public class ExpenseInput {
     @JsonProperty("memo")
     private JsonNullable<String> memo;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRateInput> taxRate;
@@ -127,6 +127,7 @@ public class ExpenseInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private JsonNullable<String> reference;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -210,7 +211,13 @@ public class ExpenseInput {
     public ExpenseInput(
             String accountId,
             List<ExpenseLineItemInput> lineItems) {
-        this(JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), Optional.empty(), accountId,
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), lineItems,
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -365,9 +372,10 @@ public class ExpenseInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number.
@@ -396,6 +404,7 @@ public class ExpenseInput {
         return this;
     }
 
+
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
@@ -423,6 +432,7 @@ public class ExpenseInput {
         return this;
     }
 
+
     /**
      * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
      */
@@ -440,6 +450,7 @@ public class ExpenseInput {
         this.supplierId = Optional.ofNullable(supplierId);
         return this;
     }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -582,6 +593,7 @@ public class ExpenseInput {
         return this;
     }
 
+
     public ExpenseInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -639,6 +651,7 @@ public class ExpenseInput {
         return this;
     }
 
+
     public ExpenseInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -672,6 +685,7 @@ public class ExpenseInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -681,7 +695,6 @@ public class ExpenseInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -692,48 +705,36 @@ public class ExpenseInput {
         }
         ExpenseInput other = (ExpenseInput) o;
         return 
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.transactionDate, other.transactionDate) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.supplierId, other.supplierId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.paymentType, other.paymentType) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.paymentType, other.paymentType) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            number,
-            transactionDate,
-            accountId,
-            customerId,
-            supplierId,
-            companyId,
-            departmentId,
-            paymentType,
-            currency,
-            currencyRate,
-            type,
-            memo,
-            taxRate,
-            totalAmount,
-            lineItems,
-            reference,
-            customFields,
-            rowVersion,
+        return Utils.enhancedHash(
+            number, transactionDate, accountId,
+            customerId, supplierId, companyId,
+            departmentId, paymentType, currency,
+            currencyRate, type, memo,
+            taxRate, totalAmount, lineItems,
+            reference, customFields, rowVersion,
             passThrough);
     }
     
@@ -760,50 +761,52 @@ public class ExpenseInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
- 
+
         private String accountId;
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> supplierId = Optional.empty();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ExpensePaymentType> paymentType = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ExpenseType> type = JsonNullable.undefined();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
- 
+
         private List<ExpenseLineItemInput> lineItems;
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number.
@@ -823,6 +826,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
          */
@@ -841,6 +845,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The unique identifier for the ledger account that this expense should be credited to.
          */
@@ -849,6 +854,7 @@ public class ExpenseInput {
             this.accountId = accountId;
             return this;
         }
+
 
         /**
          * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
@@ -868,6 +874,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The ID of the supplier this entity is linked to.
          */
@@ -885,6 +892,7 @@ public class ExpenseInput {
             this.supplierId = supplierId;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -904,6 +912,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The ID of the department
          */
@@ -921,6 +930,7 @@ public class ExpenseInput {
             this.departmentId = departmentId;
             return this;
         }
+
 
         /**
          * The type of payment for the expense.
@@ -940,6 +950,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -957,6 +968,7 @@ public class ExpenseInput {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -976,6 +988,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The type of expense.
          */
@@ -993,6 +1006,7 @@ public class ExpenseInput {
             this.type = type;
             return this;
         }
+
 
         /**
          * The memo of the expense.
@@ -1012,6 +1026,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1023,6 +1038,7 @@ public class ExpenseInput {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * The total amount of the expense line item.
@@ -1042,6 +1058,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * Expense line items linked to this expense.
          */
@@ -1050,6 +1067,7 @@ public class ExpenseInput {
             this.lineItems = lineItems;
             return this;
         }
+
 
         /**
          * Optional reference identifier for the transaction.
@@ -1069,6 +1087,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1080,6 +1099,7 @@ public class ExpenseInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1099,6 +1119,7 @@ public class ExpenseInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1116,28 +1137,18 @@ public class ExpenseInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public ExpenseInput build() {
+
             return new ExpenseInput(
-                number,
-                transactionDate,
-                accountId,
-                customerId,
-                supplierId,
-                companyId,
-                departmentId,
-                paymentType,
-                currency,
-                currencyRate,
-                type,
-                memo,
-                taxRate,
-                totalAmount,
-                lineItems,
-                reference,
-                customFields,
-                rowVersion,
+                number, transactionDate, accountId,
+                customerId, supplierId, companyId,
+                departmentId, paymentType, currency,
+                currencyRate, type, memo,
+                taxRate, totalAmount, lineItems,
+                reference, customFields, rowVersion,
                 passThrough);
         }
+
     }
 }

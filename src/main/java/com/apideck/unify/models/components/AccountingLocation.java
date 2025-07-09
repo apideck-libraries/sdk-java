@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AccountingLocation {
 
+public class AccountingLocation {
     /**
      * A unique identifier for an object.
      */
@@ -57,9 +56,11 @@ public class AccountingLocation {
     @JsonProperty("status")
     private Optional<? extends LocationStatus> status;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
@@ -161,7 +162,11 @@ public class AccountingLocation {
     }
     
     public AccountingLocation() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -275,9 +280,10 @@ public class AccountingLocation {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -287,6 +293,7 @@ public class AccountingLocation {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -360,6 +367,7 @@ public class AccountingLocation {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -375,6 +383,7 @@ public class AccountingLocation {
         return this;
     }
 
+
     public AccountingLocation withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -386,6 +395,7 @@ public class AccountingLocation {
         this.subsidiaries = Optional.ofNullable(subsidiaries);
         return this;
     }
+
 
     public AccountingLocation withSubsidiaries(Optional<? extends List<SubsidiaryReference>> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
@@ -510,6 +520,7 @@ public class AccountingLocation {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -519,7 +530,6 @@ public class AccountingLocation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -530,39 +540,30 @@ public class AccountingLocation {
         }
         AccountingLocation other = (AccountingLocation) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            parentId,
-            companyName,
-            displayName,
-            status,
-            addresses,
-            subsidiaries,
-            customMappings,
-            rowVersion,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, parentId, companyName,
+            displayName, status, addresses,
+            subsidiaries, customMappings, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -583,40 +584,42 @@ public class AccountingLocation {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private Optional<? extends LocationStatus> status = Optional.empty();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<SubsidiaryReference>> subsidiaries = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -636,6 +639,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * A unique identifier for an object.
          */
@@ -653,6 +657,7 @@ public class AccountingLocation {
             this.parentId = parentId;
             return this;
         }
+
 
         /**
          * The name of the company.
@@ -672,6 +677,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * The display name of the location.
          */
@@ -689,6 +695,7 @@ public class AccountingLocation {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * Based on the status some functionality is enabled or disabled.
@@ -708,6 +715,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -720,6 +728,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         public Builder subsidiaries(List<SubsidiaryReference> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = Optional.ofNullable(subsidiaries);
@@ -731,6 +740,7 @@ public class AccountingLocation {
             this.subsidiaries = subsidiaries;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -750,6 +760,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -767,6 +778,7 @@ public class AccountingLocation {
             this.rowVersion = rowVersion;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -786,6 +798,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -803,6 +816,7 @@ public class AccountingLocation {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -822,6 +836,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -840,6 +855,7 @@ public class AccountingLocation {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -857,23 +873,16 @@ public class AccountingLocation {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public AccountingLocation build() {
+
             return new AccountingLocation(
-                id,
-                parentId,
-                companyName,
-                displayName,
-                status,
-                addresses,
-                subsidiaries,
-                customMappings,
-                rowVersion,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, parentId, companyName,
+                displayName, status, addresses,
+                subsidiaries, customMappings, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
+
     }
 }

@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LeadInput {
 
+public class LeadInput {
     /**
      * Full name of the lead.
      */
@@ -110,6 +109,7 @@ public class LeadInput {
     @JsonProperty("language")
     private JsonNullable<String> language;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private JsonNullable<String> status;
@@ -135,29 +135,36 @@ public class LeadInput {
     @JsonProperty("fax")
     private JsonNullable<String> fax;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
     private Optional<? extends List<SocialLink>> socialLinks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private JsonNullable<? extends List<CustomField>> customFields;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -251,7 +258,15 @@ public class LeadInput {
     
     public LeadInput(
             String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -439,9 +454,10 @@ public class LeadInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Full name of the lead.
@@ -740,6 +756,7 @@ public class LeadInput {
         return this;
     }
 
+
     public LeadInput withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
         this.websites = websites;
@@ -751,6 +768,7 @@ public class LeadInput {
         this.addresses = Optional.ofNullable(addresses);
         return this;
     }
+
 
     public LeadInput withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
@@ -764,6 +782,7 @@ public class LeadInput {
         return this;
     }
 
+
     public LeadInput withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
         Utils.checkNotNull(socialLinks, "socialLinks");
         this.socialLinks = socialLinks;
@@ -776,6 +795,7 @@ public class LeadInput {
         return this;
     }
 
+
     public LeadInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
         this.phoneNumbers = phoneNumbers;
@@ -787,6 +807,7 @@ public class LeadInput {
         this.emails = Optional.ofNullable(emails);
         return this;
     }
+
 
     public LeadInput withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
@@ -827,6 +848,7 @@ public class LeadInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -836,7 +858,6 @@ public class LeadInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -847,60 +868,44 @@ public class LeadInput {
         }
         LeadInput other = (LeadInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.ownerName, other.ownerName) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.leadSource, other.leadSource) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.prefix, other.prefix) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.monetaryAmount, other.monetaryAmount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.fax, other.fax) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.socialLinks, other.socialLinks) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.ownerName, other.ownerName) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.leadSource, other.leadSource) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.prefix, other.prefix) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.fax, other.fax) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.socialLinks, other.socialLinks) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            companyName,
-            ownerId,
-            ownerName,
-            companyId,
-            leadId,
-            leadSource,
-            firstName,
-            lastName,
-            description,
-            prefix,
-            title,
-            language,
-            status,
-            monetaryAmount,
-            currency,
-            fax,
-            websites,
-            addresses,
-            socialLinks,
-            phoneNumbers,
-            emails,
-            customFields,
-            tags,
+        return Utils.enhancedHash(
+            name, companyName, ownerId,
+            ownerName, companyId, leadId,
+            leadSource, firstName, lastName,
+            description, prefix, title,
+            language, status, monetaryAmount,
+            currency, fax, websites,
+            addresses, socialLinks, phoneNumbers,
+            emails, customFields, tags,
             passThrough);
     }
     
@@ -933,62 +938,64 @@ public class LeadInput {
                 "tags", tags,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadSource = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> prefix = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private JsonNullable<String> status = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> monetaryAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> fax = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Full name of the lead.
@@ -998,6 +1005,7 @@ public class LeadInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * The name of the company the lead is associated with.
@@ -1017,6 +1025,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * The owner of the lead.
          */
@@ -1034,6 +1043,7 @@ public class LeadInput {
             this.ownerId = ownerId;
             return this;
         }
+
 
         /**
          * The name of the owner of the lead.
@@ -1053,6 +1063,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * The company the lead is associated with.
          */
@@ -1070,6 +1081,7 @@ public class LeadInput {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * The identifier of the lead.
@@ -1089,6 +1101,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * The source of the lead.
          */
@@ -1106,6 +1119,7 @@ public class LeadInput {
             this.leadSource = leadSource;
             return this;
         }
+
 
         /**
          * The first name of the lead.
@@ -1125,6 +1139,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * The last name of the lead.
          */
@@ -1142,6 +1157,7 @@ public class LeadInput {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * The description of the lead.
@@ -1161,6 +1177,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * The prefix of the lead.
          */
@@ -1178,6 +1195,7 @@ public class LeadInput {
             this.prefix = prefix;
             return this;
         }
+
 
         /**
          * The job title of the lead.
@@ -1197,6 +1215,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * language code according to ISO 639-1. For the United States - EN
          */
@@ -1215,6 +1234,7 @@ public class LeadInput {
             return this;
         }
 
+
         public Builder status(String status) {
             Utils.checkNotNull(status, "status");
             this.status = JsonNullable.of(status);
@@ -1226,6 +1246,7 @@ public class LeadInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * The monetary amount of the lead.
@@ -1245,6 +1266,7 @@ public class LeadInput {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1262,6 +1284,7 @@ public class LeadInput {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The fax number of the lead.
@@ -1281,6 +1304,7 @@ public class LeadInput {
             return this;
         }
 
+
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
             this.websites = Optional.ofNullable(websites);
@@ -1292,6 +1316,7 @@ public class LeadInput {
             this.websites = websites;
             return this;
         }
+
 
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
@@ -1305,6 +1330,7 @@ public class LeadInput {
             return this;
         }
 
+
         public Builder socialLinks(List<SocialLink> socialLinks) {
             Utils.checkNotNull(socialLinks, "socialLinks");
             this.socialLinks = Optional.ofNullable(socialLinks);
@@ -1316,6 +1342,7 @@ public class LeadInput {
             this.socialLinks = socialLinks;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1329,6 +1356,7 @@ public class LeadInput {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -1340,6 +1368,7 @@ public class LeadInput {
             this.emails = emails;
             return this;
         }
+
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
@@ -1353,6 +1382,7 @@ public class LeadInput {
             return this;
         }
 
+
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = JsonNullable.of(tags);
@@ -1364,6 +1394,7 @@ public class LeadInput {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -1382,34 +1413,20 @@ public class LeadInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public LeadInput build() {
+
             return new LeadInput(
-                name,
-                companyName,
-                ownerId,
-                ownerName,
-                companyId,
-                leadId,
-                leadSource,
-                firstName,
-                lastName,
-                description,
-                prefix,
-                title,
-                language,
-                status,
-                monetaryAmount,
-                currency,
-                fax,
-                websites,
-                addresses,
-                socialLinks,
-                phoneNumbers,
-                emails,
-                customFields,
-                tags,
+                name, companyName, ownerId,
+                ownerName, companyId, leadId,
+                leadSource, firstName, lastName,
+                description, prefix, title,
+                language, status, monetaryAmount,
+                currency, fax, websites,
+                addresses, socialLinks, phoneNumbers,
+                emails, customFields, tags,
                 passThrough);
         }
+
     }
 }

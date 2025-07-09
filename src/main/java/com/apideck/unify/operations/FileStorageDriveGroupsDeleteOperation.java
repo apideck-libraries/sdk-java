@@ -54,7 +54,8 @@ public class FileStorageDriveGroupsDeleteOperation implements RequestOperation<F
     
     @Override
     public HttpResponse<InputStream> doRequest(FileStorageDriveGroupsDeleteRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 FileStorageDriveGroupsDeleteRequest.class,

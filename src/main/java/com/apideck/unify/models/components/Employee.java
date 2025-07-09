@@ -19,12 +19,11 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Employee {
 
+public class Employee {
     /**
      * A unique identifier for an object.
      */
@@ -101,6 +100,7 @@ public class Employee {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("marital_status")
     private JsonNullable<String> maritalStatus;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("partner")
@@ -200,6 +200,7 @@ public class Employee {
     @JsonProperty("employment_status")
     private JsonNullable<? extends EmploymentStatus> employmentStatus;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_role")
     private Optional<? extends EmploymentRole> employmentRole;
@@ -210,6 +211,7 @@ public class Employee {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ethnicity")
     private JsonNullable<String> ethnicity;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("manager")
@@ -278,9 +280,11 @@ public class Employee {
     @JsonProperty("preferred_language")
     private JsonNullable<String> preferredLanguage;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("languages")
     private Optional<? extends List<String>> languages;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nationalities")
@@ -314,13 +318,16 @@ public class Employee {
     @JsonProperty("source_id")
     private JsonNullable<String> sourceId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("record_url")
     private JsonNullable<String> recordUrl;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("jobs")
     private JsonNullable<? extends List<EmployeeJob>> jobs;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("compensations")
@@ -333,33 +340,41 @@ public class Employee {
     @JsonProperty("works_remote")
     private JsonNullable<Boolean> worksRemote;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
     private Optional<? extends List<SocialLink>> socialLinks;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
     private Optional<? extends List<BankAccount>> bankAccounts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_code")
     private JsonNullable<String> taxCode;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_id")
@@ -379,9 +394,11 @@ public class Employee {
     @JsonProperty("food_allergies")
     private JsonNullable<? extends List<String>> foodAllergies;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("probation_period")
     private Optional<? extends ProbationPeriod> probationPeriod;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -649,7 +666,29 @@ public class Employee {
     }
     
     public Employee() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -1160,9 +1199,10 @@ public class Employee {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -1367,6 +1407,7 @@ public class Employee {
         this.partner = Optional.ofNullable(partner);
         return this;
     }
+
 
     public Employee withPartner(Optional<? extends Person> partner) {
         Utils.checkNotNull(partner, "partner");
@@ -1620,6 +1661,7 @@ public class Employee {
         return this;
     }
 
+
     public Employee withEmploymentRole(Optional<? extends EmploymentRole> employmentRole) {
         Utils.checkNotNull(employmentRole, "employmentRole");
         this.employmentRole = employmentRole;
@@ -1649,6 +1691,7 @@ public class Employee {
         this.manager = Optional.ofNullable(manager);
         return this;
     }
+
 
     public Employee withManager(Optional<? extends Manager> manager) {
         Utils.checkNotNull(manager, "manager");
@@ -1824,6 +1867,7 @@ public class Employee {
         return this;
     }
 
+
     public Employee withLanguages(Optional<? extends List<String>> languages) {
         Utils.checkNotNull(languages, "languages");
         this.languages = languages;
@@ -1835,6 +1879,7 @@ public class Employee {
         this.nationalities = Optional.ofNullable(nationalities);
         return this;
     }
+
 
     public Employee withNationalities(Optional<? extends List<String>> nationalities) {
         Utils.checkNotNull(nationalities, "nationalities");
@@ -1974,6 +2019,7 @@ public class Employee {
         return this;
     }
 
+
     public Employee withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -1985,6 +2031,7 @@ public class Employee {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public Employee withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1998,6 +2045,7 @@ public class Employee {
         return this;
     }
 
+
     public Employee withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -2009,6 +2057,7 @@ public class Employee {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public Employee withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -2022,6 +2071,7 @@ public class Employee {
         return this;
     }
 
+
     public Employee withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
         Utils.checkNotNull(socialLinks, "socialLinks");
         this.socialLinks = socialLinks;
@@ -2033,6 +2083,7 @@ public class Employee {
         this.bankAccounts = Optional.ofNullable(bankAccounts);
         return this;
     }
+
 
     public Employee withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
         Utils.checkNotNull(bankAccounts, "bankAccounts");
@@ -2105,6 +2156,7 @@ public class Employee {
         this.probationPeriod = Optional.ofNullable(probationPeriod);
         return this;
     }
+
 
     public Employee withProbationPeriod(Optional<? extends ProbationPeriod> probationPeriod) {
         Utils.checkNotNull(probationPeriod, "probationPeriod");
@@ -2259,6 +2311,7 @@ public class Employee {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -2268,7 +2321,6 @@ public class Employee {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -2279,144 +2331,100 @@ public class Employee {
         }
         Employee other = (Employee) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.preferredName, other.preferredName) &&
-            Objects.deepEquals(this.initials, other.initials) &&
-            Objects.deepEquals(this.salutation, other.salutation) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.maritalStatus, other.maritalStatus) &&
-            Objects.deepEquals(this.partner, other.partner) &&
-            Objects.deepEquals(this.division, other.division) &&
-            Objects.deepEquals(this.divisionId, other.divisionId) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.departmentName, other.departmentName) &&
-            Objects.deepEquals(this.team, other.team) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.employmentStartDate, other.employmentStartDate) &&
-            Objects.deepEquals(this.employmentEndDate, other.employmentEndDate) &&
-            Objects.deepEquals(this.leavingReason, other.leavingReason) &&
-            Objects.deepEquals(this.employeeNumber, other.employeeNumber) &&
-            Objects.deepEquals(this.employmentStatus, other.employmentStatus) &&
-            Objects.deepEquals(this.employmentRole, other.employmentRole) &&
-            Objects.deepEquals(this.ethnicity, other.ethnicity) &&
-            Objects.deepEquals(this.manager, other.manager) &&
-            Objects.deepEquals(this.directReports, other.directReports) &&
-            Objects.deepEquals(this.socialSecurityNumber, other.socialSecurityNumber) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.deceasedOn, other.deceasedOn) &&
-            Objects.deepEquals(this.countryOfBirth, other.countryOfBirth) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.gender, other.gender) &&
-            Objects.deepEquals(this.pronouns, other.pronouns) &&
-            Objects.deepEquals(this.preferredLanguage, other.preferredLanguage) &&
-            Objects.deepEquals(this.languages, other.languages) &&
-            Objects.deepEquals(this.nationalities, other.nationalities) &&
-            Objects.deepEquals(this.photoUrl, other.photoUrl) &&
-            Objects.deepEquals(this.timezone, other.timezone) &&
-            Objects.deepEquals(this.source, other.source) &&
-            Objects.deepEquals(this.sourceId, other.sourceId) &&
-            Objects.deepEquals(this.recordUrl, other.recordUrl) &&
-            Objects.deepEquals(this.jobs, other.jobs) &&
-            Objects.deepEquals(this.compensations, other.compensations) &&
-            Objects.deepEquals(this.worksRemote, other.worksRemote) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.socialLinks, other.socialLinks) &&
-            Objects.deepEquals(this.bankAccounts, other.bankAccounts) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.taxId, other.taxId) &&
-            Objects.deepEquals(this.dietaryPreference, other.dietaryPreference) &&
-            Objects.deepEquals(this.foodAllergies, other.foodAllergies) &&
-            Objects.deepEquals(this.probationPeriod, other.probationPeriod) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.preferredName, other.preferredName) &&
+            Utils.enhancedDeepEquals(this.initials, other.initials) &&
+            Utils.enhancedDeepEquals(this.salutation, other.salutation) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.maritalStatus, other.maritalStatus) &&
+            Utils.enhancedDeepEquals(this.partner, other.partner) &&
+            Utils.enhancedDeepEquals(this.division, other.division) &&
+            Utils.enhancedDeepEquals(this.divisionId, other.divisionId) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.departmentName, other.departmentName) &&
+            Utils.enhancedDeepEquals(this.team, other.team) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.employmentStartDate, other.employmentStartDate) &&
+            Utils.enhancedDeepEquals(this.employmentEndDate, other.employmentEndDate) &&
+            Utils.enhancedDeepEquals(this.leavingReason, other.leavingReason) &&
+            Utils.enhancedDeepEquals(this.employeeNumber, other.employeeNumber) &&
+            Utils.enhancedDeepEquals(this.employmentStatus, other.employmentStatus) &&
+            Utils.enhancedDeepEquals(this.employmentRole, other.employmentRole) &&
+            Utils.enhancedDeepEquals(this.ethnicity, other.ethnicity) &&
+            Utils.enhancedDeepEquals(this.manager, other.manager) &&
+            Utils.enhancedDeepEquals(this.directReports, other.directReports) &&
+            Utils.enhancedDeepEquals(this.socialSecurityNumber, other.socialSecurityNumber) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.deceasedOn, other.deceasedOn) &&
+            Utils.enhancedDeepEquals(this.countryOfBirth, other.countryOfBirth) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.gender, other.gender) &&
+            Utils.enhancedDeepEquals(this.pronouns, other.pronouns) &&
+            Utils.enhancedDeepEquals(this.preferredLanguage, other.preferredLanguage) &&
+            Utils.enhancedDeepEquals(this.languages, other.languages) &&
+            Utils.enhancedDeepEquals(this.nationalities, other.nationalities) &&
+            Utils.enhancedDeepEquals(this.photoUrl, other.photoUrl) &&
+            Utils.enhancedDeepEquals(this.timezone, other.timezone) &&
+            Utils.enhancedDeepEquals(this.source, other.source) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
+            Utils.enhancedDeepEquals(this.recordUrl, other.recordUrl) &&
+            Utils.enhancedDeepEquals(this.jobs, other.jobs) &&
+            Utils.enhancedDeepEquals(this.compensations, other.compensations) &&
+            Utils.enhancedDeepEquals(this.worksRemote, other.worksRemote) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.socialLinks, other.socialLinks) &&
+            Utils.enhancedDeepEquals(this.bankAccounts, other.bankAccounts) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.taxId, other.taxId) &&
+            Utils.enhancedDeepEquals(this.dietaryPreference, other.dietaryPreference) &&
+            Utils.enhancedDeepEquals(this.foodAllergies, other.foodAllergies) &&
+            Utils.enhancedDeepEquals(this.probationPeriod, other.probationPeriod) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            firstName,
-            lastName,
-            middleName,
-            displayName,
-            preferredName,
-            initials,
-            salutation,
-            title,
-            maritalStatus,
-            partner,
-            division,
-            divisionId,
-            department,
-            departmentId,
-            departmentName,
-            team,
-            companyId,
-            companyName,
-            employmentStartDate,
-            employmentEndDate,
-            leavingReason,
-            employeeNumber,
-            employmentStatus,
-            employmentRole,
-            ethnicity,
-            manager,
-            directReports,
-            socialSecurityNumber,
-            birthday,
-            deceasedOn,
-            countryOfBirth,
-            description,
-            gender,
-            pronouns,
-            preferredLanguage,
-            languages,
-            nationalities,
-            photoUrl,
-            timezone,
-            source,
-            sourceId,
-            recordUrl,
-            jobs,
-            compensations,
-            worksRemote,
-            addresses,
-            phoneNumbers,
-            emails,
-            customFields,
-            socialLinks,
-            bankAccounts,
-            taxCode,
-            taxId,
-            dietaryPreference,
-            foodAllergies,
-            probationPeriod,
-            tags,
-            customMappings,
-            rowVersion,
-            deleted,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, downstreamId, firstName,
+            lastName, middleName, displayName,
+            preferredName, initials, salutation,
+            title, maritalStatus, partner,
+            division, divisionId, department,
+            departmentId, departmentName, team,
+            companyId, companyName, employmentStartDate,
+            employmentEndDate, leavingReason, employeeNumber,
+            employmentStatus, employmentRole, ethnicity,
+            manager, directReports, socialSecurityNumber,
+            birthday, deceasedOn, countryOfBirth,
+            description, gender, pronouns,
+            preferredLanguage, languages, nationalities,
+            photoUrl, timezone, source,
+            sourceId, recordUrl, jobs,
+            compensations, worksRemote, addresses,
+            phoneNumbers, emails, customFields,
+            socialLinks, bankAccounts, taxCode,
+            taxId, dietaryPreference, foodAllergies,
+            probationPeriod, tags, customMappings,
+            rowVersion, deleted, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -2491,147 +2499,149 @@ public class Employee {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> preferredName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> initials = JsonNullable.undefined();
- 
+
         private JsonNullable<String> salutation = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> maritalStatus = JsonNullable.undefined();
- 
+
         private Optional<? extends Person> partner = Optional.empty();
- 
+
         private JsonNullable<String> division = JsonNullable.undefined();
- 
+
         private JsonNullable<String> divisionId = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> department = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Team> team = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> employmentStartDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> employmentEndDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LeavingReason> leavingReason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> employeeNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmploymentStatus> employmentStatus = JsonNullable.undefined();
- 
+
         private Optional<? extends EmploymentRole> employmentRole = Optional.empty();
- 
+
         private JsonNullable<String> ethnicity = JsonNullable.undefined();
- 
+
         private Optional<? extends Manager> manager = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> directReports = JsonNullable.undefined();
- 
+
         private JsonNullable<String> socialSecurityNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
- 
+
         private JsonNullable<String> countryOfBirth = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
- 
+
         private JsonNullable<String> pronouns = JsonNullable.undefined();
- 
+
         private JsonNullable<String> preferredLanguage = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> languages = Optional.empty();
- 
+
         private Optional<? extends List<String>> nationalities = Optional.empty();
- 
+
         private JsonNullable<String> photoUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> timezone = JsonNullable.undefined();
- 
+
         private JsonNullable<String> source = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sourceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> recordUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<EmployeeJob>> jobs = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<EmployeeCompensation>> compensations = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> worksRemote = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
- 
+
         private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> dietaryPreference = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> foodAllergies = JsonNullable.undefined();
- 
+
         private Optional<? extends ProbationPeriod> probationPeriod = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -2651,6 +2661,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The third-party API ID of original entity
          */
@@ -2668,6 +2679,7 @@ public class Employee {
             this.downstreamId = downstreamId;
             return this;
         }
+
 
         /**
          * The first name of the person.
@@ -2687,6 +2699,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The last name of the person.
          */
@@ -2704,6 +2717,7 @@ public class Employee {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Middle name of the person.
@@ -2723,6 +2737,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The name used to display the employee, often a combination of their first and last names.
          */
@@ -2740,6 +2755,7 @@ public class Employee {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The name the employee prefers to be addressed by, which may be different from their legal name.
@@ -2759,6 +2775,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The initials of the person, usually derived from their first, middle, and last names.
          */
@@ -2776,6 +2793,7 @@ public class Employee {
             this.initials = initials;
             return this;
         }
+
 
         /**
          * A formal salutation for the person. For example, 'Mr', 'Mrs'
@@ -2795,6 +2813,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The job title of the person.
          */
@@ -2812,6 +2831,7 @@ public class Employee {
             this.title = title;
             return this;
         }
+
 
         /**
          * The marital status of the employee.
@@ -2831,6 +2851,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder partner(Person partner) {
             Utils.checkNotNull(partner, "partner");
             this.partner = Optional.ofNullable(partner);
@@ -2842,6 +2863,7 @@ public class Employee {
             this.partner = partner;
             return this;
         }
+
 
         /**
          * The division the person is currently in. Usually a collection of departments or teams or regions.
@@ -2861,6 +2883,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * Unique identifier of the division this employee belongs to.
          */
@@ -2878,6 +2901,7 @@ public class Employee {
             this.divisionId = divisionId;
             return this;
         }
+
 
         /**
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
@@ -2903,6 +2927,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * Unique identifier of the department ID this employee belongs to.
          */
@@ -2920,6 +2945,7 @@ public class Employee {
             this.departmentId = departmentId;
             return this;
         }
+
 
         /**
          * Name of the department this employee belongs to.
@@ -2939,6 +2965,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The team the person is currently in.
          */
@@ -2956,6 +2983,7 @@ public class Employee {
             this.team = team;
             return this;
         }
+
 
         /**
          * The unique identifier of the company.
@@ -2975,6 +3003,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The name of the company.
          */
@@ -2992,6 +3021,7 @@ public class Employee {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * A Start Date is the date that the employee started working at the company
@@ -3011,6 +3041,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * An End Date is the date that the employee ended working at the company
          */
@@ -3028,6 +3059,7 @@ public class Employee {
             this.employmentEndDate = employmentEndDate;
             return this;
         }
+
 
         /**
          * The reason because the employment ended.
@@ -3047,6 +3079,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
          */
@@ -3064,6 +3097,7 @@ public class Employee {
             this.employeeNumber = employeeNumber;
             return this;
         }
+
 
         /**
          * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
@@ -3083,6 +3117,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder employmentRole(EmploymentRole employmentRole) {
             Utils.checkNotNull(employmentRole, "employmentRole");
             this.employmentRole = Optional.ofNullable(employmentRole);
@@ -3094,6 +3129,7 @@ public class Employee {
             this.employmentRole = employmentRole;
             return this;
         }
+
 
         /**
          * The ethnicity of the employee
@@ -3113,6 +3149,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder manager(Manager manager) {
             Utils.checkNotNull(manager, "manager");
             this.manager = Optional.ofNullable(manager);
@@ -3124,6 +3161,7 @@ public class Employee {
             this.manager = manager;
             return this;
         }
+
 
         /**
          * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
@@ -3143,6 +3181,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
          */
@@ -3160,6 +3199,7 @@ public class Employee {
             this.socialSecurityNumber = socialSecurityNumber;
             return this;
         }
+
 
         /**
          * The date of birth of the person.
@@ -3179,6 +3219,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The date the person deceased.
          */
@@ -3196,6 +3237,7 @@ public class Employee {
             this.deceasedOn = deceasedOn;
             return this;
         }
+
 
         /**
          * Country code according to ISO 3166-1 alpha-2.
@@ -3215,6 +3257,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * A description of the object.
          */
@@ -3232,6 +3275,7 @@ public class Employee {
             this.description = description;
             return this;
         }
+
 
         /**
          * The gender represents the gender identity of a person.
@@ -3251,6 +3295,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The preferred pronouns of the person.
          */
@@ -3268,6 +3313,7 @@ public class Employee {
             this.pronouns = pronouns;
             return this;
         }
+
 
         /**
          * language code according to ISO 639-1. For the United States - EN
@@ -3287,6 +3333,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder languages(List<String> languages) {
             Utils.checkNotNull(languages, "languages");
             this.languages = Optional.ofNullable(languages);
@@ -3299,6 +3346,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder nationalities(List<String> nationalities) {
             Utils.checkNotNull(nationalities, "nationalities");
             this.nationalities = Optional.ofNullable(nationalities);
@@ -3310,6 +3358,7 @@ public class Employee {
             this.nationalities = nationalities;
             return this;
         }
+
 
         /**
          * The URL of the photo of a person.
@@ -3329,6 +3378,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
          */
@@ -3346,6 +3396,7 @@ public class Employee {
             this.timezone = timezone;
             return this;
         }
+
 
         /**
          * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
@@ -3365,6 +3416,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
          */
@@ -3383,6 +3435,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder recordUrl(String recordUrl) {
             Utils.checkNotNull(recordUrl, "recordUrl");
             this.recordUrl = JsonNullable.of(recordUrl);
@@ -3394,6 +3447,7 @@ public class Employee {
             this.recordUrl = recordUrl;
             return this;
         }
+
 
         public Builder jobs(List<EmployeeJob> jobs) {
             Utils.checkNotNull(jobs, "jobs");
@@ -3407,6 +3461,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder compensations(List<EmployeeCompensation> compensations) {
             Utils.checkNotNull(compensations, "compensations");
             this.compensations = JsonNullable.of(compensations);
@@ -3418,6 +3473,7 @@ public class Employee {
             this.compensations = compensations;
             return this;
         }
+
 
         /**
          * Indicates if the employee works from a remote location.
@@ -3437,6 +3493,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -3448,6 +3505,7 @@ public class Employee {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -3461,6 +3519,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -3472,6 +3531,7 @@ public class Employee {
             this.emails = emails;
             return this;
         }
+
 
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
@@ -3485,6 +3545,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder socialLinks(List<SocialLink> socialLinks) {
             Utils.checkNotNull(socialLinks, "socialLinks");
             this.socialLinks = Optional.ofNullable(socialLinks);
@@ -3496,6 +3557,7 @@ public class Employee {
             this.socialLinks = socialLinks;
             return this;
         }
+
 
         public Builder bankAccounts(List<BankAccount> bankAccounts) {
             Utils.checkNotNull(bankAccounts, "bankAccounts");
@@ -3509,6 +3571,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder taxCode(String taxCode) {
             Utils.checkNotNull(taxCode, "taxCode");
             this.taxCode = JsonNullable.of(taxCode);
@@ -3521,6 +3584,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder taxId(String taxId) {
             Utils.checkNotNull(taxId, "taxId");
             this.taxId = JsonNullable.of(taxId);
@@ -3532,6 +3596,7 @@ public class Employee {
             this.taxId = taxId;
             return this;
         }
+
 
         /**
          * Indicate the employee's dietary preference.
@@ -3551,6 +3616,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * Indicate the employee's food allergies.
          */
@@ -3569,6 +3635,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder probationPeriod(ProbationPeriod probationPeriod) {
             Utils.checkNotNull(probationPeriod, "probationPeriod");
             this.probationPeriod = Optional.ofNullable(probationPeriod);
@@ -3581,6 +3648,7 @@ public class Employee {
             return this;
         }
 
+
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = JsonNullable.of(tags);
@@ -3592,6 +3660,7 @@ public class Employee {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -3611,6 +3680,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -3628,6 +3698,7 @@ public class Employee {
             this.rowVersion = rowVersion;
             return this;
         }
+
 
         /**
          * Flag to indicate if the object is deleted.
@@ -3647,6 +3718,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -3664,6 +3736,7 @@ public class Employee {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -3683,6 +3756,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -3700,6 +3774,7 @@ public class Employee {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -3719,6 +3794,7 @@ public class Employee {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -3736,76 +3812,34 @@ public class Employee {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Employee build() {
+
             return new Employee(
-                id,
-                downstreamId,
-                firstName,
-                lastName,
-                middleName,
-                displayName,
-                preferredName,
-                initials,
-                salutation,
-                title,
-                maritalStatus,
-                partner,
-                division,
-                divisionId,
-                department,
-                departmentId,
-                departmentName,
-                team,
-                companyId,
-                companyName,
-                employmentStartDate,
-                employmentEndDate,
-                leavingReason,
-                employeeNumber,
-                employmentStatus,
-                employmentRole,
-                ethnicity,
-                manager,
-                directReports,
-                socialSecurityNumber,
-                birthday,
-                deceasedOn,
-                countryOfBirth,
-                description,
-                gender,
-                pronouns,
-                preferredLanguage,
-                languages,
-                nationalities,
-                photoUrl,
-                timezone,
-                source,
-                sourceId,
-                recordUrl,
-                jobs,
-                compensations,
-                worksRemote,
-                addresses,
-                phoneNumbers,
-                emails,
-                customFields,
-                socialLinks,
-                bankAccounts,
-                taxCode,
-                taxId,
-                dietaryPreference,
-                foodAllergies,
-                probationPeriod,
-                tags,
-                customMappings,
-                rowVersion,
-                deleted,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, downstreamId, firstName,
+                lastName, middleName, displayName,
+                preferredName, initials, salutation,
+                title, maritalStatus, partner,
+                division, divisionId, department,
+                departmentId, departmentName, team,
+                companyId, companyName, employmentStartDate,
+                employmentEndDate, leavingReason, employeeNumber,
+                employmentStatus, employmentRole, ethnicity,
+                manager, directReports, socialSecurityNumber,
+                birthday, deceasedOn, countryOfBirth,
+                description, gender, pronouns,
+                preferredLanguage, languages, nationalities,
+                photoUrl, timezone, source,
+                sourceId, recordUrl, jobs,
+                compensations, worksRemote, addresses,
+                phoneNumbers, emails, customFields,
+                socialLinks, bankAccounts, taxCode,
+                taxId, dietaryPreference, foodAllergies,
+                probationPeriod, tags, customMappings,
+                rowVersion, deleted, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

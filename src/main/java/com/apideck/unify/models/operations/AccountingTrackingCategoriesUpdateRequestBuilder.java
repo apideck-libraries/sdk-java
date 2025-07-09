@@ -48,8 +48,8 @@ public class AccountingTrackingCategoriesUpdateRequestBuilder {
 
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
               = new AccountingTrackingCategoriesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

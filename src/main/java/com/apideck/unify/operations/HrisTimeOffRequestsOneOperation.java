@@ -54,7 +54,8 @@ public class HrisTimeOffRequestsOneOperation implements RequestOperation<HrisTim
     
     @Override
     public HttpResponse<InputStream> doRequest(HrisTimeOffRequestsOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 HrisTimeOffRequestsOneRequest.class,

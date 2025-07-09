@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class SupportedProperty {
 
+public class SupportedProperty {
     /**
      * Name of the property in our Unified API.
      */
@@ -63,9 +62,10 @@ public class SupportedProperty {
         return (Optional<List<SupportedProperty>>) childProperties;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the property in our Unified API.
@@ -75,6 +75,7 @@ public class SupportedProperty {
         this.unifiedProperty = Optional.ofNullable(unifiedProperty);
         return this;
     }
+
 
     /**
      * Name of the property in our Unified API.
@@ -94,6 +95,7 @@ public class SupportedProperty {
         return this;
     }
 
+
     /**
      * List of child properties of the unified property.
      */
@@ -103,7 +105,6 @@ public class SupportedProperty {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,15 +115,14 @@ public class SupportedProperty {
         }
         SupportedProperty other = (SupportedProperty) o;
         return 
-            Objects.deepEquals(this.unifiedProperty, other.unifiedProperty) &&
-            Objects.deepEquals(this.childProperties, other.childProperties);
+            Utils.enhancedDeepEquals(this.unifiedProperty, other.unifiedProperty) &&
+            Utils.enhancedDeepEquals(this.childProperties, other.childProperties);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            unifiedProperty,
-            childProperties);
+        return Utils.enhancedHash(
+            unifiedProperty, childProperties);
     }
     
     @Override
@@ -131,16 +131,18 @@ public class SupportedProperty {
                 "unifiedProperty", unifiedProperty,
                 "childProperties", childProperties);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> unifiedProperty = Optional.empty();
- 
+
         private Optional<? extends List<SupportedProperty>> childProperties = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the property in our Unified API.
@@ -160,6 +162,7 @@ public class SupportedProperty {
             return this;
         }
 
+
         /**
          * List of child properties of the unified property.
          */
@@ -177,11 +180,12 @@ public class SupportedProperty {
             this.childProperties = childProperties;
             return this;
         }
-        
+
         public SupportedProperty build() {
+
             return new SupportedProperty(
-                unifiedProperty,
-                childProperties);
+                unifiedProperty, childProperties);
         }
+
     }
 }

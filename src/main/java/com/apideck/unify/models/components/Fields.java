@@ -14,9 +14,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Fields {
 
@@ -24,17 +24,21 @@ public class Fields {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     private Optional<String> name;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
     private JsonNullable<String> description;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
     private Optional<? extends CustomObjectSchemaType> type;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
@@ -80,7 +84,9 @@ public class Fields {
     }
     
     public Fields() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -126,15 +132,17 @@ public class Fields {
         return defaultValue;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Fields withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public Fields withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -147,6 +155,7 @@ public class Fields {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     public Fields withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
@@ -172,6 +181,7 @@ public class Fields {
         return this;
     }
 
+
     public Fields withType(Optional<? extends CustomObjectSchemaType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
@@ -183,6 +193,7 @@ public class Fields {
         this.required = Optional.ofNullable(required);
         return this;
     }
+
 
     public Fields withRequired(Optional<Boolean> required) {
         Utils.checkNotNull(required, "required");
@@ -226,7 +237,6 @@ public class Fields {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -237,24 +247,20 @@ public class Fields {
         }
         Fields other = (Fields) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.required, other.required) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.defaultValue, other.defaultValue);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.required, other.required) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.defaultValue, other.defaultValue);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            description,
-            type,
-            required,
-            options,
+        return Utils.enhancedHash(
+            id, name, description,
+            type, required, options,
             defaultValue);
     }
     
@@ -269,26 +275,28 @@ public class Fields {
                 "options", options,
                 "defaultValue", defaultValue);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends CustomObjectSchemaType> type = Optional.empty();
- 
+
         private Optional<Boolean> required = Optional.empty();
- 
+
         private JsonNullable<? extends List<CustomObjectSchemaOptions>> options = JsonNullable.undefined();
- 
+
         private JsonNullable<String> defaultValue = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -302,6 +310,7 @@ public class Fields {
             return this;
         }
 
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = Optional.ofNullable(name);
@@ -313,6 +322,7 @@ public class Fields {
             this.name = name;
             return this;
         }
+
 
         public Builder description(String description) {
             Utils.checkNotNull(description, "description");
@@ -326,6 +336,7 @@ public class Fields {
             return this;
         }
 
+
         public Builder type(CustomObjectSchemaType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -338,6 +349,7 @@ public class Fields {
             return this;
         }
 
+
         public Builder required(boolean required) {
             Utils.checkNotNull(required, "required");
             this.required = Optional.ofNullable(required);
@@ -349,6 +361,7 @@ public class Fields {
             this.required = required;
             return this;
         }
+
 
         /**
          * Options for select and multiselect types
@@ -368,6 +381,7 @@ public class Fields {
             return this;
         }
 
+
         /**
          * Default value for the field
          */
@@ -385,16 +399,14 @@ public class Fields {
             this.defaultValue = defaultValue;
             return this;
         }
-        
+
         public Fields build() {
+
             return new Fields(
-                id,
-                name,
-                description,
-                type,
-                required,
-                options,
+                id, name, description,
+                type, required, options,
                 defaultValue);
         }
+
     }
 }

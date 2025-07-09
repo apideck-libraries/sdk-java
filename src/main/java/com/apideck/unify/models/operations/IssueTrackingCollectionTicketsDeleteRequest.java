@@ -12,11 +12,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class IssueTrackingCollectionTicketsDeleteRequest {
 
+public class IssueTrackingCollectionTicketsDeleteRequest {
     /**
      * ID of the ticket you are acting upon.
      */
@@ -78,7 +77,8 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
     public IssueTrackingCollectionTicketsDeleteRequest(
             String ticketId,
             String collectionId) {
-        this(ticketId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), collectionId);
+        this(ticketId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), collectionId);
     }
 
     /**
@@ -129,9 +129,10 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         return collectionId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the ticket you are acting upon.
@@ -151,6 +152,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -168,6 +170,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -187,6 +190,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -204,6 +208,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -223,7 +228,6 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -234,23 +238,19 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
         }
         IssueTrackingCollectionTicketsDeleteRequest other = (IssueTrackingCollectionTicketsDeleteRequest) o;
         return 
-            Objects.deepEquals(this.ticketId, other.ticketId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.collectionId, other.collectionId);
+            Utils.enhancedDeepEquals(this.ticketId, other.ticketId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.collectionId, other.collectionId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            ticketId,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            collectionId);
+        return Utils.enhancedHash(
+            ticketId, consumerId, appId,
+            serviceId, raw, collectionId);
     }
     
     @Override
@@ -263,24 +263,26 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
                 "raw", raw,
                 "collectionId", collectionId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String ticketId;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private String collectionId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the ticket you are acting upon.
@@ -290,6 +292,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             this.ticketId = ticketId;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -309,6 +312,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -326,6 +330,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -345,6 +350,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -363,6 +369,7 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             return this;
         }
 
+
         /**
          * The collection ID
          */
@@ -371,19 +378,17 @@ public class IssueTrackingCollectionTicketsDeleteRequest {
             this.collectionId = collectionId;
             return this;
         }
-        
+
         public IssueTrackingCollectionTicketsDeleteRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new IssueTrackingCollectionTicketsDeleteRequest(
-                ticketId,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                collectionId);
+                ticketId, consumerId, appId,
+                serviceId, raw, collectionId);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

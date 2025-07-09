@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ApiResource {
 
+public class ApiResource {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
@@ -73,7 +72,8 @@ public class ApiResource {
     }
     
     public ApiResource() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -119,9 +119,10 @@ public class ApiResource {
         return (Optional<Schema>) schema;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -131,6 +132,7 @@ public class ApiResource {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -150,6 +152,7 @@ public class ApiResource {
         return this;
     }
 
+
     /**
      * Name of the resource (plural)
      */
@@ -167,6 +170,7 @@ public class ApiResource {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
@@ -186,6 +190,7 @@ public class ApiResource {
         return this;
     }
 
+
     /**
      * List of linked resources.
      */
@@ -204,6 +209,7 @@ public class ApiResource {
         return this;
     }
 
+
     /**
      * JSON Schema of the resource in our Unified API
      */
@@ -213,7 +219,6 @@ public class ApiResource {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -224,21 +229,18 @@ public class ApiResource {
         }
         ApiResource other = (ApiResource) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.linkedResources, other.linkedResources) &&
-            Objects.deepEquals(this.schema, other.schema);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.linkedResources, other.linkedResources) &&
+            Utils.enhancedDeepEquals(this.schema, other.schema);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            status,
-            linkedResources,
-            schema);
+        return Utils.enhancedHash(
+            id, name, status,
+            linkedResources, schema);
     }
     
     @Override
@@ -250,22 +252,24 @@ public class ApiResource {
                 "linkedResources", linkedResources,
                 "schema", schema);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<? extends ResourceStatus> status = Optional.empty();
- 
+
         private Optional<? extends List<LinkedResources>> linkedResources = Optional.empty();
- 
+
         private Optional<? extends Schema> schema = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of name.
@@ -285,6 +289,7 @@ public class ApiResource {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -302,6 +307,7 @@ public class ApiResource {
             this.name = name;
             return this;
         }
+
 
         /**
          * Status of the resource. Resources with status live or beta are callable.
@@ -321,6 +327,7 @@ public class ApiResource {
             return this;
         }
 
+
         /**
          * List of linked resources.
          */
@@ -339,6 +346,7 @@ public class ApiResource {
             return this;
         }
 
+
         /**
          * JSON Schema of the resource in our Unified API
          */
@@ -356,14 +364,13 @@ public class ApiResource {
             this.schema = schema;
             return this;
         }
-        
+
         public ApiResource build() {
+
             return new ApiResource(
-                id,
-                name,
-                status,
-                linkedResources,
-                schema);
+                id, name, status,
+                linkedResources, schema);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class CrmUsersAddRequestBuilder {
 
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
               = new CrmUsersAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

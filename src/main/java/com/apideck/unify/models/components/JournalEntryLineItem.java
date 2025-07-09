@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class JournalEntryLineItem {
 
+public class JournalEntryLineItem {
     /**
      * A unique identifier for an object.
      */
@@ -63,6 +62,7 @@ public class JournalEntryLineItem {
     @JsonProperty("type")
     private JournalEntryLineItemType type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRate> taxRate;
@@ -82,6 +82,7 @@ public class JournalEntryLineItem {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("ledger_account")
@@ -173,7 +174,11 @@ public class JournalEntryLineItem {
     
     public JournalEntryLineItem(
             JournalEntryLineItemType type) {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), type, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), type,
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -298,9 +303,10 @@ public class JournalEntryLineItem {
         return lineNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -310,6 +316,7 @@ public class JournalEntryLineItem {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -407,6 +414,7 @@ public class JournalEntryLineItem {
         return this;
     }
 
+
     public JournalEntryLineItem withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -458,6 +466,7 @@ public class JournalEntryLineItem {
         this.ledgerAccount = Optional.ofNullable(ledgerAccount);
         return this;
     }
+
 
     public JournalEntryLineItem withLedgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
@@ -555,7 +564,6 @@ public class JournalEntryLineItem {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -566,41 +574,31 @@ public class JournalEntryLineItem {
         }
         JournalEntryLineItem other = (JournalEntryLineItem) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.taxAmount, other.taxAmount) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.taxAmount, other.taxAmount) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            description,
-            taxAmount,
-            subTotal,
-            totalAmount,
-            type,
-            taxRate,
-            trackingCategory,
-            trackingCategories,
-            ledgerAccount,
-            customer,
-            supplier,
-            departmentId,
-            locationId,
-            lineNumber);
+        return Utils.enhancedHash(
+            id, description, taxAmount,
+            subTotal, totalAmount, type,
+            taxRate, trackingCategory, trackingCategories,
+            ledgerAccount, customer, supplier,
+            departmentId, locationId, lineNumber);
     }
     
     @Override
@@ -622,43 +620,45 @@ public class JournalEntryLineItem {
                 "locationId", locationId,
                 "lineNumber", lineNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> taxAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
- 
+
         private JournalEntryLineItemType type;
- 
+
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
- 
+
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedLedgerAccount> ledgerAccount = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -678,6 +678,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * User defined description
          */
@@ -695,6 +696,7 @@ public class JournalEntryLineItem {
             this.description = description;
             return this;
         }
+
 
         /**
          * Tax amount
@@ -714,6 +716,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * Sub-total amount, normally before tax.
          */
@@ -731,6 +734,7 @@ public class JournalEntryLineItem {
             this.subTotal = subTotal;
             return this;
         }
+
 
         /**
          * Debit entries are considered positive, and credit entries are considered negative.
@@ -750,6 +754,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * Debit entries are considered positive, and credit entries are considered negative.
          */
@@ -758,6 +763,7 @@ public class JournalEntryLineItem {
             this.type = type;
             return this;
         }
+
 
         public Builder taxRate(LinkedTaxRate taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
@@ -770,6 +776,7 @@ public class JournalEntryLineItem {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * 
@@ -793,6 +800,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * A list of linked tracking categories.
          */
@@ -811,6 +819,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = Optional.ofNullable(ledgerAccount);
@@ -822,6 +831,7 @@ public class JournalEntryLineItem {
             this.ledgerAccount = ledgerAccount;
             return this;
         }
+
 
         /**
          * The customer this entity is linked to.
@@ -841,6 +851,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * The supplier this entity is linked to.
          */
@@ -858,6 +869,7 @@ public class JournalEntryLineItem {
             this.supplier = supplier;
             return this;
         }
+
 
         /**
          * The ID of the department
@@ -877,6 +889,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * The ID of the location
          */
@@ -895,6 +908,7 @@ public class JournalEntryLineItem {
             return this;
         }
 
+
         /**
          * Line number of the resource
          */
@@ -912,24 +926,16 @@ public class JournalEntryLineItem {
             this.lineNumber = lineNumber;
             return this;
         }
-        
+
         public JournalEntryLineItem build() {
+
             return new JournalEntryLineItem(
-                id,
-                description,
-                taxAmount,
-                subTotal,
-                totalAmount,
-                type,
-                taxRate,
-                trackingCategory,
-                trackingCategories,
-                ledgerAccount,
-                customer,
-                supplier,
-                departmentId,
-                locationId,
-                lineNumber);
+                id, description, taxAmount,
+                subTotal, totalAmount, type,
+                taxRate, trackingCategory, trackingCategories,
+                ledgerAccount, customer, supplier,
+                departmentId, locationId, lineNumber);
         }
+
     }
 }

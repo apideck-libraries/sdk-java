@@ -48,8 +48,8 @@ public class FileStorageFilesExportRequestBuilder {
 
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
               = new FileStorageFilesExportOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

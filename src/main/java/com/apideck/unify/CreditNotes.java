@@ -37,7 +37,6 @@ public class CreditNotes {
     CreditNotes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Credit Notes
      * 
@@ -77,11 +76,10 @@ public class CreditNotes {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
               = new AccountingCreditNotesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Credit Note
@@ -122,11 +120,10 @@ public class CreditNotes {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
               = new AccountingCreditNotesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Credit Note
@@ -167,11 +164,10 @@ public class CreditNotes {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
               = new AccountingCreditNotesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Credit Note
@@ -212,11 +208,10 @@ public class CreditNotes {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
               = new AccountingCreditNotesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Credit Note
@@ -257,8 +252,8 @@ public class CreditNotes {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
               = new AccountingCreditNotesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

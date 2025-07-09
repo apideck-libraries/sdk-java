@@ -12,12 +12,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class VaultConsumersAllRequest {
 
+public class VaultConsumersAllRequest {
     /**
      * The ID of your Unify application
      */
@@ -77,9 +76,10 @@ public class VaultConsumersAllRequest {
         return limit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -89,6 +89,7 @@ public class VaultConsumersAllRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -126,6 +127,7 @@ public class VaultConsumersAllRequest {
         return this;
     }
 
+
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
@@ -135,7 +137,6 @@ public class VaultConsumersAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,17 +147,15 @@ public class VaultConsumersAllRequest {
         }
         VaultConsumersAllRequest other = (VaultConsumersAllRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            cursor,
-            limit);
+        return Utils.enhancedHash(
+            appId, cursor, limit);
     }
     
     @Override
@@ -166,18 +165,20 @@ public class VaultConsumersAllRequest {
                 "cursor", cursor,
                 "limit", limit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -197,6 +198,7 @@ public class VaultConsumersAllRequest {
             return this;
         }
 
+
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
@@ -215,6 +217,7 @@ public class VaultConsumersAllRequest {
             return this;
         }
 
+
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
@@ -232,16 +235,16 @@ public class VaultConsumersAllRequest {
             this.limit = limit;
             return this;
         }
-        
+
         public VaultConsumersAllRequest build() {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new VaultConsumersAllRequest(
-                appId,
-                cursor,
-                limit);
+                appId, cursor, limit);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(

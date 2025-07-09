@@ -17,12 +17,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Expense {
 
+public class Expense {
     /**
      * A unique identifier for an object.
      */
@@ -113,6 +112,7 @@ public class Expense {
     @JsonProperty("memo")
     private JsonNullable<String> memo;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
     private Optional<? extends LinkedTaxRate> taxRate;
@@ -136,6 +136,7 @@ public class Expense {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
     private JsonNullable<String> reference;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -272,7 +273,15 @@ public class Expense {
     public Expense(
             String accountId,
             List<ExpenseLineItem> lineItems) {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), accountId, Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), lineItems, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            accountId, Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            lineItems, JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -476,9 +485,10 @@ public class Expense {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -488,6 +498,7 @@ public class Expense {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -525,6 +536,7 @@ public class Expense {
         return this;
     }
 
+
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
@@ -552,6 +564,7 @@ public class Expense {
         return this;
     }
 
+
     /**
      * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
      */
@@ -569,6 +582,7 @@ public class Expense {
         this.supplierId = Optional.ofNullable(supplierId);
         return this;
     }
+
 
     /**
      * The ID of the supplier this entity is linked to.
@@ -711,6 +725,7 @@ public class Expense {
         return this;
     }
 
+
     public Expense withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -767,6 +782,7 @@ public class Expense {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public Expense withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -891,6 +907,7 @@ public class Expense {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -900,7 +917,6 @@ public class Expense {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -911,60 +927,44 @@ public class Expense {
         }
         Expense other = (Expense) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.transactionDate, other.transactionDate) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.supplierId, other.supplierId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.paymentType, other.paymentType) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.paymentType, other.paymentType) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            number,
-            transactionDate,
-            accountId,
-            customerId,
-            supplierId,
-            companyId,
-            departmentId,
-            paymentType,
-            currency,
-            currencyRate,
-            type,
-            memo,
-            taxRate,
-            totalAmount,
-            lineItems,
-            reference,
-            customFields,
-            customMappings,
-            updatedAt,
-            createdAt,
-            rowVersion,
-            updatedBy,
-            createdBy,
+        return Utils.enhancedHash(
+            id, number, transactionDate,
+            accountId, customerId, supplierId,
+            companyId, departmentId, paymentType,
+            currency, currencyRate, type,
+            memo, taxRate, totalAmount,
+            lineItems, reference, customFields,
+            customMappings, updatedAt, createdAt,
+            rowVersion, updatedBy, createdBy,
             passThrough);
     }
     
@@ -997,62 +997,64 @@ public class Expense {
                 "createdBy", createdBy,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
- 
+
         private String accountId;
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> supplierId = Optional.empty();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ExpensePaymentType> paymentType = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ExpenseType> type = JsonNullable.undefined();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
- 
+
         private JsonNullable<Double> totalAmount = JsonNullable.undefined();
- 
+
         private List<ExpenseLineItem> lineItems;
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1072,6 +1074,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * Number.
          */
@@ -1089,6 +1092,7 @@ public class Expense {
             this.number = number;
             return this;
         }
+
 
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
@@ -1108,6 +1112,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The unique identifier for the ledger account that this expense should be credited to.
          */
@@ -1116,6 +1121,7 @@ public class Expense {
             this.accountId = accountId;
             return this;
         }
+
 
         /**
          * The ID of the customer this entity is linked to. Used for expenses that should be marked as billable to customers.
@@ -1135,6 +1141,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The ID of the supplier this entity is linked to.
          */
@@ -1152,6 +1159,7 @@ public class Expense {
             this.supplierId = supplierId;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1171,6 +1179,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The ID of the department
          */
@@ -1188,6 +1197,7 @@ public class Expense {
             this.departmentId = departmentId;
             return this;
         }
+
 
         /**
          * The type of payment for the expense.
@@ -1207,6 +1217,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1224,6 +1235,7 @@ public class Expense {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1243,6 +1255,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The type of expense.
          */
@@ -1260,6 +1273,7 @@ public class Expense {
             this.type = type;
             return this;
         }
+
 
         /**
          * The memo of the expense.
@@ -1279,6 +1293,7 @@ public class Expense {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRate taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -1290,6 +1305,7 @@ public class Expense {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * The total amount of the expense line item.
@@ -1309,6 +1325,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * Expense line items linked to this expense.
          */
@@ -1317,6 +1334,7 @@ public class Expense {
             this.lineItems = lineItems;
             return this;
         }
+
 
         /**
          * Optional reference identifier for the transaction.
@@ -1336,6 +1354,7 @@ public class Expense {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1347,6 +1366,7 @@ public class Expense {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1366,6 +1386,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -1383,6 +1404,7 @@ public class Expense {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -1402,6 +1424,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -1419,6 +1442,7 @@ public class Expense {
             this.rowVersion = rowVersion;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -1438,6 +1462,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -1456,6 +1481,7 @@ public class Expense {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1473,34 +1499,20 @@ public class Expense {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Expense build() {
+
             return new Expense(
-                id,
-                number,
-                transactionDate,
-                accountId,
-                customerId,
-                supplierId,
-                companyId,
-                departmentId,
-                paymentType,
-                currency,
-                currencyRate,
-                type,
-                memo,
-                taxRate,
-                totalAmount,
-                lineItems,
-                reference,
-                customFields,
-                customMappings,
-                updatedAt,
-                createdAt,
-                rowVersion,
-                updatedBy,
-                createdBy,
+                id, number, transactionDate,
+                accountId, customerId, supplierId,
+                companyId, departmentId, paymentType,
+                currency, currencyRate, type,
+                memo, taxRate, totalAmount,
+                lineItems, reference, customFields,
+                customMappings, updatedAt, createdAt,
+                rowVersion, updatedBy, createdBy,
                 passThrough);
         }
+
     }
 }

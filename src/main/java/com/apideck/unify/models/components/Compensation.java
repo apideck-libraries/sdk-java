@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Compensation {
 
+public class Compensation {
     /**
      * A unique identifier for an object.
      */
@@ -85,7 +84,8 @@ public class Compensation {
     }
     
     public Compensation() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -139,9 +139,10 @@ public class Compensation {
         return (JsonNullable<List<Benefit>>) benefits;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -151,6 +152,7 @@ public class Compensation {
         this.employeeId = Optional.ofNullable(employeeId);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -251,7 +253,6 @@ public class Compensation {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -262,23 +263,19 @@ public class Compensation {
         }
         Compensation other = (Compensation) o;
         return 
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.netPay, other.netPay) &&
-            Objects.deepEquals(this.grossPay, other.grossPay) &&
-            Objects.deepEquals(this.taxes, other.taxes) &&
-            Objects.deepEquals(this.deductions, other.deductions) &&
-            Objects.deepEquals(this.benefits, other.benefits);
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.netPay, other.netPay) &&
+            Utils.enhancedDeepEquals(this.grossPay, other.grossPay) &&
+            Utils.enhancedDeepEquals(this.taxes, other.taxes) &&
+            Utils.enhancedDeepEquals(this.deductions, other.deductions) &&
+            Utils.enhancedDeepEquals(this.benefits, other.benefits);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            employeeId,
-            netPay,
-            grossPay,
-            taxes,
-            deductions,
-            benefits);
+        return Utils.enhancedHash(
+            employeeId, netPay, grossPay,
+            taxes, deductions, benefits);
     }
     
     @Override
@@ -291,24 +288,26 @@ public class Compensation {
                 "deductions", deductions,
                 "benefits", benefits);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> employeeId = Optional.empty();
- 
+
         private JsonNullable<Double> netPay = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> grossPay = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Tax>> taxes = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Deduction>> deductions = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Benefit>> benefits = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -328,6 +327,7 @@ public class Compensation {
             return this;
         }
 
+
         /**
          * The employee's net pay. Only available when payroll has been processed
          */
@@ -345,6 +345,7 @@ public class Compensation {
             this.netPay = netPay;
             return this;
         }
+
 
         /**
          * The employee's gross pay. Only available when payroll has been processed
@@ -364,6 +365,7 @@ public class Compensation {
             return this;
         }
 
+
         /**
          * An array of employer and employee taxes for the pay period.
          */
@@ -381,6 +383,7 @@ public class Compensation {
             this.taxes = taxes;
             return this;
         }
+
 
         /**
          * An array of employee deductions for the pay period.
@@ -400,6 +403,7 @@ public class Compensation {
             return this;
         }
 
+
         /**
          * An array of employee benefits for the pay period.
          */
@@ -417,15 +421,13 @@ public class Compensation {
             this.benefits = benefits;
             return this;
         }
-        
+
         public Compensation build() {
+
             return new Compensation(
-                employeeId,
-                netPay,
-                grossPay,
-                taxes,
-                deductions,
-                benefits);
+                employeeId, netPay, grossPay,
+                taxes, deductions, benefits);
         }
+
     }
 }

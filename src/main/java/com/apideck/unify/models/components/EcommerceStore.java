@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceStore {
 
+public class EcommerceStore {
     /**
      * A unique identifier for an object.
      */
@@ -95,7 +94,9 @@ public class EcommerceStore {
     
     public EcommerceStore(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -155,9 +156,10 @@ public class EcommerceStore {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -276,7 +278,6 @@ public class EcommerceStore {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -287,24 +288,20 @@ public class EcommerceStore {
         }
         EcommerceStore other = (EcommerceStore) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.storeUrl, other.storeUrl) &&
-            Objects.deepEquals(this.adminUrl, other.adminUrl) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.storeUrl, other.storeUrl) &&
+            Utils.enhancedDeepEquals(this.adminUrl, other.adminUrl) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            storeUrl,
-            adminUrl,
-            customMappings,
-            createdAt,
+        return Utils.enhancedHash(
+            id, name, storeUrl,
+            adminUrl, customMappings, createdAt,
             updatedAt);
     }
     
@@ -319,26 +316,28 @@ public class EcommerceStore {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> storeUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> adminUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -348,6 +347,7 @@ public class EcommerceStore {
             this.id = id;
             return this;
         }
+
 
         /**
          * The store's name
@@ -367,6 +367,7 @@ public class EcommerceStore {
             return this;
         }
 
+
         /**
          * The store's website URL
          */
@@ -384,6 +385,7 @@ public class EcommerceStore {
             this.storeUrl = storeUrl;
             return this;
         }
+
 
         /**
          * The store's admin login URL
@@ -403,6 +405,7 @@ public class EcommerceStore {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -420,6 +423,7 @@ public class EcommerceStore {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -439,6 +443,7 @@ public class EcommerceStore {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -456,16 +461,14 @@ public class EcommerceStore {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public EcommerceStore build() {
+
             return new EcommerceStore(
-                id,
-                name,
-                storeUrl,
-                adminUrl,
-                customMappings,
-                createdAt,
+                id, name, storeUrl,
+                adminUrl, customMappings, createdAt,
                 updatedAt);
         }
+
     }
 }

@@ -10,12 +10,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class InvoiceItemsFilter {
 
+public class InvoiceItemsFilter {
     /**
      * Name of Invoice Items to search for
      */
@@ -59,9 +58,10 @@ public class InvoiceItemsFilter {
         return (JsonNullable<InvoiceItemType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of Invoice Items to search for
@@ -71,6 +71,7 @@ public class InvoiceItemsFilter {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of Invoice Items to search for
@@ -99,7 +100,6 @@ public class InvoiceItemsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,15 +110,14 @@ public class InvoiceItemsFilter {
         }
         InvoiceItemsFilter other = (InvoiceItemsFilter) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            type);
+        return Utils.enhancedHash(
+            name, type);
     }
     
     @Override
@@ -127,16 +126,18 @@ public class InvoiceItemsFilter {
                 "name", name,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<? extends InvoiceItemType> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of Invoice Items to search for
@@ -156,6 +157,7 @@ public class InvoiceItemsFilter {
             return this;
         }
 
+
         /**
          * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
          */
@@ -173,11 +175,12 @@ public class InvoiceItemsFilter {
             this.type = type;
             return this;
         }
-        
+
         public InvoiceItemsFilter build() {
+
             return new InvoiceItemsFilter(
-                name,
-                type);
+                name, type);
         }
+
     }
 }

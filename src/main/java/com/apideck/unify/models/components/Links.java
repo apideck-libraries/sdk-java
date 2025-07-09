@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -21,7 +20,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Links to navigate to previous or next pages through the API
  */
 public class Links {
-
     /**
      * Link to navigate to the previous page through the API
      */
@@ -84,9 +82,10 @@ public class Links {
         return next;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Link to navigate to the previous page through the API
@@ -115,6 +114,7 @@ public class Links {
         return this;
     }
 
+
     /**
      * Link to navigate to the current page through the API
      */
@@ -142,7 +142,6 @@ public class Links {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,17 +152,15 @@ public class Links {
         }
         Links other = (Links) o;
         return 
-            Objects.deepEquals(this.previous, other.previous) &&
-            Objects.deepEquals(this.current, other.current) &&
-            Objects.deepEquals(this.next, other.next);
+            Utils.enhancedDeepEquals(this.previous, other.previous) &&
+            Utils.enhancedDeepEquals(this.current, other.current) &&
+            Utils.enhancedDeepEquals(this.next, other.next);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            previous,
-            current,
-            next);
+        return Utils.enhancedHash(
+            previous, current, next);
     }
     
     @Override
@@ -173,18 +170,20 @@ public class Links {
                 "current", current,
                 "next", next);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> previous = JsonNullable.undefined();
- 
+
         private Optional<String> current = Optional.empty();
- 
+
         private JsonNullable<String> next = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Link to navigate to the previous page through the API
@@ -204,6 +203,7 @@ public class Links {
             return this;
         }
 
+
         /**
          * Link to navigate to the current page through the API
          */
@@ -222,6 +222,7 @@ public class Links {
             return this;
         }
 
+
         /**
          * Link to navigate to the previous page through the API
          */
@@ -239,12 +240,12 @@ public class Links {
             this.next = next;
             return this;
         }
-        
+
         public Links build() {
+
             return new Links(
-                previous,
-                current,
-                next);
+                previous, current, next);
         }
+
     }
 }

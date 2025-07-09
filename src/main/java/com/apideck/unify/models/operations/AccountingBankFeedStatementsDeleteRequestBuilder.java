@@ -48,8 +48,8 @@ public class AccountingBankFeedStatementsDeleteRequestBuilder {
 
         RequestOperation<AccountingBankFeedStatementsDeleteRequest, AccountingBankFeedStatementsDeleteResponse> operation
               = new AccountingBankFeedStatementsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultConsumerRequestCountsAllRequest {
 
+public class VaultConsumerRequestCountsAllRequest {
     /**
      * The ID of your Unify application
      */
@@ -58,7 +57,8 @@ public class VaultConsumerRequestCountsAllRequest {
             String consumerId,
             String startDatetime,
             String endDatetime) {
-        this(Optional.empty(), consumerId, startDatetime, endDatetime);
+        this(Optional.empty(), consumerId, startDatetime,
+            endDatetime);
     }
 
     /**
@@ -93,9 +93,10 @@ public class VaultConsumerRequestCountsAllRequest {
         return endDatetime;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -105,6 +106,7 @@ public class VaultConsumerRequestCountsAllRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -142,7 +144,6 @@ public class VaultConsumerRequestCountsAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -153,18 +154,16 @@ public class VaultConsumerRequestCountsAllRequest {
         }
         VaultConsumerRequestCountsAllRequest other = (VaultConsumerRequestCountsAllRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.startDatetime, other.startDatetime) &&
-            Objects.deepEquals(this.endDatetime, other.endDatetime);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.startDatetime, other.startDatetime) &&
+            Utils.enhancedDeepEquals(this.endDatetime, other.endDatetime);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            consumerId,
-            startDatetime,
+        return Utils.enhancedHash(
+            appId, consumerId, startDatetime,
             endDatetime);
     }
     
@@ -176,20 +175,22 @@ public class VaultConsumerRequestCountsAllRequest {
                 "startDatetime", startDatetime,
                 "endDatetime", endDatetime);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String consumerId;
- 
+
         private String startDatetime;
- 
+
         private String endDatetime;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -209,6 +210,7 @@ public class VaultConsumerRequestCountsAllRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer to return
          */
@@ -217,6 +219,7 @@ public class VaultConsumerRequestCountsAllRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * Scopes results to requests that happened after datetime
@@ -227,6 +230,7 @@ public class VaultConsumerRequestCountsAllRequest {
             return this;
         }
 
+
         /**
          * Scopes results to requests that happened before datetime
          */
@@ -235,13 +239,13 @@ public class VaultConsumerRequestCountsAllRequest {
             this.endDatetime = endDatetime;
             return this;
         }
-        
+
         public VaultConsumerRequestCountsAllRequest build() {
+
             return new VaultConsumerRequestCountsAllRequest(
-                appId,
-                consumerId,
-                startDatetime,
+                appId, consumerId, startDatetime,
                 endDatetime);
         }
+
     }
 }

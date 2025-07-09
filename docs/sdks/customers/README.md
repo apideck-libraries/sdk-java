@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingCustomersAllRequest req = AccountingCustomersAllRequest.builder()
@@ -118,7 +118,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingCustomersAddRequest req = AccountingCustomersAddRequest.builder()
@@ -222,7 +222,7 @@ public class Application {
                     .notes("Some notes about this customer")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
                     .taxNumber("US123945459")
                     .currency(Currency.USD)
@@ -333,7 +333,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingCustomersOneRequest req = AccountingCustomersOneRequest.builder()
@@ -399,7 +399,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingCustomersUpdateRequest req = AccountingCustomersUpdateRequest.builder()
@@ -525,7 +525,7 @@ public class Application {
                     .notes("Some notes about this customer")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
                     .taxNumber("US123945459")
                     .currency(Currency.USD)
@@ -630,7 +630,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingCustomersDeleteRequest req = AccountingCustomersDeleteRequest.builder()

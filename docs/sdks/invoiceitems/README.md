@@ -35,7 +35,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingInvoiceItemsAllRequest req = AccountingInvoiceItemsAllRequest.builder()
@@ -112,7 +112,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingInvoiceItemsAddRequest req = AccountingInvoiceItemsAddRequest.builder()
@@ -132,7 +132,7 @@ public class Application {
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10)
+                            .rate(10d)
                             .build())
                         .build())
                     .purchaseDetails(InvoiceItemPurchaseDetails.builder()
@@ -141,10 +141,10 @@ public class Application {
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10)
+                            .rate(10d)
                             .build())
                         .build())
-                    .quantity(1)
+                    .quantity(1d)
                     .unitPrice(27500.5)
                     .assetAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
@@ -245,7 +245,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingInvoiceItemsOneRequest req = AccountingInvoiceItemsOneRequest.builder()
@@ -316,7 +316,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingInvoiceItemsUpdateRequest req = AccountingInvoiceItemsUpdateRequest.builder()
@@ -337,7 +337,7 @@ public class Application {
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10)
+                            .rate(10d)
                             .build())
                         .build())
                     .purchaseDetails(InvoiceItemPurchaseDetails.builder()
@@ -346,10 +346,10 @@ public class Application {
                         .taxInclusive(true)
                         .taxRate(LinkedTaxRateInput.builder()
                             .id("123456")
-                            .rate(10)
+                            .rate(10d)
                             .build())
                         .build())
-                    .quantity(1)
+                    .quantity(1d)
                     .unitPrice(27500.5)
                     .assetAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
@@ -456,7 +456,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingInvoiceItemsDeleteRequest req = AccountingInvoiceItemsDeleteRequest.builder()

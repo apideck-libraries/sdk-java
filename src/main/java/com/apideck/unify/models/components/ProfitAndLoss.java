@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ProfitAndLoss {
 
+public class ProfitAndLoss {
     /**
      * A unique identifier for an object.
      */
@@ -94,13 +93,16 @@ public class ProfitAndLoss {
     @JsonProperty("uncategorized_accounts")
     private Optional<? extends UncategorizedAccounts> uncategorizedAccounts;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gross_profit")
     private Optional<? extends ProfitAndLossIndicator> grossProfit;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("net_operating_income")
     private Optional<? extends ProfitAndLossIndicator> netOperatingIncome;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("net_income")
@@ -176,7 +178,12 @@ public class ProfitAndLoss {
             String reportName,
             Income income,
             Expenses expenses) {
-        this(Optional.empty(), reportName, Optional.empty(), Optional.empty(), JsonNullable.undefined(), income, Optional.empty(), expenses, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), reportName, Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), income,
+            Optional.empty(), expenses, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -307,9 +314,10 @@ public class ProfitAndLoss {
         return customer;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -319,6 +327,7 @@ public class ProfitAndLoss {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -347,6 +356,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     /**
      * The start date of the report
      */
@@ -364,6 +374,7 @@ public class ProfitAndLoss {
         this.endDate = Optional.ofNullable(endDate);
         return this;
     }
+
 
     /**
      * The end date of the report
@@ -410,6 +421,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     /**
      * The cost of goods sold accounts
      */
@@ -437,6 +449,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     /**
      * The other income accounts
      */
@@ -454,6 +467,7 @@ public class ProfitAndLoss {
         this.otherExpenses = Optional.ofNullable(otherExpenses);
         return this;
     }
+
 
     /**
      * The other expenses accounts
@@ -473,6 +487,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     /**
      * The accounts not categorized in the other sections
      */
@@ -488,6 +503,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     public ProfitAndLoss withGrossProfit(Optional<? extends ProfitAndLossIndicator> grossProfit) {
         Utils.checkNotNull(grossProfit, "grossProfit");
         this.grossProfit = grossProfit;
@@ -500,6 +516,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     public ProfitAndLoss withNetOperatingIncome(Optional<? extends ProfitAndLossIndicator> netOperatingIncome) {
         Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
         this.netOperatingIncome = netOperatingIncome;
@@ -511,6 +528,7 @@ public class ProfitAndLoss {
         this.netIncome = Optional.ofNullable(netIncome);
         return this;
     }
+
 
     public ProfitAndLoss withNetIncome(Optional<? extends ProfitAndLossIndicator> netIncome) {
         Utils.checkNotNull(netIncome, "netIncome");
@@ -545,6 +563,7 @@ public class ProfitAndLoss {
         return this;
     }
 
+
     /**
      * The customer id
      */
@@ -554,7 +573,6 @@ public class ProfitAndLoss {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -565,42 +583,32 @@ public class ProfitAndLoss {
         }
         ProfitAndLoss other = (ProfitAndLoss) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.reportName, other.reportName) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.income, other.income) &&
-            Objects.deepEquals(this.costOfGoodsSold, other.costOfGoodsSold) &&
-            Objects.deepEquals(this.expenses, other.expenses) &&
-            Objects.deepEquals(this.otherIncome, other.otherIncome) &&
-            Objects.deepEquals(this.otherExpenses, other.otherExpenses) &&
-            Objects.deepEquals(this.uncategorizedAccounts, other.uncategorizedAccounts) &&
-            Objects.deepEquals(this.grossProfit, other.grossProfit) &&
-            Objects.deepEquals(this.netOperatingIncome, other.netOperatingIncome) &&
-            Objects.deepEquals(this.netIncome, other.netIncome) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customer, other.customer);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.reportName, other.reportName) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.income, other.income) &&
+            Utils.enhancedDeepEquals(this.costOfGoodsSold, other.costOfGoodsSold) &&
+            Utils.enhancedDeepEquals(this.expenses, other.expenses) &&
+            Utils.enhancedDeepEquals(this.otherIncome, other.otherIncome) &&
+            Utils.enhancedDeepEquals(this.otherExpenses, other.otherExpenses) &&
+            Utils.enhancedDeepEquals(this.uncategorizedAccounts, other.uncategorizedAccounts) &&
+            Utils.enhancedDeepEquals(this.grossProfit, other.grossProfit) &&
+            Utils.enhancedDeepEquals(this.netOperatingIncome, other.netOperatingIncome) &&
+            Utils.enhancedDeepEquals(this.netIncome, other.netIncome) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            reportName,
-            startDate,
-            endDate,
-            currency,
-            income,
-            costOfGoodsSold,
-            expenses,
-            otherIncome,
-            otherExpenses,
-            uncategorizedAccounts,
-            grossProfit,
-            netOperatingIncome,
-            netIncome,
-            customMappings,
+        return Utils.enhancedHash(
+            id, reportName, startDate,
+            endDate, currency, income,
+            costOfGoodsSold, expenses, otherIncome,
+            otherExpenses, uncategorizedAccounts, grossProfit,
+            netOperatingIncome, netIncome, customMappings,
             customer);
     }
     
@@ -624,44 +632,46 @@ public class ProfitAndLoss {
                 "customMappings", customMappings,
                 "customer", customer);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String reportName;
- 
+
         private Optional<String> startDate = Optional.empty();
- 
+
         private Optional<String> endDate = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Income income;
- 
+
         private Optional<? extends CostOfGoodsSold> costOfGoodsSold = Optional.empty();
- 
+
         private Expenses expenses;
- 
+
         private Optional<? extends OtherIncome> otherIncome = Optional.empty();
- 
+
         private Optional<? extends OtherExpenses> otherExpenses = Optional.empty();
- 
+
         private Optional<? extends UncategorizedAccounts> uncategorizedAccounts = Optional.empty();
- 
+
         private Optional<? extends ProfitAndLossIndicator> grossProfit = Optional.empty();
- 
+
         private Optional<? extends ProfitAndLossIndicator> netOperatingIncome = Optional.empty();
- 
+
         private Optional<? extends ProfitAndLossIndicator> netIncome = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<String> customer = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -681,6 +691,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The name of the report
          */
@@ -689,6 +700,7 @@ public class ProfitAndLoss {
             this.reportName = reportName;
             return this;
         }
+
 
         /**
          * The start date of the report
@@ -708,6 +720,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The end date of the report
          */
@@ -725,6 +738,7 @@ public class ProfitAndLoss {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -744,6 +758,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The operating income accounts
          */
@@ -752,6 +767,7 @@ public class ProfitAndLoss {
             this.income = income;
             return this;
         }
+
 
         /**
          * The cost of goods sold accounts
@@ -771,6 +787,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The operating expenses accounts
          */
@@ -779,6 +796,7 @@ public class ProfitAndLoss {
             this.expenses = expenses;
             return this;
         }
+
 
         /**
          * The other income accounts
@@ -798,6 +816,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The other expenses accounts
          */
@@ -815,6 +834,7 @@ public class ProfitAndLoss {
             this.otherExpenses = otherExpenses;
             return this;
         }
+
 
         /**
          * The accounts not categorized in the other sections
@@ -834,6 +854,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         public Builder grossProfit(ProfitAndLossIndicator grossProfit) {
             Utils.checkNotNull(grossProfit, "grossProfit");
             this.grossProfit = Optional.ofNullable(grossProfit);
@@ -845,6 +866,7 @@ public class ProfitAndLoss {
             this.grossProfit = grossProfit;
             return this;
         }
+
 
         public Builder netOperatingIncome(ProfitAndLossIndicator netOperatingIncome) {
             Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
@@ -858,6 +880,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         public Builder netIncome(ProfitAndLossIndicator netIncome) {
             Utils.checkNotNull(netIncome, "netIncome");
             this.netIncome = Optional.ofNullable(netIncome);
@@ -869,6 +892,7 @@ public class ProfitAndLoss {
             this.netIncome = netIncome;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -888,6 +912,7 @@ public class ProfitAndLoss {
             return this;
         }
 
+
         /**
          * The customer id
          */
@@ -905,25 +930,17 @@ public class ProfitAndLoss {
             this.customer = customer;
             return this;
         }
-        
+
         public ProfitAndLoss build() {
+
             return new ProfitAndLoss(
-                id,
-                reportName,
-                startDate,
-                endDate,
-                currency,
-                income,
-                costOfGoodsSold,
-                expenses,
-                otherIncome,
-                otherExpenses,
-                uncategorizedAccounts,
-                grossProfit,
-                netOperatingIncome,
-                netIncome,
-                customMappings,
+                id, reportName, startDate,
+                endDate, currency, income,
+                costOfGoodsSold, expenses, otherIncome,
+                otherExpenses, uncategorizedAccounts, grossProfit,
+                netOperatingIncome, netIncome, customMappings,
                 customer);
         }
+
     }
 }

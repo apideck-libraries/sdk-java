@@ -38,7 +38,6 @@ public class UploadSessions {
     UploadSessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Start Upload Session
      * 
@@ -80,12 +79,11 @@ public class UploadSessions {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
               = new FileStorageUploadSessionsAddOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Upload Session
@@ -128,12 +126,11 @@ public class UploadSessions {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
               = new FileStorageUploadSessionsOneOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Upload part of File to Upload Session
@@ -176,12 +173,11 @@ public class UploadSessions {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
               = new FileStorageUploadSessionsUploadOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Abort Upload Session
@@ -222,11 +218,10 @@ public class UploadSessions {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
               = new FileStorageUploadSessionsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Finish Upload Session
@@ -269,9 +264,9 @@ public class UploadSessions {
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
               = new FileStorageUploadSessionsFinishOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

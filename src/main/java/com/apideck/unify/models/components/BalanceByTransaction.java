@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
-import java.util.Objects;
 import java.util.Optional;
 
-public class BalanceByTransaction {
 
+public class BalanceByTransaction {
     /**
      * Unique identifier for the transaction.
      */
@@ -94,7 +93,9 @@ public class BalanceByTransaction {
     }
     
     public BalanceByTransaction() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -154,9 +155,10 @@ public class BalanceByTransaction {
         return transactionNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the transaction.
@@ -166,6 +168,7 @@ public class BalanceByTransaction {
         this.transactionId = Optional.ofNullable(transactionId);
         return this;
     }
+
 
     /**
      * Unique identifier for the transaction.
@@ -185,6 +188,7 @@ public class BalanceByTransaction {
         return this;
     }
 
+
     /**
      * Date of the transaction.
      */
@@ -202,6 +206,7 @@ public class BalanceByTransaction {
         this.transactionType = Optional.ofNullable(transactionType);
         return this;
     }
+
 
     /**
      * Type of the transaction.
@@ -221,6 +226,7 @@ public class BalanceByTransaction {
         return this;
     }
 
+
     /**
      * Due date of the transaction.
      */
@@ -238,6 +244,7 @@ public class BalanceByTransaction {
         this.originalAmount = Optional.ofNullable(originalAmount);
         return this;
     }
+
 
     /**
      * Original amount of the transaction.
@@ -257,6 +264,7 @@ public class BalanceByTransaction {
         return this;
     }
 
+
     /**
      * Outstanding balance of the transaction.
      */
@@ -275,6 +283,7 @@ public class BalanceByTransaction {
         return this;
     }
 
+
     /**
      * Transaction number of the transaction.
      */
@@ -284,7 +293,6 @@ public class BalanceByTransaction {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -295,24 +303,20 @@ public class BalanceByTransaction {
         }
         BalanceByTransaction other = (BalanceByTransaction) o;
         return 
-            Objects.deepEquals(this.transactionId, other.transactionId) &&
-            Objects.deepEquals(this.transactionDate, other.transactionDate) &&
-            Objects.deepEquals(this.transactionType, other.transactionType) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.originalAmount, other.originalAmount) &&
-            Objects.deepEquals(this.outstandingBalance, other.outstandingBalance) &&
-            Objects.deepEquals(this.transactionNumber, other.transactionNumber);
+            Utils.enhancedDeepEquals(this.transactionId, other.transactionId) &&
+            Utils.enhancedDeepEquals(this.transactionDate, other.transactionDate) &&
+            Utils.enhancedDeepEquals(this.transactionType, other.transactionType) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.originalAmount, other.originalAmount) &&
+            Utils.enhancedDeepEquals(this.outstandingBalance, other.outstandingBalance) &&
+            Utils.enhancedDeepEquals(this.transactionNumber, other.transactionNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            transactionId,
-            transactionDate,
-            transactionType,
-            dueDate,
-            originalAmount,
-            outstandingBalance,
+        return Utils.enhancedHash(
+            transactionId, transactionDate, transactionType,
+            dueDate, originalAmount, outstandingBalance,
             transactionNumber);
     }
     
@@ -327,26 +331,28 @@ public class BalanceByTransaction {
                 "outstandingBalance", outstandingBalance,
                 "transactionNumber", transactionNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> transactionId = Optional.empty();
- 
+
         private Optional<LocalDate> transactionDate = Optional.empty();
- 
+
         private Optional<? extends TransactionType> transactionType = Optional.empty();
- 
+
         private Optional<LocalDate> dueDate = Optional.empty();
- 
+
         private Optional<Double> originalAmount = Optional.empty();
- 
+
         private Optional<Double> outstandingBalance = Optional.empty();
- 
+
         private Optional<String> transactionNumber = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the transaction.
@@ -366,6 +372,7 @@ public class BalanceByTransaction {
             return this;
         }
 
+
         /**
          * Date of the transaction.
          */
@@ -383,6 +390,7 @@ public class BalanceByTransaction {
             this.transactionDate = transactionDate;
             return this;
         }
+
 
         /**
          * Type of the transaction.
@@ -402,6 +410,7 @@ public class BalanceByTransaction {
             return this;
         }
 
+
         /**
          * Due date of the transaction.
          */
@@ -419,6 +428,7 @@ public class BalanceByTransaction {
             this.dueDate = dueDate;
             return this;
         }
+
 
         /**
          * Original amount of the transaction.
@@ -438,6 +448,7 @@ public class BalanceByTransaction {
             return this;
         }
 
+
         /**
          * Outstanding balance of the transaction.
          */
@@ -456,6 +467,7 @@ public class BalanceByTransaction {
             return this;
         }
 
+
         /**
          * Transaction number of the transaction.
          */
@@ -473,16 +485,14 @@ public class BalanceByTransaction {
             this.transactionNumber = transactionNumber;
             return this;
         }
-        
+
         public BalanceByTransaction build() {
+
             return new BalanceByTransaction(
-                transactionId,
-                transactionDate,
-                transactionType,
-                dueDate,
-                originalAmount,
-                outstandingBalance,
+                transactionId, transactionDate, transactionType,
+                dueDate, originalAmount, outstandingBalance,
                 transactionNumber);
         }
+
     }
 }

@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Categories {
 
@@ -54,15 +54,17 @@ public class Categories {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Categories withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public Categories withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -79,6 +81,7 @@ public class Categories {
         return this;
     }
 
+
     /**
      * The name of the category.
      */
@@ -88,7 +91,6 @@ public class Categories {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +101,14 @@ public class Categories {
         }
         Categories other = (Categories) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -116,16 +117,18 @@ public class Categories {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -138,6 +141,7 @@ public class Categories {
             this.id = id;
             return this;
         }
+
 
         /**
          * The name of the category.
@@ -156,11 +160,12 @@ public class Categories {
             this.name = name;
             return this;
         }
-        
+
         public Categories build() {
+
             return new Categories(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>OAuth scopes required for the connector. Add these scopes to your OAuth app.
  */
 public class ConnectorOauthScopes {
-
     /**
      * ID of the OAuth scope.
      */
@@ -65,9 +63,10 @@ public class ConnectorOauthScopes {
         return label;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the OAuth scope.
@@ -77,6 +76,7 @@ public class ConnectorOauthScopes {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the OAuth scope.
@@ -96,6 +96,7 @@ public class ConnectorOauthScopes {
         return this;
     }
 
+
     /**
      * Label of the OAuth scope.
      */
@@ -105,7 +106,6 @@ public class ConnectorOauthScopes {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,15 +116,14 @@ public class ConnectorOauthScopes {
         }
         ConnectorOauthScopes other = (ConnectorOauthScopes) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            label);
+        return Utils.enhancedHash(
+            id, label);
     }
     
     @Override
@@ -133,16 +132,18 @@ public class ConnectorOauthScopes {
                 "id", id,
                 "label", label);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the OAuth scope.
@@ -162,6 +163,7 @@ public class ConnectorOauthScopes {
             return this;
         }
 
+
         /**
          * Label of the OAuth scope.
          */
@@ -179,11 +181,12 @@ public class ConnectorOauthScopes {
             this.label = label;
             return this;
         }
-        
+
         public ConnectorOauthScopes build() {
+
             return new ConnectorOauthScopes(
-                id,
-                label);
+                id, label);
         }
+
     }
 }

@@ -17,12 +17,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class InvoiceItemInput {
 
+public class InvoiceItemInput {
     /**
      * Item name
      */
@@ -86,29 +85,36 @@ public class InvoiceItemInput {
     @JsonProperty("type")
     private JsonNullable<? extends InvoiceItemTypeType> type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_details")
     private Optional<? extends InvoiceItemSalesDetails> salesDetails;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("purchase_details")
     private Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("quantity")
     private JsonNullable<Double> quantity;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unit_price")
     private JsonNullable<Double> unitPrice;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset_account")
     private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("income_account")
     private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expense_account")
@@ -129,6 +135,7 @@ public class InvoiceItemInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("active")
@@ -256,7 +263,15 @@ public class InvoiceItemInput {
     }
     
     public InvoiceItemInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -446,9 +461,10 @@ public class InvoiceItemInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Item name
@@ -618,6 +634,7 @@ public class InvoiceItemInput {
         return this;
     }
 
+
     public InvoiceItemInput withSalesDetails(Optional<? extends InvoiceItemSalesDetails> salesDetails) {
         Utils.checkNotNull(salesDetails, "salesDetails");
         this.salesDetails = salesDetails;
@@ -629,6 +646,7 @@ public class InvoiceItemInput {
         this.purchaseDetails = Optional.ofNullable(purchaseDetails);
         return this;
     }
+
 
     public InvoiceItemInput withPurchaseDetails(Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails) {
         Utils.checkNotNull(purchaseDetails, "purchaseDetails");
@@ -847,6 +865,7 @@ public class InvoiceItemInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -856,7 +875,6 @@ public class InvoiceItemInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -867,60 +885,44 @@ public class InvoiceItemInput {
         }
         InvoiceItemInput other = (InvoiceItemInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.sold, other.sold) &&
-            Objects.deepEquals(this.purchased, other.purchased) &&
-            Objects.deepEquals(this.tracked, other.tracked) &&
-            Objects.deepEquals(this.taxable, other.taxable) &&
-            Objects.deepEquals(this.inventoryDate, other.inventoryDate) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.salesDetails, other.salesDetails) &&
-            Objects.deepEquals(this.purchaseDetails, other.purchaseDetails) &&
-            Objects.deepEquals(this.quantity, other.quantity) &&
-            Objects.deepEquals(this.unitPrice, other.unitPrice) &&
-            Objects.deepEquals(this.assetAccount, other.assetAccount) &&
-            Objects.deepEquals(this.incomeAccount, other.incomeAccount) &&
-            Objects.deepEquals(this.expenseAccount, other.expenseAccount) &&
-            Objects.deepEquals(this.trackingCategory, other.trackingCategory) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Objects.deepEquals(this.taxScheduleId, other.taxScheduleId) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.sold, other.sold) &&
+            Utils.enhancedDeepEquals(this.purchased, other.purchased) &&
+            Utils.enhancedDeepEquals(this.tracked, other.tracked) &&
+            Utils.enhancedDeepEquals(this.taxable, other.taxable) &&
+            Utils.enhancedDeepEquals(this.inventoryDate, other.inventoryDate) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.salesDetails, other.salesDetails) &&
+            Utils.enhancedDeepEquals(this.purchaseDetails, other.purchaseDetails) &&
+            Utils.enhancedDeepEquals(this.quantity, other.quantity) &&
+            Utils.enhancedDeepEquals(this.unitPrice, other.unitPrice) &&
+            Utils.enhancedDeepEquals(this.assetAccount, other.assetAccount) &&
+            Utils.enhancedDeepEquals(this.incomeAccount, other.incomeAccount) &&
+            Utils.enhancedDeepEquals(this.expenseAccount, other.expenseAccount) &&
+            Utils.enhancedDeepEquals(this.trackingCategory, other.trackingCategory) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.taxScheduleId, other.taxScheduleId) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            description,
-            code,
-            sold,
-            purchased,
-            tracked,
-            taxable,
-            inventoryDate,
-            type,
-            salesDetails,
-            purchaseDetails,
-            quantity,
-            unitPrice,
-            assetAccount,
-            incomeAccount,
-            expenseAccount,
-            trackingCategory,
-            trackingCategories,
-            active,
-            departmentId,
-            locationId,
-            subsidiaryId,
-            taxScheduleId,
-            rowVersion,
+        return Utils.enhancedHash(
+            name, description, code,
+            sold, purchased, tracked,
+            taxable, inventoryDate, type,
+            salesDetails, purchaseDetails, quantity,
+            unitPrice, assetAccount, incomeAccount,
+            expenseAccount, trackingCategory, trackingCategories,
+            active, departmentId, locationId,
+            subsidiaryId, taxScheduleId, rowVersion,
             passThrough);
     }
     
@@ -953,63 +955,65 @@ public class InvoiceItemInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> sold = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> purchased = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> tracked = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxable = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> inventoryDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends InvoiceItemTypeType> type = JsonNullable.undefined();
- 
+
         private Optional<? extends InvoiceItemSalesDetails> salesDetails = Optional.empty();
- 
+
         private Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails = Optional.empty();
- 
+
         private JsonNullable<Double> quantity = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> unitPrice = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> active = JsonNullable.undefined();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxScheduleId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Item name
@@ -1029,6 +1033,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * A short description of the item
          */
@@ -1046,6 +1051,7 @@ public class InvoiceItemInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * User defined item code
@@ -1065,6 +1071,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * Item will be available on sales transactions
          */
@@ -1082,6 +1089,7 @@ public class InvoiceItemInput {
             this.sold = sold;
             return this;
         }
+
 
         /**
          * Item is available for purchase transactions
@@ -1101,6 +1109,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * Item is inventoried
          */
@@ -1118,6 +1127,7 @@ public class InvoiceItemInput {
             this.tracked = tracked;
             return this;
         }
+
 
         /**
          * If true, transactions for this item are taxable
@@ -1137,6 +1147,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
          */
@@ -1154,6 +1165,7 @@ public class InvoiceItemInput {
             this.inventoryDate = inventoryDate;
             return this;
         }
+
 
         /**
          * Item type
@@ -1173,6 +1185,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         public Builder salesDetails(InvoiceItemSalesDetails salesDetails) {
             Utils.checkNotNull(salesDetails, "salesDetails");
             this.salesDetails = Optional.ofNullable(salesDetails);
@@ -1184,6 +1197,7 @@ public class InvoiceItemInput {
             this.salesDetails = salesDetails;
             return this;
         }
+
 
         public Builder purchaseDetails(InvoiceItemPurchaseDetails purchaseDetails) {
             Utils.checkNotNull(purchaseDetails, "purchaseDetails");
@@ -1197,6 +1211,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         public Builder quantity(double quantity) {
             Utils.checkNotNull(quantity, "quantity");
             this.quantity = JsonNullable.of(quantity);
@@ -1208,6 +1223,7 @@ public class InvoiceItemInput {
             this.quantity = quantity;
             return this;
         }
+
 
         public Builder unitPrice(double unitPrice) {
             Utils.checkNotNull(unitPrice, "unitPrice");
@@ -1221,6 +1237,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         public Builder assetAccount(LinkedLedgerAccountInput assetAccount) {
             Utils.checkNotNull(assetAccount, "assetAccount");
             this.assetAccount = JsonNullable.of(assetAccount);
@@ -1232,6 +1249,7 @@ public class InvoiceItemInput {
             this.assetAccount = assetAccount;
             return this;
         }
+
 
         public Builder incomeAccount(LinkedLedgerAccountInput incomeAccount) {
             Utils.checkNotNull(incomeAccount, "incomeAccount");
@@ -1245,6 +1263,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         public Builder expenseAccount(LinkedLedgerAccountInput expenseAccount) {
             Utils.checkNotNull(expenseAccount, "expenseAccount");
             this.expenseAccount = JsonNullable.of(expenseAccount);
@@ -1256,6 +1275,7 @@ public class InvoiceItemInput {
             this.expenseAccount = expenseAccount;
             return this;
         }
+
 
         /**
          * 
@@ -1279,6 +1299,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * A list of linked tracking categories.
          */
@@ -1297,6 +1318,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         public Builder active(boolean active) {
             Utils.checkNotNull(active, "active");
             this.active = JsonNullable.of(active);
@@ -1308,6 +1330,7 @@ public class InvoiceItemInput {
             this.active = active;
             return this;
         }
+
 
         /**
          * The ID of the department
@@ -1327,6 +1350,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * The ID of the location
          */
@@ -1344,6 +1368,7 @@ public class InvoiceItemInput {
             this.locationId = locationId;
             return this;
         }
+
 
         /**
          * The ID of the subsidiary
@@ -1363,6 +1388,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * The ID of the tax schedule
          */
@@ -1380,6 +1406,7 @@ public class InvoiceItemInput {
             this.taxScheduleId = taxScheduleId;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1399,6 +1426,7 @@ public class InvoiceItemInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1416,34 +1444,20 @@ public class InvoiceItemInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public InvoiceItemInput build() {
+
             return new InvoiceItemInput(
-                name,
-                description,
-                code,
-                sold,
-                purchased,
-                tracked,
-                taxable,
-                inventoryDate,
-                type,
-                salesDetails,
-                purchaseDetails,
-                quantity,
-                unitPrice,
-                assetAccount,
-                incomeAccount,
-                expenseAccount,
-                trackingCategory,
-                trackingCategories,
-                active,
-                departmentId,
-                locationId,
-                subsidiaryId,
-                taxScheduleId,
-                rowVersion,
+                name, description, code,
+                sold, purchased, tracked,
+                taxable, inventoryDate, type,
+                salesDetails, purchaseDetails, quantity,
+                unitPrice, assetAccount, incomeAccount,
+                expenseAccount, trackingCategory, trackingCategories,
+                active, departmentId, locationId,
+                subsidiaryId, taxScheduleId, rowVersion,
                 passThrough);
         }
+
     }
 }

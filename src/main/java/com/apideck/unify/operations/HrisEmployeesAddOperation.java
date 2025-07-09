@@ -57,7 +57,8 @@ public class HrisEmployeesAddOperation implements RequestOperation<HrisEmployees
     
     @Override
     public HttpResponse<InputStream> doRequest(HrisEmployeesAddRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

@@ -31,13 +31,13 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
                 .consumerId("test-consumer")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         VaultLogsAllRequest req = VaultLogsAllRequest.builder()
                 .filter(LogsFilter.builder()
                     .connectorId("crm+salesforce")
-                    .statusCode(201)
+                    .statusCode(201d)
                     .excludeUnifiedApis("vault,proxy")
                     .build())
                 .build();

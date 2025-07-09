@@ -14,12 +14,11 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UploadSession {
 
+public class UploadSession {
     /**
      * A unique identifier for an object.
      */
@@ -55,6 +54,7 @@ public class UploadSession {
     @JsonProperty("uploaded_byte_range")
     private Optional<String> uploadedByteRange;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expires_at")
     private JsonNullable<OffsetDateTime> expiresAt;
@@ -82,7 +82,8 @@ public class UploadSession {
     }
     
     public UploadSession() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -130,9 +131,10 @@ public class UploadSession {
         return expiresAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -142,6 +144,7 @@ public class UploadSession {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -161,6 +164,7 @@ public class UploadSession {
         return this;
     }
 
+
     /**
      * Indicates if the upload session was completed successfully.
      */
@@ -178,6 +182,7 @@ public class UploadSession {
         this.partSize = Optional.ofNullable(partSize);
         return this;
     }
+
 
     /**
      * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
@@ -197,6 +202,7 @@ public class UploadSession {
         return this;
     }
 
+
     /**
      * Indicates if parts of the file can uploaded in parallel.
      */
@@ -214,6 +220,7 @@ public class UploadSession {
         this.uploadedByteRange = Optional.ofNullable(uploadedByteRange);
         return this;
     }
+
 
     /**
      * The range of bytes that was successfully uploaded.
@@ -236,7 +243,6 @@ public class UploadSession {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -247,23 +253,19 @@ public class UploadSession {
         }
         UploadSession other = (UploadSession) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.partSize, other.partSize) &&
-            Objects.deepEquals(this.parallelUploadSupported, other.parallelUploadSupported) &&
-            Objects.deepEquals(this.uploadedByteRange, other.uploadedByteRange) &&
-            Objects.deepEquals(this.expiresAt, other.expiresAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.success, other.success) &&
+            Utils.enhancedDeepEquals(this.partSize, other.partSize) &&
+            Utils.enhancedDeepEquals(this.parallelUploadSupported, other.parallelUploadSupported) &&
+            Utils.enhancedDeepEquals(this.uploadedByteRange, other.uploadedByteRange) &&
+            Utils.enhancedDeepEquals(this.expiresAt, other.expiresAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            success,
-            partSize,
-            parallelUploadSupported,
-            uploadedByteRange,
-            expiresAt);
+        return Utils.enhancedHash(
+            id, success, partSize,
+            parallelUploadSupported, uploadedByteRange, expiresAt);
     }
     
     @Override
@@ -276,24 +278,26 @@ public class UploadSession {
                 "uploadedByteRange", uploadedByteRange,
                 "expiresAt", expiresAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<Boolean> success = Optional.empty();
- 
+
         private Optional<Double> partSize = Optional.empty();
- 
+
         private Optional<Boolean> parallelUploadSupported = Optional.empty();
- 
+
         private Optional<String> uploadedByteRange = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -313,6 +317,7 @@ public class UploadSession {
             return this;
         }
 
+
         /**
          * Indicates if the upload session was completed successfully.
          */
@@ -330,6 +335,7 @@ public class UploadSession {
             this.success = success;
             return this;
         }
+
 
         /**
          * Size in bytes of each part of the file that you will upload. Uploaded parts need to be this size for the upload to be successful.
@@ -349,6 +355,7 @@ public class UploadSession {
             return this;
         }
 
+
         /**
          * Indicates if parts of the file can uploaded in parallel.
          */
@@ -366,6 +373,7 @@ public class UploadSession {
             this.parallelUploadSupported = parallelUploadSupported;
             return this;
         }
+
 
         /**
          * The range of bytes that was successfully uploaded.
@@ -385,6 +393,7 @@ public class UploadSession {
             return this;
         }
 
+
         public Builder expiresAt(OffsetDateTime expiresAt) {
             Utils.checkNotNull(expiresAt, "expiresAt");
             this.expiresAt = JsonNullable.of(expiresAt);
@@ -396,15 +405,13 @@ public class UploadSession {
             this.expiresAt = expiresAt;
             return this;
         }
-        
+
         public UploadSession build() {
+
             return new UploadSession(
-                id,
-                success,
-                partSize,
-                parallelUploadSupported,
-                uploadedByteRange,
-                expiresAt);
+                id, success, partSize,
+                parallelUploadSupported, uploadedByteRange, expiresAt);
         }
+
     }
 }

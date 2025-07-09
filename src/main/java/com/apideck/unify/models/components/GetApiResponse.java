@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -25,7 +24,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Apis
  */
 public class GetApiResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -37,6 +35,7 @@ public class GetApiResponse {
      */
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("data")
     private Api data;
@@ -88,7 +87,8 @@ public class GetApiResponse {
             long statusCode,
             String status,
             Api data) {
-        this(statusCode, status, data, JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(statusCode, status, data,
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -139,9 +139,10 @@ public class GetApiResponse {
         return (Optional<Links>) links;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -194,6 +195,7 @@ public class GetApiResponse {
         return this;
     }
 
+
     /**
      * Response metadata
      */
@@ -212,6 +214,7 @@ public class GetApiResponse {
         return this;
     }
 
+
     /**
      * Links to navigate to previous or next pages through the API
      */
@@ -221,7 +224,6 @@ public class GetApiResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -232,23 +234,19 @@ public class GetApiResponse {
         }
         GetApiResponse other = (GetApiResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.meta, other.meta) &&
-            Objects.deepEquals(this.links, other.links);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.meta, other.meta) &&
+            Utils.enhancedDeepEquals(this.links, other.links);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            data,
-            raw,
-            meta,
-            links);
+        return Utils.enhancedHash(
+            statusCode, status, data,
+            raw, meta, links);
     }
     
     @Override
@@ -261,24 +259,26 @@ public class GetApiResponse {
                 "meta", meta,
                 "links", links);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private Api data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
- 
+
         private Optional<? extends Meta> meta = Optional.empty();
- 
+
         private Optional<? extends Links> links = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -289,6 +289,7 @@ public class GetApiResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -298,11 +299,13 @@ public class GetApiResponse {
             return this;
         }
 
+
         public Builder data(Api data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -322,6 +325,7 @@ public class GetApiResponse {
             return this;
         }
 
+
         /**
          * Response metadata
          */
@@ -340,6 +344,7 @@ public class GetApiResponse {
             return this;
         }
 
+
         /**
          * Links to navigate to previous or next pages through the API
          */
@@ -357,15 +362,13 @@ public class GetApiResponse {
             this.links = links;
             return this;
         }
-        
+
         public GetApiResponse build() {
+
             return new GetApiResponse(
-                statusCode,
-                status,
-                data,
-                raw,
-                meta,
-                links);
+                statusCode, status, data,
+                raw, meta, links);
         }
+
     }
 }

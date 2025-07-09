@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class VaultCustomMappingsAllRequest {
 
+public class VaultCustomMappingsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -57,7 +56,8 @@ public class VaultCustomMappingsAllRequest {
     public VaultCustomMappingsAllRequest(
             String unifiedApi,
             String serviceId) {
-        this(Optional.empty(), Optional.empty(), unifiedApi, serviceId);
+        this(Optional.empty(), Optional.empty(), unifiedApi,
+            serviceId);
     }
 
     /**
@@ -92,9 +92,10 @@ public class VaultCustomMappingsAllRequest {
         return serviceId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -104,6 +105,7 @@ public class VaultCustomMappingsAllRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -122,6 +124,7 @@ public class VaultCustomMappingsAllRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -150,7 +153,6 @@ public class VaultCustomMappingsAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -161,18 +163,16 @@ public class VaultCustomMappingsAllRequest {
         }
         VaultCustomMappingsAllRequest other = (VaultCustomMappingsAllRequest) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.serviceId, other.serviceId);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            consumerId,
-            appId,
-            unifiedApi,
+        return Utils.enhancedHash(
+            consumerId, appId, unifiedApi,
             serviceId);
     }
     
@@ -184,20 +184,22 @@ public class VaultCustomMappingsAllRequest {
                 "unifiedApi", unifiedApi,
                 "serviceId", serviceId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private String unifiedApi;
- 
+
         private String serviceId;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -217,6 +219,7 @@ public class VaultCustomMappingsAllRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -235,6 +238,7 @@ public class VaultCustomMappingsAllRequest {
             return this;
         }
 
+
         /**
          * Unified API
          */
@@ -244,6 +248,7 @@ public class VaultCustomMappingsAllRequest {
             return this;
         }
 
+
         /**
          * Service ID of the resource to return
          */
@@ -252,13 +257,13 @@ public class VaultCustomMappingsAllRequest {
             this.serviceId = serviceId;
             return this;
         }
-        
+
         public VaultCustomMappingsAllRequest build() {
+
             return new VaultCustomMappingsAllRequest(
-                consumerId,
-                appId,
-                unifiedApi,
+                consumerId, appId, unifiedApi,
                 serviceId);
         }
+
     }
 }

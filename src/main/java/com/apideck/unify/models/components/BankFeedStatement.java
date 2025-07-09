@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BankFeedStatement {
 
+public class BankFeedStatement {
     /**
      * A unique identifier for an object.
      */
@@ -166,7 +165,11 @@ public class BankFeedStatement {
     
     public BankFeedStatement(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -285,9 +288,10 @@ public class BankFeedStatement {
         return updatedBy;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -307,6 +311,7 @@ public class BankFeedStatement {
         return this;
     }
 
+
     /**
      * The ID of the bank feed account this statement belongs to.
      */
@@ -324,6 +329,7 @@ public class BankFeedStatement {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * The current status of the bank feed statement.
@@ -343,6 +349,7 @@ public class BankFeedStatement {
         return this;
     }
 
+
     /**
      * Start date of the bank feed statement.
      */
@@ -360,6 +367,7 @@ public class BankFeedStatement {
         this.endDate = Optional.ofNullable(endDate);
         return this;
     }
+
 
     /**
      * End date of the bank feed statement.
@@ -379,6 +387,7 @@ public class BankFeedStatement {
         return this;
     }
 
+
     /**
      * Balance amount at the start of the period.
      */
@@ -396,6 +405,7 @@ public class BankFeedStatement {
         this.startBalanceCreditOrDebit = Optional.ofNullable(startBalanceCreditOrDebit);
         return this;
     }
+
 
     /**
      * Whether the amount is a credit or debit.
@@ -415,6 +425,7 @@ public class BankFeedStatement {
         return this;
     }
 
+
     /**
      * Balance amount at the end of the period.
      */
@@ -433,6 +444,7 @@ public class BankFeedStatement {
         return this;
     }
 
+
     /**
      * Whether the amount is a credit or debit.
      */
@@ -450,6 +462,7 @@ public class BankFeedStatement {
         this.transactions = Optional.ofNullable(transactions);
         return this;
     }
+
 
     /**
      * List of transactions in the bank feed statement.
@@ -532,7 +545,6 @@ public class BankFeedStatement {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -543,39 +555,30 @@ public class BankFeedStatement {
         }
         BankFeedStatement other = (BankFeedStatement) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.startBalance, other.startBalance) &&
-            Objects.deepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.endBalance, other.endBalance) &&
-            Objects.deepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
-            Objects.deepEquals(this.transactions, other.transactions) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.bankFeedAccountId, other.bankFeedAccountId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.startBalance, other.startBalance) &&
+            Utils.enhancedDeepEquals(this.startBalanceCreditOrDebit, other.startBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.endBalance, other.endBalance) &&
+            Utils.enhancedDeepEquals(this.endBalanceCreditOrDebit, other.endBalanceCreditOrDebit) &&
+            Utils.enhancedDeepEquals(this.transactions, other.transactions) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            bankFeedAccountId,
-            status,
-            startDate,
-            endDate,
-            startBalance,
-            startBalanceCreditOrDebit,
-            endBalance,
-            endBalanceCreditOrDebit,
-            transactions,
-            createdAt,
-            createdBy,
-            updatedAt,
-            updatedBy);
+        return Utils.enhancedHash(
+            id, bankFeedAccountId, status,
+            startDate, endDate, startBalance,
+            startBalanceCreditOrDebit, endBalance, endBalanceCreditOrDebit,
+            transactions, createdAt, createdBy,
+            updatedAt, updatedBy);
     }
     
     @Override
@@ -596,40 +599,42 @@ public class BankFeedStatement {
                 "updatedAt", updatedAt,
                 "updatedBy", updatedBy);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> bankFeedAccountId = Optional.empty();
- 
+
         private Optional<? extends StatementStatus> status = Optional.empty();
- 
+
         private Optional<OffsetDateTime> startDate = Optional.empty();
- 
+
         private Optional<OffsetDateTime> endDate = Optional.empty();
- 
+
         private Optional<Double> startBalance = Optional.empty();
- 
+
         private Optional<? extends CreditOrDebit> startBalanceCreditOrDebit = Optional.empty();
- 
+
         private Optional<Double> endBalance = Optional.empty();
- 
+
         private Optional<? extends CreditOrDebit> endBalanceCreditOrDebit = Optional.empty();
- 
+
         private Optional<? extends List<Transactions>> transactions = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -639,6 +644,7 @@ public class BankFeedStatement {
             this.id = id;
             return this;
         }
+
 
         /**
          * The ID of the bank feed account this statement belongs to.
@@ -658,6 +664,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * The current status of the bank feed statement.
          */
@@ -675,6 +682,7 @@ public class BankFeedStatement {
             this.status = status;
             return this;
         }
+
 
         /**
          * Start date of the bank feed statement.
@@ -694,6 +702,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * End date of the bank feed statement.
          */
@@ -711,6 +720,7 @@ public class BankFeedStatement {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Balance amount at the start of the period.
@@ -730,6 +740,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * Whether the amount is a credit or debit.
          */
@@ -747,6 +758,7 @@ public class BankFeedStatement {
             this.startBalanceCreditOrDebit = startBalanceCreditOrDebit;
             return this;
         }
+
 
         /**
          * Balance amount at the end of the period.
@@ -766,6 +778,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * Whether the amount is a credit or debit.
          */
@@ -783,6 +796,7 @@ public class BankFeedStatement {
             this.endBalanceCreditOrDebit = endBalanceCreditOrDebit;
             return this;
         }
+
 
         /**
          * List of transactions in the bank feed statement.
@@ -802,6 +816,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -819,6 +834,7 @@ public class BankFeedStatement {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -838,6 +854,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -856,6 +873,7 @@ public class BankFeedStatement {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -873,23 +891,16 @@ public class BankFeedStatement {
             this.updatedBy = updatedBy;
             return this;
         }
-        
+
         public BankFeedStatement build() {
+
             return new BankFeedStatement(
-                id,
-                bankFeedAccountId,
-                status,
-                startDate,
-                endDate,
-                startBalance,
-                startBalanceCreditOrDebit,
-                endBalance,
-                endBalanceCreditOrDebit,
-                transactions,
-                createdAt,
-                createdBy,
-                updatedAt,
-                updatedBy);
+                id, bankFeedAccountId, status,
+                startDate, endDate, startBalance,
+                startBalanceCreditOrDebit, endBalance, endBalanceCreditOrDebit,
+                transactions, createdAt, createdBy,
+                updatedAt, updatedBy);
         }
+
     }
 }

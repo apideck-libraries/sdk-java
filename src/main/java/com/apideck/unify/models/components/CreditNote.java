@@ -18,12 +18,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreditNote {
 
+public class CreditNote {
     /**
      * Unique identifier representing the entity
      */
@@ -148,13 +147,16 @@ public class CreditNote {
     @JsonProperty("type")
     private Optional<? extends CreditNoteType> type;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
     private JsonNullable<? extends LinkedLedgerAccount> account;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
     private Optional<? extends List<InvoiceLineItem>> lineItems;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allocations")
@@ -174,9 +176,11 @@ public class CreditNote {
     @JsonProperty("terms")
     private JsonNullable<String> terms;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
     private Optional<? extends Address> billingAddress;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
@@ -195,6 +199,7 @@ public class CreditNote {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -351,7 +356,18 @@ public class CreditNote {
     public CreditNote(
             String id,
             double totalAmount) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), totalAmount, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), totalAmount,
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -621,9 +637,10 @@ public class CreditNote {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier representing the entity
@@ -850,6 +867,7 @@ public class CreditNote {
         return this;
     }
 
+
     /**
      * Status of credit notes
      */
@@ -885,6 +903,7 @@ public class CreditNote {
         this.dateIssued = Optional.ofNullable(dateIssued);
         return this;
     }
+
 
     /**
      * Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -922,6 +941,7 @@ public class CreditNote {
         return this;
     }
 
+
     /**
      * Type of payment
      */
@@ -949,6 +969,7 @@ public class CreditNote {
         return this;
     }
 
+
     public CreditNote withLineItems(Optional<? extends List<InvoiceLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
@@ -960,6 +981,7 @@ public class CreditNote {
         this.allocations = Optional.ofNullable(allocations);
         return this;
     }
+
 
     public CreditNote withAllocations(Optional<? extends List<Allocation>> allocations) {
         Utils.checkNotNull(allocations, "allocations");
@@ -1009,6 +1031,7 @@ public class CreditNote {
         return this;
     }
 
+
     public CreditNote withBillingAddress(Optional<? extends Address> billingAddress) {
         Utils.checkNotNull(billingAddress, "billingAddress");
         this.billingAddress = billingAddress;
@@ -1020,6 +1043,7 @@ public class CreditNote {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     public CreditNote withShippingAddress(Optional<? extends Address> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1068,6 +1092,7 @@ public class CreditNote {
         this.customFields = Optional.ofNullable(customFields);
         return this;
     }
+
 
     public CreditNote withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
@@ -1174,6 +1199,7 @@ public class CreditNote {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1183,7 +1209,6 @@ public class CreditNote {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1194,78 +1219,56 @@ public class CreditNote {
         }
         CreditNote other = (CreditNote) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.balance, other.balance) &&
-            Objects.deepEquals(this.remainingCredit, other.remainingCredit) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.dateIssued, other.dateIssued) &&
-            Objects.deepEquals(this.datePaid, other.datePaid) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.account, other.account) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.allocations, other.allocations) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.terms, other.terms) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.balance, other.balance) &&
+            Utils.enhancedDeepEquals(this.remainingCredit, other.remainingCredit) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.dateIssued, other.dateIssued) &&
+            Utils.enhancedDeepEquals(this.datePaid, other.datePaid) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.account, other.account) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.allocations, other.allocations) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            number,
-            customer,
-            companyId,
-            currency,
-            currencyRate,
-            taxInclusive,
-            subTotal,
-            totalAmount,
-            totalTax,
-            taxCode,
-            balance,
-            remainingCredit,
-            status,
-            reference,
-            dateIssued,
-            datePaid,
-            type,
-            account,
-            lineItems,
-            allocations,
-            note,
-            terms,
-            billingAddress,
-            shippingAddress,
-            trackingCategories,
-            customMappings,
-            customFields,
-            rowVersion,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, number, customer,
+            companyId, currency, currencyRate,
+            taxInclusive, subTotal, totalAmount,
+            totalTax, taxCode, balance,
+            remainingCredit, status, reference,
+            dateIssued, datePaid, type,
+            account, lineItems, allocations,
+            note, terms, billingAddress,
+            shippingAddress, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -1307,80 +1310,82 @@ public class CreditNote {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private Double totalAmount;
- 
+
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> balance = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> remainingCredit = JsonNullable.undefined();
- 
+
         private Optional<? extends CreditNoteStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> dateIssued = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> datePaid = JsonNullable.undefined();
- 
+
         private Optional<? extends CreditNoteType> type = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
- 
+
         private Optional<? extends List<InvoiceLineItem>> lineItems = Optional.empty();
- 
+
         private Optional<? extends List<Allocation>> allocations = Optional.empty();
- 
+
         private JsonNullable<String> note = JsonNullable.undefined();
- 
+
         private JsonNullable<String> terms = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> billingAddress = Optional.empty();
- 
+
         private Optional<? extends Address> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier representing the entity
@@ -1390,6 +1395,7 @@ public class CreditNote {
             this.id = id;
             return this;
         }
+
 
         /**
          * Credit note number.
@@ -1409,6 +1415,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * The customer this entity is linked to.
          */
@@ -1426,6 +1433,7 @@ public class CreditNote {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1445,6 +1453,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1462,6 +1471,7 @@ public class CreditNote {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1481,6 +1491,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Amounts are including tax
          */
@@ -1498,6 +1509,7 @@ public class CreditNote {
             this.taxInclusive = taxInclusive;
             return this;
         }
+
 
         /**
          * Sub-total amount, normally before tax.
@@ -1517,6 +1529,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Amount of transaction
          */
@@ -1525,6 +1538,7 @@ public class CreditNote {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Total tax amount applied to this invoice.
@@ -1544,6 +1558,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
@@ -1561,6 +1576,7 @@ public class CreditNote {
             this.taxCode = taxCode;
             return this;
         }
+
 
         /**
          * The balance reflecting any payments made against the transaction.
@@ -1580,6 +1596,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Indicates the total credit amount still available to apply towards the payment.
          */
@@ -1597,6 +1614,7 @@ public class CreditNote {
             this.remainingCredit = remainingCredit;
             return this;
         }
+
 
         /**
          * Status of credit notes
@@ -1616,6 +1634,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Optional reference message ie: Debit remittance detail.
          */
@@ -1633,6 +1652,7 @@ public class CreditNote {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * Date credit note issued - YYYY:MM::DDThh:mm:ss.sTZD
@@ -1652,6 +1672,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Date credit note paid - YYYY:MM::DDThh:mm:ss.sTZD
          */
@@ -1669,6 +1690,7 @@ public class CreditNote {
             this.datePaid = datePaid;
             return this;
         }
+
 
         /**
          * Type of payment
@@ -1688,6 +1710,7 @@ public class CreditNote {
             return this;
         }
 
+
         public Builder account(LinkedLedgerAccount account) {
             Utils.checkNotNull(account, "account");
             this.account = JsonNullable.of(account);
@@ -1699,6 +1722,7 @@ public class CreditNote {
             this.account = account;
             return this;
         }
+
 
         public Builder lineItems(List<InvoiceLineItem> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
@@ -1712,6 +1736,7 @@ public class CreditNote {
             return this;
         }
 
+
         public Builder allocations(List<Allocation> allocations) {
             Utils.checkNotNull(allocations, "allocations");
             this.allocations = Optional.ofNullable(allocations);
@@ -1723,6 +1748,7 @@ public class CreditNote {
             this.allocations = allocations;
             return this;
         }
+
 
         /**
          * Optional note to be associated with the credit note.
@@ -1742,6 +1768,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * Optional terms to be associated with the credit note.
          */
@@ -1760,6 +1787,7 @@ public class CreditNote {
             return this;
         }
 
+
         public Builder billingAddress(Address billingAddress) {
             Utils.checkNotNull(billingAddress, "billingAddress");
             this.billingAddress = Optional.ofNullable(billingAddress);
@@ -1772,6 +1800,7 @@ public class CreditNote {
             return this;
         }
 
+
         public Builder shippingAddress(Address shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
@@ -1783,6 +1812,7 @@ public class CreditNote {
             this.shippingAddress = shippingAddress;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -1802,6 +1832,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -1820,6 +1851,7 @@ public class CreditNote {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1831,6 +1863,7 @@ public class CreditNote {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1850,6 +1883,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -1867,6 +1901,7 @@ public class CreditNote {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -1886,6 +1921,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -1903,6 +1939,7 @@ public class CreditNote {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -1922,6 +1959,7 @@ public class CreditNote {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1939,43 +1977,23 @@ public class CreditNote {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CreditNote build() {
+
             return new CreditNote(
-                id,
-                number,
-                customer,
-                companyId,
-                currency,
-                currencyRate,
-                taxInclusive,
-                subTotal,
-                totalAmount,
-                totalTax,
-                taxCode,
-                balance,
-                remainingCredit,
-                status,
-                reference,
-                dateIssued,
-                datePaid,
-                type,
-                account,
-                lineItems,
-                allocations,
-                note,
-                terms,
-                billingAddress,
-                shippingAddress,
-                trackingCategories,
-                customMappings,
-                customFields,
-                rowVersion,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, number, customer,
+                companyId, currency, currencyRate,
+                taxInclusive, subTotal, totalAmount,
+                totalTax, taxCode, balance,
+                remainingCredit, status, reference,
+                dateIssued, datePaid, type,
+                account, lineItems, allocations,
+                note, terms, billingAddress,
+                shippingAddress, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

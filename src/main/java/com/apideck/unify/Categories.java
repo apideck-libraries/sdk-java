@@ -25,7 +25,6 @@ public class Categories {
     Categories(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Categories
      * 
@@ -65,11 +64,10 @@ public class Categories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
               = new AccountingCategoriesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Category
@@ -110,8 +108,8 @@ public class Categories {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
               = new AccountingCategoriesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

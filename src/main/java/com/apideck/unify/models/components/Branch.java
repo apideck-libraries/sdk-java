@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,7 +19,6 @@ import java.util.Optional;
  * <p>Details of the branch for which the job is created.
  */
 public class Branch {
-
     /**
      * A unique identifier for an object.
      */
@@ -65,9 +63,10 @@ public class Branch {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -77,6 +76,7 @@ public class Branch {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -96,6 +96,7 @@ public class Branch {
         return this;
     }
 
+
     /**
      * Name of the branch.
      */
@@ -105,7 +106,6 @@ public class Branch {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,15 +116,14 @@ public class Branch {
         }
         Branch other = (Branch) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -133,16 +132,18 @@ public class Branch {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -162,6 +163,7 @@ public class Branch {
             return this;
         }
 
+
         /**
          * Name of the branch.
          */
@@ -179,11 +181,12 @@ public class Branch {
             this.name = name;
             return this;
         }
-        
+
         public Branch build() {
+
             return new Branch(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

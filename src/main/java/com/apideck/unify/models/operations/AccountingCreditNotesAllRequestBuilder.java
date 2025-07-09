@@ -59,8 +59,8 @@ public class AccountingCreditNotesAllRequestBuilder {
 
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
               = new AccountingCreditNotesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -85,8 +85,8 @@ public class AccountingCreditNotesAllRequestBuilder {
 
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
               = new AccountingCreditNotesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

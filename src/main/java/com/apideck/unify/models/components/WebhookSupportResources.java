@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class WebhookSupportResources {
 
@@ -39,9 +39,10 @@ public class WebhookSupportResources {
         return (Optional<List<String>>) events;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public WebhookSupportResources withEvents(List<String> events) {
         Utils.checkNotNull(events, "events");
@@ -49,13 +50,13 @@ public class WebhookSupportResources {
         return this;
     }
 
+
     public WebhookSupportResources withEvents(Optional<? extends List<String>> events) {
         Utils.checkNotNull(events, "events");
         this.events = events;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -66,12 +67,12 @@ public class WebhookSupportResources {
         }
         WebhookSupportResources other = (WebhookSupportResources) o;
         return 
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             events);
     }
     
@@ -80,14 +81,16 @@ public class WebhookSupportResources {
         return Utils.toString(WebhookSupportResources.class,
                 "events", events);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends List<String>> events = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder events(List<String> events) {
             Utils.checkNotNull(events, "events");
@@ -100,10 +103,12 @@ public class WebhookSupportResources {
             this.events = events;
             return this;
         }
-        
+
         public WebhookSupportResources build() {
+
             return new WebhookSupportResources(
                 events);
         }
+
     }
 }

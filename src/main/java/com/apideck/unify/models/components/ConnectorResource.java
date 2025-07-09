@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorResource {
 
+public class ConnectorResource {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
@@ -60,6 +59,7 @@ public class ConnectorResource {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination_supported")
     private Optional<Boolean> paginationSupported;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination")
@@ -161,7 +161,11 @@ public class ConnectorResource {
     }
     
     public ConnectorResource() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -281,9 +285,10 @@ public class ConnectorResource {
         return (Optional<List<SupportedProperty>>) supportedListFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -293,6 +298,7 @@ public class ConnectorResource {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * ID of the resource, typically a lowercased version of name.
@@ -312,6 +318,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Name of the resource (plural)
      */
@@ -329,6 +336,7 @@ public class ConnectorResource {
         this.downstreamId = Optional.ofNullable(downstreamId);
         return this;
     }
+
 
     /**
      * ID of the resource in the Connector's API (downstream)
@@ -348,6 +356,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Name of the resource in the Connector's API (downstream)
      */
@@ -365,6 +374,7 @@ public class ConnectorResource {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
@@ -384,6 +394,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
      */
@@ -399,6 +410,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     public ConnectorResource withPagination(Optional<? extends PaginationCoverage> pagination) {
         Utils.checkNotNull(pagination, "pagination");
         this.pagination = pagination;
@@ -413,6 +425,7 @@ public class ConnectorResource {
         this.customFieldsSupported = Optional.ofNullable(customFieldsSupported);
         return this;
     }
+
 
     /**
      * Indicates if custom fields are supported on this resource.
@@ -432,6 +445,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * List of supported operations on the resource.
      */
@@ -449,6 +463,7 @@ public class ConnectorResource {
         this.downstreamUnsupportedOperations = Optional.ofNullable(downstreamUnsupportedOperations);
         return this;
     }
+
 
     /**
      * List of operations that are not supported on the downstream.
@@ -468,6 +483,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Supported filters on the list endpoint of the resource.
      */
@@ -485,6 +501,7 @@ public class ConnectorResource {
         this.supportedSortBy = Optional.ofNullable(supportedSortBy);
         return this;
     }
+
 
     /**
      * Supported sorting properties on the list endpoint of the resource.
@@ -504,6 +521,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Supported fields on the detail endpoint.
      */
@@ -522,6 +540,7 @@ public class ConnectorResource {
         return this;
     }
 
+
     /**
      * Supported fields on the list endpoint.
      */
@@ -531,7 +550,6 @@ public class ConnectorResource {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -542,39 +560,30 @@ public class ConnectorResource {
         }
         ConnectorResource other = (ConnectorResource) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.downstreamName, other.downstreamName) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.paginationSupported, other.paginationSupported) &&
-            Objects.deepEquals(this.pagination, other.pagination) &&
-            Objects.deepEquals(this.customFieldsSupported, other.customFieldsSupported) &&
-            Objects.deepEquals(this.supportedOperations, other.supportedOperations) &&
-            Objects.deepEquals(this.downstreamUnsupportedOperations, other.downstreamUnsupportedOperations) &&
-            Objects.deepEquals(this.supportedFilters, other.supportedFilters) &&
-            Objects.deepEquals(this.supportedSortBy, other.supportedSortBy) &&
-            Objects.deepEquals(this.supportedFields, other.supportedFields) &&
-            Objects.deepEquals(this.supportedListFields, other.supportedListFields);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.downstreamName, other.downstreamName) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.paginationSupported, other.paginationSupported) &&
+            Utils.enhancedDeepEquals(this.pagination, other.pagination) &&
+            Utils.enhancedDeepEquals(this.customFieldsSupported, other.customFieldsSupported) &&
+            Utils.enhancedDeepEquals(this.supportedOperations, other.supportedOperations) &&
+            Utils.enhancedDeepEquals(this.downstreamUnsupportedOperations, other.downstreamUnsupportedOperations) &&
+            Utils.enhancedDeepEquals(this.supportedFilters, other.supportedFilters) &&
+            Utils.enhancedDeepEquals(this.supportedSortBy, other.supportedSortBy) &&
+            Utils.enhancedDeepEquals(this.supportedFields, other.supportedFields) &&
+            Utils.enhancedDeepEquals(this.supportedListFields, other.supportedListFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            downstreamId,
-            downstreamName,
-            status,
-            paginationSupported,
-            pagination,
-            customFieldsSupported,
-            supportedOperations,
-            downstreamUnsupportedOperations,
-            supportedFilters,
-            supportedSortBy,
-            supportedFields,
-            supportedListFields);
+        return Utils.enhancedHash(
+            id, name, downstreamId,
+            downstreamName, status, paginationSupported,
+            pagination, customFieldsSupported, supportedOperations,
+            downstreamUnsupportedOperations, supportedFilters, supportedSortBy,
+            supportedFields, supportedListFields);
     }
     
     @Override
@@ -595,40 +604,42 @@ public class ConnectorResource {
                 "supportedFields", supportedFields,
                 "supportedListFields", supportedListFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> downstreamId = Optional.empty();
- 
+
         private Optional<String> downstreamName = Optional.empty();
- 
+
         private Optional<? extends ResourceStatus> status = Optional.empty();
- 
+
         private Optional<Boolean> paginationSupported = Optional.empty();
- 
+
         private Optional<? extends PaginationCoverage> pagination = Optional.empty();
- 
+
         private Optional<Boolean> customFieldsSupported = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedOperations = Optional.empty();
- 
+
         private Optional<? extends List<String>> downstreamUnsupportedOperations = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedFilters = Optional.empty();
- 
+
         private Optional<? extends List<String>> supportedSortBy = Optional.empty();
- 
+
         private Optional<? extends List<SupportedProperty>> supportedFields = Optional.empty();
- 
+
         private Optional<? extends List<SupportedProperty>> supportedListFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the resource, typically a lowercased version of name.
@@ -648,6 +659,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Name of the resource (plural)
          */
@@ -665,6 +677,7 @@ public class ConnectorResource {
             this.name = name;
             return this;
         }
+
 
         /**
          * ID of the resource in the Connector's API (downstream)
@@ -684,6 +697,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Name of the resource in the Connector's API (downstream)
          */
@@ -701,6 +715,7 @@ public class ConnectorResource {
             this.downstreamName = downstreamName;
             return this;
         }
+
 
         /**
          * Status of the resource. Resources with status live or beta are callable.
@@ -720,6 +735,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
          */
@@ -738,6 +754,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         public Builder pagination(PaginationCoverage pagination) {
             Utils.checkNotNull(pagination, "pagination");
             this.pagination = Optional.ofNullable(pagination);
@@ -749,6 +766,7 @@ public class ConnectorResource {
             this.pagination = pagination;
             return this;
         }
+
 
         /**
          * Indicates if custom fields are supported on this resource.
@@ -768,6 +786,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * List of supported operations on the resource.
          */
@@ -785,6 +804,7 @@ public class ConnectorResource {
             this.supportedOperations = supportedOperations;
             return this;
         }
+
 
         /**
          * List of operations that are not supported on the downstream.
@@ -804,6 +824,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Supported filters on the list endpoint of the resource.
          */
@@ -821,6 +842,7 @@ public class ConnectorResource {
             this.supportedFilters = supportedFilters;
             return this;
         }
+
 
         /**
          * Supported sorting properties on the list endpoint of the resource.
@@ -840,6 +862,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Supported fields on the detail endpoint.
          */
@@ -858,6 +881,7 @@ public class ConnectorResource {
             return this;
         }
 
+
         /**
          * Supported fields on the list endpoint.
          */
@@ -875,23 +899,16 @@ public class ConnectorResource {
             this.supportedListFields = supportedListFields;
             return this;
         }
-        
+
         public ConnectorResource build() {
+
             return new ConnectorResource(
-                id,
-                name,
-                downstreamId,
-                downstreamName,
-                status,
-                paginationSupported,
-                pagination,
-                customFieldsSupported,
-                supportedOperations,
-                downstreamUnsupportedOperations,
-                supportedFilters,
-                supportedSortBy,
-                supportedFields,
-                supportedListFields);
+                id, name, downstreamId,
+                downstreamName, status, paginationSupported,
+                pagination, customFieldsSupported, supportedOperations,
+                downstreamUnsupportedOperations, supportedFilters, supportedSortBy,
+                supportedFields, supportedListFields);
         }
+
     }
 }

@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class UpdateFolderRequest {
 
+public class UpdateFolderRequest {
     /**
      * The name of the folder.
      */
@@ -63,7 +62,8 @@ public class UpdateFolderRequest {
     }
     
     public UpdateFolderRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -99,9 +99,10 @@ public class UpdateFolderRequest {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the folder.
@@ -111,6 +112,7 @@ public class UpdateFolderRequest {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * The name of the folder.
@@ -130,6 +132,7 @@ public class UpdateFolderRequest {
         return this;
     }
 
+
     /**
      * Optional description of the folder.
      */
@@ -147,6 +150,7 @@ public class UpdateFolderRequest {
         this.parentFolderId = Optional.ofNullable(parentFolderId);
         return this;
     }
+
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
@@ -166,6 +170,7 @@ public class UpdateFolderRequest {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -175,7 +180,6 @@ public class UpdateFolderRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,18 +190,16 @@ public class UpdateFolderRequest {
         }
         UpdateFolderRequest other = (UpdateFolderRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.parentFolderId, other.parentFolderId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            description,
-            parentFolderId,
+        return Utils.enhancedHash(
+            name, description, parentFolderId,
             passThrough);
     }
     
@@ -209,20 +211,22 @@ public class UpdateFolderRequest {
                 "parentFolderId", parentFolderId,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
- 
+
         private Optional<String> parentFolderId = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the folder.
@@ -242,6 +246,7 @@ public class UpdateFolderRequest {
             return this;
         }
 
+
         /**
          * Optional description of the folder.
          */
@@ -259,6 +264,7 @@ public class UpdateFolderRequest {
             this.description = description;
             return this;
         }
+
 
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
@@ -278,6 +284,7 @@ public class UpdateFolderRequest {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -295,13 +302,13 @@ public class UpdateFolderRequest {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public UpdateFolderRequest build() {
+
             return new UpdateFolderRequest(
-                name,
-                description,
-                parentFolderId,
+                name, description, parentFolderId,
                 passThrough);
         }
+
     }
 }

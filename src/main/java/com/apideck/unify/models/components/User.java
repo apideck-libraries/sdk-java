@@ -16,12 +16,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class User {
 
+public class User {
     /**
      * The unique identifier for the user
      */
@@ -123,13 +122,16 @@ public class User {
     @JsonProperty("status")
     private JsonNullable<String> status;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
+
 
     @JsonProperty("emails")
     private List<Email> emails;
@@ -231,7 +233,13 @@ public class User {
     
     public User(
             List<Email> emails) {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), emails, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), emails, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -400,9 +408,10 @@ public class User {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the user
@@ -412,6 +421,7 @@ public class User {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier for the user
@@ -668,6 +678,7 @@ public class User {
         return this;
     }
 
+
     public User withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -679,6 +690,7 @@ public class User {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public User withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -755,6 +767,7 @@ public class User {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -764,7 +777,6 @@ public class User {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -775,53 +787,39 @@ public class User {
         }
         User other = (User) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.username, other.username) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.division, other.division) &&
-            Objects.deepEquals(this.department, other.department) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.employeeNumber, other.employeeNumber) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.image, other.image) &&
-            Objects.deepEquals(this.language, other.language) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.username, other.username) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.division, other.division) &&
+            Utils.enhancedDeepEquals(this.department, other.department) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.employeeNumber, other.employeeNumber) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.image, other.image) &&
+            Utils.enhancedDeepEquals(this.language, other.language) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            parentId,
-            username,
-            firstName,
-            lastName,
-            title,
-            division,
-            department,
-            companyName,
-            employeeNumber,
-            description,
-            image,
-            language,
-            status,
-            addresses,
-            phoneNumbers,
-            emails,
-            customMappings,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, parentId, username,
+            firstName, lastName, title,
+            division, department, companyName,
+            employeeNumber, description, image,
+            language, status, addresses,
+            phoneNumbers, emails, customMappings,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -849,55 +847,57 @@ public class User {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> username = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> division = JsonNullable.undefined();
- 
+
         @Deprecated
         private JsonNullable<String> department = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> employeeNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> image = JsonNullable.undefined();
- 
+
         private JsonNullable<String> language = JsonNullable.undefined();
- 
+
         private JsonNullable<String> status = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private List<Email> emails;
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the user
@@ -917,6 +917,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The parent user id
          */
@@ -934,6 +935,7 @@ public class User {
             this.parentId = parentId;
             return this;
         }
+
 
         /**
          * The username of the user
@@ -953,6 +955,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The first name of the person.
          */
@@ -970,6 +973,7 @@ public class User {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The last name of the person.
@@ -989,6 +993,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The job title of the person.
          */
@@ -1007,6 +1012,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The division the person is currently in. Usually a collection of departments or teams or regions.
          */
@@ -1024,6 +1030,7 @@ public class User {
             this.division = division;
             return this;
         }
+
 
         /**
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
@@ -1049,6 +1056,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The name of the company.
          */
@@ -1066,6 +1074,7 @@ public class User {
             this.companyName = companyName;
             return this;
         }
+
 
         /**
          * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
@@ -1085,6 +1094,7 @@ public class User {
             return this;
         }
 
+
         /**
          * A description of the object.
          */
@@ -1102,6 +1112,7 @@ public class User {
             this.description = description;
             return this;
         }
+
 
         /**
          * The URL of the user's avatar
@@ -1121,6 +1132,7 @@ public class User {
             return this;
         }
 
+
         /**
          * language code according to ISO 639-1. For the United States - EN
          */
@@ -1138,6 +1150,7 @@ public class User {
             this.language = language;
             return this;
         }
+
 
         /**
          * The status of the user
@@ -1157,6 +1170,7 @@ public class User {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -1168,6 +1182,7 @@ public class User {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -1181,11 +1196,13 @@ public class User {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = emails;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1205,6 +1222,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The date and time when the user was last updated.
          */
@@ -1222,6 +1240,7 @@ public class User {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the user was created.
@@ -1241,6 +1260,7 @@ public class User {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1258,30 +1278,18 @@ public class User {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public User build() {
+
             return new User(
-                id,
-                parentId,
-                username,
-                firstName,
-                lastName,
-                title,
-                division,
-                department,
-                companyName,
-                employeeNumber,
-                description,
-                image,
-                language,
-                status,
-                addresses,
-                phoneNumbers,
-                emails,
-                customMappings,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, parentId, username,
+                firstName, lastName, title,
+                division, department, companyName,
+                employeeNumber, description, image,
+                language, status, addresses,
+                phoneNumbers, emails, customMappings,
+                updatedAt, createdAt, passThrough);
         }
+
     }
 }

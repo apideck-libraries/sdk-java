@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LinkedTaxRate {
 
+public class LinkedTaxRate {
     /**
      * The ID of the object.
      */
@@ -62,7 +61,8 @@ public class LinkedTaxRate {
     }
     
     public LinkedTaxRate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -97,9 +97,10 @@ public class LinkedTaxRate {
         return rate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the object.
@@ -173,7 +174,6 @@ public class LinkedTaxRate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,18 +184,16 @@ public class LinkedTaxRate {
         }
         LinkedTaxRate other = (LinkedTaxRate) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.rate, other.rate);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.rate, other.rate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            code,
-            name,
+        return Utils.enhancedHash(
+            id, code, name,
             rate);
     }
     
@@ -207,20 +205,22 @@ public class LinkedTaxRate {
                 "name", name,
                 "rate", rate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> rate = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the object.
@@ -240,6 +240,7 @@ public class LinkedTaxRate {
             return this;
         }
 
+
         /**
          * Tax rate code
          */
@@ -257,6 +258,7 @@ public class LinkedTaxRate {
             this.code = code;
             return this;
         }
+
 
         /**
          * Name of the tax rate
@@ -276,6 +278,7 @@ public class LinkedTaxRate {
             return this;
         }
 
+
         /**
          * Rate of the tax rate
          */
@@ -293,13 +296,13 @@ public class LinkedTaxRate {
             this.rate = rate;
             return this;
         }
-        
+
         public LinkedTaxRate build() {
+
             return new LinkedTaxRate(
-                id,
-                code,
-                name,
+                id, code, name,
                 rate);
         }
+
     }
 }

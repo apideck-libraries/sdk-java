@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class TlsSupport {
 
@@ -54,15 +54,17 @@ public class TlsSupport {
         return description;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public TlsSupport withType(String type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public TlsSupport withType(Optional<String> type) {
         Utils.checkNotNull(type, "type");
@@ -79,6 +81,7 @@ public class TlsSupport {
         return this;
     }
 
+
     /**
      * Description of the TLS support
      */
@@ -88,7 +91,6 @@ public class TlsSupport {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -99,15 +101,14 @@ public class TlsSupport {
         }
         TlsSupport other = (TlsSupport) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.description, other.description);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.description, other.description);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            type,
-            description);
+        return Utils.enhancedHash(
+            type, description);
     }
     
     @Override
@@ -116,16 +117,18 @@ public class TlsSupport {
                 "type", type,
                 "description", description);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> type = Optional.empty();
- 
+
         private Optional<String> description = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(String type) {
             Utils.checkNotNull(type, "type");
@@ -138,6 +141,7 @@ public class TlsSupport {
             this.type = type;
             return this;
         }
+
 
         /**
          * Description of the TLS support
@@ -156,11 +160,12 @@ public class TlsSupport {
             this.description = description;
             return this;
         }
-        
+
         public TlsSupport build() {
+
             return new TlsSupport(
-                type,
-                description);
+                type, description);
         }
+
     }
 }

@@ -37,7 +37,6 @@ public class Activities {
     Activities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List activities
      * 
@@ -77,11 +76,10 @@ public class Activities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
               = new CrmActivitiesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create activity
@@ -122,11 +120,10 @@ public class Activities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAddRequest, CrmActivitiesAddResponse> operation
               = new CrmActivitiesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get activity
@@ -167,11 +164,10 @@ public class Activities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesOneRequest, CrmActivitiesOneResponse> operation
               = new CrmActivitiesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update activity
@@ -212,11 +208,10 @@ public class Activities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesUpdateRequest, CrmActivitiesUpdateResponse> operation
               = new CrmActivitiesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete activity
@@ -257,8 +252,8 @@ public class Activities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesDeleteRequest, CrmActivitiesDeleteResponse> operation
               = new CrmActivitiesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

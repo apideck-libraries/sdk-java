@@ -14,12 +14,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TicketInput {
 
+public class TicketInput {
     /**
      * The ticket's parent ID
      */
@@ -62,6 +61,7 @@ public class TicketInput {
     @JsonProperty("priority")
     private JsonNullable<? extends Priority> priority;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("assignees")
     private Optional<? extends List<AssigneeInput>> assignees;
@@ -72,6 +72,7 @@ public class TicketInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("due_date")
     private JsonNullable<OffsetDateTime> dueDate;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
@@ -119,7 +120,10 @@ public class TicketInput {
     }
     
     public TicketInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -200,9 +204,10 @@ public class TicketInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ticket's parent ID
@@ -318,6 +323,7 @@ public class TicketInput {
         return this;
     }
 
+
     public TicketInput withAssignees(Optional<? extends List<AssigneeInput>> assignees) {
         Utils.checkNotNull(assignees, "assignees");
         this.assignees = assignees;
@@ -348,6 +354,7 @@ public class TicketInput {
         return this;
     }
 
+
     public TicketInput withTags(Optional<? extends List<CollectionTagInput>> tags) {
         Utils.checkNotNull(tags, "tags");
         this.tags = tags;
@@ -363,6 +370,7 @@ public class TicketInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -372,7 +380,6 @@ public class TicketInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -383,30 +390,24 @@ public class TicketInput {
         }
         TicketInput other = (TicketInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.subject, other.subject) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.priority, other.priority) &&
-            Objects.deepEquals(this.assignees, other.assignees) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.subject, other.subject) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority) &&
+            Utils.enhancedDeepEquals(this.assignees, other.assignees) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            parentId,
-            type,
-            subject,
-            description,
-            status,
-            priority,
-            assignees,
-            dueDate,
-            tags,
+        return Utils.enhancedHash(
+            parentId, type, subject,
+            description, status, priority,
+            assignees, dueDate, tags,
             passThrough);
     }
     
@@ -424,32 +425,34 @@ public class TicketInput {
                 "tags", tags,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> type = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subject = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Priority> priority = JsonNullable.undefined();
- 
+
         private Optional<? extends List<AssigneeInput>> assignees = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> dueDate = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CollectionTagInput>> tags = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ticket's parent ID
@@ -469,6 +472,7 @@ public class TicketInput {
             return this;
         }
 
+
         /**
          * The ticket's type
          */
@@ -486,6 +490,7 @@ public class TicketInput {
             this.type = type;
             return this;
         }
+
 
         /**
          * Subject of the ticket
@@ -505,6 +510,7 @@ public class TicketInput {
             return this;
         }
 
+
         /**
          * The ticket's description. HTML version of description is mapped if supported by the third-party platform
          */
@@ -522,6 +528,7 @@ public class TicketInput {
             this.description = description;
             return this;
         }
+
 
         /**
          * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
@@ -541,6 +548,7 @@ public class TicketInput {
             return this;
         }
 
+
         /**
          * Priority of the ticket
          */
@@ -559,6 +567,7 @@ public class TicketInput {
             return this;
         }
 
+
         public Builder assignees(List<AssigneeInput> assignees) {
             Utils.checkNotNull(assignees, "assignees");
             this.assignees = Optional.ofNullable(assignees);
@@ -570,6 +579,7 @@ public class TicketInput {
             this.assignees = assignees;
             return this;
         }
+
 
         /**
          * Due date of the ticket
@@ -589,6 +599,7 @@ public class TicketInput {
             return this;
         }
 
+
         public Builder tags(List<CollectionTagInput> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = Optional.ofNullable(tags);
@@ -600,6 +611,7 @@ public class TicketInput {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -618,19 +630,15 @@ public class TicketInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public TicketInput build() {
+
             return new TicketInput(
-                parentId,
-                type,
-                subject,
-                description,
-                status,
-                priority,
-                assignees,
-                dueDate,
-                tags,
+                parentId, type, subject,
+                description, status, priority,
+                assignees, dueDate, tags,
                 passThrough);
         }
+
     }
 }

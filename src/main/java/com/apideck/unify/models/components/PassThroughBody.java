@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
-public class PassThroughBody {
 
+public class PassThroughBody {
     /**
      * Identifier for the service to which this pass_through should be applied.
      */
@@ -65,7 +64,8 @@ public class PassThroughBody {
     
     public PassThroughBody(
             String serviceId) {
-        this(serviceId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(serviceId, Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -102,9 +102,10 @@ public class PassThroughBody {
         return (Optional<List<ExtendPaths>>) extendPaths;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Identifier for the service to which this pass_through should be applied.
@@ -124,6 +125,7 @@ public class PassThroughBody {
         return this;
     }
 
+
     /**
      * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
      */
@@ -141,6 +143,7 @@ public class PassThroughBody {
         this.extendObject = Optional.ofNullable(extendObject);
         return this;
     }
+
 
     /**
      * Simple object allowing any properties for direct extension.
@@ -160,6 +163,7 @@ public class PassThroughBody {
         return this;
     }
 
+
     /**
      * Array of objects for structured data modifications via paths.
      */
@@ -169,7 +173,6 @@ public class PassThroughBody {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -180,18 +183,16 @@ public class PassThroughBody {
         }
         PassThroughBody other = (PassThroughBody) o;
         return 
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.operationId, other.operationId) &&
-            Objects.deepEquals(this.extendObject, other.extendObject) &&
-            Objects.deepEquals(this.extendPaths, other.extendPaths);
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.operationId, other.operationId) &&
+            Utils.enhancedDeepEquals(this.extendObject, other.extendObject) &&
+            Utils.enhancedDeepEquals(this.extendPaths, other.extendPaths);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            serviceId,
-            operationId,
-            extendObject,
+        return Utils.enhancedHash(
+            serviceId, operationId, extendObject,
             extendPaths);
     }
     
@@ -203,20 +204,22 @@ public class PassThroughBody {
                 "extendObject", extendObject,
                 "extendPaths", extendPaths);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String serviceId;
- 
+
         private Optional<String> operationId = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> extendObject = Optional.empty();
- 
+
         private Optional<? extends List<ExtendPaths>> extendPaths = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Identifier for the service to which this pass_through should be applied.
@@ -226,6 +229,7 @@ public class PassThroughBody {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
@@ -245,6 +249,7 @@ public class PassThroughBody {
             return this;
         }
 
+
         /**
          * Simple object allowing any properties for direct extension.
          */
@@ -263,6 +268,7 @@ public class PassThroughBody {
             return this;
         }
 
+
         /**
          * Array of objects for structured data modifications via paths.
          */
@@ -280,13 +286,13 @@ public class PassThroughBody {
             this.extendPaths = extendPaths;
             return this;
         }
-        
+
         public PassThroughBody build() {
+
             return new PassThroughBody(
-                serviceId,
-                operationId,
-                extendObject,
+                serviceId, operationId, extendObject,
                 extendPaths);
         }
+
     }
 }

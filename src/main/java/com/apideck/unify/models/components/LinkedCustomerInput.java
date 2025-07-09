@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The customer this entity is linked to.
  */
 public class LinkedCustomerInput {
-
     /**
      * The ID of the customer this entity is linked to.
      */
@@ -71,7 +69,8 @@ public class LinkedCustomerInput {
     }
     
     public LinkedCustomerInput() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -109,9 +108,10 @@ public class LinkedCustomerInput {
         return email;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the customer this entity is linked to.
@@ -121,6 +121,7 @@ public class LinkedCustomerInput {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The ID of the customer this entity is linked to.
@@ -161,6 +162,7 @@ public class LinkedCustomerInput {
         return this;
     }
 
+
     /**
      * The name of the customer. Deprecated, use display_name instead.
      * 
@@ -182,6 +184,7 @@ public class LinkedCustomerInput {
         return this;
     }
 
+
     /**
      * The email address of the customer.
      */
@@ -191,7 +194,6 @@ public class LinkedCustomerInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -202,18 +204,16 @@ public class LinkedCustomerInput {
         }
         LinkedCustomerInput other = (LinkedCustomerInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.email, other.email);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.email, other.email);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            displayName,
-            name,
+        return Utils.enhancedHash(
+            id, displayName, name,
             email);
     }
     
@@ -225,21 +225,23 @@ public class LinkedCustomerInput {
                 "name", name,
                 "email", email);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         @Deprecated
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the customer this entity is linked to.
@@ -259,6 +261,7 @@ public class LinkedCustomerInput {
             return this;
         }
 
+
         /**
          * The display name of the customer.
          */
@@ -276,6 +279,7 @@ public class LinkedCustomerInput {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * The name of the customer. Deprecated, use display_name instead.
@@ -301,6 +305,7 @@ public class LinkedCustomerInput {
             return this;
         }
 
+
         /**
          * The email address of the customer.
          */
@@ -318,13 +323,13 @@ public class LinkedCustomerInput {
             this.email = email;
             return this;
         }
-        
+
         public LinkedCustomerInput build() {
+
             return new LinkedCustomerInput(
-                id,
-                displayName,
-                name,
+                id, displayName, name,
                 email);
         }
+
     }
 }

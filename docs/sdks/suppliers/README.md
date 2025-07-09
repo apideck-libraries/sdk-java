@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingSuppliersAllRequest req = AccountingSuppliersAllRequest.builder()
@@ -115,7 +115,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingSuppliersAddRequest req = AccountingSuppliersAddRequest.builder()
@@ -213,7 +213,7 @@ public class Application {
                     .notes("Some notes about this supplier")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
                     .taxNumber("US123945459")
                     .currency(Currency.USD)
@@ -319,7 +319,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingSuppliersOneRequest req = AccountingSuppliersOneRequest.builder()
@@ -385,7 +385,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingSuppliersUpdateRequest req = AccountingSuppliersUpdateRequest.builder()
@@ -487,7 +487,7 @@ public class Application {
                     .notes("Some notes about this supplier")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
                     .taxNumber("US123945459")
                     .currency(Currency.USD)
@@ -583,7 +583,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingSuppliersDeleteRequest req = AccountingSuppliersDeleteRequest.builder()

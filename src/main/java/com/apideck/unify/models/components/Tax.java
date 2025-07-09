@@ -13,11 +13,10 @@ import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Tax {
 
+public class Tax {
     /**
      * The name of the tax.
      */
@@ -80,9 +79,10 @@ public class Tax {
         return amount;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the tax.
@@ -138,7 +138,6 @@ public class Tax {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -149,17 +148,15 @@ public class Tax {
         }
         Tax other = (Tax) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.employer, other.employer) &&
-            Objects.deepEquals(this.amount, other.amount);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.employer, other.employer) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            employer,
-            amount);
+        return Utils.enhancedHash(
+            name, employer, amount);
     }
     
     @Override
@@ -169,18 +166,20 @@ public class Tax {
                 "employer", employer,
                 "amount", amount);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> employer = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the tax.
@@ -200,6 +199,7 @@ public class Tax {
             return this;
         }
 
+
         /**
          * Paid by employer.
          */
@@ -218,6 +218,7 @@ public class Tax {
             return this;
         }
 
+
         /**
          * The amount of the tax.
          */
@@ -235,12 +236,12 @@ public class Tax {
             this.amount = amount;
             return this;
         }
-        
+
         public Tax build() {
+
             return new Tax(
-                name,
-                employer,
-                amount);
+                name, employer, amount);
         }
+
     }
 }

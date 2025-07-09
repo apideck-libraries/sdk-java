@@ -48,8 +48,8 @@ public class AccountingSubsidiariesAddRequestBuilder {
 
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
               = new AccountingSubsidiariesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

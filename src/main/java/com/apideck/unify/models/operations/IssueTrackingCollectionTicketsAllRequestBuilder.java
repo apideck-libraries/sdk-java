@@ -59,8 +59,8 @@ public class IssueTrackingCollectionTicketsAllRequestBuilder {
 
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
               = new IssueTrackingCollectionTicketsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -85,8 +85,8 @@ public class IssueTrackingCollectionTicketsAllRequestBuilder {
 
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
               = new IssueTrackingCollectionTicketsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

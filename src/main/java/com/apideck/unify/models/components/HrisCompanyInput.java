@@ -13,9 +13,9 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class HrisCompanyInput {
 
@@ -23,13 +23,16 @@ public class HrisCompanyInput {
     @JsonProperty("legal_name")
     private Optional<String> legalName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_name")
     private JsonNullable<String> displayName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subdomain")
     private JsonNullable<String> subdomain;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -49,21 +52,26 @@ public class HrisCompanyInput {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
     private Optional<? extends List<Address>> addresses;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private Optional<? extends List<PhoneNumber>> phoneNumbers;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
     private Optional<? extends List<Email>> emails;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
     private Optional<? extends List<Website>> websites;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("debtor_id")
@@ -117,7 +125,10 @@ public class HrisCompanyInput {
     }
     
     public HrisCompanyInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     @JsonIgnore
@@ -196,15 +207,17 @@ public class HrisCompanyInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public HrisCompanyInput withLegalName(String legalName) {
         Utils.checkNotNull(legalName, "legalName");
         this.legalName = Optional.ofNullable(legalName);
         return this;
     }
+
 
     public HrisCompanyInput withLegalName(Optional<String> legalName) {
         Utils.checkNotNull(legalName, "legalName");
@@ -241,6 +254,7 @@ public class HrisCompanyInput {
         this.status = Optional.ofNullable(status);
         return this;
     }
+
 
     public HrisCompanyInput withStatus(Optional<? extends HrisCompanyStatus> status) {
         Utils.checkNotNull(status, "status");
@@ -290,6 +304,7 @@ public class HrisCompanyInput {
         return this;
     }
 
+
     public HrisCompanyInput withAddresses(Optional<? extends List<Address>> addresses) {
         Utils.checkNotNull(addresses, "addresses");
         this.addresses = addresses;
@@ -301,6 +316,7 @@ public class HrisCompanyInput {
         this.phoneNumbers = Optional.ofNullable(phoneNumbers);
         return this;
     }
+
 
     public HrisCompanyInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
         Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -314,6 +330,7 @@ public class HrisCompanyInput {
         return this;
     }
 
+
     public HrisCompanyInput withEmails(Optional<? extends List<Email>> emails) {
         Utils.checkNotNull(emails, "emails");
         this.emails = emails;
@@ -325,6 +342,7 @@ public class HrisCompanyInput {
         this.websites = Optional.ofNullable(websites);
         return this;
     }
+
 
     public HrisCompanyInput withWebsites(Optional<? extends List<Website>> websites) {
         Utils.checkNotNull(websites, "websites");
@@ -353,6 +371,7 @@ public class HrisCompanyInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -362,7 +381,6 @@ public class HrisCompanyInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -373,35 +391,27 @@ public class HrisCompanyInput {
         }
         HrisCompanyInput other = (HrisCompanyInput) o;
         return 
-            Objects.deepEquals(this.legalName, other.legalName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.subdomain, other.subdomain) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.companyNumber, other.companyNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.addresses, other.addresses) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails) &&
-            Objects.deepEquals(this.websites, other.websites) &&
-            Objects.deepEquals(this.debtorId, other.debtorId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.legalName, other.legalName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.subdomain, other.subdomain) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.companyNumber, other.companyNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.addresses, other.addresses) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails) &&
+            Utils.enhancedDeepEquals(this.websites, other.websites) &&
+            Utils.enhancedDeepEquals(this.debtorId, other.debtorId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            legalName,
-            displayName,
-            subdomain,
-            status,
-            companyNumber,
-            currency,
-            addresses,
-            phoneNumbers,
-            emails,
-            websites,
-            debtorId,
-            passThrough);
+        return Utils.enhancedHash(
+            legalName, displayName, subdomain,
+            status, companyNumber, currency,
+            addresses, phoneNumbers, emails,
+            websites, debtorId, passThrough);
     }
     
     @Override
@@ -420,36 +430,38 @@ public class HrisCompanyInput {
                 "debtorId", debtorId,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> legalName = Optional.empty();
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subdomain = JsonNullable.undefined();
- 
+
         private Optional<? extends HrisCompanyStatus> status = Optional.empty();
- 
+
         private JsonNullable<String> companyNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<? extends List<Address>> addresses = Optional.empty();
- 
+
         private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
- 
+
         private Optional<? extends List<Email>> emails = Optional.empty();
- 
+
         private Optional<? extends List<Website>> websites = Optional.empty();
- 
+
         private JsonNullable<String> debtorId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder legalName(String legalName) {
             Utils.checkNotNull(legalName, "legalName");
@@ -463,6 +475,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         public Builder displayName(String displayName) {
             Utils.checkNotNull(displayName, "displayName");
             this.displayName = JsonNullable.of(displayName);
@@ -474,6 +487,7 @@ public class HrisCompanyInput {
             this.displayName = displayName;
             return this;
         }
+
 
         public Builder subdomain(String subdomain) {
             Utils.checkNotNull(subdomain, "subdomain");
@@ -487,6 +501,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         public Builder status(HrisCompanyStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = Optional.ofNullable(status);
@@ -498,6 +513,7 @@ public class HrisCompanyInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
@@ -517,6 +533,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -535,6 +552,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         public Builder addresses(List<Address> addresses) {
             Utils.checkNotNull(addresses, "addresses");
             this.addresses = Optional.ofNullable(addresses);
@@ -546,6 +564,7 @@ public class HrisCompanyInput {
             this.addresses = addresses;
             return this;
         }
+
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
@@ -559,6 +578,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = Optional.ofNullable(emails);
@@ -570,6 +590,7 @@ public class HrisCompanyInput {
             this.emails = emails;
             return this;
         }
+
 
         public Builder websites(List<Website> websites) {
             Utils.checkNotNull(websites, "websites");
@@ -583,6 +604,7 @@ public class HrisCompanyInput {
             return this;
         }
 
+
         public Builder debtorId(String debtorId) {
             Utils.checkNotNull(debtorId, "debtorId");
             this.debtorId = JsonNullable.of(debtorId);
@@ -594,6 +616,7 @@ public class HrisCompanyInput {
             this.debtorId = debtorId;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -612,21 +635,15 @@ public class HrisCompanyInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public HrisCompanyInput build() {
+
             return new HrisCompanyInput(
-                legalName,
-                displayName,
-                subdomain,
-                status,
-                companyNumber,
-                currency,
-                addresses,
-                phoneNumbers,
-                emails,
-                websites,
-                debtorId,
-                passThrough);
+                legalName, displayName, subdomain,
+                status, companyNumber, currency,
+                addresses, phoneNumbers, emails,
+                websites, debtorId, passThrough);
         }
+
     }
 }

@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingLedgerAccountsAllRequest req = AccountingLedgerAccountsAllRequest.builder()
@@ -111,7 +111,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingLedgerAccountsAddRequest req = AccountingLedgerAccountsAddRequest.builder()
@@ -124,15 +124,15 @@ public class Application {
                     .name("Bank account")
                     .fullyQualifiedName("Asset.Bank.Checking_Account")
                     .description("Main checking account")
-                    .openingBalance(75000)
-                    .currentBalance(20000)
+                    .openingBalance(75000d)
+                    .currentBalance(20000d)
                     .currency(Currency.USD)
                     .taxType("NONE")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
-                    .level(1)
+                    .level(1d)
                     .active(true)
                     .status(AccountStatus.ACTIVE)
                     .header(true)
@@ -253,7 +253,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingLedgerAccountsOneRequest req = AccountingLedgerAccountsOneRequest.builder()
@@ -320,7 +320,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingLedgerAccountsUpdateRequest req = AccountingLedgerAccountsUpdateRequest.builder()
@@ -334,15 +334,15 @@ public class Application {
                     .name("Bank account")
                     .fullyQualifiedName("Asset.Bank.Checking_Account")
                     .description("Main checking account")
-                    .openingBalance(75000)
-                    .currentBalance(20000)
+                    .openingBalance(75000d)
+                    .currentBalance(20000d)
                     .currency(Currency.USD)
                     .taxType("NONE")
                     .taxRate(LinkedTaxRateInput.builder()
                         .id("123456")
-                        .rate(10)
+                        .rate(10d)
                         .build())
-                    .level(1)
+                    .level(1d)
                     .active(true)
                     .status(AccountStatus.ACTIVE)
                     .header(true)
@@ -455,7 +455,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingLedgerAccountsDeleteRequest req = AccountingLedgerAccountsDeleteRequest.builder()

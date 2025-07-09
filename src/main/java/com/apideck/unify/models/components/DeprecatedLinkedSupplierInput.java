@@ -13,7 +13,6 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,13 +25,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 @Deprecated
 public class DeprecatedLinkedSupplierInput {
-
     /**
      * The display name of the supplier.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_name")
     private JsonNullable<String> displayName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
@@ -66,9 +65,10 @@ public class DeprecatedLinkedSupplierInput {
         return (Optional<Address>) address;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The display name of the supplier.
@@ -94,13 +94,13 @@ public class DeprecatedLinkedSupplierInput {
         return this;
     }
 
+
     public DeprecatedLinkedSupplierInput withAddress(Optional<? extends Address> address) {
         Utils.checkNotNull(address, "address");
         this.address = address;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +111,14 @@ public class DeprecatedLinkedSupplierInput {
         }
         DeprecatedLinkedSupplierInput other = (DeprecatedLinkedSupplierInput) o;
         return 
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.address, other.address);
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.address, other.address);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            displayName,
-            address);
+        return Utils.enhancedHash(
+            displayName, address);
     }
     
     @Override
@@ -128,16 +127,18 @@ public class DeprecatedLinkedSupplierInput {
                 "displayName", displayName,
                 "address", address);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> address = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The display name of the supplier.
@@ -157,6 +158,7 @@ public class DeprecatedLinkedSupplierInput {
             return this;
         }
 
+
         public Builder address(Address address) {
             Utils.checkNotNull(address, "address");
             this.address = Optional.ofNullable(address);
@@ -168,11 +170,12 @@ public class DeprecatedLinkedSupplierInput {
             this.address = address;
             return this;
         }
-        
+
         public DeprecatedLinkedSupplierInput build() {
+
             return new DeprecatedLinkedSupplierInput(
-                displayName,
-                address);
+                displayName, address);
         }
+
     }
 }

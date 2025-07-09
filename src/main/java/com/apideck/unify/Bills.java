@@ -37,7 +37,6 @@ public class Bills {
     Bills(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Bills
      * 
@@ -77,11 +76,10 @@ public class Bills {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsAllRequest, AccountingBillsAllResponse> operation
               = new AccountingBillsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Bill
@@ -122,11 +120,10 @@ public class Bills {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsAddRequest, AccountingBillsAddResponse> operation
               = new AccountingBillsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Bill
@@ -167,11 +164,10 @@ public class Bills {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsOneRequest, AccountingBillsOneResponse> operation
               = new AccountingBillsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Bill
@@ -212,11 +208,10 @@ public class Bills {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsUpdateRequest, AccountingBillsUpdateResponse> operation
               = new AccountingBillsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Bill
@@ -257,8 +252,8 @@ public class Bills {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingBillsDeleteRequest, AccountingBillsDeleteResponse> operation
               = new AccountingBillsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

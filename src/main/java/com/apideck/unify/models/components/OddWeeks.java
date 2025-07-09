@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class OddWeeks {
 
@@ -21,25 +21,31 @@ public class OddWeeks {
     @JsonProperty("hours_monday")
     private Optional<Double> hoursMonday;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_tuesday")
     private Optional<Double> hoursTuesday;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_wednesday")
     private Optional<Double> hoursWednesday;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_thursday")
     private Optional<Double> hoursThursday;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_friday")
     private Optional<Double> hoursFriday;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_saturday")
     private Optional<Double> hoursSaturday;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_sunday")
@@ -71,7 +77,9 @@ public class OddWeeks {
     }
     
     public OddWeeks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @JsonIgnore
@@ -109,15 +117,17 @@ public class OddWeeks {
         return hoursSunday;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public OddWeeks withHoursMonday(double hoursMonday) {
         Utils.checkNotNull(hoursMonday, "hoursMonday");
         this.hoursMonday = Optional.ofNullable(hoursMonday);
         return this;
     }
+
 
     public OddWeeks withHoursMonday(Optional<Double> hoursMonday) {
         Utils.checkNotNull(hoursMonday, "hoursMonday");
@@ -131,6 +141,7 @@ public class OddWeeks {
         return this;
     }
 
+
     public OddWeeks withHoursTuesday(Optional<Double> hoursTuesday) {
         Utils.checkNotNull(hoursTuesday, "hoursTuesday");
         this.hoursTuesday = hoursTuesday;
@@ -142,6 +153,7 @@ public class OddWeeks {
         this.hoursWednesday = Optional.ofNullable(hoursWednesday);
         return this;
     }
+
 
     public OddWeeks withHoursWednesday(Optional<Double> hoursWednesday) {
         Utils.checkNotNull(hoursWednesday, "hoursWednesday");
@@ -155,6 +167,7 @@ public class OddWeeks {
         return this;
     }
 
+
     public OddWeeks withHoursThursday(Optional<Double> hoursThursday) {
         Utils.checkNotNull(hoursThursday, "hoursThursday");
         this.hoursThursday = hoursThursday;
@@ -166,6 +179,7 @@ public class OddWeeks {
         this.hoursFriday = Optional.ofNullable(hoursFriday);
         return this;
     }
+
 
     public OddWeeks withHoursFriday(Optional<Double> hoursFriday) {
         Utils.checkNotNull(hoursFriday, "hoursFriday");
@@ -179,6 +193,7 @@ public class OddWeeks {
         return this;
     }
 
+
     public OddWeeks withHoursSaturday(Optional<Double> hoursSaturday) {
         Utils.checkNotNull(hoursSaturday, "hoursSaturday");
         this.hoursSaturday = hoursSaturday;
@@ -191,13 +206,13 @@ public class OddWeeks {
         return this;
     }
 
+
     public OddWeeks withHoursSunday(Optional<Double> hoursSunday) {
         Utils.checkNotNull(hoursSunday, "hoursSunday");
         this.hoursSunday = hoursSunday;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -208,24 +223,20 @@ public class OddWeeks {
         }
         OddWeeks other = (OddWeeks) o;
         return 
-            Objects.deepEquals(this.hoursMonday, other.hoursMonday) &&
-            Objects.deepEquals(this.hoursTuesday, other.hoursTuesday) &&
-            Objects.deepEquals(this.hoursWednesday, other.hoursWednesday) &&
-            Objects.deepEquals(this.hoursThursday, other.hoursThursday) &&
-            Objects.deepEquals(this.hoursFriday, other.hoursFriday) &&
-            Objects.deepEquals(this.hoursSaturday, other.hoursSaturday) &&
-            Objects.deepEquals(this.hoursSunday, other.hoursSunday);
+            Utils.enhancedDeepEquals(this.hoursMonday, other.hoursMonday) &&
+            Utils.enhancedDeepEquals(this.hoursTuesday, other.hoursTuesday) &&
+            Utils.enhancedDeepEquals(this.hoursWednesday, other.hoursWednesday) &&
+            Utils.enhancedDeepEquals(this.hoursThursday, other.hoursThursday) &&
+            Utils.enhancedDeepEquals(this.hoursFriday, other.hoursFriday) &&
+            Utils.enhancedDeepEquals(this.hoursSaturday, other.hoursSaturday) &&
+            Utils.enhancedDeepEquals(this.hoursSunday, other.hoursSunday);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            hoursMonday,
-            hoursTuesday,
-            hoursWednesday,
-            hoursThursday,
-            hoursFriday,
-            hoursSaturday,
+        return Utils.enhancedHash(
+            hoursMonday, hoursTuesday, hoursWednesday,
+            hoursThursday, hoursFriday, hoursSaturday,
             hoursSunday);
     }
     
@@ -240,26 +251,28 @@ public class OddWeeks {
                 "hoursSaturday", hoursSaturday,
                 "hoursSunday", hoursSunday);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Double> hoursMonday = Optional.empty();
- 
+
         private Optional<Double> hoursTuesday = Optional.empty();
- 
+
         private Optional<Double> hoursWednesday = Optional.empty();
- 
+
         private Optional<Double> hoursThursday = Optional.empty();
- 
+
         private Optional<Double> hoursFriday = Optional.empty();
- 
+
         private Optional<Double> hoursSaturday = Optional.empty();
- 
+
         private Optional<Double> hoursSunday = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder hoursMonday(double hoursMonday) {
             Utils.checkNotNull(hoursMonday, "hoursMonday");
@@ -273,6 +286,7 @@ public class OddWeeks {
             return this;
         }
 
+
         public Builder hoursTuesday(double hoursTuesday) {
             Utils.checkNotNull(hoursTuesday, "hoursTuesday");
             this.hoursTuesday = Optional.ofNullable(hoursTuesday);
@@ -284,6 +298,7 @@ public class OddWeeks {
             this.hoursTuesday = hoursTuesday;
             return this;
         }
+
 
         public Builder hoursWednesday(double hoursWednesday) {
             Utils.checkNotNull(hoursWednesday, "hoursWednesday");
@@ -297,6 +312,7 @@ public class OddWeeks {
             return this;
         }
 
+
         public Builder hoursThursday(double hoursThursday) {
             Utils.checkNotNull(hoursThursday, "hoursThursday");
             this.hoursThursday = Optional.ofNullable(hoursThursday);
@@ -308,6 +324,7 @@ public class OddWeeks {
             this.hoursThursday = hoursThursday;
             return this;
         }
+
 
         public Builder hoursFriday(double hoursFriday) {
             Utils.checkNotNull(hoursFriday, "hoursFriday");
@@ -321,6 +338,7 @@ public class OddWeeks {
             return this;
         }
 
+
         public Builder hoursSaturday(double hoursSaturday) {
             Utils.checkNotNull(hoursSaturday, "hoursSaturday");
             this.hoursSaturday = Optional.ofNullable(hoursSaturday);
@@ -333,6 +351,7 @@ public class OddWeeks {
             return this;
         }
 
+
         public Builder hoursSunday(double hoursSunday) {
             Utils.checkNotNull(hoursSunday, "hoursSunday");
             this.hoursSunday = Optional.ofNullable(hoursSunday);
@@ -344,16 +363,14 @@ public class OddWeeks {
             this.hoursSunday = hoursSunday;
             return this;
         }
-        
+
         public OddWeeks build() {
+
             return new OddWeeks(
-                hoursMonday,
-                hoursTuesday,
-                hoursWednesday,
-                hoursThursday,
-                hoursFriday,
-                hoursSaturday,
+                hoursMonday, hoursTuesday, hoursWednesday,
+                hoursThursday, hoursFriday, hoursSaturday,
                 hoursSunday);
         }
+
     }
 }

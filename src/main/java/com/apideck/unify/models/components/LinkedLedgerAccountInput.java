@@ -11,12 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class LinkedLedgerAccountInput {
 
+public class LinkedLedgerAccountInput {
     /**
      * The unique identifier for the account.
      */
@@ -79,9 +78,10 @@ public class LinkedLedgerAccountInput {
         return code;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the account.
@@ -91,6 +91,7 @@ public class LinkedLedgerAccountInput {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier for the account.
@@ -137,7 +138,6 @@ public class LinkedLedgerAccountInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -148,17 +148,15 @@ public class LinkedLedgerAccountInput {
         }
         LinkedLedgerAccountInput other = (LinkedLedgerAccountInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.nominalCode, other.nominalCode) &&
-            Objects.deepEquals(this.code, other.code);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.nominalCode, other.nominalCode) &&
+            Utils.enhancedDeepEquals(this.code, other.code);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            nominalCode,
-            code);
+        return Utils.enhancedHash(
+            id, nominalCode, code);
     }
     
     @Override
@@ -168,18 +166,20 @@ public class LinkedLedgerAccountInput {
                 "nominalCode", nominalCode,
                 "code", code);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> nominalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the account.
@@ -199,6 +199,7 @@ public class LinkedLedgerAccountInput {
             return this;
         }
 
+
         /**
          * The nominal code of the account.
          */
@@ -217,6 +218,7 @@ public class LinkedLedgerAccountInput {
             return this;
         }
 
+
         /**
          * The code assigned to the account.
          */
@@ -234,12 +236,12 @@ public class LinkedLedgerAccountInput {
             this.code = code;
             return this;
         }
-        
+
         public LinkedLedgerAccountInput build() {
+
             return new LinkedLedgerAccountInput(
-                id,
-                nominalCode,
-                code);
+                id, nominalCode, code);
         }
+
     }
 }

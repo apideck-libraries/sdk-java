@@ -48,8 +48,8 @@ public class AccountingDepartmentsOneRequestBuilder {
 
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
               = new AccountingDepartmentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

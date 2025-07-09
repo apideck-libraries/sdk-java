@@ -57,7 +57,8 @@ public class FileStorageFoldersUpdateOperation implements RequestOperation<FileS
     
     @Override
     public HttpResponse<InputStream> doRequest(FileStorageFoldersUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 FileStorageFoldersUpdateRequest.class,

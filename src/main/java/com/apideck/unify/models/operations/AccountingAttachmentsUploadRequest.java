@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingAttachmentsUploadRequest {
 
+public class AccountingAttachmentsUploadRequest {
     /**
      * The reference type of the document.
      */
@@ -60,6 +59,7 @@ public class AccountingAttachmentsUploadRequest {
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
     private Optional<String> serviceId;
 
+
     @SpeakeasyMetadata("request:mediaType=*/*")
     private byte[] requestBody;
 
@@ -95,7 +95,9 @@ public class AccountingAttachmentsUploadRequest {
             AttachmentReferenceType referenceType,
             String referenceId,
             byte[] requestBody) {
-        this(referenceType, referenceId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), requestBody);
+        this(referenceType, referenceId, Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), requestBody);
     }
 
     /**
@@ -159,9 +161,10 @@ public class AccountingAttachmentsUploadRequest {
         return requestBody;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The reference type of the document.
@@ -190,6 +193,7 @@ public class AccountingAttachmentsUploadRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -207,6 +211,7 @@ public class AccountingAttachmentsUploadRequest {
         this.xApideckMetadata = Optional.ofNullable(xApideckMetadata);
         return this;
     }
+
 
     /**
      * Metadata to attach to the attachment file (JSON string)
@@ -226,6 +231,7 @@ public class AccountingAttachmentsUploadRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -243,6 +249,7 @@ public class AccountingAttachmentsUploadRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -262,6 +269,7 @@ public class AccountingAttachmentsUploadRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -277,7 +285,6 @@ public class AccountingAttachmentsUploadRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -288,27 +295,22 @@ public class AccountingAttachmentsUploadRequest {
         }
         AccountingAttachmentsUploadRequest other = (AccountingAttachmentsUploadRequest) o;
         return 
-            Objects.deepEquals(this.referenceType, other.referenceType) &&
-            Objects.deepEquals(this.referenceId, other.referenceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.xApideckMetadata, other.xApideckMetadata) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.requestBody, other.requestBody);
+            Utils.enhancedDeepEquals(this.referenceType, other.referenceType) &&
+            Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.xApideckMetadata, other.xApideckMetadata) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.requestBody, other.requestBody);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            referenceType,
-            referenceId,
-            raw,
-            xApideckMetadata,
-            consumerId,
-            appId,
-            serviceId,
-            requestBody);
+        return Utils.enhancedHash(
+            referenceType, referenceId, raw,
+            xApideckMetadata, consumerId, appId,
+            serviceId, requestBody);
     }
     
     @Override
@@ -323,28 +325,30 @@ public class AccountingAttachmentsUploadRequest {
                 "serviceId", serviceId,
                 "requestBody", requestBody);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AttachmentReferenceType referenceType;
- 
+
         private String referenceId;
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> xApideckMetadata = Optional.empty();
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private byte[] requestBody;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The reference type of the document.
@@ -355,6 +359,7 @@ public class AccountingAttachmentsUploadRequest {
             return this;
         }
 
+
         /**
          * The reference id of the object to retrieve.
          */
@@ -363,6 +368,7 @@ public class AccountingAttachmentsUploadRequest {
             this.referenceId = referenceId;
             return this;
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -382,6 +388,7 @@ public class AccountingAttachmentsUploadRequest {
             return this;
         }
 
+
         /**
          * Metadata to attach to the attachment file (JSON string)
          */
@@ -399,6 +406,7 @@ public class AccountingAttachmentsUploadRequest {
             this.xApideckMetadata = xApideckMetadata;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -418,6 +426,7 @@ public class AccountingAttachmentsUploadRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -435,6 +444,7 @@ public class AccountingAttachmentsUploadRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -454,26 +464,24 @@ public class AccountingAttachmentsUploadRequest {
             return this;
         }
 
+
         public Builder requestBody(byte[] requestBody) {
             Utils.checkNotNull(requestBody, "requestBody");
             this.requestBody = requestBody;
             return this;
         }
-        
+
         public AccountingAttachmentsUploadRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingAttachmentsUploadRequest(
-                referenceType,
-                referenceId,
-                raw,
-                xApideckMetadata,
-                consumerId,
-                appId,
-                serviceId,
-                requestBody);
+                referenceType, referenceId, raw,
+                xApideckMetadata, consumerId, appId,
+                serviceId, requestBody);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

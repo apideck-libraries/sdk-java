@@ -57,7 +57,8 @@ public class VaultConnectionSettingsUpdateOperation implements RequestOperation<
     
     @Override
     public HttpResponse<InputStream> doRequest(VaultConnectionSettingsUpdateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 VaultConnectionSettingsUpdateRequest.class,

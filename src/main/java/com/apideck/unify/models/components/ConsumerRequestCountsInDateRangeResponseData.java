@@ -13,8 +13,8 @@ import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConsumerRequestCountsInDateRangeResponseData {
 
@@ -22,21 +22,26 @@ public class ConsumerRequestCountsInDateRangeResponseData {
     @JsonProperty("application_id")
     private Optional<String> applicationId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
     private Optional<String> consumerId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_datetime")
     private Optional<String> startDatetime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_datetime")
     private Optional<String> endDatetime;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregated_request_count")
     private Optional<Double> aggregatedRequestCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_counts")
@@ -65,7 +70,8 @@ public class ConsumerRequestCountsInDateRangeResponseData {
     }
     
     public ConsumerRequestCountsInDateRangeResponseData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -99,15 +105,17 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         return (Optional<RequestCountAllocation>) requestCounts;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConsumerRequestCountsInDateRangeResponseData withApplicationId(String applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
         this.applicationId = Optional.ofNullable(applicationId);
         return this;
     }
+
 
     public ConsumerRequestCountsInDateRangeResponseData withApplicationId(Optional<String> applicationId) {
         Utils.checkNotNull(applicationId, "applicationId");
@@ -121,6 +129,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         return this;
     }
 
+
     public ConsumerRequestCountsInDateRangeResponseData withConsumerId(Optional<String> consumerId) {
         Utils.checkNotNull(consumerId, "consumerId");
         this.consumerId = consumerId;
@@ -132,6 +141,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         this.startDatetime = Optional.ofNullable(startDatetime);
         return this;
     }
+
 
     public ConsumerRequestCountsInDateRangeResponseData withStartDatetime(Optional<String> startDatetime) {
         Utils.checkNotNull(startDatetime, "startDatetime");
@@ -145,6 +155,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         return this;
     }
 
+
     public ConsumerRequestCountsInDateRangeResponseData withEndDatetime(Optional<String> endDatetime) {
         Utils.checkNotNull(endDatetime, "endDatetime");
         this.endDatetime = endDatetime;
@@ -156,6 +167,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
         return this;
     }
+
 
     public ConsumerRequestCountsInDateRangeResponseData withAggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
         Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
@@ -169,13 +181,13 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         return this;
     }
 
+
     public ConsumerRequestCountsInDateRangeResponseData withRequestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
         Utils.checkNotNull(requestCounts, "requestCounts");
         this.requestCounts = requestCounts;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -186,23 +198,19 @@ public class ConsumerRequestCountsInDateRangeResponseData {
         }
         ConsumerRequestCountsInDateRangeResponseData other = (ConsumerRequestCountsInDateRangeResponseData) o;
         return 
-            Objects.deepEquals(this.applicationId, other.applicationId) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.startDatetime, other.startDatetime) &&
-            Objects.deepEquals(this.endDatetime, other.endDatetime) &&
-            Objects.deepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
-            Objects.deepEquals(this.requestCounts, other.requestCounts);
+            Utils.enhancedDeepEquals(this.applicationId, other.applicationId) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.startDatetime, other.startDatetime) &&
+            Utils.enhancedDeepEquals(this.endDatetime, other.endDatetime) &&
+            Utils.enhancedDeepEquals(this.aggregatedRequestCount, other.aggregatedRequestCount) &&
+            Utils.enhancedDeepEquals(this.requestCounts, other.requestCounts);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            applicationId,
-            consumerId,
-            startDatetime,
-            endDatetime,
-            aggregatedRequestCount,
-            requestCounts);
+        return Utils.enhancedHash(
+            applicationId, consumerId, startDatetime,
+            endDatetime, aggregatedRequestCount, requestCounts);
     }
     
     @Override
@@ -215,24 +223,26 @@ public class ConsumerRequestCountsInDateRangeResponseData {
                 "aggregatedRequestCount", aggregatedRequestCount,
                 "requestCounts", requestCounts);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> applicationId = Optional.empty();
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> startDatetime = Optional.empty();
- 
+
         private Optional<String> endDatetime = Optional.empty();
- 
+
         private Optional<Double> aggregatedRequestCount = Optional.empty();
- 
+
         private Optional<? extends RequestCountAllocation> requestCounts = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder applicationId(String applicationId) {
             Utils.checkNotNull(applicationId, "applicationId");
@@ -246,6 +256,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             return this;
         }
 
+
         public Builder consumerId(String consumerId) {
             Utils.checkNotNull(consumerId, "consumerId");
             this.consumerId = Optional.ofNullable(consumerId);
@@ -257,6 +268,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             this.consumerId = consumerId;
             return this;
         }
+
 
         public Builder startDatetime(String startDatetime) {
             Utils.checkNotNull(startDatetime, "startDatetime");
@@ -270,6 +282,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             return this;
         }
 
+
         public Builder endDatetime(String endDatetime) {
             Utils.checkNotNull(endDatetime, "endDatetime");
             this.endDatetime = Optional.ofNullable(endDatetime);
@@ -281,6 +294,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             this.endDatetime = endDatetime;
             return this;
         }
+
 
         public Builder aggregatedRequestCount(double aggregatedRequestCount) {
             Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
@@ -294,6 +308,7 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             return this;
         }
 
+
         public Builder requestCounts(RequestCountAllocation requestCounts) {
             Utils.checkNotNull(requestCounts, "requestCounts");
             this.requestCounts = Optional.ofNullable(requestCounts);
@@ -305,15 +320,13 @@ public class ConsumerRequestCountsInDateRangeResponseData {
             this.requestCounts = requestCounts;
             return this;
         }
-        
+
         public ConsumerRequestCountsInDateRangeResponseData build() {
+
             return new ConsumerRequestCountsInDateRangeResponseData(
-                applicationId,
-                consumerId,
-                startDatetime,
-                endDatetime,
-                aggregatedRequestCount,
-                requestCounts);
+                applicationId, consumerId, startDatetime,
+                endDatetime, aggregatedRequestCount, requestCounts);
         }
+
     }
 }

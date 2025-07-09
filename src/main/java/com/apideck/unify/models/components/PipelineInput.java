@@ -15,12 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PipelineInput {
 
+public class PipelineInput {
     /**
      * The unique identifier of the Pipeline.
      */
@@ -116,7 +115,9 @@ public class PipelineInput {
     
     public PipelineInput(
             String name) {
-        this(Optional.empty(), name, JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), name, JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -194,9 +195,10 @@ public class PipelineInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the Pipeline.
@@ -206,6 +208,7 @@ public class PipelineInput {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the Pipeline.
@@ -252,6 +255,7 @@ public class PipelineInput {
         return this;
     }
 
+
     /**
      * Whether the Pipeline is archived or not.
      */
@@ -269,6 +273,7 @@ public class PipelineInput {
         this.active = Optional.ofNullable(active);
         return this;
     }
+
 
     /**
      * Whether the Pipeline is active or not.
@@ -306,6 +311,7 @@ public class PipelineInput {
         return this;
     }
 
+
     /**
      * Whether the Pipeline has win probability enabled or not.
      */
@@ -323,6 +329,7 @@ public class PipelineInput {
         this.stages = Optional.ofNullable(stages);
         return this;
     }
+
 
     /**
      * The Pipeline Stages.
@@ -342,6 +349,7 @@ public class PipelineInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -351,7 +359,6 @@ public class PipelineInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -362,29 +369,23 @@ public class PipelineInput {
         }
         PipelineInput other = (PipelineInput) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.active, other.active) &&
-            Objects.deepEquals(this.displayOrder, other.displayOrder) &&
-            Objects.deepEquals(this.winProbabilityEnabled, other.winProbabilityEnabled) &&
-            Objects.deepEquals(this.stages, other.stages) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.active, other.active) &&
+            Utils.enhancedDeepEquals(this.displayOrder, other.displayOrder) &&
+            Utils.enhancedDeepEquals(this.winProbabilityEnabled, other.winProbabilityEnabled) &&
+            Utils.enhancedDeepEquals(this.stages, other.stages) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            currency,
-            archived,
-            active,
-            displayOrder,
-            winProbabilityEnabled,
-            stages,
-            passThrough);
+        return Utils.enhancedHash(
+            id, name, currency,
+            archived, active, displayOrder,
+            winProbabilityEnabled, stages, passThrough);
     }
     
     @Override
@@ -400,30 +401,32 @@ public class PipelineInput {
                 "stages", stages,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String name;
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<Boolean> archived = Optional.empty();
- 
+
         private Optional<Boolean> active = Optional.empty();
- 
+
         private JsonNullable<Long> displayOrder = JsonNullable.undefined();
- 
+
         private Optional<Boolean> winProbabilityEnabled = Optional.empty();
- 
+
         private Optional<? extends List<PipelineStages>> stages = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the Pipeline.
@@ -443,6 +446,7 @@ public class PipelineInput {
             return this;
         }
 
+
         /**
          * The name of the Pipeline.
          */
@@ -451,6 +455,7 @@ public class PipelineInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -470,6 +475,7 @@ public class PipelineInput {
             return this;
         }
 
+
         /**
          * Whether the Pipeline is archived or not.
          */
@@ -487,6 +493,7 @@ public class PipelineInput {
             this.archived = archived;
             return this;
         }
+
 
         /**
          * Whether the Pipeline is active or not.
@@ -506,6 +513,7 @@ public class PipelineInput {
             return this;
         }
 
+
         /**
          * The order in which the Pipeline is displayed in the UI.
          */
@@ -523,6 +531,7 @@ public class PipelineInput {
             this.displayOrder = displayOrder;
             return this;
         }
+
 
         /**
          * Whether the Pipeline has win probability enabled or not.
@@ -542,6 +551,7 @@ public class PipelineInput {
             return this;
         }
 
+
         /**
          * The Pipeline Stages.
          */
@@ -560,6 +570,7 @@ public class PipelineInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -577,18 +588,14 @@ public class PipelineInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public PipelineInput build() {
+
             return new PipelineInput(
-                id,
-                name,
-                currency,
-                archived,
-                active,
-                displayOrder,
-                winProbabilityEnabled,
-                stages,
-                passThrough);
+                id, name, currency,
+                archived, active, displayOrder,
+                winProbabilityEnabled, stages, passThrough);
         }
+
     }
 }

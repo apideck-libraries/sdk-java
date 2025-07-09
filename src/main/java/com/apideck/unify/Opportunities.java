@@ -37,7 +37,6 @@ public class Opportunities {
     Opportunities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List opportunities
      * 
@@ -77,11 +76,10 @@ public class Opportunities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
               = new CrmOpportunitiesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create opportunity
@@ -122,11 +120,10 @@ public class Opportunities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
               = new CrmOpportunitiesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get opportunity
@@ -167,11 +164,10 @@ public class Opportunities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
               = new CrmOpportunitiesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update opportunity
@@ -212,11 +208,10 @@ public class Opportunities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
               = new CrmOpportunitiesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete opportunity
@@ -257,8 +252,8 @@ public class Opportunities {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation
               = new CrmOpportunitiesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

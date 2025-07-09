@@ -48,8 +48,8 @@ public class FileStorageSharedLinksOneRequestBuilder {
 
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
               = new FileStorageSharedLinksOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

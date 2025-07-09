@@ -7,7 +7,6 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * Schema
@@ -15,18 +14,15 @@ import java.util.Objects;
  * <p>JSON Schema of the resource in our Unified API
  */
 public class Schema {
-
     @JsonCreator
     public Schema() {
-        
-        
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
 
-    
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -40,7 +36,7 @@ public class Schema {
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             );
     }
     
@@ -48,16 +44,19 @@ public class Schema {
     public String toString() {
         return Utils.toString(Schema.class);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
-        
+
         private Builder() {
           // force use of static builder() method
         }
-        
+
         public Schema build() {
+
             return new Schema(
                 );
         }
+
     }
 }

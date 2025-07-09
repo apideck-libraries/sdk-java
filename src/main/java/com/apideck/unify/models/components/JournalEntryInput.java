@@ -15,12 +15,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class JournalEntryInput {
 
+public class JournalEntryInput {
     /**
      * Journal entry title
      */
@@ -126,6 +125,7 @@ public class JournalEntryInput {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
@@ -193,7 +193,12 @@ public class JournalEntryInput {
     }
     
     public JournalEntryInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -335,9 +340,10 @@ public class JournalEntryInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Journal entry title
@@ -420,6 +426,7 @@ public class JournalEntryInput {
         return this;
     }
 
+
     /**
      * Requires a minimum of 2 line items that sum to 0
      */
@@ -473,6 +480,7 @@ public class JournalEntryInput {
         this.postedAt = Optional.ofNullable(postedAt);
         return this;
     }
+
 
     /**
      * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
@@ -615,6 +623,7 @@ public class JournalEntryInput {
         return this;
     }
 
+
     public JournalEntryInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -630,6 +639,7 @@ public class JournalEntryInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -639,7 +649,6 @@ public class JournalEntryInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -650,45 +659,34 @@ public class JournalEntryInput {
         }
         JournalEntryInput other = (JournalEntryInput) o;
         return 
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.postedAt, other.postedAt) &&
-            Objects.deepEquals(this.journalSymbol, other.journalSymbol) &&
-            Objects.deepEquals(this.taxType, other.taxType) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.accountingPeriod, other.accountingPeriod) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.postedAt, other.postedAt) &&
+            Utils.enhancedDeepEquals(this.journalSymbol, other.journalSymbol) &&
+            Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            title,
-            currencyRate,
-            currency,
-            companyId,
-            lineItems,
-            status,
-            memo,
-            postedAt,
-            journalSymbol,
-            taxType,
-            taxCode,
-            number,
-            trackingCategories,
-            accountingPeriod,
-            rowVersion,
-            customFields,
-            passThrough);
+        return Utils.enhancedHash(
+            title, currencyRate, currency,
+            companyId, lineItems, status,
+            memo, postedAt, journalSymbol,
+            taxType, taxCode, number,
+            trackingCategories, accountingPeriod, rowVersion,
+            customFields, passThrough);
     }
     
     @Override
@@ -712,46 +710,48 @@ public class JournalEntryInput {
                 "customFields", customFields,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<JournalEntryLineItemInput>> lineItems = Optional.empty();
- 
+
         private JsonNullable<? extends JournalEntryStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> postedAt = Optional.empty();
- 
+
         private JsonNullable<String> journalSymbol = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Journal entry title
@@ -771,6 +771,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
          */
@@ -788,6 +789,7 @@ public class JournalEntryInput {
             this.currencyRate = currencyRate;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -807,6 +809,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * The company or subsidiary id the transaction belongs to
          */
@@ -824,6 +827,7 @@ public class JournalEntryInput {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * Requires a minimum of 2 line items that sum to 0
@@ -843,6 +847,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * Journal entry status
          */
@@ -860,6 +865,7 @@ public class JournalEntryInput {
             this.status = status;
             return this;
         }
+
 
         /**
          * Reference for the journal entry.
@@ -879,6 +885,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
          */
@@ -896,6 +903,7 @@ public class JournalEntryInput {
             this.postedAt = postedAt;
             return this;
         }
+
 
         /**
          * Journal symbol of the entry. For example IND for indirect costs
@@ -915,6 +923,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * The specific category of tax associated with a transaction like sales or purchase
          */
@@ -932,6 +941,7 @@ public class JournalEntryInput {
             this.taxType = taxType;
             return this;
         }
+
 
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
@@ -951,6 +961,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * Journal entry number.
          */
@@ -968,6 +979,7 @@ public class JournalEntryInput {
             this.number = number;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -987,6 +999,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         /**
          * Accounting period
          */
@@ -1004,6 +1017,7 @@ public class JournalEntryInput {
             this.accountingPeriod = accountingPeriod;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1023,6 +1037,7 @@ public class JournalEntryInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1034,6 +1049,7 @@ public class JournalEntryInput {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -1052,26 +1068,17 @@ public class JournalEntryInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public JournalEntryInput build() {
+
             return new JournalEntryInput(
-                title,
-                currencyRate,
-                currency,
-                companyId,
-                lineItems,
-                status,
-                memo,
-                postedAt,
-                journalSymbol,
-                taxType,
-                taxCode,
-                number,
-                trackingCategories,
-                accountingPeriod,
-                rowVersion,
-                customFields,
-                passThrough);
+                title, currencyRate, currency,
+                companyId, lineItems, status,
+                memo, postedAt, journalSymbol,
+                taxType, taxCode, number,
+                trackingCategories, accountingPeriod, rowVersion,
+                customFields, passThrough);
         }
+
     }
 }

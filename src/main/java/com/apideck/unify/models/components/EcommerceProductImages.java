@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceProductImages {
 
+public class EcommerceProductImages {
     /**
      * A unique identifier for an object.
      */
@@ -60,9 +59,10 @@ public class EcommerceProductImages {
         return url;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -100,7 +100,6 @@ public class EcommerceProductImages {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -111,15 +110,14 @@ public class EcommerceProductImages {
         }
         EcommerceProductImages other = (EcommerceProductImages) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.url, other.url);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.url, other.url);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            url);
+        return Utils.enhancedHash(
+            id, url);
     }
     
     @Override
@@ -128,16 +126,18 @@ public class EcommerceProductImages {
                 "id", id,
                 "url", url);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> url = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -157,6 +157,7 @@ public class EcommerceProductImages {
             return this;
         }
 
+
         /**
          * The URL of an image of the variant.
          */
@@ -174,11 +175,12 @@ public class EcommerceProductImages {
             this.url = url;
             return this;
         }
-        
+
         public EcommerceProductImages build() {
+
             return new EcommerceProductImages(
-                id,
-                url);
+                id, url);
         }
+
     }
 }

@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>A refund for an ecommerce order.
  */
 public class EcommerceOrderRefund {
-
     /**
      * A unique identifier for an object.
      */
@@ -79,7 +77,8 @@ public class EcommerceOrderRefund {
     }
     
     public EcommerceOrderRefund() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -123,9 +122,10 @@ public class EcommerceOrderRefund {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -153,6 +153,7 @@ public class EcommerceOrderRefund {
         this.amount = Optional.ofNullable(amount);
         return this;
     }
+
 
     /**
      * The amount of the refund.
@@ -190,6 +191,7 @@ public class EcommerceOrderRefund {
         return this;
     }
 
+
     /**
      * The reason for the refund.
      */
@@ -217,7 +219,6 @@ public class EcommerceOrderRefund {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -228,21 +229,18 @@ public class EcommerceOrderRefund {
         }
         EcommerceOrderRefund other = (EcommerceOrderRefund) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.reason, other.reason) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.reason, other.reason) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            amount,
-            currency,
-            reason,
-            createdAt);
+        return Utils.enhancedHash(
+            id, amount, currency,
+            reason, createdAt);
     }
     
     @Override
@@ -254,22 +252,24 @@ public class EcommerceOrderRefund {
                 "reason", reason,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private Optional<String> amount = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<String> reason = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -289,6 +289,7 @@ public class EcommerceOrderRefund {
             return this;
         }
 
+
         /**
          * The amount of the refund.
          */
@@ -306,6 +307,7 @@ public class EcommerceOrderRefund {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -325,6 +327,7 @@ public class EcommerceOrderRefund {
             return this;
         }
 
+
         /**
          * The reason for the refund.
          */
@@ -343,6 +346,7 @@ public class EcommerceOrderRefund {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -360,14 +364,13 @@ public class EcommerceOrderRefund {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public EcommerceOrderRefund build() {
+
             return new EcommerceOrderRefund(
-                id,
-                amount,
-                currency,
-                reason,
-                createdAt);
+                id, amount, currency,
+                reason, createdAt);
         }
+
     }
 }

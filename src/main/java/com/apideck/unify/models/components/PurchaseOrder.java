@@ -19,12 +19,11 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class PurchaseOrder {
 
+public class PurchaseOrder {
     /**
      * A unique identifier for an object.
      */
@@ -73,6 +72,7 @@ public class PurchaseOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_id")
     private JsonNullable<String> companyId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
@@ -141,13 +141,16 @@ public class PurchaseOrder {
     @JsonProperty("tax_inclusive")
     private JsonNullable<Boolean> taxInclusive;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
     private Optional<? extends List<InvoiceLineItem>> lineItems;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
     private Optional<? extends Address> shippingAddress;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
@@ -166,6 +169,7 @@ public class PurchaseOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discount_percentage")
     private JsonNullable<Double> discountPercentage;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account")
@@ -226,6 +230,7 @@ public class PurchaseOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
     private JsonNullable<? extends Map<String, Object>> customMappings;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -392,7 +397,19 @@ public class PurchaseOrder {
     }
     
     public PurchaseOrder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -692,9 +709,10 @@ public class PurchaseOrder {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -704,6 +722,7 @@ public class PurchaseOrder {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -1002,6 +1021,7 @@ public class PurchaseOrder {
         return this;
     }
 
+
     public PurchaseOrder withLineItems(Optional<? extends List<InvoiceLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
         this.lineItems = lineItems;
@@ -1013,6 +1033,7 @@ public class PurchaseOrder {
         this.shippingAddress = Optional.ofNullable(shippingAddress);
         return this;
     }
+
 
     public PurchaseOrder withShippingAddress(Optional<? extends Address> shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1073,6 +1094,7 @@ public class PurchaseOrder {
         this.bankAccount = Optional.ofNullable(bankAccount);
         return this;
     }
+
 
     public PurchaseOrder withBankAccount(Optional<? extends BankAccount> bankAccount) {
         Utils.checkNotNull(bankAccount, "bankAccount");
@@ -1230,6 +1252,7 @@ public class PurchaseOrder {
         return this;
     }
 
+
     public PurchaseOrder withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -1335,6 +1358,7 @@ public class PurchaseOrder {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1344,7 +1368,6 @@ public class PurchaseOrder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1355,87 +1378,62 @@ public class PurchaseOrder {
         }
         PurchaseOrder other = (PurchaseOrder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.poNumber, other.poNumber) &&
-            Objects.deepEquals(this.reference, other.reference) &&
-            Objects.deepEquals(this.supplier, other.supplier) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.issuedDate, other.issuedDate) &&
-            Objects.deepEquals(this.deliveryDate, other.deliveryDate) &&
-            Objects.deepEquals(this.expectedArrivalDate, other.expectedArrivalDate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.taxInclusive, other.taxInclusive) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.ledgerAccount, other.ledgerAccount) &&
-            Objects.deepEquals(this.templateId, other.templateId) &&
-            Objects.deepEquals(this.discountPercentage, other.discountPercentage) &&
-            Objects.deepEquals(this.bankAccount, other.bankAccount) &&
-            Objects.deepEquals(this.accountingByRow, other.accountingByRow) &&
-            Objects.deepEquals(this.dueDate, other.dueDate) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.channel, other.channel) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.poNumber, other.poNumber) &&
+            Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.supplier, other.supplier) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.issuedDate, other.issuedDate) &&
+            Utils.enhancedDeepEquals(this.deliveryDate, other.deliveryDate) &&
+            Utils.enhancedDeepEquals(this.expectedArrivalDate, other.expectedArrivalDate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
+            Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
+            Utils.enhancedDeepEquals(this.bankAccount, other.bankAccount) &&
+            Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
+            Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.channel, other.channel) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            poNumber,
-            reference,
-            supplier,
-            subsidiaryId,
-            companyId,
-            status,
-            issuedDate,
-            deliveryDate,
-            expectedArrivalDate,
-            currency,
-            currencyRate,
-            subTotal,
-            totalTax,
-            total,
-            taxInclusive,
-            lineItems,
-            shippingAddress,
-            ledgerAccount,
-            templateId,
-            discountPercentage,
-            bankAccount,
-            accountingByRow,
-            dueDate,
-            paymentMethod,
-            taxCode,
-            channel,
-            memo,
-            trackingCategories,
-            customMappings,
-            customFields,
-            rowVersion,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, downstreamId, poNumber,
+            reference, supplier, subsidiaryId,
+            companyId, status, issuedDate,
+            deliveryDate, expectedArrivalDate, currency,
+            currencyRate, subTotal, totalTax,
+            total, taxInclusive, lineItems,
+            shippingAddress, ledgerAccount, templateId,
+            discountPercentage, bankAccount, accountingByRow,
+            dueDate, paymentMethod, taxCode,
+            channel, memo, trackingCategories,
+            customMappings, customFields, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -1480,88 +1478,90 @@ public class PurchaseOrder {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> poNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> reference = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends PurchaseOrderStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> issuedDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> deliveryDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> expectedArrivalDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> totalTax = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> total = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
- 
+
         private Optional<? extends List<InvoiceLineItem>> lineItems = Optional.empty();
- 
+
         private Optional<? extends Address> shippingAddress = Optional.empty();
- 
+
         private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> templateId = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
- 
+
         private Optional<? extends BankAccount> bankAccount = Optional.empty();
- 
+
         private JsonNullable<Boolean> accountingByRow = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> channel = JsonNullable.undefined();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1581,6 +1581,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The third-party API ID of original entity
          */
@@ -1598,6 +1599,7 @@ public class PurchaseOrder {
             this.downstreamId = downstreamId;
             return this;
         }
+
 
         /**
          * A PO Number uniquely identifies a purchase order and is generally defined by the buyer.
@@ -1617,6 +1619,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Optional purchase order reference.
          */
@@ -1634,6 +1637,7 @@ public class PurchaseOrder {
             this.reference = reference;
             return this;
         }
+
 
         /**
          * The supplier this entity is linked to.
@@ -1653,6 +1657,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The ID of the subsidiary
          */
@@ -1670,6 +1675,7 @@ public class PurchaseOrder {
             this.subsidiaryId = subsidiaryId;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1689,6 +1695,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         public Builder status(PurchaseOrderStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = JsonNullable.of(status);
@@ -1700,6 +1707,7 @@ public class PurchaseOrder {
             this.status = status;
             return this;
         }
+
 
         /**
          * Date purchase order was issued - YYYY-MM-DD.
@@ -1719,6 +1727,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The date on which the purchase order is to be delivered - YYYY-MM-DD.
          */
@@ -1736,6 +1745,7 @@ public class PurchaseOrder {
             this.deliveryDate = deliveryDate;
             return this;
         }
+
 
         /**
          * The date on which the order is expected to arrive - YYYY-MM-DD.
@@ -1755,6 +1765,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1772,6 +1783,7 @@ public class PurchaseOrder {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1791,6 +1803,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Sub-total amount, normally before tax.
          */
@@ -1808,6 +1821,7 @@ public class PurchaseOrder {
             this.subTotal = subTotal;
             return this;
         }
+
 
         /**
          * Total tax amount applied to this invoice.
@@ -1827,6 +1841,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Total amount of invoice, including tax.
          */
@@ -1844,6 +1859,7 @@ public class PurchaseOrder {
             this.total = total;
             return this;
         }
+
 
         /**
          * Amounts are including tax
@@ -1863,6 +1879,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         public Builder lineItems(List<InvoiceLineItem> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = Optional.ofNullable(lineItems);
@@ -1874,6 +1891,7 @@ public class PurchaseOrder {
             this.lineItems = lineItems;
             return this;
         }
+
 
         public Builder shippingAddress(Address shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
@@ -1887,6 +1905,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
@@ -1898,6 +1917,7 @@ public class PurchaseOrder {
             this.ledgerAccount = ledgerAccount;
             return this;
         }
+
 
         /**
          * Optional purchase order template
@@ -1917,6 +1937,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Discount percentage applied to this transaction.
          */
@@ -1935,6 +1956,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         public Builder bankAccount(BankAccount bankAccount) {
             Utils.checkNotNull(bankAccount, "bankAccount");
             this.bankAccount = Optional.ofNullable(bankAccount);
@@ -1946,6 +1968,7 @@ public class PurchaseOrder {
             this.bankAccount = bankAccount;
             return this;
         }
+
 
         /**
          * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
@@ -1965,6 +1988,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The due date is the date on which a payment is scheduled to be received - YYYY-MM-DD.
          */
@@ -1982,6 +2006,7 @@ public class PurchaseOrder {
             this.dueDate = dueDate;
             return this;
         }
+
 
         /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -2001,6 +2026,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
@@ -2018,6 +2044,7 @@ public class PurchaseOrder {
             this.taxCode = taxCode;
             return this;
         }
+
 
         /**
          * The channel through which the transaction is processed.
@@ -2037,6 +2064,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * Message for the supplier. This text appears on the Purchase Order.
          */
@@ -2054,6 +2082,7 @@ public class PurchaseOrder {
             this.memo = memo;
             return this;
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -2073,6 +2102,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -2091,6 +2121,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -2102,6 +2133,7 @@ public class PurchaseOrder {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -2121,6 +2153,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -2138,6 +2171,7 @@ public class PurchaseOrder {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -2157,6 +2191,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -2174,6 +2209,7 @@ public class PurchaseOrder {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -2193,6 +2229,7 @@ public class PurchaseOrder {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -2210,47 +2247,24 @@ public class PurchaseOrder {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public PurchaseOrder build() {
+
             return new PurchaseOrder(
-                id,
-                downstreamId,
-                poNumber,
-                reference,
-                supplier,
-                subsidiaryId,
-                companyId,
-                status,
-                issuedDate,
-                deliveryDate,
-                expectedArrivalDate,
-                currency,
-                currencyRate,
-                subTotal,
-                totalTax,
-                total,
-                taxInclusive,
-                lineItems,
-                shippingAddress,
-                ledgerAccount,
-                templateId,
-                discountPercentage,
-                bankAccount,
-                accountingByRow,
-                dueDate,
-                paymentMethod,
-                taxCode,
-                channel,
-                memo,
-                trackingCategories,
-                customMappings,
-                customFields,
-                rowVersion,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, downstreamId, poNumber,
+                reference, supplier, subsidiaryId,
+                companyId, status, issuedDate,
+                deliveryDate, expectedArrivalDate, currency,
+                currencyRate, subTotal, totalTax,
+                total, taxInclusive, lineItems,
+                shippingAddress, ledgerAccount, templateId,
+                discountPercentage, bankAccount, accountingByRow,
+                dueDate, paymentMethod, taxCode,
+                channel, memo, trackingCategories,
+                customMappings, customFields, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
+
     }
 }

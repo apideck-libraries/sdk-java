@@ -14,9 +14,9 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Webhook {
 
@@ -122,7 +122,10 @@ public class Webhook {
             String deliveryUrl,
             String executeBaseUrl,
             List<WebhookEventType> events) {
-        this(Optional.empty(), JsonNullable.undefined(), unifiedApi, status, Optional.empty(), deliveryUrl, executeBaseUrl, events, JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), unifiedApi,
+            status, Optional.empty(), deliveryUrl,
+            executeBaseUrl, events, JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     @JsonIgnore
@@ -203,15 +206,17 @@ public class Webhook {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Webhook withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public Webhook withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -263,6 +268,7 @@ public class Webhook {
         this.disabledReason = Optional.ofNullable(disabledReason);
         return this;
     }
+
 
     /**
      * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
@@ -336,7 +342,6 @@ public class Webhook {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -347,30 +352,24 @@ public class Webhook {
         }
         Webhook other = (Webhook) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.disabledReason, other.disabledReason) &&
-            Objects.deepEquals(this.deliveryUrl, other.deliveryUrl) &&
-            Objects.deepEquals(this.executeBaseUrl, other.executeBaseUrl) &&
-            Objects.deepEquals(this.events, other.events) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.disabledReason, other.disabledReason) &&
+            Utils.enhancedDeepEquals(this.deliveryUrl, other.deliveryUrl) &&
+            Utils.enhancedDeepEquals(this.executeBaseUrl, other.executeBaseUrl) &&
+            Utils.enhancedDeepEquals(this.events, other.events) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            description,
-            unifiedApi,
-            status,
-            disabledReason,
-            deliveryUrl,
-            executeBaseUrl,
-            events,
-            updatedAt,
+        return Utils.enhancedHash(
+            id, description, unifiedApi,
+            status, disabledReason, deliveryUrl,
+            executeBaseUrl, events, updatedAt,
             createdAt);
     }
     
@@ -388,32 +387,34 @@ public class Webhook {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private UnifiedApiId unifiedApi;
- 
+
         private Status status;
- 
+
         private Optional<? extends DisabledReason> disabledReason = Optional.empty();
- 
+
         private String deliveryUrl;
- 
+
         private String executeBaseUrl;
- 
+
         private List<WebhookEventType> events;
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -426,6 +427,7 @@ public class Webhook {
             this.id = id;
             return this;
         }
+
 
         /**
          * A description of the object.
@@ -445,6 +447,7 @@ public class Webhook {
             return this;
         }
 
+
         /**
          * Name of Apideck Unified API
          */
@@ -454,6 +457,7 @@ public class Webhook {
             return this;
         }
 
+
         /**
          * The status of the webhook.
          */
@@ -462,6 +466,7 @@ public class Webhook {
             this.status = status;
             return this;
         }
+
 
         /**
          * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
@@ -481,6 +486,7 @@ public class Webhook {
             return this;
         }
 
+
         /**
          * The delivery url of the webhook endpoint.
          */
@@ -489,6 +495,7 @@ public class Webhook {
             this.deliveryUrl = deliveryUrl;
             return this;
         }
+
 
         /**
          * The Unify Base URL events from connectors will be sent to after service id is appended.
@@ -499,6 +506,7 @@ public class Webhook {
             return this;
         }
 
+
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
@@ -507,6 +515,7 @@ public class Webhook {
             this.events = events;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -526,6 +535,7 @@ public class Webhook {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -543,19 +553,15 @@ public class Webhook {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public Webhook build() {
+
             return new Webhook(
-                id,
-                description,
-                unifiedApi,
-                status,
-                disabledReason,
-                deliveryUrl,
-                executeBaseUrl,
-                events,
-                updatedAt,
+                id, description, unifiedApi,
+                status, disabledReason, deliveryUrl,
+                executeBaseUrl, events, updatedAt,
                 createdAt);
         }
+
     }
 }

@@ -54,7 +54,8 @@ public class CrmUsersOneOperation implements RequestOperation<CrmUsersOneRequest
     
     @Override
     public HttpResponse<InputStream> doRequest(CrmUsersOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CrmUsersOneRequest.class,

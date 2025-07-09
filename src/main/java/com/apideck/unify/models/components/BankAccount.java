@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BankAccount {
 
+public class BankAccount {
     /**
      * The name of the bank
      */
@@ -94,6 +93,13 @@ public class BankAccount {
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
 
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("country")
+    private JsonNullable<String> country;
+
     @JsonCreator
     public BankAccount(
             @JsonProperty("bank_name") JsonNullable<String> bankName,
@@ -106,7 +112,8 @@ public class BankAccount {
             @JsonProperty("bsb_number") JsonNullable<String> bsbNumber,
             @JsonProperty("branch_identifier") JsonNullable<String> branchIdentifier,
             @JsonProperty("bank_code") JsonNullable<String> bankCode,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency) {
+            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
+            @JsonProperty("country") JsonNullable<String> country) {
         Utils.checkNotNull(bankName, "bankName");
         Utils.checkNotNull(accountNumber, "accountNumber");
         Utils.checkNotNull(accountName, "accountName");
@@ -118,6 +125,7 @@ public class BankAccount {
         Utils.checkNotNull(branchIdentifier, "branchIdentifier");
         Utils.checkNotNull(bankCode, "bankCode");
         Utils.checkNotNull(currency, "currency");
+        Utils.checkNotNull(country, "country");
         this.bankName = bankName;
         this.accountNumber = accountNumber;
         this.accountName = accountName;
@@ -129,10 +137,14 @@ public class BankAccount {
         this.branchIdentifier = branchIdentifier;
         this.bankCode = bankCode;
         this.currency = currency;
+        this.country = country;
     }
     
     public BankAccount() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -225,9 +237,18 @@ public class BankAccount {
         return (JsonNullable<Currency>) currency;
     }
 
-    public final static Builder builder() {
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    @JsonIgnore
+    public JsonNullable<String> country() {
+        return country;
+    }
+
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the bank
@@ -427,7 +448,24 @@ public class BankAccount {
         return this;
     }
 
-    
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public BankAccount withCountry(String country) {
+        Utils.checkNotNull(country, "country");
+        this.country = JsonNullable.of(country);
+        return this;
+    }
+
+    /**
+     * Country code according to ISO 3166-1 alpha-2.
+     */
+    public BankAccount withCountry(JsonNullable<String> country) {
+        Utils.checkNotNull(country, "country");
+        this.country = country;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -438,33 +476,27 @@ public class BankAccount {
         }
         BankAccount other = (BankAccount) o;
         return 
-            Objects.deepEquals(this.bankName, other.bankName) &&
-            Objects.deepEquals(this.accountNumber, other.accountNumber) &&
-            Objects.deepEquals(this.accountName, other.accountName) &&
-            Objects.deepEquals(this.accountType, other.accountType) &&
-            Objects.deepEquals(this.iban, other.iban) &&
-            Objects.deepEquals(this.bic, other.bic) &&
-            Objects.deepEquals(this.routingNumber, other.routingNumber) &&
-            Objects.deepEquals(this.bsbNumber, other.bsbNumber) &&
-            Objects.deepEquals(this.branchIdentifier, other.branchIdentifier) &&
-            Objects.deepEquals(this.bankCode, other.bankCode) &&
-            Objects.deepEquals(this.currency, other.currency);
+            Utils.enhancedDeepEquals(this.bankName, other.bankName) &&
+            Utils.enhancedDeepEquals(this.accountNumber, other.accountNumber) &&
+            Utils.enhancedDeepEquals(this.accountName, other.accountName) &&
+            Utils.enhancedDeepEquals(this.accountType, other.accountType) &&
+            Utils.enhancedDeepEquals(this.iban, other.iban) &&
+            Utils.enhancedDeepEquals(this.bic, other.bic) &&
+            Utils.enhancedDeepEquals(this.routingNumber, other.routingNumber) &&
+            Utils.enhancedDeepEquals(this.bsbNumber, other.bsbNumber) &&
+            Utils.enhancedDeepEquals(this.branchIdentifier, other.branchIdentifier) &&
+            Utils.enhancedDeepEquals(this.bankCode, other.bankCode) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bankName,
-            accountNumber,
-            accountName,
-            accountType,
-            iban,
-            bic,
-            routingNumber,
-            bsbNumber,
-            branchIdentifier,
-            bankCode,
-            currency);
+        return Utils.enhancedHash(
+            bankName, accountNumber, accountName,
+            accountType, iban, bic,
+            routingNumber, bsbNumber, branchIdentifier,
+            bankCode, currency, country);
     }
     
     @Override
@@ -480,36 +512,41 @@ public class BankAccount {
                 "bsbNumber", bsbNumber,
                 "branchIdentifier", branchIdentifier,
                 "bankCode", bankCode,
-                "currency", currency);
+                "currency", currency,
+                "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> bankName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends AccountType> accountType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> iban = JsonNullable.undefined();
- 
+
         private JsonNullable<String> bic = JsonNullable.undefined();
- 
+
         private JsonNullable<String> routingNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> bsbNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<String> branchIdentifier = JsonNullable.undefined();
- 
+
         private JsonNullable<String> bankCode = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
-        
+
+        private JsonNullable<String> country = JsonNullable.undefined();
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the bank
@@ -529,6 +566,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * A bank account number is a number that is tied to your bank account. If you have several bank accounts, such as personal, joint, business (and so on), each account will have a different account number.
          */
@@ -546,6 +584,7 @@ public class BankAccount {
             this.accountNumber = accountNumber;
             return this;
         }
+
 
         /**
          * The name which you used in opening your bank account.
@@ -565,6 +604,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * The type of bank account.
          */
@@ -582,6 +622,7 @@ public class BankAccount {
             this.accountType = accountType;
             return this;
         }
+
 
         /**
          * The International Bank Account Number (IBAN).
@@ -601,6 +642,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * The Bank Identifier Code (BIC).
          */
@@ -618,6 +660,7 @@ public class BankAccount {
             this.bic = bic;
             return this;
         }
+
 
         /**
          * A routing number is a nine-digit code used to identify a financial institution in the United States.
@@ -637,6 +680,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * A BSB is a 6 digit numeric code used for identifying the branch of an Australian or New Zealand bank or financial institution.
          */
@@ -654,6 +698,7 @@ public class BankAccount {
             this.bsbNumber = bsbNumber;
             return this;
         }
+
 
         /**
          * A branch identifier is a unique identifier for a branch of a bank or financial institution.
@@ -673,6 +718,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * A bank code is a code assigned by a central bank, a bank supervisory body or a Bankers Association in a country to all its licensed member banks or financial institutions.
          */
@@ -691,6 +737,7 @@ public class BankAccount {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -708,20 +755,34 @@ public class BankAccount {
             this.currency = currency;
             return this;
         }
-        
-        public BankAccount build() {
-            return new BankAccount(
-                bankName,
-                accountNumber,
-                accountName,
-                accountType,
-                iban,
-                bic,
-                routingNumber,
-                bsbNumber,
-                branchIdentifier,
-                bankCode,
-                currency);
+
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(String country) {
+            Utils.checkNotNull(country, "country");
+            this.country = JsonNullable.of(country);
+            return this;
         }
+
+        /**
+         * Country code according to ISO 3166-1 alpha-2.
+         */
+        public Builder country(JsonNullable<String> country) {
+            Utils.checkNotNull(country, "country");
+            this.country = country;
+            return this;
+        }
+
+        public BankAccount build() {
+
+            return new BankAccount(
+                bankName, accountNumber, accountName,
+                accountType, iban, bic,
+                routingNumber, bsbNumber, branchIdentifier,
+                bankCode, currency, country);
+        }
+
     }
 }

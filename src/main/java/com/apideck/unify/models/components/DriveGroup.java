@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DriveGroup {
 
+public class DriveGroup {
     /**
      * A unique identifier for an object.
      */
@@ -127,7 +126,10 @@ public class DriveGroup {
     public DriveGroup(
             String id,
             String name) {
-        this(id, name, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(id, name, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -212,9 +214,10 @@ public class DriveGroup {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -369,6 +372,7 @@ public class DriveGroup {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -378,7 +382,6 @@ public class DriveGroup {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -389,30 +392,24 @@ public class DriveGroup {
         }
         DriveGroup other = (DriveGroup) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            displayName,
-            description,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, name, displayName,
+            description, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -430,32 +427,34 @@ public class DriveGroup {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private String name;
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -466,6 +465,7 @@ public class DriveGroup {
             return this;
         }
 
+
         /**
          * The name of the drive group
          */
@@ -474,6 +474,7 @@ public class DriveGroup {
             this.name = name;
             return this;
         }
+
 
         /**
          * The display name of the drive group
@@ -493,6 +494,7 @@ public class DriveGroup {
             return this;
         }
 
+
         /**
          * A description of the object.
          */
@@ -510,6 +512,7 @@ public class DriveGroup {
             this.description = description;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -529,6 +532,7 @@ public class DriveGroup {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -546,6 +550,7 @@ public class DriveGroup {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -565,6 +570,7 @@ public class DriveGroup {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -582,6 +588,7 @@ public class DriveGroup {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -601,6 +608,7 @@ public class DriveGroup {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -618,19 +626,15 @@ public class DriveGroup {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public DriveGroup build() {
+
             return new DriveGroup(
-                id,
-                name,
-                displayName,
-                description,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, name, displayName,
+                description, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

@@ -48,8 +48,8 @@ public class CrmNotesOneRequestBuilder {
 
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
               = new CrmNotesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AccountingDepartmentInput {
 
+public class AccountingDepartmentInput {
     /**
      * A unique identifier for an object.
      */
@@ -39,6 +38,7 @@ public class AccountingDepartmentInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends DepartmentStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
@@ -91,7 +91,9 @@ public class AccountingDepartmentInput {
     }
     
     public AccountingDepartmentInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -150,9 +152,10 @@ public class AccountingDepartmentInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -199,6 +202,7 @@ public class AccountingDepartmentInput {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -214,6 +218,7 @@ public class AccountingDepartmentInput {
         return this;
     }
 
+
     public AccountingDepartmentInput withSubsidiaries(Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = subsidiaries;
@@ -228,6 +233,7 @@ public class AccountingDepartmentInput {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * The code of the department.
@@ -265,6 +271,7 @@ public class AccountingDepartmentInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -274,7 +281,6 @@ public class AccountingDepartmentInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -285,24 +291,20 @@ public class AccountingDepartmentInput {
         }
         AccountingDepartmentInput other = (AccountingDepartmentInput) o;
         return 
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            parentId,
-            name,
-            status,
-            subsidiaries,
-            code,
-            rowVersion,
+        return Utils.enhancedHash(
+            parentId, name, status,
+            subsidiaries, code, rowVersion,
             passThrough);
     }
     
@@ -317,26 +319,28 @@ public class AccountingDepartmentInput {
                 "rowVersion", rowVersion,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends DepartmentStatus> status = Optional.empty();
- 
+
         private Optional<? extends List<SubsidiaryReferenceInput>> subsidiaries = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -356,6 +360,7 @@ public class AccountingDepartmentInput {
             return this;
         }
 
+
         /**
          * The name of the department.
          */
@@ -373,6 +378,7 @@ public class AccountingDepartmentInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * Based on the status some functionality is enabled or disabled.
@@ -392,6 +398,7 @@ public class AccountingDepartmentInput {
             return this;
         }
 
+
         public Builder subsidiaries(List<SubsidiaryReferenceInput> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = Optional.ofNullable(subsidiaries);
@@ -403,6 +410,7 @@ public class AccountingDepartmentInput {
             this.subsidiaries = subsidiaries;
             return this;
         }
+
 
         /**
          * The code of the department.
@@ -422,6 +430,7 @@ public class AccountingDepartmentInput {
             return this;
         }
 
+
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
@@ -440,6 +449,7 @@ public class AccountingDepartmentInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -457,16 +467,14 @@ public class AccountingDepartmentInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public AccountingDepartmentInput build() {
+
             return new AccountingDepartmentInput(
-                parentId,
-                name,
-                status,
-                subsidiaries,
-                code,
-                rowVersion,
+                parentId, name, status,
+                subsidiaries, code, rowVersion,
                 passThrough);
         }
+
     }
 }

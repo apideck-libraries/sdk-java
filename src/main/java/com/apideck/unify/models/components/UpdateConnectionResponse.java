@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Connection updated
  */
 public class UpdateConnectionResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -36,6 +34,7 @@ public class UpdateConnectionResponse {
      */
     @JsonProperty("status")
     private String status;
+
 
     @JsonProperty("data")
     private Connection data;
@@ -67,7 +66,8 @@ public class UpdateConnectionResponse {
             long statusCode,
             String status,
             Connection data) {
-        this(statusCode, status, data, JsonNullable.undefined());
+        this(statusCode, status, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -100,9 +100,10 @@ public class UpdateConnectionResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -146,7 +147,6 @@ public class UpdateConnectionResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -157,18 +157,16 @@ public class UpdateConnectionResponse {
         }
         UpdateConnectionResponse other = (UpdateConnectionResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, data,
             raw);
     }
     
@@ -180,20 +178,22 @@ public class UpdateConnectionResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private Connection data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -204,6 +204,7 @@ public class UpdateConnectionResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -213,11 +214,13 @@ public class UpdateConnectionResponse {
             return this;
         }
 
+
         public Builder data(Connection data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -236,13 +239,13 @@ public class UpdateConnectionResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public UpdateConnectionResponse build() {
+
             return new UpdateConnectionResponse(
-                statusCode,
-                status,
-                data,
+                statusCode, status, data,
                 raw);
         }
+
     }
 }

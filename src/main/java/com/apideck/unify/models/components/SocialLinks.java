@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SocialLinks {
 
+public class SocialLinks {
     /**
      * Unique identifier of the social link
      */
@@ -78,9 +77,10 @@ public class SocialLinks {
         return type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier of the social link
@@ -127,7 +127,6 @@ public class SocialLinks {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,17 +137,15 @@ public class SocialLinks {
         }
         SocialLinks other = (SocialLinks) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.url, other.url) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.url, other.url) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            url,
-            type);
+        return Utils.enhancedHash(
+            id, url, type);
     }
     
     @Override
@@ -158,18 +155,20 @@ public class SocialLinks {
                 "url", url,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private String url;
- 
+
         private JsonNullable<String> type = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier of the social link
@@ -189,6 +188,7 @@ public class SocialLinks {
             return this;
         }
 
+
         /**
          * URL of the social link, e.g. https://www.twitter.com/apideck
          */
@@ -197,6 +197,7 @@ public class SocialLinks {
             this.url = url;
             return this;
         }
+
 
         /**
          * Type of the social link, e.g. twitter
@@ -215,12 +216,12 @@ public class SocialLinks {
             this.type = type;
             return this;
         }
-        
+
         public SocialLinks build() {
+
             return new SocialLinks(
-                id,
-                url,
-                type);
+                id, url, type);
         }
+
     }
 }

@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AccountingDepartment {
 
+public class AccountingDepartment {
     /**
      * A unique identifier for an object.
      */
@@ -49,6 +48,7 @@ public class AccountingDepartment {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private Optional<? extends DepartmentStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
@@ -154,7 +154,11 @@ public class AccountingDepartment {
     }
     
     public AccountingDepartment() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -262,9 +266,10 @@ public class AccountingDepartment {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -274,6 +279,7 @@ public class AccountingDepartment {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -329,6 +335,7 @@ public class AccountingDepartment {
         return this;
     }
 
+
     /**
      * Based on the status some functionality is enabled or disabled.
      */
@@ -344,6 +351,7 @@ public class AccountingDepartment {
         return this;
     }
 
+
     public AccountingDepartment withSubsidiaries(Optional<? extends List<SubsidiaryReference>> subsidiaries) {
         Utils.checkNotNull(subsidiaries, "subsidiaries");
         this.subsidiaries = subsidiaries;
@@ -358,6 +366,7 @@ public class AccountingDepartment {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * The code of the department.
@@ -485,6 +494,7 @@ public class AccountingDepartment {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -494,7 +504,6 @@ public class AccountingDepartment {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -505,36 +514,28 @@ public class AccountingDepartment {
         }
         AccountingDepartment other = (AccountingDepartment) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.parentId, other.parentId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.subsidiaries, other.subsidiaries) &&
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.parentId, other.parentId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.subsidiaries, other.subsidiaries) &&
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            parentId,
-            name,
-            status,
-            subsidiaries,
-            code,
-            customMappings,
-            rowVersion,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, parentId, name,
+            status, subsidiaries, code,
+            customMappings, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -555,38 +556,40 @@ public class AccountingDepartment {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> parentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private Optional<? extends DepartmentStatus> status = Optional.empty();
- 
+
         private Optional<? extends List<SubsidiaryReference>> subsidiaries = Optional.empty();
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -606,6 +609,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * A unique identifier for an object.
          */
@@ -623,6 +627,7 @@ public class AccountingDepartment {
             this.parentId = parentId;
             return this;
         }
+
 
         /**
          * The name of the department.
@@ -642,6 +647,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * Based on the status some functionality is enabled or disabled.
          */
@@ -660,6 +666,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         public Builder subsidiaries(List<SubsidiaryReference> subsidiaries) {
             Utils.checkNotNull(subsidiaries, "subsidiaries");
             this.subsidiaries = Optional.ofNullable(subsidiaries);
@@ -671,6 +678,7 @@ public class AccountingDepartment {
             this.subsidiaries = subsidiaries;
             return this;
         }
+
 
         /**
          * The code of the department.
@@ -690,6 +698,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -707,6 +716,7 @@ public class AccountingDepartment {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -726,6 +736,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -743,6 +754,7 @@ public class AccountingDepartment {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -762,6 +774,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -779,6 +792,7 @@ public class AccountingDepartment {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -798,6 +812,7 @@ public class AccountingDepartment {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -815,22 +830,16 @@ public class AccountingDepartment {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public AccountingDepartment build() {
+
             return new AccountingDepartment(
-                id,
-                parentId,
-                name,
-                status,
-                subsidiaries,
-                code,
-                customMappings,
-                rowVersion,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, parentId, name,
+                status, subsidiaries, code,
+                customMappings, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

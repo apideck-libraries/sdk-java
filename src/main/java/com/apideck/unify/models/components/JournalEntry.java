@@ -17,12 +17,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class JournalEntry {
 
+public class JournalEntry {
     /**
      * A unique identifier for an object.
      */
@@ -170,6 +169,7 @@ public class JournalEntry {
     @JsonProperty("row_version")
     private JsonNullable<String> rowVersion;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
@@ -255,7 +255,14 @@ public class JournalEntry {
     }
     
     public JournalEntry() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -446,9 +453,10 @@ public class JournalEntry {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -458,6 +466,7 @@ public class JournalEntry {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -549,6 +558,7 @@ public class JournalEntry {
         return this;
     }
 
+
     /**
      * Requires a minimum of 2 line items that sum to 0
      */
@@ -602,6 +612,7 @@ public class JournalEntry {
         this.postedAt = Optional.ofNullable(postedAt);
         return this;
     }
+
 
     /**
      * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
@@ -834,6 +845,7 @@ public class JournalEntry {
         return this;
     }
 
+
     public JournalEntry withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -849,6 +861,7 @@ public class JournalEntry {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -858,7 +871,6 @@ public class JournalEntry {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -869,57 +881,42 @@ public class JournalEntry {
         }
         JournalEntry other = (JournalEntry) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.currencyRate, other.currencyRate) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.memo, other.memo) &&
-            Objects.deepEquals(this.postedAt, other.postedAt) &&
-            Objects.deepEquals(this.journalSymbol, other.journalSymbol) &&
-            Objects.deepEquals(this.taxType, other.taxType) &&
-            Objects.deepEquals(this.taxCode, other.taxCode) &&
-            Objects.deepEquals(this.number, other.number) &&
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.accountingPeriod, other.accountingPeriod) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.rowVersion, other.rowVersion) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.currencyRate, other.currencyRate) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.postedAt, other.postedAt) &&
+            Utils.enhancedDeepEquals(this.journalSymbol, other.journalSymbol) &&
+            Utils.enhancedDeepEquals(this.taxType, other.taxType) &&
+            Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.number, other.number) &&
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.accountingPeriod, other.accountingPeriod) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            title,
-            currencyRate,
-            currency,
-            companyId,
-            lineItems,
-            status,
-            memo,
-            postedAt,
-            journalSymbol,
-            taxType,
-            taxCode,
-            number,
-            trackingCategories,
-            accountingPeriod,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            rowVersion,
-            customFields,
-            passThrough);
+        return Utils.enhancedHash(
+            id, title, currencyRate,
+            currency, companyId, lineItems,
+            status, memo, postedAt,
+            journalSymbol, taxType, taxCode,
+            number, trackingCategories, accountingPeriod,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, rowVersion,
+            customFields, passThrough);
     }
     
     @Override
@@ -949,58 +946,60 @@ public class JournalEntry {
                 "customFields", customFields,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> currencyRate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<JournalEntryLineItem>> lineItems = Optional.empty();
- 
+
         private JsonNullable<? extends JournalEntryStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> memo = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> postedAt = Optional.empty();
- 
+
         private JsonNullable<String> journalSymbol = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> number = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountingPeriod = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1020,6 +1019,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Journal entry title
          */
@@ -1037,6 +1037,7 @@ public class JournalEntry {
             this.title = title;
             return this;
         }
+
 
         /**
          * Currency Exchange Rate at the time entity was recorded/generated.
@@ -1056,6 +1057,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1073,6 +1075,7 @@ public class JournalEntry {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * The company or subsidiary id the transaction belongs to
@@ -1092,6 +1095,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Requires a minimum of 2 line items that sum to 0
          */
@@ -1109,6 +1113,7 @@ public class JournalEntry {
             this.lineItems = lineItems;
             return this;
         }
+
 
         /**
          * Journal entry status
@@ -1128,6 +1133,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Reference for the journal entry.
          */
@@ -1145,6 +1151,7 @@ public class JournalEntry {
             this.memo = memo;
             return this;
         }
+
 
         /**
          * This is the date on which the journal entry was added. This can be different from the creation date and can also be backdated.
@@ -1164,6 +1171,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Journal symbol of the entry. For example IND for indirect costs
          */
@@ -1181,6 +1189,7 @@ public class JournalEntry {
             this.journalSymbol = journalSymbol;
             return this;
         }
+
 
         /**
          * The specific category of tax associated with a transaction like sales or purchase
@@ -1200,6 +1209,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
@@ -1217,6 +1227,7 @@ public class JournalEntry {
             this.taxCode = taxCode;
             return this;
         }
+
 
         /**
          * Journal entry number.
@@ -1236,6 +1247,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * A list of linked tracking categories.
          */
@@ -1253,6 +1265,7 @@ public class JournalEntry {
             this.trackingCategories = trackingCategories;
             return this;
         }
+
 
         /**
          * Accounting period
@@ -1272,6 +1285,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -1289,6 +1303,7 @@ public class JournalEntry {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -1308,6 +1323,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -1325,6 +1341,7 @@ public class JournalEntry {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -1344,6 +1361,7 @@ public class JournalEntry {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1361,6 +1379,7 @@ public class JournalEntry {
             this.createdAt = createdAt;
             return this;
         }
+
 
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -1380,6 +1399,7 @@ public class JournalEntry {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1391,6 +1411,7 @@ public class JournalEntry {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
@@ -1409,32 +1430,19 @@ public class JournalEntry {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public JournalEntry build() {
+
             return new JournalEntry(
-                id,
-                title,
-                currencyRate,
-                currency,
-                companyId,
-                lineItems,
-                status,
-                memo,
-                postedAt,
-                journalSymbol,
-                taxType,
-                taxCode,
-                number,
-                trackingCategories,
-                accountingPeriod,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                rowVersion,
-                customFields,
-                passThrough);
+                id, title, currencyRate,
+                currency, companyId, lineItems,
+                status, memo, postedAt,
+                journalSymbol, taxType, taxCode,
+                number, trackingCategories, accountingPeriod,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, rowVersion,
+                customFields, passThrough);
         }
+
     }
 }

@@ -16,12 +16,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ExpenseLineItemInput {
 
+public class ExpenseLineItemInput {
     /**
      * A list of linked tracking categories.
      */
@@ -63,6 +62,7 @@ public class ExpenseLineItemInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiary_id")
     private JsonNullable<String> subsidiaryId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
@@ -134,7 +134,10 @@ public class ExpenseLineItemInput {
     }
     
     public ExpenseLineItemInput() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -224,9 +227,10 @@ public class ExpenseLineItemInput {
         return lineNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A list of linked tracking categories.
@@ -255,6 +259,7 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+
     /**
      * The unique identifier for the ledger account.
      */
@@ -272,6 +277,7 @@ public class ExpenseLineItemInput {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * The ID of the customer this expense item is linked to.
@@ -342,6 +348,7 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+
     public ExpenseLineItemInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
         Utils.checkNotNull(taxRate, "taxRate");
         this.taxRate = taxRate;
@@ -375,6 +382,7 @@ public class ExpenseLineItemInput {
         return this;
     }
 
+
     /**
      * The total amount of the expense line item.
      */
@@ -392,6 +400,7 @@ public class ExpenseLineItemInput {
         this.billable = Optional.ofNullable(billable);
         return this;
     }
+
 
     /**
      * Boolean that indicates if the line item is billable or not.
@@ -420,7 +429,6 @@ public class ExpenseLineItemInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -431,33 +439,26 @@ public class ExpenseLineItemInput {
         }
         ExpenseLineItemInput other = (ExpenseLineItemInput) o;
         return 
-            Objects.deepEquals(this.trackingCategories, other.trackingCategories) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.departmentId, other.departmentId) &&
-            Objects.deepEquals(this.locationId, other.locationId) &&
-            Objects.deepEquals(this.subsidiaryId, other.subsidiaryId) &&
-            Objects.deepEquals(this.taxRate, other.taxRate) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.billable, other.billable) &&
-            Objects.deepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.billable, other.billable) &&
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            trackingCategories,
-            accountId,
-            customerId,
-            departmentId,
-            locationId,
-            subsidiaryId,
-            taxRate,
-            description,
-            totalAmount,
-            billable,
-            lineNumber);
+        return Utils.enhancedHash(
+            trackingCategories, accountId, customerId,
+            departmentId, locationId, subsidiaryId,
+            taxRate, description, totalAmount,
+            billable, lineNumber);
     }
     
     @Override
@@ -475,34 +476,36 @@ public class ExpenseLineItemInput {
                 "billable", billable,
                 "lineNumber", lineNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
- 
+
         private Optional<String> accountId = Optional.empty();
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private JsonNullable<String> departmentId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> locationId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<Double> totalAmount = Optional.empty();
- 
+
         private Optional<Boolean> billable = Optional.empty();
- 
+
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A list of linked tracking categories.
@@ -522,6 +525,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         /**
          * The unique identifier for the ledger account.
          */
@@ -539,6 +543,7 @@ public class ExpenseLineItemInput {
             this.accountId = accountId;
             return this;
         }
+
 
         /**
          * The ID of the customer this expense item is linked to.
@@ -558,6 +563,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         /**
          * The ID of the department
          */
@@ -575,6 +581,7 @@ public class ExpenseLineItemInput {
             this.departmentId = departmentId;
             return this;
         }
+
 
         /**
          * The ID of the location
@@ -594,6 +601,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         /**
          * The ID of the subsidiary
          */
@@ -612,6 +620,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         public Builder taxRate(LinkedTaxRateInput taxRate) {
             Utils.checkNotNull(taxRate, "taxRate");
             this.taxRate = Optional.ofNullable(taxRate);
@@ -623,6 +632,7 @@ public class ExpenseLineItemInput {
             this.taxRate = taxRate;
             return this;
         }
+
 
         /**
          * The expense line item description
@@ -642,6 +652,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         /**
          * The total amount of the expense line item.
          */
@@ -659,6 +670,7 @@ public class ExpenseLineItemInput {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Boolean that indicates if the line item is billable or not.
@@ -678,6 +690,7 @@ public class ExpenseLineItemInput {
             return this;
         }
 
+
         /**
          * Line number of the resource
          */
@@ -695,20 +708,15 @@ public class ExpenseLineItemInput {
             this.lineNumber = lineNumber;
             return this;
         }
-        
+
         public ExpenseLineItemInput build() {
+
             return new ExpenseLineItemInput(
-                trackingCategories,
-                accountId,
-                customerId,
-                departmentId,
-                locationId,
-                subsidiaryId,
-                taxRate,
-                description,
-                totalAmount,
-                billable,
-                lineNumber);
+                trackingCategories, accountId, customerId,
+                departmentId, locationId, subsidiaryId,
+                taxRate, description, totalAmount,
+                billable, lineNumber);
         }
+
     }
 }

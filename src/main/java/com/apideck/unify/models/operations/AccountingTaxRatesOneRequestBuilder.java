@@ -48,8 +48,8 @@ public class AccountingTaxRatesOneRequestBuilder {
 
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
               = new AccountingTaxRatesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class DeleteConsumerResponseData {
 
+public class DeleteConsumerResponseData {
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
@@ -42,9 +41,10 @@ public class DeleteConsumerResponseData {
         return consumerId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -55,6 +55,7 @@ public class DeleteConsumerResponseData {
         return this;
     }
 
+
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
@@ -64,7 +65,6 @@ public class DeleteConsumerResponseData {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class DeleteConsumerResponseData {
         }
         DeleteConsumerResponseData other = (DeleteConsumerResponseData) o;
         return 
-            Objects.deepEquals(this.consumerId, other.consumerId);
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             consumerId);
     }
     
@@ -89,14 +89,16 @@ public class DeleteConsumerResponseData {
         return Utils.toString(DeleteConsumerResponseData.class,
                 "consumerId", consumerId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> consumerId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
@@ -115,10 +117,12 @@ public class DeleteConsumerResponseData {
             this.consumerId = consumerId;
             return this;
         }
-        
+
         public DeleteConsumerResponseData build() {
+
             return new DeleteConsumerResponseData(
                 consumerId);
         }
+
     }
 }

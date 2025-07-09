@@ -13,7 +13,6 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -22,7 +21,6 @@ import java.util.Optional;
  * <p>Response metadata
  */
 public class Meta {
-
     /**
      * Number of items returned in the data property of the response
      */
@@ -68,9 +66,10 @@ public class Meta {
         return (Optional<Cursors>) cursors;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Number of items returned in the data property of the response
@@ -80,6 +79,7 @@ public class Meta {
         this.itemsOnPage = Optional.ofNullable(itemsOnPage);
         return this;
     }
+
 
     /**
      * Number of items returned in the data property of the response
@@ -99,6 +99,7 @@ public class Meta {
         return this;
     }
 
+
     /**
      * Cursors to navigate to previous or next pages through the API
      */
@@ -108,7 +109,6 @@ public class Meta {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,15 +119,14 @@ public class Meta {
         }
         Meta other = (Meta) o;
         return 
-            Objects.deepEquals(this.itemsOnPage, other.itemsOnPage) &&
-            Objects.deepEquals(this.cursors, other.cursors);
+            Utils.enhancedDeepEquals(this.itemsOnPage, other.itemsOnPage) &&
+            Utils.enhancedDeepEquals(this.cursors, other.cursors);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            itemsOnPage,
-            cursors);
+        return Utils.enhancedHash(
+            itemsOnPage, cursors);
     }
     
     @Override
@@ -136,16 +135,18 @@ public class Meta {
                 "itemsOnPage", itemsOnPage,
                 "cursors", cursors);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> itemsOnPage = Optional.empty();
- 
+
         private Optional<? extends Cursors> cursors = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Number of items returned in the data property of the response
@@ -165,6 +166,7 @@ public class Meta {
             return this;
         }
 
+
         /**
          * Cursors to navigate to previous or next pages through the API
          */
@@ -182,11 +184,12 @@ public class Meta {
             this.cursors = cursors;
             return this;
         }
-        
+
         public Meta build() {
+
             return new Meta(
-                itemsOnPage,
-                cursors);
+                itemsOnPage, cursors);
         }
+
     }
 }

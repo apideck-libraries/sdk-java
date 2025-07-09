@@ -18,12 +18,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class UnifiedFile {
 
+public class UnifiedFile {
     /**
      * A unique identifier for an object.
      */
@@ -85,6 +84,7 @@ public class UnifiedFile {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("size")
     private JsonNullable<Long> size;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
@@ -226,7 +226,13 @@ public class UnifiedFile {
     
     public UnifiedFile(
             String id) {
-        this(id, JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -392,9 +398,10 @@ public class UnifiedFile {
         return createdAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -432,6 +439,7 @@ public class UnifiedFile {
         return this;
     }
 
+
     /**
      * The name of the file
      */
@@ -467,6 +475,7 @@ public class UnifiedFile {
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     /**
      * The type of resource. Could be file, folder or url
@@ -522,6 +531,7 @@ public class UnifiedFile {
         return this;
     }
 
+
     /**
      * Whether the current user can download this file
      */
@@ -555,6 +565,7 @@ public class UnifiedFile {
         return this;
     }
 
+
     public UnifiedFile withOwner(Optional<? extends Owner> owner) {
         Utils.checkNotNull(owner, "owner");
         this.owner = owner;
@@ -569,6 +580,7 @@ public class UnifiedFile {
         this.parentFolders = Optional.ofNullable(parentFolders);
         return this;
     }
+
 
     /**
      * The parent folders of the file, starting from the root
@@ -588,6 +600,7 @@ public class UnifiedFile {
         return this;
     }
 
+
     /**
      * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
      */
@@ -606,6 +619,7 @@ public class UnifiedFile {
         return this;
     }
 
+
     /**
      * Permissions the current user has on this file.
      */
@@ -623,6 +637,7 @@ public class UnifiedFile {
         this.exportable = Optional.ofNullable(exportable);
         return this;
     }
+
 
     /**
      * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
@@ -741,7 +756,6 @@ public class UnifiedFile {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -752,51 +766,38 @@ public class UnifiedFile {
         }
         UnifiedFile other = (UnifiedFile) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.path, other.path) &&
-            Objects.deepEquals(this.mimeType, other.mimeType) &&
-            Objects.deepEquals(this.downloadable, other.downloadable) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.owner, other.owner) &&
-            Objects.deepEquals(this.parentFolders, other.parentFolders) &&
-            Objects.deepEquals(this.parentFoldersComplete, other.parentFoldersComplete) &&
-            Objects.deepEquals(this.permissions, other.permissions) &&
-            Objects.deepEquals(this.exportable, other.exportable) &&
-            Objects.deepEquals(this.exportFormats, other.exportFormats) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.path, other.path) &&
+            Utils.enhancedDeepEquals(this.mimeType, other.mimeType) &&
+            Utils.enhancedDeepEquals(this.downloadable, other.downloadable) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.owner, other.owner) &&
+            Utils.enhancedDeepEquals(this.parentFolders, other.parentFolders) &&
+            Utils.enhancedDeepEquals(this.parentFoldersComplete, other.parentFoldersComplete) &&
+            Utils.enhancedDeepEquals(this.permissions, other.permissions) &&
+            Utils.enhancedDeepEquals(this.exportable, other.exportable) &&
+            Utils.enhancedDeepEquals(this.exportFormats, other.exportFormats) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            name,
-            description,
-            type,
-            path,
-            mimeType,
-            downloadable,
-            size,
-            owner,
-            parentFolders,
-            parentFoldersComplete,
-            permissions,
-            exportable,
-            exportFormats,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt);
+        return Utils.enhancedHash(
+            id, downstreamId, name,
+            description, type, path,
+            mimeType, downloadable, size,
+            owner, parentFolders, parentFoldersComplete,
+            permissions, exportable, exportFormats,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt);
     }
     
     @Override
@@ -823,52 +824,54 @@ public class UnifiedFile {
                 "updatedAt", updatedAt,
                 "createdAt", createdAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends FileType> type = Optional.empty();
- 
+
         private JsonNullable<String> path = JsonNullable.undefined();
- 
+
         private JsonNullable<String> mimeType = JsonNullable.undefined();
- 
+
         private Optional<Boolean> downloadable = Optional.empty();
- 
+
         private JsonNullable<Long> size = JsonNullable.undefined();
- 
+
         private Optional<? extends Owner> owner = Optional.empty();
- 
+
         private Optional<? extends List<LinkedFolder>> parentFolders = Optional.empty();
- 
+
         private Optional<Boolean> parentFoldersComplete = Optional.empty();
- 
+
         private Optional<? extends Permissions> permissions = Optional.empty();
- 
+
         private Optional<Boolean> exportable = Optional.empty();
- 
+
         private JsonNullable<? extends List<String>> exportFormats = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -878,6 +881,7 @@ public class UnifiedFile {
             this.id = id;
             return this;
         }
+
 
         /**
          * The third-party API ID of original entity
@@ -897,6 +901,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The name of the file
          */
@@ -914,6 +919,7 @@ public class UnifiedFile {
             this.name = name;
             return this;
         }
+
 
         /**
          * Optional description of the file
@@ -933,6 +939,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The type of resource. Could be file, folder or url
          */
@@ -950,6 +957,7 @@ public class UnifiedFile {
             this.type = type;
             return this;
         }
+
 
         /**
          * The full path of the file or folder (includes the file name)
@@ -969,6 +977,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The MIME type of the file.
          */
@@ -986,6 +995,7 @@ public class UnifiedFile {
             this.mimeType = mimeType;
             return this;
         }
+
 
         /**
          * Whether the current user can download this file
@@ -1005,6 +1015,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The size of the file in bytes
          */
@@ -1023,6 +1034,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         public Builder owner(Owner owner) {
             Utils.checkNotNull(owner, "owner");
             this.owner = Optional.ofNullable(owner);
@@ -1034,6 +1046,7 @@ public class UnifiedFile {
             this.owner = owner;
             return this;
         }
+
 
         /**
          * The parent folders of the file, starting from the root
@@ -1053,6 +1066,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
          */
@@ -1070,6 +1084,7 @@ public class UnifiedFile {
             this.parentFoldersComplete = parentFoldersComplete;
             return this;
         }
+
 
         /**
          * Permissions the current user has on this file.
@@ -1089,6 +1104,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
          */
@@ -1106,6 +1122,7 @@ public class UnifiedFile {
             this.exportable = exportable;
             return this;
         }
+
 
         /**
          * The available file formats when exporting this file.
@@ -1125,6 +1142,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -1142,6 +1160,7 @@ public class UnifiedFile {
             this.customMappings = customMappings;
             return this;
         }
+
 
         /**
          * The user who last updated the object.
@@ -1161,6 +1180,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The user who created the object.
          */
@@ -1178,6 +1198,7 @@ public class UnifiedFile {
             this.createdBy = createdBy;
             return this;
         }
+
 
         /**
          * The date and time when the object was last updated.
@@ -1197,6 +1218,7 @@ public class UnifiedFile {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1214,29 +1236,18 @@ public class UnifiedFile {
             this.createdAt = createdAt;
             return this;
         }
-        
+
         public UnifiedFile build() {
+
             return new UnifiedFile(
-                id,
-                downstreamId,
-                name,
-                description,
-                type,
-                path,
-                mimeType,
-                downloadable,
-                size,
-                owner,
-                parentFolders,
-                parentFoldersComplete,
-                permissions,
-                exportable,
-                exportFormats,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt);
+                id, downstreamId, name,
+                description, type, path,
+                mimeType, downloadable, size,
+                owner, parentFolders, parentFoldersComplete,
+                permissions, exportable, exportFormats,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt);
         }
+
     }
 }

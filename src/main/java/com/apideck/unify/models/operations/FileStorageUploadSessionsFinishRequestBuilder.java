@@ -62,9 +62,9 @@ public class FileStorageUploadSessionsFinishRequestBuilder {
 
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
               = new FileStorageUploadSessionsFinishOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -13,14 +13,15 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConnectionConfiguration {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
     private Optional<String> resource;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaults")
@@ -51,15 +52,17 @@ public class ConnectionConfiguration {
         return (Optional<List<ConnectionDefaults>>) defaults;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectionConfiguration withResource(String resource) {
         Utils.checkNotNull(resource, "resource");
         this.resource = Optional.ofNullable(resource);
         return this;
     }
+
 
     public ConnectionConfiguration withResource(Optional<String> resource) {
         Utils.checkNotNull(resource, "resource");
@@ -73,13 +76,13 @@ public class ConnectionConfiguration {
         return this;
     }
 
+
     public ConnectionConfiguration withDefaults(Optional<? extends List<ConnectionDefaults>> defaults) {
         Utils.checkNotNull(defaults, "defaults");
         this.defaults = defaults;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -90,15 +93,14 @@ public class ConnectionConfiguration {
         }
         ConnectionConfiguration other = (ConnectionConfiguration) o;
         return 
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.defaults, other.defaults);
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.defaults, other.defaults);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            resource,
-            defaults);
+        return Utils.enhancedHash(
+            resource, defaults);
     }
     
     @Override
@@ -107,16 +109,18 @@ public class ConnectionConfiguration {
                 "resource", resource,
                 "defaults", defaults);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> resource = Optional.empty();
- 
+
         private Optional<? extends List<ConnectionDefaults>> defaults = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder resource(String resource) {
             Utils.checkNotNull(resource, "resource");
@@ -130,6 +134,7 @@ public class ConnectionConfiguration {
             return this;
         }
 
+
         public Builder defaults(List<ConnectionDefaults> defaults) {
             Utils.checkNotNull(defaults, "defaults");
             this.defaults = Optional.ofNullable(defaults);
@@ -141,11 +146,12 @@ public class ConnectionConfiguration {
             this.defaults = defaults;
             return this;
         }
-        
+
         public ConnectionConfiguration build() {
+
             return new ConnectionConfiguration(
-                resource,
-                defaults);
+                resource, defaults);
         }
+
     }
 }

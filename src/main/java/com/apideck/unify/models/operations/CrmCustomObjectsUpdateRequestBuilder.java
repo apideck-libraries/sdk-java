@@ -48,8 +48,8 @@ public class CrmCustomObjectsUpdateRequestBuilder {
 
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
               = new CrmCustomObjectsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

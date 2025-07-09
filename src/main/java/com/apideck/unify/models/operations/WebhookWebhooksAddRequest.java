@@ -10,16 +10,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class WebhookWebhooksAddRequest {
 
+public class WebhookWebhooksAddRequest {
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
     private Optional<String> appId;
+
 
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateWebhookRequest createWebhookRequest;
@@ -52,9 +52,10 @@ public class WebhookWebhooksAddRequest {
         return createWebhookRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of your Unify application
@@ -64,6 +65,7 @@ public class WebhookWebhooksAddRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -80,7 +82,6 @@ public class WebhookWebhooksAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -91,15 +92,14 @@ public class WebhookWebhooksAddRequest {
         }
         WebhookWebhooksAddRequest other = (WebhookWebhooksAddRequest) o;
         return 
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.createWebhookRequest, other.createWebhookRequest);
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.createWebhookRequest, other.createWebhookRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            appId,
-            createWebhookRequest);
+        return Utils.enhancedHash(
+            appId, createWebhookRequest);
     }
     
     @Override
@@ -108,16 +108,18 @@ public class WebhookWebhooksAddRequest {
                 "appId", appId,
                 "createWebhookRequest", createWebhookRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private CreateWebhookRequest createWebhookRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of your Unify application
@@ -137,16 +139,18 @@ public class WebhookWebhooksAddRequest {
             return this;
         }
 
+
         public Builder createWebhookRequest(CreateWebhookRequest createWebhookRequest) {
             Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
             this.createWebhookRequest = createWebhookRequest;
             return this;
         }
-        
+
         public WebhookWebhooksAddRequest build() {
+
             return new WebhookWebhooksAddRequest(
-                appId,
-                createWebhookRequest);
+                appId, createWebhookRequest);
         }
+
     }
 }

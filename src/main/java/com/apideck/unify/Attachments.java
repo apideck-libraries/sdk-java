@@ -38,7 +38,6 @@ public class Attachments {
     Attachments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Attachments
      * 
@@ -78,11 +77,10 @@ public class Attachments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
               = new AccountingAttachmentsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Upload attachment
@@ -125,12 +123,11 @@ public class Attachments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
               = new AccountingAttachmentsUploadOperation(
-                 sdkConfiguration,
-                 serverURL,
-                 options);
+                sdkConfiguration,
+                serverURL,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Attachment
@@ -171,11 +168,10 @@ public class Attachments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
               = new AccountingAttachmentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Attachment
@@ -216,11 +212,10 @@ public class Attachments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
               = new AccountingAttachmentsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Download Attachment
@@ -261,8 +256,8 @@ public class Attachments {
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
               = new AccountingAttachmentsDownloadOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

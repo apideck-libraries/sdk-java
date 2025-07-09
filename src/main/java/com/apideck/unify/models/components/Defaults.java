@@ -13,8 +13,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class Defaults {
 
@@ -22,13 +22,16 @@ public class Defaults {
     @JsonProperty("target")
     private Optional<? extends Target> target;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
     private Optional<? extends List<FormFieldOption>> options;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
@@ -51,7 +54,8 @@ public class Defaults {
     }
     
     public Defaults() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     @SuppressWarnings("unchecked")
@@ -77,15 +81,17 @@ public class Defaults {
         return (Optional<ConnectionValue>) value;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Defaults withTarget(Target target) {
         Utils.checkNotNull(target, "target");
         this.target = Optional.ofNullable(target);
         return this;
     }
+
 
     public Defaults withTarget(Optional<? extends Target> target) {
         Utils.checkNotNull(target, "target");
@@ -99,6 +105,7 @@ public class Defaults {
         return this;
     }
 
+
     public Defaults withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
         this.id = id;
@@ -110,6 +117,7 @@ public class Defaults {
         this.options = Optional.ofNullable(options);
         return this;
     }
+
 
     public Defaults withOptions(Optional<? extends List<FormFieldOption>> options) {
         Utils.checkNotNull(options, "options");
@@ -123,13 +131,13 @@ public class Defaults {
         return this;
     }
 
+
     public Defaults withValue(Optional<? extends ConnectionValue> value) {
         Utils.checkNotNull(value, "value");
         this.value = value;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -140,18 +148,16 @@ public class Defaults {
         }
         Defaults other = (Defaults) o;
         return 
-            Objects.deepEquals(this.target, other.target) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.value, other.value);
+            Utils.enhancedDeepEquals(this.target, other.target) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.value, other.value);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            target,
-            id,
-            options,
+        return Utils.enhancedHash(
+            target, id, options,
             value);
     }
     
@@ -163,20 +169,22 @@ public class Defaults {
                 "options", options,
                 "value", value);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends Target> target = Optional.empty();
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<? extends List<FormFieldOption>> options = Optional.empty();
- 
+
         private Optional<? extends ConnectionValue> value = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder target(Target target) {
             Utils.checkNotNull(target, "target");
@@ -190,6 +198,7 @@ public class Defaults {
             return this;
         }
 
+
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = Optional.ofNullable(id);
@@ -201,6 +210,7 @@ public class Defaults {
             this.id = id;
             return this;
         }
+
 
         public Builder options(List<FormFieldOption> options) {
             Utils.checkNotNull(options, "options");
@@ -214,6 +224,7 @@ public class Defaults {
             return this;
         }
 
+
         public Builder value(ConnectionValue value) {
             Utils.checkNotNull(value, "value");
             this.value = Optional.ofNullable(value);
@@ -225,13 +236,13 @@ public class Defaults {
             this.value = value;
             return this;
         }
-        
+
         public Defaults build() {
+
             return new Defaults(
-                target,
-                id,
-                options,
+                target, id, options,
                 value);
         }
+
     }
 }

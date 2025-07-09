@@ -57,7 +57,8 @@ public class VaultConnectionsImportOperation implements RequestOperation<VaultCo
     
     @Override
     public HttpResponse<InputStream> doRequest(VaultConnectionsImportRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 VaultConnectionsImportRequest.class,

@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Application {
 
+public class Application {
     /**
      * A unique identifier for an object.
      */
@@ -29,17 +28,21 @@ public class Application {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("applicant_id")
     private Optional<String> applicantId;
+
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("job_id")
     private Optional<String> jobId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
     private JsonNullable<? extends ApplicationStatus> status;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stage")
@@ -125,7 +128,10 @@ public class Application {
     }
     
     public Application() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -208,9 +214,10 @@ public class Application {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -220,6 +227,7 @@ public class Application {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -236,6 +244,7 @@ public class Application {
         return this;
     }
 
+
     public Application withApplicantId(Optional<String> applicantId) {
         Utils.checkNotNull(applicantId, "applicantId");
         this.applicantId = applicantId;
@@ -247,6 +256,7 @@ public class Application {
         this.jobId = Optional.ofNullable(jobId);
         return this;
     }
+
 
     public Application withJobId(Optional<String> jobId) {
         Utils.checkNotNull(jobId, "jobId");
@@ -271,6 +281,7 @@ public class Application {
         this.stage = Optional.ofNullable(stage);
         return this;
     }
+
 
     public Application withStage(Optional<? extends Stage> stage) {
         Utils.checkNotNull(stage, "stage");
@@ -377,6 +388,7 @@ public class Application {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -386,7 +398,6 @@ public class Application {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -397,33 +408,26 @@ public class Application {
         }
         Application other = (Application) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.applicantId, other.applicantId) &&
-            Objects.deepEquals(this.jobId, other.jobId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.stage, other.stage) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.applicantId, other.applicantId) &&
+            Utils.enhancedDeepEquals(this.jobId, other.jobId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.stage, other.stage) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            applicantId,
-            jobId,
-            status,
-            stage,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, applicantId, jobId,
+            status, stage, customMappings,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -441,34 +445,36 @@ public class Application {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> applicantId = Optional.empty();
- 
+
         private Optional<String> jobId = Optional.empty();
- 
+
         private JsonNullable<? extends ApplicationStatus> status = JsonNullable.undefined();
- 
+
         private Optional<? extends Stage> stage = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -488,6 +494,7 @@ public class Application {
             return this;
         }
 
+
         public Builder applicantId(String applicantId) {
             Utils.checkNotNull(applicantId, "applicantId");
             this.applicantId = Optional.ofNullable(applicantId);
@@ -499,6 +506,7 @@ public class Application {
             this.applicantId = applicantId;
             return this;
         }
+
 
         public Builder jobId(String jobId) {
             Utils.checkNotNull(jobId, "jobId");
@@ -512,6 +520,7 @@ public class Application {
             return this;
         }
 
+
         public Builder status(ApplicationStatus status) {
             Utils.checkNotNull(status, "status");
             this.status = JsonNullable.of(status);
@@ -524,6 +533,7 @@ public class Application {
             return this;
         }
 
+
         public Builder stage(Stage stage) {
             Utils.checkNotNull(stage, "stage");
             this.stage = Optional.ofNullable(stage);
@@ -535,6 +545,7 @@ public class Application {
             this.stage = stage;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -554,6 +565,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -571,6 +583,7 @@ public class Application {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -590,6 +603,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -607,6 +621,7 @@ public class Application {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -626,6 +641,7 @@ public class Application {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -643,20 +659,15 @@ public class Application {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Application build() {
+
             return new Application(
-                id,
-                applicantId,
-                jobId,
-                status,
-                stage,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, applicantId, jobId,
+                status, stage, customMappings,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
+
     }
 }

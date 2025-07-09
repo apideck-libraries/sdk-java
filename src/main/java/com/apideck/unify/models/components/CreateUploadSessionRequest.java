@@ -14,11 +14,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CreateUploadSessionRequest {
 
+public class CreateUploadSessionRequest {
     /**
      * The name of the file.
      */
@@ -74,7 +73,8 @@ public class CreateUploadSessionRequest {
     public CreateUploadSessionRequest(
             String name,
             String parentFolderId) {
-        this(name, parentFolderId, Optional.empty(), Optional.empty(), Optional.empty());
+        this(name, parentFolderId, Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -118,9 +118,10 @@ public class CreateUploadSessionRequest {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the file.
@@ -149,6 +150,7 @@ public class CreateUploadSessionRequest {
         return this;
     }
 
+
     /**
      * ID of the drive to upload to.
      */
@@ -166,6 +168,7 @@ public class CreateUploadSessionRequest {
         this.size = Optional.ofNullable(size);
         return this;
     }
+
 
     /**
      * The size of the file in bytes
@@ -185,6 +188,7 @@ public class CreateUploadSessionRequest {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -194,7 +198,6 @@ public class CreateUploadSessionRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -205,21 +208,18 @@ public class CreateUploadSessionRequest {
         }
         CreateUploadSessionRequest other = (CreateUploadSessionRequest) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.parentFolderId, other.parentFolderId) &&
-            Objects.deepEquals(this.driveId, other.driveId) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.parentFolderId, other.parentFolderId) &&
+            Utils.enhancedDeepEquals(this.driveId, other.driveId) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            parentFolderId,
-            driveId,
-            size,
-            passThrough);
+        return Utils.enhancedHash(
+            name, parentFolderId, driveId,
+            size, passThrough);
     }
     
     @Override
@@ -231,22 +231,24 @@ public class CreateUploadSessionRequest {
                 "size", size,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private String parentFolderId;
- 
+
         private Optional<String> driveId = Optional.empty();
- 
+
         private Optional<Long> size = Optional.empty();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the file.
@@ -257,6 +259,7 @@ public class CreateUploadSessionRequest {
             return this;
         }
 
+
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
@@ -265,6 +268,7 @@ public class CreateUploadSessionRequest {
             this.parentFolderId = parentFolderId;
             return this;
         }
+
 
         /**
          * ID of the drive to upload to.
@@ -284,6 +288,7 @@ public class CreateUploadSessionRequest {
             return this;
         }
 
+
         /**
          * The size of the file in bytes
          */
@@ -302,6 +307,7 @@ public class CreateUploadSessionRequest {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -319,14 +325,13 @@ public class CreateUploadSessionRequest {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public CreateUploadSessionRequest build() {
+
             return new CreateUploadSessionRequest(
-                name,
-                parentFolderId,
-                driveId,
-                size,
-                passThrough);
+                name, parentFolderId, driveId,
+                size, passThrough);
         }
+
     }
 }

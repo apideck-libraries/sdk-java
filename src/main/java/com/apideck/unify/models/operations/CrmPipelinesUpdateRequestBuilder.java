@@ -48,8 +48,8 @@ public class CrmPipelinesUpdateRequestBuilder {
 
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
               = new CrmPipelinesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

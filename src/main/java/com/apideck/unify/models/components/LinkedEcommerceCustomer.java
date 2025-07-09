@@ -13,7 +13,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The customer this entity is linked to.
  */
 public class LinkedEcommerceCustomer {
-
     /**
      * The ID of the customer this entity is linked to.
      */
@@ -58,9 +56,11 @@ public class LinkedEcommerceCustomer {
     @JsonProperty("company_name")
     private JsonNullable<String> companyName;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
     private JsonNullable<? extends List<PhoneNumber>> phoneNumbers;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
@@ -92,7 +92,9 @@ public class LinkedEcommerceCustomer {
     }
     
     public LinkedEcommerceCustomer() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -147,9 +149,10 @@ public class LinkedEcommerceCustomer {
         return (JsonNullable<List<Email>>) emails;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the customer this entity is linked to.
@@ -265,7 +268,6 @@ public class LinkedEcommerceCustomer {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -276,24 +278,20 @@ public class LinkedEcommerceCustomer {
         }
         LinkedEcommerceCustomer other = (LinkedEcommerceCustomer) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.phoneNumbers, other.phoneNumbers) &&
-            Objects.deepEquals(this.emails, other.emails);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.phoneNumbers, other.phoneNumbers) &&
+            Utils.enhancedDeepEquals(this.emails, other.emails);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            firstName,
-            lastName,
-            companyName,
-            phoneNumbers,
+        return Utils.enhancedHash(
+            id, name, firstName,
+            lastName, companyName, phoneNumbers,
             emails);
     }
     
@@ -308,26 +306,28 @@ public class LinkedEcommerceCustomer {
                 "phoneNumbers", phoneNumbers,
                 "emails", emails);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<PhoneNumber>> phoneNumbers = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<Email>> emails = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the customer this entity is linked to.
@@ -347,6 +347,7 @@ public class LinkedEcommerceCustomer {
             return this;
         }
 
+
         /**
          * Full name of the customer
          */
@@ -364,6 +365,7 @@ public class LinkedEcommerceCustomer {
             this.name = name;
             return this;
         }
+
 
         /**
          * First name of the customer
@@ -383,6 +385,7 @@ public class LinkedEcommerceCustomer {
             return this;
         }
 
+
         /**
          * Last name of the customer
          */
@@ -400,6 +403,7 @@ public class LinkedEcommerceCustomer {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Company name of the customer
@@ -419,6 +423,7 @@ public class LinkedEcommerceCustomer {
             return this;
         }
 
+
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
             Utils.checkNotNull(phoneNumbers, "phoneNumbers");
             this.phoneNumbers = JsonNullable.of(phoneNumbers);
@@ -431,6 +436,7 @@ public class LinkedEcommerceCustomer {
             return this;
         }
 
+
         public Builder emails(List<Email> emails) {
             Utils.checkNotNull(emails, "emails");
             this.emails = JsonNullable.of(emails);
@@ -442,16 +448,14 @@ public class LinkedEcommerceCustomer {
             this.emails = emails;
             return this;
         }
-        
+
         public LinkedEcommerceCustomer build() {
+
             return new LinkedEcommerceCustomer(
-                id,
-                name,
-                firstName,
-                lastName,
-                companyName,
-                phoneNumbers,
+                id, name, firstName,
+                lastName, companyName, phoneNumbers,
                 emails);
         }
+
     }
 }

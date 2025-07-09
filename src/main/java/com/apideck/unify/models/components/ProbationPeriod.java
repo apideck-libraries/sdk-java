@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class ProbationPeriod {
 
+public class ProbationPeriod {
     /**
      * The date that the employee started their probation period at the company.
      */
@@ -61,9 +60,10 @@ public class ProbationPeriod {
         return endDate;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The date that the employee started their probation period at the company.
@@ -101,7 +101,6 @@ public class ProbationPeriod {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,15 +111,14 @@ public class ProbationPeriod {
         }
         ProbationPeriod other = (ProbationPeriod) o;
         return 
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            startDate,
-            endDate);
+        return Utils.enhancedHash(
+            startDate, endDate);
     }
     
     @Override
@@ -129,16 +127,18 @@ public class ProbationPeriod {
                 "startDate", startDate,
                 "endDate", endDate);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The date that the employee started their probation period at the company.
@@ -158,6 +158,7 @@ public class ProbationPeriod {
             return this;
         }
 
+
         /**
          * The date that the employee ended their probation period at the company.
          */
@@ -175,11 +176,12 @@ public class ProbationPeriod {
             this.endDate = endDate;
             return this;
         }
-        
+
         public ProbationPeriod build() {
+
             return new ProbationPeriod(
-                startDate,
-                endDate);
+                startDate, endDate);
         }
+
     }
 }

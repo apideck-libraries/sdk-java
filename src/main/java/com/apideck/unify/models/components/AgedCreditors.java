@@ -18,11 +18,10 @@ import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AgedCreditors {
 
+public class AgedCreditors {
     /**
      * The exact date and time the report was generated.
      */
@@ -51,6 +50,7 @@ public class AgedCreditors {
     @JsonProperty("period_length")
     private Optional<Long> periodLength;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outstanding_balances")
     private Optional<? extends List<OutstandingBalanceBySupplier>> outstandingBalances;
@@ -75,7 +75,8 @@ public class AgedCreditors {
     }
     
     public AgedCreditors() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -116,9 +117,10 @@ public class AgedCreditors {
         return (Optional<List<OutstandingBalanceBySupplier>>) outstandingBalances;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The exact date and time the report was generated.
@@ -128,6 +130,7 @@ public class AgedCreditors {
         this.reportGeneratedAt = Optional.ofNullable(reportGeneratedAt);
         return this;
     }
+
 
     /**
      * The exact date and time the report was generated.
@@ -147,6 +150,7 @@ public class AgedCreditors {
         return this;
     }
 
+
     /**
      * The cutoff date for transactions included in the report.
      */
@@ -164,6 +168,7 @@ public class AgedCreditors {
         this.periodCount = Optional.ofNullable(periodCount);
         return this;
     }
+
 
     /**
      * Number of aging periods shown in the report.
@@ -183,6 +188,7 @@ public class AgedCreditors {
         return this;
     }
 
+
     /**
      * Length of each aging period in days.
      */
@@ -198,13 +204,13 @@ public class AgedCreditors {
         return this;
     }
 
+
     public AgedCreditors withOutstandingBalances(Optional<? extends List<OutstandingBalanceBySupplier>> outstandingBalances) {
         Utils.checkNotNull(outstandingBalances, "outstandingBalances");
         this.outstandingBalances = outstandingBalances;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -215,21 +221,18 @@ public class AgedCreditors {
         }
         AgedCreditors other = (AgedCreditors) o;
         return 
-            Objects.deepEquals(this.reportGeneratedAt, other.reportGeneratedAt) &&
-            Objects.deepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
-            Objects.deepEquals(this.periodCount, other.periodCount) &&
-            Objects.deepEquals(this.periodLength, other.periodLength) &&
-            Objects.deepEquals(this.outstandingBalances, other.outstandingBalances);
+            Utils.enhancedDeepEquals(this.reportGeneratedAt, other.reportGeneratedAt) &&
+            Utils.enhancedDeepEquals(this.reportAsOfDate, other.reportAsOfDate) &&
+            Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
+            Utils.enhancedDeepEquals(this.periodLength, other.periodLength) &&
+            Utils.enhancedDeepEquals(this.outstandingBalances, other.outstandingBalances);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            reportGeneratedAt,
-            reportAsOfDate,
-            periodCount,
-            periodLength,
-            outstandingBalances);
+        return Utils.enhancedHash(
+            reportGeneratedAt, reportAsOfDate, periodCount,
+            periodLength, outstandingBalances);
     }
     
     @Override
@@ -241,22 +244,24 @@ public class AgedCreditors {
                 "periodLength", periodLength,
                 "outstandingBalances", outstandingBalances);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> reportGeneratedAt = Optional.empty();
- 
+
         private Optional<LocalDate> reportAsOfDate = Optional.empty();
- 
+
         private Optional<Long> periodCount;
- 
+
         private Optional<Long> periodLength;
- 
+
         private Optional<? extends List<OutstandingBalanceBySupplier>> outstandingBalances = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The exact date and time the report was generated.
@@ -276,6 +281,7 @@ public class AgedCreditors {
             return this;
         }
 
+
         /**
          * The cutoff date for transactions included in the report.
          */
@@ -293,6 +299,7 @@ public class AgedCreditors {
             this.reportAsOfDate = reportAsOfDate;
             return this;
         }
+
 
         /**
          * Number of aging periods shown in the report.
@@ -312,6 +319,7 @@ public class AgedCreditors {
             return this;
         }
 
+
         /**
          * Length of each aging period in days.
          */
@@ -330,6 +338,7 @@ public class AgedCreditors {
             return this;
         }
 
+
         public Builder outstandingBalances(List<OutstandingBalanceBySupplier> outstandingBalances) {
             Utils.checkNotNull(outstandingBalances, "outstandingBalances");
             this.outstandingBalances = Optional.ofNullable(outstandingBalances);
@@ -341,7 +350,7 @@ public class AgedCreditors {
             this.outstandingBalances = outstandingBalances;
             return this;
         }
-        
+
         public AgedCreditors build() {
             if (periodCount == null) {
                 periodCount = _SINGLETON_VALUE_PeriodCount.value();
@@ -349,13 +358,12 @@ public class AgedCreditors {
             if (periodLength == null) {
                 periodLength = _SINGLETON_VALUE_PeriodLength.value();
             }
+
             return new AgedCreditors(
-                reportGeneratedAt,
-                reportAsOfDate,
-                periodCount,
-                periodLength,
-                outstandingBalances);
+                reportGeneratedAt, reportAsOfDate, periodCount,
+                periodLength, outstandingBalances);
         }
+
 
         private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PeriodCount =
                 new LazySingletonValue<>(

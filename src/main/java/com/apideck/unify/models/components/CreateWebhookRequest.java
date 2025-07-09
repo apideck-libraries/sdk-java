@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CreateWebhookRequest {
 
+public class CreateWebhookRequest {
     /**
      * A description of the object.
      */
@@ -72,7 +71,8 @@ public class CreateWebhookRequest {
             Status status,
             String deliveryUrl,
             List<WebhookEventType> events) {
-        this(JsonNullable.undefined(), unifiedApi, status, deliveryUrl, events);
+        this(JsonNullable.undefined(), unifiedApi, status,
+            deliveryUrl, events);
     }
 
     /**
@@ -115,9 +115,10 @@ public class CreateWebhookRequest {
         return events;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A description of the object.
@@ -173,7 +174,6 @@ public class CreateWebhookRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -184,21 +184,18 @@ public class CreateWebhookRequest {
         }
         CreateWebhookRequest other = (CreateWebhookRequest) o;
         return 
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.deliveryUrl, other.deliveryUrl) &&
-            Objects.deepEquals(this.events, other.events);
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.deliveryUrl, other.deliveryUrl) &&
+            Utils.enhancedDeepEquals(this.events, other.events);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            description,
-            unifiedApi,
-            status,
-            deliveryUrl,
-            events);
+        return Utils.enhancedHash(
+            description, unifiedApi, status,
+            deliveryUrl, events);
     }
     
     @Override
@@ -210,22 +207,24 @@ public class CreateWebhookRequest {
                 "deliveryUrl", deliveryUrl,
                 "events", events);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private UnifiedApiId unifiedApi;
- 
+
         private Status status;
- 
+
         private String deliveryUrl;
- 
+
         private List<WebhookEventType> events;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A description of the object.
@@ -245,6 +244,7 @@ public class CreateWebhookRequest {
             return this;
         }
 
+
         /**
          * Name of Apideck Unified API
          */
@@ -253,6 +253,7 @@ public class CreateWebhookRequest {
             this.unifiedApi = unifiedApi;
             return this;
         }
+
 
         /**
          * The status of the webhook.
@@ -263,6 +264,7 @@ public class CreateWebhookRequest {
             return this;
         }
 
+
         /**
          * The delivery url of the webhook endpoint.
          */
@@ -272,6 +274,7 @@ public class CreateWebhookRequest {
             return this;
         }
 
+
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
@@ -280,14 +283,13 @@ public class CreateWebhookRequest {
             this.events = events;
             return this;
         }
-        
+
         public CreateWebhookRequest build() {
+
             return new CreateWebhookRequest(
-                description,
-                unifiedApi,
-                status,
-                deliveryUrl,
-                events);
+                description, unifiedApi, status,
+                deliveryUrl, events);
         }
+
     }
 }

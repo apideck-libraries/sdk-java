@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class FormFieldOptionGroup implements FormFieldOption {
 
@@ -21,11 +21,14 @@ public class FormFieldOptionGroup implements FormFieldOption {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonProperty("label")
     private String label;
 
+
     @JsonProperty("options")
     private List<SimpleFormFieldOption> options;
+
 
     @JsonProperty("option_type")
     private FormFieldOptionGroupOptionType optionType;
@@ -50,7 +53,8 @@ public class FormFieldOptionGroup implements FormFieldOption {
             String label,
             List<SimpleFormFieldOption> options,
             FormFieldOptionGroupOptionType optionType) {
-        this(Optional.empty(), label, options, optionType);
+        this(Optional.empty(), label, options,
+            optionType);
     }
 
     @JsonIgnore
@@ -74,15 +78,17 @@ public class FormFieldOptionGroup implements FormFieldOption {
         return Utils.discriminatorToString(optionType);
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public FormFieldOptionGroup withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public FormFieldOptionGroup withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -108,7 +114,6 @@ public class FormFieldOptionGroup implements FormFieldOption {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,18 +124,16 @@ public class FormFieldOptionGroup implements FormFieldOption {
         }
         FormFieldOptionGroup other = (FormFieldOptionGroup) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.optionType, other.optionType);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.optionType, other.optionType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            label,
-            options,
+        return Utils.enhancedHash(
+            id, label, options,
             optionType);
     }
     
@@ -142,20 +145,22 @@ public class FormFieldOptionGroup implements FormFieldOption {
                 "options", options,
                 "optionType", optionType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String label;
- 
+
         private List<SimpleFormFieldOption> options;
- 
+
         private FormFieldOptionGroupOptionType optionType;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -169,11 +174,13 @@ public class FormFieldOptionGroup implements FormFieldOption {
             return this;
         }
 
+
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
             this.label = label;
             return this;
         }
+
 
         public Builder options(List<SimpleFormFieldOption> options) {
             Utils.checkNotNull(options, "options");
@@ -181,18 +188,19 @@ public class FormFieldOptionGroup implements FormFieldOption {
             return this;
         }
 
+
         public Builder optionType(FormFieldOptionGroupOptionType optionType) {
             Utils.checkNotNull(optionType, "optionType");
             this.optionType = optionType;
             return this;
         }
-        
+
         public FormFieldOptionGroup build() {
+
             return new FormFieldOptionGroup(
-                id,
-                label,
-                options,
+                id, label, options,
                 optionType);
         }
+
     }
 }

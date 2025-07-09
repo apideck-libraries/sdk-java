@@ -13,12 +13,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class AccountingAttachmentsOneRequest {
 
+public class AccountingAttachmentsOneRequest {
     /**
      * The reference type of the document.
      */
@@ -99,7 +98,9 @@ public class AccountingAttachmentsOneRequest {
             AttachmentReferenceType referenceType,
             String referenceId,
             String id) {
-        this(referenceType, referenceId, id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(referenceType, referenceId, id,
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -166,9 +167,10 @@ public class AccountingAttachmentsOneRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The reference type of the document.
@@ -206,6 +208,7 @@ public class AccountingAttachmentsOneRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -223,6 +226,7 @@ public class AccountingAttachmentsOneRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -242,6 +246,7 @@ public class AccountingAttachmentsOneRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -259,6 +264,7 @@ public class AccountingAttachmentsOneRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -287,7 +293,6 @@ public class AccountingAttachmentsOneRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -298,27 +303,22 @@ public class AccountingAttachmentsOneRequest {
         }
         AccountingAttachmentsOneRequest other = (AccountingAttachmentsOneRequest) o;
         return 
-            Objects.deepEquals(this.referenceType, other.referenceType) &&
-            Objects.deepEquals(this.referenceId, other.referenceId) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.referenceType, other.referenceType) &&
+            Utils.enhancedDeepEquals(this.referenceId, other.referenceId) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            referenceType,
-            referenceId,
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw,
-            fields);
+        return Utils.enhancedHash(
+            referenceType, referenceId, id,
+            consumerId, appId, serviceId,
+            raw, fields);
     }
     
     @Override
@@ -333,28 +333,30 @@ public class AccountingAttachmentsOneRequest {
                 "raw", raw,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private AttachmentReferenceType referenceType;
- 
+
         private String referenceId;
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The reference type of the document.
@@ -365,6 +367,7 @@ public class AccountingAttachmentsOneRequest {
             return this;
         }
 
+
         /**
          * The reference id of the object to retrieve.
          */
@@ -374,6 +377,7 @@ public class AccountingAttachmentsOneRequest {
             return this;
         }
 
+
         /**
          * ID of the record you are acting upon.
          */
@@ -382,6 +386,7 @@ public class AccountingAttachmentsOneRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -401,6 +406,7 @@ public class AccountingAttachmentsOneRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -418,6 +424,7 @@ public class AccountingAttachmentsOneRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -437,6 +444,7 @@ public class AccountingAttachmentsOneRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -455,6 +463,7 @@ public class AccountingAttachmentsOneRequest {
             return this;
         }
 
+
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
@@ -472,21 +481,18 @@ public class AccountingAttachmentsOneRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public AccountingAttachmentsOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingAttachmentsOneRequest(
-                referenceType,
-                referenceId,
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw,
-                fields);
+                referenceType, referenceId, id,
+                consumerId, appId, serviceId,
+                raw, fields);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

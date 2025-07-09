@@ -15,7 +15,6 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -24,7 +23,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>Company
  */
 public class GetHrisCompanyResponse {
-
     /**
      * HTTP Response Status Code
      */
@@ -54,6 +52,7 @@ public class GetHrisCompanyResponse {
      */
     @JsonProperty("operation")
     private String operation;
+
 
     @JsonProperty("data")
     private HrisCompany data;
@@ -97,7 +96,9 @@ public class GetHrisCompanyResponse {
             String resource,
             String operation,
             HrisCompany data) {
-        this(statusCode, status, service, resource, operation, data, JsonNullable.undefined());
+        this(statusCode, status, service,
+            resource, operation, data,
+            JsonNullable.undefined());
     }
 
     /**
@@ -154,9 +155,10 @@ public class GetHrisCompanyResponse {
         return (JsonNullable<Map<String, Object>>) raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * HTTP Response Status Code
@@ -227,7 +229,6 @@ public class GetHrisCompanyResponse {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -238,24 +239,20 @@ public class GetHrisCompanyResponse {
         }
         GetHrisCompanyResponse other = (GetHrisCompanyResponse) o;
         return 
-            Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.service, other.service) &&
-            Objects.deepEquals(this.resource, other.resource) &&
-            Objects.deepEquals(this.operation, other.operation) &&
-            Objects.deepEquals(this.data, other.data) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.statusCode, other.statusCode) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.service, other.service) &&
+            Utils.enhancedDeepEquals(this.resource, other.resource) &&
+            Utils.enhancedDeepEquals(this.operation, other.operation) &&
+            Utils.enhancedDeepEquals(this.data, other.data) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            statusCode,
-            status,
-            service,
-            resource,
-            operation,
-            data,
+        return Utils.enhancedHash(
+            statusCode, status, service,
+            resource, operation, data,
             raw);
     }
     
@@ -270,26 +267,28 @@ public class GetHrisCompanyResponse {
                 "data", data,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long statusCode;
- 
+
         private String status;
- 
+
         private String service;
- 
+
         private String resource;
- 
+
         private String operation;
- 
+
         private HrisCompany data;
- 
+
         private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * HTTP Response Status Code
@@ -300,6 +299,7 @@ public class GetHrisCompanyResponse {
             return this;
         }
 
+
         /**
          * HTTP Response Status
          */
@@ -308,6 +308,7 @@ public class GetHrisCompanyResponse {
             this.status = status;
             return this;
         }
+
 
         /**
          * Apideck ID of service provider
@@ -318,6 +319,7 @@ public class GetHrisCompanyResponse {
             return this;
         }
 
+
         /**
          * Unified API resource name
          */
@@ -326,6 +328,7 @@ public class GetHrisCompanyResponse {
             this.resource = resource;
             return this;
         }
+
 
         /**
          * Operation performed
@@ -336,11 +339,13 @@ public class GetHrisCompanyResponse {
             return this;
         }
 
+
         public Builder data(HrisCompany data) {
             Utils.checkNotNull(data, "data");
             this.data = data;
             return this;
         }
+
 
         /**
          * Raw response from the integration when raw=true query param is provided
@@ -359,16 +364,14 @@ public class GetHrisCompanyResponse {
             this.raw = raw;
             return this;
         }
-        
+
         public GetHrisCompanyResponse build() {
+
             return new GetHrisCompanyResponse(
-                statusCode,
-                status,
-                service,
-                resource,
-                operation,
-                data,
+                statusCode, status, service,
+                resource, operation, data,
                 raw);
         }
+
     }
 }

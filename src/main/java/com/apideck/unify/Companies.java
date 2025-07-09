@@ -37,7 +37,6 @@ public class Companies {
     Companies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List companies
      * 
@@ -77,11 +76,10 @@ public class Companies {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
               = new CrmCompaniesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create company
@@ -122,11 +120,10 @@ public class Companies {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
               = new CrmCompaniesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get company
@@ -167,11 +164,10 @@ public class Companies {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
               = new CrmCompaniesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update company
@@ -212,11 +208,10 @@ public class Companies {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
               = new CrmCompaniesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete company
@@ -257,8 +252,8 @@ public class Companies {
             Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
               = new CrmCompaniesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

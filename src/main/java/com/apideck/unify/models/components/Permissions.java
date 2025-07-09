@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Optional;
  * <p>Permissions the current user has on this file.
  */
 public class Permissions {
-
     /**
      * Whether the current user can download this file.
      */
@@ -48,9 +46,10 @@ public class Permissions {
         return download;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Whether the current user can download this file.
@@ -61,6 +60,7 @@ public class Permissions {
         return this;
     }
 
+
     /**
      * Whether the current user can download this file.
      */
@@ -70,7 +70,6 @@ public class Permissions {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,12 +80,12 @@ public class Permissions {
         }
         Permissions other = (Permissions) o;
         return 
-            Objects.deepEquals(this.download, other.download);
+            Utils.enhancedDeepEquals(this.download, other.download);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             download);
     }
     
@@ -95,14 +94,16 @@ public class Permissions {
         return Utils.toString(Permissions.class,
                 "download", download);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> download = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Whether the current user can download this file.
@@ -121,10 +122,12 @@ public class Permissions {
             this.download = download;
             return this;
         }
-        
+
         public Permissions build() {
+
             return new Permissions(
                 download);
         }
+
     }
 }

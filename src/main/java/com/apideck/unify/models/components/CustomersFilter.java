@@ -11,12 +11,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CustomersFilter {
 
+public class CustomersFilter {
     /**
      * Company Name of customer to search for
      */
@@ -52,6 +51,7 @@ public class CustomersFilter {
      */
     @SpeakeasyMetadata("queryParam:name=status")
     private JsonNullable<? extends CustomersFilterStatus> status;
+
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
     private Optional<OffsetDateTime> updatedSince;
@@ -91,7 +91,9 @@ public class CustomersFilter {
     }
     
     public CustomersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -156,9 +158,10 @@ public class CustomersFilter {
         return supplierId;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Company Name of customer to search for
@@ -168,6 +171,7 @@ public class CustomersFilter {
         this.companyName = Optional.ofNullable(companyName);
         return this;
     }
+
 
     /**
      * Company Name of customer to search for
@@ -187,6 +191,7 @@ public class CustomersFilter {
         return this;
     }
 
+
     /**
      * Display Name of customer to search for
      */
@@ -204,6 +209,7 @@ public class CustomersFilter {
         this.firstName = Optional.ofNullable(firstName);
         return this;
     }
+
 
     /**
      * First name of customer to search for
@@ -223,6 +229,7 @@ public class CustomersFilter {
         return this;
     }
 
+
     /**
      * Last name of customer to search for
      */
@@ -240,6 +247,7 @@ public class CustomersFilter {
         this.email = Optional.ofNullable(email);
         return this;
     }
+
 
     /**
      * Email of customer to search for
@@ -274,6 +282,7 @@ public class CustomersFilter {
         return this;
     }
 
+
     public CustomersFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = updatedSince;
@@ -289,6 +298,7 @@ public class CustomersFilter {
         return this;
     }
 
+
     /**
      * Supplier ID of customer to search for
      */
@@ -298,7 +308,6 @@ public class CustomersFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -309,27 +318,22 @@ public class CustomersFilter {
         }
         CustomersFilter other = (CustomersFilter) o;
         return 
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.supplierId, other.supplierId);
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.supplierId, other.supplierId);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            companyName,
-            displayName,
-            firstName,
-            lastName,
-            email,
-            status,
-            updatedSince,
-            supplierId);
+        return Utils.enhancedHash(
+            companyName, displayName, firstName,
+            lastName, email, status,
+            updatedSince, supplierId);
     }
     
     @Override
@@ -344,28 +348,30 @@ public class CustomersFilter {
                 "updatedSince", updatedSince,
                 "supplierId", supplierId);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> companyName = Optional.empty();
- 
+
         private Optional<String> displayName = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private JsonNullable<? extends CustomersFilterStatus> status = JsonNullable.undefined();
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<String> supplierId = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Company Name of customer to search for
@@ -385,6 +391,7 @@ public class CustomersFilter {
             return this;
         }
 
+
         /**
          * Display Name of customer to search for
          */
@@ -402,6 +409,7 @@ public class CustomersFilter {
             this.displayName = displayName;
             return this;
         }
+
 
         /**
          * First name of customer to search for
@@ -421,6 +429,7 @@ public class CustomersFilter {
             return this;
         }
 
+
         /**
          * Last name of customer to search for
          */
@@ -438,6 +447,7 @@ public class CustomersFilter {
             this.lastName = lastName;
             return this;
         }
+
 
         /**
          * Email of customer to search for
@@ -457,6 +467,7 @@ public class CustomersFilter {
             return this;
         }
 
+
         /**
          * Status of customer to filter on
          */
@@ -475,6 +486,7 @@ public class CustomersFilter {
             return this;
         }
 
+
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
             this.updatedSince = Optional.ofNullable(updatedSince);
@@ -486,6 +498,7 @@ public class CustomersFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
 
         /**
          * Supplier ID of customer to search for
@@ -504,17 +517,14 @@ public class CustomersFilter {
             this.supplierId = supplierId;
             return this;
         }
-        
+
         public CustomersFilter build() {
+
             return new CustomersFilter(
-                companyName,
-                displayName,
-                firstName,
-                lastName,
-                email,
-                status,
-                updatedSince,
-                supplierId);
+                companyName, displayName, firstName,
+                lastName, email, status,
+                updatedSince, supplierId);
         }
+
     }
 }

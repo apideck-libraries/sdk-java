@@ -12,11 +12,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CustomersSort {
 
+public class CustomersSort {
     /**
      * The field on which to sort the Customers
      */
@@ -61,9 +60,10 @@ public class CustomersSort {
         return (Optional<SortDirection>) direction;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The field on which to sort the Customers
@@ -73,6 +73,7 @@ public class CustomersSort {
         this.by = Optional.ofNullable(by);
         return this;
     }
+
 
     /**
      * The field on which to sort the Customers
@@ -92,6 +93,7 @@ public class CustomersSort {
         return this;
     }
 
+
     /**
      * The direction in which to sort the results
      */
@@ -101,7 +103,6 @@ public class CustomersSort {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -112,15 +113,14 @@ public class CustomersSort {
         }
         CustomersSort other = (CustomersSort) o;
         return 
-            Objects.deepEquals(this.by, other.by) &&
-            Objects.deepEquals(this.direction, other.direction);
+            Utils.enhancedDeepEquals(this.by, other.by) &&
+            Utils.enhancedDeepEquals(this.direction, other.direction);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            by,
-            direction);
+        return Utils.enhancedHash(
+            by, direction);
     }
     
     @Override
@@ -129,16 +129,18 @@ public class CustomersSort {
                 "by", by,
                 "direction", direction);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends CustomersSortBy> by = Optional.empty();
- 
+
         private Optional<? extends SortDirection> direction;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The field on which to sort the Customers
@@ -158,6 +160,7 @@ public class CustomersSort {
             return this;
         }
 
+
         /**
          * The direction in which to sort the results
          */
@@ -175,15 +178,16 @@ public class CustomersSort {
             this.direction = direction;
             return this;
         }
-        
+
         public CustomersSort build() {
             if (direction == null) {
                 direction = _SINGLETON_VALUE_Direction.value();
             }
+
             return new CustomersSort(
-                by,
-                direction);
+                by, direction);
         }
+
 
         private static final LazySingletonValue<Optional<? extends SortDirection>> _SINGLETON_VALUE_Direction =
                 new LazySingletonValue<>(

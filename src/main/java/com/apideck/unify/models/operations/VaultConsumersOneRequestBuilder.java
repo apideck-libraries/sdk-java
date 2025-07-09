@@ -71,8 +71,8 @@ public class VaultConsumersOneRequestBuilder {
 
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
               = new VaultConsumersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         VaultConsumersOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

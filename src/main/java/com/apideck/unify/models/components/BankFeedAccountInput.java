@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class BankFeedAccountInput {
 
+public class BankFeedAccountInput {
     /**
      * Type of the bank account.
      */
@@ -75,6 +74,7 @@ public class BankFeedAccountInput {
     @JsonProperty("country")
     private JsonNullable<String> country;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
@@ -111,7 +111,9 @@ public class BankFeedAccountInput {
     }
     
     public BankFeedAccountInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -187,9 +189,10 @@ public class BankFeedAccountInput {
         return (Optional<List<CustomField>>) customFields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Type of the bank account.
@@ -199,6 +202,7 @@ public class BankFeedAccountInput {
         this.bankAccountType = Optional.ofNullable(bankAccountType);
         return this;
     }
+
 
     /**
      * Type of the bank account.
@@ -218,6 +222,7 @@ public class BankFeedAccountInput {
         return this;
     }
 
+
     /**
      * The source account's unique identifier.
      */
@@ -235,6 +240,7 @@ public class BankFeedAccountInput {
         this.targetAccountId = Optional.ofNullable(targetAccountId);
         return this;
     }
+
 
     /**
      * The target account's unique identifier in the accounting connector.
@@ -254,6 +260,7 @@ public class BankFeedAccountInput {
         return this;
     }
 
+
     /**
      * Name associated with the target account.
      */
@@ -271,6 +278,7 @@ public class BankFeedAccountInput {
         this.targetAccountNumber = Optional.ofNullable(targetAccountNumber);
         return this;
     }
+
 
     /**
      * Account number of the destination bank account.
@@ -308,6 +316,7 @@ public class BankFeedAccountInput {
         return this;
     }
 
+
     /**
      * Current status of the bank feed.
      */
@@ -341,13 +350,13 @@ public class BankFeedAccountInput {
         return this;
     }
 
+
     public BankFeedAccountInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -358,29 +367,23 @@ public class BankFeedAccountInput {
         }
         BankFeedAccountInput other = (BankFeedAccountInput) o;
         return 
-            Objects.deepEquals(this.bankAccountType, other.bankAccountType) &&
-            Objects.deepEquals(this.sourceAccountId, other.sourceAccountId) &&
-            Objects.deepEquals(this.targetAccountId, other.targetAccountId) &&
-            Objects.deepEquals(this.targetAccountName, other.targetAccountName) &&
-            Objects.deepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.feedStatus, other.feedStatus) &&
-            Objects.deepEquals(this.country, other.country) &&
-            Objects.deepEquals(this.customFields, other.customFields);
+            Utils.enhancedDeepEquals(this.bankAccountType, other.bankAccountType) &&
+            Utils.enhancedDeepEquals(this.sourceAccountId, other.sourceAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountId, other.targetAccountId) &&
+            Utils.enhancedDeepEquals(this.targetAccountName, other.targetAccountName) &&
+            Utils.enhancedDeepEquals(this.targetAccountNumber, other.targetAccountNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.feedStatus, other.feedStatus) &&
+            Utils.enhancedDeepEquals(this.country, other.country) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            bankAccountType,
-            sourceAccountId,
-            targetAccountId,
-            targetAccountName,
-            targetAccountNumber,
-            currency,
-            feedStatus,
-            country,
-            customFields);
+        return Utils.enhancedHash(
+            bankAccountType, sourceAccountId, targetAccountId,
+            targetAccountName, targetAccountNumber, currency,
+            feedStatus, country, customFields);
     }
     
     @Override
@@ -396,30 +399,32 @@ public class BankFeedAccountInput {
                 "country", country,
                 "customFields", customFields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends BankAccountType> bankAccountType = Optional.empty();
- 
+
         private Optional<String> sourceAccountId = Optional.empty();
- 
+
         private Optional<String> targetAccountId = Optional.empty();
- 
+
         private Optional<String> targetAccountName = Optional.empty();
- 
+
         private Optional<String> targetAccountNumber = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<? extends FeedStatus> feedStatus = Optional.empty();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Type of the bank account.
@@ -439,6 +444,7 @@ public class BankFeedAccountInput {
             return this;
         }
 
+
         /**
          * The source account's unique identifier.
          */
@@ -456,6 +462,7 @@ public class BankFeedAccountInput {
             this.sourceAccountId = sourceAccountId;
             return this;
         }
+
 
         /**
          * The target account's unique identifier in the accounting connector.
@@ -475,6 +482,7 @@ public class BankFeedAccountInput {
             return this;
         }
 
+
         /**
          * Name associated with the target account.
          */
@@ -492,6 +500,7 @@ public class BankFeedAccountInput {
             this.targetAccountName = targetAccountName;
             return this;
         }
+
 
         /**
          * Account number of the destination bank account.
@@ -511,6 +520,7 @@ public class BankFeedAccountInput {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -528,6 +538,7 @@ public class BankFeedAccountInput {
             this.currency = currency;
             return this;
         }
+
 
         /**
          * Current status of the bank feed.
@@ -547,6 +558,7 @@ public class BankFeedAccountInput {
             return this;
         }
 
+
         /**
          * Country code according to ISO 3166-1 alpha-2.
          */
@@ -565,6 +577,7 @@ public class BankFeedAccountInput {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -576,18 +589,14 @@ public class BankFeedAccountInput {
             this.customFields = customFields;
             return this;
         }
-        
+
         public BankFeedAccountInput build() {
+
             return new BankFeedAccountInput(
-                bankAccountType,
-                sourceAccountId,
-                targetAccountId,
-                targetAccountName,
-                targetAccountNumber,
-                currency,
-                feedStatus,
-                country,
-                customFields);
+                bankAccountType, sourceAccountId, targetAccountId,
+                targetAccountName, targetAccountNumber, currency,
+                feedStatus, country, customFields);
         }
+
     }
 }

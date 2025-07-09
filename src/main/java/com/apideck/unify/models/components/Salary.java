@@ -13,12 +13,11 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Salary {
 
+public class Salary {
     /**
      * Minimum salary payable for the job role.
      */
@@ -39,6 +38,7 @@ public class Salary {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interval")
@@ -61,7 +61,8 @@ public class Salary {
     }
     
     public Salary() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -94,9 +95,10 @@ public class Salary {
         return interval;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Minimum salary payable for the job role.
@@ -106,6 +108,7 @@ public class Salary {
         this.min = Optional.ofNullable(min);
         return this;
     }
+
 
     /**
      * Minimum salary payable for the job role.
@@ -124,6 +127,7 @@ public class Salary {
         this.max = Optional.ofNullable(max);
         return this;
     }
+
 
     /**
      * Maximum salary payable for the job role.
@@ -164,7 +168,6 @@ public class Salary {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -175,18 +178,16 @@ public class Salary {
         }
         Salary other = (Salary) o;
         return 
-            Objects.deepEquals(this.min, other.min) &&
-            Objects.deepEquals(this.max, other.max) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.interval, other.interval);
+            Utils.enhancedDeepEquals(this.min, other.min) &&
+            Utils.enhancedDeepEquals(this.max, other.max) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.interval, other.interval);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            min,
-            max,
-            currency,
+        return Utils.enhancedHash(
+            min, max, currency,
             interval);
     }
     
@@ -198,20 +199,22 @@ public class Salary {
                 "currency", currency,
                 "interval", interval);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Long> min = Optional.empty();
- 
+
         private Optional<Long> max = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<String> interval = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Minimum salary payable for the job role.
@@ -231,6 +234,7 @@ public class Salary {
             return this;
         }
 
+
         /**
          * Maximum salary payable for the job role.
          */
@@ -248,6 +252,7 @@ public class Salary {
             this.max = max;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -267,6 +272,7 @@ public class Salary {
             return this;
         }
 
+
         public Builder interval(String interval) {
             Utils.checkNotNull(interval, "interval");
             this.interval = JsonNullable.of(interval);
@@ -278,13 +284,13 @@ public class Salary {
             this.interval = interval;
             return this;
         }
-        
+
         public Salary build() {
+
             return new Salary(
-                min,
-                max,
-                currency,
+                min, max, currency,
                 interval);
         }
+
     }
 }

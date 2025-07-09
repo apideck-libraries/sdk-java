@@ -12,11 +12,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class AccountingJournalEntriesDeleteRequest {
 
+public class AccountingJournalEntriesDeleteRequest {
     /**
      * ID of the record you are acting upon.
      */
@@ -68,7 +67,8 @@ public class AccountingJournalEntriesDeleteRequest {
     
     public AccountingJournalEntriesDeleteRequest(
             String id) {
-        this(id, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(id, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -111,9 +111,10 @@ public class AccountingJournalEntriesDeleteRequest {
         return raw;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the record you are acting upon.
@@ -133,6 +134,7 @@ public class AccountingJournalEntriesDeleteRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -150,6 +152,7 @@ public class AccountingJournalEntriesDeleteRequest {
         this.appId = Optional.ofNullable(appId);
         return this;
     }
+
 
     /**
      * The ID of your Unify application
@@ -169,6 +172,7 @@ public class AccountingJournalEntriesDeleteRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -187,6 +191,7 @@ public class AccountingJournalEntriesDeleteRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -196,7 +201,6 @@ public class AccountingJournalEntriesDeleteRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -207,21 +211,18 @@ public class AccountingJournalEntriesDeleteRequest {
         }
         AccountingJournalEntriesDeleteRequest other = (AccountingJournalEntriesDeleteRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.raw, other.raw);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            consumerId,
-            appId,
-            serviceId,
-            raw);
+        return Utils.enhancedHash(
+            id, consumerId, appId,
+            serviceId, raw);
     }
     
     @Override
@@ -233,22 +234,24 @@ public class AccountingJournalEntriesDeleteRequest {
                 "serviceId", serviceId,
                 "raw", raw);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<Boolean> raw;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the record you are acting upon.
@@ -258,6 +261,7 @@ public class AccountingJournalEntriesDeleteRequest {
             this.id = id;
             return this;
         }
+
 
         /**
          * ID of the consumer which you want to get or push data from
@@ -277,6 +281,7 @@ public class AccountingJournalEntriesDeleteRequest {
             return this;
         }
 
+
         /**
          * The ID of your Unify application
          */
@@ -294,6 +299,7 @@ public class AccountingJournalEntriesDeleteRequest {
             this.appId = appId;
             return this;
         }
+
 
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -313,6 +319,7 @@ public class AccountingJournalEntriesDeleteRequest {
             return this;
         }
 
+
         /**
          * Include raw response. Mostly used for debugging purposes
          */
@@ -330,18 +337,17 @@ public class AccountingJournalEntriesDeleteRequest {
             this.raw = raw;
             return this;
         }
-        
+
         public AccountingJournalEntriesDeleteRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new AccountingJournalEntriesDeleteRequest(
-                id,
-                consumerId,
-                appId,
-                serviceId,
-                raw);
+                id, consumerId, appId,
+                serviceId, raw);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

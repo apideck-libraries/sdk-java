@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EmploymentRole {
 
+public class EmploymentRole {
     /**
      * The type of employment relationship the employee has with the organization.
      */
@@ -63,9 +62,10 @@ public class EmploymentRole {
         return (JsonNullable<EmploymentSubType>) subType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The type of employment relationship the employee has with the organization.
@@ -103,7 +103,6 @@ public class EmploymentRole {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -114,15 +113,14 @@ public class EmploymentRole {
         }
         EmploymentRole other = (EmploymentRole) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.subType, other.subType);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.subType, other.subType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            type,
-            subType);
+        return Utils.enhancedHash(
+            type, subType);
     }
     
     @Override
@@ -131,16 +129,18 @@ public class EmploymentRole {
                 "type", type,
                 "subType", subType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<? extends EmploymentType> type = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EmploymentSubType> subType = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The type of employment relationship the employee has with the organization.
@@ -160,6 +160,7 @@ public class EmploymentRole {
             return this;
         }
 
+
         /**
          * The work schedule of the employee.
          */
@@ -177,11 +178,12 @@ public class EmploymentRole {
             this.subType = subType;
             return this;
         }
-        
+
         public EmploymentRole build() {
+
             return new EmploymentRole(
-                type,
-                subType);
+                type, subType);
         }
+
     }
 }

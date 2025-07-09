@@ -48,8 +48,8 @@ public class AccountingPurchaseOrdersOneRequestBuilder {
 
         RequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
               = new AccountingPurchaseOrdersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

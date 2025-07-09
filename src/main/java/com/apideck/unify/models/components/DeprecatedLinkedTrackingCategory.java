@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,7 +22,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  */
 @Deprecated
 public class DeprecatedLinkedTrackingCategory {
-
     /**
      * The unique identifier for the tracking category.
      */
@@ -68,9 +66,10 @@ public class DeprecatedLinkedTrackingCategory {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier for the tracking category.
@@ -80,6 +79,7 @@ public class DeprecatedLinkedTrackingCategory {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier for the tracking category.
@@ -108,7 +108,6 @@ public class DeprecatedLinkedTrackingCategory {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -119,15 +118,14 @@ public class DeprecatedLinkedTrackingCategory {
         }
         DeprecatedLinkedTrackingCategory other = (DeprecatedLinkedTrackingCategory) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name);
+        return Utils.enhancedHash(
+            id, name);
     }
     
     @Override
@@ -136,16 +134,18 @@ public class DeprecatedLinkedTrackingCategory {
                 "id", id,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier for the tracking category.
@@ -165,6 +165,7 @@ public class DeprecatedLinkedTrackingCategory {
             return this;
         }
 
+
         /**
          * The name of the tracking category.
          */
@@ -182,11 +183,12 @@ public class DeprecatedLinkedTrackingCategory {
             this.name = name;
             return this;
         }
-        
+
         public DeprecatedLinkedTrackingCategory build() {
+
             return new DeprecatedLinkedTrackingCategory(
-                id,
-                name);
+                id, name);
         }
+
     }
 }

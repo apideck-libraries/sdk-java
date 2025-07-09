@@ -25,7 +25,6 @@ public class Collections {
     Collections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Collections
      * 
@@ -65,11 +64,10 @@ public class Collections {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
               = new IssueTrackingCollectionsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Collection
@@ -110,8 +108,8 @@ public class Collections {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation
               = new IssueTrackingCollectionsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

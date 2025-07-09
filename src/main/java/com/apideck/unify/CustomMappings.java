@@ -22,7 +22,6 @@ public class CustomMappings {
     CustomMappings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List custom mappings
      * 
@@ -47,7 +46,8 @@ public class CustomMappings {
     public VaultCustomMappingsAllResponse list(
             String unifiedApi,
             String serviceId) throws Exception {
-        return list(Optional.empty(), Optional.empty(), unifiedApi, serviceId, Optional.empty());
+        return list(Optional.empty(), Optional.empty(), unifiedApi,
+            serviceId, Optional.empty());
     }
 
     /**
@@ -79,8 +79,8 @@ public class CustomMappings {
                 .build();
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
               = new VaultCustomMappingsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

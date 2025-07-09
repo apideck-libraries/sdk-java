@@ -71,8 +71,8 @@ public class WebhookWebhooksOneRequestBuilder {
 
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
               = new WebhookWebhooksOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         WebhookWebhooksOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

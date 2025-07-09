@@ -13,12 +13,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FileStorageFoldersAddRequest {
 
+public class FileStorageFoldersAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -49,6 +48,7 @@ public class FileStorageFoldersAddRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CreateFolderRequest createFolderRequest;
 
@@ -76,7 +76,8 @@ public class FileStorageFoldersAddRequest {
     
     public FileStorageFoldersAddRequest(
             CreateFolderRequest createFolderRequest) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), createFolderRequest);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), createFolderRequest);
     }
 
     /**
@@ -124,9 +125,10 @@ public class FileStorageFoldersAddRequest {
         return createFolderRequest;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -136,6 +138,7 @@ public class FileStorageFoldersAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -155,6 +158,7 @@ public class FileStorageFoldersAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -173,6 +177,7 @@ public class FileStorageFoldersAddRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -190,6 +195,7 @@ public class FileStorageFoldersAddRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -224,7 +230,6 @@ public class FileStorageFoldersAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -235,23 +240,19 @@ public class FileStorageFoldersAddRequest {
         }
         FileStorageFoldersAddRequest other = (FileStorageFoldersAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.fields, other.fields) &&
-            Objects.deepEquals(this.createFolderRequest, other.createFolderRequest);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.createFolderRequest, other.createFolderRequest);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            fields,
-            createFolderRequest);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, fields, createFolderRequest);
     }
     
     @Override
@@ -264,24 +265,26 @@ public class FileStorageFoldersAddRequest {
                 "fields", fields,
                 "createFolderRequest", createFolderRequest);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
- 
+
         private CreateFolderRequest createFolderRequest;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -301,6 +304,7 @@ public class FileStorageFoldersAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -318,6 +322,7 @@ public class FileStorageFoldersAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -337,6 +342,7 @@ public class FileStorageFoldersAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -354,6 +360,7 @@ public class FileStorageFoldersAddRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -373,24 +380,23 @@ public class FileStorageFoldersAddRequest {
             return this;
         }
 
+
         public Builder createFolderRequest(CreateFolderRequest createFolderRequest) {
             Utils.checkNotNull(createFolderRequest, "createFolderRequest");
             this.createFolderRequest = createFolderRequest;
             return this;
         }
-        
+
         public FileStorageFoldersAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new FileStorageFoldersAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                fields,
-                createFolderRequest);
+                raw, consumerId, appId,
+                serviceId, fields, createFolderRequest);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

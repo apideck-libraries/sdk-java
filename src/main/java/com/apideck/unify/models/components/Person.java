@@ -15,11 +15,10 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.Map;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Person {
 
+public class Person {
     /**
      * A unique identifier for an object.
      */
@@ -115,7 +114,9 @@ public class Person {
     }
     
     public Person() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -192,9 +193,10 @@ public class Person {
         return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -358,7 +360,6 @@ public class Person {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -369,29 +370,23 @@ public class Person {
         }
         Person other = (Person) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.middleName, other.middleName) &&
-            Objects.deepEquals(this.gender, other.gender) &&
-            Objects.deepEquals(this.initials, other.initials) &&
-            Objects.deepEquals(this.birthday, other.birthday) &&
-            Objects.deepEquals(this.deceasedOn, other.deceasedOn) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.middleName, other.middleName) &&
+            Utils.enhancedDeepEquals(this.gender, other.gender) &&
+            Utils.enhancedDeepEquals(this.initials, other.initials) &&
+            Utils.enhancedDeepEquals(this.birthday, other.birthday) &&
+            Utils.enhancedDeepEquals(this.deceasedOn, other.deceasedOn) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            firstName,
-            lastName,
-            middleName,
-            gender,
-            initials,
-            birthday,
-            deceasedOn,
-            customMappings);
+        return Utils.enhancedHash(
+            id, firstName, lastName,
+            middleName, gender, initials,
+            birthday, deceasedOn, customMappings);
     }
     
     @Override
@@ -407,30 +402,32 @@ public class Person {
                 "deceasedOn", deceasedOn,
                 "customMappings", customMappings);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> firstName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> middleName = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
- 
+
         private JsonNullable<String> initials = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -450,6 +447,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * The first name of the person.
          */
@@ -467,6 +465,7 @@ public class Person {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * The last name of the person.
@@ -486,6 +485,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * Middle name of the person.
          */
@@ -503,6 +503,7 @@ public class Person {
             this.middleName = middleName;
             return this;
         }
+
 
         /**
          * The gender represents the gender identity of a person.
@@ -522,6 +523,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * Initials of the person
          */
@@ -539,6 +541,7 @@ public class Person {
             this.initials = initials;
             return this;
         }
+
 
         /**
          * Date of birth
@@ -558,6 +561,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * Date of death
          */
@@ -576,6 +580,7 @@ public class Person {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -593,18 +598,14 @@ public class Person {
             this.customMappings = customMappings;
             return this;
         }
-        
+
         public Person build() {
+
             return new Person(
-                id,
-                firstName,
-                lastName,
-                middleName,
-                gender,
-                initials,
-                birthday,
-                deceasedOn,
-                customMappings);
+                id, firstName, lastName,
+                middleName, gender, initials,
+                birthday, deceasedOn, customMappings);
         }
+
     }
 }

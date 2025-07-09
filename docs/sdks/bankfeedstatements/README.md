@@ -34,7 +34,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingBankFeedStatementsAllRequest req = AccountingBankFeedStatementsAllRequest.builder()
@@ -101,7 +101,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingBankFeedStatementsAddRequest req = AccountingBankFeedStatementsAddRequest.builder()
@@ -117,7 +117,7 @@ public class Application {
                     .transactions(List.of(
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -127,7 +127,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -137,7 +137,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -203,7 +203,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingBankFeedStatementsOneRequest req = AccountingBankFeedStatementsOneRequest.builder()
@@ -269,7 +269,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingBankFeedStatementsUpdateRequest req = AccountingBankFeedStatementsUpdateRequest.builder()
@@ -286,7 +286,7 @@ public class Application {
                     .transactions(List.of(
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -296,7 +296,7 @@ public class Application {
                             .build(),
                         Transactions.builder()
                             .postedDate(OffsetDateTime.parse("2025-01-15T12:00:00.000Z"))
-                            .amount(250)
+                            .amount(250d)
                             .creditOrDebit(CreditOrDebit.DEBIT)
                             .sourceTransactionId("txn_987")
                             .description("Payment received from ACME Corp")
@@ -362,7 +362,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingBankFeedStatementsDeleteRequest req = AccountingBankFeedStatementsDeleteRequest.builder()

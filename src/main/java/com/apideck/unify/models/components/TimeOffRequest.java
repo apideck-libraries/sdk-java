@@ -17,12 +17,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class TimeOffRequest {
 
+public class TimeOffRequest {
     /**
      * A unique identifier for an object.
      */
@@ -113,6 +112,7 @@ public class TimeOffRequest {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("day_part")
     private JsonNullable<String> dayPart;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notes")
@@ -235,7 +235,13 @@ public class TimeOffRequest {
     }
     
     public TimeOffRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -409,9 +415,10 @@ public class TimeOffRequest {
         return policyType;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -421,6 +428,7 @@ public class TimeOffRequest {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -653,6 +661,7 @@ public class TimeOffRequest {
         return this;
     }
 
+
     public TimeOffRequest withNotes(Optional<? extends Notes> notes) {
         Utils.checkNotNull(notes, "notes");
         this.notes = notes;
@@ -758,6 +767,7 @@ public class TimeOffRequest {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -776,6 +786,7 @@ public class TimeOffRequest {
         return this;
     }
 
+
     /**
      * The policy type of the time off request
      */
@@ -785,7 +796,6 @@ public class TimeOffRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -796,53 +806,39 @@ public class TimeOffRequest {
         }
         TimeOffRequest other = (TimeOffRequest) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.policyId, other.policyId) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.startDate, other.startDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.requestDate, other.requestDate) &&
-            Objects.deepEquals(this.requestType, other.requestType) &&
-            Objects.deepEquals(this.approvalDate, other.approvalDate) &&
-            Objects.deepEquals(this.units, other.units) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.dayPart, other.dayPart) &&
-            Objects.deepEquals(this.notes, other.notes) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.policyType, other.policyType);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.policyId, other.policyId) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.requestDate, other.requestDate) &&
+            Utils.enhancedDeepEquals(this.requestType, other.requestType) &&
+            Utils.enhancedDeepEquals(this.approvalDate, other.approvalDate) &&
+            Utils.enhancedDeepEquals(this.units, other.units) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.dayPart, other.dayPart) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.policyType, other.policyType);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            employeeId,
-            policyId,
-            status,
-            description,
-            startDate,
-            endDate,
-            requestDate,
-            requestType,
-            approvalDate,
-            units,
-            amount,
-            dayPart,
-            notes,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough,
-            policyType);
+        return Utils.enhancedHash(
+            id, employeeId, policyId,
+            status, description, startDate,
+            endDate, requestDate, requestType,
+            approvalDate, units, amount,
+            dayPart, notes, customMappings,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough, policyType);
     }
     
     @Override
@@ -870,54 +866,56 @@ public class TimeOffRequest {
                 "passThrough", passThrough,
                 "policyType", policyType);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> employeeId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> policyId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends TimeOffRequestStatusStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> startDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> endDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> requestDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends RequestType> requestType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> approvalDate = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Units> units = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> dayPart = JsonNullable.undefined();
- 
+
         private Optional<? extends Notes> notes = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
- 
+
         private Optional<String> policyType = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -937,6 +935,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * ID of the employee
          */
@@ -954,6 +953,7 @@ public class TimeOffRequest {
             this.employeeId = employeeId;
             return this;
         }
+
 
         /**
          * ID of the policy
@@ -973,6 +973,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The status of the time off request.
          */
@@ -990,6 +991,7 @@ public class TimeOffRequest {
             this.status = status;
             return this;
         }
+
 
         /**
          * Description of the time off request.
@@ -1009,6 +1011,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The start date of the time off request.
          */
@@ -1026,6 +1029,7 @@ public class TimeOffRequest {
             this.startDate = startDate;
             return this;
         }
+
 
         /**
          * The end date of the time off request.
@@ -1045,6 +1049,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The date the request was made.
          */
@@ -1062,6 +1067,7 @@ public class TimeOffRequest {
             this.requestDate = requestDate;
             return this;
         }
+
 
         /**
          * The type of request
@@ -1081,6 +1087,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The date the request was approved
          */
@@ -1098,6 +1105,7 @@ public class TimeOffRequest {
             this.approvalDate = approvalDate;
             return this;
         }
+
 
         /**
          * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
@@ -1117,6 +1125,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The amount of time off requested.
          */
@@ -1134,6 +1143,7 @@ public class TimeOffRequest {
             this.amount = amount;
             return this;
         }
+
 
         /**
          * The day part of the time off request.
@@ -1153,6 +1163,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         public Builder notes(Notes notes) {
             Utils.checkNotNull(notes, "notes");
             this.notes = Optional.ofNullable(notes);
@@ -1164,6 +1175,7 @@ public class TimeOffRequest {
             this.notes = notes;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1183,6 +1195,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The user who last updated the object.
          */
@@ -1200,6 +1213,7 @@ public class TimeOffRequest {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the object.
@@ -1219,6 +1233,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -1236,6 +1251,7 @@ public class TimeOffRequest {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the object was created.
@@ -1255,6 +1271,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -1273,6 +1290,7 @@ public class TimeOffRequest {
             return this;
         }
 
+
         /**
          * The policy type of the time off request
          */
@@ -1290,30 +1308,18 @@ public class TimeOffRequest {
             this.policyType = policyType;
             return this;
         }
-        
+
         public TimeOffRequest build() {
+
             return new TimeOffRequest(
-                id,
-                employeeId,
-                policyId,
-                status,
-                description,
-                startDate,
-                endDate,
-                requestDate,
-                requestType,
-                approvalDate,
-                units,
-                amount,
-                dayPart,
-                notes,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough,
-                policyType);
+                id, employeeId, policyId,
+                status, description, startDate,
+                endDate, requestDate, requestType,
+                approvalDate, units, amount,
+                dayPart, notes, customMappings,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough, policyType);
         }
+
     }
 }

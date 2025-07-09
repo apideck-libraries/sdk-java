@@ -37,7 +37,6 @@ public class Employees {
     Employees(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Employees
      * 
@@ -77,11 +76,10 @@ public class Employees {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
               = new HrisEmployeesAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Employee
@@ -122,11 +120,10 @@ public class Employees {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
               = new HrisEmployeesAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Employee
@@ -167,11 +164,10 @@ public class Employees {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
               = new HrisEmployeesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Employee
@@ -212,11 +208,10 @@ public class Employees {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
               = new HrisEmployeesUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Employee
@@ -257,8 +252,8 @@ public class Employees {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
               = new HrisEmployeesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

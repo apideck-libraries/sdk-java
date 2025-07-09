@@ -36,7 +36,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingJournalEntriesAllRequest req = AccountingJournalEntriesAllRequest.builder()
@@ -112,7 +112,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingJournalEntriesAddRequest req = AccountingJournalEntriesAddRequest.builder()
@@ -130,12 +130,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500)
-                            .subTotal(27500)
-                            .totalAmount(27500)
+                            .taxAmount(27500d)
+                            .subTotal(27500d)
+                            .totalAmount(27500d)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10)
+                                .rate(10d)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -331,7 +331,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingJournalEntriesOneRequest req = AccountingJournalEntriesOneRequest.builder()
@@ -398,7 +398,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingJournalEntriesUpdateRequest req = AccountingJournalEntriesUpdateRequest.builder()
@@ -417,12 +417,12 @@ public class Application {
                                 .code("453")
                                 .build())
                             .description("Model Y is a fully electric, mid-size SUV, with seating for up to seven, dual motor AWD and unparalleled protection.")
-                            .taxAmount(27500)
-                            .subTotal(27500)
-                            .totalAmount(27500)
+                            .taxAmount(27500d)
+                            .subTotal(27500d)
+                            .totalAmount(27500d)
                             .taxRate(LinkedTaxRateInput.builder()
                                 .id("123456")
-                                .rate(10)
+                                .rate(10d)
                                 .build())
                             .trackingCategories(List.of(
                                 LinkedTrackingCategory.builder()
@@ -592,7 +592,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         AccountingJournalEntriesDeleteRequest req = AccountingJournalEntriesDeleteRequest.builder()

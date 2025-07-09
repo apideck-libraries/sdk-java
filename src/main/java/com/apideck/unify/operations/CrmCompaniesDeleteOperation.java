@@ -54,7 +54,8 @@ public class CrmCompaniesDeleteOperation implements RequestOperation<CrmCompanie
     
     @Override
     public HttpResponse<InputStream> doRequest(CrmCompaniesDeleteRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 CrmCompaniesDeleteRequest.class,

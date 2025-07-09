@@ -14,12 +14,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class CollectionTag {
 
+public class CollectionTag {
     /**
      * A unique identifier for an object.
      */
@@ -83,9 +82,10 @@ public class CollectionTag {
         return (JsonNullable<Map<String, Object>>) customMappings;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -95,6 +95,7 @@ public class CollectionTag {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -141,7 +142,6 @@ public class CollectionTag {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,17 +152,15 @@ public class CollectionTag {
         }
         CollectionTag other = (CollectionTag) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.customMappings, other.customMappings);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            customMappings);
+        return Utils.enhancedHash(
+            id, name, customMappings);
     }
     
     @Override
@@ -172,18 +170,20 @@ public class CollectionTag {
                 "name", name,
                 "customMappings", customMappings);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -203,6 +203,7 @@ public class CollectionTag {
             return this;
         }
 
+
         /**
          * The name of the tag.
          */
@@ -221,6 +222,7 @@ public class CollectionTag {
             return this;
         }
 
+
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
@@ -238,12 +240,12 @@ public class CollectionTag {
             this.customMappings = customMappings;
             return this;
         }
-        
+
         public CollectionTag build() {
+
             return new CollectionTag(
-                id,
-                name,
-                customMappings);
+                id, name, customMappings);
         }
+
     }
 }

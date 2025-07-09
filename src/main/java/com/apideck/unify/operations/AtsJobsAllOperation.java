@@ -54,7 +54,8 @@ public class AtsJobsAllOperation implements RequestOperation<AtsJobsAllRequest, 
     
     @Override
     public HttpResponse<InputStream> doRequest(AtsJobsAllRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 baseUrl,

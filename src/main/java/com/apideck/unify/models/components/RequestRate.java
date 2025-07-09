@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 
 /**
  * RequestRate
@@ -18,7 +17,6 @@ import java.util.Objects;
  * <p>The rate at which requests for resources will be made to downstream.
  */
 public class RequestRate {
-
     /**
      * The number of requests per window unit.
      */
@@ -74,9 +72,10 @@ public class RequestRate {
         return unit;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The number of requests per window unit.
@@ -105,7 +104,6 @@ public class RequestRate {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -116,17 +114,15 @@ public class RequestRate {
         }
         RequestRate other = (RequestRate) o;
         return 
-            Objects.deepEquals(this.rate, other.rate) &&
-            Objects.deepEquals(this.size, other.size) &&
-            Objects.deepEquals(this.unit, other.unit);
+            Utils.enhancedDeepEquals(this.rate, other.rate) &&
+            Utils.enhancedDeepEquals(this.size, other.size) &&
+            Utils.enhancedDeepEquals(this.unit, other.unit);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            rate,
-            size,
-            unit);
+        return Utils.enhancedHash(
+            rate, size, unit);
     }
     
     @Override
@@ -136,18 +132,20 @@ public class RequestRate {
                 "size", size,
                 "unit", unit);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Long rate;
- 
+
         private Long size;
- 
+
         private Unit unit;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The number of requests per window unit.
@@ -158,6 +156,7 @@ public class RequestRate {
             return this;
         }
 
+
         /**
          * Size of request window.
          */
@@ -167,6 +166,7 @@ public class RequestRate {
             return this;
         }
 
+
         /**
          * The window unit for the rate.
          */
@@ -175,12 +175,12 @@ public class RequestRate {
             this.unit = unit;
             return this;
         }
-        
+
         public RequestRate build() {
+
             return new RequestRate(
-                rate,
-                size,
-                unit);
+                rate, size, unit);
         }
+
     }
 }

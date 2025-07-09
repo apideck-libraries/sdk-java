@@ -48,8 +48,8 @@ public class CrmPipelinesOneRequestBuilder {
 
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
               = new CrmPipelinesOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

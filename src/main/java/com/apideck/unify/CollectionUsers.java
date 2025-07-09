@@ -25,7 +25,6 @@ public class CollectionUsers {
     CollectionUsers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Users
      * 
@@ -65,11 +64,10 @@ public class CollectionUsers {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersAllRequest, IssueTrackingCollectionUsersAllResponse> operation
               = new IssueTrackingCollectionUsersAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get user
@@ -110,8 +108,8 @@ public class CollectionUsers {
             Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersOneRequest, IssueTrackingCollectionUsersOneResponse> operation
               = new IssueTrackingCollectionUsersOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -13,11 +13,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class CrmCustomObjectsAddRequest {
 
+public class CrmCustomObjectsAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -48,6 +47,7 @@ public class CrmCustomObjectsAddRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=object_id")
     private String objectId;
 
+
     @SpeakeasyMetadata("request:mediaType=application/json")
     private CustomObjectInput customObject;
 
@@ -76,7 +76,8 @@ public class CrmCustomObjectsAddRequest {
     public CrmCustomObjectsAddRequest(
             String objectId,
             CustomObjectInput customObject) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), objectId, customObject);
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), objectId, customObject);
     }
 
     /**
@@ -124,9 +125,10 @@ public class CrmCustomObjectsAddRequest {
         return customObject;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -136,6 +138,7 @@ public class CrmCustomObjectsAddRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -155,6 +158,7 @@ public class CrmCustomObjectsAddRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -173,6 +177,7 @@ public class CrmCustomObjectsAddRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -190,6 +195,7 @@ public class CrmCustomObjectsAddRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -215,7 +221,6 @@ public class CrmCustomObjectsAddRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -226,23 +231,19 @@ public class CrmCustomObjectsAddRequest {
         }
         CrmCustomObjectsAddRequest other = (CrmCustomObjectsAddRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.objectId, other.objectId) &&
-            Objects.deepEquals(this.customObject, other.customObject);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.objectId, other.objectId) &&
+            Utils.enhancedDeepEquals(this.customObject, other.customObject);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            objectId,
-            customObject);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, objectId, customObject);
     }
     
     @Override
@@ -255,24 +256,26 @@ public class CrmCustomObjectsAddRequest {
                 "objectId", objectId,
                 "customObject", customObject);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private String objectId;
- 
+
         private CustomObjectInput customObject;
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -292,6 +295,7 @@ public class CrmCustomObjectsAddRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -309,6 +313,7 @@ public class CrmCustomObjectsAddRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -328,6 +333,7 @@ public class CrmCustomObjectsAddRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -346,6 +352,7 @@ public class CrmCustomObjectsAddRequest {
             return this;
         }
 
+
         /**
          * The id of the custom object to query
          */
@@ -355,24 +362,23 @@ public class CrmCustomObjectsAddRequest {
             return this;
         }
 
+
         public Builder customObject(CustomObjectInput customObject) {
             Utils.checkNotNull(customObject, "customObject");
             this.customObject = customObject;
             return this;
         }
-        
+
         public CrmCustomObjectsAddRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new CrmCustomObjectsAddRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                objectId,
-                customObject);
+                raw, consumerId, appId,
+                serviceId, objectId, customObject);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

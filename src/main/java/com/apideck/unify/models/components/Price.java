@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,6 +25,7 @@ public class Price {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("per_unit")
     private Optional<String> perUnit;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
@@ -74,15 +74,17 @@ public class Price {
         return (JsonNullable<Currency>) currency;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Price withPerUnit(String perUnit) {
         Utils.checkNotNull(perUnit, "perUnit");
         this.perUnit = Optional.ofNullable(perUnit);
         return this;
     }
+
 
     public Price withPerUnit(Optional<String> perUnit) {
         Utils.checkNotNull(perUnit, "perUnit");
@@ -95,6 +97,7 @@ public class Price {
         this.totalAmount = Optional.ofNullable(totalAmount);
         return this;
     }
+
 
     public Price withTotalAmount(Optional<String> totalAmount) {
         Utils.checkNotNull(totalAmount, "totalAmount");
@@ -120,7 +123,6 @@ public class Price {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -131,17 +133,15 @@ public class Price {
         }
         Price other = (Price) o;
         return 
-            Objects.deepEquals(this.perUnit, other.perUnit) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.currency, other.currency);
+            Utils.enhancedDeepEquals(this.perUnit, other.perUnit) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            perUnit,
-            totalAmount,
-            currency);
+        return Utils.enhancedHash(
+            perUnit, totalAmount, currency);
     }
     
     @Override
@@ -151,18 +151,20 @@ public class Price {
                 "totalAmount", totalAmount,
                 "currency", currency);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> perUnit = Optional.empty();
- 
+
         private Optional<String> totalAmount = Optional.empty();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder perUnit(String perUnit) {
             Utils.checkNotNull(perUnit, "perUnit");
@@ -176,6 +178,7 @@ public class Price {
             return this;
         }
 
+
         public Builder totalAmount(String totalAmount) {
             Utils.checkNotNull(totalAmount, "totalAmount");
             this.totalAmount = Optional.ofNullable(totalAmount);
@@ -187,6 +190,7 @@ public class Price {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -205,12 +209,12 @@ public class Price {
             this.currency = currency;
             return this;
         }
-        
+
         public Price build() {
+
             return new Price(
-                perUnit,
-                totalAmount,
-                currency);
+                perUnit, totalAmount, currency);
         }
+
     }
 }

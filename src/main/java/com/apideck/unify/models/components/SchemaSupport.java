@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -21,7 +20,6 @@ import java.util.Optional;
  * <p>When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
  */
 public class SchemaSupport {
-
     /**
      * Can a resource schema be retrieved for this connector?
      */
@@ -48,9 +46,10 @@ public class SchemaSupport {
         return supported;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Can a resource schema be retrieved for this connector?
@@ -61,6 +60,7 @@ public class SchemaSupport {
         return this;
     }
 
+
     /**
      * Can a resource schema be retrieved for this connector?
      */
@@ -70,7 +70,6 @@ public class SchemaSupport {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -81,12 +80,12 @@ public class SchemaSupport {
         }
         SchemaSupport other = (SchemaSupport) o;
         return 
-            Objects.deepEquals(this.supported, other.supported);
+            Utils.enhancedDeepEquals(this.supported, other.supported);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             supported);
     }
     
@@ -95,14 +94,16 @@ public class SchemaSupport {
         return Utils.toString(SchemaSupport.class,
                 "supported", supported);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> supported = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Can a resource schema be retrieved for this connector?
@@ -121,10 +122,12 @@ public class SchemaSupport {
             this.supported = supported;
             return this;
         }
-        
+
         public SchemaSupport build() {
+
             return new SchemaSupport(
                 supported);
         }
+
     }
 }

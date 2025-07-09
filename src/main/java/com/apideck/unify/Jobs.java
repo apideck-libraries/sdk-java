@@ -25,7 +25,6 @@ public class Jobs {
     Jobs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Jobs
      * 
@@ -65,11 +64,10 @@ public class Jobs {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
               = new AtsJobsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Job
@@ -110,8 +108,8 @@ public class Jobs {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
               = new AtsJobsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

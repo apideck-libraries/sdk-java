@@ -22,7 +22,6 @@ public class ApiResourceCoverage {
     ApiResourceCoverage(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get API Resource Coverage
      * 
@@ -47,7 +46,8 @@ public class ApiResourceCoverage {
     public ConnectorApiResourceCoverageOneResponse get(
             String id,
             String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId, Optional.empty());
+        return get(Optional.empty(), id, resourceId,
+            Optional.empty());
     }
 
     /**
@@ -76,8 +76,8 @@ public class ApiResourceCoverage {
                 .build();
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
               = new ConnectorApiResourceCoverageOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

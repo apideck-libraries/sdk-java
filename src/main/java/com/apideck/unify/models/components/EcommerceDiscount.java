@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -20,7 +19,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>An object representing a discount applied to an ecommerce order or product.
  */
 public class EcommerceDiscount {
-
     /**
      * The code used to apply the discount.
      */
@@ -83,9 +81,10 @@ public class EcommerceDiscount {
         return percentage;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The code used to apply the discount.
@@ -141,7 +140,6 @@ public class EcommerceDiscount {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -152,17 +150,15 @@ public class EcommerceDiscount {
         }
         EcommerceDiscount other = (EcommerceDiscount) o;
         return 
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.amount, other.amount) &&
-            Objects.deepEquals(this.percentage, other.percentage);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.amount, other.amount) &&
+            Utils.enhancedDeepEquals(this.percentage, other.percentage);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            code,
-            amount,
-            percentage);
+        return Utils.enhancedHash(
+            code, amount, percentage);
     }
     
     @Override
@@ -172,18 +168,20 @@ public class EcommerceDiscount {
                 "amount", amount,
                 "percentage", percentage);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> code = JsonNullable.undefined();
- 
+
         private JsonNullable<String> amount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> percentage = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The code used to apply the discount.
@@ -203,6 +201,7 @@ public class EcommerceDiscount {
             return this;
         }
 
+
         /**
          * The fixed amount of the discount.
          */
@@ -221,6 +220,7 @@ public class EcommerceDiscount {
             return this;
         }
 
+
         /**
          * The percentage of the discount.
          */
@@ -238,12 +238,12 @@ public class EcommerceDiscount {
             this.percentage = percentage;
             return this;
         }
-        
+
         public EcommerceDiscount build() {
+
             return new EcommerceDiscount(
-                code,
-                amount,
-                percentage);
+                code, amount, percentage);
         }
+
     }
 }

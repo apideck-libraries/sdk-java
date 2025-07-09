@@ -21,7 +21,6 @@ public class CustomFields {
     CustomFields(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Get resource custom fields
      * 
@@ -61,8 +60,8 @@ public class CustomFields {
             Optional<Options> options) throws Exception {
         RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
               = new VaultCustomFieldsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

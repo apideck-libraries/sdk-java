@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class DriveGroupInput {
 
+public class DriveGroupInput {
     /**
      * The name of the drive group
      */
@@ -64,7 +63,8 @@ public class DriveGroupInput {
     
     public DriveGroupInput(
             String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -100,9 +100,10 @@ public class DriveGroupInput {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the drive group
@@ -158,6 +159,7 @@ public class DriveGroupInput {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -167,7 +169,6 @@ public class DriveGroupInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -178,18 +179,16 @@ public class DriveGroupInput {
         }
         DriveGroupInput other = (DriveGroupInput) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.displayName, other.displayName) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.displayName, other.displayName) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            displayName,
-            description,
+        return Utils.enhancedHash(
+            name, displayName, description,
             passThrough);
     }
     
@@ -201,20 +200,22 @@ public class DriveGroupInput {
                 "description", description,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String name;
- 
+
         private JsonNullable<String> displayName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the drive group
@@ -224,6 +225,7 @@ public class DriveGroupInput {
             this.name = name;
             return this;
         }
+
 
         /**
          * The display name of the drive group
@@ -243,6 +245,7 @@ public class DriveGroupInput {
             return this;
         }
 
+
         /**
          * A description of the object.
          */
@@ -261,6 +264,7 @@ public class DriveGroupInput {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -278,13 +282,13 @@ public class DriveGroupInput {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public DriveGroupInput build() {
+
             return new DriveGroupInput(
-                name,
-                displayName,
-                description,
+                name, displayName, description,
                 passThrough);
         }
+
     }
 }

@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,6 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * <p>The order this entity is linked to.
  */
 public class LinkedEcommerceOrder {
-
     /**
      * A unique identifier for an object.
      */
@@ -86,9 +84,10 @@ public class LinkedEcommerceOrder {
         return (JsonNullable<EcommerceOrderStatus>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -98,6 +97,7 @@ public class LinkedEcommerceOrder {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for an object.
@@ -144,7 +144,6 @@ public class LinkedEcommerceOrder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -155,17 +154,15 @@ public class LinkedEcommerceOrder {
         }
         LinkedEcommerceOrder other = (LinkedEcommerceOrder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.total, other.total) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.total, other.total) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            total,
-            status);
+        return Utils.enhancedHash(
+            id, total, status);
     }
     
     @Override
@@ -175,18 +172,20 @@ public class LinkedEcommerceOrder {
                 "total", total,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> total = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EcommerceOrderStatus> status = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -206,6 +205,7 @@ public class LinkedEcommerceOrder {
             return this;
         }
 
+
         /**
          * The total amount of the order.
          */
@@ -224,6 +224,7 @@ public class LinkedEcommerceOrder {
             return this;
         }
 
+
         /**
          * Current status of the order.
          */
@@ -241,12 +242,12 @@ public class LinkedEcommerceOrder {
             this.status = status;
             return this;
         }
-        
+
         public LinkedEcommerceOrder build() {
+
             return new LinkedEcommerceOrder(
-                id,
-                total,
-                status);
+                id, total, status);
         }
+
     }
 }

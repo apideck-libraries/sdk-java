@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class ConnectorSetting {
 
@@ -21,9 +21,11 @@ public class ConnectorSetting {
     @JsonProperty("id")
     private Optional<String> id;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
     private Optional<String> label;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
@@ -62,15 +64,17 @@ public class ConnectorSetting {
         return (Optional<ConnectorSettingType>) type;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public ConnectorSetting withId(String id) {
         Utils.checkNotNull(id, "id");
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     public ConnectorSetting withId(Optional<String> id) {
         Utils.checkNotNull(id, "id");
@@ -84,6 +88,7 @@ public class ConnectorSetting {
         return this;
     }
 
+
     public ConnectorSetting withLabel(Optional<String> label) {
         Utils.checkNotNull(label, "label");
         this.label = label;
@@ -96,13 +101,13 @@ public class ConnectorSetting {
         return this;
     }
 
+
     public ConnectorSetting withType(Optional<? extends ConnectorSettingType> type) {
         Utils.checkNotNull(type, "type");
         this.type = type;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -113,17 +118,15 @@ public class ConnectorSetting {
         }
         ConnectorSetting other = (ConnectorSetting) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.label, other.label) &&
-            Objects.deepEquals(this.type, other.type);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.label, other.label) &&
+            Utils.enhancedDeepEquals(this.type, other.type);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            label,
-            type);
+        return Utils.enhancedHash(
+            id, label, type);
     }
     
     @Override
@@ -133,18 +136,20 @@ public class ConnectorSetting {
                 "label", label,
                 "type", type);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private Optional<String> label = Optional.empty();
- 
+
         private Optional<? extends ConnectorSettingType> type = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
@@ -158,6 +163,7 @@ public class ConnectorSetting {
             return this;
         }
 
+
         public Builder label(String label) {
             Utils.checkNotNull(label, "label");
             this.label = Optional.ofNullable(label);
@@ -170,6 +176,7 @@ public class ConnectorSetting {
             return this;
         }
 
+
         public Builder type(ConnectorSettingType type) {
             Utils.checkNotNull(type, "type");
             this.type = Optional.ofNullable(type);
@@ -181,12 +188,12 @@ public class ConnectorSetting {
             this.type = type;
             return this;
         }
-        
+
         public ConnectorSetting build() {
+
             return new ConnectorSetting(
-                id,
-                label,
-                type);
+                id, label, type);
         }
+
     }
 }

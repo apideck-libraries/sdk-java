@@ -9,11 +9,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class LeadsFilter {
 
+public class LeadsFilter {
     /**
      * Name of the lead to filter on
      */
@@ -64,7 +63,8 @@ public class LeadsFilter {
     }
     
     public LeadsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -107,9 +107,10 @@ public class LeadsFilter {
         return phoneNumber;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of the lead to filter on
@@ -119,6 +120,7 @@ public class LeadsFilter {
         this.name = Optional.ofNullable(name);
         return this;
     }
+
 
     /**
      * Name of the lead to filter on
@@ -138,6 +140,7 @@ public class LeadsFilter {
         return this;
     }
 
+
     /**
      * First name of the lead to filter on
      */
@@ -155,6 +158,7 @@ public class LeadsFilter {
         this.lastName = Optional.ofNullable(lastName);
         return this;
     }
+
 
     /**
      * Last name of the lead to filter on
@@ -174,6 +178,7 @@ public class LeadsFilter {
         return this;
     }
 
+
     /**
      * E-mail of the lead to filter on
      */
@@ -192,6 +197,7 @@ public class LeadsFilter {
         return this;
     }
 
+
     /**
      * Phone number of the lead to filter on
      */
@@ -201,7 +207,6 @@ public class LeadsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -212,21 +217,18 @@ public class LeadsFilter {
         }
         LeadsFilter other = (LeadsFilter) o;
         return 
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.firstName, other.firstName) &&
-            Objects.deepEquals(this.lastName, other.lastName) &&
-            Objects.deepEquals(this.email, other.email) &&
-            Objects.deepEquals(this.phoneNumber, other.phoneNumber);
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.firstName, other.firstName) &&
+            Utils.enhancedDeepEquals(this.lastName, other.lastName) &&
+            Utils.enhancedDeepEquals(this.email, other.email) &&
+            Utils.enhancedDeepEquals(this.phoneNumber, other.phoneNumber);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            name,
-            firstName,
-            lastName,
-            email,
-            phoneNumber);
+        return Utils.enhancedHash(
+            name, firstName, lastName,
+            email, phoneNumber);
     }
     
     @Override
@@ -238,22 +240,24 @@ public class LeadsFilter {
                 "email", email,
                 "phoneNumber", phoneNumber);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> name = Optional.empty();
- 
+
         private Optional<String> firstName = Optional.empty();
- 
+
         private Optional<String> lastName = Optional.empty();
- 
+
         private Optional<String> email = Optional.empty();
- 
+
         private Optional<String> phoneNumber = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of the lead to filter on
@@ -273,6 +277,7 @@ public class LeadsFilter {
             return this;
         }
 
+
         /**
          * First name of the lead to filter on
          */
@@ -290,6 +295,7 @@ public class LeadsFilter {
             this.firstName = firstName;
             return this;
         }
+
 
         /**
          * Last name of the lead to filter on
@@ -309,6 +315,7 @@ public class LeadsFilter {
             return this;
         }
 
+
         /**
          * E-mail of the lead to filter on
          */
@@ -327,6 +334,7 @@ public class LeadsFilter {
             return this;
         }
 
+
         /**
          * Phone number of the lead to filter on
          */
@@ -344,14 +352,13 @@ public class LeadsFilter {
             this.phoneNumber = phoneNumber;
             return this;
         }
-        
+
         public LeadsFilter build() {
+
             return new LeadsFilter(
-                name,
-                firstName,
-                lastName,
-                email,
-                phoneNumber);
+                name, firstName, lastName,
+                email, phoneNumber);
         }
+
     }
 }

@@ -12,9 +12,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
+
 
 public class Addresses {
 
@@ -100,7 +100,9 @@ public class Addresses {
     }
     
     public Addresses() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     @SuppressWarnings("unchecked")
@@ -165,15 +167,17 @@ public class Addresses {
         return country;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public Addresses withType(EcommerceCustomerType type) {
         Utils.checkNotNull(type, "type");
         this.type = Optional.ofNullable(type);
         return this;
     }
+
 
     public Addresses withType(Optional<? extends EcommerceCustomerType> type) {
         Utils.checkNotNull(type, "type");
@@ -307,7 +311,6 @@ public class Addresses {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -318,27 +321,22 @@ public class Addresses {
         }
         Addresses other = (Addresses) o;
         return 
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.line1, other.line1) &&
-            Objects.deepEquals(this.line2, other.line2) &&
-            Objects.deepEquals(this.city, other.city) &&
-            Objects.deepEquals(this.state, other.state) &&
-            Objects.deepEquals(this.postalCode, other.postalCode) &&
-            Objects.deepEquals(this.country, other.country);
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.line1, other.line1) &&
+            Utils.enhancedDeepEquals(this.line2, other.line2) &&
+            Utils.enhancedDeepEquals(this.city, other.city) &&
+            Utils.enhancedDeepEquals(this.state, other.state) &&
+            Utils.enhancedDeepEquals(this.postalCode, other.postalCode) &&
+            Utils.enhancedDeepEquals(this.country, other.country);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            type,
-            id,
-            line1,
-            line2,
-            city,
-            state,
-            postalCode,
-            country);
+        return Utils.enhancedHash(
+            type, id, line1,
+            line2, city, state,
+            postalCode, country);
     }
     
     @Override
@@ -353,28 +351,30 @@ public class Addresses {
                 "postalCode", postalCode,
                 "country", country);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends EcommerceCustomerType> type = Optional.empty();
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line1 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> line2 = JsonNullable.undefined();
- 
+
         private JsonNullable<String> city = JsonNullable.undefined();
- 
+
         private JsonNullable<String> state = JsonNullable.undefined();
- 
+
         private JsonNullable<String> postalCode = JsonNullable.undefined();
- 
+
         private JsonNullable<String> country = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder type(EcommerceCustomerType type) {
             Utils.checkNotNull(type, "type");
@@ -387,6 +387,7 @@ public class Addresses {
             this.type = type;
             return this;
         }
+
 
         /**
          * A unique identifier for an object.
@@ -406,6 +407,7 @@ public class Addresses {
             return this;
         }
 
+
         /**
          * First line of the street address of the customer
          */
@@ -423,6 +425,7 @@ public class Addresses {
             this.line1 = line1;
             return this;
         }
+
 
         /**
          * Second line of the street address of the customer
@@ -442,6 +445,7 @@ public class Addresses {
             return this;
         }
 
+
         /**
          * City of the customer
          */
@@ -459,6 +463,7 @@ public class Addresses {
             this.city = city;
             return this;
         }
+
 
         /**
          * State of the customer
@@ -478,6 +483,7 @@ public class Addresses {
             return this;
         }
 
+
         /**
          * Postal code of the customer
          */
@@ -496,6 +502,7 @@ public class Addresses {
             return this;
         }
 
+
         /**
          * Country of the customer
          */
@@ -513,17 +520,14 @@ public class Addresses {
             this.country = country;
             return this;
         }
-        
+
         public Addresses build() {
+
             return new Addresses(
-                type,
-                id,
-                line1,
-                line2,
-                city,
-                state,
-                postalCode,
-                country);
+                type, id, line1,
+                line2, city, state,
+                postalCode, country);
         }
+
     }
 }

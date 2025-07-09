@@ -42,7 +42,6 @@ public class Webhooks {
     Webhooks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List webhook subscriptions
      * 
@@ -63,7 +62,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -92,11 +92,10 @@ public class Webhooks {
                 .build();
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
               = new WebhookWebhooksAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create webhook subscription
@@ -145,11 +144,10 @@ public class Webhooks {
                 .build();
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
               = new WebhookWebhooksAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get webhook subscription
@@ -198,11 +196,10 @@ public class Webhooks {
                 .build();
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
               = new WebhookWebhooksOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update webhook subscription
@@ -228,7 +225,8 @@ public class Webhooks {
     public WebhookWebhooksUpdateResponse update(
             String id,
             UpdateWebhookRequest updateWebhookRequest) throws Exception {
-        return update(id, Optional.empty(), updateWebhookRequest, Optional.empty());
+        return update(id, Optional.empty(), updateWebhookRequest,
+            Optional.empty());
     }
 
     /**
@@ -257,11 +255,10 @@ public class Webhooks {
                 .build();
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
               = new WebhookWebhooksUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete webhook subscription
@@ -310,8 +307,8 @@ public class Webhooks {
                 .build();
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
               = new WebhookWebhooksDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

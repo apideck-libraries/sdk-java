@@ -19,12 +19,11 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Opportunity {
 
+public class Opportunity {
     /**
      * A unique identifier for the opportunity.
      */
@@ -213,6 +212,7 @@ public class Opportunity {
     @JsonProperty("status_id")
     private JsonNullable<String> statusId;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
     private JsonNullable<? extends List<String>> tags;
@@ -223,6 +223,7 @@ public class Opportunity {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("interaction_count")
     private JsonNullable<Double> interactionCount;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -444,7 +445,20 @@ public class Opportunity {
     
     public Opportunity(
             String title) {
-        this(Optional.empty(), title, JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), title, JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -783,9 +797,10 @@ public class Opportunity {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for the opportunity.
@@ -795,6 +810,7 @@ public class Opportunity {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * A unique identifier for the opportunity.
@@ -1147,6 +1163,7 @@ public class Opportunity {
         return this;
     }
 
+
     /**
      * An array of unique identifiers of all contacts associated with the opportunity.
      */
@@ -1300,6 +1317,7 @@ public class Opportunity {
         return this;
     }
 
+
     public Opportunity withCustomFields(Optional<? extends List<CustomField>> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = customFields;
@@ -1350,6 +1368,7 @@ public class Opportunity {
         this.deleted = Optional.ofNullable(deleted);
         return this;
     }
+
 
     /**
      * Indicates whether the opportunity has been deleted.
@@ -1513,6 +1532,7 @@ public class Opportunity {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1522,7 +1542,6 @@ public class Opportunity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1533,95 +1552,67 @@ public class Opportunity {
         }
         Opportunity other = (Opportunity) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.primaryContactId, other.primaryContactId) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.monetaryAmount, other.monetaryAmount) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.winProbability, other.winProbability) &&
-            Objects.deepEquals(this.expectedRevenue, other.expectedRevenue) &&
-            Objects.deepEquals(this.closeDate, other.closeDate) &&
-            Objects.deepEquals(this.lossReasonId, other.lossReasonId) &&
-            Objects.deepEquals(this.lossReason, other.lossReason) &&
-            Objects.deepEquals(this.wonReasonId, other.wonReasonId) &&
-            Objects.deepEquals(this.wonReason, other.wonReason) &&
-            Objects.deepEquals(this.pipelineId, other.pipelineId) &&
-            Objects.deepEquals(this.pipelineStageId, other.pipelineStageId) &&
-            Objects.deepEquals(this.sourceId, other.sourceId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.leadSource, other.leadSource) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.contactIds, other.contactIds) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.companyName, other.companyName) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.priority, other.priority) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.statusId, other.statusId) &&
-            Objects.deepEquals(this.tags, other.tags) &&
-            Objects.deepEquals(this.interactionCount, other.interactionCount) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.stageLastChangedAt, other.stageLastChangedAt) &&
-            Objects.deepEquals(this.lastActivityAt, other.lastActivityAt) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.dateStageChanged, other.dateStageChanged) &&
-            Objects.deepEquals(this.dateLastContacted, other.dateLastContacted) &&
-            Objects.deepEquals(this.dateLeadCreated, other.dateLeadCreated) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.primaryContactId, other.primaryContactId) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.monetaryAmount, other.monetaryAmount) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.winProbability, other.winProbability) &&
+            Utils.enhancedDeepEquals(this.expectedRevenue, other.expectedRevenue) &&
+            Utils.enhancedDeepEquals(this.closeDate, other.closeDate) &&
+            Utils.enhancedDeepEquals(this.lossReasonId, other.lossReasonId) &&
+            Utils.enhancedDeepEquals(this.lossReason, other.lossReason) &&
+            Utils.enhancedDeepEquals(this.wonReasonId, other.wonReasonId) &&
+            Utils.enhancedDeepEquals(this.wonReason, other.wonReason) &&
+            Utils.enhancedDeepEquals(this.pipelineId, other.pipelineId) &&
+            Utils.enhancedDeepEquals(this.pipelineStageId, other.pipelineStageId) &&
+            Utils.enhancedDeepEquals(this.sourceId, other.sourceId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.leadSource, other.leadSource) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.contactIds, other.contactIds) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.companyName, other.companyName) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.priority, other.priority) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.statusId, other.statusId) &&
+            Utils.enhancedDeepEquals(this.tags, other.tags) &&
+            Utils.enhancedDeepEquals(this.interactionCount, other.interactionCount) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.stageLastChangedAt, other.stageLastChangedAt) &&
+            Utils.enhancedDeepEquals(this.lastActivityAt, other.lastActivityAt) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.dateStageChanged, other.dateStageChanged) &&
+            Utils.enhancedDeepEquals(this.dateLastContacted, other.dateLastContacted) &&
+            Utils.enhancedDeepEquals(this.dateLeadCreated, other.dateLeadCreated) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            title,
-            primaryContactId,
-            description,
-            type,
-            monetaryAmount,
-            currency,
-            winProbability,
-            expectedRevenue,
-            closeDate,
-            lossReasonId,
-            lossReason,
-            wonReasonId,
-            wonReason,
-            pipelineId,
-            pipelineStageId,
-            sourceId,
-            leadId,
-            leadSource,
-            contactId,
-            contactIds,
-            companyId,
-            companyName,
-            ownerId,
-            priority,
-            status,
-            statusId,
-            tags,
-            interactionCount,
-            customFields,
-            stageLastChangedAt,
-            lastActivityAt,
-            deleted,
-            dateStageChanged,
-            dateLastContacted,
-            dateLeadCreated,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
-            passThrough);
+        return Utils.enhancedHash(
+            id, title, primaryContactId,
+            description, type, monetaryAmount,
+            currency, winProbability, expectedRevenue,
+            closeDate, lossReasonId, lossReason,
+            wonReasonId, wonReason, pipelineId,
+            pipelineStageId, sourceId, leadId,
+            leadSource, contactId, contactIds,
+            companyId, companyName, ownerId,
+            priority, status, statusId,
+            tags, interactionCount, customFields,
+            stageLastChangedAt, lastActivityAt, deleted,
+            dateStageChanged, dateLastContacted, dateLeadCreated,
+            customMappings, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1670,96 +1661,98 @@ public class Opportunity {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private String title;
- 
+
         private JsonNullable<String> primaryContactId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> type = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> monetaryAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> winProbability = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> expectedRevenue = JsonNullable.undefined();
- 
+
         private JsonNullable<LocalDate> closeDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lossReasonId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lossReason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> wonReasonId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> wonReason = JsonNullable.undefined();
- 
+
         private JsonNullable<String> pipelineId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> pipelineStageId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sourceId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadSource = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<String>> contactIds = Optional.empty();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyName = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> priority = JsonNullable.undefined();
- 
+
         private JsonNullable<String> status = JsonNullable.undefined();
- 
+
         private JsonNullable<String> statusId = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
- 
+
         private JsonNullable<Double> interactionCount = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> stageLastChangedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> lastActivityAt = JsonNullable.undefined();
- 
+
         private Optional<Boolean> deleted = Optional.empty();
- 
+
         private JsonNullable<OffsetDateTime> dateStageChanged = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> dateLastContacted = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> dateLeadCreated = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for the opportunity.
@@ -1779,6 +1772,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The title or name of the opportunity.
          */
@@ -1787,6 +1781,7 @@ public class Opportunity {
             this.title = title;
             return this;
         }
+
 
         /**
          * The unique identifier of the primary contact associated with the opportunity.
@@ -1806,6 +1801,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * A description of the opportunity.
          */
@@ -1823,6 +1819,7 @@ public class Opportunity {
             this.description = description;
             return this;
         }
+
 
         /**
          * The type of the opportunity
@@ -1842,6 +1839,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The monetary value associated with the opportunity
          */
@@ -1859,6 +1857,7 @@ public class Opportunity {
             this.monetaryAmount = monetaryAmount;
             return this;
         }
+
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
@@ -1878,6 +1877,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The probability of winning the opportunity, expressed as a percentage.
          */
@@ -1895,6 +1895,7 @@ public class Opportunity {
             this.winProbability = winProbability;
             return this;
         }
+
 
         /**
          * The expected revenue from the opportunity
@@ -1914,6 +1915,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
          */
@@ -1931,6 +1933,7 @@ public class Opportunity {
             this.closeDate = closeDate;
             return this;
         }
+
 
         /**
          * The unique identifier of the reason why the opportunity was lost.
@@ -1950,6 +1953,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The reason why the opportunity was lost.
          */
@@ -1967,6 +1971,7 @@ public class Opportunity {
             this.lossReason = lossReason;
             return this;
         }
+
 
         /**
          * The unique identifier of the reason why the opportunity was won.
@@ -1986,6 +1991,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The reason why the opportunity was won.
          */
@@ -2003,6 +2009,7 @@ public class Opportunity {
             this.wonReason = wonReason;
             return this;
         }
+
 
         /**
          * The unique identifier of the pipeline associated with the opportunity
@@ -2022,6 +2029,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the stage in the pipeline associated with the opportunity.
          */
@@ -2039,6 +2047,7 @@ public class Opportunity {
             this.pipelineStageId = pipelineStageId;
             return this;
         }
+
 
         /**
          * The unique identifier of the source of the opportunity.
@@ -2058,6 +2067,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the lead associated with the opportunity.
          */
@@ -2075,6 +2085,7 @@ public class Opportunity {
             this.leadId = leadId;
             return this;
         }
+
 
         /**
          * The source of the lead associated with the opportunity.
@@ -2094,6 +2105,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the contact associated with the opportunity.
          */
@@ -2111,6 +2123,7 @@ public class Opportunity {
             this.contactId = contactId;
             return this;
         }
+
 
         /**
          * An array of unique identifiers of all contacts associated with the opportunity.
@@ -2130,6 +2143,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the company associated with the opportunity.
          */
@@ -2147,6 +2161,7 @@ public class Opportunity {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * The name of the company associated with the opportunity.
@@ -2166,6 +2181,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the user who owns the opportunity.
          */
@@ -2183,6 +2199,7 @@ public class Opportunity {
             this.ownerId = ownerId;
             return this;
         }
+
 
         /**
          * The priority level of the opportunity.
@@ -2202,6 +2219,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The current status of the opportunity.
          */
@@ -2219,6 +2237,7 @@ public class Opportunity {
             this.status = status;
             return this;
         }
+
 
         /**
          * The unique identifier of the current status of the opportunity.
@@ -2238,6 +2257,7 @@ public class Opportunity {
             return this;
         }
 
+
         public Builder tags(List<String> tags) {
             Utils.checkNotNull(tags, "tags");
             this.tags = JsonNullable.of(tags);
@@ -2249,6 +2269,7 @@ public class Opportunity {
             this.tags = tags;
             return this;
         }
+
 
         /**
          * The number of interactions with the opportunity.
@@ -2268,6 +2289,7 @@ public class Opportunity {
             return this;
         }
 
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -2279,6 +2301,7 @@ public class Opportunity {
             this.customFields = customFields;
             return this;
         }
+
 
         /**
          * The date and time when the stage of the opportunity was last changed.
@@ -2298,6 +2321,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The date and time of the last activity associated with the opportunity.
          */
@@ -2315,6 +2339,7 @@ public class Opportunity {
             this.lastActivityAt = lastActivityAt;
             return this;
         }
+
 
         /**
          * Indicates whether the opportunity has been deleted.
@@ -2334,6 +2359,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The date and time when the stage of the opportunity was last changed.
          */
@@ -2351,6 +2377,7 @@ public class Opportunity {
             this.dateStageChanged = dateStageChanged;
             return this;
         }
+
 
         /**
          * The date and time when the opportunity was last contacted.
@@ -2370,6 +2397,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The date and time when the lead associated with the opportunity was created.
          */
@@ -2387,6 +2415,7 @@ public class Opportunity {
             this.dateLeadCreated = dateLeadCreated;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -2406,6 +2435,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The unique identifier of the user who last updated the opportunity.
          */
@@ -2423,6 +2453,7 @@ public class Opportunity {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The unique identifier of the user who created the opportunity.
@@ -2442,6 +2473,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The date and time when the opportunity was last updated.
          */
@@ -2459,6 +2491,7 @@ public class Opportunity {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the opportunity was created.
@@ -2478,6 +2511,7 @@ public class Opportunity {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -2495,51 +2529,25 @@ public class Opportunity {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Opportunity build() {
+
             return new Opportunity(
-                id,
-                title,
-                primaryContactId,
-                description,
-                type,
-                monetaryAmount,
-                currency,
-                winProbability,
-                expectedRevenue,
-                closeDate,
-                lossReasonId,
-                lossReason,
-                wonReasonId,
-                wonReason,
-                pipelineId,
-                pipelineStageId,
-                sourceId,
-                leadId,
-                leadSource,
-                contactId,
-                contactIds,
-                companyId,
-                companyName,
-                ownerId,
-                priority,
-                status,
-                statusId,
-                tags,
-                interactionCount,
-                customFields,
-                stageLastChangedAt,
-                lastActivityAt,
-                deleted,
-                dateStageChanged,
-                dateLastContacted,
-                dateLeadCreated,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
-                passThrough);
+                id, title, primaryContactId,
+                description, type, monetaryAmount,
+                currency, winProbability, expectedRevenue,
+                closeDate, lossReasonId, lossReason,
+                wonReasonId, wonReason, pipelineId,
+                pipelineStageId, sourceId, leadId,
+                leadSource, contactId, contactIds,
+                companyId, companyName, ownerId,
+                priority, status, statusId,
+                tags, interactionCount, customFields,
+                stageLastChangedAt, lastActivityAt, deleted,
+                dateStageChanged, dateLastContacted, dateLeadCreated,
+                customMappings, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
+
     }
 }

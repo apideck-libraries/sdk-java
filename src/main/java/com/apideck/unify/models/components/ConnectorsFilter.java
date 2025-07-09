@@ -10,11 +10,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class ConnectorsFilter {
 
+public class ConnectorsFilter {
     /**
      * Name of Apideck Unified API
      */
@@ -59,9 +58,10 @@ public class ConnectorsFilter {
         return (Optional<ConnectorStatus>) status;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Name of Apideck Unified API
@@ -71,6 +71,7 @@ public class ConnectorsFilter {
         this.unifiedApi = Optional.ofNullable(unifiedApi);
         return this;
     }
+
 
     /**
      * Name of Apideck Unified API
@@ -90,6 +91,7 @@ public class ConnectorsFilter {
         return this;
     }
 
+
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
@@ -99,7 +101,6 @@ public class ConnectorsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -110,15 +111,14 @@ public class ConnectorsFilter {
         }
         ConnectorsFilter other = (ConnectorsFilter) o;
         return 
-            Objects.deepEquals(this.unifiedApi, other.unifiedApi) &&
-            Objects.deepEquals(this.status, other.status);
+            Utils.enhancedDeepEquals(this.unifiedApi, other.unifiedApi) &&
+            Utils.enhancedDeepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            unifiedApi,
-            status);
+        return Utils.enhancedHash(
+            unifiedApi, status);
     }
     
     @Override
@@ -127,16 +127,18 @@ public class ConnectorsFilter {
                 "unifiedApi", unifiedApi,
                 "status", status);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
- 
+
         private Optional<? extends ConnectorStatus> status = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Name of Apideck Unified API
@@ -156,6 +158,7 @@ public class ConnectorsFilter {
             return this;
         }
 
+
         /**
          * Status of the connector. Connectors with status live or beta are callable.
          */
@@ -173,11 +176,12 @@ public class ConnectorsFilter {
             this.status = status;
             return this;
         }
-        
+
         public ConnectorsFilter build() {
+
             return new ConnectorsFilter(
-                unifiedApi,
-                status);
+                unifiedApi, status);
         }
+
     }
 }

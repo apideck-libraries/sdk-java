@@ -13,11 +13,10 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
-public class OutstandingBalanceByCustomer {
 
+public class OutstandingBalanceByCustomer {
     /**
      * Unique identifier for the customer.
      */
@@ -31,6 +30,7 @@ public class OutstandingBalanceByCustomer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer_name")
     private Optional<String> customerName;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outstanding_balances_by_currency")
@@ -75,9 +75,10 @@ public class OutstandingBalanceByCustomer {
         return (Optional<List<OutstandingBalanceByCurrency>>) outstandingBalancesByCurrency;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Unique identifier for the customer.
@@ -87,6 +88,7 @@ public class OutstandingBalanceByCustomer {
         this.customerId = Optional.ofNullable(customerId);
         return this;
     }
+
 
     /**
      * Unique identifier for the customer.
@@ -106,6 +108,7 @@ public class OutstandingBalanceByCustomer {
         return this;
     }
 
+
     /**
      * Full name of the customer.
      */
@@ -121,13 +124,13 @@ public class OutstandingBalanceByCustomer {
         return this;
     }
 
+
     public OutstandingBalanceByCustomer withOutstandingBalancesByCurrency(Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency) {
         Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
         this.outstandingBalancesByCurrency = outstandingBalancesByCurrency;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -138,17 +141,15 @@ public class OutstandingBalanceByCustomer {
         }
         OutstandingBalanceByCustomer other = (OutstandingBalanceByCustomer) o;
         return 
-            Objects.deepEquals(this.customerId, other.customerId) &&
-            Objects.deepEquals(this.customerName, other.customerName) &&
-            Objects.deepEquals(this.outstandingBalancesByCurrency, other.outstandingBalancesByCurrency);
+            Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
+            Utils.enhancedDeepEquals(this.customerName, other.customerName) &&
+            Utils.enhancedDeepEquals(this.outstandingBalancesByCurrency, other.outstandingBalancesByCurrency);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            customerId,
-            customerName,
-            outstandingBalancesByCurrency);
+        return Utils.enhancedHash(
+            customerId, customerName, outstandingBalancesByCurrency);
     }
     
     @Override
@@ -158,18 +159,20 @@ public class OutstandingBalanceByCustomer {
                 "customerName", customerName,
                 "outstandingBalancesByCurrency", outstandingBalancesByCurrency);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> customerId = Optional.empty();
- 
+
         private Optional<String> customerName = Optional.empty();
- 
+
         private Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Unique identifier for the customer.
@@ -189,6 +192,7 @@ public class OutstandingBalanceByCustomer {
             return this;
         }
 
+
         /**
          * Full name of the customer.
          */
@@ -207,6 +211,7 @@ public class OutstandingBalanceByCustomer {
             return this;
         }
 
+
         public Builder outstandingBalancesByCurrency(List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
             Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
             this.outstandingBalancesByCurrency = Optional.ofNullable(outstandingBalancesByCurrency);
@@ -218,12 +223,12 @@ public class OutstandingBalanceByCustomer {
             this.outstandingBalancesByCurrency = outstandingBalancesByCurrency;
             return this;
         }
-        
+
         public OutstandingBalanceByCustomer build() {
+
             return new OutstandingBalanceByCustomer(
-                customerId,
-                customerName,
-                outstandingBalancesByCurrency);
+                customerId, customerName, outstandingBalancesByCurrency);
         }
+
     }
 }

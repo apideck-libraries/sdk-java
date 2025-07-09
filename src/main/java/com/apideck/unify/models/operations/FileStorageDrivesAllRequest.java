@@ -15,12 +15,11 @@ import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class FileStorageDrivesAllRequest {
 
+public class FileStorageDrivesAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -98,7 +97,9 @@ public class FileStorageDrivesAllRequest {
     }
     
     public FileStorageDrivesAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -166,9 +167,10 @@ public class FileStorageDrivesAllRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -178,6 +180,7 @@ public class FileStorageDrivesAllRequest {
         this.raw = Optional.ofNullable(raw);
         return this;
     }
+
 
     /**
      * Include raw response. Mostly used for debugging purposes
@@ -197,6 +200,7 @@ public class FileStorageDrivesAllRequest {
         return this;
     }
 
+
     /**
      * ID of the consumer which you want to get or push data from
      */
@@ -215,6 +219,7 @@ public class FileStorageDrivesAllRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -232,6 +237,7 @@ public class FileStorageDrivesAllRequest {
         this.serviceId = Optional.ofNullable(serviceId);
         return this;
     }
+
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
@@ -269,6 +275,7 @@ public class FileStorageDrivesAllRequest {
         return this;
     }
 
+
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
@@ -286,6 +293,7 @@ public class FileStorageDrivesAllRequest {
         this.filter = Optional.ofNullable(filter);
         return this;
     }
+
 
     /**
      * Apply filters
@@ -314,7 +322,6 @@ public class FileStorageDrivesAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -325,27 +332,22 @@ public class FileStorageDrivesAllRequest {
         }
         FileStorageDrivesAllRequest other = (FileStorageDrivesAllRequest) o;
         return 
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.cursor, other.cursor) &&
-            Objects.deepEquals(this.limit, other.limit) &&
-            Objects.deepEquals(this.filter, other.filter) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
+            Utils.enhancedDeepEquals(this.limit, other.limit) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            cursor,
-            limit,
-            filter,
-            fields);
+        return Utils.enhancedHash(
+            raw, consumerId, appId,
+            serviceId, cursor, limit,
+            filter, fields);
     }
     
     @Override
@@ -360,28 +362,30 @@ public class FileStorageDrivesAllRequest {
                 "filter", filter,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private JsonNullable<String> cursor = JsonNullable.undefined();
- 
+
         private Optional<Long> limit;
- 
+
         private Optional<? extends DrivesFilter> filter = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -401,6 +405,7 @@ public class FileStorageDrivesAllRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -418,6 +423,7 @@ public class FileStorageDrivesAllRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -437,6 +443,7 @@ public class FileStorageDrivesAllRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -454,6 +461,7 @@ public class FileStorageDrivesAllRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
@@ -473,6 +481,7 @@ public class FileStorageDrivesAllRequest {
             return this;
         }
 
+
         /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
@@ -490,6 +499,7 @@ public class FileStorageDrivesAllRequest {
             this.limit = limit;
             return this;
         }
+
 
         /**
          * Apply filters
@@ -509,6 +519,7 @@ public class FileStorageDrivesAllRequest {
             return this;
         }
 
+
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
@@ -526,7 +537,7 @@ public class FileStorageDrivesAllRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public FileStorageDrivesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -534,16 +545,13 @@ public class FileStorageDrivesAllRequest {
             if (limit == null) {
                 limit = _SINGLETON_VALUE_Limit.value();
             }
+
             return new FileStorageDrivesAllRequest(
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                cursor,
-                limit,
-                filter,
-                fields);
+                raw, consumerId, appId,
+                serviceId, cursor, limit,
+                filter, fields);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

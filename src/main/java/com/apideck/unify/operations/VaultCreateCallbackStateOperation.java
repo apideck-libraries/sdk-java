@@ -57,7 +57,8 @@ public class VaultCreateCallbackStateOperation implements RequestOperation<Vault
     
     @Override
     public HttpResponse<InputStream> doRequest(VaultCreateCallbackStateRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 VaultCreateCallbackStateRequest.class,

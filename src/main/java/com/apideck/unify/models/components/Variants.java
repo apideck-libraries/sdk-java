@@ -13,12 +13,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Variants {
 
+public class Variants {
     /**
      * A unique identifier for the variant of the product.
      */
@@ -68,9 +67,11 @@ public class Variants {
     @JsonProperty("weight_unit")
     private JsonNullable<String> weightUnit;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
     private Optional<? extends List<EcommerceProductVariantsOptions>> options;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("images")
@@ -108,7 +109,9 @@ public class Variants {
     }
     
     public Variants() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -179,9 +182,10 @@ public class Variants {
         return (Optional<List<EcommerceProductImages>>) images;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for the variant of the product.
@@ -315,6 +319,7 @@ public class Variants {
         return this;
     }
 
+
     public Variants withOptions(Optional<? extends List<EcommerceProductVariantsOptions>> options) {
         Utils.checkNotNull(options, "options");
         this.options = options;
@@ -327,13 +332,13 @@ public class Variants {
         return this;
     }
 
+
     public Variants withImages(Optional<? extends List<EcommerceProductImages>> images) {
         Utils.checkNotNull(images, "images");
         this.images = images;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -344,29 +349,23 @@ public class Variants {
         }
         Variants other = (Variants) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.price, other.price) &&
-            Objects.deepEquals(this.sku, other.sku) &&
-            Objects.deepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
-            Objects.deepEquals(this.weight, other.weight) &&
-            Objects.deepEquals(this.weightUnit, other.weightUnit) &&
-            Objects.deepEquals(this.options, other.options) &&
-            Objects.deepEquals(this.images, other.images);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.price, other.price) &&
+            Utils.enhancedDeepEquals(this.sku, other.sku) &&
+            Utils.enhancedDeepEquals(this.inventoryQuantity, other.inventoryQuantity) &&
+            Utils.enhancedDeepEquals(this.weight, other.weight) &&
+            Utils.enhancedDeepEquals(this.weightUnit, other.weightUnit) &&
+            Utils.enhancedDeepEquals(this.options, other.options) &&
+            Utils.enhancedDeepEquals(this.images, other.images);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            name,
-            price,
-            sku,
-            inventoryQuantity,
-            weight,
-            weightUnit,
-            options,
-            images);
+        return Utils.enhancedHash(
+            id, name, price,
+            sku, inventoryQuantity, weight,
+            weightUnit, options, images);
     }
     
     @Override
@@ -382,30 +381,32 @@ public class Variants {
                 "options", options,
                 "images", images);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> id = JsonNullable.undefined();
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
- 
+
         private JsonNullable<String> price = JsonNullable.undefined();
- 
+
         private JsonNullable<String> sku = JsonNullable.undefined();
- 
+
         private JsonNullable<String> inventoryQuantity = JsonNullable.undefined();
- 
+
         private JsonNullable<String> weight = JsonNullable.undefined();
- 
+
         private JsonNullable<String> weightUnit = JsonNullable.undefined();
- 
+
         private Optional<? extends List<EcommerceProductVariantsOptions>> options = Optional.empty();
- 
+
         private Optional<? extends List<EcommerceProductImages>> images = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for the variant of the product.
@@ -425,6 +426,7 @@ public class Variants {
             return this;
         }
 
+
         /**
          * The name for the variant, used for displaying to customers.
          */
@@ -442,6 +444,7 @@ public class Variants {
             this.name = name;
             return this;
         }
+
 
         /**
          * The price of the variant.
@@ -461,6 +464,7 @@ public class Variants {
             return this;
         }
 
+
         /**
          * The stock keeping unit of the variant.
          */
@@ -478,6 +482,7 @@ public class Variants {
             this.sku = sku;
             return this;
         }
+
 
         /**
          * The quantity of the variant in stock.
@@ -497,6 +502,7 @@ public class Variants {
             return this;
         }
 
+
         /**
          * The weight of the variant.
          */
@@ -514,6 +520,7 @@ public class Variants {
             this.weight = weight;
             return this;
         }
+
 
         /**
          * The unit of measurement for the weight of the variant.
@@ -533,6 +540,7 @@ public class Variants {
             return this;
         }
 
+
         public Builder options(List<EcommerceProductVariantsOptions> options) {
             Utils.checkNotNull(options, "options");
             this.options = Optional.ofNullable(options);
@@ -545,6 +553,7 @@ public class Variants {
             return this;
         }
 
+
         public Builder images(List<EcommerceProductImages> images) {
             Utils.checkNotNull(images, "images");
             this.images = Optional.ofNullable(images);
@@ -556,18 +565,14 @@ public class Variants {
             this.images = images;
             return this;
         }
-        
+
         public Variants build() {
+
             return new Variants(
-                id,
-                name,
-                price,
-                sku,
-                inventoryQuantity,
-                weight,
-                weightUnit,
-                options,
-                images);
+                id, name, price,
+                sku, inventoryQuantity, weight,
+                weightUnit, options, images);
         }
+
     }
 }

@@ -35,7 +35,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmLeadsAllRequest req = CrmLeadsAllRequest.builder()
@@ -112,7 +112,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmLeadsAddRequest req = CrmLeadsAddRequest.builder()
@@ -131,7 +131,7 @@ public class Application {
                     .title("CEO")
                     .language("EN")
                     .status("New")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
                     .fax("+12129876543")
                     .websites(List.of(
@@ -400,7 +400,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmLeadsOneRequest req = CrmLeadsOneRequest.builder()
@@ -466,7 +466,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmLeadsUpdateRequest req = CrmLeadsUpdateRequest.builder()
@@ -486,7 +486,7 @@ public class Application {
                     .title("CEO")
                     .language("EN")
                     .status("New")
-                    .monetaryAmount(75000)
+                    .monetaryAmount(75000d)
                     .currency(Currency.USD)
                     .fax("+12129876543")
                     .websites(List.of(
@@ -722,7 +722,7 @@ public class Application {
         Apideck sdk = Apideck.builder()
                 .consumerId("test-consumer")
                 .appId("dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX")
-                .apiKey("<YOUR_BEARER_TOKEN_HERE>")
+                .apiKey(System.getenv().getOrDefault("API_KEY", ""))
             .build();
 
         CrmLeadsDeleteRequest req = CrmLeadsDeleteRequest.builder()

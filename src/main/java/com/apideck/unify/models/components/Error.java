@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -20,13 +19,13 @@ import java.util.Optional;
  * <p>The error returned if your message status is failed or undelivered.
  */
 public class Error {
-
     /**
      * The error_code provides more information about the failure. If the message was successful, this value is null
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
     private Optional<String> code;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
@@ -59,9 +58,10 @@ public class Error {
         return message;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The error_code provides more information about the failure. If the message was successful, this value is null
@@ -71,6 +71,7 @@ public class Error {
         this.code = Optional.ofNullable(code);
         return this;
     }
+
 
     /**
      * The error_code provides more information about the failure. If the message was successful, this value is null
@@ -87,13 +88,13 @@ public class Error {
         return this;
     }
 
+
     public Error withMessage(Optional<String> message) {
         Utils.checkNotNull(message, "message");
         this.message = message;
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -104,15 +105,14 @@ public class Error {
         }
         Error other = (Error) o;
         return 
-            Objects.deepEquals(this.code, other.code) &&
-            Objects.deepEquals(this.message, other.message);
+            Utils.enhancedDeepEquals(this.code, other.code) &&
+            Utils.enhancedDeepEquals(this.message, other.message);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            code,
-            message);
+        return Utils.enhancedHash(
+            code, message);
     }
     
     @Override
@@ -121,16 +121,18 @@ public class Error {
                 "code", code,
                 "message", message);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> code = Optional.empty();
- 
+
         private Optional<String> message = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The error_code provides more information about the failure. If the message was successful, this value is null
@@ -150,6 +152,7 @@ public class Error {
             return this;
         }
 
+
         public Builder message(String message) {
             Utils.checkNotNull(message, "message");
             this.message = Optional.ofNullable(message);
@@ -161,11 +164,12 @@ public class Error {
             this.message = message;
             return this;
         }
-        
+
         public Error build() {
+
             return new Error(
-                code,
-                message);
+                code, message);
         }
+
     }
 }

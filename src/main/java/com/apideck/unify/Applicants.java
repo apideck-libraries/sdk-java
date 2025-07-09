@@ -37,7 +37,6 @@ public class Applicants {
     Applicants(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Applicants
      * 
@@ -77,11 +76,10 @@ public class Applicants {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
               = new AtsApplicantsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Applicant
@@ -122,11 +120,10 @@ public class Applicants {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
               = new AtsApplicantsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Applicant
@@ -167,11 +164,10 @@ public class Applicants {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
               = new AtsApplicantsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Applicant
@@ -212,11 +208,10 @@ public class Applicants {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
               = new AtsApplicantsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Applicant
@@ -257,8 +252,8 @@ public class Applicants {
             Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
               = new AtsApplicantsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

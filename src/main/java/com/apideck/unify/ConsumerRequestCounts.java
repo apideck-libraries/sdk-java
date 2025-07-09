@@ -22,7 +22,6 @@ public class ConsumerRequestCounts {
     ConsumerRequestCounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * Consumer request counts
      * 
@@ -49,7 +48,8 @@ public class ConsumerRequestCounts {
             String consumerId,
             String startDatetime,
             String endDatetime) throws Exception {
-        return list(Optional.empty(), consumerId, startDatetime, endDatetime, Optional.empty());
+        return list(Optional.empty(), consumerId, startDatetime,
+            endDatetime, Optional.empty());
     }
 
     /**
@@ -81,8 +81,8 @@ public class ConsumerRequestCounts {
                 .build();
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
               = new VaultConsumerRequestCountsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

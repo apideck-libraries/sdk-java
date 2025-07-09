@@ -37,7 +37,6 @@ public class TimeOffRequests {
     TimeOffRequests(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
-
     /**
      * List Time Off Requests
      * 
@@ -77,11 +76,10 @@ public class TimeOffRequests {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
               = new HrisTimeOffRequestsAllOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Create Time Off Request
@@ -122,11 +120,10 @@ public class TimeOffRequests {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
               = new HrisTimeOffRequestsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Get Time Off Request
@@ -167,11 +164,10 @@ public class TimeOffRequests {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
               = new HrisTimeOffRequestsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Update Time Off Request
@@ -212,11 +208,10 @@ public class TimeOffRequests {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
               = new HrisTimeOffRequestsUpdateOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
-
 
     /**
      * Delete Time Off Request
@@ -257,8 +252,8 @@ public class TimeOffRequests {
             Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
               = new HrisTimeOffRequestsDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

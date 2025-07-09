@@ -11,8 +11,8 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
-import java.util.Objects;
 import java.util.Optional;
+
 
 public class LedgerAccountsFilter {
 
@@ -53,15 +53,17 @@ public class LedgerAccountsFilter {
         return (Optional<Classification>) classification;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     public LedgerAccountsFilter withUpdatedSince(OffsetDateTime updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
         this.updatedSince = Optional.ofNullable(updatedSince);
         return this;
     }
+
 
     public LedgerAccountsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
         Utils.checkNotNull(updatedSince, "updatedSince");
@@ -78,6 +80,7 @@ public class LedgerAccountsFilter {
         return this;
     }
 
+
     /**
      * Filter by account classification.
      */
@@ -87,7 +90,6 @@ public class LedgerAccountsFilter {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -98,15 +100,14 @@ public class LedgerAccountsFilter {
         }
         LedgerAccountsFilter other = (LedgerAccountsFilter) o;
         return 
-            Objects.deepEquals(this.updatedSince, other.updatedSince) &&
-            Objects.deepEquals(this.classification, other.classification);
+            Utils.enhancedDeepEquals(this.updatedSince, other.updatedSince) &&
+            Utils.enhancedDeepEquals(this.classification, other.classification);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            updatedSince,
-            classification);
+        return Utils.enhancedHash(
+            updatedSince, classification);
     }
     
     @Override
@@ -115,16 +116,18 @@ public class LedgerAccountsFilter {
                 "updatedSince", updatedSince,
                 "classification", classification);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<OffsetDateTime> updatedSince = Optional.empty();
- 
+
         private Optional<? extends Classification> classification = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         public Builder updatedSince(OffsetDateTime updatedSince) {
             Utils.checkNotNull(updatedSince, "updatedSince");
@@ -137,6 +140,7 @@ public class LedgerAccountsFilter {
             this.updatedSince = updatedSince;
             return this;
         }
+
 
         /**
          * Filter by account classification.
@@ -155,11 +159,12 @@ public class LedgerAccountsFilter {
             this.classification = classification;
             return this;
         }
-        
+
         public LedgerAccountsFilter build() {
+
             return new LedgerAccountsFilter(
-                updatedSince,
-                classification);
+                updatedSince, classification);
         }
+
     }
 }

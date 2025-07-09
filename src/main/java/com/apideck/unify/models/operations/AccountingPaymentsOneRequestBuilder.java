@@ -48,8 +48,8 @@ public class AccountingPaymentsOneRequestBuilder {
 
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
               = new AccountingPaymentsOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -48,8 +48,8 @@ public class EcommerceStoresOneRequestBuilder {
 
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
               = new EcommerceStoresOneOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

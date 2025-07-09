@@ -48,8 +48,8 @@ public class AccountingBillPaymentsAddRequestBuilder {
 
         RequestOperation<AccountingBillPaymentsAddRequest, AccountingBillPaymentsAddResponse> operation
               = new AccountingBillPaymentsAddOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

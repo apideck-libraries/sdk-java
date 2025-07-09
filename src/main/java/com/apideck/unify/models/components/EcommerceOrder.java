@@ -16,12 +16,11 @@ import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class EcommerceOrder {
 
+public class EcommerceOrder {
     /**
      * A unique identifier for an object.
      */
@@ -41,6 +40,7 @@ public class EcommerceOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
     private JsonNullable<? extends Currency> currency;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discounts")
@@ -144,9 +144,11 @@ public class EcommerceOrder {
     @JsonProperty("shipping_address")
     private Optional<? extends EcommerceAddress> shippingAddress;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking")
     private Optional<? extends List<TrackingItem>> tracking;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
@@ -158,6 +160,7 @@ public class EcommerceOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("note")
     private JsonNullable<String> note;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
@@ -265,7 +268,15 @@ public class EcommerceOrder {
     
     public EcommerceOrder(
             String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -468,9 +479,10 @@ public class EcommerceOrder {
         return updatedAt;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * A unique identifier for an object.
@@ -522,6 +534,7 @@ public class EcommerceOrder {
         this.discounts = Optional.ofNullable(discounts);
         return this;
     }
+
 
     public EcommerceOrder withDiscounts(Optional<? extends List<EcommerceDiscount>> discounts) {
         Utils.checkNotNull(discounts, "discounts");
@@ -736,6 +749,7 @@ public class EcommerceOrder {
         return this;
     }
 
+
     /**
      * The customer this entity is linked to.
      */
@@ -753,6 +767,7 @@ public class EcommerceOrder {
         this.billingAddress = Optional.ofNullable(billingAddress);
         return this;
     }
+
 
     /**
      * An object representing a shipping or billing address.
@@ -772,6 +787,7 @@ public class EcommerceOrder {
         return this;
     }
 
+
     /**
      * An object representing a shipping or billing address.
      */
@@ -787,6 +803,7 @@ public class EcommerceOrder {
         return this;
     }
 
+
     public EcommerceOrder withTracking(Optional<? extends List<TrackingItem>> tracking) {
         Utils.checkNotNull(tracking, "tracking");
         this.tracking = tracking;
@@ -798,6 +815,7 @@ public class EcommerceOrder {
         this.lineItems = Optional.ofNullable(lineItems);
         return this;
     }
+
 
     public EcommerceOrder withLineItems(Optional<? extends List<EcommerceOrderLineItem>> lineItems) {
         Utils.checkNotNull(lineItems, "lineItems");
@@ -828,6 +846,7 @@ public class EcommerceOrder {
         this.refunds = Optional.ofNullable(refunds);
         return this;
     }
+
 
     public EcommerceOrder withRefunds(Optional<? extends List<EcommerceOrderRefund>> refunds) {
         Utils.checkNotNull(refunds, "refunds");
@@ -889,7 +908,6 @@ public class EcommerceOrder {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -900,60 +918,44 @@ public class EcommerceOrder {
         }
         EcommerceOrder other = (EcommerceOrder) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.orderNumber, other.orderNumber) &&
-            Objects.deepEquals(this.currency, other.currency) &&
-            Objects.deepEquals(this.discounts, other.discounts) &&
-            Objects.deepEquals(this.subTotal, other.subTotal) &&
-            Objects.deepEquals(this.shippingCost, other.shippingCost) &&
-            Objects.deepEquals(this.couponDiscount, other.couponDiscount) &&
-            Objects.deepEquals(this.totalDiscount, other.totalDiscount) &&
-            Objects.deepEquals(this.totalTax, other.totalTax) &&
-            Objects.deepEquals(this.totalAmount, other.totalAmount) &&
-            Objects.deepEquals(this.refundedAmount, other.refundedAmount) &&
-            Objects.deepEquals(this.status, other.status) &&
-            Objects.deepEquals(this.paymentStatus, other.paymentStatus) &&
-            Objects.deepEquals(this.fulfillmentStatus, other.fulfillmentStatus) &&
-            Objects.deepEquals(this.paymentMethod, other.paymentMethod) &&
-            Objects.deepEquals(this.customer, other.customer) &&
-            Objects.deepEquals(this.billingAddress, other.billingAddress) &&
-            Objects.deepEquals(this.shippingAddress, other.shippingAddress) &&
-            Objects.deepEquals(this.tracking, other.tracking) &&
-            Objects.deepEquals(this.lineItems, other.lineItems) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.refunds, other.refunds) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.orderNumber, other.orderNumber) &&
+            Utils.enhancedDeepEquals(this.currency, other.currency) &&
+            Utils.enhancedDeepEquals(this.discounts, other.discounts) &&
+            Utils.enhancedDeepEquals(this.subTotal, other.subTotal) &&
+            Utils.enhancedDeepEquals(this.shippingCost, other.shippingCost) &&
+            Utils.enhancedDeepEquals(this.couponDiscount, other.couponDiscount) &&
+            Utils.enhancedDeepEquals(this.totalDiscount, other.totalDiscount) &&
+            Utils.enhancedDeepEquals(this.totalTax, other.totalTax) &&
+            Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
+            Utils.enhancedDeepEquals(this.refundedAmount, other.refundedAmount) &&
+            Utils.enhancedDeepEquals(this.status, other.status) &&
+            Utils.enhancedDeepEquals(this.paymentStatus, other.paymentStatus) &&
+            Utils.enhancedDeepEquals(this.fulfillmentStatus, other.fulfillmentStatus) &&
+            Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
+            Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
+            Utils.enhancedDeepEquals(this.tracking, other.tracking) &&
+            Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.refunds, other.refunds) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            orderNumber,
-            currency,
-            discounts,
-            subTotal,
-            shippingCost,
-            couponDiscount,
-            totalDiscount,
-            totalTax,
-            totalAmount,
-            refundedAmount,
-            status,
-            paymentStatus,
-            fulfillmentStatus,
-            paymentMethod,
-            customer,
-            billingAddress,
-            shippingAddress,
-            tracking,
-            lineItems,
-            note,
-            refunds,
-            customMappings,
-            createdAt,
+        return Utils.enhancedHash(
+            id, orderNumber, currency,
+            discounts, subTotal, shippingCost,
+            couponDiscount, totalDiscount, totalTax,
+            totalAmount, refundedAmount, status,
+            paymentStatus, fulfillmentStatus, paymentMethod,
+            customer, billingAddress, shippingAddress,
+            tracking, lineItems, note,
+            refunds, customMappings, createdAt,
             updatedAt);
     }
     
@@ -986,62 +988,64 @@ public class EcommerceOrder {
                 "createdAt", createdAt,
                 "updatedAt", updatedAt);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String id;
- 
+
         private JsonNullable<String> orderNumber = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
- 
+
         private Optional<? extends List<EcommerceDiscount>> discounts = Optional.empty();
- 
+
         private JsonNullable<String> subTotal = JsonNullable.undefined();
- 
+
         private JsonNullable<String> shippingCost = JsonNullable.undefined();
- 
+
         private JsonNullable<String> couponDiscount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> totalDiscount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> totalTax = JsonNullable.undefined();
- 
+
         private JsonNullable<String> totalAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<String> refundedAmount = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EcommerceOrderStatus> status = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends FulfillmentStatus> fulfillmentStatus = JsonNullable.undefined();
- 
+
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
- 
+
         private Optional<? extends LinkedEcommerceCustomer> customer = Optional.empty();
- 
+
         private Optional<? extends EcommerceAddress> billingAddress = Optional.empty();
- 
+
         private Optional<? extends EcommerceAddress> shippingAddress = Optional.empty();
- 
+
         private Optional<? extends List<TrackingItem>> tracking = Optional.empty();
- 
+
         private Optional<? extends List<EcommerceOrderLineItem>> lineItems = Optional.empty();
- 
+
         private JsonNullable<String> note = JsonNullable.undefined();
- 
+
         private Optional<? extends List<EcommerceOrderRefund>> refunds = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
- 
+
         private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * A unique identifier for an object.
@@ -1051,6 +1055,7 @@ public class EcommerceOrder {
             this.id = id;
             return this;
         }
+
 
         /**
          * Order number, if any.
@@ -1070,6 +1075,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
@@ -1088,6 +1094,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         public Builder discounts(List<EcommerceDiscount> discounts) {
             Utils.checkNotNull(discounts, "discounts");
             this.discounts = Optional.ofNullable(discounts);
@@ -1099,6 +1106,7 @@ public class EcommerceOrder {
             this.discounts = discounts;
             return this;
         }
+
 
         /**
          * Sub-total amount, normally before tax.
@@ -1118,6 +1126,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Shipping cost, if any.
          */
@@ -1135,6 +1144,7 @@ public class EcommerceOrder {
             this.shippingCost = shippingCost;
             return this;
         }
+
 
         /**
          * Coupon discount, if any.
@@ -1154,6 +1164,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Total discount, if any.
          */
@@ -1171,6 +1182,7 @@ public class EcommerceOrder {
             this.totalDiscount = totalDiscount;
             return this;
         }
+
 
         /**
          * Total tax, if any.
@@ -1190,6 +1202,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Total amount due.
          */
@@ -1207,6 +1220,7 @@ public class EcommerceOrder {
             this.totalAmount = totalAmount;
             return this;
         }
+
 
         /**
          * Refunded amount, if any.
@@ -1226,6 +1240,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Current status of the order.
          */
@@ -1243,6 +1258,7 @@ public class EcommerceOrder {
             this.status = status;
             return this;
         }
+
 
         /**
          * Current payment status of the order.
@@ -1262,6 +1278,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * Current fulfillment status of the order.
          */
@@ -1279,6 +1296,7 @@ public class EcommerceOrder {
             this.fulfillmentStatus = fulfillmentStatus;
             return this;
         }
+
 
         /**
          * Payment method used for this order.
@@ -1298,6 +1316,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * The customer this entity is linked to.
          */
@@ -1315,6 +1334,7 @@ public class EcommerceOrder {
             this.customer = customer;
             return this;
         }
+
 
         /**
          * An object representing a shipping or billing address.
@@ -1334,6 +1354,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * An object representing a shipping or billing address.
          */
@@ -1352,6 +1373,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         public Builder tracking(List<TrackingItem> tracking) {
             Utils.checkNotNull(tracking, "tracking");
             this.tracking = Optional.ofNullable(tracking);
@@ -1364,6 +1386,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         public Builder lineItems(List<EcommerceOrderLineItem> lineItems) {
             Utils.checkNotNull(lineItems, "lineItems");
             this.lineItems = Optional.ofNullable(lineItems);
@@ -1375,6 +1398,7 @@ public class EcommerceOrder {
             this.lineItems = lineItems;
             return this;
         }
+
 
         /**
          * Note for the order.
@@ -1394,6 +1418,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         public Builder refunds(List<EcommerceOrderRefund> refunds) {
             Utils.checkNotNull(refunds, "refunds");
             this.refunds = Optional.ofNullable(refunds);
@@ -1405,6 +1430,7 @@ public class EcommerceOrder {
             this.refunds = refunds;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -1424,6 +1450,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * The date and time when the object was created.
          */
@@ -1442,6 +1469,7 @@ public class EcommerceOrder {
             return this;
         }
 
+
         /**
          * The date and time when the object was last updated.
          */
@@ -1459,34 +1487,20 @@ public class EcommerceOrder {
             this.updatedAt = updatedAt;
             return this;
         }
-        
+
         public EcommerceOrder build() {
+
             return new EcommerceOrder(
-                id,
-                orderNumber,
-                currency,
-                discounts,
-                subTotal,
-                shippingCost,
-                couponDiscount,
-                totalDiscount,
-                totalTax,
-                totalAmount,
-                refundedAmount,
-                status,
-                paymentStatus,
-                fulfillmentStatus,
-                paymentMethod,
-                customer,
-                billingAddress,
-                shippingAddress,
-                tracking,
-                lineItems,
-                note,
-                refunds,
-                customMappings,
-                createdAt,
+                id, orderNumber, currency,
+                discounts, subTotal, shippingCost,
+                couponDiscount, totalDiscount, totalTax,
+                totalAmount, refundedAmount, status,
+                paymentStatus, fulfillmentStatus, paymentMethod,
+                customer, billingAddress, shippingAddress,
+                tracking, lineItems, note,
+                refunds, customMappings, createdAt,
                 updatedAt);
         }
+
     }
 }

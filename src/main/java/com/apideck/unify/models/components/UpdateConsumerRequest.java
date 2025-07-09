@@ -12,11 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.Objects;
 import java.util.Optional;
 
-public class UpdateConsumerRequest {
 
+public class UpdateConsumerRequest {
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -44,9 +43,10 @@ public class UpdateConsumerRequest {
         return (Optional<ConsumerMetadata>) metadata;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -57,6 +57,7 @@ public class UpdateConsumerRequest {
         return this;
     }
 
+
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
@@ -66,7 +67,6 @@ public class UpdateConsumerRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -77,12 +77,12 @@ public class UpdateConsumerRequest {
         }
         UpdateConsumerRequest other = (UpdateConsumerRequest) o;
         return 
-            Objects.deepEquals(this.metadata, other.metadata);
+            Utils.enhancedDeepEquals(this.metadata, other.metadata);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             metadata);
     }
     
@@ -91,14 +91,16 @@ public class UpdateConsumerRequest {
         return Utils.toString(UpdateConsumerRequest.class,
                 "metadata", metadata);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
@@ -117,10 +119,12 @@ public class UpdateConsumerRequest {
             this.metadata = metadata;
             return this;
         }
-        
+
         public UpdateConsumerRequest build() {
+
             return new UpdateConsumerRequest(
                 metadata);
         }
+
     }
 }

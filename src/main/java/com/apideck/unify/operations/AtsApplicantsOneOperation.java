@@ -54,7 +54,8 @@ public class AtsApplicantsOneOperation implements RequestOperation<AtsApplicants
     
     @Override
     public HttpResponse<InputStream> doRequest(AtsApplicantsOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 AtsApplicantsOneRequest.class,

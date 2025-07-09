@@ -15,12 +15,11 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class HrisEmployeeSchedulesAllRequest {
 
+public class HrisEmployeeSchedulesAllRequest {
     /**
      * ID of the employee you are acting upon.
      */
@@ -90,7 +89,9 @@ public class HrisEmployeeSchedulesAllRequest {
     
     public HrisEmployeeSchedulesAllRequest(
             String employeeId) {
-        this(employeeId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), JsonNullable.undefined());
+        this(employeeId, Optional.empty(), Optional.empty(),
+            Optional.empty(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -150,9 +151,10 @@ public class HrisEmployeeSchedulesAllRequest {
         return fields;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * ID of the employee you are acting upon.
@@ -172,6 +174,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return this;
     }
 
+
     /**
      * Include raw response. Mostly used for debugging purposes
      */
@@ -189,6 +192,7 @@ public class HrisEmployeeSchedulesAllRequest {
         this.consumerId = Optional.ofNullable(consumerId);
         return this;
     }
+
 
     /**
      * ID of the consumer which you want to get or push data from
@@ -208,6 +212,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return this;
     }
 
+
     /**
      * The ID of your Unify application
      */
@@ -226,6 +231,7 @@ public class HrisEmployeeSchedulesAllRequest {
         return this;
     }
 
+
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
@@ -243,6 +249,7 @@ public class HrisEmployeeSchedulesAllRequest {
         this.passThrough = Optional.ofNullable(passThrough);
         return this;
     }
+
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
@@ -271,7 +278,6 @@ public class HrisEmployeeSchedulesAllRequest {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -282,24 +288,20 @@ public class HrisEmployeeSchedulesAllRequest {
         }
         HrisEmployeeSchedulesAllRequest other = (HrisEmployeeSchedulesAllRequest) o;
         return 
-            Objects.deepEquals(this.employeeId, other.employeeId) &&
-            Objects.deepEquals(this.raw, other.raw) &&
-            Objects.deepEquals(this.consumerId, other.consumerId) &&
-            Objects.deepEquals(this.appId, other.appId) &&
-            Objects.deepEquals(this.serviceId, other.serviceId) &&
-            Objects.deepEquals(this.passThrough, other.passThrough) &&
-            Objects.deepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.employeeId, other.employeeId) &&
+            Utils.enhancedDeepEquals(this.raw, other.raw) &&
+            Utils.enhancedDeepEquals(this.consumerId, other.consumerId) &&
+            Utils.enhancedDeepEquals(this.appId, other.appId) &&
+            Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough) &&
+            Utils.enhancedDeepEquals(this.fields, other.fields);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            employeeId,
-            raw,
-            consumerId,
-            appId,
-            serviceId,
-            passThrough,
+        return Utils.enhancedHash(
+            employeeId, raw, consumerId,
+            appId, serviceId, passThrough,
             fields);
     }
     
@@ -314,26 +316,28 @@ public class HrisEmployeeSchedulesAllRequest {
                 "passThrough", passThrough,
                 "fields", fields);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private String employeeId;
- 
+
         private Optional<Boolean> raw;
- 
+
         private Optional<String> consumerId = Optional.empty();
- 
+
         private Optional<String> appId = Optional.empty();
- 
+
         private Optional<String> serviceId = Optional.empty();
- 
+
         private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
- 
+
         private JsonNullable<String> fields = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * ID of the employee you are acting upon.
@@ -343,6 +347,7 @@ public class HrisEmployeeSchedulesAllRequest {
             this.employeeId = employeeId;
             return this;
         }
+
 
         /**
          * Include raw response. Mostly used for debugging purposes
@@ -362,6 +367,7 @@ public class HrisEmployeeSchedulesAllRequest {
             return this;
         }
 
+
         /**
          * ID of the consumer which you want to get or push data from
          */
@@ -379,6 +385,7 @@ public class HrisEmployeeSchedulesAllRequest {
             this.consumerId = consumerId;
             return this;
         }
+
 
         /**
          * The ID of your Unify application
@@ -398,6 +405,7 @@ public class HrisEmployeeSchedulesAllRequest {
             return this;
         }
 
+
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
@@ -415,6 +423,7 @@ public class HrisEmployeeSchedulesAllRequest {
             this.serviceId = serviceId;
             return this;
         }
+
 
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
@@ -434,6 +443,7 @@ public class HrisEmployeeSchedulesAllRequest {
             return this;
         }
 
+
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
@@ -451,20 +461,18 @@ public class HrisEmployeeSchedulesAllRequest {
             this.fields = fields;
             return this;
         }
-        
+
         public HrisEmployeeSchedulesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
             }
+
             return new HrisEmployeeSchedulesAllRequest(
-                employeeId,
-                raw,
-                consumerId,
-                appId,
-                serviceId,
-                passThrough,
+                employeeId, raw, consumerId,
+                appId, serviceId, passThrough,
                 fields);
         }
+
 
         private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(

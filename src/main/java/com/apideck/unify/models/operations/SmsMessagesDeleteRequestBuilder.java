@@ -48,8 +48,8 @@ public class SmsMessagesDeleteRequestBuilder {
 
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
               = new SmsMessagesDeleteOperation(
-                 sdkConfiguration,
-                 options);
+                sdkConfiguration,
+                options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

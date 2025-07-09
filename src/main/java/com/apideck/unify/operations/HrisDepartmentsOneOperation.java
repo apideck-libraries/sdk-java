@@ -54,7 +54,8 @@ public class HrisDepartmentsOneOperation implements RequestOperation<HrisDepartm
     
     @Override
     public HttpResponse<InputStream> doRequest(HrisDepartmentsOneRequest request) throws Exception {
-        options.ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
+        options
+                .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
                 HrisDepartmentsOneRequest.class,

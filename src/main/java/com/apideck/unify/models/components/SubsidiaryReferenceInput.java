@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class SubsidiaryReferenceInput {
 
+public class SubsidiaryReferenceInput {
     /**
      * The name of the company.
      */
@@ -42,9 +41,10 @@ public class SubsidiaryReferenceInput {
         return name;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The name of the company.
@@ -64,7 +64,6 @@ public class SubsidiaryReferenceInput {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +74,12 @@ public class SubsidiaryReferenceInput {
         }
         SubsidiaryReferenceInput other = (SubsidiaryReferenceInput) o;
         return 
-            Objects.deepEquals(this.name, other.name);
+            Utils.enhancedDeepEquals(this.name, other.name);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             name);
     }
     
@@ -89,14 +88,16 @@ public class SubsidiaryReferenceInput {
         return Utils.toString(SubsidiaryReferenceInput.class,
                 "name", name);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private JsonNullable<String> name = JsonNullable.undefined();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The name of the company.
@@ -115,10 +116,12 @@ public class SubsidiaryReferenceInput {
             this.name = name;
             return this;
         }
-        
+
         public SubsidiaryReferenceInput build() {
+
             return new SubsidiaryReferenceInput(
                 name);
         }
+
     }
 }

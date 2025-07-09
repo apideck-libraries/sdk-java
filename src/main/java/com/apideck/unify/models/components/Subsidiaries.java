@@ -11,11 +11,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Objects;
 import java.util.Optional;
 
-public class Subsidiaries {
 
+public class Subsidiaries {
     /**
      * The ID of the subsidiary.
      */
@@ -42,9 +41,10 @@ public class Subsidiaries {
         return id;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The ID of the subsidiary.
@@ -55,6 +55,7 @@ public class Subsidiaries {
         return this;
     }
 
+
     /**
      * The ID of the subsidiary.
      */
@@ -64,7 +65,6 @@ public class Subsidiaries {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -75,12 +75,12 @@ public class Subsidiaries {
         }
         Subsidiaries other = (Subsidiaries) o;
         return 
-            Objects.deepEquals(this.id, other.id);
+            Utils.enhancedDeepEquals(this.id, other.id);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
+        return Utils.enhancedHash(
             id);
     }
     
@@ -89,14 +89,16 @@ public class Subsidiaries {
         return Utils.toString(Subsidiaries.class,
                 "id", id);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The ID of the subsidiary.
@@ -115,10 +117,12 @@ public class Subsidiaries {
             this.id = id;
             return this;
         }
-        
+
         public Subsidiaries build() {
+
             return new Subsidiaries(
                 id);
         }
+
     }
 }

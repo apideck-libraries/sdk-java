@@ -17,12 +17,11 @@ import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
-public class Activity {
 
+public class Activity {
     /**
      * The unique identifier of the activity
      */
@@ -184,6 +183,7 @@ public class Activity {
     @JsonProperty("location")
     private JsonNullable<String> location;
 
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location_address")
     private Optional<? extends Address> locationAddress;
@@ -243,6 +243,7 @@ public class Activity {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deleted")
     private JsonNullable<Boolean> deleted;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_as")
@@ -331,6 +332,7 @@ public class Activity {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
     private Optional<? extends List<CustomField>> customFields;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attendees")
@@ -539,7 +541,24 @@ public class Activity {
     }
     
     public Activity() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -956,9 +975,10 @@ public class Activity {
         return (Optional<List<PassThroughBody>>) passThrough;
     }
 
-    public final static Builder builder() {
+    public static Builder builder() {
         return new Builder();
-    }    
+    }
+
 
     /**
      * The unique identifier of the activity
@@ -968,6 +988,7 @@ public class Activity {
         this.id = Optional.ofNullable(id);
         return this;
     }
+
 
     /**
      * The unique identifier of the activity
@@ -1293,6 +1314,7 @@ public class Activity {
         return this;
     }
 
+
     /**
      * The type of the activity
      */
@@ -1379,6 +1401,7 @@ public class Activity {
         this.locationAddress = Optional.ofNullable(locationAddress);
         return this;
     }
+
 
     public Activity withLocationAddress(Optional<? extends Address> locationAddress) {
         Utils.checkNotNull(locationAddress, "locationAddress");
@@ -1659,6 +1682,7 @@ public class Activity {
         return this;
     }
 
+
     /**
      * Whether the activity is recurrent or not
      */
@@ -1749,6 +1773,7 @@ public class Activity {
         return this;
     }
 
+
     /**
      * Custom fields of the activity
      */
@@ -1763,6 +1788,7 @@ public class Activity {
         this.attendees = Optional.ofNullable(attendees);
         return this;
     }
+
 
     public Activity withAttendees(Optional<? extends List<ActivityAttendee>> attendees) {
         Utils.checkNotNull(attendees, "attendees");
@@ -1869,6 +1895,7 @@ public class Activity {
         return this;
     }
 
+
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
@@ -1878,7 +1905,6 @@ public class Activity {
         return this;
     }
 
-    
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -1889,114 +1915,80 @@ public class Activity {
         }
         Activity other = (Activity) o;
         return 
-            Objects.deepEquals(this.id, other.id) &&
-            Objects.deepEquals(this.downstreamId, other.downstreamId) &&
-            Objects.deepEquals(this.activityDatetime, other.activityDatetime) &&
-            Objects.deepEquals(this.durationSeconds, other.durationSeconds) &&
-            Objects.deepEquals(this.userId, other.userId) &&
-            Objects.deepEquals(this.accountId, other.accountId) &&
-            Objects.deepEquals(this.contactId, other.contactId) &&
-            Objects.deepEquals(this.companyId, other.companyId) &&
-            Objects.deepEquals(this.opportunityId, other.opportunityId) &&
-            Objects.deepEquals(this.leadId, other.leadId) &&
-            Objects.deepEquals(this.ownerId, other.ownerId) &&
-            Objects.deepEquals(this.campaignId, other.campaignId) &&
-            Objects.deepEquals(this.caseId, other.caseId) &&
-            Objects.deepEquals(this.assetId, other.assetId) &&
-            Objects.deepEquals(this.contractId, other.contractId) &&
-            Objects.deepEquals(this.productId, other.productId) &&
-            Objects.deepEquals(this.solutionId, other.solutionId) &&
-            Objects.deepEquals(this.customObjectId, other.customObjectId) &&
-            Objects.deepEquals(this.type, other.type) &&
-            Objects.deepEquals(this.title, other.title) &&
-            Objects.deepEquals(this.description, other.description) &&
-            Objects.deepEquals(this.note, other.note) &&
-            Objects.deepEquals(this.location, other.location) &&
-            Objects.deepEquals(this.locationAddress, other.locationAddress) &&
-            Objects.deepEquals(this.allDayEvent, other.allDayEvent) &&
-            Objects.deepEquals(this.private_, other.private_) &&
-            Objects.deepEquals(this.groupEvent, other.groupEvent) &&
-            Objects.deepEquals(this.eventSubType, other.eventSubType) &&
-            Objects.deepEquals(this.groupEventType, other.groupEventType) &&
-            Objects.deepEquals(this.child, other.child) &&
-            Objects.deepEquals(this.archived, other.archived) &&
-            Objects.deepEquals(this.deleted, other.deleted) &&
-            Objects.deepEquals(this.showAs, other.showAs) &&
-            Objects.deepEquals(this.done, other.done) &&
-            Objects.deepEquals(this.startDatetime, other.startDatetime) &&
-            Objects.deepEquals(this.endDatetime, other.endDatetime) &&
-            Objects.deepEquals(this.durationMinutes, other.durationMinutes) &&
-            Objects.deepEquals(this.activityDate, other.activityDate) &&
-            Objects.deepEquals(this.endDate, other.endDate) &&
-            Objects.deepEquals(this.recurrent, other.recurrent) &&
-            Objects.deepEquals(this.reminderDatetime, other.reminderDatetime) &&
-            Objects.deepEquals(this.reminderSet, other.reminderSet) &&
-            Objects.deepEquals(this.videoConferenceUrl, other.videoConferenceUrl) &&
-            Objects.deepEquals(this.videoConferenceId, other.videoConferenceId) &&
-            Objects.deepEquals(this.customFields, other.customFields) &&
-            Objects.deepEquals(this.attendees, other.attendees) &&
-            Objects.deepEquals(this.customMappings, other.customMappings) &&
-            Objects.deepEquals(this.updatedBy, other.updatedBy) &&
-            Objects.deepEquals(this.createdBy, other.createdBy) &&
-            Objects.deepEquals(this.updatedAt, other.updatedAt) &&
-            Objects.deepEquals(this.createdAt, other.createdAt) &&
-            Objects.deepEquals(this.passThrough, other.passThrough);
+            Utils.enhancedDeepEquals(this.id, other.id) &&
+            Utils.enhancedDeepEquals(this.downstreamId, other.downstreamId) &&
+            Utils.enhancedDeepEquals(this.activityDatetime, other.activityDatetime) &&
+            Utils.enhancedDeepEquals(this.durationSeconds, other.durationSeconds) &&
+            Utils.enhancedDeepEquals(this.userId, other.userId) &&
+            Utils.enhancedDeepEquals(this.accountId, other.accountId) &&
+            Utils.enhancedDeepEquals(this.contactId, other.contactId) &&
+            Utils.enhancedDeepEquals(this.companyId, other.companyId) &&
+            Utils.enhancedDeepEquals(this.opportunityId, other.opportunityId) &&
+            Utils.enhancedDeepEquals(this.leadId, other.leadId) &&
+            Utils.enhancedDeepEquals(this.ownerId, other.ownerId) &&
+            Utils.enhancedDeepEquals(this.campaignId, other.campaignId) &&
+            Utils.enhancedDeepEquals(this.caseId, other.caseId) &&
+            Utils.enhancedDeepEquals(this.assetId, other.assetId) &&
+            Utils.enhancedDeepEquals(this.contractId, other.contractId) &&
+            Utils.enhancedDeepEquals(this.productId, other.productId) &&
+            Utils.enhancedDeepEquals(this.solutionId, other.solutionId) &&
+            Utils.enhancedDeepEquals(this.customObjectId, other.customObjectId) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
+            Utils.enhancedDeepEquals(this.title, other.title) &&
+            Utils.enhancedDeepEquals(this.description, other.description) &&
+            Utils.enhancedDeepEquals(this.note, other.note) &&
+            Utils.enhancedDeepEquals(this.location, other.location) &&
+            Utils.enhancedDeepEquals(this.locationAddress, other.locationAddress) &&
+            Utils.enhancedDeepEquals(this.allDayEvent, other.allDayEvent) &&
+            Utils.enhancedDeepEquals(this.private_, other.private_) &&
+            Utils.enhancedDeepEquals(this.groupEvent, other.groupEvent) &&
+            Utils.enhancedDeepEquals(this.eventSubType, other.eventSubType) &&
+            Utils.enhancedDeepEquals(this.groupEventType, other.groupEventType) &&
+            Utils.enhancedDeepEquals(this.child, other.child) &&
+            Utils.enhancedDeepEquals(this.archived, other.archived) &&
+            Utils.enhancedDeepEquals(this.deleted, other.deleted) &&
+            Utils.enhancedDeepEquals(this.showAs, other.showAs) &&
+            Utils.enhancedDeepEquals(this.done, other.done) &&
+            Utils.enhancedDeepEquals(this.startDatetime, other.startDatetime) &&
+            Utils.enhancedDeepEquals(this.endDatetime, other.endDatetime) &&
+            Utils.enhancedDeepEquals(this.durationMinutes, other.durationMinutes) &&
+            Utils.enhancedDeepEquals(this.activityDate, other.activityDate) &&
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.recurrent, other.recurrent) &&
+            Utils.enhancedDeepEquals(this.reminderDatetime, other.reminderDatetime) &&
+            Utils.enhancedDeepEquals(this.reminderSet, other.reminderSet) &&
+            Utils.enhancedDeepEquals(this.videoConferenceUrl, other.videoConferenceUrl) &&
+            Utils.enhancedDeepEquals(this.videoConferenceId, other.videoConferenceId) &&
+            Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
+            Utils.enhancedDeepEquals(this.attendees, other.attendees) &&
+            Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
+            Utils.enhancedDeepEquals(this.updatedBy, other.updatedBy) &&
+            Utils.enhancedDeepEquals(this.createdBy, other.createdBy) &&
+            Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
+            Utils.enhancedDeepEquals(this.createdAt, other.createdAt) &&
+            Utils.enhancedDeepEquals(this.passThrough, other.passThrough);
     }
     
     @Override
     public int hashCode() {
-        return Objects.hash(
-            id,
-            downstreamId,
-            activityDatetime,
-            durationSeconds,
-            userId,
-            accountId,
-            contactId,
-            companyId,
-            opportunityId,
-            leadId,
-            ownerId,
-            campaignId,
-            caseId,
-            assetId,
-            contractId,
-            productId,
-            solutionId,
-            customObjectId,
-            type,
-            title,
-            description,
-            note,
-            location,
-            locationAddress,
-            allDayEvent,
-            private_,
-            groupEvent,
-            eventSubType,
-            groupEventType,
-            child,
-            archived,
-            deleted,
-            showAs,
-            done,
-            startDatetime,
-            endDatetime,
-            durationMinutes,
-            activityDate,
-            endDate,
-            recurrent,
-            reminderDatetime,
-            reminderSet,
-            videoConferenceUrl,
-            videoConferenceId,
-            customFields,
-            attendees,
-            customMappings,
-            updatedBy,
-            createdBy,
-            updatedAt,
-            createdAt,
+        return Utils.enhancedHash(
+            id, downstreamId, activityDatetime,
+            durationSeconds, userId, accountId,
+            contactId, companyId, opportunityId,
+            leadId, ownerId, campaignId,
+            caseId, assetId, contractId,
+            productId, solutionId, customObjectId,
+            type, title, description,
+            note, location, locationAddress,
+            allDayEvent, private_, groupEvent,
+            eventSubType, groupEventType, child,
+            archived, deleted, showAs,
+            done, startDatetime, endDatetime,
+            durationMinutes, activityDate, endDate,
+            recurrent, reminderDatetime, reminderSet,
+            videoConferenceUrl, videoConferenceId, customFields,
+            attendees, customMappings, updatedBy,
+            createdBy, updatedAt, createdAt,
             passThrough);
     }
     
@@ -2056,116 +2048,118 @@ public class Activity {
                 "createdAt", createdAt,
                 "passThrough", passThrough);
     }
-    
+
+    @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
- 
+
         private Optional<String> id = Optional.empty();
- 
+
         private JsonNullable<String> downstreamId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> activityDatetime = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> durationSeconds = JsonNullable.undefined();
- 
+
         private JsonNullable<String> userId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> accountId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contactId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> companyId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> opportunityId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> leadId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> ownerId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> campaignId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> caseId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> assetId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> contractId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> productId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> solutionId = JsonNullable.undefined();
- 
+
         private JsonNullable<String> customObjectId = JsonNullable.undefined();
- 
+
         private Optional<? extends ActivityType> type = Optional.empty();
- 
+
         private JsonNullable<String> title = JsonNullable.undefined();
- 
+
         private JsonNullable<String> description = JsonNullable.undefined();
- 
+
         private JsonNullable<String> note = JsonNullable.undefined();
- 
+
         private JsonNullable<String> location = JsonNullable.undefined();
- 
+
         private Optional<? extends Address> locationAddress = Optional.empty();
- 
+
         private JsonNullable<Boolean> allDayEvent = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> private_ = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> groupEvent = JsonNullable.undefined();
- 
+
         private JsonNullable<String> eventSubType = JsonNullable.undefined();
- 
+
         private JsonNullable<String> groupEventType = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> child = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> archived = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> deleted = JsonNullable.undefined();
- 
+
         private JsonNullable<? extends ShowAs> showAs = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> done = JsonNullable.undefined();
- 
+
         private JsonNullable<String> startDatetime = JsonNullable.undefined();
- 
+
         private JsonNullable<String> endDatetime = JsonNullable.undefined();
- 
+
         private JsonNullable<Long> durationMinutes = JsonNullable.undefined();
- 
+
         private JsonNullable<String> activityDate = JsonNullable.undefined();
- 
+
         private JsonNullable<String> endDate = JsonNullable.undefined();
- 
+
         private Optional<Boolean> recurrent = Optional.empty();
- 
+
         private JsonNullable<String> reminderDatetime = JsonNullable.undefined();
- 
+
         private JsonNullable<Boolean> reminderSet = JsonNullable.undefined();
- 
+
         private JsonNullable<String> videoConferenceUrl = JsonNullable.undefined();
- 
+
         private JsonNullable<String> videoConferenceId = JsonNullable.undefined();
- 
+
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
- 
+
         private Optional<? extends List<ActivityAttendee>> attendees = Optional.empty();
- 
+
         private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdBy = JsonNullable.undefined();
- 
+
         private JsonNullable<String> updatedAt = JsonNullable.undefined();
- 
+
         private JsonNullable<String> createdAt = JsonNullable.undefined();
- 
+
         private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
-        
+
         private Builder() {
           // force use of static builder() method
         }
+
 
         /**
          * The unique identifier of the activity
@@ -2185,6 +2179,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The third-party API ID of original entity
          */
@@ -2202,6 +2197,7 @@ public class Activity {
             this.downstreamId = downstreamId;
             return this;
         }
+
 
         /**
          * The date and time of the activity
@@ -2221,6 +2217,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The duration of the activity in seconds
          */
@@ -2238,6 +2235,7 @@ public class Activity {
             this.durationSeconds = durationSeconds;
             return this;
         }
+
 
         /**
          * The user related to the activity
@@ -2257,6 +2255,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The account related to the activity
          */
@@ -2274,6 +2273,7 @@ public class Activity {
             this.accountId = accountId;
             return this;
         }
+
 
         /**
          * The contact related to the activity
@@ -2293,6 +2293,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The company related to the activity
          */
@@ -2310,6 +2311,7 @@ public class Activity {
             this.companyId = companyId;
             return this;
         }
+
 
         /**
          * The opportunity related to the activity
@@ -2329,6 +2331,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The lead related to the activity
          */
@@ -2346,6 +2349,7 @@ public class Activity {
             this.leadId = leadId;
             return this;
         }
+
 
         /**
          * The owner of the activity
@@ -2365,6 +2369,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The campaign related to the activity
          */
@@ -2382,6 +2387,7 @@ public class Activity {
             this.campaignId = campaignId;
             return this;
         }
+
 
         /**
          * The case related to the activity
@@ -2401,6 +2407,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The asset related to the activity
          */
@@ -2418,6 +2425,7 @@ public class Activity {
             this.assetId = assetId;
             return this;
         }
+
 
         /**
          * The contract related to the activity
@@ -2437,6 +2445,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The product related to the activity
          */
@@ -2454,6 +2463,7 @@ public class Activity {
             this.productId = productId;
             return this;
         }
+
 
         /**
          * The solution related to the activity
@@ -2473,6 +2483,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The custom object related to the activity
          */
@@ -2490,6 +2501,7 @@ public class Activity {
             this.customObjectId = customObjectId;
             return this;
         }
+
 
         /**
          * The type of the activity
@@ -2509,6 +2521,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The title of the activity
          */
@@ -2526,6 +2539,7 @@ public class Activity {
             this.title = title;
             return this;
         }
+
 
         /**
          * A description of the activity
@@ -2545,6 +2559,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * An internal note about the activity
          */
@@ -2562,6 +2577,7 @@ public class Activity {
             this.note = note;
             return this;
         }
+
 
         /**
          * The location of the activity
@@ -2581,6 +2597,7 @@ public class Activity {
             return this;
         }
 
+
         public Builder locationAddress(Address locationAddress) {
             Utils.checkNotNull(locationAddress, "locationAddress");
             this.locationAddress = Optional.ofNullable(locationAddress);
@@ -2592,6 +2609,7 @@ public class Activity {
             this.locationAddress = locationAddress;
             return this;
         }
+
 
         /**
          * Whether the Activity is an all day event or not
@@ -2611,6 +2629,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * Whether the Activity is private or not
          */
@@ -2628,6 +2647,7 @@ public class Activity {
             this.private_ = private_;
             return this;
         }
+
 
         /**
          * Whether the Activity is a group event or not
@@ -2647,6 +2667,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The sub type of the group event
          */
@@ -2664,6 +2685,7 @@ public class Activity {
             this.eventSubType = eventSubType;
             return this;
         }
+
 
         /**
          * The type of the group event
@@ -2683,6 +2705,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * Whether the activity is a child of another activity or not
          */
@@ -2700,6 +2723,7 @@ public class Activity {
             this.child = child;
             return this;
         }
+
 
         /**
          * Whether the activity is archived or not
@@ -2719,6 +2743,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * Whether the activity is deleted or not
          */
@@ -2737,6 +2762,7 @@ public class Activity {
             return this;
         }
 
+
         public Builder showAs(ShowAs showAs) {
             Utils.checkNotNull(showAs, "showAs");
             this.showAs = JsonNullable.of(showAs);
@@ -2748,6 +2774,7 @@ public class Activity {
             this.showAs = showAs;
             return this;
         }
+
 
         /**
          * Whether the Activity is done or not
@@ -2767,6 +2794,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The start date and time of the activity
          */
@@ -2784,6 +2812,7 @@ public class Activity {
             this.startDatetime = startDatetime;
             return this;
         }
+
 
         /**
          * The end date and time of the activity
@@ -2803,6 +2832,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The duration of the activity in minutes
          */
@@ -2820,6 +2850,7 @@ public class Activity {
             this.durationMinutes = durationMinutes;
             return this;
         }
+
 
         /**
          * The date of the activity
@@ -2839,6 +2870,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The end date of the activity
          */
@@ -2856,6 +2888,7 @@ public class Activity {
             this.endDate = endDate;
             return this;
         }
+
 
         /**
          * Whether the activity is recurrent or not
@@ -2875,6 +2908,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The date and time of the reminder
          */
@@ -2892,6 +2926,7 @@ public class Activity {
             this.reminderDatetime = reminderDatetime;
             return this;
         }
+
 
         /**
          * Whether the reminder is set or not
@@ -2911,6 +2946,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The URL of the video conference
          */
@@ -2928,6 +2964,7 @@ public class Activity {
             this.videoConferenceUrl = videoConferenceUrl;
             return this;
         }
+
 
         /**
          * The ID of the video conference
@@ -2947,6 +2984,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * Custom fields of the activity
          */
@@ -2965,6 +3003,7 @@ public class Activity {
             return this;
         }
 
+
         public Builder attendees(List<ActivityAttendee> attendees) {
             Utils.checkNotNull(attendees, "attendees");
             this.attendees = Optional.ofNullable(attendees);
@@ -2976,6 +3015,7 @@ public class Activity {
             this.attendees = attendees;
             return this;
         }
+
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
@@ -2995,6 +3035,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The user who last updated the activity
          */
@@ -3012,6 +3053,7 @@ public class Activity {
             this.updatedBy = updatedBy;
             return this;
         }
+
 
         /**
          * The user who created the activity
@@ -3031,6 +3073,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The date and time when the activity was last updated
          */
@@ -3048,6 +3091,7 @@ public class Activity {
             this.updatedAt = updatedAt;
             return this;
         }
+
 
         /**
          * The date and time when the activity was created
@@ -3067,6 +3111,7 @@ public class Activity {
             return this;
         }
 
+
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
@@ -3084,61 +3129,29 @@ public class Activity {
             this.passThrough = passThrough;
             return this;
         }
-        
+
         public Activity build() {
+
             return new Activity(
-                id,
-                downstreamId,
-                activityDatetime,
-                durationSeconds,
-                userId,
-                accountId,
-                contactId,
-                companyId,
-                opportunityId,
-                leadId,
-                ownerId,
-                campaignId,
-                caseId,
-                assetId,
-                contractId,
-                productId,
-                solutionId,
-                customObjectId,
-                type,
-                title,
-                description,
-                note,
-                location,
-                locationAddress,
-                allDayEvent,
-                private_,
-                groupEvent,
-                eventSubType,
-                groupEventType,
-                child,
-                archived,
-                deleted,
-                showAs,
-                done,
-                startDatetime,
-                endDatetime,
-                durationMinutes,
-                activityDate,
-                endDate,
-                recurrent,
-                reminderDatetime,
-                reminderSet,
-                videoConferenceUrl,
-                videoConferenceId,
-                customFields,
-                attendees,
-                customMappings,
-                updatedBy,
-                createdBy,
-                updatedAt,
-                createdAt,
+                id, downstreamId, activityDatetime,
+                durationSeconds, userId, accountId,
+                contactId, companyId, opportunityId,
+                leadId, ownerId, campaignId,
+                caseId, assetId, contractId,
+                productId, solutionId, customObjectId,
+                type, title, description,
+                note, location, locationAddress,
+                allDayEvent, private_, groupEvent,
+                eventSubType, groupEventType, child,
+                archived, deleted, showAs,
+                done, startDatetime, endDatetime,
+                durationMinutes, activityDate, endDate,
+                recurrent, reminderDatetime, reminderSet,
+                videoConferenceUrl, videoConferenceId, customFields,
+                attendees, customMappings, updatedBy,
+                createdBy, updatedAt, createdAt,
                 passThrough);
         }
+
     }
 }

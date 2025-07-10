@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -43,7 +43,7 @@ public class PersonInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gender")
-    private JsonNullable<? extends Gender> gender;
+    private JsonNullable<Gender> gender;
 
     /**
      * Initials of the person
@@ -68,90 +68,82 @@ public class PersonInput {
 
     @JsonCreator
     public PersonInput(
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("gender") JsonNullable<? extends Gender> gender,
-            @JsonProperty("initials") JsonNullable<String> initials,
-            @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
-            @JsonProperty("deceased_on") JsonNullable<LocalDate> deceasedOn) {
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(gender, "gender");
-        Utils.checkNotNull(initials, "initials");
-        Utils.checkNotNull(birthday, "birthday");
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.gender = gender;
-        this.initials = initials;
-        this.birthday = birthday;
-        this.deceasedOn = deceasedOn;
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("gender") @Nullable JsonNullable<Gender> gender,
+            @JsonProperty("initials") @Nullable JsonNullable<String> initials,
+            @JsonProperty("birthday") @Nullable JsonNullable<LocalDate> birthday,
+            @JsonProperty("deceased_on") @Nullable JsonNullable<LocalDate> deceasedOn) {
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.gender = Optional.ofNullable(gender)
+            .orElse(JsonNullable.undefined());
+        this.initials = Optional.ofNullable(initials)
+            .orElse(JsonNullable.undefined());
+        this.birthday = Optional.ofNullable(birthday)
+            .orElse(JsonNullable.undefined());
+        this.deceasedOn = Optional.ofNullable(deceasedOn)
+            .orElse(JsonNullable.undefined());
     }
     
     public PersonInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Middle name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Gender> gender() {
-        return (JsonNullable<Gender>) gender;
+        return this.gender;
     }
 
     /**
      * Initials of the person
      */
-    @JsonIgnore
     public JsonNullable<String> initials() {
-        return initials;
+        return this.initials;
     }
 
     /**
      * Date of birth
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
-        return birthday;
+        return this.birthday;
     }
 
     /**
      * Date of death
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> deceasedOn() {
-        return deceasedOn;
+        return this.deceasedOn;
     }
 
     public static Builder builder() {
@@ -162,128 +154,65 @@ public class PersonInput {
     /**
      * The first name of the person.
      */
-    public PersonInput withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public PersonInput withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public PersonInput withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public PersonInput withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public PersonInput withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public PersonInput withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Middle name of the person.
      */
-    public PersonInput withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public PersonInput withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the person.
-     */
-    public PersonInput withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    public PersonInput withGender(Gender gender) {
-        Utils.checkNotNull(gender, "gender");
+    public PersonInput withGender(@Nullable Gender gender) {
         this.gender = JsonNullable.of(gender);
         return this;
     }
 
-    /**
-     * The gender represents the gender identity of a person.
-     */
-    public PersonInput withGender(JsonNullable<? extends Gender> gender) {
-        Utils.checkNotNull(gender, "gender");
-        this.gender = gender;
-        return this;
-    }
 
     /**
      * Initials of the person
      */
-    public PersonInput withInitials(String initials) {
-        Utils.checkNotNull(initials, "initials");
+    public PersonInput withInitials(@Nullable String initials) {
         this.initials = JsonNullable.of(initials);
         return this;
     }
 
-    /**
-     * Initials of the person
-     */
-    public PersonInput withInitials(JsonNullable<String> initials) {
-        Utils.checkNotNull(initials, "initials");
-        this.initials = initials;
-        return this;
-    }
 
     /**
      * Date of birth
      */
-    public PersonInput withBirthday(LocalDate birthday) {
-        Utils.checkNotNull(birthday, "birthday");
+    public PersonInput withBirthday(@Nullable LocalDate birthday) {
         this.birthday = JsonNullable.of(birthday);
         return this;
     }
 
-    /**
-     * Date of birth
-     */
-    public PersonInput withBirthday(JsonNullable<LocalDate> birthday) {
-        Utils.checkNotNull(birthday, "birthday");
-        this.birthday = birthday;
-        return this;
-    }
 
     /**
      * Date of death
      */
-    public PersonInput withDeceasedOn(LocalDate deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
+    public PersonInput withDeceasedOn(@Nullable LocalDate deceasedOn) {
         this.deceasedOn = JsonNullable.of(deceasedOn);
         return this;
     }
 
-    /**
-     * Date of death
-     */
-    public PersonInput withDeceasedOn(JsonNullable<LocalDate> deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        this.deceasedOn = deceasedOn;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -327,159 +256,81 @@ public class PersonInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
+        private JsonNullable<Gender> gender;
 
-        private JsonNullable<String> initials = JsonNullable.undefined();
+        private JsonNullable<String> initials;
 
-        private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+        private JsonNullable<LocalDate> birthday;
 
-        private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
+        private JsonNullable<LocalDate> deceasedOn;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the person.
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the person.
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * The gender represents the gender identity of a person.
          */
-        public Builder gender(Gender gender) {
-            Utils.checkNotNull(gender, "gender");
+        public Builder gender(@Nullable Gender gender) {
             this.gender = JsonNullable.of(gender);
             return this;
         }
 
         /**
-         * The gender represents the gender identity of a person.
-         */
-        public Builder gender(JsonNullable<? extends Gender> gender) {
-            Utils.checkNotNull(gender, "gender");
-            this.gender = gender;
-            return this;
-        }
-
-
-        /**
          * Initials of the person
          */
-        public Builder initials(String initials) {
-            Utils.checkNotNull(initials, "initials");
+        public Builder initials(@Nullable String initials) {
             this.initials = JsonNullable.of(initials);
             return this;
         }
 
         /**
-         * Initials of the person
-         */
-        public Builder initials(JsonNullable<String> initials) {
-            Utils.checkNotNull(initials, "initials");
-            this.initials = initials;
-            return this;
-        }
-
-
-        /**
          * Date of birth
          */
-        public Builder birthday(LocalDate birthday) {
-            Utils.checkNotNull(birthday, "birthday");
+        public Builder birthday(@Nullable LocalDate birthday) {
             this.birthday = JsonNullable.of(birthday);
             return this;
         }
 
         /**
-         * Date of birth
-         */
-        public Builder birthday(JsonNullable<LocalDate> birthday) {
-            Utils.checkNotNull(birthday, "birthday");
-            this.birthday = birthday;
-            return this;
-        }
-
-
-        /**
          * Date of death
          */
-        public Builder deceasedOn(LocalDate deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
+        public Builder deceasedOn(@Nullable LocalDate deceasedOn) {
             this.deceasedOn = JsonNullable.of(deceasedOn);
             return this;
         }
 
-        /**
-         * Date of death
-         */
-        public Builder deceasedOn(JsonNullable<LocalDate> deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
-            this.deceasedOn = deceasedOn;
-            return this;
-        }
-
         public PersonInput build() {
-
             return new PersonInput(
                 firstName, lastName, middleName,
                 gender, initials, birthday,

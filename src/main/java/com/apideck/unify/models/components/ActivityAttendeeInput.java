@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -78,116 +78,106 @@ public class ActivityAttendeeInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends ActivityAttendeeStatus> status;
+    private JsonNullable<ActivityAttendeeStatus> status;
 
     @JsonCreator
     public ActivityAttendeeInput(
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("prefix") JsonNullable<String> prefix,
-            @JsonProperty("suffix") JsonNullable<String> suffix,
-            @JsonProperty("email_address") JsonNullable<String> emailAddress,
-            @JsonProperty("is_organizer") JsonNullable<Boolean> isOrganizer,
-            @JsonProperty("status") JsonNullable<? extends ActivityAttendeeStatus> status) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(prefix, "prefix");
-        Utils.checkNotNull(suffix, "suffix");
-        Utils.checkNotNull(emailAddress, "emailAddress");
-        Utils.checkNotNull(isOrganizer, "isOrganizer");
-        Utils.checkNotNull(status, "status");
-        this.name = name;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.prefix = prefix;
-        this.suffix = suffix;
-        this.emailAddress = emailAddress;
-        this.isOrganizer = isOrganizer;
-        this.status = status;
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("prefix") @Nullable JsonNullable<String> prefix,
+            @JsonProperty("suffix") @Nullable JsonNullable<String> suffix,
+            @JsonProperty("email_address") @Nullable JsonNullable<String> emailAddress,
+            @JsonProperty("is_organizer") @Nullable JsonNullable<Boolean> isOrganizer,
+            @JsonProperty("status") @Nullable JsonNullable<ActivityAttendeeStatus> status) {
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.prefix = Optional.ofNullable(prefix)
+            .orElse(JsonNullable.undefined());
+        this.suffix = Optional.ofNullable(suffix)
+            .orElse(JsonNullable.undefined());
+        this.emailAddress = Optional.ofNullable(emailAddress)
+            .orElse(JsonNullable.undefined());
+        this.isOrganizer = Optional.ofNullable(isOrganizer)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
     }
     
     public ActivityAttendeeInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * Full name of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * First name of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * Middle name of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * Last name of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Prefix of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> prefix() {
-        return prefix;
+        return this.prefix;
     }
 
     /**
      * Suffix of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> suffix() {
-        return suffix;
+        return this.suffix;
     }
 
     /**
      * Email address of the attendee
      */
-    @JsonIgnore
     public JsonNullable<String> emailAddress() {
-        return emailAddress;
+        return this.emailAddress;
     }
 
     /**
      * Whether the attendee is the organizer of the activity
      */
-    @JsonIgnore
     public JsonNullable<Boolean> isOrganizer() {
-        return isOrganizer;
+        return this.isOrganizer;
     }
 
     /**
      * Status of the attendee
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ActivityAttendeeStatus> status() {
-        return (JsonNullable<ActivityAttendeeStatus>) status;
+        return this.status;
     }
 
     public static Builder builder() {
@@ -198,164 +188,83 @@ public class ActivityAttendeeInput {
     /**
      * Full name of the attendee
      */
-    public ActivityAttendeeInput withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public ActivityAttendeeInput withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Full name of the attendee
-     */
-    public ActivityAttendeeInput withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * First name of the attendee
      */
-    public ActivityAttendeeInput withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public ActivityAttendeeInput withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * First name of the attendee
-     */
-    public ActivityAttendeeInput withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * Middle name of the attendee
      */
-    public ActivityAttendeeInput withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public ActivityAttendeeInput withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the attendee
-     */
-    public ActivityAttendeeInput withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * Last name of the attendee
      */
-    public ActivityAttendeeInput withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public ActivityAttendeeInput withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * Last name of the attendee
-     */
-    public ActivityAttendeeInput withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Prefix of the attendee
      */
-    public ActivityAttendeeInput withPrefix(String prefix) {
-        Utils.checkNotNull(prefix, "prefix");
+    public ActivityAttendeeInput withPrefix(@Nullable String prefix) {
         this.prefix = JsonNullable.of(prefix);
         return this;
     }
 
-    /**
-     * Prefix of the attendee
-     */
-    public ActivityAttendeeInput withPrefix(JsonNullable<String> prefix) {
-        Utils.checkNotNull(prefix, "prefix");
-        this.prefix = prefix;
-        return this;
-    }
 
     /**
      * Suffix of the attendee
      */
-    public ActivityAttendeeInput withSuffix(String suffix) {
-        Utils.checkNotNull(suffix, "suffix");
+    public ActivityAttendeeInput withSuffix(@Nullable String suffix) {
         this.suffix = JsonNullable.of(suffix);
         return this;
     }
 
-    /**
-     * Suffix of the attendee
-     */
-    public ActivityAttendeeInput withSuffix(JsonNullable<String> suffix) {
-        Utils.checkNotNull(suffix, "suffix");
-        this.suffix = suffix;
-        return this;
-    }
 
     /**
      * Email address of the attendee
      */
-    public ActivityAttendeeInput withEmailAddress(String emailAddress) {
-        Utils.checkNotNull(emailAddress, "emailAddress");
+    public ActivityAttendeeInput withEmailAddress(@Nullable String emailAddress) {
         this.emailAddress = JsonNullable.of(emailAddress);
         return this;
     }
 
-    /**
-     * Email address of the attendee
-     */
-    public ActivityAttendeeInput withEmailAddress(JsonNullable<String> emailAddress) {
-        Utils.checkNotNull(emailAddress, "emailAddress");
-        this.emailAddress = emailAddress;
-        return this;
-    }
 
     /**
      * Whether the attendee is the organizer of the activity
      */
-    public ActivityAttendeeInput withIsOrganizer(boolean isOrganizer) {
-        Utils.checkNotNull(isOrganizer, "isOrganizer");
+    public ActivityAttendeeInput withIsOrganizer(@Nullable Boolean isOrganizer) {
         this.isOrganizer = JsonNullable.of(isOrganizer);
         return this;
     }
 
-    /**
-     * Whether the attendee is the organizer of the activity
-     */
-    public ActivityAttendeeInput withIsOrganizer(JsonNullable<Boolean> isOrganizer) {
-        Utils.checkNotNull(isOrganizer, "isOrganizer");
-        this.isOrganizer = isOrganizer;
-        return this;
-    }
 
     /**
      * Status of the attendee
      */
-    public ActivityAttendeeInput withStatus(ActivityAttendeeStatus status) {
-        Utils.checkNotNull(status, "status");
+    public ActivityAttendeeInput withStatus(@Nullable ActivityAttendeeStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Status of the attendee
-     */
-    public ActivityAttendeeInput withStatus(JsonNullable<? extends ActivityAttendeeStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -403,201 +312,101 @@ public class ActivityAttendeeInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> prefix = JsonNullable.undefined();
+        private JsonNullable<String> prefix;
 
-        private JsonNullable<String> suffix = JsonNullable.undefined();
+        private JsonNullable<String> suffix;
 
-        private JsonNullable<String> emailAddress = JsonNullable.undefined();
+        private JsonNullable<String> emailAddress;
 
-        private JsonNullable<Boolean> isOrganizer = JsonNullable.undefined();
+        private JsonNullable<Boolean> isOrganizer;
 
-        private JsonNullable<? extends ActivityAttendeeStatus> status = JsonNullable.undefined();
+        private JsonNullable<ActivityAttendeeStatus> status;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Full name of the attendee
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Full name of the attendee
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * First name of the attendee
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * First name of the attendee
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the attendee
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the attendee
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * Last name of the attendee
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * Last name of the attendee
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Prefix of the attendee
          */
-        public Builder prefix(String prefix) {
-            Utils.checkNotNull(prefix, "prefix");
+        public Builder prefix(@Nullable String prefix) {
             this.prefix = JsonNullable.of(prefix);
             return this;
         }
 
         /**
-         * Prefix of the attendee
-         */
-        public Builder prefix(JsonNullable<String> prefix) {
-            Utils.checkNotNull(prefix, "prefix");
-            this.prefix = prefix;
-            return this;
-        }
-
-
-        /**
          * Suffix of the attendee
          */
-        public Builder suffix(String suffix) {
-            Utils.checkNotNull(suffix, "suffix");
+        public Builder suffix(@Nullable String suffix) {
             this.suffix = JsonNullable.of(suffix);
             return this;
         }
 
         /**
-         * Suffix of the attendee
-         */
-        public Builder suffix(JsonNullable<String> suffix) {
-            Utils.checkNotNull(suffix, "suffix");
-            this.suffix = suffix;
-            return this;
-        }
-
-
-        /**
          * Email address of the attendee
          */
-        public Builder emailAddress(String emailAddress) {
-            Utils.checkNotNull(emailAddress, "emailAddress");
+        public Builder emailAddress(@Nullable String emailAddress) {
             this.emailAddress = JsonNullable.of(emailAddress);
             return this;
         }
 
         /**
-         * Email address of the attendee
-         */
-        public Builder emailAddress(JsonNullable<String> emailAddress) {
-            Utils.checkNotNull(emailAddress, "emailAddress");
-            this.emailAddress = emailAddress;
-            return this;
-        }
-
-
-        /**
          * Whether the attendee is the organizer of the activity
          */
-        public Builder isOrganizer(boolean isOrganizer) {
-            Utils.checkNotNull(isOrganizer, "isOrganizer");
+        public Builder isOrganizer(@Nullable Boolean isOrganizer) {
             this.isOrganizer = JsonNullable.of(isOrganizer);
             return this;
         }
 
         /**
-         * Whether the attendee is the organizer of the activity
-         */
-        public Builder isOrganizer(JsonNullable<Boolean> isOrganizer) {
-            Utils.checkNotNull(isOrganizer, "isOrganizer");
-            this.isOrganizer = isOrganizer;
-            return this;
-        }
-
-
-        /**
          * Status of the attendee
          */
-        public Builder status(ActivityAttendeeStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ActivityAttendeeStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        /**
-         * Status of the attendee
-         */
-        public Builder status(JsonNullable<? extends ActivityAttendeeStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
         public ActivityAttendeeInput build() {
-
             return new ActivityAttendeeInput(
                 name, firstName, middleName,
                 lastName, prefix, suffix,

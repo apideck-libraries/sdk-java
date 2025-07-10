@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,43 +24,39 @@ public class ConnectorOauthScopes {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Label of the OAuth scope.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     @JsonCreator
     public ConnectorOauthScopes(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") Optional<String> label) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nullable String label) {
         this.id = id;
         this.label = label;
     }
     
     public ConnectorOauthScopes() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * ID of the OAuth scope.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Label of the OAuth scope.
      */
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
     public static Builder builder() {
@@ -71,40 +67,20 @@ public class ConnectorOauthScopes {
     /**
      * ID of the OAuth scope.
      */
-    public ConnectorOauthScopes withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the OAuth scope.
-     */
-    public ConnectorOauthScopes withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ConnectorOauthScopes withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Label of the OAuth scope.
-     */
-    public ConnectorOauthScopes withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
-
 
     /**
      * Label of the OAuth scope.
      */
-    public ConnectorOauthScopes withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public ConnectorOauthScopes withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -136,54 +112,31 @@ public class ConnectorOauthScopes {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the OAuth scope.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the OAuth scope.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Label of the OAuth scope.
          */
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        /**
-         * Label of the OAuth scope.
-         */
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
         public ConnectorOauthScopes build() {
-
             return new ConnectorOauthScopes(
                 id, label);
         }

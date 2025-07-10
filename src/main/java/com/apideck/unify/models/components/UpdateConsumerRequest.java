@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -21,26 +20,23 @@ public class UpdateConsumerRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends ConsumerMetadata> metadata;
+    private ConsumerMetadata metadata;
 
     @JsonCreator
     public UpdateConsumerRequest(
-            @JsonProperty("metadata") Optional<? extends ConsumerMetadata> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+            @JsonProperty("metadata") @Nullable ConsumerMetadata metadata) {
         this.metadata = metadata;
     }
     
     public UpdateConsumerRequest() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConsumerMetadata> metadata() {
-        return (Optional<ConsumerMetadata>) metadata;
+        return Optional.ofNullable(this.metadata);
     }
 
     public static Builder builder() {
@@ -51,21 +47,11 @@ public class UpdateConsumerRequest {
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
-    public UpdateConsumerRequest withMetadata(ConsumerMetadata metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
-        return this;
-    }
-
-
-    /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-     */
-    public UpdateConsumerRequest withMetadata(Optional<? extends ConsumerMetadata> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+    public UpdateConsumerRequest withMetadata(@Nullable ConsumerMetadata metadata) {
         this.metadata = metadata;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -95,33 +81,21 @@ public class UpdateConsumerRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
+        private ConsumerMetadata metadata;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
          */
-        public Builder metadata(ConsumerMetadata metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
-            return this;
-        }
-
-        /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-         */
-        public Builder metadata(Optional<? extends ConsumerMetadata> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
+        public Builder metadata(@Nullable ConsumerMetadata metadata) {
             this.metadata = metadata;
             return this;
         }
 
         public UpdateConsumerRequest build() {
-
             return new UpdateConsumerRequest(
                 metadata);
         }

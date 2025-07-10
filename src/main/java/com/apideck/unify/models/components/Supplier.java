@@ -5,15 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -113,27 +113,27 @@ public class Supplier {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
-    private Optional<? extends List<Website>> websites;
+    private List<Website> websites;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
-    private Optional<? extends List<BankAccount>> bankAccounts;
+    private List<BankAccount> bankAccounts;
 
     /**
      * Some notes about this supplier
@@ -145,7 +145,7 @@ public class Supplier {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRate> taxRate;
+    private LinkedTaxRate taxRate;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -157,19 +157,19 @@ public class Supplier {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccount> account;
+    private JsonNullable<LinkedLedgerAccount> account;
 
     /**
      * Supplier status
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends SupplierStatus> status;
+    private JsonNullable<SupplierStatus> status;
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -197,12 +197,12 @@ public class Supplier {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * The user who last updated the object.
@@ -244,411 +244,354 @@ public class Supplier {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     /**
      * The subsidiary the supplier belongs to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiary_id")
-    private Optional<String> subsidiaryId;
+    private String subsidiaryId;
 
     @JsonCreator
     public Supplier(
-            @JsonProperty("id") String id,
-            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("display_id") JsonNullable<String> displayId,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("supplier_category") JsonNullable<String> supplierCategory,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("suffix") JsonNullable<String> suffix,
-            @JsonProperty("individual") JsonNullable<Boolean> individual,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("websites") Optional<? extends List<Website>> websites,
-            @JsonProperty("bank_accounts") Optional<? extends List<BankAccount>> bankAccounts,
-            @JsonProperty("notes") JsonNullable<String> notes,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
-            @JsonProperty("tax_number") JsonNullable<String> taxNumber,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
-            @JsonProperty("status") JsonNullable<? extends SupplierStatus> status,
-            @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
-            @JsonProperty("terms") JsonNullable<String> terms,
-            @JsonProperty("channel") JsonNullable<String> channel,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiary_id") Optional<String> subsidiaryId) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(displayId, "displayId");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(supplierCategory, "supplierCategory");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(suffix, "suffix");
-        Utils.checkNotNull(individual, "individual");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(websites, "websites");
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        Utils.checkNotNull(notes, "notes");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(taxNumber, "taxNumber");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(account, "account");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        Utils.checkNotNull(terms, "terms");
-        Utils.checkNotNull(channel, "channel");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.id = id;
-        this.downstreamId = downstreamId;
-        this.displayId = displayId;
-        this.displayName = displayName;
-        this.companyName = companyName;
-        this.companyId = companyId;
-        this.supplierCategory = supplierCategory;
-        this.title = title;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.suffix = suffix;
-        this.individual = individual;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("downstream_id") @Nullable JsonNullable<String> downstreamId,
+            @JsonProperty("display_id") @Nullable JsonNullable<String> displayId,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("supplier_category") @Nullable JsonNullable<String> supplierCategory,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("suffix") @Nullable JsonNullable<String> suffix,
+            @JsonProperty("individual") @Nullable JsonNullable<Boolean> individual,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("websites") @Nullable List<Website> websites,
+            @JsonProperty("bank_accounts") @Nullable List<BankAccount> bankAccounts,
+            @JsonProperty("notes") @Nullable JsonNullable<String> notes,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRate taxRate,
+            @JsonProperty("tax_number") @Nullable JsonNullable<String> taxNumber,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("account") @Nullable JsonNullable<LinkedLedgerAccount> account,
+            @JsonProperty("status") @Nullable JsonNullable<SupplierStatus> status,
+            @JsonProperty("payment_method") @Nullable JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") @Nullable JsonNullable<String> terms,
+            @JsonProperty("channel") @Nullable JsonNullable<String> channel,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough,
+            @JsonProperty("subsidiary_id") @Nullable String subsidiaryId) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.downstreamId = Optional.ofNullable(downstreamId)
+            .orElse(JsonNullable.undefined());
+        this.displayId = Optional.ofNullable(displayId)
+            .orElse(JsonNullable.undefined());
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.supplierCategory = Optional.ofNullable(supplierCategory)
+            .orElse(JsonNullable.undefined());
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.suffix = Optional.ofNullable(suffix)
+            .orElse(JsonNullable.undefined());
+        this.individual = Optional.ofNullable(individual)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
         this.websites = websites;
         this.bankAccounts = bankAccounts;
-        this.notes = notes;
+        this.notes = Optional.ofNullable(notes)
+            .orElse(JsonNullable.undefined());
         this.taxRate = taxRate;
-        this.taxNumber = taxNumber;
-        this.currency = currency;
-        this.account = account;
-        this.status = status;
-        this.paymentMethod = paymentMethod;
-        this.terms = terms;
-        this.channel = channel;
-        this.customMappings = customMappings;
+        this.taxNumber = Optional.ofNullable(taxNumber)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.account = Optional.ofNullable(account)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethod = Optional.ofNullable(paymentMethod)
+            .orElse(JsonNullable.undefined());
+        this.terms = Optional.ofNullable(terms)
+            .orElse(JsonNullable.undefined());
+        this.channel = Optional.ofNullable(channel)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.rowVersion = rowVersion;
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
         this.subsidiaryId = subsidiaryId;
     }
     
     public Supplier(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The third-party API ID of original entity
      */
-    @JsonIgnore
     public JsonNullable<String> downstreamId() {
-        return downstreamId;
+        return this.downstreamId;
     }
 
     /**
      * Display ID
      */
-    @JsonIgnore
     public JsonNullable<String> displayId() {
-        return displayId;
+        return this.displayId;
     }
 
     /**
      * Display name
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
     /**
      * The name of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The category/type of the supplier
      */
-    @JsonIgnore
     public JsonNullable<String> supplierCategory() {
-        return supplierCategory;
+        return this.supplierCategory;
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * Middle name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
-    @JsonIgnore
     public JsonNullable<String> suffix() {
-        return suffix;
+        return this.suffix;
     }
 
     /**
      * Is this an individual or business supplier
      */
-    @JsonIgnore
     public JsonNullable<Boolean> individual() {
-        return individual;
+        return this.individual;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Website>> websites() {
-        return (Optional<List<Website>>) websites;
+        return Optional.ofNullable(this.websites);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<BankAccount>> bankAccounts() {
-        return (Optional<List<BankAccount>>) bankAccounts;
+        return Optional.ofNullable(this.bankAccounts);
     }
 
     /**
      * Some notes about this supplier
      */
-    @JsonIgnore
     public JsonNullable<String> notes() {
-        return notes;
+        return this.notes;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
-        return (Optional<LinkedTaxRate>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
-    @JsonIgnore
     public JsonNullable<String> taxNumber() {
-        return taxNumber;
+        return this.taxNumber;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccount> account() {
-        return (JsonNullable<LinkedLedgerAccount>) account;
+        return this.account;
     }
 
     /**
      * Supplier status
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<SupplierStatus> status() {
-        return (JsonNullable<SupplierStatus>) status;
+        return this.status;
     }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     /**
      * Terms of payment.
      */
-    @JsonIgnore
     public JsonNullable<String> terms() {
-        return terms;
+        return this.terms;
     }
 
     /**
      * The channel through which the transaction is processed.
      */
-    @JsonIgnore
     public JsonNullable<String> channel() {
-        return channel;
+        return this.channel;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The subsidiary the supplier belongs to.
      */
-    @JsonIgnore
     public Optional<String> subsidiaryId() {
-        return subsidiaryId;
+        return Optional.ofNullable(this.subsidiaryId);
     }
 
     public static Builder builder() {
@@ -659,590 +602,296 @@ public class Supplier {
     /**
      * A unique identifier for an object.
      */
-    public Supplier withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Supplier withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The third-party API ID of original entity
      */
-    public Supplier withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public Supplier withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = JsonNullable.of(downstreamId);
         return this;
     }
 
-    /**
-     * The third-party API ID of original entity
-     */
-    public Supplier withDownstreamId(JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = downstreamId;
-        return this;
-    }
 
     /**
      * Display ID
      */
-    public Supplier withDisplayId(String displayId) {
-        Utils.checkNotNull(displayId, "displayId");
+    public Supplier withDisplayId(@Nullable String displayId) {
         this.displayId = JsonNullable.of(displayId);
         return this;
     }
 
-    /**
-     * Display ID
-     */
-    public Supplier withDisplayId(JsonNullable<String> displayId) {
-        Utils.checkNotNull(displayId, "displayId");
-        this.displayId = displayId;
-        return this;
-    }
 
     /**
      * Display name
      */
-    public Supplier withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public Supplier withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * Display name
-     */
-    public Supplier withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
     /**
      * The name of the company.
      */
-    public Supplier withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public Supplier withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company.
-     */
-    public Supplier withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    public Supplier withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public Supplier withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company or subsidiary id the transaction belongs to
-     */
-    public Supplier withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The category/type of the supplier
      */
-    public Supplier withSupplierCategory(String supplierCategory) {
-        Utils.checkNotNull(supplierCategory, "supplierCategory");
+    public Supplier withSupplierCategory(@Nullable String supplierCategory) {
         this.supplierCategory = JsonNullable.of(supplierCategory);
         return this;
     }
 
-    /**
-     * The category/type of the supplier
-     */
-    public Supplier withSupplierCategory(JsonNullable<String> supplierCategory) {
-        Utils.checkNotNull(supplierCategory, "supplierCategory");
-        this.supplierCategory = supplierCategory;
-        return this;
-    }
 
     /**
      * The job title of the person.
      */
-    public Supplier withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public Supplier withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public Supplier withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public Supplier withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public Supplier withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public Supplier withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * Middle name of the person.
      */
-    public Supplier withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public Supplier withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the person.
-     */
-    public Supplier withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public Supplier withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public Supplier withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public Supplier withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
-    public Supplier withSuffix(String suffix) {
-        Utils.checkNotNull(suffix, "suffix");
+    public Supplier withSuffix(@Nullable String suffix) {
         this.suffix = JsonNullable.of(suffix);
         return this;
     }
 
-    public Supplier withSuffix(JsonNullable<String> suffix) {
-        Utils.checkNotNull(suffix, "suffix");
-        this.suffix = suffix;
-        return this;
-    }
 
     /**
      * Is this an individual or business supplier
      */
-    public Supplier withIndividual(boolean individual) {
-        Utils.checkNotNull(individual, "individual");
+    public Supplier withIndividual(@Nullable Boolean individual) {
         this.individual = JsonNullable.of(individual);
         return this;
     }
 
-    /**
-     * Is this an individual or business supplier
-     */
-    public Supplier withIndividual(JsonNullable<Boolean> individual) {
-        Utils.checkNotNull(individual, "individual");
-        this.individual = individual;
-        return this;
-    }
 
-    public Supplier withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public Supplier withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public Supplier withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public Supplier withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public Supplier withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public Supplier withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public Supplier withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public Supplier withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public Supplier withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public Supplier withWebsites(List<Website> websites) {
-        Utils.checkNotNull(websites, "websites");
-        this.websites = Optional.ofNullable(websites);
-        return this;
-    }
 
-
-    public Supplier withWebsites(Optional<? extends List<Website>> websites) {
-        Utils.checkNotNull(websites, "websites");
+    public Supplier withWebsites(@Nullable List<Website> websites) {
         this.websites = websites;
         return this;
     }
 
-    public Supplier withBankAccounts(List<BankAccount> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        this.bankAccounts = Optional.ofNullable(bankAccounts);
-        return this;
-    }
 
-
-    public Supplier withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
+    public Supplier withBankAccounts(@Nullable List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
         return this;
     }
 
+
     /**
      * Some notes about this supplier
      */
-    public Supplier withNotes(String notes) {
-        Utils.checkNotNull(notes, "notes");
+    public Supplier withNotes(@Nullable String notes) {
         this.notes = JsonNullable.of(notes);
         return this;
     }
 
-    /**
-     * Some notes about this supplier
-     */
-    public Supplier withNotes(JsonNullable<String> notes) {
-        Utils.checkNotNull(notes, "notes");
-        this.notes = notes;
-        return this;
-    }
 
-    public Supplier withTaxRate(LinkedTaxRate taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
-        return this;
-    }
-
-
-    public Supplier withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public Supplier withTaxRate(@Nullable LinkedTaxRate taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
-    public Supplier withTaxNumber(String taxNumber) {
-        Utils.checkNotNull(taxNumber, "taxNumber");
+
+    public Supplier withTaxNumber(@Nullable String taxNumber) {
         this.taxNumber = JsonNullable.of(taxNumber);
         return this;
     }
 
-    public Supplier withTaxNumber(JsonNullable<String> taxNumber) {
-        Utils.checkNotNull(taxNumber, "taxNumber");
-        this.taxNumber = taxNumber;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public Supplier withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public Supplier withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public Supplier withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
-    public Supplier withAccount(LinkedLedgerAccount account) {
-        Utils.checkNotNull(account, "account");
+    public Supplier withAccount(@Nullable LinkedLedgerAccount account) {
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public Supplier withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
-        Utils.checkNotNull(account, "account");
-        this.account = account;
-        return this;
-    }
 
     /**
      * Supplier status
      */
-    public Supplier withStatus(SupplierStatus status) {
-        Utils.checkNotNull(status, "status");
+    public Supplier withStatus(@Nullable SupplierStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Supplier status
-     */
-    public Supplier withStatus(JsonNullable<? extends SupplierStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    public Supplier withPaymentMethod(String paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
+    public Supplier withPaymentMethod(@Nullable String paymentMethod) {
         this.paymentMethod = JsonNullable.of(paymentMethod);
         return this;
     }
 
-    /**
-     * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-     */
-    public Supplier withPaymentMethod(JsonNullable<String> paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        this.paymentMethod = paymentMethod;
-        return this;
-    }
 
     /**
      * Terms of payment.
      */
-    public Supplier withTerms(String terms) {
-        Utils.checkNotNull(terms, "terms");
+    public Supplier withTerms(@Nullable String terms) {
         this.terms = JsonNullable.of(terms);
         return this;
     }
 
-    /**
-     * Terms of payment.
-     */
-    public Supplier withTerms(JsonNullable<String> terms) {
-        Utils.checkNotNull(terms, "terms");
-        this.terms = terms;
-        return this;
-    }
 
     /**
      * The channel through which the transaction is processed.
      */
-    public Supplier withChannel(String channel) {
-        Utils.checkNotNull(channel, "channel");
+    public Supplier withChannel(@Nullable String channel) {
         this.channel = JsonNullable.of(channel);
         return this;
     }
 
-    /**
-     * The channel through which the transaction is processed.
-     */
-    public Supplier withChannel(JsonNullable<String> channel) {
-        Utils.checkNotNull(channel, "channel");
-        this.channel = channel;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Supplier withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Supplier withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Supplier withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
-    public Supplier withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public Supplier withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public Supplier withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * The user who last updated the object.
      */
-    public Supplier withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Supplier withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Supplier withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Supplier withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Supplier withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Supplier withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Supplier withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Supplier withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Supplier withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Supplier withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Supplier withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Supplier withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public Supplier withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public Supplier withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public Supplier withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Supplier withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Supplier withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Supplier withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
-    /**
-     * The subsidiary the supplier belongs to.
-     */
-    public Supplier withSubsidiaryId(String subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.subsidiaryId = Optional.ofNullable(subsidiaryId);
-        return this;
-    }
-
 
     /**
      * The subsidiary the supplier belongs to.
      */
-    public Supplier withSubsidiaryId(Optional<String> subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+    public Supplier withSubsidiaryId(@Nullable String subsidiaryId) {
         this.subsidiaryId = subsidiaryId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1355,697 +1004,339 @@ public class Supplier {
 
         private String id;
 
-        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+        private JsonNullable<String> downstreamId;
 
-        private JsonNullable<String> displayId = JsonNullable.undefined();
+        private JsonNullable<String> displayId;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> supplierCategory = JsonNullable.undefined();
+        private JsonNullable<String> supplierCategory;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> suffix = JsonNullable.undefined();
+        private JsonNullable<String> suffix;
 
-        private JsonNullable<Boolean> individual = JsonNullable.undefined();
+        private JsonNullable<Boolean> individual;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private Optional<? extends List<Website>> websites = Optional.empty();
+        private List<Website> websites;
 
-        private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
+        private List<BankAccount> bankAccounts;
 
-        private JsonNullable<String> notes = JsonNullable.undefined();
+        private JsonNullable<String> notes;
 
-        private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+        private LinkedTaxRate taxRate;
 
-        private JsonNullable<String> taxNumber = JsonNullable.undefined();
+        private JsonNullable<String> taxNumber;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccount> account;
 
-        private JsonNullable<? extends SupplierStatus> status = JsonNullable.undefined();
+        private JsonNullable<SupplierStatus> status;
 
-        private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethod;
 
-        private JsonNullable<String> terms = JsonNullable.undefined();
+        private JsonNullable<String> terms;
 
-        private JsonNullable<String> channel = JsonNullable.undefined();
+        private JsonNullable<String> channel;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
-        private Optional<String> subsidiaryId = Optional.empty();
+        private String subsidiaryId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The third-party API ID of original entity
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = JsonNullable.of(downstreamId);
             return this;
         }
 
         /**
-         * The third-party API ID of original entity
-         */
-        public Builder downstreamId(JsonNullable<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = downstreamId;
-            return this;
-        }
-
-
-        /**
          * Display ID
          */
-        public Builder displayId(String displayId) {
-            Utils.checkNotNull(displayId, "displayId");
+        public Builder displayId(@Nullable String displayId) {
             this.displayId = JsonNullable.of(displayId);
             return this;
         }
 
         /**
-         * Display ID
-         */
-        public Builder displayId(JsonNullable<String> displayId) {
-            Utils.checkNotNull(displayId, "displayId");
-            this.displayId = displayId;
-            return this;
-        }
-
-
-        /**
          * Display name
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
         /**
-         * Display name
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        /**
          * The name of the company.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * The company or subsidiary id the transaction belongs to
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The category/type of the supplier
          */
-        public Builder supplierCategory(String supplierCategory) {
-            Utils.checkNotNull(supplierCategory, "supplierCategory");
+        public Builder supplierCategory(@Nullable String supplierCategory) {
             this.supplierCategory = JsonNullable.of(supplierCategory);
             return this;
         }
 
         /**
-         * The category/type of the supplier
-         */
-        public Builder supplierCategory(JsonNullable<String> supplierCategory) {
-            Utils.checkNotNull(supplierCategory, "supplierCategory");
-            this.supplierCategory = supplierCategory;
-            return this;
-        }
-
-
-        /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the person.
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the person.
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
-        /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        public Builder suffix(String suffix) {
-            Utils.checkNotNull(suffix, "suffix");
+        public Builder suffix(@Nullable String suffix) {
             this.suffix = JsonNullable.of(suffix);
             return this;
         }
 
-        public Builder suffix(JsonNullable<String> suffix) {
-            Utils.checkNotNull(suffix, "suffix");
-            this.suffix = suffix;
-            return this;
-        }
-
-
         /**
          * Is this an individual or business supplier
          */
-        public Builder individual(boolean individual) {
-            Utils.checkNotNull(individual, "individual");
+        public Builder individual(@Nullable Boolean individual) {
             this.individual = JsonNullable.of(individual);
             return this;
         }
 
-        /**
-         * Is this an individual or business supplier
-         */
-        public Builder individual(JsonNullable<Boolean> individual) {
-            Utils.checkNotNull(individual, "individual");
-            this.individual = individual;
-            return this;
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder websites(List<Website> websites) {
-            Utils.checkNotNull(websites, "websites");
-            this.websites = Optional.ofNullable(websites);
-            return this;
-        }
-
-        public Builder websites(Optional<? extends List<Website>> websites) {
-            Utils.checkNotNull(websites, "websites");
+        public Builder websites(@Nullable List<Website> websites) {
             this.websites = websites;
             return this;
         }
 
-
-        public Builder bankAccounts(List<BankAccount> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
-            this.bankAccounts = Optional.ofNullable(bankAccounts);
-            return this;
-        }
-
-        public Builder bankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
+        public Builder bankAccounts(@Nullable List<BankAccount> bankAccounts) {
             this.bankAccounts = bankAccounts;
             return this;
         }
 
-
         /**
          * Some notes about this supplier
          */
-        public Builder notes(String notes) {
-            Utils.checkNotNull(notes, "notes");
+        public Builder notes(@Nullable String notes) {
             this.notes = JsonNullable.of(notes);
             return this;
         }
 
-        /**
-         * Some notes about this supplier
-         */
-        public Builder notes(JsonNullable<String> notes) {
-            Utils.checkNotNull(notes, "notes");
-            this.notes = notes;
-            return this;
-        }
-
-
-        public Builder taxRate(LinkedTaxRate taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRate taxRate) {
             this.taxRate = taxRate;
             return this;
         }
 
-
-        public Builder taxNumber(String taxNumber) {
-            Utils.checkNotNull(taxNumber, "taxNumber");
+        public Builder taxNumber(@Nullable String taxNumber) {
             this.taxNumber = JsonNullable.of(taxNumber);
             return this;
         }
 
-        public Builder taxNumber(JsonNullable<String> taxNumber) {
-            Utils.checkNotNull(taxNumber, "taxNumber");
-            this.taxNumber = taxNumber;
-            return this;
-        }
-
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
-        /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        public Builder account(LinkedLedgerAccount account) {
-            Utils.checkNotNull(account, "account");
+        public Builder account(@Nullable LinkedLedgerAccount account) {
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
-            Utils.checkNotNull(account, "account");
-            this.account = account;
-            return this;
-        }
-
-
         /**
          * Supplier status
          */
-        public Builder status(SupplierStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable SupplierStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * Supplier status
-         */
-        public Builder status(JsonNullable<? extends SupplierStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
-        public Builder paymentMethod(String paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
+        public Builder paymentMethod(@Nullable String paymentMethod) {
             this.paymentMethod = JsonNullable.of(paymentMethod);
             return this;
         }
 
         /**
-         * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-         */
-        public Builder paymentMethod(JsonNullable<String> paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
-            this.paymentMethod = paymentMethod;
-            return this;
-        }
-
-
-        /**
          * Terms of payment.
          */
-        public Builder terms(String terms) {
-            Utils.checkNotNull(terms, "terms");
+        public Builder terms(@Nullable String terms) {
             this.terms = JsonNullable.of(terms);
             return this;
         }
 
         /**
-         * Terms of payment.
-         */
-        public Builder terms(JsonNullable<String> terms) {
-            Utils.checkNotNull(terms, "terms");
-            this.terms = terms;
-            return this;
-        }
-
-
-        /**
          * The channel through which the transaction is processed.
          */
-        public Builder channel(String channel) {
-            Utils.checkNotNull(channel, "channel");
+        public Builder channel(@Nullable String channel) {
             this.channel = JsonNullable.of(channel);
             return this;
         }
 
         /**
-         * The channel through which the transaction is processed.
-         */
-        public Builder channel(JsonNullable<String> channel) {
-            Utils.checkNotNull(channel, "channel");
-            this.channel = channel;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
-        /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The subsidiary the supplier belongs to.
          */
-        public Builder subsidiaryId(String subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-            this.subsidiaryId = Optional.ofNullable(subsidiaryId);
-            return this;
-        }
-
-        /**
-         * The subsidiary the supplier belongs to.
-         */
-        public Builder subsidiaryId(Optional<String> subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        public Builder subsidiaryId(@Nullable String subsidiaryId) {
             this.subsidiaryId = subsidiaryId;
             return this;
         }
 
         public Supplier build() {
-
             return new Supplier(
                 id, downstreamId, displayId,
                 displayName, companyName, companyId,

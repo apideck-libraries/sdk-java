@@ -10,62 +10,54 @@ import com.apideck.unify.operations.FileStorageUploadSessionsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class FileStorageUploadSessionsAddRequestBuilder {
-
-    private FileStorageUploadSessionsAddRequest request;
-    private Optional<String> serverURL = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private FileStorageUploadSessionsAddRequest request;
+    private String serverURL;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public FileStorageUploadSessionsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public FileStorageUploadSessionsAddRequestBuilder request(FileStorageUploadSessionsAddRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
-    public FileStorageUploadSessionsAddRequestBuilder serverURL(String serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
-        this.serverURL = Optional.of(serverURL);
+    public FileStorageUploadSessionsAddRequestBuilder retryConfig(RetryConfig retryConfig) {
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public FileStorageUploadSessionsAddRequestBuilder serverURL(Optional<String> serverURL) {
-        Utils.checkNotNull(serverURL, "serverURL");
+    public FileStorageUploadSessionsAddRequestBuilder request(@Nonnull FileStorageUploadSessionsAddRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
+        return this;
+    }
+
+    public FileStorageUploadSessionsAddRequestBuilder serverURL(@Nullable String serverURL) {
         this.serverURL = serverURL;
         return this;
     }
-                
-    public FileStorageUploadSessionsAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
-        return this;
-    }
 
-    public FileStorageUploadSessionsAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private FileStorageUploadSessionsAddRequest _buildRequest() {
+        return this.request;
     }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public FileStorageUploadSessionsAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
               = new FileStorageUploadSessionsAddOperation(
                 sdkConfiguration,
                 serverURL,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

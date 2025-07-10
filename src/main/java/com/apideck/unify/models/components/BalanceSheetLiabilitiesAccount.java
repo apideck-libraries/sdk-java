@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
@@ -27,48 +26,43 @@ public class BalanceSheetLiabilitiesAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_id")
-    private Optional<String> accountId;
+    private String accountId;
 
     /**
      * The account code of the account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private Optional<String> code;
+    private String code;
 
     /**
      * The name of the account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The amount or value of the item
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<Double> value;
+    private Double value;
 
     /**
      * A list of balance sheet accounts
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("items")
-    private Optional<? extends Object> items;
+    private Object items;
 
     @JsonCreator
     public BalanceSheetLiabilitiesAccount(
-            @JsonProperty("account_id") Optional<String> accountId,
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("value") Optional<Double> value,
-            @JsonProperty("items") Optional<? extends Object> items) {
-        Utils.checkNotNull(accountId, "accountId");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(items, "items");
+            @JsonProperty("account_id") @Nullable String accountId,
+            @JsonProperty("code") @Nullable String code,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("value") @Nullable Double value,
+            @JsonProperty("items") @Nullable Object items) {
         this.accountId = accountId;
         this.code = code;
         this.name = name;
@@ -77,49 +71,43 @@ public class BalanceSheetLiabilitiesAccount {
     }
     
     public BalanceSheetLiabilitiesAccount() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * The unique identifier for the account.
      */
-    @JsonIgnore
     public Optional<String> accountId() {
-        return accountId;
+        return Optional.ofNullable(this.accountId);
     }
 
     /**
      * The account code of the account
      */
-    @JsonIgnore
     public Optional<String> code() {
-        return code;
+        return Optional.ofNullable(this.code);
     }
 
     /**
      * The name of the account.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The amount or value of the item
      */
-    @JsonIgnore
     public Optional<Double> value() {
-        return value;
+        return Optional.ofNullable(this.value);
     }
 
     /**
      * A list of balance sheet accounts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Object> items() {
-        return (Optional<Object>) items;
+        return Optional.ofNullable(this.items);
     }
 
     public static Builder builder() {
@@ -130,97 +118,47 @@ public class BalanceSheetLiabilitiesAccount {
     /**
      * The unique identifier for the account.
      */
-    public BalanceSheetLiabilitiesAccount withAccountId(String accountId) {
-        Utils.checkNotNull(accountId, "accountId");
-        this.accountId = Optional.ofNullable(accountId);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the account.
-     */
-    public BalanceSheetLiabilitiesAccount withAccountId(Optional<String> accountId) {
-        Utils.checkNotNull(accountId, "accountId");
+    public BalanceSheetLiabilitiesAccount withAccountId(@Nullable String accountId) {
         this.accountId = accountId;
         return this;
     }
 
-    /**
-     * The account code of the account
-     */
-    public BalanceSheetLiabilitiesAccount withCode(String code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
 
     /**
      * The account code of the account
      */
-    public BalanceSheetLiabilitiesAccount withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
+    public BalanceSheetLiabilitiesAccount withCode(@Nullable String code) {
         this.code = code;
         return this;
     }
 
-    /**
-     * The name of the account.
-     */
-    public BalanceSheetLiabilitiesAccount withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * The name of the account.
      */
-    public BalanceSheetLiabilitiesAccount withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public BalanceSheetLiabilitiesAccount withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * The amount or value of the item
-     */
-    public BalanceSheetLiabilitiesAccount withValue(double value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
-
 
     /**
      * The amount or value of the item
      */
-    public BalanceSheetLiabilitiesAccount withValue(Optional<Double> value) {
-        Utils.checkNotNull(value, "value");
+    public BalanceSheetLiabilitiesAccount withValue(@Nullable Double value) {
         this.value = value;
         return this;
     }
 
-    /**
-     * A list of balance sheet accounts
-     */
-    public BalanceSheetLiabilitiesAccount withItems(Object items) {
-        Utils.checkNotNull(items, "items");
-        this.items = Optional.ofNullable(items);
-        return this;
-    }
-
 
     /**
      * A list of balance sheet accounts
      */
-    public BalanceSheetLiabilitiesAccount withItems(Optional<? extends Object> items) {
-        Utils.checkNotNull(items, "items");
+    public BalanceSheetLiabilitiesAccount withItems(@Nullable Object items) {
         this.items = items;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -259,117 +197,61 @@ public class BalanceSheetLiabilitiesAccount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> accountId = Optional.empty();
+        private String accountId;
 
-        private Optional<String> code = Optional.empty();
+        private String code;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<Double> value = Optional.empty();
+        private Double value;
 
-        private Optional<? extends Object> items = Optional.empty();
+        private Object items;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier for the account.
          */
-        public Builder accountId(String accountId) {
-            Utils.checkNotNull(accountId, "accountId");
-            this.accountId = Optional.ofNullable(accountId);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the account.
-         */
-        public Builder accountId(Optional<String> accountId) {
-            Utils.checkNotNull(accountId, "accountId");
+        public Builder accountId(@Nullable String accountId) {
             this.accountId = accountId;
             return this;
         }
 
-
         /**
          * The account code of the account
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
-            this.code = Optional.ofNullable(code);
-            return this;
-        }
-
-        /**
-         * The account code of the account
-         */
-        public Builder code(Optional<String> code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = code;
             return this;
         }
 
-
         /**
          * The name of the account.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the account.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The amount or value of the item
          */
-        public Builder value(double value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        /**
-         * The amount or value of the item
-         */
-        public Builder value(Optional<Double> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable Double value) {
             this.value = value;
             return this;
         }
 
-
         /**
          * A list of balance sheet accounts
          */
-        public Builder items(Object items) {
-            Utils.checkNotNull(items, "items");
-            this.items = Optional.ofNullable(items);
-            return this;
-        }
-
-        /**
-         * A list of balance sheet accounts
-         */
-        public Builder items(Optional<? extends Object> items) {
-            Utils.checkNotNull(items, "items");
+        public Builder items(@Nullable Object items) {
             this.items = items;
             return this;
         }
 
         public BalanceSheetLiabilitiesAccount build() {
-
             return new BalanceSheetLiabilitiesAccount(
                 accountId, code, name,
                 value, items);

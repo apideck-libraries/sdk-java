@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -20,25 +20,23 @@ public class CustomMappingInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<String> value;
+    private String value;
 
     @JsonCreator
     public CustomMappingInput(
-            @JsonProperty("value") Optional<String> value) {
-        Utils.checkNotNull(value, "value");
+            @JsonProperty("value") @Nullable String value) {
         this.value = value;
     }
     
     public CustomMappingInput() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Target Field Mapping value
      */
-    @JsonIgnore
     public Optional<String> value() {
-        return value;
+        return Optional.ofNullable(this.value);
     }
 
     public static Builder builder() {
@@ -49,21 +47,11 @@ public class CustomMappingInput {
     /**
      * Target Field Mapping value
      */
-    public CustomMappingInput withValue(String value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
-
-
-    /**
-     * Target Field Mapping value
-     */
-    public CustomMappingInput withValue(Optional<String> value) {
-        Utils.checkNotNull(value, "value");
+    public CustomMappingInput withValue(@Nullable String value) {
         this.value = value;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -93,33 +81,21 @@ public class CustomMappingInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> value = Optional.empty();
+        private String value;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Target Field Mapping value
          */
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        /**
-         * Target Field Mapping value
-         */
-        public Builder value(Optional<String> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = value;
             return this;
         }
 
         public CustomMappingInput build() {
-
             return new CustomMappingInput(
                 value);
         }

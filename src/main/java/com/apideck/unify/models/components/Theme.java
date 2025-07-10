@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,75 +24,67 @@ public class Theme {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("favicon")
-    private Optional<String> favicon;
+    private String favicon;
 
     /**
      * The URL to the logo to use for Vault.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logo")
-    private Optional<String> logo;
+    private String logo;
 
     /**
      * The primary color to use for Vault.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("primary_color")
-    private Optional<String> primaryColor;
+    private String primaryColor;
 
     /**
      * The background color to use for the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sidepanel_background_color")
-    private Optional<String> sidepanelBackgroundColor;
+    private String sidepanelBackgroundColor;
 
     /**
      * The text color to use for the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sidepanel_text_color")
-    private Optional<String> sidepanelTextColor;
+    private String sidepanelTextColor;
 
     /**
      * The name that will be shown in the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vault_name")
-    private Optional<String> vaultName;
+    private String vaultName;
 
     /**
      * The URL to the privacy policy that will be shown in the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("privacy_url")
-    private Optional<String> privacyUrl;
+    private String privacyUrl;
 
     /**
      * The URL to the terms and conditions that will be shown in the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("terms_url")
-    private Optional<String> termsUrl;
+    private String termsUrl;
 
     @JsonCreator
     public Theme(
-            @JsonProperty("favicon") Optional<String> favicon,
-            @JsonProperty("logo") Optional<String> logo,
-            @JsonProperty("primary_color") Optional<String> primaryColor,
-            @JsonProperty("sidepanel_background_color") Optional<String> sidepanelBackgroundColor,
-            @JsonProperty("sidepanel_text_color") Optional<String> sidepanelTextColor,
-            @JsonProperty("vault_name") Optional<String> vaultName,
-            @JsonProperty("privacy_url") Optional<String> privacyUrl,
-            @JsonProperty("terms_url") Optional<String> termsUrl) {
-        Utils.checkNotNull(favicon, "favicon");
-        Utils.checkNotNull(logo, "logo");
-        Utils.checkNotNull(primaryColor, "primaryColor");
-        Utils.checkNotNull(sidepanelBackgroundColor, "sidepanelBackgroundColor");
-        Utils.checkNotNull(sidepanelTextColor, "sidepanelTextColor");
-        Utils.checkNotNull(vaultName, "vaultName");
-        Utils.checkNotNull(privacyUrl, "privacyUrl");
-        Utils.checkNotNull(termsUrl, "termsUrl");
+            @JsonProperty("favicon") @Nullable String favicon,
+            @JsonProperty("logo") @Nullable String logo,
+            @JsonProperty("primary_color") @Nullable String primaryColor,
+            @JsonProperty("sidepanel_background_color") @Nullable String sidepanelBackgroundColor,
+            @JsonProperty("sidepanel_text_color") @Nullable String sidepanelTextColor,
+            @JsonProperty("vault_name") @Nullable String vaultName,
+            @JsonProperty("privacy_url") @Nullable String privacyUrl,
+            @JsonProperty("terms_url") @Nullable String termsUrl) {
         this.favicon = favicon;
         this.logo = logo;
         this.primaryColor = primaryColor;
@@ -104,73 +96,65 @@ public class Theme {
     }
     
     public Theme() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * The URL to the favicon to use for Vault.
      */
-    @JsonIgnore
     public Optional<String> favicon() {
-        return favicon;
+        return Optional.ofNullable(this.favicon);
     }
 
     /**
      * The URL to the logo to use for Vault.
      */
-    @JsonIgnore
     public Optional<String> logo() {
-        return logo;
+        return Optional.ofNullable(this.logo);
     }
 
     /**
      * The primary color to use for Vault.
      */
-    @JsonIgnore
     public Optional<String> primaryColor() {
-        return primaryColor;
+        return Optional.ofNullable(this.primaryColor);
     }
 
     /**
      * The background color to use for the sidebar.
      */
-    @JsonIgnore
     public Optional<String> sidepanelBackgroundColor() {
-        return sidepanelBackgroundColor;
+        return Optional.ofNullable(this.sidepanelBackgroundColor);
     }
 
     /**
      * The text color to use for the sidebar.
      */
-    @JsonIgnore
     public Optional<String> sidepanelTextColor() {
-        return sidepanelTextColor;
+        return Optional.ofNullable(this.sidepanelTextColor);
     }
 
     /**
      * The name that will be shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> vaultName() {
-        return vaultName;
+        return Optional.ofNullable(this.vaultName);
     }
 
     /**
      * The URL to the privacy policy that will be shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> privacyUrl() {
-        return privacyUrl;
+        return Optional.ofNullable(this.privacyUrl);
     }
 
     /**
      * The URL to the terms and conditions that will be shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> termsUrl() {
-        return termsUrl;
+        return Optional.ofNullable(this.termsUrl);
     }
 
     public static Builder builder() {
@@ -181,154 +165,74 @@ public class Theme {
     /**
      * The URL to the favicon to use for Vault.
      */
-    public Theme withFavicon(String favicon) {
-        Utils.checkNotNull(favicon, "favicon");
-        this.favicon = Optional.ofNullable(favicon);
-        return this;
-    }
-
-
-    /**
-     * The URL to the favicon to use for Vault.
-     */
-    public Theme withFavicon(Optional<String> favicon) {
-        Utils.checkNotNull(favicon, "favicon");
+    public Theme withFavicon(@Nullable String favicon) {
         this.favicon = favicon;
         return this;
     }
 
-    /**
-     * The URL to the logo to use for Vault.
-     */
-    public Theme withLogo(String logo) {
-        Utils.checkNotNull(logo, "logo");
-        this.logo = Optional.ofNullable(logo);
-        return this;
-    }
-
 
     /**
      * The URL to the logo to use for Vault.
      */
-    public Theme withLogo(Optional<String> logo) {
-        Utils.checkNotNull(logo, "logo");
+    public Theme withLogo(@Nullable String logo) {
         this.logo = logo;
         return this;
     }
 
-    /**
-     * The primary color to use for Vault.
-     */
-    public Theme withPrimaryColor(String primaryColor) {
-        Utils.checkNotNull(primaryColor, "primaryColor");
-        this.primaryColor = Optional.ofNullable(primaryColor);
-        return this;
-    }
-
 
     /**
      * The primary color to use for Vault.
      */
-    public Theme withPrimaryColor(Optional<String> primaryColor) {
-        Utils.checkNotNull(primaryColor, "primaryColor");
+    public Theme withPrimaryColor(@Nullable String primaryColor) {
         this.primaryColor = primaryColor;
         return this;
     }
 
-    /**
-     * The background color to use for the sidebar.
-     */
-    public Theme withSidepanelBackgroundColor(String sidepanelBackgroundColor) {
-        Utils.checkNotNull(sidepanelBackgroundColor, "sidepanelBackgroundColor");
-        this.sidepanelBackgroundColor = Optional.ofNullable(sidepanelBackgroundColor);
-        return this;
-    }
-
 
     /**
      * The background color to use for the sidebar.
      */
-    public Theme withSidepanelBackgroundColor(Optional<String> sidepanelBackgroundColor) {
-        Utils.checkNotNull(sidepanelBackgroundColor, "sidepanelBackgroundColor");
+    public Theme withSidepanelBackgroundColor(@Nullable String sidepanelBackgroundColor) {
         this.sidepanelBackgroundColor = sidepanelBackgroundColor;
         return this;
     }
 
-    /**
-     * The text color to use for the sidebar.
-     */
-    public Theme withSidepanelTextColor(String sidepanelTextColor) {
-        Utils.checkNotNull(sidepanelTextColor, "sidepanelTextColor");
-        this.sidepanelTextColor = Optional.ofNullable(sidepanelTextColor);
-        return this;
-    }
-
 
     /**
      * The text color to use for the sidebar.
      */
-    public Theme withSidepanelTextColor(Optional<String> sidepanelTextColor) {
-        Utils.checkNotNull(sidepanelTextColor, "sidepanelTextColor");
+    public Theme withSidepanelTextColor(@Nullable String sidepanelTextColor) {
         this.sidepanelTextColor = sidepanelTextColor;
         return this;
     }
 
-    /**
-     * The name that will be shown in the sidebar.
-     */
-    public Theme withVaultName(String vaultName) {
-        Utils.checkNotNull(vaultName, "vaultName");
-        this.vaultName = Optional.ofNullable(vaultName);
-        return this;
-    }
-
 
     /**
      * The name that will be shown in the sidebar.
      */
-    public Theme withVaultName(Optional<String> vaultName) {
-        Utils.checkNotNull(vaultName, "vaultName");
+    public Theme withVaultName(@Nullable String vaultName) {
         this.vaultName = vaultName;
         return this;
     }
 
-    /**
-     * The URL to the privacy policy that will be shown in the sidebar.
-     */
-    public Theme withPrivacyUrl(String privacyUrl) {
-        Utils.checkNotNull(privacyUrl, "privacyUrl");
-        this.privacyUrl = Optional.ofNullable(privacyUrl);
-        return this;
-    }
-
 
     /**
      * The URL to the privacy policy that will be shown in the sidebar.
      */
-    public Theme withPrivacyUrl(Optional<String> privacyUrl) {
-        Utils.checkNotNull(privacyUrl, "privacyUrl");
+    public Theme withPrivacyUrl(@Nullable String privacyUrl) {
         this.privacyUrl = privacyUrl;
         return this;
     }
 
-    /**
-     * The URL to the terms and conditions that will be shown in the sidebar.
-     */
-    public Theme withTermsUrl(String termsUrl) {
-        Utils.checkNotNull(termsUrl, "termsUrl");
-        this.termsUrl = Optional.ofNullable(termsUrl);
-        return this;
-    }
-
 
     /**
      * The URL to the terms and conditions that will be shown in the sidebar.
      */
-    public Theme withTermsUrl(Optional<String> termsUrl) {
-        Utils.checkNotNull(termsUrl, "termsUrl");
+    public Theme withTermsUrl(@Nullable String termsUrl) {
         this.termsUrl = termsUrl;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -374,180 +278,91 @@ public class Theme {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> favicon = Optional.empty();
+        private String favicon;
 
-        private Optional<String> logo = Optional.empty();
+        private String logo;
 
-        private Optional<String> primaryColor = Optional.empty();
+        private String primaryColor;
 
-        private Optional<String> sidepanelBackgroundColor = Optional.empty();
+        private String sidepanelBackgroundColor;
 
-        private Optional<String> sidepanelTextColor = Optional.empty();
+        private String sidepanelTextColor;
 
-        private Optional<String> vaultName = Optional.empty();
+        private String vaultName;
 
-        private Optional<String> privacyUrl = Optional.empty();
+        private String privacyUrl;
 
-        private Optional<String> termsUrl = Optional.empty();
+        private String termsUrl;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The URL to the favicon to use for Vault.
          */
-        public Builder favicon(String favicon) {
-            Utils.checkNotNull(favicon, "favicon");
-            this.favicon = Optional.ofNullable(favicon);
-            return this;
-        }
-
-        /**
-         * The URL to the favicon to use for Vault.
-         */
-        public Builder favicon(Optional<String> favicon) {
-            Utils.checkNotNull(favicon, "favicon");
+        public Builder favicon(@Nullable String favicon) {
             this.favicon = favicon;
             return this;
         }
 
-
         /**
          * The URL to the logo to use for Vault.
          */
-        public Builder logo(String logo) {
-            Utils.checkNotNull(logo, "logo");
-            this.logo = Optional.ofNullable(logo);
-            return this;
-        }
-
-        /**
-         * The URL to the logo to use for Vault.
-         */
-        public Builder logo(Optional<String> logo) {
-            Utils.checkNotNull(logo, "logo");
+        public Builder logo(@Nullable String logo) {
             this.logo = logo;
             return this;
         }
 
-
         /**
          * The primary color to use for Vault.
          */
-        public Builder primaryColor(String primaryColor) {
-            Utils.checkNotNull(primaryColor, "primaryColor");
-            this.primaryColor = Optional.ofNullable(primaryColor);
-            return this;
-        }
-
-        /**
-         * The primary color to use for Vault.
-         */
-        public Builder primaryColor(Optional<String> primaryColor) {
-            Utils.checkNotNull(primaryColor, "primaryColor");
+        public Builder primaryColor(@Nullable String primaryColor) {
             this.primaryColor = primaryColor;
             return this;
         }
 
-
         /**
          * The background color to use for the sidebar.
          */
-        public Builder sidepanelBackgroundColor(String sidepanelBackgroundColor) {
-            Utils.checkNotNull(sidepanelBackgroundColor, "sidepanelBackgroundColor");
-            this.sidepanelBackgroundColor = Optional.ofNullable(sidepanelBackgroundColor);
-            return this;
-        }
-
-        /**
-         * The background color to use for the sidebar.
-         */
-        public Builder sidepanelBackgroundColor(Optional<String> sidepanelBackgroundColor) {
-            Utils.checkNotNull(sidepanelBackgroundColor, "sidepanelBackgroundColor");
+        public Builder sidepanelBackgroundColor(@Nullable String sidepanelBackgroundColor) {
             this.sidepanelBackgroundColor = sidepanelBackgroundColor;
             return this;
         }
 
-
         /**
          * The text color to use for the sidebar.
          */
-        public Builder sidepanelTextColor(String sidepanelTextColor) {
-            Utils.checkNotNull(sidepanelTextColor, "sidepanelTextColor");
-            this.sidepanelTextColor = Optional.ofNullable(sidepanelTextColor);
-            return this;
-        }
-
-        /**
-         * The text color to use for the sidebar.
-         */
-        public Builder sidepanelTextColor(Optional<String> sidepanelTextColor) {
-            Utils.checkNotNull(sidepanelTextColor, "sidepanelTextColor");
+        public Builder sidepanelTextColor(@Nullable String sidepanelTextColor) {
             this.sidepanelTextColor = sidepanelTextColor;
             return this;
         }
 
-
         /**
          * The name that will be shown in the sidebar.
          */
-        public Builder vaultName(String vaultName) {
-            Utils.checkNotNull(vaultName, "vaultName");
-            this.vaultName = Optional.ofNullable(vaultName);
-            return this;
-        }
-
-        /**
-         * The name that will be shown in the sidebar.
-         */
-        public Builder vaultName(Optional<String> vaultName) {
-            Utils.checkNotNull(vaultName, "vaultName");
+        public Builder vaultName(@Nullable String vaultName) {
             this.vaultName = vaultName;
             return this;
         }
 
-
         /**
          * The URL to the privacy policy that will be shown in the sidebar.
          */
-        public Builder privacyUrl(String privacyUrl) {
-            Utils.checkNotNull(privacyUrl, "privacyUrl");
-            this.privacyUrl = Optional.ofNullable(privacyUrl);
-            return this;
-        }
-
-        /**
-         * The URL to the privacy policy that will be shown in the sidebar.
-         */
-        public Builder privacyUrl(Optional<String> privacyUrl) {
-            Utils.checkNotNull(privacyUrl, "privacyUrl");
+        public Builder privacyUrl(@Nullable String privacyUrl) {
             this.privacyUrl = privacyUrl;
             return this;
         }
 
-
         /**
          * The URL to the terms and conditions that will be shown in the sidebar.
          */
-        public Builder termsUrl(String termsUrl) {
-            Utils.checkNotNull(termsUrl, "termsUrl");
-            this.termsUrl = Optional.ofNullable(termsUrl);
-            return this;
-        }
-
-        /**
-         * The URL to the terms and conditions that will be shown in the sidebar.
-         */
-        public Builder termsUrl(Optional<String> termsUrl) {
-            Utils.checkNotNull(termsUrl, "termsUrl");
+        public Builder termsUrl(@Nullable String termsUrl) {
             this.termsUrl = termsUrl;
             return this;
         }
 
         public Theme build() {
-
             return new Theme(
                 favicon, logo, primaryColor,
                 sidepanelBackgroundColor, sidepanelTextColor, vaultName,

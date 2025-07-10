@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.EcommerceStoresOneRequestBuilder;
 import com.apideck.unify.models.operations.EcommerceStoresOneResponse;
 import com.apideck.unify.operations.EcommerceStoresOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class Stores {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceStoresOneResponse get(EcommerceStoresOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public EcommerceStoresOneResponse get(@Nonnull EcommerceStoresOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class Stores {
      * @throws Exception if the API call fails
      */
     public EcommerceStoresOneResponse get(
-            EcommerceStoresOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull EcommerceStoresOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
               = new EcommerceStoresOneOperation(
                 sdkConfiguration,

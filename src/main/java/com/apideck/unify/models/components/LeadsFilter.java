@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,44 +17,39 @@ public class LeadsFilter {
      * Name of the lead to filter on
      */
     @SpeakeasyMetadata("queryParam:name=name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * First name of the lead to filter on
      */
     @SpeakeasyMetadata("queryParam:name=first_name")
-    private Optional<String> firstName;
+    private String firstName;
 
     /**
      * Last name of the lead to filter on
      */
     @SpeakeasyMetadata("queryParam:name=last_name")
-    private Optional<String> lastName;
+    private String lastName;
 
     /**
      * E-mail of the lead to filter on
      */
     @SpeakeasyMetadata("queryParam:name=email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * Phone number of the lead to filter on
      */
     @SpeakeasyMetadata("queryParam:name=phone_number")
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
 
     @JsonCreator
     public LeadsFilter(
-            Optional<String> name,
-            Optional<String> firstName,
-            Optional<String> lastName,
-            Optional<String> email,
-            Optional<String> phoneNumber) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+            @Nullable String name,
+            @Nullable String firstName,
+            @Nullable String lastName,
+            @Nullable String email,
+            @Nullable String phoneNumber) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,48 +58,43 @@ public class LeadsFilter {
     }
     
     public LeadsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Name of the lead to filter on
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * First name of the lead to filter on
      */
-    @JsonIgnore
     public Optional<String> firstName() {
-        return firstName;
+        return Optional.ofNullable(this.firstName);
     }
 
     /**
      * Last name of the lead to filter on
      */
-    @JsonIgnore
     public Optional<String> lastName() {
-        return lastName;
+        return Optional.ofNullable(this.lastName);
     }
 
     /**
      * E-mail of the lead to filter on
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     /**
      * Phone number of the lead to filter on
      */
-    @JsonIgnore
     public Optional<String> phoneNumber() {
-        return phoneNumber;
+        return Optional.ofNullable(this.phoneNumber);
     }
 
     public static Builder builder() {
@@ -115,97 +105,47 @@ public class LeadsFilter {
     /**
      * Name of the lead to filter on
      */
-    public LeadsFilter withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name of the lead to filter on
-     */
-    public LeadsFilter withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public LeadsFilter withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * First name of the lead to filter on
-     */
-    public LeadsFilter withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = Optional.ofNullable(firstName);
-        return this;
-    }
-
 
     /**
      * First name of the lead to filter on
      */
-    public LeadsFilter withFirstName(Optional<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public LeadsFilter withFirstName(@Nullable String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    /**
-     * Last name of the lead to filter on
-     */
-    public LeadsFilter withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = Optional.ofNullable(lastName);
-        return this;
-    }
-
 
     /**
      * Last name of the lead to filter on
      */
-    public LeadsFilter withLastName(Optional<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public LeadsFilter withLastName(@Nullable String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    /**
-     * E-mail of the lead to filter on
-     */
-    public LeadsFilter withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
 
     /**
      * E-mail of the lead to filter on
      */
-    public LeadsFilter withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public LeadsFilter withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
 
-    /**
-     * Phone number of the lead to filter on
-     */
-    public LeadsFilter withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
 
     /**
      * Phone number of the lead to filter on
      */
-    public LeadsFilter withPhoneNumber(Optional<String> phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+    public LeadsFilter withPhoneNumber(@Nullable String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -244,117 +184,61 @@ public class LeadsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> firstName = Optional.empty();
+        private String firstName;
 
-        private Optional<String> lastName = Optional.empty();
+        private String lastName;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> phoneNumber = Optional.empty();
+        private String phoneNumber;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of the lead to filter on
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the lead to filter on
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * First name of the lead to filter on
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = Optional.ofNullable(firstName);
-            return this;
-        }
-
-        /**
-         * First name of the lead to filter on
-         */
-        public Builder firstName(Optional<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-
         /**
          * Last name of the lead to filter on
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = Optional.ofNullable(lastName);
-            return this;
-        }
-
-        /**
-         * Last name of the lead to filter on
-         */
-        public Builder lastName(Optional<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-
         /**
          * E-mail of the lead to filter on
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * E-mail of the lead to filter on
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * Phone number of the lead to filter on
          */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
-            return this;
-        }
-
-        /**
-         * Phone number of the lead to filter on
-         */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
+        public Builder phoneNumber(@Nullable String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
         public LeadsFilter build() {
-
             return new LeadsFilter(
                 name, firstName, lastName,
                 email, phoneNumber);

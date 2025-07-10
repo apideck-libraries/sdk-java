@@ -7,10 +7,9 @@ import com.apideck.unify.models.components.Session;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,60 +18,53 @@ public class VaultSessionsCreateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Additional redirect uri and/or consumer metadata
      */
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends Session> session;
+    private Session session;
 
     @JsonCreator
     public VaultSessionsCreateRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<? extends Session> session) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(session, "session");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable Session session) {
         this.consumerId = consumerId;
         this.appId = appId;
         this.session = session;
     }
     
     public VaultSessionsCreateRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Additional redirect uri and/or consumer metadata
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Session> session() {
-        return (Optional<Session>) session;
+        return Optional.ofNullable(this.session);
     }
 
     public static Builder builder() {
@@ -83,59 +75,29 @@ public class VaultSessionsCreateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultSessionsCreateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultSessionsCreateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultSessionsCreateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultSessionsCreateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultSessionsCreateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultSessionsCreateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Additional redirect uri and/or consumer metadata
-     */
-    public VaultSessionsCreateRequest withSession(Session session) {
-        Utils.checkNotNull(session, "session");
-        this.session = Optional.ofNullable(session);
-        return this;
-    }
-
 
     /**
      * Additional redirect uri and/or consumer metadata
      */
-    public VaultSessionsCreateRequest withSession(Optional<? extends Session> session) {
-        Utils.checkNotNull(session, "session");
+    public VaultSessionsCreateRequest withSession(@Nullable Session session) {
         this.session = session;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -169,75 +131,41 @@ public class VaultSessionsCreateRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<? extends Session> session = Optional.empty();
+        private Session session;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Additional redirect uri and/or consumer metadata
          */
-        public Builder session(Session session) {
-            Utils.checkNotNull(session, "session");
-            this.session = Optional.ofNullable(session);
-            return this;
-        }
-
-        /**
-         * Additional redirect uri and/or consumer metadata
-         */
-        public Builder session(Optional<? extends Session> session) {
-            Utils.checkNotNull(session, "session");
+        public Builder session(@Nullable Session session) {
             this.session = session;
             return this;
         }
 
         public VaultSessionsCreateRequest build() {
-
             return new VaultSessionsCreateRequest(
                 consumerId, appId, session);
         }

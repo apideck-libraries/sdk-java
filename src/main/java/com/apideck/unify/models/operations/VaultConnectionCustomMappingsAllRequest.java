@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,13 +18,13 @@ public class VaultConnectionCustomMappingsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Unified API
@@ -47,84 +48,75 @@ public class VaultConnectionCustomMappingsAllRequest {
      * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=resource_id")
-    private Optional<String> resourceId;
+    private String resourceId;
 
     @JsonCreator
     public VaultConnectionCustomMappingsAllRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String unifiedApi,
-            String serviceId,
-            String resource,
-            Optional<String> resourceId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(resource, "resource");
-        Utils.checkNotNull(resourceId, "resourceId");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nonnull String unifiedApi,
+            @Nonnull String serviceId,
+            @Nonnull String resource,
+            @Nullable String resourceId) {
         this.consumerId = consumerId;
         this.appId = appId;
-        this.unifiedApi = unifiedApi;
-        this.serviceId = serviceId;
-        this.resource = resource;
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
+        this.serviceId = Optional.ofNullable(serviceId)
+            .orElseThrow(() -> new IllegalArgumentException("serviceId cannot be null"));
+        this.resource = Optional.ofNullable(resource)
+            .orElseThrow(() -> new IllegalArgumentException("resource cannot be null"));
         this.resourceId = resourceId;
     }
     
     public VaultConnectionCustomMappingsAllRequest(
-            String unifiedApi,
-            String serviceId,
-            String resource) {
-        this(Optional.empty(), Optional.empty(), unifiedApi,
-            serviceId, resource, Optional.empty());
+            @Nonnull String unifiedApi,
+            @Nonnull String serviceId,
+            @Nonnull String resource) {
+        this(null, null, unifiedApi,
+            serviceId, resource, null);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Unified API
      */
-    @JsonIgnore
     public String unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     /**
      * Service ID of the resource to return
      */
-    @JsonIgnore
     public String serviceId() {
-        return serviceId;
+        return this.serviceId;
     }
 
     /**
      * Name of the resource (plural)
      */
-    @JsonIgnore
     public String resource() {
-        return resource;
+        return this.resource;
     }
 
     /**
      * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
      */
-    @JsonIgnore
     public Optional<String> resourceId() {
-        return resourceId;
+        return Optional.ofNullable(this.resourceId);
     }
 
     public static Builder builder() {
@@ -135,74 +127,44 @@ public class VaultConnectionCustomMappingsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultConnectionCustomMappingsAllRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultConnectionCustomMappingsAllRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultConnectionCustomMappingsAllRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConnectionCustomMappingsAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultConnectionCustomMappingsAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConnectionCustomMappingsAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * Unified API
      */
-    public VaultConnectionCustomMappingsAllRequest withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public VaultConnectionCustomMappingsAllRequest withUnifiedApi(@Nonnull String unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     /**
      * Service ID of the resource to return
      */
-    public VaultConnectionCustomMappingsAllRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
+    public VaultConnectionCustomMappingsAllRequest withServiceId(@Nonnull String serviceId) {
+        this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
         return this;
     }
+
 
     /**
      * Name of the resource (plural)
      */
-    public VaultConnectionCustomMappingsAllRequest withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
-        return this;
-    }
-
-    /**
-     * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
-     */
-    public VaultConnectionCustomMappingsAllRequest withResourceId(String resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
-        this.resourceId = Optional.ofNullable(resourceId);
+    public VaultConnectionCustomMappingsAllRequest withResource(@Nonnull String resource) {
+        this.resource = Utils.checkNotNull(resource, "resource");
         return this;
     }
 
@@ -210,11 +172,11 @@ public class VaultConnectionCustomMappingsAllRequest {
     /**
      * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
      */
-    public VaultConnectionCustomMappingsAllRequest withResourceId(Optional<String> resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
+    public VaultConnectionCustomMappingsAllRequest withResourceId(@Nullable String resourceId) {
         this.resourceId = resourceId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -255,9 +217,9 @@ public class VaultConnectionCustomMappingsAllRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String unifiedApi;
 
@@ -265,101 +227,61 @@ public class VaultConnectionCustomMappingsAllRequest {
 
         private String resource;
 
-        private Optional<String> resourceId = Optional.empty();
+        private String resourceId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Unified API
          */
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull String unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
-
 
         /**
          * Service ID of the resource to return
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = serviceId;
+        public Builder serviceId(@Nonnull String serviceId) {
+            this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
             return this;
         }
-
 
         /**
          * Name of the resource (plural)
          */
-        public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
-            return this;
-        }
-
-
-        /**
-         * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
-         */
-        public Builder resourceId(String resourceId) {
-            Utils.checkNotNull(resourceId, "resourceId");
-            this.resourceId = Optional.ofNullable(resourceId);
+        public Builder resource(@Nonnull String resource) {
+            this.resource = Utils.checkNotNull(resource, "resource");
             return this;
         }
 
         /**
          * This is the id of the resource you want to fetch when listing custom fields. For example, if you want to fetch custom fields for a specific contact, you would use the contact id.
          */
-        public Builder resourceId(Optional<String> resourceId) {
-            Utils.checkNotNull(resourceId, "resourceId");
+        public Builder resourceId(@Nullable String resourceId) {
             this.resourceId = resourceId;
             return this;
         }
 
         public VaultConnectionCustomMappingsAllRequest build() {
-
             return new VaultConnectionCustomMappingsAllRequest(
                 consumerId, appId, unifiedApi,
                 serviceId, resource, resourceId);

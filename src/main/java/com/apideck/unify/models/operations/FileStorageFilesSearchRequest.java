@@ -9,14 +9,14 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -27,25 +27,25 @@ public class FileStorageFilesSearchRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
-    private Optional<? extends Map<String, Object>> passThrough;
+    private Map<String, Object> passThrough;
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -63,19 +63,19 @@ public class FileStorageFilesSearchRequest {
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
-    private Optional<Long> limit;
+    private Long limit;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * Apply filters
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends FilesFilter> filter;
+    private FilesFilter filter;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -83,123 +83,106 @@ public class FileStorageFilesSearchRequest {
 
     @JsonCreator
     public FileStorageFilesSearchRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<? extends Map<String, Object>> passThrough,
-            JsonNullable<String> fields,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<Boolean> raw,
-            Optional<? extends FilesFilter> filter,
-            FilesSearch filesSearch) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(fields, "fields");
-        Utils.checkNotNull(cursor, "cursor");
-        Utils.checkNotNull(limit, "limit");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(filter, "filter");
-        Utils.checkNotNull(filesSearch, "filesSearch");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Map<String, Object> passThrough,
+            @Nullable JsonNullable<String> fields,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit,
+            @Nullable Boolean raw,
+            @Nullable FilesFilter filter,
+            @Nonnull FilesSearch filesSearch) {
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.passThrough = passThrough;
-        this.fields = fields;
-        this.cursor = cursor;
-        this.limit = limit;
-        this.raw = raw;
+        this.fields = Optional.ofNullable(fields)
+            .orElse(JsonNullable.undefined());
+        this.cursor = Optional.ofNullable(cursor)
+            .orElse(JsonNullable.undefined());
+        this.limit = Optional.ofNullable(limit)
+            .orElse(Builder._SINGLETON_VALUE_Limit.value());
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.filter = filter;
-        this.filesSearch = filesSearch;
+        this.filesSearch = Optional.ofNullable(filesSearch)
+            .orElseThrow(() -> new IllegalArgumentException("filesSearch cannot be null"));
     }
     
     public FileStorageFilesSearchRequest(
-            FilesSearch filesSearch) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
+            @Nonnull FilesSearch filesSearch) {
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
             filesSearch);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Map<String, Object>> passThrough() {
-        return (Optional<Map<String, Object>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    @JsonIgnore
     public JsonNullable<String> fields() {
-        return fields;
+        return this.fields;
     }
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    @JsonIgnore
     public JsonNullable<String> cursor() {
-        return cursor;
+        return this.cursor;
     }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    @JsonIgnore
     public Optional<Long> limit() {
-        return limit;
+        return Optional.ofNullable(this.limit);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * Apply filters
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<FilesFilter> filter() {
-        return (Optional<FilesFilter>) filter;
+        return Optional.ofNullable(this.filter);
     }
 
-    @JsonIgnore
     public FilesSearch filesSearch() {
-        return filesSearch;
+        return this.filesSearch;
     }
 
     public static Builder builder() {
@@ -210,177 +193,89 @@ public class FileStorageFilesSearchRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageFilesSearchRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public FileStorageFilesSearchRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public FileStorageFilesSearchRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public FileStorageFilesSearchRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public FileStorageFilesSearchRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public FileStorageFilesSearchRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public FileStorageFilesSearchRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public FileStorageFilesSearchRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public FileStorageFilesSearchRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
-     */
-    public FileStorageFilesSearchRequest withPassThrough(Map<String, Object> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
-    public FileStorageFilesSearchRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public FileStorageFilesSearchRequest withPassThrough(@Nullable Map<String, Object> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
+
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    public FileStorageFilesSearchRequest withFields(String fields) {
-        Utils.checkNotNull(fields, "fields");
+    public FileStorageFilesSearchRequest withFields(@Nullable String fields) {
         this.fields = JsonNullable.of(fields);
         return this;
     }
 
-    /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-     */
-    public FileStorageFilesSearchRequest withFields(JsonNullable<String> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = fields;
-        return this;
-    }
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    public FileStorageFilesSearchRequest withCursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
+    public FileStorageFilesSearchRequest withCursor(@Nullable String cursor) {
         this.cursor = JsonNullable.of(cursor);
         return this;
     }
 
-    /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-     */
-    public FileStorageFilesSearchRequest withCursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    public FileStorageFilesSearchRequest withLimit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.ofNullable(limit);
-        return this;
-    }
-
-
-    /**
-     * Number of results to return. Minimum 1, Maximum 200, Default 20
-     */
-    public FileStorageFilesSearchRequest withLimit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
+    public FileStorageFilesSearchRequest withLimit(@Nullable Long limit) {
         this.limit = limit;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public FileStorageFilesSearchRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public FileStorageFilesSearchRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public FileStorageFilesSearchRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * Apply filters
-     */
-    public FileStorageFilesSearchRequest withFilter(FilesFilter filter) {
-        Utils.checkNotNull(filter, "filter");
-        this.filter = Optional.ofNullable(filter);
-        return this;
-    }
-
 
     /**
      * Apply filters
      */
-    public FileStorageFilesSearchRequest withFilter(Optional<? extends FilesFilter> filter) {
-        Utils.checkNotNull(filter, "filter");
+    public FileStorageFilesSearchRequest withFilter(@Nullable FilesFilter filter) {
         this.filter = filter;
         return this;
     }
 
-    public FileStorageFilesSearchRequest withFilesSearch(FilesSearch filesSearch) {
-        Utils.checkNotNull(filesSearch, "filesSearch");
-        this.filesSearch = filesSearch;
+
+    public FileStorageFilesSearchRequest withFilesSearch(@Nonnull FilesSearch filesSearch) {
+        this.filesSearch = Utils.checkNotNull(filesSearch, "filesSearch");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -431,23 +326,23 @@ public class FileStorageFilesSearchRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
+        private Map<String, Object> passThrough;
 
-        private JsonNullable<String> fields = JsonNullable.undefined();
+        private JsonNullable<String> fields;
 
-        private JsonNullable<String> cursor = JsonNullable.undefined();
+        private JsonNullable<String> cursor;
 
-        private Optional<Long> limit;
+        private Long limit;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<? extends FilesFilter> filter = Optional.empty();
+        private FilesFilter filter;
 
         private FilesSearch filesSearch;
 
@@ -455,192 +350,84 @@ public class FileStorageFilesSearchRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
-        public Builder passThrough(Map<String, Object> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
-         */
-        public Builder passThrough(Optional<? extends Map<String, Object>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable Map<String, Object> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
-        public Builder fields(String fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable String fields) {
             this.fields = JsonNullable.of(fields);
             return this;
         }
 
         /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-         */
-        public Builder fields(JsonNullable<String> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = fields;
-            return this;
-        }
-
-
-        /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
-        public Builder cursor(String cursor) {
-            Utils.checkNotNull(cursor, "cursor");
+        public Builder cursor(@Nullable String cursor) {
             this.cursor = JsonNullable.of(cursor);
             return this;
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-         */
-        public Builder cursor(JsonNullable<String> cursor) {
-            Utils.checkNotNull(cursor, "cursor");
-            this.cursor = cursor;
-            return this;
-        }
-
-
-        /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
-        public Builder limit(long limit) {
-            Utils.checkNotNull(limit, "limit");
-            this.limit = Optional.ofNullable(limit);
-            return this;
-        }
-
-        /**
-         * Number of results to return. Minimum 1, Maximum 200, Default 20
-         */
-        public Builder limit(Optional<Long> limit) {
-            Utils.checkNotNull(limit, "limit");
+        public Builder limit(@Nullable Long limit) {
             this.limit = limit;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * Apply filters
          */
-        public Builder filter(FilesFilter filter) {
-            Utils.checkNotNull(filter, "filter");
-            this.filter = Optional.ofNullable(filter);
-            return this;
-        }
-
-        /**
-         * Apply filters
-         */
-        public Builder filter(Optional<? extends FilesFilter> filter) {
-            Utils.checkNotNull(filter, "filter");
+        public Builder filter(@Nullable FilesFilter filter) {
             this.filter = filter;
             return this;
         }
 
-
-        public Builder filesSearch(FilesSearch filesSearch) {
-            Utils.checkNotNull(filesSearch, "filesSearch");
-            this.filesSearch = filesSearch;
+        public Builder filesSearch(@Nonnull FilesSearch filesSearch) {
+            this.filesSearch = Utils.checkNotNull(filesSearch, "filesSearch");
             return this;
         }
 
         public FileStorageFilesSearchRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new FileStorageFilesSearchRequest(
                 consumerId, appId, serviceId,
                 passThrough, fields, cursor,
@@ -649,16 +436,16 @@ public class FileStorageFilesSearchRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
+        private static final LazySingletonValue<Long> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(
                         "limit",
                         "20",
-                        new TypeReference<Optional<Long>>() {});
+                        new TypeReference<Long>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

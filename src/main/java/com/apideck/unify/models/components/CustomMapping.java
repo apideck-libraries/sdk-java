@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -22,14 +22,14 @@ public class CustomMapping {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Target Field name to use as a label
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     /**
      * Target Field description
@@ -43,28 +43,28 @@ public class CustomMapping {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<String> value;
+    private String value;
 
     /**
      * Target Field Key
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("key")
-    private Optional<String> key;
+    private String key;
 
     /**
      * Target Field Mapping is required
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
-    private Optional<Boolean> required;
+    private Boolean required;
 
     /**
      * This mapping represents a finder for a custom field
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_field")
-    private Optional<Boolean> customField;
+    private Boolean customField;
 
     /**
      * Consumer ID
@@ -82,111 +82,96 @@ public class CustomMapping {
 
     @JsonCreator
     public CustomMapping(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") Optional<String> label,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("value") Optional<String> value,
-            @JsonProperty("key") Optional<String> key,
-            @JsonProperty("required") Optional<Boolean> required,
-            @JsonProperty("custom_field") Optional<Boolean> customField,
-            @JsonProperty("consumer_id") JsonNullable<String> consumerId,
-            @JsonProperty("example") JsonNullable<String> example) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(key, "key");
-        Utils.checkNotNull(required, "required");
-        Utils.checkNotNull(customField, "customField");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(example, "example");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nullable String label,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("value") @Nullable String value,
+            @JsonProperty("key") @Nullable String key,
+            @JsonProperty("required") @Nullable Boolean required,
+            @JsonProperty("custom_field") @Nullable Boolean customField,
+            @JsonProperty("consumer_id") @Nullable JsonNullable<String> consumerId,
+            @JsonProperty("example") @Nullable JsonNullable<String> example) {
         this.id = id;
         this.label = label;
-        this.description = description;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.value = value;
         this.key = key;
         this.required = required;
         this.customField = customField;
-        this.consumerId = consumerId;
-        this.example = example;
+        this.consumerId = Optional.ofNullable(consumerId)
+            .orElse(JsonNullable.undefined());
+        this.example = Optional.ofNullable(example)
+            .orElse(JsonNullable.undefined());
     }
     
     public CustomMapping() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * Target Field ID
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Target Field name to use as a label
      */
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
     /**
      * Target Field description
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Target Field Mapping value
      */
-    @JsonIgnore
     public Optional<String> value() {
-        return value;
+        return Optional.ofNullable(this.value);
     }
 
     /**
      * Target Field Key
      */
-    @JsonIgnore
     public Optional<String> key() {
-        return key;
+        return Optional.ofNullable(this.key);
     }
 
     /**
      * Target Field Mapping is required
      */
-    @JsonIgnore
     public Optional<Boolean> required() {
-        return required;
+        return Optional.ofNullable(this.required);
     }
 
     /**
      * This mapping represents a finder for a custom field
      */
-    @JsonIgnore
     public Optional<Boolean> customField() {
-        return customField;
+        return Optional.ofNullable(this.customField);
     }
 
     /**
      * Consumer ID
      */
-    @JsonIgnore
     public JsonNullable<String> consumerId() {
-        return consumerId;
+        return this.consumerId;
     }
 
     /**
      * Target Field Mapping example value from downstream
      */
-    @JsonIgnore
     public JsonNullable<String> example() {
-        return example;
+        return this.example;
     }
 
     public static Builder builder() {
@@ -197,170 +182,83 @@ public class CustomMapping {
     /**
      * Target Field ID
      */
-    public CustomMapping withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * Target Field ID
-     */
-    public CustomMapping withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public CustomMapping withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Target Field name to use as a label
-     */
-    public CustomMapping withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
-
 
     /**
      * Target Field name to use as a label
      */
-    public CustomMapping withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public CustomMapping withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
 
+
     /**
      * Target Field description
      */
-    public CustomMapping withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public CustomMapping withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * Target Field description
-     */
-    public CustomMapping withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Target Field Mapping value
      */
-    public CustomMapping withValue(String value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
-
-
-    /**
-     * Target Field Mapping value
-     */
-    public CustomMapping withValue(Optional<String> value) {
-        Utils.checkNotNull(value, "value");
+    public CustomMapping withValue(@Nullable String value) {
         this.value = value;
         return this;
     }
 
-    /**
-     * Target Field Key
-     */
-    public CustomMapping withKey(String key) {
-        Utils.checkNotNull(key, "key");
-        this.key = Optional.ofNullable(key);
-        return this;
-    }
-
 
     /**
      * Target Field Key
      */
-    public CustomMapping withKey(Optional<String> key) {
-        Utils.checkNotNull(key, "key");
+    public CustomMapping withKey(@Nullable String key) {
         this.key = key;
         return this;
     }
 
-    /**
-     * Target Field Mapping is required
-     */
-    public CustomMapping withRequired(boolean required) {
-        Utils.checkNotNull(required, "required");
-        this.required = Optional.ofNullable(required);
-        return this;
-    }
-
 
     /**
      * Target Field Mapping is required
      */
-    public CustomMapping withRequired(Optional<Boolean> required) {
-        Utils.checkNotNull(required, "required");
+    public CustomMapping withRequired(@Nullable Boolean required) {
         this.required = required;
         return this;
     }
 
-    /**
-     * This mapping represents a finder for a custom field
-     */
-    public CustomMapping withCustomField(boolean customField) {
-        Utils.checkNotNull(customField, "customField");
-        this.customField = Optional.ofNullable(customField);
-        return this;
-    }
-
 
     /**
      * This mapping represents a finder for a custom field
      */
-    public CustomMapping withCustomField(Optional<Boolean> customField) {
-        Utils.checkNotNull(customField, "customField");
+    public CustomMapping withCustomField(@Nullable Boolean customField) {
         this.customField = customField;
         return this;
     }
 
+
     /**
      * Consumer ID
      */
-    public CustomMapping withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public CustomMapping withConsumerId(@Nullable String consumerId) {
         this.consumerId = JsonNullable.of(consumerId);
         return this;
     }
 
-    /**
-     * Consumer ID
-     */
-    public CustomMapping withConsumerId(JsonNullable<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
 
     /**
      * Target Field Mapping example value from downstream
      */
-    public CustomMapping withExample(String example) {
-        Utils.checkNotNull(example, "example");
+    public CustomMapping withExample(@Nullable String example) {
         this.example = JsonNullable.of(example);
         return this;
     }
 
-    /**
-     * Target Field Mapping example value from downstream
-     */
-    public CustomMapping withExample(JsonNullable<String> example) {
-        Utils.checkNotNull(example, "example");
-        this.example = example;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -408,201 +306,101 @@ public class CustomMapping {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<String> value = Optional.empty();
+        private String value;
 
-        private Optional<String> key = Optional.empty();
+        private String key;
 
-        private Optional<Boolean> required = Optional.empty();
+        private Boolean required;
 
-        private Optional<Boolean> customField = Optional.empty();
+        private Boolean customField;
 
-        private JsonNullable<String> consumerId = JsonNullable.undefined();
+        private JsonNullable<String> consumerId;
 
-        private JsonNullable<String> example = JsonNullable.undefined();
+        private JsonNullable<String> example;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Target Field ID
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * Target Field ID
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Target Field name to use as a label
          */
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        /**
-         * Target Field name to use as a label
-         */
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
-
         /**
          * Target Field description
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * Target Field description
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Target Field Mapping value
          */
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        /**
-         * Target Field Mapping value
-         */
-        public Builder value(Optional<String> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = value;
             return this;
         }
 
-
         /**
          * Target Field Key
          */
-        public Builder key(String key) {
-            Utils.checkNotNull(key, "key");
-            this.key = Optional.ofNullable(key);
-            return this;
-        }
-
-        /**
-         * Target Field Key
-         */
-        public Builder key(Optional<String> key) {
-            Utils.checkNotNull(key, "key");
+        public Builder key(@Nullable String key) {
             this.key = key;
             return this;
         }
 
-
         /**
          * Target Field Mapping is required
          */
-        public Builder required(boolean required) {
-            Utils.checkNotNull(required, "required");
-            this.required = Optional.ofNullable(required);
-            return this;
-        }
-
-        /**
-         * Target Field Mapping is required
-         */
-        public Builder required(Optional<Boolean> required) {
-            Utils.checkNotNull(required, "required");
+        public Builder required(@Nullable Boolean required) {
             this.required = required;
             return this;
         }
 
-
         /**
          * This mapping represents a finder for a custom field
          */
-        public Builder customField(boolean customField) {
-            Utils.checkNotNull(customField, "customField");
-            this.customField = Optional.ofNullable(customField);
-            return this;
-        }
-
-        /**
-         * This mapping represents a finder for a custom field
-         */
-        public Builder customField(Optional<Boolean> customField) {
-            Utils.checkNotNull(customField, "customField");
+        public Builder customField(@Nullable Boolean customField) {
             this.customField = customField;
             return this;
         }
 
-
         /**
          * Consumer ID
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = JsonNullable.of(consumerId);
             return this;
         }
 
         /**
-         * Consumer ID
-         */
-        public Builder consumerId(JsonNullable<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = consumerId;
-            return this;
-        }
-
-
-        /**
          * Target Field Mapping example value from downstream
          */
-        public Builder example(String example) {
-            Utils.checkNotNull(example, "example");
+        public Builder example(@Nullable String example) {
             this.example = JsonNullable.of(example);
             return this;
         }
 
-        /**
-         * Target Field Mapping example value from downstream
-         */
-        public Builder example(JsonNullable<String> example) {
-            Utils.checkNotNull(example, "example");
-            this.example = example;
-            return this;
-        }
-
         public CustomMapping build() {
-
             return new CustomMapping(
                 id, label, description,
                 value, key, required,

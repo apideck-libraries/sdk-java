@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingJournalEntriesDeleteOperation;
 import com.apideck.unify.operations.AccountingJournalEntriesOneOperation;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingJournalEntriesAllResponse list(@Nonnull AccountingJournalEntriesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class JournalEntries {
      * @throws Exception if the API call fails
      */
     public AccountingJournalEntriesAllResponse list(
-            AccountingJournalEntriesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingJournalEntriesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
               = new AccountingJournalEntriesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingJournalEntriesAddResponse create(@Nonnull AccountingJournalEntriesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class JournalEntries {
      * @throws Exception if the API call fails
      */
     public AccountingJournalEntriesAddResponse create(
-            AccountingJournalEntriesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingJournalEntriesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
               = new AccountingJournalEntriesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingJournalEntriesOneResponse get(@Nonnull AccountingJournalEntriesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class JournalEntries {
      * @throws Exception if the API call fails
      */
     public AccountingJournalEntriesOneResponse get(
-            AccountingJournalEntriesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingJournalEntriesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
               = new AccountingJournalEntriesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingJournalEntriesUpdateResponse update(@Nonnull AccountingJournalEntriesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class JournalEntries {
      * @throws Exception if the API call fails
      */
     public AccountingJournalEntriesUpdateResponse update(
-            AccountingJournalEntriesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingJournalEntriesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
               = new AccountingJournalEntriesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingJournalEntriesDeleteResponse delete(@Nonnull AccountingJournalEntriesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class JournalEntries {
      * @throws Exception if the API call fails
      */
     public AccountingJournalEntriesDeleteResponse delete(
-            AccountingJournalEntriesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingJournalEntriesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
               = new AccountingJournalEntriesDeleteOperation(
                 sdkConfiguration,

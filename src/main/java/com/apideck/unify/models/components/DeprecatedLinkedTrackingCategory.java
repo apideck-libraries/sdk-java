@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
@@ -27,7 +27,7 @@ public class DeprecatedLinkedTrackingCategory {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the tracking category.
@@ -38,32 +38,29 @@ public class DeprecatedLinkedTrackingCategory {
 
     @JsonCreator
     public DeprecatedLinkedTrackingCategory(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
         this.id = id;
-        this.name = name;
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public DeprecatedLinkedTrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(null, null);
     }
 
     /**
      * The unique identifier for the tracking category.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the tracking category.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -74,39 +71,20 @@ public class DeprecatedLinkedTrackingCategory {
     /**
      * The unique identifier for the tracking category.
      */
-    public DeprecatedLinkedTrackingCategory withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the tracking category.
-     */
-    public DeprecatedLinkedTrackingCategory withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public DeprecatedLinkedTrackingCategory withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The name of the tracking category.
-     */
-    public DeprecatedLinkedTrackingCategory withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = JsonNullable.of(name);
-        return this;
-    }
 
     /**
      * The name of the tracking category.
      */
-    public DeprecatedLinkedTrackingCategory withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public DeprecatedLinkedTrackingCategory withName(@Nullable String name) {
+        this.name = JsonNullable.of(name);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -138,54 +116,31 @@ public class DeprecatedLinkedTrackingCategory {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier for the tracking category.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the tracking category.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the tracking category.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * The name of the tracking category.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public DeprecatedLinkedTrackingCategory build() {
-
             return new DeprecatedLinkedTrackingCategory(
                 id, name);
         }

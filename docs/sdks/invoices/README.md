@@ -106,7 +106,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -183,7 +182,7 @@ public class Application {
                                     .id("123456")
                                     .name("New York")
                                     .build()))
-                            .ledgerAccount(JsonNullable.of(null))
+                            .ledgerAccount(null)
                             .customFields(List.of(
                                 CustomField.builder()
                                     .id("2389328923893298")
@@ -436,7 +435,6 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -532,19 +530,19 @@ public class Application {
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(JsonNullable.of(null))
+                                    .value(null)
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(JsonNullable.of(null))
+                                    .value(null)
                                     .build(),
                                 CustomField.builder()
                                     .id("2389328923893298")
                                     .name("employee_level")
                                     .description("Employee Level")
-                                    .value(JsonNullable.of(null))
+                                    .value(null)
                                     .build()))
                             .rowVersion("1-12345")
                             .build()))
@@ -640,7 +638,7 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(JsonNullable.of(null))
+                            .value(null)
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(

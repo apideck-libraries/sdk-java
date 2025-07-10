@@ -11,6 +11,8 @@ import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneRequest
 import com.apideck.unify.models.operations.ConnectorConnectorResourcesOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorResourcesOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -45,10 +47,10 @@ public class ConnectorResources {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorResourcesOneResponse get(
-            String id,
-            String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId,
-            Optional.empty(), Optional.empty());
+            @Nonnull String id,
+            @Nonnull String resourceId) throws Exception {
+        return get(null, id, resourceId,
+            null, null);
     }
 
     /**
@@ -65,19 +67,16 @@ public class ConnectorResources {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorResourcesOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<? extends UnifiedApiId> unifiedApi,
-            Optional<Options> options) throws Exception {
-        ConnectorConnectorResourcesOneRequest request =
-            ConnectorConnectorResourcesOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .resourceId(resourceId)
-                .unifiedApi(unifiedApi)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String resourceId,
+            @Nullable UnifiedApiId unifiedApi,
+            @Nullable Options options) throws Exception {
+        ConnectorConnectorResourcesOneRequest request = new ConnectorConnectorResourcesOneRequest(
+            appId,
+            id,
+            resourceId,
+            unifiedApi);
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
               = new ConnectorConnectorResourcesOneOperation(
                 sdkConfiguration,

@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,56 +28,50 @@ public class FilesSearch {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("drive_id")
-    private Optional<String> driveId;
+    private String driveId;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public FilesSearch(
-            @JsonProperty("query") String query,
-            @JsonProperty("drive_id") Optional<String> driveId,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(query, "query");
-        Utils.checkNotNull(driveId, "driveId");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.query = query;
+            @JsonProperty("query") @Nonnull String query,
+            @JsonProperty("drive_id") @Nullable String driveId,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.query = Optional.ofNullable(query)
+            .orElseThrow(() -> new IllegalArgumentException("query cannot be null"));
         this.driveId = driveId;
         this.passThrough = passThrough;
     }
     
     public FilesSearch(
-            String query) {
-        this(query, Optional.empty(), Optional.empty());
+            @Nonnull String query) {
+        this(query, null, null);
     }
 
     /**
      * The query to search for. May match across multiple fields.
      */
-    @JsonIgnore
     public String query() {
-        return query;
+        return this.query;
     }
 
     /**
      * ID of the drive to filter on
      */
-    @JsonIgnore
     public Optional<String> driveId() {
-        return driveId;
+        return Optional.ofNullable(this.driveId);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -88,18 +82,8 @@ public class FilesSearch {
     /**
      * The query to search for. May match across multiple fields.
      */
-    public FilesSearch withQuery(String query) {
-        Utils.checkNotNull(query, "query");
-        this.query = query;
-        return this;
-    }
-
-    /**
-     * ID of the drive to filter on
-     */
-    public FilesSearch withDriveId(String driveId) {
-        Utils.checkNotNull(driveId, "driveId");
-        this.driveId = Optional.ofNullable(driveId);
+    public FilesSearch withQuery(@Nonnull String query) {
+        this.query = Utils.checkNotNull(query, "query");
         return this;
     }
 
@@ -107,30 +91,20 @@ public class FilesSearch {
     /**
      * ID of the drive to filter on
      */
-    public FilesSearch withDriveId(Optional<String> driveId) {
-        Utils.checkNotNull(driveId, "driveId");
+    public FilesSearch withDriveId(@Nullable String driveId) {
         this.driveId = driveId;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public FilesSearch withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public FilesSearch withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public FilesSearch withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -166,64 +140,39 @@ public class FilesSearch {
 
         private String query;
 
-        private Optional<String> driveId = Optional.empty();
+        private String driveId;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The query to search for. May match across multiple fields.
          */
-        public Builder query(String query) {
-            Utils.checkNotNull(query, "query");
-            this.query = query;
-            return this;
-        }
-
-
-        /**
-         * ID of the drive to filter on
-         */
-        public Builder driveId(String driveId) {
-            Utils.checkNotNull(driveId, "driveId");
-            this.driveId = Optional.ofNullable(driveId);
+        public Builder query(@Nonnull String query) {
+            this.query = Utils.checkNotNull(query, "query");
             return this;
         }
 
         /**
          * ID of the drive to filter on
          */
-        public Builder driveId(Optional<String> driveId) {
-            Utils.checkNotNull(driveId, "driveId");
+        public Builder driveId(@Nullable String driveId) {
             this.driveId = driveId;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public FilesSearch build() {
-
             return new FilesSearch(
                 query, driveId, passThrough);
         }

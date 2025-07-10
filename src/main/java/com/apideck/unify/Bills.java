@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingBillsDeleteOperation;
 import com.apideck.unify.operations.AccountingBillsOneOperation;
 import com.apideck.unify.operations.AccountingBillsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Bills {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBillsAllResponse list(AccountingBillsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingBillsAllResponse list(@Nonnull AccountingBillsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Bills {
      * @throws Exception if the API call fails
      */
     public AccountingBillsAllResponse list(
-            AccountingBillsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBillsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBillsAllRequest, AccountingBillsAllResponse> operation
               = new AccountingBillsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Bills {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBillsAddResponse create(AccountingBillsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingBillsAddResponse create(@Nonnull AccountingBillsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Bills {
      * @throws Exception if the API call fails
      */
     public AccountingBillsAddResponse create(
-            AccountingBillsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBillsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBillsAddRequest, AccountingBillsAddResponse> operation
               = new AccountingBillsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Bills {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBillsOneResponse get(AccountingBillsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingBillsOneResponse get(@Nonnull AccountingBillsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Bills {
      * @throws Exception if the API call fails
      */
     public AccountingBillsOneResponse get(
-            AccountingBillsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBillsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBillsOneRequest, AccountingBillsOneResponse> operation
               = new AccountingBillsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Bills {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBillsUpdateResponse update(AccountingBillsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingBillsUpdateResponse update(@Nonnull AccountingBillsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Bills {
      * @throws Exception if the API call fails
      */
     public AccountingBillsUpdateResponse update(
-            AccountingBillsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBillsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBillsUpdateRequest, AccountingBillsUpdateResponse> operation
               = new AccountingBillsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Bills {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBillsDeleteResponse delete(AccountingBillsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingBillsDeleteResponse delete(@Nonnull AccountingBillsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Bills {
      * @throws Exception if the API call fails
      */
     public AccountingBillsDeleteResponse delete(
-            AccountingBillsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBillsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBillsDeleteRequest, AccountingBillsDeleteResponse> operation
               = new AccountingBillsDeleteOperation(
                 sdkConfiguration,

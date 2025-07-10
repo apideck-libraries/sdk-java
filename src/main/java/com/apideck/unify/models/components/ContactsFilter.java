@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,60 +17,53 @@ public class ContactsFilter {
      * Name of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * First name of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=first_name")
-    private Optional<String> firstName;
+    private String firstName;
 
     /**
      * Last name of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=last_name")
-    private Optional<String> lastName;
+    private String lastName;
 
     /**
      * Email of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * Phone number of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=phone_number")
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
 
     /**
      * Unique identifier for the associated company of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=company_id")
-    private Optional<String> companyId;
+    private String companyId;
 
     /**
      * Unique identifier for the owner of the contact to filter on
      */
     @SpeakeasyMetadata("queryParam:name=owner_id")
-    private Optional<String> ownerId;
+    private String ownerId;
 
     @JsonCreator
     public ContactsFilter(
-            Optional<String> name,
-            Optional<String> firstName,
-            Optional<String> lastName,
-            Optional<String> email,
-            Optional<String> phoneNumber,
-            Optional<String> companyId,
-            Optional<String> ownerId) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(ownerId, "ownerId");
+            @Nullable String name,
+            @Nullable String firstName,
+            @Nullable String lastName,
+            @Nullable String email,
+            @Nullable String phoneNumber,
+            @Nullable String companyId,
+            @Nullable String ownerId) {
         this.name = name;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,65 +74,58 @@ public class ContactsFilter {
     }
     
     public ContactsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Name of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * First name of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> firstName() {
-        return firstName;
+        return Optional.ofNullable(this.firstName);
     }
 
     /**
      * Last name of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> lastName() {
-        return lastName;
+        return Optional.ofNullable(this.lastName);
     }
 
     /**
      * Email of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     /**
      * Phone number of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> phoneNumber() {
-        return phoneNumber;
+        return Optional.ofNullable(this.phoneNumber);
     }
 
     /**
      * Unique identifier for the associated company of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> companyId() {
-        return companyId;
+        return Optional.ofNullable(this.companyId);
     }
 
     /**
      * Unique identifier for the owner of the contact to filter on
      */
-    @JsonIgnore
     public Optional<String> ownerId() {
-        return ownerId;
+        return Optional.ofNullable(this.ownerId);
     }
 
     public static Builder builder() {
@@ -150,135 +136,65 @@ public class ContactsFilter {
     /**
      * Name of the contact to filter on
      */
-    public ContactsFilter withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name of the contact to filter on
-     */
-    public ContactsFilter withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ContactsFilter withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * First name of the contact to filter on
-     */
-    public ContactsFilter withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = Optional.ofNullable(firstName);
-        return this;
-    }
-
 
     /**
      * First name of the contact to filter on
      */
-    public ContactsFilter withFirstName(Optional<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public ContactsFilter withFirstName(@Nullable String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    /**
-     * Last name of the contact to filter on
-     */
-    public ContactsFilter withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = Optional.ofNullable(lastName);
-        return this;
-    }
-
 
     /**
      * Last name of the contact to filter on
      */
-    public ContactsFilter withLastName(Optional<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public ContactsFilter withLastName(@Nullable String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    /**
-     * Email of the contact to filter on
-     */
-    public ContactsFilter withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
 
     /**
      * Email of the contact to filter on
      */
-    public ContactsFilter withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public ContactsFilter withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
 
-    /**
-     * Phone number of the contact to filter on
-     */
-    public ContactsFilter withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
 
     /**
      * Phone number of the contact to filter on
      */
-    public ContactsFilter withPhoneNumber(Optional<String> phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+    public ContactsFilter withPhoneNumber(@Nullable String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
 
-    /**
-     * Unique identifier for the associated company of the contact to filter on
-     */
-    public ContactsFilter withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = Optional.ofNullable(companyId);
-        return this;
-    }
-
 
     /**
      * Unique identifier for the associated company of the contact to filter on
      */
-    public ContactsFilter withCompanyId(Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public ContactsFilter withCompanyId(@Nullable String companyId) {
         this.companyId = companyId;
         return this;
     }
 
-    /**
-     * Unique identifier for the owner of the contact to filter on
-     */
-    public ContactsFilter withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = Optional.ofNullable(ownerId);
-        return this;
-    }
-
 
     /**
      * Unique identifier for the owner of the contact to filter on
      */
-    public ContactsFilter withOwnerId(Optional<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public ContactsFilter withOwnerId(@Nullable String ownerId) {
         this.ownerId = ownerId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -322,159 +238,81 @@ public class ContactsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> firstName = Optional.empty();
+        private String firstName;
 
-        private Optional<String> lastName = Optional.empty();
+        private String lastName;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> phoneNumber = Optional.empty();
+        private String phoneNumber;
 
-        private Optional<String> companyId = Optional.empty();
+        private String companyId;
 
-        private Optional<String> ownerId = Optional.empty();
+        private String ownerId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of the contact to filter on
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the contact to filter on
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * First name of the contact to filter on
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = Optional.ofNullable(firstName);
-            return this;
-        }
-
-        /**
-         * First name of the contact to filter on
-         */
-        public Builder firstName(Optional<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-
         /**
          * Last name of the contact to filter on
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = Optional.ofNullable(lastName);
-            return this;
-        }
-
-        /**
-         * Last name of the contact to filter on
-         */
-        public Builder lastName(Optional<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-
         /**
          * Email of the contact to filter on
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * Email of the contact to filter on
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * Phone number of the contact to filter on
          */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
-            return this;
-        }
-
-        /**
-         * Phone number of the contact to filter on
-         */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
+        public Builder phoneNumber(@Nullable String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
-
         /**
          * Unique identifier for the associated company of the contact to filter on
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = Optional.ofNullable(companyId);
-            return this;
-        }
-
-        /**
-         * Unique identifier for the associated company of the contact to filter on
-         */
-        public Builder companyId(Optional<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = companyId;
             return this;
         }
 
-
         /**
          * Unique identifier for the owner of the contact to filter on
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = Optional.ofNullable(ownerId);
-            return this;
-        }
-
-        /**
-         * Unique identifier for the owner of the contact to filter on
-         */
-        public Builder ownerId(Optional<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
         public ContactsFilter build() {
-
             return new ContactsFilter(
                 name, firstName, lastName,
                 email, phoneNumber, companyId,

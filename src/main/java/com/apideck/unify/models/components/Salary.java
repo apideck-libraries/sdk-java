@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,21 +22,21 @@ public class Salary {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("min")
-    private Optional<Long> min;
+    private Long min;
 
     /**
      * Maximum salary payable for the job role.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("max")
-    private Optional<Long> max;
+    private Long max;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -46,53 +45,46 @@ public class Salary {
 
     @JsonCreator
     public Salary(
-            @JsonProperty("min") Optional<Long> min,
-            @JsonProperty("max") Optional<Long> max,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("interval") JsonNullable<String> interval) {
-        Utils.checkNotNull(min, "min");
-        Utils.checkNotNull(max, "max");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(interval, "interval");
+            @JsonProperty("min") @Nullable Long min,
+            @JsonProperty("max") @Nullable Long max,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("interval") @Nullable JsonNullable<String> interval) {
         this.min = min;
         this.max = max;
-        this.currency = currency;
-        this.interval = interval;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.interval = Optional.ofNullable(interval)
+            .orElse(JsonNullable.undefined());
     }
     
     public Salary() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * Minimum salary payable for the job role.
      */
-    @JsonIgnore
     public Optional<Long> min() {
-        return min;
+        return Optional.ofNullable(this.min);
     }
 
     /**
      * Maximum salary payable for the job role.
      */
-    @JsonIgnore
     public Optional<Long> max() {
-        return max;
+        return Optional.ofNullable(this.max);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
-    @JsonIgnore
     public JsonNullable<String> interval() {
-        return interval;
+        return this.interval;
     }
 
     public static Builder builder() {
@@ -103,70 +95,35 @@ public class Salary {
     /**
      * Minimum salary payable for the job role.
      */
-    public Salary withMin(long min) {
-        Utils.checkNotNull(min, "min");
-        this.min = Optional.ofNullable(min);
-        return this;
-    }
-
-
-    /**
-     * Minimum salary payable for the job role.
-     */
-    public Salary withMin(Optional<Long> min) {
-        Utils.checkNotNull(min, "min");
+    public Salary withMin(@Nullable Long min) {
         this.min = min;
         return this;
     }
 
-    /**
-     * Maximum salary payable for the job role.
-     */
-    public Salary withMax(long max) {
-        Utils.checkNotNull(max, "max");
-        this.max = Optional.ofNullable(max);
-        return this;
-    }
-
 
     /**
      * Maximum salary payable for the job role.
      */
-    public Salary withMax(Optional<Long> max) {
-        Utils.checkNotNull(max, "max");
+    public Salary withMax(@Nullable Long max) {
         this.max = max;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public Salary withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public Salary withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public Salary withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
-    public Salary withInterval(String interval) {
-        Utils.checkNotNull(interval, "interval");
+    public Salary withInterval(@Nullable String interval) {
         this.interval = JsonNullable.of(interval);
         return this;
     }
 
-    public Salary withInterval(JsonNullable<String> interval) {
-        Utils.checkNotNull(interval, "interval");
-        this.interval = interval;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -203,90 +160,48 @@ public class Salary {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> min = Optional.empty();
+        private Long min;
 
-        private Optional<Long> max = Optional.empty();
+        private Long max;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<String> interval = JsonNullable.undefined();
+        private JsonNullable<String> interval;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Minimum salary payable for the job role.
          */
-        public Builder min(long min) {
-            Utils.checkNotNull(min, "min");
-            this.min = Optional.ofNullable(min);
-            return this;
-        }
-
-        /**
-         * Minimum salary payable for the job role.
-         */
-        public Builder min(Optional<Long> min) {
-            Utils.checkNotNull(min, "min");
+        public Builder min(@Nullable Long min) {
             this.min = min;
             return this;
         }
 
-
         /**
          * Maximum salary payable for the job role.
          */
-        public Builder max(long max) {
-            Utils.checkNotNull(max, "max");
-            this.max = Optional.ofNullable(max);
-            return this;
-        }
-
-        /**
-         * Maximum salary payable for the job role.
-         */
-        public Builder max(Optional<Long> max) {
-            Utils.checkNotNull(max, "max");
+        public Builder max(@Nullable Long max) {
             this.max = max;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
-        /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        public Builder interval(String interval) {
-            Utils.checkNotNull(interval, "interval");
+        public Builder interval(@Nullable String interval) {
             this.interval = JsonNullable.of(interval);
             return this;
         }
 
-        public Builder interval(JsonNullable<String> interval) {
-            Utils.checkNotNull(interval, "interval");
-            this.interval = interval;
-            return this;
-        }
-
         public Salary build() {
-
             return new Salary(
                 min, max, currency,
                 interval);

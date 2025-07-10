@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
@@ -19,7 +20,7 @@ public class FormFieldOptionGroup implements FormFieldOption {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonProperty("label")
@@ -35,44 +36,39 @@ public class FormFieldOptionGroup implements FormFieldOption {
 
     @JsonCreator
     public FormFieldOptionGroup(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") String label,
-            @JsonProperty("options") List<SimpleFormFieldOption> options,
-            @JsonProperty("option_type") FormFieldOptionGroupOptionType optionType) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(optionType, "optionType");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nonnull String label,
+            @JsonProperty("options") @Nonnull List<SimpleFormFieldOption> options,
+            @JsonProperty("option_type") @Nonnull FormFieldOptionGroupOptionType optionType) {
         this.id = id;
-        this.label = label;
-        this.options = options;
-        this.optionType = optionType;
+        this.label = Optional.ofNullable(label)
+            .orElseThrow(() -> new IllegalArgumentException("label cannot be null"));
+        this.options = Optional.ofNullable(options)
+            .orElseThrow(() -> new IllegalArgumentException("options cannot be null"));
+        this.optionType = Optional.ofNullable(optionType)
+            .orElseThrow(() -> new IllegalArgumentException("optionType cannot be null"));
     }
     
     public FormFieldOptionGroup(
-            String label,
-            List<SimpleFormFieldOption> options,
-            FormFieldOptionGroupOptionType optionType) {
-        this(Optional.empty(), label, options,
+            @Nonnull String label,
+            @Nonnull List<SimpleFormFieldOption> options,
+            @Nonnull FormFieldOptionGroupOptionType optionType) {
+        this(null, label, options,
             optionType);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
     public String label() {
-        return label;
+        return this.label;
     }
 
-    @JsonIgnore
     public List<SimpleFormFieldOption> options() {
-        return options;
+        return this.options;
     }
 
-    @JsonIgnore
     @Override
     public String optionType() {
         return Utils.discriminatorToString(optionType);
@@ -83,36 +79,29 @@ public class FormFieldOptionGroup implements FormFieldOption {
     }
 
 
-    public FormFieldOptionGroup withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public FormFieldOptionGroup withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public FormFieldOptionGroup withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public FormFieldOptionGroup withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = label;
+
+    public FormFieldOptionGroup withLabel(@Nonnull String label) {
+        this.label = Utils.checkNotNull(label, "label");
         return this;
     }
 
-    public FormFieldOptionGroup withOptions(List<SimpleFormFieldOption> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = options;
+
+    public FormFieldOptionGroup withOptions(@Nonnull List<SimpleFormFieldOption> options) {
+        this.options = Utils.checkNotNull(options, "options");
         return this;
     }
 
-    public FormFieldOptionGroup withOptionType(FormFieldOptionGroupOptionType optionType) {
-        Utils.checkNotNull(optionType, "optionType");
-        this.optionType = optionType;
+
+    public FormFieldOptionGroup withOptionType(@Nonnull FormFieldOptionGroupOptionType optionType) {
+        this.optionType = Utils.checkNotNull(optionType, "optionType");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -149,7 +138,7 @@ public class FormFieldOptionGroup implements FormFieldOption {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private String label;
 
@@ -161,42 +150,27 @@ public class FormFieldOptionGroup implements FormFieldOption {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = label;
+        public Builder label(@Nonnull String label) {
+            this.label = Utils.checkNotNull(label, "label");
             return this;
         }
 
-
-        public Builder options(List<SimpleFormFieldOption> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = options;
+        public Builder options(@Nonnull List<SimpleFormFieldOption> options) {
+            this.options = Utils.checkNotNull(options, "options");
             return this;
         }
 
-
-        public Builder optionType(FormFieldOptionGroupOptionType optionType) {
-            Utils.checkNotNull(optionType, "optionType");
-            this.optionType = optionType;
+        public Builder optionType(@Nonnull FormFieldOptionGroupOptionType optionType) {
+            this.optionType = Utils.checkNotNull(optionType, "optionType");
             return this;
         }
 
         public FormFieldOptionGroup build() {
-
             return new FormFieldOptionGroup(
                 id, label, options,
                 optionType);

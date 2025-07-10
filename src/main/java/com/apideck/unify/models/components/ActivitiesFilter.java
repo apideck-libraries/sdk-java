@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -18,42 +18,37 @@ public class ActivitiesFilter {
      * Company ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=company_id")
-    private Optional<String> companyId;
+    private String companyId;
 
     /**
      * Owner ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=owner_id")
-    private Optional<String> ownerId;
+    private String ownerId;
 
     /**
      * Primary contact ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=contact_id")
-    private Optional<String> contactId;
+    private String contactId;
 
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
     /**
      * Type to filter on
      */
     @SpeakeasyMetadata("queryParam:name=type")
-    private Optional<String> type;
+    private String type;
 
     @JsonCreator
     public ActivitiesFilter(
-            Optional<String> companyId,
-            Optional<String> ownerId,
-            Optional<String> contactId,
-            Optional<OffsetDateTime> updatedSince,
-            Optional<String> type) {
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(contactId, "contactId");
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(type, "type");
+            @Nullable String companyId,
+            @Nullable String ownerId,
+            @Nullable String contactId,
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable String type) {
         this.companyId = companyId;
         this.ownerId = ownerId;
         this.contactId = contactId;
@@ -62,45 +57,40 @@ public class ActivitiesFilter {
     }
     
     public ActivitiesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Company ID to filter on
      */
-    @JsonIgnore
     public Optional<String> companyId() {
-        return companyId;
+        return Optional.ofNullable(this.companyId);
     }
 
     /**
      * Owner ID to filter on
      */
-    @JsonIgnore
     public Optional<String> ownerId() {
-        return ownerId;
+        return Optional.ofNullable(this.ownerId);
     }
 
     /**
      * Primary contact ID to filter on
      */
-    @JsonIgnore
     public Optional<String> contactId() {
-        return contactId;
+        return Optional.ofNullable(this.contactId);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
     /**
      * Type to filter on
      */
-    @JsonIgnore
     public Optional<String> type() {
-        return type;
+        return Optional.ofNullable(this.type);
     }
 
     public static Builder builder() {
@@ -111,91 +101,44 @@ public class ActivitiesFilter {
     /**
      * Company ID to filter on
      */
-    public ActivitiesFilter withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = Optional.ofNullable(companyId);
-        return this;
-    }
-
-
-    /**
-     * Company ID to filter on
-     */
-    public ActivitiesFilter withCompanyId(Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public ActivitiesFilter withCompanyId(@Nullable String companyId) {
         this.companyId = companyId;
         return this;
     }
 
-    /**
-     * Owner ID to filter on
-     */
-    public ActivitiesFilter withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = Optional.ofNullable(ownerId);
-        return this;
-    }
-
 
     /**
      * Owner ID to filter on
      */
-    public ActivitiesFilter withOwnerId(Optional<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public ActivitiesFilter withOwnerId(@Nullable String ownerId) {
         this.ownerId = ownerId;
         return this;
     }
 
-    /**
-     * Primary contact ID to filter on
-     */
-    public ActivitiesFilter withContactId(String contactId) {
-        Utils.checkNotNull(contactId, "contactId");
-        this.contactId = Optional.ofNullable(contactId);
-        return this;
-    }
-
 
     /**
      * Primary contact ID to filter on
      */
-    public ActivitiesFilter withContactId(Optional<String> contactId) {
-        Utils.checkNotNull(contactId, "contactId");
+    public ActivitiesFilter withContactId(@Nullable String contactId) {
         this.contactId = contactId;
         return this;
     }
 
-    public ActivitiesFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
 
-
-    public ActivitiesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public ActivitiesFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    /**
-     * Type to filter on
-     */
-    public ActivitiesFilter withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
 
     /**
      * Type to filter on
      */
-    public ActivitiesFilter withType(Optional<String> type) {
-        Utils.checkNotNull(type, "type");
+    public ActivitiesFilter withType(@Nullable String type) {
         this.type = type;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -234,111 +177,58 @@ public class ActivitiesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> companyId = Optional.empty();
+        private String companyId;
 
-        private Optional<String> ownerId = Optional.empty();
+        private String ownerId;
 
-        private Optional<String> contactId = Optional.empty();
+        private String contactId;
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<String> type = Optional.empty();
+        private String type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Company ID to filter on
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = Optional.ofNullable(companyId);
-            return this;
-        }
-
-        /**
-         * Company ID to filter on
-         */
-        public Builder companyId(Optional<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = companyId;
             return this;
         }
 
-
         /**
          * Owner ID to filter on
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = Optional.ofNullable(ownerId);
-            return this;
-        }
-
-        /**
-         * Owner ID to filter on
-         */
-        public Builder ownerId(Optional<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
-
         /**
          * Primary contact ID to filter on
          */
-        public Builder contactId(String contactId) {
-            Utils.checkNotNull(contactId, "contactId");
-            this.contactId = Optional.ofNullable(contactId);
-            return this;
-        }
-
-        /**
-         * Primary contact ID to filter on
-         */
-        public Builder contactId(Optional<String> contactId) {
-            Utils.checkNotNull(contactId, "contactId");
+        public Builder contactId(@Nullable String contactId) {
             this.contactId = contactId;
             return this;
         }
 
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
         /**
          * Type to filter on
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * Type to filter on
-         */
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = type;
             return this;
         }
 
         public ActivitiesFilter build() {
-
             return new ActivitiesFilter(
                 companyId, ownerId, contactId,
                 updatedSince, type);

@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class ApplicantInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The first name of the person.
@@ -65,7 +64,7 @@ public class ApplicantInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cover_letter")
-    private Optional<String> coverLetter;
+    private String coverLetter;
 
     /**
      * The URL of the photo of a person.
@@ -79,7 +78,7 @@ public class ApplicantInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("headline")
-    private Optional<String> headline;
+    private String headline;
 
     /**
      * The job title of the person.
@@ -91,82 +90,82 @@ public class ApplicantInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
-    private Optional<? extends List<Websites>> websites;
+    private List<Websites> websites;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
-    private Optional<? extends List<SocialLinks>> socialLinks;
+    private List<SocialLinks> socialLinks;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stage_id")
-    private Optional<String> stageId;
+    private String stageId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recruiter_id")
-    private Optional<String> recruiterId;
+    private String recruiterId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("coordinator_id")
-    private Optional<String> coordinatorId;
+    private String coordinatorId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_ids")
-    private JsonNullable<? extends List<String>> applicationIds;
+    private JsonNullable<List<String>> applicationIds;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("applications")
-    private JsonNullable<? extends List<String>> applications;
+    private JsonNullable<List<String>> applications;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("followers")
-    private JsonNullable<? extends List<String>> followers;
+    private JsonNullable<List<String>> followers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sources")
-    private JsonNullable<? extends List<String>> sources;
+    private JsonNullable<List<String>> sources;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("confidential")
-    private Optional<Boolean> confidential;
+    private Boolean confidential;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("anonymized")
-    private Optional<Boolean> anonymized;
+    private Boolean anonymized;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -195,82 +194,58 @@ public class ApplicantInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public ApplicantInput(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("initials") JsonNullable<String> initials,
-            @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
-            @JsonProperty("cover_letter") Optional<String> coverLetter,
-            @JsonProperty("photo_url") JsonNullable<String> photoUrl,
-            @JsonProperty("headline") Optional<String> headline,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("websites") Optional<? extends List<Websites>> websites,
-            @JsonProperty("social_links") Optional<? extends List<SocialLinks>> socialLinks,
-            @JsonProperty("stage_id") Optional<String> stageId,
-            @JsonProperty("recruiter_id") Optional<String> recruiterId,
-            @JsonProperty("coordinator_id") Optional<String> coordinatorId,
-            @JsonProperty("application_ids") JsonNullable<? extends List<String>> applicationIds,
-            @JsonProperty("applications") JsonNullable<? extends List<String>> applications,
-            @JsonProperty("followers") JsonNullable<? extends List<String>> followers,
-            @JsonProperty("sources") JsonNullable<? extends List<String>> sources,
-            @JsonProperty("confidential") Optional<Boolean> confidential,
-            @JsonProperty("anonymized") Optional<Boolean> anonymized,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("archived") JsonNullable<Boolean> archived,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("record_url") JsonNullable<String> recordUrl,
-            @JsonProperty("deleted") JsonNullable<Boolean> deleted,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(initials, "initials");
-        Utils.checkNotNull(birthday, "birthday");
-        Utils.checkNotNull(coverLetter, "coverLetter");
-        Utils.checkNotNull(photoUrl, "photoUrl");
-        Utils.checkNotNull(headline, "headline");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(websites, "websites");
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        Utils.checkNotNull(stageId, "stageId");
-        Utils.checkNotNull(recruiterId, "recruiterId");
-        Utils.checkNotNull(coordinatorId, "coordinatorId");
-        Utils.checkNotNull(applicationIds, "applicationIds");
-        Utils.checkNotNull(applications, "applications");
-        Utils.checkNotNull(followers, "followers");
-        Utils.checkNotNull(sources, "sources");
-        Utils.checkNotNull(confidential, "confidential");
-        Utils.checkNotNull(anonymized, "anonymized");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(archived, "archived");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("initials") @Nullable JsonNullable<String> initials,
+            @JsonProperty("birthday") @Nullable JsonNullable<LocalDate> birthday,
+            @JsonProperty("cover_letter") @Nullable String coverLetter,
+            @JsonProperty("photo_url") @Nullable JsonNullable<String> photoUrl,
+            @JsonProperty("headline") @Nullable String headline,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("websites") @Nullable List<Websites> websites,
+            @JsonProperty("social_links") @Nullable List<SocialLinks> socialLinks,
+            @JsonProperty("stage_id") @Nullable String stageId,
+            @JsonProperty("recruiter_id") @Nullable String recruiterId,
+            @JsonProperty("coordinator_id") @Nullable String coordinatorId,
+            @JsonProperty("application_ids") @Nullable JsonNullable<List<String>> applicationIds,
+            @JsonProperty("applications") @Nullable JsonNullable<List<String>> applications,
+            @JsonProperty("followers") @Nullable JsonNullable<List<String>> followers,
+            @JsonProperty("sources") @Nullable JsonNullable<List<String>> sources,
+            @JsonProperty("confidential") @Nullable Boolean confidential,
+            @JsonProperty("anonymized") @Nullable Boolean anonymized,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("archived") @Nullable JsonNullable<Boolean> archived,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("record_url") @Nullable JsonNullable<String> recordUrl,
+            @JsonProperty("deleted") @Nullable JsonNullable<Boolean> deleted,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.name = name;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.initials = initials;
-        this.birthday = birthday;
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.initials = Optional.ofNullable(initials)
+            .orElse(JsonNullable.undefined());
+        this.birthday = Optional.ofNullable(birthday)
+            .orElse(JsonNullable.undefined());
         this.coverLetter = coverLetter;
-        this.photoUrl = photoUrl;
+        this.photoUrl = Optional.ofNullable(photoUrl)
+            .orElse(JsonNullable.undefined());
         this.headline = headline;
-        this.title = title;
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
         this.emails = emails;
         this.customFields = customFields;
         this.phoneNumbers = phoneNumbers;
@@ -280,232 +255,198 @@ public class ApplicantInput {
         this.stageId = stageId;
         this.recruiterId = recruiterId;
         this.coordinatorId = coordinatorId;
-        this.applicationIds = applicationIds;
-        this.applications = applications;
-        this.followers = followers;
-        this.sources = sources;
+        this.applicationIds = Optional.ofNullable(applicationIds)
+            .orElse(JsonNullable.undefined());
+        this.applications = Optional.ofNullable(applications)
+            .orElse(JsonNullable.undefined());
+        this.followers = Optional.ofNullable(followers)
+            .orElse(JsonNullable.undefined());
+        this.sources = Optional.ofNullable(sources)
+            .orElse(JsonNullable.undefined());
         this.confidential = confidential;
         this.anonymized = anonymized;
-        this.tags = tags;
-        this.archived = archived;
-        this.ownerId = ownerId;
-        this.recordUrl = recordUrl;
-        this.deleted = deleted;
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
+        this.archived = Optional.ofNullable(archived)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.recordUrl = Optional.ofNullable(recordUrl)
+            .orElse(JsonNullable.undefined());
+        this.deleted = Optional.ofNullable(deleted)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public ApplicantInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The name of an applicant.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Middle name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * The initials of the person, usually derived from their first, middle, and last names.
      */
-    @JsonIgnore
     public JsonNullable<String> initials() {
-        return initials;
+        return this.initials;
     }
 
     /**
      * The date of birth of the person.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
-        return birthday;
+        return this.birthday;
     }
 
-    @JsonIgnore
     public Optional<String> coverLetter() {
-        return coverLetter;
+        return Optional.ofNullable(this.coverLetter);
     }
 
     /**
      * The URL of the photo of a person.
      */
-    @JsonIgnore
     public JsonNullable<String> photoUrl() {
-        return photoUrl;
+        return this.photoUrl;
     }
 
     /**
      * Typically a list of previous companies where the contact has worked or schools that the contact has attended
      */
-    @JsonIgnore
     public Optional<String> headline() {
-        return headline;
+        return Optional.ofNullable(this.headline);
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Websites>> websites() {
-        return (Optional<List<Websites>>) websites;
+        return Optional.ofNullable(this.websites);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SocialLinks>> socialLinks() {
-        return (Optional<List<SocialLinks>>) socialLinks;
+        return Optional.ofNullable(this.socialLinks);
     }
 
-    @JsonIgnore
     public Optional<String> stageId() {
-        return stageId;
+        return Optional.ofNullable(this.stageId);
     }
 
-    @JsonIgnore
     public Optional<String> recruiterId() {
-        return recruiterId;
+        return Optional.ofNullable(this.recruiterId);
     }
 
-    @JsonIgnore
     public Optional<String> coordinatorId() {
-        return coordinatorId;
+        return Optional.ofNullable(this.coordinatorId);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> applicationIds() {
-        return (JsonNullable<List<String>>) applicationIds;
+        return this.applicationIds;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> applications() {
-        return (JsonNullable<List<String>>) applications;
+        return this.applications;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> followers() {
-        return (JsonNullable<List<String>>) followers;
+        return this.followers;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> sources() {
-        return (JsonNullable<List<String>>) sources;
+        return this.sources;
     }
 
-    @JsonIgnore
     public Optional<Boolean> confidential() {
-        return confidential;
+        return Optional.ofNullable(this.confidential);
     }
 
-    @JsonIgnore
     public Optional<Boolean> anonymized() {
-        return anonymized;
+        return Optional.ofNullable(this.anonymized);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
-    @JsonIgnore
     public JsonNullable<Boolean> archived() {
-        return archived;
+        return this.archived;
     }
 
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
-    @JsonIgnore
     public JsonNullable<String> recordUrl() {
-        return recordUrl;
+        return this.recordUrl;
     }
 
     /**
      * Flag to indicate if the object is deleted.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> deleted() {
-        return deleted;
+        return this.deleted;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -516,455 +457,221 @@ public class ApplicantInput {
     /**
      * The name of an applicant.
      */
-    public ApplicantInput withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of an applicant.
-     */
-    public ApplicantInput withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ApplicantInput withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
+
     /**
      * The first name of the person.
      */
-    public ApplicantInput withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public ApplicantInput withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public ApplicantInput withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public ApplicantInput withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public ApplicantInput withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public ApplicantInput withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Middle name of the person.
      */
-    public ApplicantInput withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public ApplicantInput withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the person.
-     */
-    public ApplicantInput withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * The initials of the person, usually derived from their first, middle, and last names.
      */
-    public ApplicantInput withInitials(String initials) {
-        Utils.checkNotNull(initials, "initials");
+    public ApplicantInput withInitials(@Nullable String initials) {
         this.initials = JsonNullable.of(initials);
         return this;
     }
 
-    /**
-     * The initials of the person, usually derived from their first, middle, and last names.
-     */
-    public ApplicantInput withInitials(JsonNullable<String> initials) {
-        Utils.checkNotNull(initials, "initials");
-        this.initials = initials;
-        return this;
-    }
 
     /**
      * The date of birth of the person.
      */
-    public ApplicantInput withBirthday(LocalDate birthday) {
-        Utils.checkNotNull(birthday, "birthday");
+    public ApplicantInput withBirthday(@Nullable LocalDate birthday) {
         this.birthday = JsonNullable.of(birthday);
         return this;
     }
 
-    /**
-     * The date of birth of the person.
-     */
-    public ApplicantInput withBirthday(JsonNullable<LocalDate> birthday) {
-        Utils.checkNotNull(birthday, "birthday");
-        this.birthday = birthday;
-        return this;
-    }
 
-    public ApplicantInput withCoverLetter(String coverLetter) {
-        Utils.checkNotNull(coverLetter, "coverLetter");
-        this.coverLetter = Optional.ofNullable(coverLetter);
-        return this;
-    }
-
-
-    public ApplicantInput withCoverLetter(Optional<String> coverLetter) {
-        Utils.checkNotNull(coverLetter, "coverLetter");
+    public ApplicantInput withCoverLetter(@Nullable String coverLetter) {
         this.coverLetter = coverLetter;
         return this;
     }
 
+
     /**
      * The URL of the photo of a person.
      */
-    public ApplicantInput withPhotoUrl(String photoUrl) {
-        Utils.checkNotNull(photoUrl, "photoUrl");
+    public ApplicantInput withPhotoUrl(@Nullable String photoUrl) {
         this.photoUrl = JsonNullable.of(photoUrl);
         return this;
     }
 
-    /**
-     * The URL of the photo of a person.
-     */
-    public ApplicantInput withPhotoUrl(JsonNullable<String> photoUrl) {
-        Utils.checkNotNull(photoUrl, "photoUrl");
-        this.photoUrl = photoUrl;
-        return this;
-    }
 
     /**
      * Typically a list of previous companies where the contact has worked or schools that the contact has attended
      */
-    public ApplicantInput withHeadline(String headline) {
-        Utils.checkNotNull(headline, "headline");
-        this.headline = Optional.ofNullable(headline);
-        return this;
-    }
-
-
-    /**
-     * Typically a list of previous companies where the contact has worked or schools that the contact has attended
-     */
-    public ApplicantInput withHeadline(Optional<String> headline) {
-        Utils.checkNotNull(headline, "headline");
+    public ApplicantInput withHeadline(@Nullable String headline) {
         this.headline = headline;
         return this;
     }
 
+
     /**
      * The job title of the person.
      */
-    public ApplicantInput withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public ApplicantInput withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public ApplicantInput withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
-    public ApplicantInput withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
-
-
-    public ApplicantInput withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public ApplicantInput withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public ApplicantInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
 
-
-    public ApplicantInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public ApplicantInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
-    public ApplicantInput withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public ApplicantInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public ApplicantInput withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public ApplicantInput withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
 
-
-    public ApplicantInput withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public ApplicantInput withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public ApplicantInput withWebsites(List<Websites> websites) {
-        Utils.checkNotNull(websites, "websites");
-        this.websites = Optional.ofNullable(websites);
-        return this;
-    }
 
-
-    public ApplicantInput withWebsites(Optional<? extends List<Websites>> websites) {
-        Utils.checkNotNull(websites, "websites");
+    public ApplicantInput withWebsites(@Nullable List<Websites> websites) {
         this.websites = websites;
         return this;
     }
 
-    public ApplicantInput withSocialLinks(List<SocialLinks> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        this.socialLinks = Optional.ofNullable(socialLinks);
-        return this;
-    }
 
-
-    public ApplicantInput withSocialLinks(Optional<? extends List<SocialLinks>> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
+    public ApplicantInput withSocialLinks(@Nullable List<SocialLinks> socialLinks) {
         this.socialLinks = socialLinks;
         return this;
     }
 
-    public ApplicantInput withStageId(String stageId) {
-        Utils.checkNotNull(stageId, "stageId");
-        this.stageId = Optional.ofNullable(stageId);
-        return this;
-    }
 
-
-    public ApplicantInput withStageId(Optional<String> stageId) {
-        Utils.checkNotNull(stageId, "stageId");
+    public ApplicantInput withStageId(@Nullable String stageId) {
         this.stageId = stageId;
         return this;
     }
 
-    public ApplicantInput withRecruiterId(String recruiterId) {
-        Utils.checkNotNull(recruiterId, "recruiterId");
-        this.recruiterId = Optional.ofNullable(recruiterId);
-        return this;
-    }
 
-
-    public ApplicantInput withRecruiterId(Optional<String> recruiterId) {
-        Utils.checkNotNull(recruiterId, "recruiterId");
+    public ApplicantInput withRecruiterId(@Nullable String recruiterId) {
         this.recruiterId = recruiterId;
         return this;
     }
 
-    public ApplicantInput withCoordinatorId(String coordinatorId) {
-        Utils.checkNotNull(coordinatorId, "coordinatorId");
-        this.coordinatorId = Optional.ofNullable(coordinatorId);
-        return this;
-    }
 
-
-    public ApplicantInput withCoordinatorId(Optional<String> coordinatorId) {
-        Utils.checkNotNull(coordinatorId, "coordinatorId");
+    public ApplicantInput withCoordinatorId(@Nullable String coordinatorId) {
         this.coordinatorId = coordinatorId;
         return this;
     }
 
-    public ApplicantInput withApplicationIds(List<String> applicationIds) {
-        Utils.checkNotNull(applicationIds, "applicationIds");
+
+    public ApplicantInput withApplicationIds(@Nullable List<String> applicationIds) {
         this.applicationIds = JsonNullable.of(applicationIds);
         return this;
     }
 
-    public ApplicantInput withApplicationIds(JsonNullable<? extends List<String>> applicationIds) {
-        Utils.checkNotNull(applicationIds, "applicationIds");
-        this.applicationIds = applicationIds;
-        return this;
-    }
 
-    public ApplicantInput withApplications(List<String> applications) {
-        Utils.checkNotNull(applications, "applications");
+    public ApplicantInput withApplications(@Nullable List<String> applications) {
         this.applications = JsonNullable.of(applications);
         return this;
     }
 
-    public ApplicantInput withApplications(JsonNullable<? extends List<String>> applications) {
-        Utils.checkNotNull(applications, "applications");
-        this.applications = applications;
-        return this;
-    }
 
-    public ApplicantInput withFollowers(List<String> followers) {
-        Utils.checkNotNull(followers, "followers");
+    public ApplicantInput withFollowers(@Nullable List<String> followers) {
         this.followers = JsonNullable.of(followers);
         return this;
     }
 
-    public ApplicantInput withFollowers(JsonNullable<? extends List<String>> followers) {
-        Utils.checkNotNull(followers, "followers");
-        this.followers = followers;
-        return this;
-    }
 
-    public ApplicantInput withSources(List<String> sources) {
-        Utils.checkNotNull(sources, "sources");
+    public ApplicantInput withSources(@Nullable List<String> sources) {
         this.sources = JsonNullable.of(sources);
         return this;
     }
 
-    public ApplicantInput withSources(JsonNullable<? extends List<String>> sources) {
-        Utils.checkNotNull(sources, "sources");
-        this.sources = sources;
-        return this;
-    }
 
-    public ApplicantInput withConfidential(boolean confidential) {
-        Utils.checkNotNull(confidential, "confidential");
-        this.confidential = Optional.ofNullable(confidential);
-        return this;
-    }
-
-
-    public ApplicantInput withConfidential(Optional<Boolean> confidential) {
-        Utils.checkNotNull(confidential, "confidential");
+    public ApplicantInput withConfidential(@Nullable Boolean confidential) {
         this.confidential = confidential;
         return this;
     }
 
-    public ApplicantInput withAnonymized(boolean anonymized) {
-        Utils.checkNotNull(anonymized, "anonymized");
-        this.anonymized = Optional.ofNullable(anonymized);
-        return this;
-    }
 
-
-    public ApplicantInput withAnonymized(Optional<Boolean> anonymized) {
-        Utils.checkNotNull(anonymized, "anonymized");
+    public ApplicantInput withAnonymized(@Nullable Boolean anonymized) {
         this.anonymized = anonymized;
         return this;
     }
 
-    public ApplicantInput withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+
+    public ApplicantInput withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public ApplicantInput withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
-    public ApplicantInput withArchived(boolean archived) {
-        Utils.checkNotNull(archived, "archived");
+    public ApplicantInput withArchived(@Nullable Boolean archived) {
         this.archived = JsonNullable.of(archived);
         return this;
     }
 
-    public ApplicantInput withArchived(JsonNullable<Boolean> archived) {
-        Utils.checkNotNull(archived, "archived");
-        this.archived = archived;
-        return this;
-    }
 
-    public ApplicantInput withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public ApplicantInput withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    public ApplicantInput withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
-    public ApplicantInput withRecordUrl(String recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
+    public ApplicantInput withRecordUrl(@Nullable String recordUrl) {
         this.recordUrl = JsonNullable.of(recordUrl);
         return this;
     }
 
-    public ApplicantInput withRecordUrl(JsonNullable<String> recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        this.recordUrl = recordUrl;
-        return this;
-    }
 
     /**
      * Flag to indicate if the object is deleted.
      */
-    public ApplicantInput withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public ApplicantInput withDeleted(@Nullable Boolean deleted) {
         this.deleted = JsonNullable.of(deleted);
         return this;
     }
 
-    /**
-     * Flag to indicate if the object is deleted.
-     */
-    public ApplicantInput withDeleted(JsonNullable<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = deleted;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public ApplicantInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public ApplicantInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public ApplicantInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1064,543 +771,261 @@ public class ApplicantInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<String> initials = JsonNullable.undefined();
+        private JsonNullable<String> initials;
 
-        private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+        private JsonNullable<LocalDate> birthday;
 
-        private Optional<String> coverLetter = Optional.empty();
+        private String coverLetter;
 
-        private JsonNullable<String> photoUrl = JsonNullable.undefined();
+        private JsonNullable<String> photoUrl;
 
-        private Optional<String> headline = Optional.empty();
+        private String headline;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<Websites>> websites = Optional.empty();
+        private List<Websites> websites;
 
-        private Optional<? extends List<SocialLinks>> socialLinks = Optional.empty();
+        private List<SocialLinks> socialLinks;
 
-        private Optional<String> stageId = Optional.empty();
+        private String stageId;
 
-        private Optional<String> recruiterId = Optional.empty();
+        private String recruiterId;
 
-        private Optional<String> coordinatorId = Optional.empty();
+        private String coordinatorId;
 
-        private JsonNullable<? extends List<String>> applicationIds = JsonNullable.undefined();
+        private JsonNullable<List<String>> applicationIds;
 
-        private JsonNullable<? extends List<String>> applications = JsonNullable.undefined();
+        private JsonNullable<List<String>> applications;
 
-        private JsonNullable<? extends List<String>> followers = JsonNullable.undefined();
+        private JsonNullable<List<String>> followers;
 
-        private JsonNullable<? extends List<String>> sources = JsonNullable.undefined();
+        private JsonNullable<List<String>> sources;
 
-        private Optional<Boolean> confidential = Optional.empty();
+        private Boolean confidential;
 
-        private Optional<Boolean> anonymized = Optional.empty();
+        private Boolean anonymized;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private JsonNullable<List<String>> tags;
 
-        private JsonNullable<Boolean> archived = JsonNullable.undefined();
+        private JsonNullable<Boolean> archived;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> recordUrl = JsonNullable.undefined();
+        private JsonNullable<String> recordUrl;
 
-        private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+        private JsonNullable<Boolean> deleted;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of an applicant.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of an applicant.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the person.
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the person.
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * The initials of the person, usually derived from their first, middle, and last names.
          */
-        public Builder initials(String initials) {
-            Utils.checkNotNull(initials, "initials");
+        public Builder initials(@Nullable String initials) {
             this.initials = JsonNullable.of(initials);
             return this;
         }
 
         /**
-         * The initials of the person, usually derived from their first, middle, and last names.
-         */
-        public Builder initials(JsonNullable<String> initials) {
-            Utils.checkNotNull(initials, "initials");
-            this.initials = initials;
-            return this;
-        }
-
-
-        /**
          * The date of birth of the person.
          */
-        public Builder birthday(LocalDate birthday) {
-            Utils.checkNotNull(birthday, "birthday");
+        public Builder birthday(@Nullable LocalDate birthday) {
             this.birthday = JsonNullable.of(birthday);
             return this;
         }
 
-        /**
-         * The date of birth of the person.
-         */
-        public Builder birthday(JsonNullable<LocalDate> birthday) {
-            Utils.checkNotNull(birthday, "birthday");
-            this.birthday = birthday;
-            return this;
-        }
-
-
-        public Builder coverLetter(String coverLetter) {
-            Utils.checkNotNull(coverLetter, "coverLetter");
-            this.coverLetter = Optional.ofNullable(coverLetter);
-            return this;
-        }
-
-        public Builder coverLetter(Optional<String> coverLetter) {
-            Utils.checkNotNull(coverLetter, "coverLetter");
+        public Builder coverLetter(@Nullable String coverLetter) {
             this.coverLetter = coverLetter;
             return this;
         }
 
-
         /**
          * The URL of the photo of a person.
          */
-        public Builder photoUrl(String photoUrl) {
-            Utils.checkNotNull(photoUrl, "photoUrl");
+        public Builder photoUrl(@Nullable String photoUrl) {
             this.photoUrl = JsonNullable.of(photoUrl);
             return this;
         }
 
         /**
-         * The URL of the photo of a person.
-         */
-        public Builder photoUrl(JsonNullable<String> photoUrl) {
-            Utils.checkNotNull(photoUrl, "photoUrl");
-            this.photoUrl = photoUrl;
-            return this;
-        }
-
-
-        /**
          * Typically a list of previous companies where the contact has worked or schools that the contact has attended
          */
-        public Builder headline(String headline) {
-            Utils.checkNotNull(headline, "headline");
-            this.headline = Optional.ofNullable(headline);
-            return this;
-        }
-
-        /**
-         * Typically a list of previous companies where the contact has worked or schools that the contact has attended
-         */
-        public Builder headline(Optional<String> headline) {
-            Utils.checkNotNull(headline, "headline");
+        public Builder headline(@Nullable String headline) {
             this.headline = headline;
             return this;
         }
 
-
         /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
-        /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder websites(List<Websites> websites) {
-            Utils.checkNotNull(websites, "websites");
-            this.websites = Optional.ofNullable(websites);
-            return this;
-        }
-
-        public Builder websites(Optional<? extends List<Websites>> websites) {
-            Utils.checkNotNull(websites, "websites");
+        public Builder websites(@Nullable List<Websites> websites) {
             this.websites = websites;
             return this;
         }
 
-
-        public Builder socialLinks(List<SocialLinks> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
-            this.socialLinks = Optional.ofNullable(socialLinks);
-            return this;
-        }
-
-        public Builder socialLinks(Optional<? extends List<SocialLinks>> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
+        public Builder socialLinks(@Nullable List<SocialLinks> socialLinks) {
             this.socialLinks = socialLinks;
             return this;
         }
 
-
-        public Builder stageId(String stageId) {
-            Utils.checkNotNull(stageId, "stageId");
-            this.stageId = Optional.ofNullable(stageId);
-            return this;
-        }
-
-        public Builder stageId(Optional<String> stageId) {
-            Utils.checkNotNull(stageId, "stageId");
+        public Builder stageId(@Nullable String stageId) {
             this.stageId = stageId;
             return this;
         }
 
-
-        public Builder recruiterId(String recruiterId) {
-            Utils.checkNotNull(recruiterId, "recruiterId");
-            this.recruiterId = Optional.ofNullable(recruiterId);
-            return this;
-        }
-
-        public Builder recruiterId(Optional<String> recruiterId) {
-            Utils.checkNotNull(recruiterId, "recruiterId");
+        public Builder recruiterId(@Nullable String recruiterId) {
             this.recruiterId = recruiterId;
             return this;
         }
 
-
-        public Builder coordinatorId(String coordinatorId) {
-            Utils.checkNotNull(coordinatorId, "coordinatorId");
-            this.coordinatorId = Optional.ofNullable(coordinatorId);
-            return this;
-        }
-
-        public Builder coordinatorId(Optional<String> coordinatorId) {
-            Utils.checkNotNull(coordinatorId, "coordinatorId");
+        public Builder coordinatorId(@Nullable String coordinatorId) {
             this.coordinatorId = coordinatorId;
             return this;
         }
 
-
-        public Builder applicationIds(List<String> applicationIds) {
-            Utils.checkNotNull(applicationIds, "applicationIds");
+        public Builder applicationIds(@Nullable List<String> applicationIds) {
             this.applicationIds = JsonNullable.of(applicationIds);
             return this;
         }
 
-        public Builder applicationIds(JsonNullable<? extends List<String>> applicationIds) {
-            Utils.checkNotNull(applicationIds, "applicationIds");
-            this.applicationIds = applicationIds;
-            return this;
-        }
-
-
-        public Builder applications(List<String> applications) {
-            Utils.checkNotNull(applications, "applications");
+        public Builder applications(@Nullable List<String> applications) {
             this.applications = JsonNullable.of(applications);
             return this;
         }
 
-        public Builder applications(JsonNullable<? extends List<String>> applications) {
-            Utils.checkNotNull(applications, "applications");
-            this.applications = applications;
-            return this;
-        }
-
-
-        public Builder followers(List<String> followers) {
-            Utils.checkNotNull(followers, "followers");
+        public Builder followers(@Nullable List<String> followers) {
             this.followers = JsonNullable.of(followers);
             return this;
         }
 
-        public Builder followers(JsonNullable<? extends List<String>> followers) {
-            Utils.checkNotNull(followers, "followers");
-            this.followers = followers;
-            return this;
-        }
-
-
-        public Builder sources(List<String> sources) {
-            Utils.checkNotNull(sources, "sources");
+        public Builder sources(@Nullable List<String> sources) {
             this.sources = JsonNullable.of(sources);
             return this;
         }
 
-        public Builder sources(JsonNullable<? extends List<String>> sources) {
-            Utils.checkNotNull(sources, "sources");
-            this.sources = sources;
-            return this;
-        }
-
-
-        public Builder confidential(boolean confidential) {
-            Utils.checkNotNull(confidential, "confidential");
-            this.confidential = Optional.ofNullable(confidential);
-            return this;
-        }
-
-        public Builder confidential(Optional<Boolean> confidential) {
-            Utils.checkNotNull(confidential, "confidential");
+        public Builder confidential(@Nullable Boolean confidential) {
             this.confidential = confidential;
             return this;
         }
 
-
-        public Builder anonymized(boolean anonymized) {
-            Utils.checkNotNull(anonymized, "anonymized");
-            this.anonymized = Optional.ofNullable(anonymized);
-            return this;
-        }
-
-        public Builder anonymized(Optional<Boolean> anonymized) {
-            Utils.checkNotNull(anonymized, "anonymized");
+        public Builder anonymized(@Nullable Boolean anonymized) {
             this.anonymized = anonymized;
             return this;
         }
 
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
-        public Builder archived(boolean archived) {
-            Utils.checkNotNull(archived, "archived");
+        public Builder archived(@Nullable Boolean archived) {
             this.archived = JsonNullable.of(archived);
             return this;
         }
 
-        public Builder archived(JsonNullable<Boolean> archived) {
-            Utils.checkNotNull(archived, "archived");
-            this.archived = archived;
-            return this;
-        }
-
-
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        public Builder recordUrl(String recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
+        public Builder recordUrl(@Nullable String recordUrl) {
             this.recordUrl = JsonNullable.of(recordUrl);
             return this;
         }
 
-        public Builder recordUrl(JsonNullable<String> recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
-            this.recordUrl = recordUrl;
-            return this;
-        }
-
-
         /**
          * Flag to indicate if the object is deleted.
          */
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = JsonNullable.of(deleted);
             return this;
         }
 
         /**
-         * Flag to indicate if the object is deleted.
-         */
-        public Builder deleted(JsonNullable<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = deleted;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public ApplicantInput build() {
-
             return new ApplicantInput(
                 name, firstName, lastName,
                 middleName, initials, birthday,

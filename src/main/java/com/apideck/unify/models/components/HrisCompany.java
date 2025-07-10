@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +26,12 @@ public class HrisCompany {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("legal_name")
-    private Optional<String> legalName;
+    private JsonNullable<String> legalName;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -47,7 +46,7 @@ public class HrisCompany {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends HrisCompanyStatus> status;
+    private HrisCompanyStatus status;
 
     /**
      * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
@@ -61,27 +60,27 @@ public class HrisCompany {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
-    private Optional<? extends List<Website>> websites;
+    private List<Website> websites;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -93,12 +92,12 @@ public class HrisCompany {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deleted")
-    private Optional<Boolean> deleted;
+    private Boolean deleted;
 
     /**
      * The user who last updated the object.
@@ -133,207 +132,171 @@ public class HrisCompany {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public HrisCompany(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("legal_name") Optional<String> legalName,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("subdomain") JsonNullable<String> subdomain,
-            @JsonProperty("status") Optional<? extends HrisCompanyStatus> status,
-            @JsonProperty("company_number") JsonNullable<String> companyNumber,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("websites") Optional<? extends List<Website>> websites,
-            @JsonProperty("debtor_id") JsonNullable<String> debtorId,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("deleted") Optional<Boolean> deleted,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(legalName, "legalName");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(subdomain, "subdomain");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(companyNumber, "companyNumber");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(websites, "websites");
-        Utils.checkNotNull(debtorId, "debtorId");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("legal_name") @Nullable String legalName,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("subdomain") @Nullable JsonNullable<String> subdomain,
+            @JsonProperty("status") @Nullable HrisCompanyStatus status,
+            @JsonProperty("company_number") @Nullable JsonNullable<String> companyNumber,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("websites") @Nullable List<Website> websites,
+            @JsonProperty("debtor_id") @Nullable JsonNullable<String> debtorId,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("deleted") @Nullable Boolean deleted,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.legalName = legalName;
-        this.displayName = displayName;
-        this.subdomain = subdomain;
+        this.legalName = JsonNullable.of(legalName);
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
+        this.subdomain = Optional.ofNullable(subdomain)
+            .orElse(JsonNullable.undefined());
         this.status = status;
-        this.companyNumber = companyNumber;
-        this.currency = currency;
+        this.companyNumber = Optional.ofNullable(companyNumber)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
         this.websites = websites;
-        this.debtorId = debtorId;
-        this.customMappings = customMappings;
+        this.debtorId = Optional.ofNullable(debtorId)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.deleted = deleted;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public HrisCompany() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
-    public Optional<String> legalName() {
-        return legalName;
+    public JsonNullable<String> legalName() {
+        return this.legalName;
     }
 
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
-    @JsonIgnore
     public JsonNullable<String> subdomain() {
-        return subdomain;
+        return this.subdomain;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<HrisCompanyStatus> status() {
-        return (Optional<HrisCompanyStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyNumber() {
-        return companyNumber;
+        return this.companyNumber;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Website>> websites() {
-        return (Optional<List<Website>>) websites;
+        return Optional.ofNullable(this.websites);
     }
 
-    @JsonIgnore
     public JsonNullable<String> debtorId() {
-        return debtorId;
+        return this.debtorId;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
-    @JsonIgnore
     public Optional<Boolean> deleted() {
-        return deleted;
+        return Optional.ofNullable(this.deleted);
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -344,293 +307,143 @@ public class HrisCompany {
     /**
      * A unique identifier for an object.
      */
-    public HrisCompany withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public HrisCompany withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public HrisCompany withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public HrisCompany withLegalName(String legalName) {
-        Utils.checkNotNull(legalName, "legalName");
-        this.legalName = Optional.ofNullable(legalName);
+
+    public HrisCompany withLegalName(@Nullable String legalName) {
+        this.legalName = JsonNullable.of(legalName);
         return this;
     }
 
 
-    public HrisCompany withLegalName(Optional<String> legalName) {
-        Utils.checkNotNull(legalName, "legalName");
-        this.legalName = legalName;
-        return this;
-    }
-
-    public HrisCompany withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public HrisCompany withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    public HrisCompany withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
-    public HrisCompany withSubdomain(String subdomain) {
-        Utils.checkNotNull(subdomain, "subdomain");
+    public HrisCompany withSubdomain(@Nullable String subdomain) {
         this.subdomain = JsonNullable.of(subdomain);
         return this;
     }
 
-    public HrisCompany withSubdomain(JsonNullable<String> subdomain) {
-        Utils.checkNotNull(subdomain, "subdomain");
-        this.subdomain = subdomain;
-        return this;
-    }
 
-    public HrisCompany withStatus(HrisCompanyStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    public HrisCompany withStatus(Optional<? extends HrisCompanyStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public HrisCompany withStatus(@Nullable HrisCompanyStatus status) {
         this.status = status;
         return this;
     }
 
+
     /**
      * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
      */
-    public HrisCompany withCompanyNumber(String companyNumber) {
-        Utils.checkNotNull(companyNumber, "companyNumber");
+    public HrisCompany withCompanyNumber(@Nullable String companyNumber) {
         this.companyNumber = JsonNullable.of(companyNumber);
         return this;
     }
 
-    /**
-     * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
-     */
-    public HrisCompany withCompanyNumber(JsonNullable<String> companyNumber) {
-        Utils.checkNotNull(companyNumber, "companyNumber");
-        this.companyNumber = companyNumber;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public HrisCompany withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public HrisCompany withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public HrisCompany withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
-    public HrisCompany withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public HrisCompany withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public HrisCompany withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public HrisCompany withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public HrisCompany withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public HrisCompany withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public HrisCompany withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public HrisCompany withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public HrisCompany withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public HrisCompany withWebsites(List<Website> websites) {
-        Utils.checkNotNull(websites, "websites");
-        this.websites = Optional.ofNullable(websites);
-        return this;
-    }
 
-
-    public HrisCompany withWebsites(Optional<? extends List<Website>> websites) {
-        Utils.checkNotNull(websites, "websites");
+    public HrisCompany withWebsites(@Nullable List<Website> websites) {
         this.websites = websites;
         return this;
     }
 
-    public HrisCompany withDebtorId(String debtorId) {
-        Utils.checkNotNull(debtorId, "debtorId");
+
+    public HrisCompany withDebtorId(@Nullable String debtorId) {
         this.debtorId = JsonNullable.of(debtorId);
         return this;
     }
 
-    public HrisCompany withDebtorId(JsonNullable<String> debtorId) {
-        Utils.checkNotNull(debtorId, "debtorId");
-        this.debtorId = debtorId;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public HrisCompany withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public HrisCompany withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public HrisCompany withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
-    public HrisCompany withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = Optional.ofNullable(deleted);
-        return this;
-    }
-
-
-    public HrisCompany withDeleted(Optional<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public HrisCompany withDeleted(@Nullable Boolean deleted) {
         this.deleted = deleted;
         return this;
     }
 
+
     /**
      * The user who last updated the object.
      */
-    public HrisCompany withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public HrisCompany withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public HrisCompany withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public HrisCompany withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public HrisCompany withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public HrisCompany withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public HrisCompany withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public HrisCompany withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public HrisCompany withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public HrisCompany withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public HrisCompany withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public HrisCompany withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public HrisCompany withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public HrisCompany withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public HrisCompany withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -702,351 +515,171 @@ public class HrisCompany {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> legalName = Optional.empty();
+        private String legalName;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private JsonNullable<String> subdomain = JsonNullable.undefined();
+        private JsonNullable<String> subdomain;
 
-        private Optional<? extends HrisCompanyStatus> status = Optional.empty();
+        private HrisCompanyStatus status;
 
-        private JsonNullable<String> companyNumber = JsonNullable.undefined();
+        private JsonNullable<String> companyNumber;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private Optional<? extends List<Website>> websites = Optional.empty();
+        private List<Website> websites;
 
-        private JsonNullable<String> debtorId = JsonNullable.undefined();
+        private JsonNullable<String> debtorId;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<Boolean> deleted = Optional.empty();
+        private Boolean deleted;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder legalName(String legalName) {
-            Utils.checkNotNull(legalName, "legalName");
-            this.legalName = Optional.ofNullable(legalName);
-            return this;
-        }
-
-        public Builder legalName(Optional<String> legalName) {
-            Utils.checkNotNull(legalName, "legalName");
+        public Builder legalName(@Nullable String legalName) {
             this.legalName = legalName;
             return this;
         }
 
-
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        public Builder subdomain(String subdomain) {
-            Utils.checkNotNull(subdomain, "subdomain");
+        public Builder subdomain(@Nullable String subdomain) {
             this.subdomain = JsonNullable.of(subdomain);
             return this;
         }
 
-        public Builder subdomain(JsonNullable<String> subdomain) {
-            Utils.checkNotNull(subdomain, "subdomain");
-            this.subdomain = subdomain;
-            return this;
-        }
-
-
-        public Builder status(HrisCompanyStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        public Builder status(Optional<? extends HrisCompanyStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable HrisCompanyStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
          */
-        public Builder companyNumber(String companyNumber) {
-            Utils.checkNotNull(companyNumber, "companyNumber");
+        public Builder companyNumber(@Nullable String companyNumber) {
             this.companyNumber = JsonNullable.of(companyNumber);
             return this;
         }
 
         /**
-         * An Company Number, Company ID or Company Code, is a unique number that has been assigned to each company.
-         */
-        public Builder companyNumber(JsonNullable<String> companyNumber) {
-            Utils.checkNotNull(companyNumber, "companyNumber");
-            this.companyNumber = companyNumber;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
-        /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder websites(List<Website> websites) {
-            Utils.checkNotNull(websites, "websites");
-            this.websites = Optional.ofNullable(websites);
-            return this;
-        }
-
-        public Builder websites(Optional<? extends List<Website>> websites) {
-            Utils.checkNotNull(websites, "websites");
+        public Builder websites(@Nullable List<Website> websites) {
             this.websites = websites;
             return this;
         }
 
-
-        public Builder debtorId(String debtorId) {
-            Utils.checkNotNull(debtorId, "debtorId");
+        public Builder debtorId(@Nullable String debtorId) {
             this.debtorId = JsonNullable.of(debtorId);
             return this;
         }
 
-        public Builder debtorId(JsonNullable<String> debtorId) {
-            Utils.checkNotNull(debtorId, "debtorId");
-            this.debtorId = debtorId;
-            return this;
-        }
-
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
-        /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = Optional.ofNullable(deleted);
-            return this;
-        }
-
-        public Builder deleted(Optional<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = deleted;
             return this;
         }
 
-
         /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public HrisCompany build() {
-
             return new HrisCompany(
                 id, legalName, displayName,
                 subdomain, status, companyNumber,

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -21,48 +20,43 @@ public class LinkedConnectorResource {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the resource (plural)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ResourceStatus> status;
+    private ResourceStatus status;
 
     /**
      * ID of the resource in the Connector's API (downstream)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_id")
-    private Optional<String> downstreamId;
+    private String downstreamId;
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_name")
-    private Optional<String> downstreamName;
+    private String downstreamName;
 
     @JsonCreator
     public LinkedConnectorResource(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ResourceStatus> status,
-            @JsonProperty("downstream_id") Optional<String> downstreamId,
-            @JsonProperty("downstream_name") Optional<String> downstreamName) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(downstreamName, "downstreamName");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("status") @Nullable ResourceStatus status,
+            @JsonProperty("downstream_id") @Nullable String downstreamId,
+            @JsonProperty("downstream_name") @Nullable String downstreamName) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -71,49 +65,43 @@ public class LinkedConnectorResource {
     }
     
     public LinkedConnectorResource() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * ID of the resource, typically a lowercased version of name.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the resource (plural)
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ResourceStatus> status() {
-        return (Optional<ResourceStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * ID of the resource in the Connector's API (downstream)
      */
-    @JsonIgnore
     public Optional<String> downstreamId() {
-        return downstreamId;
+        return Optional.ofNullable(this.downstreamId);
     }
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
-    @JsonIgnore
     public Optional<String> downstreamName() {
-        return downstreamName;
+        return Optional.ofNullable(this.downstreamName);
     }
 
     public static Builder builder() {
@@ -124,97 +112,47 @@ public class LinkedConnectorResource {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
-    public LinkedConnectorResource withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the resource, typically a lowercased version of name.
-     */
-    public LinkedConnectorResource withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedConnectorResource withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the resource (plural)
-     */
-    public LinkedConnectorResource withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the resource (plural)
      */
-    public LinkedConnectorResource withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedConnectorResource withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    public LinkedConnectorResource withStatus(ResourceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    public LinkedConnectorResource withStatus(Optional<? extends ResourceStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public LinkedConnectorResource withStatus(@Nullable ResourceStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * ID of the resource in the Connector's API (downstream)
-     */
-    public LinkedConnectorResource withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = Optional.ofNullable(downstreamId);
-        return this;
-    }
-
 
     /**
      * ID of the resource in the Connector's API (downstream)
      */
-    public LinkedConnectorResource withDownstreamId(Optional<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public LinkedConnectorResource withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = downstreamId;
         return this;
     }
 
-    /**
-     * Name of the resource in the Connector's API (downstream)
-     */
-    public LinkedConnectorResource withDownstreamName(String downstreamName) {
-        Utils.checkNotNull(downstreamName, "downstreamName");
-        this.downstreamName = Optional.ofNullable(downstreamName);
-        return this;
-    }
-
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
-    public LinkedConnectorResource withDownstreamName(Optional<String> downstreamName) {
-        Utils.checkNotNull(downstreamName, "downstreamName");
+    public LinkedConnectorResource withDownstreamName(@Nullable String downstreamName) {
         this.downstreamName = downstreamName;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -253,117 +191,61 @@ public class LinkedConnectorResource {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends ResourceStatus> status = Optional.empty();
+        private ResourceStatus status;
 
-        private Optional<String> downstreamId = Optional.empty();
+        private String downstreamId;
 
-        private Optional<String> downstreamName = Optional.empty();
+        private String downstreamName;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the resource, typically a lowercased version of name.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the resource, typically a lowercased version of name.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the resource (plural)
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the resource (plural)
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Status of the resource. Resources with status live or beta are callable.
          */
-        public Builder status(ResourceStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the resource. Resources with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ResourceStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ResourceStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * ID of the resource in the Connector's API (downstream)
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = Optional.ofNullable(downstreamId);
-            return this;
-        }
-
-        /**
-         * ID of the resource in the Connector's API (downstream)
-         */
-        public Builder downstreamId(Optional<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = downstreamId;
             return this;
         }
 
-
         /**
          * Name of the resource in the Connector's API (downstream)
          */
-        public Builder downstreamName(String downstreamName) {
-            Utils.checkNotNull(downstreamName, "downstreamName");
-            this.downstreamName = Optional.ofNullable(downstreamName);
-            return this;
-        }
-
-        /**
-         * Name of the resource in the Connector's API (downstream)
-         */
-        public Builder downstreamName(Optional<String> downstreamName) {
-            Utils.checkNotNull(downstreamName, "downstreamName");
+        public Builder downstreamName(@Nullable String downstreamName) {
             this.downstreamName = downstreamName;
             return this;
         }
 
         public LinkedConnectorResource build() {
-
             return new LinkedConnectorResource(
                 id, name, status,
                 downstreamId, downstreamName);

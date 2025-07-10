@@ -6,15 +6,14 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -27,94 +26,85 @@ public class AgedDebtors {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("report_generated_at")
-    private Optional<OffsetDateTime> reportGeneratedAt;
+    private OffsetDateTime reportGeneratedAt;
 
     /**
      * The cutoff date for transactions included in the report.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("report_as_of_date")
-    private Optional<LocalDate> reportAsOfDate;
+    private LocalDate reportAsOfDate;
 
     /**
      * Number of aging periods shown in the report.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("period_count")
-    private Optional<Long> periodCount;
+    private Long periodCount;
 
     /**
      * Length of each aging period in days.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("period_length")
-    private Optional<Long> periodLength;
+    private Long periodLength;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outstanding_balances")
-    private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances;
+    private List<OutstandingBalanceByCustomer> outstandingBalances;
 
     @JsonCreator
     public AgedDebtors(
-            @JsonProperty("report_generated_at") Optional<OffsetDateTime> reportGeneratedAt,
-            @JsonProperty("report_as_of_date") Optional<LocalDate> reportAsOfDate,
-            @JsonProperty("period_count") Optional<Long> periodCount,
-            @JsonProperty("period_length") Optional<Long> periodLength,
-            @JsonProperty("outstanding_balances") Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
-        Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-        Utils.checkNotNull(periodCount, "periodCount");
-        Utils.checkNotNull(periodLength, "periodLength");
-        Utils.checkNotNull(outstandingBalances, "outstandingBalances");
+            @JsonProperty("report_generated_at") @Nullable OffsetDateTime reportGeneratedAt,
+            @JsonProperty("report_as_of_date") @Nullable LocalDate reportAsOfDate,
+            @JsonProperty("period_count") @Nullable Long periodCount,
+            @JsonProperty("period_length") @Nullable Long periodLength,
+            @JsonProperty("outstanding_balances") @Nullable List<OutstandingBalanceByCustomer> outstandingBalances) {
         this.reportGeneratedAt = reportGeneratedAt;
         this.reportAsOfDate = reportAsOfDate;
-        this.periodCount = periodCount;
-        this.periodLength = periodLength;
+        this.periodCount = Optional.ofNullable(periodCount)
+            .orElse(Builder._SINGLETON_VALUE_PeriodCount.value());
+        this.periodLength = Optional.ofNullable(periodLength)
+            .orElse(Builder._SINGLETON_VALUE_PeriodLength.value());
         this.outstandingBalances = outstandingBalances;
     }
     
     public AgedDebtors() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * The exact date and time the report was generated.
      */
-    @JsonIgnore
     public Optional<OffsetDateTime> reportGeneratedAt() {
-        return reportGeneratedAt;
+        return Optional.ofNullable(this.reportGeneratedAt);
     }
 
     /**
      * The cutoff date for transactions included in the report.
      */
-    @JsonIgnore
     public Optional<LocalDate> reportAsOfDate() {
-        return reportAsOfDate;
+        return Optional.ofNullable(this.reportAsOfDate);
     }
 
     /**
      * Number of aging periods shown in the report.
      */
-    @JsonIgnore
     public Optional<Long> periodCount() {
-        return periodCount;
+        return Optional.ofNullable(this.periodCount);
     }
 
     /**
      * Length of each aging period in days.
      */
-    @JsonIgnore
     public Optional<Long> periodLength() {
-        return periodLength;
+        return Optional.ofNullable(this.periodLength);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<OutstandingBalanceByCustomer>> outstandingBalances() {
-        return (Optional<List<OutstandingBalanceByCustomer>>) outstandingBalances;
+        return Optional.ofNullable(this.outstandingBalances);
     }
 
     public static Builder builder() {
@@ -125,91 +115,44 @@ public class AgedDebtors {
     /**
      * The exact date and time the report was generated.
      */
-    public AgedDebtors withReportGeneratedAt(OffsetDateTime reportGeneratedAt) {
-        Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
-        this.reportGeneratedAt = Optional.ofNullable(reportGeneratedAt);
-        return this;
-    }
-
-
-    /**
-     * The exact date and time the report was generated.
-     */
-    public AgedDebtors withReportGeneratedAt(Optional<OffsetDateTime> reportGeneratedAt) {
-        Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
+    public AgedDebtors withReportGeneratedAt(@Nullable OffsetDateTime reportGeneratedAt) {
         this.reportGeneratedAt = reportGeneratedAt;
         return this;
     }
 
-    /**
-     * The cutoff date for transactions included in the report.
-     */
-    public AgedDebtors withReportAsOfDate(LocalDate reportAsOfDate) {
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-        this.reportAsOfDate = Optional.ofNullable(reportAsOfDate);
-        return this;
-    }
-
 
     /**
      * The cutoff date for transactions included in the report.
      */
-    public AgedDebtors withReportAsOfDate(Optional<LocalDate> reportAsOfDate) {
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
+    public AgedDebtors withReportAsOfDate(@Nullable LocalDate reportAsOfDate) {
         this.reportAsOfDate = reportAsOfDate;
         return this;
     }
 
-    /**
-     * Number of aging periods shown in the report.
-     */
-    public AgedDebtors withPeriodCount(long periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
-        this.periodCount = Optional.ofNullable(periodCount);
-        return this;
-    }
-
 
     /**
      * Number of aging periods shown in the report.
      */
-    public AgedDebtors withPeriodCount(Optional<Long> periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
+    public AgedDebtors withPeriodCount(@Nullable Long periodCount) {
         this.periodCount = periodCount;
         return this;
     }
 
-    /**
-     * Length of each aging period in days.
-     */
-    public AgedDebtors withPeriodLength(long periodLength) {
-        Utils.checkNotNull(periodLength, "periodLength");
-        this.periodLength = Optional.ofNullable(periodLength);
-        return this;
-    }
-
 
     /**
      * Length of each aging period in days.
      */
-    public AgedDebtors withPeriodLength(Optional<Long> periodLength) {
-        Utils.checkNotNull(periodLength, "periodLength");
+    public AgedDebtors withPeriodLength(@Nullable Long periodLength) {
         this.periodLength = periodLength;
         return this;
     }
 
-    public AgedDebtors withOutstandingBalances(List<OutstandingBalanceByCustomer> outstandingBalances) {
-        Utils.checkNotNull(outstandingBalances, "outstandingBalances");
-        this.outstandingBalances = Optional.ofNullable(outstandingBalances);
-        return this;
-    }
 
-
-    public AgedDebtors withOutstandingBalances(Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
-        Utils.checkNotNull(outstandingBalances, "outstandingBalances");
+    public AgedDebtors withOutstandingBalances(@Nullable List<OutstandingBalanceByCustomer> outstandingBalances) {
         this.outstandingBalances = outstandingBalances;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -248,133 +191,74 @@ public class AgedDebtors {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<OffsetDateTime> reportGeneratedAt = Optional.empty();
+        private OffsetDateTime reportGeneratedAt;
 
-        private Optional<LocalDate> reportAsOfDate = Optional.empty();
+        private LocalDate reportAsOfDate;
 
-        private Optional<Long> periodCount;
+        private Long periodCount;
 
-        private Optional<Long> periodLength;
+        private Long periodLength;
 
-        private Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances = Optional.empty();
+        private List<OutstandingBalanceByCustomer> outstandingBalances;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The exact date and time the report was generated.
          */
-        public Builder reportGeneratedAt(OffsetDateTime reportGeneratedAt) {
-            Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
-            this.reportGeneratedAt = Optional.ofNullable(reportGeneratedAt);
-            return this;
-        }
-
-        /**
-         * The exact date and time the report was generated.
-         */
-        public Builder reportGeneratedAt(Optional<OffsetDateTime> reportGeneratedAt) {
-            Utils.checkNotNull(reportGeneratedAt, "reportGeneratedAt");
+        public Builder reportGeneratedAt(@Nullable OffsetDateTime reportGeneratedAt) {
             this.reportGeneratedAt = reportGeneratedAt;
             return this;
         }
 
-
         /**
          * The cutoff date for transactions included in the report.
          */
-        public Builder reportAsOfDate(LocalDate reportAsOfDate) {
-            Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-            this.reportAsOfDate = Optional.ofNullable(reportAsOfDate);
-            return this;
-        }
-
-        /**
-         * The cutoff date for transactions included in the report.
-         */
-        public Builder reportAsOfDate(Optional<LocalDate> reportAsOfDate) {
-            Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
+        public Builder reportAsOfDate(@Nullable LocalDate reportAsOfDate) {
             this.reportAsOfDate = reportAsOfDate;
             return this;
         }
 
-
         /**
          * Number of aging periods shown in the report.
          */
-        public Builder periodCount(long periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
-            this.periodCount = Optional.ofNullable(periodCount);
-            return this;
-        }
-
-        /**
-         * Number of aging periods shown in the report.
-         */
-        public Builder periodCount(Optional<Long> periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
+        public Builder periodCount(@Nullable Long periodCount) {
             this.periodCount = periodCount;
             return this;
         }
 
-
         /**
          * Length of each aging period in days.
          */
-        public Builder periodLength(long periodLength) {
-            Utils.checkNotNull(periodLength, "periodLength");
-            this.periodLength = Optional.ofNullable(periodLength);
-            return this;
-        }
-
-        /**
-         * Length of each aging period in days.
-         */
-        public Builder periodLength(Optional<Long> periodLength) {
-            Utils.checkNotNull(periodLength, "periodLength");
+        public Builder periodLength(@Nullable Long periodLength) {
             this.periodLength = periodLength;
             return this;
         }
 
-
-        public Builder outstandingBalances(List<OutstandingBalanceByCustomer> outstandingBalances) {
-            Utils.checkNotNull(outstandingBalances, "outstandingBalances");
-            this.outstandingBalances = Optional.ofNullable(outstandingBalances);
-            return this;
-        }
-
-        public Builder outstandingBalances(Optional<? extends List<OutstandingBalanceByCustomer>> outstandingBalances) {
-            Utils.checkNotNull(outstandingBalances, "outstandingBalances");
+        public Builder outstandingBalances(@Nullable List<OutstandingBalanceByCustomer> outstandingBalances) {
             this.outstandingBalances = outstandingBalances;
             return this;
         }
 
         public AgedDebtors build() {
-            if (periodCount == null) {
-                periodCount = _SINGLETON_VALUE_PeriodCount.value();
-            }
-            if (periodLength == null) {
-                periodLength = _SINGLETON_VALUE_PeriodLength.value();
-            }
-
             return new AgedDebtors(
                 reportGeneratedAt, reportAsOfDate, periodCount,
                 periodLength, outstandingBalances);
         }
 
 
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PeriodCount =
+        private static final LazySingletonValue<Long> _SINGLETON_VALUE_PeriodCount =
                 new LazySingletonValue<>(
                         "period_count",
                         "4",
-                        new TypeReference<Optional<Long>>() {});
+                        new TypeReference<Long>() {});
 
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_PeriodLength =
+        private static final LazySingletonValue<Long> _SINGLETON_VALUE_PeriodLength =
                 new LazySingletonValue<>(
                         "period_length",
                         "30",
-                        new TypeReference<Optional<Long>>() {});
+                        new TypeReference<Long>() {});
     }
 }

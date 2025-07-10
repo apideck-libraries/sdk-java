@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,57 +21,50 @@ public class OutstandingBalanceBySupplier {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier_id")
-    private Optional<String> supplierId;
+    private String supplierId;
 
     /**
      * Full name of the supplier.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier_name")
-    private Optional<String> supplierName;
+    private String supplierName;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("outstanding_balances_by_currency")
-    private Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency;
+    private List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency;
 
     @JsonCreator
     public OutstandingBalanceBySupplier(
-            @JsonProperty("supplier_id") Optional<String> supplierId,
-            @JsonProperty("supplier_name") Optional<String> supplierName,
-            @JsonProperty("outstanding_balances_by_currency") Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency) {
-        Utils.checkNotNull(supplierId, "supplierId");
-        Utils.checkNotNull(supplierName, "supplierName");
-        Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
+            @JsonProperty("supplier_id") @Nullable String supplierId,
+            @JsonProperty("supplier_name") @Nullable String supplierName,
+            @JsonProperty("outstanding_balances_by_currency") @Nullable List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
         this.outstandingBalancesByCurrency = outstandingBalancesByCurrency;
     }
     
     public OutstandingBalanceBySupplier() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * Unique identifier for the supplier.
      */
-    @JsonIgnore
     public Optional<String> supplierId() {
-        return supplierId;
+        return Optional.ofNullable(this.supplierId);
     }
 
     /**
      * Full name of the supplier.
      */
-    @JsonIgnore
     public Optional<String> supplierName() {
-        return supplierName;
+        return Optional.ofNullable(this.supplierName);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency() {
-        return (Optional<List<OutstandingBalanceByCurrency>>) outstandingBalancesByCurrency;
+        return Optional.ofNullable(this.outstandingBalancesByCurrency);
     }
 
     public static Builder builder() {
@@ -83,53 +75,26 @@ public class OutstandingBalanceBySupplier {
     /**
      * Unique identifier for the supplier.
      */
-    public OutstandingBalanceBySupplier withSupplierId(String supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
-        this.supplierId = Optional.ofNullable(supplierId);
-        return this;
-    }
-
-
-    /**
-     * Unique identifier for the supplier.
-     */
-    public OutstandingBalanceBySupplier withSupplierId(Optional<String> supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
+    public OutstandingBalanceBySupplier withSupplierId(@Nullable String supplierId) {
         this.supplierId = supplierId;
         return this;
     }
 
-    /**
-     * Full name of the supplier.
-     */
-    public OutstandingBalanceBySupplier withSupplierName(String supplierName) {
-        Utils.checkNotNull(supplierName, "supplierName");
-        this.supplierName = Optional.ofNullable(supplierName);
-        return this;
-    }
-
 
     /**
      * Full name of the supplier.
      */
-    public OutstandingBalanceBySupplier withSupplierName(Optional<String> supplierName) {
-        Utils.checkNotNull(supplierName, "supplierName");
+    public OutstandingBalanceBySupplier withSupplierName(@Nullable String supplierName) {
         this.supplierName = supplierName;
         return this;
     }
 
-    public OutstandingBalanceBySupplier withOutstandingBalancesByCurrency(List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
-        Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
-        this.outstandingBalancesByCurrency = Optional.ofNullable(outstandingBalancesByCurrency);
-        return this;
-    }
 
-
-    public OutstandingBalanceBySupplier withOutstandingBalancesByCurrency(Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency) {
-        Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
+    public OutstandingBalanceBySupplier withOutstandingBalancesByCurrency(@Nullable List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
         this.outstandingBalancesByCurrency = outstandingBalancesByCurrency;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -163,69 +128,38 @@ public class OutstandingBalanceBySupplier {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> supplierId = Optional.empty();
+        private String supplierId;
 
-        private Optional<String> supplierName = Optional.empty();
+        private String supplierName;
 
-        private Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency = Optional.empty();
+        private List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier for the supplier.
          */
-        public Builder supplierId(String supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
-            this.supplierId = Optional.ofNullable(supplierId);
-            return this;
-        }
-
-        /**
-         * Unique identifier for the supplier.
-         */
-        public Builder supplierId(Optional<String> supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
+        public Builder supplierId(@Nullable String supplierId) {
             this.supplierId = supplierId;
             return this;
         }
 
-
         /**
          * Full name of the supplier.
          */
-        public Builder supplierName(String supplierName) {
-            Utils.checkNotNull(supplierName, "supplierName");
-            this.supplierName = Optional.ofNullable(supplierName);
-            return this;
-        }
-
-        /**
-         * Full name of the supplier.
-         */
-        public Builder supplierName(Optional<String> supplierName) {
-            Utils.checkNotNull(supplierName, "supplierName");
+        public Builder supplierName(@Nullable String supplierName) {
             this.supplierName = supplierName;
             return this;
         }
 
-
-        public Builder outstandingBalancesByCurrency(List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
-            Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
-            this.outstandingBalancesByCurrency = Optional.ofNullable(outstandingBalancesByCurrency);
-            return this;
-        }
-
-        public Builder outstandingBalancesByCurrency(Optional<? extends List<OutstandingBalanceByCurrency>> outstandingBalancesByCurrency) {
-            Utils.checkNotNull(outstandingBalancesByCurrency, "outstandingBalancesByCurrency");
+        public Builder outstandingBalancesByCurrency(@Nullable List<OutstandingBalanceByCurrency> outstandingBalancesByCurrency) {
             this.outstandingBalancesByCurrency = outstandingBalancesByCurrency;
             return this;
         }
 
         public OutstandingBalanceBySupplier build() {
-
             return new OutstandingBalanceBySupplier(
                 supplierId, supplierName, outstandingBalancesByCurrency);
         }

@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Long;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -62,97 +62,88 @@ public class GetTimeOffRequestResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_raw")
-    private JsonNullable<? extends Map<String, Object>> raw;
+    private JsonNullable<Map<String, Object>> raw;
 
     @JsonCreator
     public GetTimeOffRequestResponse(
             @JsonProperty("status_code") long statusCode,
-            @JsonProperty("status") String status,
-            @JsonProperty("service") String service,
-            @JsonProperty("resource") String resource,
-            @JsonProperty("operation") String operation,
-            @JsonProperty("data") TimeOffRequest data,
-            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(service, "service");
-        Utils.checkNotNull(resource, "resource");
-        Utils.checkNotNull(operation, "operation");
-        Utils.checkNotNull(data, "data");
-        Utils.checkNotNull(raw, "raw");
+            @JsonProperty("status") @Nonnull String status,
+            @JsonProperty("service") @Nonnull String service,
+            @JsonProperty("resource") @Nonnull String resource,
+            @JsonProperty("operation") @Nonnull String operation,
+            @JsonProperty("data") @Nonnull TimeOffRequest data,
+            @JsonProperty("_raw") @Nullable JsonNullable<Map<String, Object>> raw) {
         this.statusCode = statusCode;
-        this.status = status;
-        this.service = service;
-        this.resource = resource;
-        this.operation = operation;
-        this.data = data;
-        this.raw = raw;
+        this.status = Optional.ofNullable(status)
+            .orElseThrow(() -> new IllegalArgumentException("status cannot be null"));
+        this.service = Optional.ofNullable(service)
+            .orElseThrow(() -> new IllegalArgumentException("service cannot be null"));
+        this.resource = Optional.ofNullable(resource)
+            .orElseThrow(() -> new IllegalArgumentException("resource cannot be null"));
+        this.operation = Optional.ofNullable(operation)
+            .orElseThrow(() -> new IllegalArgumentException("operation cannot be null"));
+        this.data = Optional.ofNullable(data)
+            .orElseThrow(() -> new IllegalArgumentException("data cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(JsonNullable.undefined());
     }
     
     public GetTimeOffRequestResponse(
             long statusCode,
-            String status,
-            String service,
-            String resource,
-            String operation,
-            TimeOffRequest data) {
+            @Nonnull String status,
+            @Nonnull String service,
+            @Nonnull String resource,
+            @Nonnull String operation,
+            @Nonnull TimeOffRequest data) {
         this(statusCode, status, service,
             resource, operation, data,
-            JsonNullable.undefined());
+            null);
     }
 
     /**
      * HTTP Response Status Code
      */
-    @JsonIgnore
     public long statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * HTTP Response Status
      */
-    @JsonIgnore
     public String status() {
-        return status;
+        return this.status;
     }
 
     /**
      * Apideck ID of service provider
      */
-    @JsonIgnore
     public String service() {
-        return service;
+        return this.service;
     }
 
     /**
      * Unified API resource name
      */
-    @JsonIgnore
     public String resource() {
-        return resource;
+        return this.resource;
     }
 
     /**
      * Operation performed
      */
-    @JsonIgnore
     public String operation() {
-        return operation;
+        return this.operation;
     }
 
-    @JsonIgnore
     public TimeOffRequest data() {
-        return data;
+        return this.data;
     }
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> raw() {
-        return (JsonNullable<Map<String, Object>>) raw;
+        return this.raw;
     }
 
     public static Builder builder() {
@@ -164,70 +155,61 @@ public class GetTimeOffRequestResponse {
      * HTTP Response Status Code
      */
     public GetTimeOffRequestResponse withStatusCode(long statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * HTTP Response Status
      */
-    public GetTimeOffRequestResponse withStatus(String status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public GetTimeOffRequestResponse withStatus(@Nonnull String status) {
+        this.status = Utils.checkNotNull(status, "status");
         return this;
     }
+
 
     /**
      * Apideck ID of service provider
      */
-    public GetTimeOffRequestResponse withService(String service) {
-        Utils.checkNotNull(service, "service");
-        this.service = service;
+    public GetTimeOffRequestResponse withService(@Nonnull String service) {
+        this.service = Utils.checkNotNull(service, "service");
         return this;
     }
+
 
     /**
      * Unified API resource name
      */
-    public GetTimeOffRequestResponse withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
+    public GetTimeOffRequestResponse withResource(@Nonnull String resource) {
+        this.resource = Utils.checkNotNull(resource, "resource");
         return this;
     }
+
 
     /**
      * Operation performed
      */
-    public GetTimeOffRequestResponse withOperation(String operation) {
-        Utils.checkNotNull(operation, "operation");
-        this.operation = operation;
+    public GetTimeOffRequestResponse withOperation(@Nonnull String operation) {
+        this.operation = Utils.checkNotNull(operation, "operation");
         return this;
     }
 
-    public GetTimeOffRequestResponse withData(TimeOffRequest data) {
-        Utils.checkNotNull(data, "data");
-        this.data = data;
+
+    public GetTimeOffRequestResponse withData(@Nonnull TimeOffRequest data) {
+        this.data = Utils.checkNotNull(data, "data");
         return this;
     }
+
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    public GetTimeOffRequestResponse withRaw(Map<String, Object> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public GetTimeOffRequestResponse withRaw(@Nullable Map<String, Object> raw) {
         this.raw = JsonNullable.of(raw);
         return this;
     }
 
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    public GetTimeOffRequestResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = raw;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -271,7 +253,7 @@ public class GetTimeOffRequestResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Long statusCode;
+        private long statusCode;
 
         private String status;
 
@@ -283,90 +265,66 @@ public class GetTimeOffRequestResponse {
 
         private TimeOffRequest data;
 
-        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> raw;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP Response Status Code
          */
         public Builder statusCode(long statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * HTTP Response Status
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
+        public Builder status(@Nonnull String status) {
+            this.status = Utils.checkNotNull(status, "status");
             return this;
         }
-
 
         /**
          * Apideck ID of service provider
          */
-        public Builder service(String service) {
-            Utils.checkNotNull(service, "service");
-            this.service = service;
+        public Builder service(@Nonnull String service) {
+            this.service = Utils.checkNotNull(service, "service");
             return this;
         }
-
 
         /**
          * Unified API resource name
          */
-        public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
+        public Builder resource(@Nonnull String resource) {
+            this.resource = Utils.checkNotNull(resource, "resource");
             return this;
         }
-
 
         /**
          * Operation performed
          */
-        public Builder operation(String operation) {
-            Utils.checkNotNull(operation, "operation");
-            this.operation = operation;
+        public Builder operation(@Nonnull String operation) {
+            this.operation = Utils.checkNotNull(operation, "operation");
             return this;
         }
 
-
-        public Builder data(TimeOffRequest data) {
-            Utils.checkNotNull(data, "data");
-            this.data = data;
+        public Builder data(@Nonnull TimeOffRequest data) {
+            this.data = Utils.checkNotNull(data, "data");
             return this;
         }
-
 
         /**
          * Raw response from the integration when raw=true query param is provided
          */
-        public Builder raw(Map<String, Object> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Map<String, Object> raw) {
             this.raw = JsonNullable.of(raw);
             return this;
         }
 
-        /**
-         * Raw response from the integration when raw=true query param is provided
-         */
-        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = raw;
-            return this;
-        }
-
         public GetTimeOffRequestResponse build() {
-
             return new GetTimeOffRequestResponse(
                 statusCode, status, service,
                 resource, operation, data,

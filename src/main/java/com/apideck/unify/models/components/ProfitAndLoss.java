@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,7 +24,7 @@ public class ProfitAndLoss {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the report
@@ -37,21 +37,21 @@ public class ProfitAndLoss {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * The end date of the report
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
-    private Optional<String> endDate;
+    private String endDate;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The operating income accounts
@@ -64,7 +64,7 @@ public class ProfitAndLoss {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cost_of_goods_sold")
-    private Optional<? extends CostOfGoodsSold> costOfGoodsSold;
+    private CostOfGoodsSold costOfGoodsSold;
 
     /**
      * The operating expenses accounts
@@ -77,241 +77,205 @@ public class ProfitAndLoss {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("other_income")
-    private Optional<? extends OtherIncome> otherIncome;
+    private OtherIncome otherIncome;
 
     /**
      * The other expenses accounts
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("other_expenses")
-    private Optional<? extends OtherExpenses> otherExpenses;
+    private OtherExpenses otherExpenses;
 
     /**
      * The accounts not categorized in the other sections
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uncategorized_accounts")
-    private Optional<? extends UncategorizedAccounts> uncategorizedAccounts;
+    private UncategorizedAccounts uncategorizedAccounts;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gross_profit")
-    private Optional<? extends ProfitAndLossIndicator> grossProfit;
+    private ProfitAndLossIndicator grossProfit;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("net_operating_income")
-    private Optional<? extends ProfitAndLossIndicator> netOperatingIncome;
+    private ProfitAndLossIndicator netOperatingIncome;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("net_income")
-    private Optional<? extends ProfitAndLossIndicator> netIncome;
+    private ProfitAndLossIndicator netIncome;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The customer id
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private Optional<String> customer;
+    private String customer;
 
     @JsonCreator
     public ProfitAndLoss(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("report_name") String reportName,
-            @JsonProperty("start_date") Optional<String> startDate,
-            @JsonProperty("end_date") Optional<String> endDate,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("income") Income income,
-            @JsonProperty("cost_of_goods_sold") Optional<? extends CostOfGoodsSold> costOfGoodsSold,
-            @JsonProperty("expenses") Expenses expenses,
-            @JsonProperty("other_income") Optional<? extends OtherIncome> otherIncome,
-            @JsonProperty("other_expenses") Optional<? extends OtherExpenses> otherExpenses,
-            @JsonProperty("uncategorized_accounts") Optional<? extends UncategorizedAccounts> uncategorizedAccounts,
-            @JsonProperty("gross_profit") Optional<? extends ProfitAndLossIndicator> grossProfit,
-            @JsonProperty("net_operating_income") Optional<? extends ProfitAndLossIndicator> netOperatingIncome,
-            @JsonProperty("net_income") Optional<? extends ProfitAndLossIndicator> netIncome,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("customer") Optional<String> customer) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(reportName, "reportName");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(income, "income");
-        Utils.checkNotNull(costOfGoodsSold, "costOfGoodsSold");
-        Utils.checkNotNull(expenses, "expenses");
-        Utils.checkNotNull(otherIncome, "otherIncome");
-        Utils.checkNotNull(otherExpenses, "otherExpenses");
-        Utils.checkNotNull(uncategorizedAccounts, "uncategorizedAccounts");
-        Utils.checkNotNull(grossProfit, "grossProfit");
-        Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
-        Utils.checkNotNull(netIncome, "netIncome");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(customer, "customer");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("report_name") @Nonnull String reportName,
+            @JsonProperty("start_date") @Nullable String startDate,
+            @JsonProperty("end_date") @Nullable String endDate,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("income") @Nonnull Income income,
+            @JsonProperty("cost_of_goods_sold") @Nullable CostOfGoodsSold costOfGoodsSold,
+            @JsonProperty("expenses") @Nonnull Expenses expenses,
+            @JsonProperty("other_income") @Nullable OtherIncome otherIncome,
+            @JsonProperty("other_expenses") @Nullable OtherExpenses otherExpenses,
+            @JsonProperty("uncategorized_accounts") @Nullable UncategorizedAccounts uncategorizedAccounts,
+            @JsonProperty("gross_profit") @Nullable ProfitAndLossIndicator grossProfit,
+            @JsonProperty("net_operating_income") @Nullable ProfitAndLossIndicator netOperatingIncome,
+            @JsonProperty("net_income") @Nullable ProfitAndLossIndicator netIncome,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("customer") @Nullable String customer) {
         this.id = id;
-        this.reportName = reportName;
+        this.reportName = Optional.ofNullable(reportName)
+            .orElseThrow(() -> new IllegalArgumentException("reportName cannot be null"));
         this.startDate = startDate;
         this.endDate = endDate;
-        this.currency = currency;
-        this.income = income;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.income = Optional.ofNullable(income)
+            .orElseThrow(() -> new IllegalArgumentException("income cannot be null"));
         this.costOfGoodsSold = costOfGoodsSold;
-        this.expenses = expenses;
+        this.expenses = Optional.ofNullable(expenses)
+            .orElseThrow(() -> new IllegalArgumentException("expenses cannot be null"));
         this.otherIncome = otherIncome;
         this.otherExpenses = otherExpenses;
         this.uncategorizedAccounts = uncategorizedAccounts;
         this.grossProfit = grossProfit;
         this.netOperatingIncome = netOperatingIncome;
         this.netIncome = netIncome;
-        this.customMappings = customMappings;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.customer = customer;
     }
     
     public ProfitAndLoss(
-            String reportName,
-            Income income,
-            Expenses expenses) {
-        this(Optional.empty(), reportName, Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), income,
-            Optional.empty(), expenses, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+            @Nonnull String reportName,
+            @Nonnull Income income,
+            @Nonnull Expenses expenses) {
+        this(null, reportName, null,
+            null, null, income,
+            null, expenses, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the report
      */
-    @JsonIgnore
     public String reportName() {
-        return reportName;
+        return this.reportName;
     }
 
     /**
      * The start date of the report
      */
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * The end date of the report
      */
-    @JsonIgnore
     public Optional<String> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The operating income accounts
      */
-    @JsonIgnore
     public Income income() {
-        return income;
+        return this.income;
     }
 
     /**
      * The cost of goods sold accounts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CostOfGoodsSold> costOfGoodsSold() {
-        return (Optional<CostOfGoodsSold>) costOfGoodsSold;
+        return Optional.ofNullable(this.costOfGoodsSold);
     }
 
     /**
      * The operating expenses accounts
      */
-    @JsonIgnore
     public Expenses expenses() {
-        return expenses;
+        return this.expenses;
     }
 
     /**
      * The other income accounts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<OtherIncome> otherIncome() {
-        return (Optional<OtherIncome>) otherIncome;
+        return Optional.ofNullable(this.otherIncome);
     }
 
     /**
      * The other expenses accounts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<OtherExpenses> otherExpenses() {
-        return (Optional<OtherExpenses>) otherExpenses;
+        return Optional.ofNullable(this.otherExpenses);
     }
 
     /**
      * The accounts not categorized in the other sections
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UncategorizedAccounts> uncategorizedAccounts() {
-        return (Optional<UncategorizedAccounts>) uncategorizedAccounts;
+        return Optional.ofNullable(this.uncategorizedAccounts);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ProfitAndLossIndicator> grossProfit() {
-        return (Optional<ProfitAndLossIndicator>) grossProfit;
+        return Optional.ofNullable(this.grossProfit);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ProfitAndLossIndicator> netOperatingIncome() {
-        return (Optional<ProfitAndLossIndicator>) netOperatingIncome;
+        return Optional.ofNullable(this.netOperatingIncome);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ProfitAndLossIndicator> netIncome() {
-        return (Optional<ProfitAndLossIndicator>) netIncome;
+        return Optional.ofNullable(this.netIncome);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The customer id
      */
-    @JsonIgnore
     public Optional<String> customer() {
-        return customer;
+        return Optional.ofNullable(this.customer);
     }
 
     public static Builder builder() {
@@ -322,37 +286,17 @@ public class ProfitAndLoss {
     /**
      * A unique identifier for an object.
      */
-    public ProfitAndLoss withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public ProfitAndLoss withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ProfitAndLoss withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The name of the report
      */
-    public ProfitAndLoss withReportName(String reportName) {
-        Utils.checkNotNull(reportName, "reportName");
-        this.reportName = reportName;
-        return this;
-    }
-
-    /**
-     * The start date of the report
-     */
-    public ProfitAndLoss withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
+    public ProfitAndLoss withReportName(@Nonnull String reportName) {
+        this.reportName = Utils.checkNotNull(reportName, "reportName");
         return this;
     }
 
@@ -360,64 +304,35 @@ public class ProfitAndLoss {
     /**
      * The start date of the report
      */
-    public ProfitAndLoss withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public ProfitAndLoss withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * The end date of the report
-     */
-    public ProfitAndLoss withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * The end date of the report
      */
-    public ProfitAndLoss withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public ProfitAndLoss withEndDate(@Nullable String endDate) {
         this.endDate = endDate;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public ProfitAndLoss withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public ProfitAndLoss withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public ProfitAndLoss withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The operating income accounts
      */
-    public ProfitAndLoss withIncome(Income income) {
-        Utils.checkNotNull(income, "income");
-        this.income = income;
-        return this;
-    }
-
-    /**
-     * The cost of goods sold accounts
-     */
-    public ProfitAndLoss withCostOfGoodsSold(CostOfGoodsSold costOfGoodsSold) {
-        Utils.checkNotNull(costOfGoodsSold, "costOfGoodsSold");
-        this.costOfGoodsSold = Optional.ofNullable(costOfGoodsSold);
+    public ProfitAndLoss withIncome(@Nonnull Income income) {
+        this.income = Utils.checkNotNull(income, "income");
         return this;
     }
 
@@ -425,27 +340,17 @@ public class ProfitAndLoss {
     /**
      * The cost of goods sold accounts
      */
-    public ProfitAndLoss withCostOfGoodsSold(Optional<? extends CostOfGoodsSold> costOfGoodsSold) {
-        Utils.checkNotNull(costOfGoodsSold, "costOfGoodsSold");
+    public ProfitAndLoss withCostOfGoodsSold(@Nullable CostOfGoodsSold costOfGoodsSold) {
         this.costOfGoodsSold = costOfGoodsSold;
         return this;
     }
 
+
     /**
      * The operating expenses accounts
      */
-    public ProfitAndLoss withExpenses(Expenses expenses) {
-        Utils.checkNotNull(expenses, "expenses");
-        this.expenses = expenses;
-        return this;
-    }
-
-    /**
-     * The other income accounts
-     */
-    public ProfitAndLoss withOtherIncome(OtherIncome otherIncome) {
-        Utils.checkNotNull(otherIncome, "otherIncome");
-        this.otherIncome = Optional.ofNullable(otherIncome);
+    public ProfitAndLoss withExpenses(@Nonnull Expenses expenses) {
+        this.expenses = Utils.checkNotNull(expenses, "expenses");
         return this;
     }
 
@@ -453,125 +358,65 @@ public class ProfitAndLoss {
     /**
      * The other income accounts
      */
-    public ProfitAndLoss withOtherIncome(Optional<? extends OtherIncome> otherIncome) {
-        Utils.checkNotNull(otherIncome, "otherIncome");
+    public ProfitAndLoss withOtherIncome(@Nullable OtherIncome otherIncome) {
         this.otherIncome = otherIncome;
         return this;
     }
 
-    /**
-     * The other expenses accounts
-     */
-    public ProfitAndLoss withOtherExpenses(OtherExpenses otherExpenses) {
-        Utils.checkNotNull(otherExpenses, "otherExpenses");
-        this.otherExpenses = Optional.ofNullable(otherExpenses);
-        return this;
-    }
-
 
     /**
      * The other expenses accounts
      */
-    public ProfitAndLoss withOtherExpenses(Optional<? extends OtherExpenses> otherExpenses) {
-        Utils.checkNotNull(otherExpenses, "otherExpenses");
+    public ProfitAndLoss withOtherExpenses(@Nullable OtherExpenses otherExpenses) {
         this.otherExpenses = otherExpenses;
         return this;
     }
 
-    /**
-     * The accounts not categorized in the other sections
-     */
-    public ProfitAndLoss withUncategorizedAccounts(UncategorizedAccounts uncategorizedAccounts) {
-        Utils.checkNotNull(uncategorizedAccounts, "uncategorizedAccounts");
-        this.uncategorizedAccounts = Optional.ofNullable(uncategorizedAccounts);
-        return this;
-    }
-
 
     /**
      * The accounts not categorized in the other sections
      */
-    public ProfitAndLoss withUncategorizedAccounts(Optional<? extends UncategorizedAccounts> uncategorizedAccounts) {
-        Utils.checkNotNull(uncategorizedAccounts, "uncategorizedAccounts");
+    public ProfitAndLoss withUncategorizedAccounts(@Nullable UncategorizedAccounts uncategorizedAccounts) {
         this.uncategorizedAccounts = uncategorizedAccounts;
         return this;
     }
 
-    public ProfitAndLoss withGrossProfit(ProfitAndLossIndicator grossProfit) {
-        Utils.checkNotNull(grossProfit, "grossProfit");
-        this.grossProfit = Optional.ofNullable(grossProfit);
-        return this;
-    }
 
-
-    public ProfitAndLoss withGrossProfit(Optional<? extends ProfitAndLossIndicator> grossProfit) {
-        Utils.checkNotNull(grossProfit, "grossProfit");
+    public ProfitAndLoss withGrossProfit(@Nullable ProfitAndLossIndicator grossProfit) {
         this.grossProfit = grossProfit;
         return this;
     }
 
-    public ProfitAndLoss withNetOperatingIncome(ProfitAndLossIndicator netOperatingIncome) {
-        Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
-        this.netOperatingIncome = Optional.ofNullable(netOperatingIncome);
-        return this;
-    }
 
-
-    public ProfitAndLoss withNetOperatingIncome(Optional<? extends ProfitAndLossIndicator> netOperatingIncome) {
-        Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
+    public ProfitAndLoss withNetOperatingIncome(@Nullable ProfitAndLossIndicator netOperatingIncome) {
         this.netOperatingIncome = netOperatingIncome;
         return this;
     }
 
-    public ProfitAndLoss withNetIncome(ProfitAndLossIndicator netIncome) {
-        Utils.checkNotNull(netIncome, "netIncome");
-        this.netIncome = Optional.ofNullable(netIncome);
-        return this;
-    }
 
-
-    public ProfitAndLoss withNetIncome(Optional<? extends ProfitAndLossIndicator> netIncome) {
-        Utils.checkNotNull(netIncome, "netIncome");
+    public ProfitAndLoss withNetIncome(@Nullable ProfitAndLossIndicator netIncome) {
         this.netIncome = netIncome;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public ProfitAndLoss withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public ProfitAndLoss withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public ProfitAndLoss withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The customer id
      */
-    public ProfitAndLoss withCustomer(String customer) {
-        Utils.checkNotNull(customer, "customer");
-        this.customer = Optional.ofNullable(customer);
-        return this;
-    }
-
-
-    /**
-     * The customer id
-     */
-    public ProfitAndLoss withCustomer(Optional<String> customer) {
-        Utils.checkNotNull(customer, "customer");
+    public ProfitAndLoss withCustomer(@Nullable String customer) {
         this.customer = customer;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -636,303 +481,162 @@ public class ProfitAndLoss {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private String reportName;
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
         private Income income;
 
-        private Optional<? extends CostOfGoodsSold> costOfGoodsSold = Optional.empty();
+        private CostOfGoodsSold costOfGoodsSold;
 
         private Expenses expenses;
 
-        private Optional<? extends OtherIncome> otherIncome = Optional.empty();
+        private OtherIncome otherIncome;
 
-        private Optional<? extends OtherExpenses> otherExpenses = Optional.empty();
+        private OtherExpenses otherExpenses;
 
-        private Optional<? extends UncategorizedAccounts> uncategorizedAccounts = Optional.empty();
+        private UncategorizedAccounts uncategorizedAccounts;
 
-        private Optional<? extends ProfitAndLossIndicator> grossProfit = Optional.empty();
+        private ProfitAndLossIndicator grossProfit;
 
-        private Optional<? extends ProfitAndLossIndicator> netOperatingIncome = Optional.empty();
+        private ProfitAndLossIndicator netOperatingIncome;
 
-        private Optional<? extends ProfitAndLossIndicator> netIncome = Optional.empty();
+        private ProfitAndLossIndicator netIncome;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<String> customer = Optional.empty();
+        private String customer;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the report
          */
-        public Builder reportName(String reportName) {
-            Utils.checkNotNull(reportName, "reportName");
-            this.reportName = reportName;
-            return this;
-        }
-
-
-        /**
-         * The start date of the report
-         */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
+        public Builder reportName(@Nonnull String reportName) {
+            this.reportName = Utils.checkNotNull(reportName, "reportName");
             return this;
         }
 
         /**
          * The start date of the report
          */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * The end date of the report
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * The end date of the report
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The operating income accounts
          */
-        public Builder income(Income income) {
-            Utils.checkNotNull(income, "income");
-            this.income = income;
-            return this;
-        }
-
-
-        /**
-         * The cost of goods sold accounts
-         */
-        public Builder costOfGoodsSold(CostOfGoodsSold costOfGoodsSold) {
-            Utils.checkNotNull(costOfGoodsSold, "costOfGoodsSold");
-            this.costOfGoodsSold = Optional.ofNullable(costOfGoodsSold);
+        public Builder income(@Nonnull Income income) {
+            this.income = Utils.checkNotNull(income, "income");
             return this;
         }
 
         /**
          * The cost of goods sold accounts
          */
-        public Builder costOfGoodsSold(Optional<? extends CostOfGoodsSold> costOfGoodsSold) {
-            Utils.checkNotNull(costOfGoodsSold, "costOfGoodsSold");
+        public Builder costOfGoodsSold(@Nullable CostOfGoodsSold costOfGoodsSold) {
             this.costOfGoodsSold = costOfGoodsSold;
             return this;
         }
 
-
         /**
          * The operating expenses accounts
          */
-        public Builder expenses(Expenses expenses) {
-            Utils.checkNotNull(expenses, "expenses");
-            this.expenses = expenses;
-            return this;
-        }
-
-
-        /**
-         * The other income accounts
-         */
-        public Builder otherIncome(OtherIncome otherIncome) {
-            Utils.checkNotNull(otherIncome, "otherIncome");
-            this.otherIncome = Optional.ofNullable(otherIncome);
+        public Builder expenses(@Nonnull Expenses expenses) {
+            this.expenses = Utils.checkNotNull(expenses, "expenses");
             return this;
         }
 
         /**
          * The other income accounts
          */
-        public Builder otherIncome(Optional<? extends OtherIncome> otherIncome) {
-            Utils.checkNotNull(otherIncome, "otherIncome");
+        public Builder otherIncome(@Nullable OtherIncome otherIncome) {
             this.otherIncome = otherIncome;
             return this;
         }
 
-
         /**
          * The other expenses accounts
          */
-        public Builder otherExpenses(OtherExpenses otherExpenses) {
-            Utils.checkNotNull(otherExpenses, "otherExpenses");
-            this.otherExpenses = Optional.ofNullable(otherExpenses);
-            return this;
-        }
-
-        /**
-         * The other expenses accounts
-         */
-        public Builder otherExpenses(Optional<? extends OtherExpenses> otherExpenses) {
-            Utils.checkNotNull(otherExpenses, "otherExpenses");
+        public Builder otherExpenses(@Nullable OtherExpenses otherExpenses) {
             this.otherExpenses = otherExpenses;
             return this;
         }
 
-
         /**
          * The accounts not categorized in the other sections
          */
-        public Builder uncategorizedAccounts(UncategorizedAccounts uncategorizedAccounts) {
-            Utils.checkNotNull(uncategorizedAccounts, "uncategorizedAccounts");
-            this.uncategorizedAccounts = Optional.ofNullable(uncategorizedAccounts);
-            return this;
-        }
-
-        /**
-         * The accounts not categorized in the other sections
-         */
-        public Builder uncategorizedAccounts(Optional<? extends UncategorizedAccounts> uncategorizedAccounts) {
-            Utils.checkNotNull(uncategorizedAccounts, "uncategorizedAccounts");
+        public Builder uncategorizedAccounts(@Nullable UncategorizedAccounts uncategorizedAccounts) {
             this.uncategorizedAccounts = uncategorizedAccounts;
             return this;
         }
 
-
-        public Builder grossProfit(ProfitAndLossIndicator grossProfit) {
-            Utils.checkNotNull(grossProfit, "grossProfit");
-            this.grossProfit = Optional.ofNullable(grossProfit);
-            return this;
-        }
-
-        public Builder grossProfit(Optional<? extends ProfitAndLossIndicator> grossProfit) {
-            Utils.checkNotNull(grossProfit, "grossProfit");
+        public Builder grossProfit(@Nullable ProfitAndLossIndicator grossProfit) {
             this.grossProfit = grossProfit;
             return this;
         }
 
-
-        public Builder netOperatingIncome(ProfitAndLossIndicator netOperatingIncome) {
-            Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
-            this.netOperatingIncome = Optional.ofNullable(netOperatingIncome);
-            return this;
-        }
-
-        public Builder netOperatingIncome(Optional<? extends ProfitAndLossIndicator> netOperatingIncome) {
-            Utils.checkNotNull(netOperatingIncome, "netOperatingIncome");
+        public Builder netOperatingIncome(@Nullable ProfitAndLossIndicator netOperatingIncome) {
             this.netOperatingIncome = netOperatingIncome;
             return this;
         }
 
-
-        public Builder netIncome(ProfitAndLossIndicator netIncome) {
-            Utils.checkNotNull(netIncome, "netIncome");
-            this.netIncome = Optional.ofNullable(netIncome);
-            return this;
-        }
-
-        public Builder netIncome(Optional<? extends ProfitAndLossIndicator> netIncome) {
-            Utils.checkNotNull(netIncome, "netIncome");
+        public Builder netIncome(@Nullable ProfitAndLossIndicator netIncome) {
             this.netIncome = netIncome;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The customer id
          */
-        public Builder customer(String customer) {
-            Utils.checkNotNull(customer, "customer");
-            this.customer = Optional.ofNullable(customer);
-            return this;
-        }
-
-        /**
-         * The customer id
-         */
-        public Builder customer(Optional<String> customer) {
-            Utils.checkNotNull(customer, "customer");
+        public Builder customer(@Nullable String customer) {
             this.customer = customer;
             return this;
         }
 
         public ProfitAndLoss build() {
-
             return new ProfitAndLoss(
                 id, reportName, startDate,
                 endDate, currency, income,

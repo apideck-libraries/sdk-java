@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingDepartmentsDeleteResponse implements Response {
     /**
      * Department deleted
      */
-    private Optional<? extends DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse;
+    private DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingDepartmentsDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(deleteAccountingDepartmentResponse, "deleteAccountingDepartmentResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.deleteAccountingDepartmentResponse = deleteAccountingDepartmentResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingDepartmentsDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Department deleted
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse() {
-        return (Optional<DeleteAccountingDepartmentResponse>) deleteAccountingDepartmentResponse;
+        return Optional.ofNullable(this.deleteAccountingDepartmentResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingDepartmentsDeleteResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingDepartmentsDeleteResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingDepartmentsDeleteResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingDepartmentsDeleteResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingDepartmentsDeleteResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Department deleted
-     */
-    public AccountingDepartmentsDeleteResponse withDeleteAccountingDepartmentResponse(DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse) {
-        Utils.checkNotNull(deleteAccountingDepartmentResponse, "deleteAccountingDepartmentResponse");
-        this.deleteAccountingDepartmentResponse = Optional.ofNullable(deleteAccountingDepartmentResponse);
+    public AccountingDepartmentsDeleteResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingDepartmentsDeleteResponse implements Response {
     /**
      * Department deleted
      */
-    public AccountingDepartmentsDeleteResponse withDeleteAccountingDepartmentResponse(Optional<? extends DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse) {
-        Utils.checkNotNull(deleteAccountingDepartmentResponse, "deleteAccountingDepartmentResponse");
+    public AccountingDepartmentsDeleteResponse withDeleteAccountingDepartmentResponse(@Nullable DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse) {
         this.deleteAccountingDepartmentResponse = deleteAccountingDepartmentResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingDepartmentsDeleteResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingDepartmentsDeleteResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingDepartmentsDeleteResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingDepartmentsDeleteResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse = Optional.empty();
+        private DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Department deleted
-         */
-        public Builder deleteAccountingDepartmentResponse(DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse) {
-            Utils.checkNotNull(deleteAccountingDepartmentResponse, "deleteAccountingDepartmentResponse");
-            this.deleteAccountingDepartmentResponse = Optional.ofNullable(deleteAccountingDepartmentResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Department deleted
          */
-        public Builder deleteAccountingDepartmentResponse(Optional<? extends DeleteAccountingDepartmentResponse> deleteAccountingDepartmentResponse) {
-            Utils.checkNotNull(deleteAccountingDepartmentResponse, "deleteAccountingDepartmentResponse");
+        public Builder deleteAccountingDepartmentResponse(@Nullable DeleteAccountingDepartmentResponse deleteAccountingDepartmentResponse) {
             this.deleteAccountingDepartmentResponse = deleteAccountingDepartmentResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingDepartmentsDeleteResponse build() {
-
             return new AccountingDepartmentsDeleteResponse(
                 contentType, statusCode, rawResponse,
                 deleteAccountingDepartmentResponse, unexpectedErrorResponse);

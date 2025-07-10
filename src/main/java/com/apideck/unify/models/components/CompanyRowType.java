@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,26 +28,24 @@ public class CompanyRowType {
 
     @JsonCreator
     public CompanyRowType(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
-        this.name = name;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public CompanyRowType() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null);
     }
 
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -54,29 +53,17 @@ public class CompanyRowType {
     }
 
 
-    public CompanyRowType withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public CompanyRowType withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    public CompanyRowType withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
-    public CompanyRowType withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public CompanyRowType withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    public CompanyRowType withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -108,42 +95,25 @@ public class CompanyRowType {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public CompanyRowType build() {
-
             return new CompanyRowType(
                 id, name);
         }

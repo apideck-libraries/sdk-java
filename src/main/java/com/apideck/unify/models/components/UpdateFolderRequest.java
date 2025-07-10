@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,39 +21,35 @@ public class UpdateFolderRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Optional description of the folder.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folder_id")
-    private Optional<String> parentFolderId;
+    private String parentFolderId;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public UpdateFolderRequest(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("parent_folder_id") Optional<String> parentFolderId,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("description") @Nullable String description,
+            @JsonProperty("parent_folder_id") @Nullable String parentFolderId,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.name = name;
         this.description = description;
         this.parentFolderId = parentFolderId;
@@ -62,41 +57,36 @@ public class UpdateFolderRequest {
     }
     
     public UpdateFolderRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The name of the folder.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Optional description of the folder.
      */
-    @JsonIgnore
     public Optional<String> description() {
-        return description;
+        return Optional.ofNullable(this.description);
     }
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    @JsonIgnore
     public Optional<String> parentFolderId() {
-        return parentFolderId;
+        return Optional.ofNullable(this.parentFolderId);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -107,78 +97,38 @@ public class UpdateFolderRequest {
     /**
      * The name of the folder.
      */
-    public UpdateFolderRequest withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the folder.
-     */
-    public UpdateFolderRequest withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public UpdateFolderRequest withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Optional description of the folder.
-     */
-    public UpdateFolderRequest withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
 
     /**
      * Optional description of the folder.
      */
-    public UpdateFolderRequest withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
+    public UpdateFolderRequest withDescription(@Nullable String description) {
         this.description = description;
         return this;
     }
 
-    /**
-     * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
-     */
-    public UpdateFolderRequest withParentFolderId(String parentFolderId) {
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        this.parentFolderId = Optional.ofNullable(parentFolderId);
-        return this;
-    }
-
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    public UpdateFolderRequest withParentFolderId(Optional<String> parentFolderId) {
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
+    public UpdateFolderRequest withParentFolderId(@Nullable String parentFolderId) {
         this.parentFolderId = parentFolderId;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public UpdateFolderRequest withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public UpdateFolderRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public UpdateFolderRequest withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -215,96 +165,51 @@ public class UpdateFolderRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Optional<String> parentFolderId = Optional.empty();
+        private String parentFolderId;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the folder.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the folder.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Optional description of the folder.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * Optional description of the folder.
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
 
-
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
-        public Builder parentFolderId(String parentFolderId) {
-            Utils.checkNotNull(parentFolderId, "parentFolderId");
-            this.parentFolderId = Optional.ofNullable(parentFolderId);
-            return this;
-        }
-
-        /**
-         * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
-         */
-        public Builder parentFolderId(Optional<String> parentFolderId) {
-            Utils.checkNotNull(parentFolderId, "parentFolderId");
+        public Builder parentFolderId(@Nullable String parentFolderId) {
             this.parentFolderId = parentFolderId;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public UpdateFolderRequest build() {
-
             return new UpdateFolderRequest(
                 name, description, parentFolderId,
                 passThrough);

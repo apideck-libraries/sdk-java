@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -52,7 +52,7 @@ public class Person {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gender")
-    private JsonNullable<? extends Gender> gender;
+    private JsonNullable<Gender> gender;
 
     /**
      * Initials of the person
@@ -80,117 +80,106 @@ public class Person {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     @JsonCreator
     public Person(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("gender") JsonNullable<? extends Gender> gender,
-            @JsonProperty("initials") JsonNullable<String> initials,
-            @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
-            @JsonProperty("deceased_on") JsonNullable<LocalDate> deceasedOn,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(gender, "gender");
-        Utils.checkNotNull(initials, "initials");
-        Utils.checkNotNull(birthday, "birthday");
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.gender = gender;
-        this.initials = initials;
-        this.birthday = birthday;
-        this.deceasedOn = deceasedOn;
-        this.customMappings = customMappings;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("gender") @Nullable JsonNullable<Gender> gender,
+            @JsonProperty("initials") @Nullable JsonNullable<String> initials,
+            @JsonProperty("birthday") @Nullable JsonNullable<LocalDate> birthday,
+            @JsonProperty("deceased_on") @Nullable JsonNullable<LocalDate> deceasedOn,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.gender = Optional.ofNullable(gender)
+            .orElse(JsonNullable.undefined());
+        this.initials = Optional.ofNullable(initials)
+            .orElse(JsonNullable.undefined());
+        this.birthday = Optional.ofNullable(birthday)
+            .orElse(JsonNullable.undefined());
+        this.deceasedOn = Optional.ofNullable(deceasedOn)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
     }
     
     public Person() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Middle name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Gender> gender() {
-        return (JsonNullable<Gender>) gender;
+        return this.gender;
     }
 
     /**
      * Initials of the person
      */
-    @JsonIgnore
     public JsonNullable<String> initials() {
-        return initials;
+        return this.initials;
     }
 
     /**
      * Date of birth
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
-        return birthday;
+        return this.birthday;
     }
 
     /**
      * Date of death
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> deceasedOn() {
-        return deceasedOn;
+        return this.deceasedOn;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     public static Builder builder() {
@@ -201,164 +190,83 @@ public class Person {
     /**
      * A unique identifier for an object.
      */
-    public Person withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Person withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public Person withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public Person withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public Person withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public Person withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public Person withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public Person withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public Person withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Middle name of the person.
      */
-    public Person withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public Person withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the person.
-     */
-    public Person withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    public Person withGender(Gender gender) {
-        Utils.checkNotNull(gender, "gender");
+    public Person withGender(@Nullable Gender gender) {
         this.gender = JsonNullable.of(gender);
         return this;
     }
 
-    /**
-     * The gender represents the gender identity of a person.
-     */
-    public Person withGender(JsonNullable<? extends Gender> gender) {
-        Utils.checkNotNull(gender, "gender");
-        this.gender = gender;
-        return this;
-    }
 
     /**
      * Initials of the person
      */
-    public Person withInitials(String initials) {
-        Utils.checkNotNull(initials, "initials");
+    public Person withInitials(@Nullable String initials) {
         this.initials = JsonNullable.of(initials);
         return this;
     }
 
-    /**
-     * Initials of the person
-     */
-    public Person withInitials(JsonNullable<String> initials) {
-        Utils.checkNotNull(initials, "initials");
-        this.initials = initials;
-        return this;
-    }
 
     /**
      * Date of birth
      */
-    public Person withBirthday(LocalDate birthday) {
-        Utils.checkNotNull(birthday, "birthday");
+    public Person withBirthday(@Nullable LocalDate birthday) {
         this.birthday = JsonNullable.of(birthday);
         return this;
     }
 
-    /**
-     * Date of birth
-     */
-    public Person withBirthday(JsonNullable<LocalDate> birthday) {
-        Utils.checkNotNull(birthday, "birthday");
-        this.birthday = birthday;
-        return this;
-    }
 
     /**
      * Date of death
      */
-    public Person withDeceasedOn(LocalDate deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
+    public Person withDeceasedOn(@Nullable LocalDate deceasedOn) {
         this.deceasedOn = JsonNullable.of(deceasedOn);
         return this;
     }
 
-    /**
-     * Date of death
-     */
-    public Person withDeceasedOn(JsonNullable<LocalDate> deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        this.deceasedOn = deceasedOn;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Person withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Person withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Person withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -406,201 +314,101 @@ public class Person {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
+        private JsonNullable<Gender> gender;
 
-        private JsonNullable<String> initials = JsonNullable.undefined();
+        private JsonNullable<String> initials;
 
-        private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+        private JsonNullable<LocalDate> birthday;
 
-        private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
+        private JsonNullable<LocalDate> deceasedOn;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the person.
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the person.
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * The gender represents the gender identity of a person.
          */
-        public Builder gender(Gender gender) {
-            Utils.checkNotNull(gender, "gender");
+        public Builder gender(@Nullable Gender gender) {
             this.gender = JsonNullable.of(gender);
             return this;
         }
 
         /**
-         * The gender represents the gender identity of a person.
-         */
-        public Builder gender(JsonNullable<? extends Gender> gender) {
-            Utils.checkNotNull(gender, "gender");
-            this.gender = gender;
-            return this;
-        }
-
-
-        /**
          * Initials of the person
          */
-        public Builder initials(String initials) {
-            Utils.checkNotNull(initials, "initials");
+        public Builder initials(@Nullable String initials) {
             this.initials = JsonNullable.of(initials);
             return this;
         }
 
         /**
-         * Initials of the person
-         */
-        public Builder initials(JsonNullable<String> initials) {
-            Utils.checkNotNull(initials, "initials");
-            this.initials = initials;
-            return this;
-        }
-
-
-        /**
          * Date of birth
          */
-        public Builder birthday(LocalDate birthday) {
-            Utils.checkNotNull(birthday, "birthday");
+        public Builder birthday(@Nullable LocalDate birthday) {
             this.birthday = JsonNullable.of(birthday);
             return this;
         }
 
         /**
-         * Date of birth
-         */
-        public Builder birthday(JsonNullable<LocalDate> birthday) {
-            Utils.checkNotNull(birthday, "birthday");
-            this.birthday = birthday;
-            return this;
-        }
-
-
-        /**
          * Date of death
          */
-        public Builder deceasedOn(LocalDate deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
+        public Builder deceasedOn(@Nullable LocalDate deceasedOn) {
             this.deceasedOn = JsonNullable.of(deceasedOn);
             return this;
         }
 
         /**
-         * Date of death
-         */
-        public Builder deceasedOn(JsonNullable<LocalDate> deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
-            this.deceasedOn = deceasedOn;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
-        /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
         public Person build() {
-
             return new Person(
                 id, firstName, lastName,
                 middleName, gender, initials,

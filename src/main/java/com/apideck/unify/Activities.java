@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmActivitiesDeleteOperation;
 import com.apideck.unify.operations.CrmActivitiesOneOperation;
 import com.apideck.unify.operations.CrmActivitiesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesAllResponse list(CrmActivitiesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmActivitiesAllResponse list(@Nonnull CrmActivitiesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Activities {
      * @throws Exception if the API call fails
      */
     public CrmActivitiesAllResponse list(
-            CrmActivitiesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmActivitiesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
               = new CrmActivitiesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesAddResponse create(CrmActivitiesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmActivitiesAddResponse create(@Nonnull CrmActivitiesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Activities {
      * @throws Exception if the API call fails
      */
     public CrmActivitiesAddResponse create(
-            CrmActivitiesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmActivitiesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmActivitiesAddRequest, CrmActivitiesAddResponse> operation
               = new CrmActivitiesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesOneResponse get(CrmActivitiesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmActivitiesOneResponse get(@Nonnull CrmActivitiesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Activities {
      * @throws Exception if the API call fails
      */
     public CrmActivitiesOneResponse get(
-            CrmActivitiesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmActivitiesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmActivitiesOneRequest, CrmActivitiesOneResponse> operation
               = new CrmActivitiesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesUpdateResponse update(CrmActivitiesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmActivitiesUpdateResponse update(@Nonnull CrmActivitiesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Activities {
      * @throws Exception if the API call fails
      */
     public CrmActivitiesUpdateResponse update(
-            CrmActivitiesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmActivitiesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmActivitiesUpdateRequest, CrmActivitiesUpdateResponse> operation
               = new CrmActivitiesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesDeleteResponse delete(CrmActivitiesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmActivitiesDeleteResponse delete(@Nonnull CrmActivitiesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Activities {
      * @throws Exception if the API call fails
      */
     public CrmActivitiesDeleteResponse delete(
-            CrmActivitiesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmActivitiesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmActivitiesDeleteRequest, CrmActivitiesDeleteResponse> operation
               = new CrmActivitiesDeleteOperation(
                 sdkConfiguration,

@@ -11,13 +11,11 @@ import static com.apideck.unify.utils.Utils.toStream;
 import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.models.components.ConnectorsFilter;
 import com.apideck.unify.operations.ConnectorConnectorsAllOperation;
-import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
-import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
-import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Iterable;
@@ -25,114 +23,72 @@ import java.lang.Long;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 public class ConnectorConnectorsAllRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private JsonNullable<String> cursor = JsonNullable.undefined();
-    private Optional<Long> limit = Utils.readDefaultOrConstValue(
-                            "limit",
-                            "20",
-                            new TypeReference<Optional<Long>>() {});
-    private Optional<? extends ConnectorsFilter> filter = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final ConnectorConnectorsAllRequest.Builder pojoBuilder;
+    private ConnectorConnectorsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public ConnectorConnectorsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = ConnectorConnectorsAllRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public ConnectorConnectorsAllRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public ConnectorConnectorsAllRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public ConnectorConnectorsAllRequestBuilder cursor(@Nullable String cursor) {
+        this.pojoBuilder.cursor(cursor);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder cursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = JsonNullable.of(cursor);
+    public ConnectorConnectorsAllRequestBuilder limit(@Nullable Long limit) {
+        this.pojoBuilder.limit(limit);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder cursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
-                
-    public ConnectorConnectorsAllRequestBuilder limit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.of(limit);
+    public ConnectorConnectorsAllRequestBuilder filter(@Nullable ConnectorsFilter filter) {
+        this.pojoBuilder.filter(filter);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder limit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = limit;
-        return this;
-    }
-                
-    public ConnectorConnectorsAllRequestBuilder filter(ConnectorsFilter filter) {
-        Utils.checkNotNull(filter, "filter");
-        this.filter = Optional.of(filter);
-        return this;
-    }
-
-    public ConnectorConnectorsAllRequestBuilder filter(Optional<? extends ConnectorsFilter> filter) {
-        Utils.checkNotNull(filter, "filter");
-        this.filter = filter;
-        return this;
-    }
-                
     public ConnectorConnectorsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public ConnectorConnectorsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
-    }
-
-
-    private ConnectorConnectorsAllRequest buildRequest() {
-        if (limit == null) {
-            limit = _SINGLETON_VALUE_Limit.value();
+    private ConnectorConnectorsAllRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
         }
-
-        ConnectorConnectorsAllRequest request = new ConnectorConnectorsAllRequest(appId,
-            cursor,
-            limit,
-            filter);
-
-        return request;
+        return this.request;
     }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public ConnectorConnectorsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
               = new ConnectorConnectorsAllOperation(
                 sdkConfiguration,
                 options);
-        ConnectorConnectorsAllRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
-
+    
     /**
     * Returns an iterable that performs next page calls till no more pages
     * are returned.
@@ -147,36 +103,27 @@ public class ConnectorConnectorsAllRequestBuilder {
     * @return An iterable that can be used to iterate through all pages
     */
     public Iterable<ConnectorConnectorsAllResponse> callAsIterable() {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
-        RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAllOperation(
-                sdkConfiguration,
-                options);
-        ConnectorConnectorsAllRequest request = buildRequest();
+        ConnectorConnectorsAllRequest request = pojoBuilder.build();
+        Options options = optionsBuilder.build();
+        RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation =
+                new ConnectorConnectorsAllOperation(
+                    sdkConfiguration,
+                    options);
+        
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                ConnectorConnectorsAllRequest::withCursor,
+            ConnectorConnectorsAllRequest::withCursor,
             nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+
         return () -> transform(iterator, operation::handleResponse);
     }
 
     /**
-     * Returns a stream that performs next page calls till no more pages
-     * are returned.
-     **/  
+    * Returns a stream that performs next page calls till no more pages
+    * are returned.
+    **/  
     public Stream<ConnectorConnectorsAllResponse> callAsStream() {
         return toStream(callAsIterable());
     }
-
-
-    private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
-            new LazySingletonValue<>(
-                    "limit",
-                    "20",
-                    new TypeReference<Optional<Long>>() {});
 }

@@ -11,71 +11,59 @@ import com.apideck.unify.operations.WebhookWebhooksAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class WebhookWebhooksAddRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private CreateWebhookRequest createWebhookRequest;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final WebhookWebhooksAddRequest.Builder pojoBuilder;
+    private WebhookWebhooksAddRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public WebhookWebhooksAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = WebhookWebhooksAddRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public WebhookWebhooksAddRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public WebhookWebhooksAddRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksAddRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public WebhookWebhooksAddRequestBuilder createWebhookRequest(@Nonnull CreateWebhookRequest createWebhookRequest) {
+        this.pojoBuilder.createWebhookRequest(createWebhookRequest);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksAddRequestBuilder createWebhookRequest(CreateWebhookRequest createWebhookRequest) {
-        Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
-        this.createWebhookRequest = createWebhookRequest;
-        return this;
-    }
-                
     public WebhookWebhooksAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public WebhookWebhooksAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private WebhookWebhooksAddRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private WebhookWebhooksAddRequest buildRequest() {
-
-        WebhookWebhooksAddRequest request = new WebhookWebhooksAddRequest(appId,
-            createWebhookRequest);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public WebhookWebhooksAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
               = new WebhookWebhooksAddOperation(
                 sdkConfiguration,
                 options);
-        WebhookWebhooksAddRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class CreateSessionResponseData {
@@ -22,22 +23,20 @@ public class CreateSessionResponseData {
 
     @JsonCreator
     public CreateSessionResponseData(
-            @JsonProperty("session_uri") String sessionUri,
-            @JsonProperty("session_token") String sessionToken) {
-        Utils.checkNotNull(sessionUri, "sessionUri");
-        Utils.checkNotNull(sessionToken, "sessionToken");
-        this.sessionUri = sessionUri;
-        this.sessionToken = sessionToken;
+            @JsonProperty("session_uri") @Nonnull String sessionUri,
+            @JsonProperty("session_token") @Nonnull String sessionToken) {
+        this.sessionUri = Optional.ofNullable(sessionUri)
+            .orElseThrow(() -> new IllegalArgumentException("sessionUri cannot be null"));
+        this.sessionToken = Optional.ofNullable(sessionToken)
+            .orElseThrow(() -> new IllegalArgumentException("sessionToken cannot be null"));
     }
 
-    @JsonIgnore
     public String sessionUri() {
-        return sessionUri;
+        return this.sessionUri;
     }
 
-    @JsonIgnore
     public String sessionToken() {
-        return sessionToken;
+        return this.sessionToken;
     }
 
     public static Builder builder() {
@@ -45,17 +44,17 @@ public class CreateSessionResponseData {
     }
 
 
-    public CreateSessionResponseData withSessionUri(String sessionUri) {
-        Utils.checkNotNull(sessionUri, "sessionUri");
-        this.sessionUri = sessionUri;
+    public CreateSessionResponseData withSessionUri(@Nonnull String sessionUri) {
+        this.sessionUri = Utils.checkNotNull(sessionUri, "sessionUri");
         return this;
     }
 
-    public CreateSessionResponseData withSessionToken(String sessionToken) {
-        Utils.checkNotNull(sessionToken, "sessionToken");
-        this.sessionToken = sessionToken;
+
+    public CreateSessionResponseData withSessionToken(@Nonnull String sessionToken) {
+        this.sessionToken = Utils.checkNotNull(sessionToken, "sessionToken");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -95,22 +94,17 @@ public class CreateSessionResponseData {
           // force use of static builder() method
         }
 
-
-        public Builder sessionUri(String sessionUri) {
-            Utils.checkNotNull(sessionUri, "sessionUri");
-            this.sessionUri = sessionUri;
+        public Builder sessionUri(@Nonnull String sessionUri) {
+            this.sessionUri = Utils.checkNotNull(sessionUri, "sessionUri");
             return this;
         }
 
-
-        public Builder sessionToken(String sessionToken) {
-            Utils.checkNotNull(sessionToken, "sessionToken");
-            this.sessionToken = sessionToken;
+        public Builder sessionToken(@Nonnull String sessionToken) {
+            this.sessionToken = Utils.checkNotNull(sessionToken, "sessionToken");
             return this;
         }
 
         public CreateSessionResponseData build() {
-
             return new CreateSessionResponseData(
                 sessionUri, sessionToken);
         }

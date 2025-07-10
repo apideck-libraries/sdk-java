@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingSubsidiariesDeleteOperation;
 import com.apideck.unify.operations.AccountingSubsidiariesOneOperation;
 import com.apideck.unify.operations.AccountingSubsidiariesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingSubsidiariesAllResponse list(@Nonnull AccountingSubsidiariesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Subsidiaries {
      * @throws Exception if the API call fails
      */
     public AccountingSubsidiariesAllResponse list(
-            AccountingSubsidiariesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSubsidiariesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
               = new AccountingSubsidiariesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingSubsidiariesAddResponse create(@Nonnull AccountingSubsidiariesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Subsidiaries {
      * @throws Exception if the API call fails
      */
     public AccountingSubsidiariesAddResponse create(
-            AccountingSubsidiariesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSubsidiariesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
               = new AccountingSubsidiariesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingSubsidiariesOneResponse get(@Nonnull AccountingSubsidiariesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Subsidiaries {
      * @throws Exception if the API call fails
      */
     public AccountingSubsidiariesOneResponse get(
-            AccountingSubsidiariesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSubsidiariesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
               = new AccountingSubsidiariesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingSubsidiariesUpdateResponse update(@Nonnull AccountingSubsidiariesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Subsidiaries {
      * @throws Exception if the API call fails
      */
     public AccountingSubsidiariesUpdateResponse update(
-            AccountingSubsidiariesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSubsidiariesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
               = new AccountingSubsidiariesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingSubsidiariesDeleteResponse delete(@Nonnull AccountingSubsidiariesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Subsidiaries {
      * @throws Exception if the API call fails
      */
     public AccountingSubsidiariesDeleteResponse delete(
-            AccountingSubsidiariesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSubsidiariesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
               = new AccountingSubsidiariesDeleteOperation(
                 sdkConfiguration,

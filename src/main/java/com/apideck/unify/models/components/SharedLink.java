@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -37,14 +36,14 @@ public class SharedLink {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target")
-    private Optional<? extends SharedLinkTarget> target;
+    private SharedLinkTarget target;
 
     /**
      * The scope of the shared link.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scope")
-    private JsonNullable<? extends Scope> scope;
+    private JsonNullable<Scope> scope;
 
     /**
      * Indicated if the shared link is password protected.
@@ -77,112 +76,98 @@ public class SharedLink {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public SharedLink(
-            @JsonProperty("url") JsonNullable<String> url,
-            @JsonProperty("download_url") JsonNullable<String> downloadUrl,
-            @JsonProperty("target") Optional<? extends SharedLinkTarget> target,
-            @JsonProperty("scope") JsonNullable<? extends Scope> scope,
-            @JsonProperty("password_protected") JsonNullable<Boolean> passwordProtected,
-            @JsonProperty("expires_at") JsonNullable<OffsetDateTime> expiresAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
-        Utils.checkNotNull(target, "target");
-        Utils.checkNotNull(scope, "scope");
-        Utils.checkNotNull(passwordProtected, "passwordProtected");
-        Utils.checkNotNull(expiresAt, "expiresAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.url = url;
-        this.downloadUrl = downloadUrl;
+            @JsonProperty("url") @Nullable JsonNullable<String> url,
+            @JsonProperty("download_url") @Nullable JsonNullable<String> downloadUrl,
+            @JsonProperty("target") @Nullable SharedLinkTarget target,
+            @JsonProperty("scope") @Nullable JsonNullable<Scope> scope,
+            @JsonProperty("password_protected") @Nullable JsonNullable<Boolean> passwordProtected,
+            @JsonProperty("expires_at") @Nullable JsonNullable<OffsetDateTime> expiresAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.url = Optional.ofNullable(url)
+            .orElse(JsonNullable.undefined());
+        this.downloadUrl = Optional.ofNullable(downloadUrl)
+            .orElse(JsonNullable.undefined());
         this.target = target;
-        this.scope = scope;
-        this.passwordProtected = passwordProtected;
-        this.expiresAt = expiresAt;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.scope = Optional.ofNullable(scope)
+            .orElse(JsonNullable.undefined());
+        this.passwordProtected = Optional.ofNullable(passwordProtected)
+            .orElse(JsonNullable.undefined());
+        this.expiresAt = Optional.ofNullable(expiresAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public SharedLink() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The URL that can be used to view the file.
      */
-    @JsonIgnore
     public JsonNullable<String> url() {
-        return url;
+        return this.url;
     }
 
     /**
      * The URL that can be used to download the file.
      */
-    @JsonIgnore
     public JsonNullable<String> downloadUrl() {
-        return downloadUrl;
+        return this.downloadUrl;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SharedLinkTarget> target() {
-        return (Optional<SharedLinkTarget>) target;
+        return Optional.ofNullable(this.target);
     }
 
     /**
      * The scope of the shared link.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Scope> scope() {
-        return (JsonNullable<Scope>) scope;
+        return this.scope;
     }
 
     /**
      * Indicated if the shared link is password protected.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> passwordProtected() {
-        return passwordProtected;
+        return this.passwordProtected;
     }
 
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> expiresAt() {
-        return expiresAt;
+        return this.expiresAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -193,154 +178,77 @@ public class SharedLink {
     /**
      * The URL that can be used to view the file.
      */
-    public SharedLink withUrl(String url) {
-        Utils.checkNotNull(url, "url");
+    public SharedLink withUrl(@Nullable String url) {
         this.url = JsonNullable.of(url);
         return this;
     }
 
-    /**
-     * The URL that can be used to view the file.
-     */
-    public SharedLink withUrl(JsonNullable<String> url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
-        return this;
-    }
 
     /**
      * The URL that can be used to download the file.
      */
-    public SharedLink withDownloadUrl(String downloadUrl) {
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
+    public SharedLink withDownloadUrl(@Nullable String downloadUrl) {
         this.downloadUrl = JsonNullable.of(downloadUrl);
         return this;
     }
 
-    /**
-     * The URL that can be used to download the file.
-     */
-    public SharedLink withDownloadUrl(JsonNullable<String> downloadUrl) {
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
-        this.downloadUrl = downloadUrl;
-        return this;
-    }
 
-    public SharedLink withTarget(SharedLinkTarget target) {
-        Utils.checkNotNull(target, "target");
-        this.target = Optional.ofNullable(target);
-        return this;
-    }
-
-
-    public SharedLink withTarget(Optional<? extends SharedLinkTarget> target) {
-        Utils.checkNotNull(target, "target");
+    public SharedLink withTarget(@Nullable SharedLinkTarget target) {
         this.target = target;
         return this;
     }
 
+
     /**
      * The scope of the shared link.
      */
-    public SharedLink withScope(Scope scope) {
-        Utils.checkNotNull(scope, "scope");
+    public SharedLink withScope(@Nullable Scope scope) {
         this.scope = JsonNullable.of(scope);
         return this;
     }
 
-    /**
-     * The scope of the shared link.
-     */
-    public SharedLink withScope(JsonNullable<? extends Scope> scope) {
-        Utils.checkNotNull(scope, "scope");
-        this.scope = scope;
-        return this;
-    }
 
     /**
      * Indicated if the shared link is password protected.
      */
-    public SharedLink withPasswordProtected(boolean passwordProtected) {
-        Utils.checkNotNull(passwordProtected, "passwordProtected");
+    public SharedLink withPasswordProtected(@Nullable Boolean passwordProtected) {
         this.passwordProtected = JsonNullable.of(passwordProtected);
         return this;
     }
 
-    /**
-     * Indicated if the shared link is password protected.
-     */
-    public SharedLink withPasswordProtected(JsonNullable<Boolean> passwordProtected) {
-        Utils.checkNotNull(passwordProtected, "passwordProtected");
-        this.passwordProtected = passwordProtected;
-        return this;
-    }
 
-    public SharedLink withExpiresAt(OffsetDateTime expiresAt) {
-        Utils.checkNotNull(expiresAt, "expiresAt");
+    public SharedLink withExpiresAt(@Nullable OffsetDateTime expiresAt) {
         this.expiresAt = JsonNullable.of(expiresAt);
         return this;
     }
 
-    public SharedLink withExpiresAt(JsonNullable<OffsetDateTime> expiresAt) {
-        Utils.checkNotNull(expiresAt, "expiresAt");
-        this.expiresAt = expiresAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public SharedLink withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public SharedLink withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public SharedLink withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public SharedLink withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public SharedLink withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public SharedLink withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public SharedLink withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public SharedLink withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public SharedLink withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -388,189 +296,95 @@ public class SharedLink {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> url = JsonNullable.undefined();
+        private JsonNullable<String> url;
 
-        private JsonNullable<String> downloadUrl = JsonNullable.undefined();
+        private JsonNullable<String> downloadUrl;
 
-        private Optional<? extends SharedLinkTarget> target = Optional.empty();
+        private SharedLinkTarget target;
 
-        private JsonNullable<? extends Scope> scope = JsonNullable.undefined();
+        private JsonNullable<Scope> scope;
 
-        private JsonNullable<Boolean> passwordProtected = JsonNullable.undefined();
+        private JsonNullable<Boolean> passwordProtected;
 
-        private JsonNullable<OffsetDateTime> expiresAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> expiresAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The URL that can be used to view the file.
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = JsonNullable.of(url);
             return this;
         }
 
         /**
-         * The URL that can be used to view the file.
-         */
-        public Builder url(JsonNullable<String> url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
-            return this;
-        }
-
-
-        /**
          * The URL that can be used to download the file.
          */
-        public Builder downloadUrl(String downloadUrl) {
-            Utils.checkNotNull(downloadUrl, "downloadUrl");
+        public Builder downloadUrl(@Nullable String downloadUrl) {
             this.downloadUrl = JsonNullable.of(downloadUrl);
             return this;
         }
 
-        /**
-         * The URL that can be used to download the file.
-         */
-        public Builder downloadUrl(JsonNullable<String> downloadUrl) {
-            Utils.checkNotNull(downloadUrl, "downloadUrl");
-            this.downloadUrl = downloadUrl;
-            return this;
-        }
-
-
-        public Builder target(SharedLinkTarget target) {
-            Utils.checkNotNull(target, "target");
-            this.target = Optional.ofNullable(target);
-            return this;
-        }
-
-        public Builder target(Optional<? extends SharedLinkTarget> target) {
-            Utils.checkNotNull(target, "target");
+        public Builder target(@Nullable SharedLinkTarget target) {
             this.target = target;
             return this;
         }
 
-
         /**
          * The scope of the shared link.
          */
-        public Builder scope(Scope scope) {
-            Utils.checkNotNull(scope, "scope");
+        public Builder scope(@Nullable Scope scope) {
             this.scope = JsonNullable.of(scope);
             return this;
         }
 
         /**
-         * The scope of the shared link.
-         */
-        public Builder scope(JsonNullable<? extends Scope> scope) {
-            Utils.checkNotNull(scope, "scope");
-            this.scope = scope;
-            return this;
-        }
-
-
-        /**
          * Indicated if the shared link is password protected.
          */
-        public Builder passwordProtected(boolean passwordProtected) {
-            Utils.checkNotNull(passwordProtected, "passwordProtected");
+        public Builder passwordProtected(@Nullable Boolean passwordProtected) {
             this.passwordProtected = JsonNullable.of(passwordProtected);
             return this;
         }
 
-        /**
-         * Indicated if the shared link is password protected.
-         */
-        public Builder passwordProtected(JsonNullable<Boolean> passwordProtected) {
-            Utils.checkNotNull(passwordProtected, "passwordProtected");
-            this.passwordProtected = passwordProtected;
-            return this;
-        }
-
-
-        public Builder expiresAt(OffsetDateTime expiresAt) {
-            Utils.checkNotNull(expiresAt, "expiresAt");
+        public Builder expiresAt(@Nullable OffsetDateTime expiresAt) {
             this.expiresAt = JsonNullable.of(expiresAt);
             return this;
         }
 
-        public Builder expiresAt(JsonNullable<OffsetDateTime> expiresAt) {
-            Utils.checkNotNull(expiresAt, "expiresAt");
-            this.expiresAt = expiresAt;
-            return this;
-        }
-
-
         /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public SharedLink build() {
-
             return new SharedLink(
                 url, downloadUrl, target,
                 scope, passwordProtected, expiresAt,

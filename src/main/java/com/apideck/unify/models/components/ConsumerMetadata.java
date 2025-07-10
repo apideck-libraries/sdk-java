@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,39 +24,35 @@ public class ConsumerMetadata {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_name")
-    private Optional<String> accountName;
+    private String accountName;
 
     /**
      * The name of the user as shown in the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("user_name")
-    private Optional<String> userName;
+    private String userName;
 
     /**
      * The email of the user as shown in the sidebar.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * The avatar of the user in the sidebar. Must be a valid URL
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("image")
-    private Optional<String> image;
+    private String image;
 
     @JsonCreator
     public ConsumerMetadata(
-            @JsonProperty("account_name") Optional<String> accountName,
-            @JsonProperty("user_name") Optional<String> userName,
-            @JsonProperty("email") Optional<String> email,
-            @JsonProperty("image") Optional<String> image) {
-        Utils.checkNotNull(accountName, "accountName");
-        Utils.checkNotNull(userName, "userName");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(image, "image");
+            @JsonProperty("account_name") @Nullable String accountName,
+            @JsonProperty("user_name") @Nullable String userName,
+            @JsonProperty("email") @Nullable String email,
+            @JsonProperty("image") @Nullable String image) {
         this.accountName = accountName;
         this.userName = userName;
         this.email = email;
@@ -64,40 +60,36 @@ public class ConsumerMetadata {
     }
     
     public ConsumerMetadata() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The name of the account as shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> accountName() {
-        return accountName;
+        return Optional.ofNullable(this.accountName);
     }
 
     /**
      * The name of the user as shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> userName() {
-        return userName;
+        return Optional.ofNullable(this.userName);
     }
 
     /**
      * The email of the user as shown in the sidebar.
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     /**
      * The avatar of the user in the sidebar. Must be a valid URL
      */
-    @JsonIgnore
     public Optional<String> image() {
-        return image;
+        return Optional.ofNullable(this.image);
     }
 
     public static Builder builder() {
@@ -108,78 +100,38 @@ public class ConsumerMetadata {
     /**
      * The name of the account as shown in the sidebar.
      */
-    public ConsumerMetadata withAccountName(String accountName) {
-        Utils.checkNotNull(accountName, "accountName");
-        this.accountName = Optional.ofNullable(accountName);
-        return this;
-    }
-
-
-    /**
-     * The name of the account as shown in the sidebar.
-     */
-    public ConsumerMetadata withAccountName(Optional<String> accountName) {
-        Utils.checkNotNull(accountName, "accountName");
+    public ConsumerMetadata withAccountName(@Nullable String accountName) {
         this.accountName = accountName;
         return this;
     }
 
-    /**
-     * The name of the user as shown in the sidebar.
-     */
-    public ConsumerMetadata withUserName(String userName) {
-        Utils.checkNotNull(userName, "userName");
-        this.userName = Optional.ofNullable(userName);
-        return this;
-    }
-
 
     /**
      * The name of the user as shown in the sidebar.
      */
-    public ConsumerMetadata withUserName(Optional<String> userName) {
-        Utils.checkNotNull(userName, "userName");
+    public ConsumerMetadata withUserName(@Nullable String userName) {
         this.userName = userName;
         return this;
     }
 
-    /**
-     * The email of the user as shown in the sidebar.
-     */
-    public ConsumerMetadata withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
 
     /**
      * The email of the user as shown in the sidebar.
      */
-    public ConsumerMetadata withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public ConsumerMetadata withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
 
-    /**
-     * The avatar of the user in the sidebar. Must be a valid URL
-     */
-    public ConsumerMetadata withImage(String image) {
-        Utils.checkNotNull(image, "image");
-        this.image = Optional.ofNullable(image);
-        return this;
-    }
-
 
     /**
      * The avatar of the user in the sidebar. Must be a valid URL
      */
-    public ConsumerMetadata withImage(Optional<String> image) {
-        Utils.checkNotNull(image, "image");
+    public ConsumerMetadata withImage(@Nullable String image) {
         this.image = image;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -216,96 +168,51 @@ public class ConsumerMetadata {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> accountName = Optional.empty();
+        private String accountName;
 
-        private Optional<String> userName = Optional.empty();
+        private String userName;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> image = Optional.empty();
+        private String image;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the account as shown in the sidebar.
          */
-        public Builder accountName(String accountName) {
-            Utils.checkNotNull(accountName, "accountName");
-            this.accountName = Optional.ofNullable(accountName);
-            return this;
-        }
-
-        /**
-         * The name of the account as shown in the sidebar.
-         */
-        public Builder accountName(Optional<String> accountName) {
-            Utils.checkNotNull(accountName, "accountName");
+        public Builder accountName(@Nullable String accountName) {
             this.accountName = accountName;
             return this;
         }
 
-
         /**
          * The name of the user as shown in the sidebar.
          */
-        public Builder userName(String userName) {
-            Utils.checkNotNull(userName, "userName");
-            this.userName = Optional.ofNullable(userName);
-            return this;
-        }
-
-        /**
-         * The name of the user as shown in the sidebar.
-         */
-        public Builder userName(Optional<String> userName) {
-            Utils.checkNotNull(userName, "userName");
+        public Builder userName(@Nullable String userName) {
             this.userName = userName;
             return this;
         }
 
-
         /**
          * The email of the user as shown in the sidebar.
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email of the user as shown in the sidebar.
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * The avatar of the user in the sidebar. Must be a valid URL
          */
-        public Builder image(String image) {
-            Utils.checkNotNull(image, "image");
-            this.image = Optional.ofNullable(image);
-            return this;
-        }
-
-        /**
-         * The avatar of the user in the sidebar. Must be a valid URL
-         */
-        public Builder image(Optional<String> image) {
-            Utils.checkNotNull(image, "image");
+        public Builder image(@Nullable String image) {
             this.image = image;
             return this;
         }
 
         public ConsumerMetadata build() {
-
             return new ConsumerMetadata(
                 accountName, userName, email,
                 image);

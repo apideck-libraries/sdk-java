@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -20,61 +20,55 @@ public class ParentAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the parent account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The human readable display ID used when displaying the parent account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_id")
-    private Optional<String> displayId;
+    private String displayId;
 
     @JsonCreator
     public ParentAccount(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("display_id") Optional<String> displayId) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(displayId, "displayId");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("display_id") @Nullable String displayId) {
         this.id = id;
         this.name = name;
         this.displayId = displayId;
     }
     
     public ParentAccount() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * The ID of the parent account.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the parent account.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The human readable display ID used when displaying the parent account
      */
-    @JsonIgnore
     public Optional<String> displayId() {
-        return displayId;
+        return Optional.ofNullable(this.displayId);
     }
 
     public static Builder builder() {
@@ -85,59 +79,29 @@ public class ParentAccount {
     /**
      * The ID of the parent account.
      */
-    public ParentAccount withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The ID of the parent account.
-     */
-    public ParentAccount withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ParentAccount withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The name of the parent account.
-     */
-    public ParentAccount withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * The name of the parent account.
      */
-    public ParentAccount withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ParentAccount withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * The human readable display ID used when displaying the parent account
-     */
-    public ParentAccount withDisplayId(String displayId) {
-        Utils.checkNotNull(displayId, "displayId");
-        this.displayId = Optional.ofNullable(displayId);
-        return this;
-    }
-
 
     /**
      * The human readable display ID used when displaying the parent account
      */
-    public ParentAccount withDisplayId(Optional<String> displayId) {
-        Utils.checkNotNull(displayId, "displayId");
+    public ParentAccount withDisplayId(@Nullable String displayId) {
         this.displayId = displayId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -171,75 +135,41 @@ public class ParentAccount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> displayId = Optional.empty();
+        private String displayId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the parent account.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The ID of the parent account.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the parent account.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the parent account.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The human readable display ID used when displaying the parent account
          */
-        public Builder displayId(String displayId) {
-            Utils.checkNotNull(displayId, "displayId");
-            this.displayId = Optional.ofNullable(displayId);
-            return this;
-        }
-
-        /**
-         * The human readable display ID used when displaying the parent account
-         */
-        public Builder displayId(Optional<String> displayId) {
-            Utils.checkNotNull(displayId, "displayId");
+        public Builder displayId(@Nullable String displayId) {
             this.displayId = displayId;
             return this;
         }
 
         public ParentAccount build() {
-
             return new ParentAccount(
                 id, name, displayId);
         }

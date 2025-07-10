@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -18,44 +18,39 @@ public class TaxRatesFilter {
      * Boolean to describe if tax rate can be used for asset accounts
      */
     @SpeakeasyMetadata("queryParam:name=assets")
-    private Optional<Boolean> assets;
+    private Boolean assets;
 
     /**
      * Boolean to describe if tax rate can be used for equity accounts
      */
     @SpeakeasyMetadata("queryParam:name=equity")
-    private Optional<Boolean> equity;
+    private Boolean equity;
 
     /**
      * Boolean to describe if tax rate can be used for expense accounts
      */
     @SpeakeasyMetadata("queryParam:name=expenses")
-    private Optional<Boolean> expenses;
+    private Boolean expenses;
 
     /**
      * Boolean to describe if tax rate can be used for liability accounts
      */
     @SpeakeasyMetadata("queryParam:name=liabilities")
-    private Optional<Boolean> liabilities;
+    private Boolean liabilities;
 
     /**
      * Boolean to describe if tax rate can be used for revenue accounts
      */
     @SpeakeasyMetadata("queryParam:name=revenue")
-    private Optional<Boolean> revenue;
+    private Boolean revenue;
 
     @JsonCreator
     public TaxRatesFilter(
-            Optional<Boolean> assets,
-            Optional<Boolean> equity,
-            Optional<Boolean> expenses,
-            Optional<Boolean> liabilities,
-            Optional<Boolean> revenue) {
-        Utils.checkNotNull(assets, "assets");
-        Utils.checkNotNull(equity, "equity");
-        Utils.checkNotNull(expenses, "expenses");
-        Utils.checkNotNull(liabilities, "liabilities");
-        Utils.checkNotNull(revenue, "revenue");
+            @Nullable Boolean assets,
+            @Nullable Boolean equity,
+            @Nullable Boolean expenses,
+            @Nullable Boolean liabilities,
+            @Nullable Boolean revenue) {
         this.assets = assets;
         this.equity = equity;
         this.expenses = expenses;
@@ -64,48 +59,43 @@ public class TaxRatesFilter {
     }
     
     public TaxRatesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Boolean to describe if tax rate can be used for asset accounts
      */
-    @JsonIgnore
     public Optional<Boolean> assets() {
-        return assets;
+        return Optional.ofNullable(this.assets);
     }
 
     /**
      * Boolean to describe if tax rate can be used for equity accounts
      */
-    @JsonIgnore
     public Optional<Boolean> equity() {
-        return equity;
+        return Optional.ofNullable(this.equity);
     }
 
     /**
      * Boolean to describe if tax rate can be used for expense accounts
      */
-    @JsonIgnore
     public Optional<Boolean> expenses() {
-        return expenses;
+        return Optional.ofNullable(this.expenses);
     }
 
     /**
      * Boolean to describe if tax rate can be used for liability accounts
      */
-    @JsonIgnore
     public Optional<Boolean> liabilities() {
-        return liabilities;
+        return Optional.ofNullable(this.liabilities);
     }
 
     /**
      * Boolean to describe if tax rate can be used for revenue accounts
      */
-    @JsonIgnore
     public Optional<Boolean> revenue() {
-        return revenue;
+        return Optional.ofNullable(this.revenue);
     }
 
     public static Builder builder() {
@@ -116,97 +106,47 @@ public class TaxRatesFilter {
     /**
      * Boolean to describe if tax rate can be used for asset accounts
      */
-    public TaxRatesFilter withAssets(boolean assets) {
-        Utils.checkNotNull(assets, "assets");
-        this.assets = Optional.ofNullable(assets);
-        return this;
-    }
-
-
-    /**
-     * Boolean to describe if tax rate can be used for asset accounts
-     */
-    public TaxRatesFilter withAssets(Optional<Boolean> assets) {
-        Utils.checkNotNull(assets, "assets");
+    public TaxRatesFilter withAssets(@Nullable Boolean assets) {
         this.assets = assets;
         return this;
     }
 
-    /**
-     * Boolean to describe if tax rate can be used for equity accounts
-     */
-    public TaxRatesFilter withEquity(boolean equity) {
-        Utils.checkNotNull(equity, "equity");
-        this.equity = Optional.ofNullable(equity);
-        return this;
-    }
-
 
     /**
      * Boolean to describe if tax rate can be used for equity accounts
      */
-    public TaxRatesFilter withEquity(Optional<Boolean> equity) {
-        Utils.checkNotNull(equity, "equity");
+    public TaxRatesFilter withEquity(@Nullable Boolean equity) {
         this.equity = equity;
         return this;
     }
 
-    /**
-     * Boolean to describe if tax rate can be used for expense accounts
-     */
-    public TaxRatesFilter withExpenses(boolean expenses) {
-        Utils.checkNotNull(expenses, "expenses");
-        this.expenses = Optional.ofNullable(expenses);
-        return this;
-    }
-
 
     /**
      * Boolean to describe if tax rate can be used for expense accounts
      */
-    public TaxRatesFilter withExpenses(Optional<Boolean> expenses) {
-        Utils.checkNotNull(expenses, "expenses");
+    public TaxRatesFilter withExpenses(@Nullable Boolean expenses) {
         this.expenses = expenses;
         return this;
     }
 
-    /**
-     * Boolean to describe if tax rate can be used for liability accounts
-     */
-    public TaxRatesFilter withLiabilities(boolean liabilities) {
-        Utils.checkNotNull(liabilities, "liabilities");
-        this.liabilities = Optional.ofNullable(liabilities);
-        return this;
-    }
-
 
     /**
      * Boolean to describe if tax rate can be used for liability accounts
      */
-    public TaxRatesFilter withLiabilities(Optional<Boolean> liabilities) {
-        Utils.checkNotNull(liabilities, "liabilities");
+    public TaxRatesFilter withLiabilities(@Nullable Boolean liabilities) {
         this.liabilities = liabilities;
         return this;
     }
 
-    /**
-     * Boolean to describe if tax rate can be used for revenue accounts
-     */
-    public TaxRatesFilter withRevenue(boolean revenue) {
-        Utils.checkNotNull(revenue, "revenue");
-        this.revenue = Optional.ofNullable(revenue);
-        return this;
-    }
-
 
     /**
      * Boolean to describe if tax rate can be used for revenue accounts
      */
-    public TaxRatesFilter withRevenue(Optional<Boolean> revenue) {
-        Utils.checkNotNull(revenue, "revenue");
+    public TaxRatesFilter withRevenue(@Nullable Boolean revenue) {
         this.revenue = revenue;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -245,117 +185,61 @@ public class TaxRatesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> assets = Optional.empty();
+        private Boolean assets;
 
-        private Optional<Boolean> equity = Optional.empty();
+        private Boolean equity;
 
-        private Optional<Boolean> expenses = Optional.empty();
+        private Boolean expenses;
 
-        private Optional<Boolean> liabilities = Optional.empty();
+        private Boolean liabilities;
 
-        private Optional<Boolean> revenue = Optional.empty();
+        private Boolean revenue;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Boolean to describe if tax rate can be used for asset accounts
          */
-        public Builder assets(boolean assets) {
-            Utils.checkNotNull(assets, "assets");
-            this.assets = Optional.ofNullable(assets);
-            return this;
-        }
-
-        /**
-         * Boolean to describe if tax rate can be used for asset accounts
-         */
-        public Builder assets(Optional<Boolean> assets) {
-            Utils.checkNotNull(assets, "assets");
+        public Builder assets(@Nullable Boolean assets) {
             this.assets = assets;
             return this;
         }
 
-
         /**
          * Boolean to describe if tax rate can be used for equity accounts
          */
-        public Builder equity(boolean equity) {
-            Utils.checkNotNull(equity, "equity");
-            this.equity = Optional.ofNullable(equity);
-            return this;
-        }
-
-        /**
-         * Boolean to describe if tax rate can be used for equity accounts
-         */
-        public Builder equity(Optional<Boolean> equity) {
-            Utils.checkNotNull(equity, "equity");
+        public Builder equity(@Nullable Boolean equity) {
             this.equity = equity;
             return this;
         }
 
-
         /**
          * Boolean to describe if tax rate can be used for expense accounts
          */
-        public Builder expenses(boolean expenses) {
-            Utils.checkNotNull(expenses, "expenses");
-            this.expenses = Optional.ofNullable(expenses);
-            return this;
-        }
-
-        /**
-         * Boolean to describe if tax rate can be used for expense accounts
-         */
-        public Builder expenses(Optional<Boolean> expenses) {
-            Utils.checkNotNull(expenses, "expenses");
+        public Builder expenses(@Nullable Boolean expenses) {
             this.expenses = expenses;
             return this;
         }
 
-
         /**
          * Boolean to describe if tax rate can be used for liability accounts
          */
-        public Builder liabilities(boolean liabilities) {
-            Utils.checkNotNull(liabilities, "liabilities");
-            this.liabilities = Optional.ofNullable(liabilities);
-            return this;
-        }
-
-        /**
-         * Boolean to describe if tax rate can be used for liability accounts
-         */
-        public Builder liabilities(Optional<Boolean> liabilities) {
-            Utils.checkNotNull(liabilities, "liabilities");
+        public Builder liabilities(@Nullable Boolean liabilities) {
             this.liabilities = liabilities;
             return this;
         }
 
-
         /**
          * Boolean to describe if tax rate can be used for revenue accounts
          */
-        public Builder revenue(boolean revenue) {
-            Utils.checkNotNull(revenue, "revenue");
-            this.revenue = Optional.ofNullable(revenue);
-            return this;
-        }
-
-        /**
-         * Boolean to describe if tax rate can be used for revenue accounts
-         */
-        public Builder revenue(Optional<Boolean> revenue) {
-            Utils.checkNotNull(revenue, "revenue");
+        public Builder revenue(@Nullable Boolean revenue) {
             this.revenue = revenue;
             return this;
         }
 
         public TaxRatesFilter build() {
-
             return new TaxRatesFilter(
                 assets, equity, expenses,
                 liabilities, revenue);

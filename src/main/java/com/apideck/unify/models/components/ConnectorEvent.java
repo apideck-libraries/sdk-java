@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,46 +25,41 @@ public class ConnectorEvent {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("event_type")
-    private Optional<String> eventType;
+    private String eventType;
 
     /**
      * Unify event source
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("event_source")
-    private Optional<? extends EventSource> eventSource;
+    private EventSource eventSource;
 
     /**
      * Downstream event type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_event_type")
-    private Optional<String> downstreamEventType;
+    private String downstreamEventType;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
-    private Optional<? extends List<String>> resources;
+    private List<String> resources;
 
     /**
      * Unify entity type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("entity_type")
-    private Optional<String> entityType;
+    private String entityType;
 
     @JsonCreator
     public ConnectorEvent(
-            @JsonProperty("event_type") Optional<String> eventType,
-            @JsonProperty("event_source") Optional<? extends EventSource> eventSource,
-            @JsonProperty("downstream_event_type") Optional<String> downstreamEventType,
-            @JsonProperty("resources") Optional<? extends List<String>> resources,
-            @JsonProperty("entity_type") Optional<String> entityType) {
-        Utils.checkNotNull(eventType, "eventType");
-        Utils.checkNotNull(eventSource, "eventSource");
-        Utils.checkNotNull(downstreamEventType, "downstreamEventType");
-        Utils.checkNotNull(resources, "resources");
-        Utils.checkNotNull(entityType, "entityType");
+            @JsonProperty("event_type") @Nullable String eventType,
+            @JsonProperty("event_source") @Nullable EventSource eventSource,
+            @JsonProperty("downstream_event_type") @Nullable String downstreamEventType,
+            @JsonProperty("resources") @Nullable List<String> resources,
+            @JsonProperty("entity_type") @Nullable String entityType) {
         this.eventType = eventType;
         this.eventSource = eventSource;
         this.downstreamEventType = downstreamEventType;
@@ -74,47 +68,40 @@ public class ConnectorEvent {
     }
     
     public ConnectorEvent() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Unify event type
      */
-    @JsonIgnore
     public Optional<String> eventType() {
-        return eventType;
+        return Optional.ofNullable(this.eventType);
     }
 
     /**
      * Unify event source
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<EventSource> eventSource() {
-        return (Optional<EventSource>) eventSource;
+        return Optional.ofNullable(this.eventSource);
     }
 
     /**
      * Downstream event type
      */
-    @JsonIgnore
     public Optional<String> downstreamEventType() {
-        return downstreamEventType;
+        return Optional.ofNullable(this.downstreamEventType);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> resources() {
-        return (Optional<List<String>>) resources;
+        return Optional.ofNullable(this.resources);
     }
 
     /**
      * Unify entity type
      */
-    @JsonIgnore
     public Optional<String> entityType() {
-        return entityType;
+        return Optional.ofNullable(this.entityType);
     }
 
     public static Builder builder() {
@@ -125,91 +112,44 @@ public class ConnectorEvent {
     /**
      * Unify event type
      */
-    public ConnectorEvent withEventType(String eventType) {
-        Utils.checkNotNull(eventType, "eventType");
-        this.eventType = Optional.ofNullable(eventType);
-        return this;
-    }
-
-
-    /**
-     * Unify event type
-     */
-    public ConnectorEvent withEventType(Optional<String> eventType) {
-        Utils.checkNotNull(eventType, "eventType");
+    public ConnectorEvent withEventType(@Nullable String eventType) {
         this.eventType = eventType;
         return this;
     }
 
-    /**
-     * Unify event source
-     */
-    public ConnectorEvent withEventSource(EventSource eventSource) {
-        Utils.checkNotNull(eventSource, "eventSource");
-        this.eventSource = Optional.ofNullable(eventSource);
-        return this;
-    }
-
 
     /**
      * Unify event source
      */
-    public ConnectorEvent withEventSource(Optional<? extends EventSource> eventSource) {
-        Utils.checkNotNull(eventSource, "eventSource");
+    public ConnectorEvent withEventSource(@Nullable EventSource eventSource) {
         this.eventSource = eventSource;
         return this;
     }
 
-    /**
-     * Downstream event type
-     */
-    public ConnectorEvent withDownstreamEventType(String downstreamEventType) {
-        Utils.checkNotNull(downstreamEventType, "downstreamEventType");
-        this.downstreamEventType = Optional.ofNullable(downstreamEventType);
-        return this;
-    }
-
 
     /**
      * Downstream event type
      */
-    public ConnectorEvent withDownstreamEventType(Optional<String> downstreamEventType) {
-        Utils.checkNotNull(downstreamEventType, "downstreamEventType");
+    public ConnectorEvent withDownstreamEventType(@Nullable String downstreamEventType) {
         this.downstreamEventType = downstreamEventType;
         return this;
     }
 
-    public ConnectorEvent withResources(List<String> resources) {
-        Utils.checkNotNull(resources, "resources");
-        this.resources = Optional.ofNullable(resources);
-        return this;
-    }
 
-
-    public ConnectorEvent withResources(Optional<? extends List<String>> resources) {
-        Utils.checkNotNull(resources, "resources");
+    public ConnectorEvent withResources(@Nullable List<String> resources) {
         this.resources = resources;
         return this;
     }
 
-    /**
-     * Unify entity type
-     */
-    public ConnectorEvent withEntityType(String entityType) {
-        Utils.checkNotNull(entityType, "entityType");
-        this.entityType = Optional.ofNullable(entityType);
-        return this;
-    }
-
 
     /**
      * Unify entity type
      */
-    public ConnectorEvent withEntityType(Optional<String> entityType) {
-        Utils.checkNotNull(entityType, "entityType");
+    public ConnectorEvent withEntityType(@Nullable String entityType) {
         this.entityType = entityType;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -248,111 +188,58 @@ public class ConnectorEvent {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> eventType = Optional.empty();
+        private String eventType;
 
-        private Optional<? extends EventSource> eventSource = Optional.empty();
+        private EventSource eventSource;
 
-        private Optional<String> downstreamEventType = Optional.empty();
+        private String downstreamEventType;
 
-        private Optional<? extends List<String>> resources = Optional.empty();
+        private List<String> resources;
 
-        private Optional<String> entityType = Optional.empty();
+        private String entityType;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unify event type
          */
-        public Builder eventType(String eventType) {
-            Utils.checkNotNull(eventType, "eventType");
-            this.eventType = Optional.ofNullable(eventType);
-            return this;
-        }
-
-        /**
-         * Unify event type
-         */
-        public Builder eventType(Optional<String> eventType) {
-            Utils.checkNotNull(eventType, "eventType");
+        public Builder eventType(@Nullable String eventType) {
             this.eventType = eventType;
             return this;
         }
 
-
         /**
          * Unify event source
          */
-        public Builder eventSource(EventSource eventSource) {
-            Utils.checkNotNull(eventSource, "eventSource");
-            this.eventSource = Optional.ofNullable(eventSource);
-            return this;
-        }
-
-        /**
-         * Unify event source
-         */
-        public Builder eventSource(Optional<? extends EventSource> eventSource) {
-            Utils.checkNotNull(eventSource, "eventSource");
+        public Builder eventSource(@Nullable EventSource eventSource) {
             this.eventSource = eventSource;
             return this;
         }
 
-
         /**
          * Downstream event type
          */
-        public Builder downstreamEventType(String downstreamEventType) {
-            Utils.checkNotNull(downstreamEventType, "downstreamEventType");
-            this.downstreamEventType = Optional.ofNullable(downstreamEventType);
-            return this;
-        }
-
-        /**
-         * Downstream event type
-         */
-        public Builder downstreamEventType(Optional<String> downstreamEventType) {
-            Utils.checkNotNull(downstreamEventType, "downstreamEventType");
+        public Builder downstreamEventType(@Nullable String downstreamEventType) {
             this.downstreamEventType = downstreamEventType;
             return this;
         }
 
-
-        public Builder resources(List<String> resources) {
-            Utils.checkNotNull(resources, "resources");
-            this.resources = Optional.ofNullable(resources);
-            return this;
-        }
-
-        public Builder resources(Optional<? extends List<String>> resources) {
-            Utils.checkNotNull(resources, "resources");
+        public Builder resources(@Nullable List<String> resources) {
             this.resources = resources;
             return this;
         }
 
-
         /**
          * Unify entity type
          */
-        public Builder entityType(String entityType) {
-            Utils.checkNotNull(entityType, "entityType");
-            this.entityType = Optional.ofNullable(entityType);
-            return this;
-        }
-
-        /**
-         * Unify entity type
-         */
-        public Builder entityType(Optional<String> entityType) {
-            Utils.checkNotNull(entityType, "entityType");
+        public Builder entityType(@Nullable String entityType) {
             this.entityType = entityType;
             return this;
         }
 
         public ConnectorEvent build() {
-
             return new ConnectorEvent(
                 eventType, eventSource, downstreamEventType,
                 resources, entityType);

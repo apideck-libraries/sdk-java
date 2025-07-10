@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -23,78 +22,78 @@ public class ConsumerConnection {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon")
-    private Optional<String> icon;
+    private String icon;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logo")
-    private Optional<String> logo;
+    private String logo;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
-    private Optional<String> website;
+    private String website;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tag_line")
-    private Optional<String> tagLine;
+    private String tagLine;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("service_id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_api")
-    private Optional<String> unifiedApi;
+    private String unifiedApi;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * Type of authorization used by the connector
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_type")
-    private Optional<? extends AuthType> authType;
+    private AuthType authType;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
-    private Optional<Boolean> enabled;
+    private Boolean enabled;
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private JsonNullable<? extends Map<String, Object>> settings;
+    private JsonNullable<Map<String, Object>> settings;
 
     /**
      * Attach your own consumer specific metadata
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<Map<String, Object>> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
-    private Optional<String> createdAt;
+    private String createdAt;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -106,42 +105,26 @@ public class ConsumerConnection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends ConnectionState> state;
+    private ConnectionState state;
 
     @JsonCreator
     public ConsumerConnection(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("icon") Optional<String> icon,
-            @JsonProperty("logo") Optional<String> logo,
-            @JsonProperty("website") Optional<String> website,
-            @JsonProperty("tag_line") Optional<String> tagLine,
-            @JsonProperty("service_id") Optional<String> serviceId,
-            @JsonProperty("unified_api") Optional<String> unifiedApi,
-            @JsonProperty("consumer_id") Optional<String> consumerId,
-            @JsonProperty("auth_type") Optional<? extends AuthType> authType,
-            @JsonProperty("enabled") Optional<Boolean> enabled,
-            @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("created_at") Optional<String> createdAt,
-            @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("state") Optional<? extends ConnectionState> state) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(icon, "icon");
-        Utils.checkNotNull(logo, "logo");
-        Utils.checkNotNull(website, "website");
-        Utils.checkNotNull(tagLine, "tagLine");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(authType, "authType");
-        Utils.checkNotNull(enabled, "enabled");
-        Utils.checkNotNull(settings, "settings");
-        Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(state, "state");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("icon") @Nullable String icon,
+            @JsonProperty("logo") @Nullable String logo,
+            @JsonProperty("website") @Nullable String website,
+            @JsonProperty("tag_line") @Nullable String tagLine,
+            @JsonProperty("service_id") @Nullable String serviceId,
+            @JsonProperty("unified_api") @Nullable String unifiedApi,
+            @JsonProperty("consumer_id") @Nullable String consumerId,
+            @JsonProperty("auth_type") @Nullable AuthType authType,
+            @JsonProperty("enabled") @Nullable Boolean enabled,
+            @JsonProperty("settings") @Nullable JsonNullable<Map<String, Object>> settings,
+            @JsonProperty("metadata") @Nullable JsonNullable<Map<String, Object>> metadata,
+            @JsonProperty("created_at") @Nullable String createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<String> updatedAt,
+            @JsonProperty("state") @Nullable ConnectionState state) {
         this.id = id;
         this.name = name;
         this.icon = icon;
@@ -153,116 +136,99 @@ public class ConsumerConnection {
         this.consumerId = consumerId;
         this.authType = authType;
         this.enabled = enabled;
-        this.settings = settings;
-        this.metadata = metadata;
+        this.settings = Optional.ofNullable(settings)
+            .orElse(JsonNullable.undefined());
+        this.metadata = Optional.ofNullable(metadata)
+            .orElse(JsonNullable.undefined());
         this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
         this.state = state;
     }
     
     public ConsumerConnection() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
-    @JsonIgnore
     public Optional<String> icon() {
-        return icon;
+        return Optional.ofNullable(this.icon);
     }
 
-    @JsonIgnore
     public Optional<String> logo() {
-        return logo;
+        return Optional.ofNullable(this.logo);
     }
 
-    @JsonIgnore
     public Optional<String> website() {
-        return website;
+        return Optional.ofNullable(this.website);
     }
 
-    @JsonIgnore
     public Optional<String> tagLine() {
-        return tagLine;
+        return Optional.ofNullable(this.tagLine);
     }
 
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
-    @JsonIgnore
     public Optional<String> unifiedApi() {
-        return unifiedApi;
+        return Optional.ofNullable(this.unifiedApi);
     }
 
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * Type of authorization used by the connector
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<AuthType> authType() {
-        return (Optional<AuthType>) authType;
+        return Optional.ofNullable(this.authType);
     }
 
-    @JsonIgnore
     public Optional<Boolean> enabled() {
-        return enabled;
+        return Optional.ofNullable(this.enabled);
     }
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> settings() {
-        return (JsonNullable<Map<String, Object>>) settings;
+        return this.settings;
     }
 
     /**
      * Attach your own consumer specific metadata
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+        return this.metadata;
     }
 
-    @JsonIgnore
     public Optional<String> createdAt() {
-        return createdAt;
+        return Optional.ofNullable(this.createdAt);
     }
 
-    @JsonIgnore
     public JsonNullable<String> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectionState> state() {
-        return (Optional<ConnectionState>) state;
+        return Optional.ofNullable(this.state);
     }
 
     public static Builder builder() {
@@ -270,234 +236,113 @@ public class ConsumerConnection {
     }
 
 
-    public ConsumerConnection withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public ConsumerConnection withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ConsumerConnection withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public ConsumerConnection withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
 
-
-    public ConsumerConnection withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ConsumerConnection withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    public ConsumerConnection withIcon(String icon) {
-        Utils.checkNotNull(icon, "icon");
-        this.icon = Optional.ofNullable(icon);
-        return this;
-    }
 
-
-    public ConsumerConnection withIcon(Optional<String> icon) {
-        Utils.checkNotNull(icon, "icon");
+    public ConsumerConnection withIcon(@Nullable String icon) {
         this.icon = icon;
         return this;
     }
 
-    public ConsumerConnection withLogo(String logo) {
-        Utils.checkNotNull(logo, "logo");
-        this.logo = Optional.ofNullable(logo);
-        return this;
-    }
 
-
-    public ConsumerConnection withLogo(Optional<String> logo) {
-        Utils.checkNotNull(logo, "logo");
+    public ConsumerConnection withLogo(@Nullable String logo) {
         this.logo = logo;
         return this;
     }
 
-    public ConsumerConnection withWebsite(String website) {
-        Utils.checkNotNull(website, "website");
-        this.website = Optional.ofNullable(website);
-        return this;
-    }
 
-
-    public ConsumerConnection withWebsite(Optional<String> website) {
-        Utils.checkNotNull(website, "website");
+    public ConsumerConnection withWebsite(@Nullable String website) {
         this.website = website;
         return this;
     }
 
-    public ConsumerConnection withTagLine(String tagLine) {
-        Utils.checkNotNull(tagLine, "tagLine");
-        this.tagLine = Optional.ofNullable(tagLine);
-        return this;
-    }
 
-
-    public ConsumerConnection withTagLine(Optional<String> tagLine) {
-        Utils.checkNotNull(tagLine, "tagLine");
+    public ConsumerConnection withTagLine(@Nullable String tagLine) {
         this.tagLine = tagLine;
         return this;
     }
 
-    public ConsumerConnection withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
 
-
-    public ConsumerConnection withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public ConsumerConnection withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public ConsumerConnection withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = Optional.ofNullable(unifiedApi);
-        return this;
-    }
 
-
-    public ConsumerConnection withUnifiedApi(Optional<String> unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
+    public ConsumerConnection withUnifiedApi(@Nullable String unifiedApi) {
         this.unifiedApi = unifiedApi;
         return this;
     }
 
-    public ConsumerConnection withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
 
-
-    public ConsumerConnection withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public ConsumerConnection withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * Type of authorization used by the connector
-     */
-    public ConsumerConnection withAuthType(AuthType authType) {
-        Utils.checkNotNull(authType, "authType");
-        this.authType = Optional.ofNullable(authType);
-        return this;
-    }
-
 
     /**
      * Type of authorization used by the connector
      */
-    public ConsumerConnection withAuthType(Optional<? extends AuthType> authType) {
-        Utils.checkNotNull(authType, "authType");
+    public ConsumerConnection withAuthType(@Nullable AuthType authType) {
         this.authType = authType;
         return this;
     }
 
-    public ConsumerConnection withEnabled(boolean enabled) {
-        Utils.checkNotNull(enabled, "enabled");
-        this.enabled = Optional.ofNullable(enabled);
-        return this;
-    }
 
-
-    public ConsumerConnection withEnabled(Optional<Boolean> enabled) {
-        Utils.checkNotNull(enabled, "enabled");
+    public ConsumerConnection withEnabled(@Nullable Boolean enabled) {
         this.enabled = enabled;
         return this;
     }
 
+
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConsumerConnection withSettings(Map<String, Object> settings) {
-        Utils.checkNotNull(settings, "settings");
+    public ConsumerConnection withSettings(@Nullable Map<String, Object> settings) {
         this.settings = JsonNullable.of(settings);
         return this;
     }
 
-    /**
-     * Connection settings. Values will persist to `form_fields` with corresponding id
-     */
-    public ConsumerConnection withSettings(JsonNullable<? extends Map<String, Object>> settings) {
-        Utils.checkNotNull(settings, "settings");
-        this.settings = settings;
-        return this;
-    }
 
     /**
      * Attach your own consumer specific metadata
      */
-    public ConsumerConnection withMetadata(Map<String, Object> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+    public ConsumerConnection withMetadata(@Nullable Map<String, Object> metadata) {
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    /**
-     * Attach your own consumer specific metadata
-     */
-    public ConsumerConnection withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = metadata;
-        return this;
-    }
 
-    public ConsumerConnection withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-
-    public ConsumerConnection withCreatedAt(Optional<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public ConsumerConnection withCreatedAt(@Nullable String createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    public ConsumerConnection withUpdatedAt(String updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+
+    public ConsumerConnection withUpdatedAt(@Nullable String updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    public ConsumerConnection withUpdatedAt(JsonNullable<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    public ConsumerConnection withState(ConnectionState state) {
-        Utils.checkNotNull(state, "state");
-        this.state = Optional.ofNullable(state);
-        return this;
-    }
-
-
-    /**
-     * [Connection state flow](#section/Connection-state)
-     */
-    public ConsumerConnection withState(Optional<? extends ConnectionState> state) {
-        Utils.checkNotNull(state, "state");
+    public ConsumerConnection withState(@Nullable ConnectionState state) {
         this.state = state;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -562,276 +407,135 @@ public class ConsumerConnection {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> icon = Optional.empty();
+        private String icon;
 
-        private Optional<String> logo = Optional.empty();
+        private String logo;
 
-        private Optional<String> website = Optional.empty();
+        private String website;
 
-        private Optional<String> tagLine = Optional.empty();
+        private String tagLine;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<String> unifiedApi = Optional.empty();
+        private String unifiedApi;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<? extends AuthType> authType = Optional.empty();
+        private AuthType authType;
 
-        private Optional<Boolean> enabled = Optional.empty();
+        private Boolean enabled;
 
-        private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> settings;
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> metadata;
 
-        private Optional<String> createdAt = Optional.empty();
+        private String createdAt;
 
-        private JsonNullable<String> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> updatedAt;
 
-        private Optional<? extends ConnectionState> state = Optional.empty();
+        private ConnectionState state;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
-        public Builder icon(String icon) {
-            Utils.checkNotNull(icon, "icon");
-            this.icon = Optional.ofNullable(icon);
-            return this;
-        }
-
-        public Builder icon(Optional<String> icon) {
-            Utils.checkNotNull(icon, "icon");
+        public Builder icon(@Nullable String icon) {
             this.icon = icon;
             return this;
         }
 
-
-        public Builder logo(String logo) {
-            Utils.checkNotNull(logo, "logo");
-            this.logo = Optional.ofNullable(logo);
-            return this;
-        }
-
-        public Builder logo(Optional<String> logo) {
-            Utils.checkNotNull(logo, "logo");
+        public Builder logo(@Nullable String logo) {
             this.logo = logo;
             return this;
         }
 
-
-        public Builder website(String website) {
-            Utils.checkNotNull(website, "website");
-            this.website = Optional.ofNullable(website);
-            return this;
-        }
-
-        public Builder website(Optional<String> website) {
-            Utils.checkNotNull(website, "website");
+        public Builder website(@Nullable String website) {
             this.website = website;
             return this;
         }
 
-
-        public Builder tagLine(String tagLine) {
-            Utils.checkNotNull(tagLine, "tagLine");
-            this.tagLine = Optional.ofNullable(tagLine);
-            return this;
-        }
-
-        public Builder tagLine(Optional<String> tagLine) {
-            Utils.checkNotNull(tagLine, "tagLine");
+        public Builder tagLine(@Nullable String tagLine) {
             this.tagLine = tagLine;
             return this;
         }
 
-
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = Optional.ofNullable(unifiedApi);
-            return this;
-        }
-
-        public Builder unifiedApi(Optional<String> unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
+        public Builder unifiedApi(@Nullable String unifiedApi) {
             this.unifiedApi = unifiedApi;
             return this;
         }
 
-
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * Type of authorization used by the connector
          */
-        public Builder authType(AuthType authType) {
-            Utils.checkNotNull(authType, "authType");
-            this.authType = Optional.ofNullable(authType);
-            return this;
-        }
-
-        /**
-         * Type of authorization used by the connector
-         */
-        public Builder authType(Optional<? extends AuthType> authType) {
-            Utils.checkNotNull(authType, "authType");
+        public Builder authType(@Nullable AuthType authType) {
             this.authType = authType;
             return this;
         }
 
-
-        public Builder enabled(boolean enabled) {
-            Utils.checkNotNull(enabled, "enabled");
-            this.enabled = Optional.ofNullable(enabled);
-            return this;
-        }
-
-        public Builder enabled(Optional<Boolean> enabled) {
-            Utils.checkNotNull(enabled, "enabled");
+        public Builder enabled(@Nullable Boolean enabled) {
             this.enabled = enabled;
             return this;
         }
 
-
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(Map<String, Object> settings) {
-            Utils.checkNotNull(settings, "settings");
+        public Builder settings(@Nullable Map<String, Object> settings) {
             this.settings = JsonNullable.of(settings);
             return this;
         }
 
         /**
-         * Connection settings. Values will persist to `form_fields` with corresponding id
-         */
-        public Builder settings(JsonNullable<? extends Map<String, Object>> settings) {
-            Utils.checkNotNull(settings, "settings");
-            this.settings = settings;
-            return this;
-        }
-
-
-        /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
+        public Builder metadata(@Nullable Map<String, Object> metadata) {
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        /**
-         * Attach your own consumer specific metadata
-         */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = metadata;
-            return this;
-        }
-
-
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        public Builder createdAt(Optional<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable String createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-
-        public Builder updatedAt(String updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable String updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        public Builder updatedAt(JsonNullable<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
         /**
          * [Connection state flow](#section/Connection-state)
          */
-        public Builder state(ConnectionState state) {
-            Utils.checkNotNull(state, "state");
-            this.state = Optional.ofNullable(state);
-            return this;
-        }
-
-        /**
-         * [Connection state flow](#section/Connection-state)
-         */
-        public Builder state(Optional<? extends ConnectionState> state) {
-            Utils.checkNotNull(state, "state");
+        public Builder state(@Nullable ConnectionState state) {
             this.state = state;
             return this;
         }
 
         public ConsumerConnection build() {
-
             return new ConsumerConnection(
                 id, name, icon,
                 logo, website, tagLine,

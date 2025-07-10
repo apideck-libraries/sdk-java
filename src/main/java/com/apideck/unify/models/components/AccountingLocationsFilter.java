@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class AccountingLocationsFilter {
      * Id of the subsidiary to search for
      */
     @SpeakeasyMetadata("queryParam:name=subsidiary")
-    private Optional<String> subsidiary;
+    private String subsidiary;
 
     @JsonCreator
     public AccountingLocationsFilter(
-            Optional<String> subsidiary) {
-        Utils.checkNotNull(subsidiary, "subsidiary");
+            @Nullable String subsidiary) {
         this.subsidiary = subsidiary;
     }
     
     public AccountingLocationsFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Id of the subsidiary to search for
      */
-    @JsonIgnore
     public Optional<String> subsidiary() {
-        return subsidiary;
+        return Optional.ofNullable(this.subsidiary);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class AccountingLocationsFilter {
     /**
      * Id of the subsidiary to search for
      */
-    public AccountingLocationsFilter withSubsidiary(String subsidiary) {
-        Utils.checkNotNull(subsidiary, "subsidiary");
-        this.subsidiary = Optional.ofNullable(subsidiary);
-        return this;
-    }
-
-
-    /**
-     * Id of the subsidiary to search for
-     */
-    public AccountingLocationsFilter withSubsidiary(Optional<String> subsidiary) {
-        Utils.checkNotNull(subsidiary, "subsidiary");
+    public AccountingLocationsFilter withSubsidiary(@Nullable String subsidiary) {
         this.subsidiary = subsidiary;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class AccountingLocationsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> subsidiary = Optional.empty();
+        private String subsidiary;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Id of the subsidiary to search for
          */
-        public Builder subsidiary(String subsidiary) {
-            Utils.checkNotNull(subsidiary, "subsidiary");
-            this.subsidiary = Optional.ofNullable(subsidiary);
-            return this;
-        }
-
-        /**
-         * Id of the subsidiary to search for
-         */
-        public Builder subsidiary(Optional<String> subsidiary) {
-            Utils.checkNotNull(subsidiary, "subsidiary");
+        public Builder subsidiary(@Nullable String subsidiary) {
             this.subsidiary = subsidiary;
             return this;
         }
 
         public AccountingLocationsFilter build() {
-
             return new AccountingLocationsFilter(
                 subsidiary);
         }

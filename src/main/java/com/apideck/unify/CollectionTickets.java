@@ -26,6 +26,8 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketsDeleteOperatio
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsOneOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public IssueTrackingCollectionTicketsAllResponse list(@Nonnull IssueTrackingCollectionTicketsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class CollectionTickets {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketsAllResponse list(
-            IssueTrackingCollectionTicketsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
               = new IssueTrackingCollectionTicketsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public IssueTrackingCollectionTicketsAddResponse create(@Nonnull IssueTrackingCollectionTicketsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class CollectionTickets {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketsAddResponse create(
-            IssueTrackingCollectionTicketsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
               = new IssueTrackingCollectionTicketsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public IssueTrackingCollectionTicketsOneResponse get(@Nonnull IssueTrackingCollectionTicketsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class CollectionTickets {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketsOneResponse get(
-            IssueTrackingCollectionTicketsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
               = new IssueTrackingCollectionTicketsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public IssueTrackingCollectionTicketsUpdateResponse update(@Nonnull IssueTrackingCollectionTicketsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class CollectionTickets {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketsUpdateResponse update(
-            IssueTrackingCollectionTicketsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
               = new IssueTrackingCollectionTicketsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public IssueTrackingCollectionTicketsDeleteResponse delete(@Nonnull IssueTrackingCollectionTicketsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class CollectionTickets {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketsDeleteResponse delete(
-            IssueTrackingCollectionTicketsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
               = new IssueTrackingCollectionTicketsDeleteOperation(
                 sdkConfiguration,

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
@@ -25,39 +24,35 @@ public class WebhookSupport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends Mode> mode;
+    private Mode mode;
 
     /**
      * Received events are scoped to connection or across integration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscription_level")
-    private Optional<? extends SubscriptionLevel> subscriptionLevel;
+    private SubscriptionLevel subscriptionLevel;
 
     /**
      * How the subscription is managed in the downstream.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("managed_via")
-    private Optional<? extends ManagedVia> managedVia;
+    private ManagedVia managedVia;
 
     /**
      * Virtual webhook config for the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("virtual_webhooks")
-    private Optional<? extends VirtualWebhooks> virtualWebhooks;
+    private VirtualWebhooks virtualWebhooks;
 
     @JsonCreator
     public WebhookSupport(
-            @JsonProperty("mode") Optional<? extends Mode> mode,
-            @JsonProperty("subscription_level") Optional<? extends SubscriptionLevel> subscriptionLevel,
-            @JsonProperty("managed_via") Optional<? extends ManagedVia> managedVia,
-            @JsonProperty("virtual_webhooks") Optional<? extends VirtualWebhooks> virtualWebhooks) {
-        Utils.checkNotNull(mode, "mode");
-        Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
-        Utils.checkNotNull(managedVia, "managedVia");
-        Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
+            @JsonProperty("mode") @Nullable Mode mode,
+            @JsonProperty("subscription_level") @Nullable SubscriptionLevel subscriptionLevel,
+            @JsonProperty("managed_via") @Nullable ManagedVia managedVia,
+            @JsonProperty("virtual_webhooks") @Nullable VirtualWebhooks virtualWebhooks) {
         this.mode = mode;
         this.subscriptionLevel = subscriptionLevel;
         this.managedVia = managedVia;
@@ -65,44 +60,36 @@ public class WebhookSupport {
     }
     
     public WebhookSupport() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * Mode of the webhook support.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Mode> mode() {
-        return (Optional<Mode>) mode;
+        return Optional.ofNullable(this.mode);
     }
 
     /**
      * Received events are scoped to connection or across integration.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SubscriptionLevel> subscriptionLevel() {
-        return (Optional<SubscriptionLevel>) subscriptionLevel;
+        return Optional.ofNullable(this.subscriptionLevel);
     }
 
     /**
      * How the subscription is managed in the downstream.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ManagedVia> managedVia() {
-        return (Optional<ManagedVia>) managedVia;
+        return Optional.ofNullable(this.managedVia);
     }
 
     /**
      * Virtual webhook config for the connector.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<VirtualWebhooks> virtualWebhooks() {
-        return (Optional<VirtualWebhooks>) virtualWebhooks;
+        return Optional.ofNullable(this.virtualWebhooks);
     }
 
     public static Builder builder() {
@@ -113,78 +100,38 @@ public class WebhookSupport {
     /**
      * Mode of the webhook support.
      */
-    public WebhookSupport withMode(Mode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * Mode of the webhook support.
-     */
-    public WebhookSupport withMode(Optional<? extends Mode> mode) {
-        Utils.checkNotNull(mode, "mode");
+    public WebhookSupport withMode(@Nullable Mode mode) {
         this.mode = mode;
         return this;
     }
 
-    /**
-     * Received events are scoped to connection or across integration.
-     */
-    public WebhookSupport withSubscriptionLevel(SubscriptionLevel subscriptionLevel) {
-        Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
-        this.subscriptionLevel = Optional.ofNullable(subscriptionLevel);
-        return this;
-    }
-
 
     /**
      * Received events are scoped to connection or across integration.
      */
-    public WebhookSupport withSubscriptionLevel(Optional<? extends SubscriptionLevel> subscriptionLevel) {
-        Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
+    public WebhookSupport withSubscriptionLevel(@Nullable SubscriptionLevel subscriptionLevel) {
         this.subscriptionLevel = subscriptionLevel;
         return this;
     }
 
-    /**
-     * How the subscription is managed in the downstream.
-     */
-    public WebhookSupport withManagedVia(ManagedVia managedVia) {
-        Utils.checkNotNull(managedVia, "managedVia");
-        this.managedVia = Optional.ofNullable(managedVia);
-        return this;
-    }
-
 
     /**
      * How the subscription is managed in the downstream.
      */
-    public WebhookSupport withManagedVia(Optional<? extends ManagedVia> managedVia) {
-        Utils.checkNotNull(managedVia, "managedVia");
+    public WebhookSupport withManagedVia(@Nullable ManagedVia managedVia) {
         this.managedVia = managedVia;
         return this;
     }
 
-    /**
-     * Virtual webhook config for the connector.
-     */
-    public WebhookSupport withVirtualWebhooks(VirtualWebhooks virtualWebhooks) {
-        Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
-        this.virtualWebhooks = Optional.ofNullable(virtualWebhooks);
-        return this;
-    }
-
 
     /**
      * Virtual webhook config for the connector.
      */
-    public WebhookSupport withVirtualWebhooks(Optional<? extends VirtualWebhooks> virtualWebhooks) {
-        Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
+    public WebhookSupport withVirtualWebhooks(@Nullable VirtualWebhooks virtualWebhooks) {
         this.virtualWebhooks = virtualWebhooks;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -221,96 +168,51 @@ public class WebhookSupport {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Mode> mode = Optional.empty();
+        private Mode mode;
 
-        private Optional<? extends SubscriptionLevel> subscriptionLevel = Optional.empty();
+        private SubscriptionLevel subscriptionLevel;
 
-        private Optional<? extends ManagedVia> managedVia = Optional.empty();
+        private ManagedVia managedVia;
 
-        private Optional<? extends VirtualWebhooks> virtualWebhooks = Optional.empty();
+        private VirtualWebhooks virtualWebhooks;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Mode of the webhook support.
          */
-        public Builder mode(Mode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * Mode of the webhook support.
-         */
-        public Builder mode(Optional<? extends Mode> mode) {
-            Utils.checkNotNull(mode, "mode");
+        public Builder mode(@Nullable Mode mode) {
             this.mode = mode;
             return this;
         }
 
-
         /**
          * Received events are scoped to connection or across integration.
          */
-        public Builder subscriptionLevel(SubscriptionLevel subscriptionLevel) {
-            Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
-            this.subscriptionLevel = Optional.ofNullable(subscriptionLevel);
-            return this;
-        }
-
-        /**
-         * Received events are scoped to connection or across integration.
-         */
-        public Builder subscriptionLevel(Optional<? extends SubscriptionLevel> subscriptionLevel) {
-            Utils.checkNotNull(subscriptionLevel, "subscriptionLevel");
+        public Builder subscriptionLevel(@Nullable SubscriptionLevel subscriptionLevel) {
             this.subscriptionLevel = subscriptionLevel;
             return this;
         }
 
-
         /**
          * How the subscription is managed in the downstream.
          */
-        public Builder managedVia(ManagedVia managedVia) {
-            Utils.checkNotNull(managedVia, "managedVia");
-            this.managedVia = Optional.ofNullable(managedVia);
-            return this;
-        }
-
-        /**
-         * How the subscription is managed in the downstream.
-         */
-        public Builder managedVia(Optional<? extends ManagedVia> managedVia) {
-            Utils.checkNotNull(managedVia, "managedVia");
+        public Builder managedVia(@Nullable ManagedVia managedVia) {
             this.managedVia = managedVia;
             return this;
         }
 
-
         /**
          * Virtual webhook config for the connector.
          */
-        public Builder virtualWebhooks(VirtualWebhooks virtualWebhooks) {
-            Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
-            this.virtualWebhooks = Optional.ofNullable(virtualWebhooks);
-            return this;
-        }
-
-        /**
-         * Virtual webhook config for the connector.
-         */
-        public Builder virtualWebhooks(Optional<? extends VirtualWebhooks> virtualWebhooks) {
-            Utils.checkNotNull(virtualWebhooks, "virtualWebhooks");
+        public Builder virtualWebhooks(@Nullable VirtualWebhooks virtualWebhooks) {
             this.virtualWebhooks = virtualWebhooks;
             return this;
         }
 
         public WebhookSupport build() {
-
             return new WebhookSupport(
                 mode, subscriptionLevel, managedVia,
                 virtualWebhooks);

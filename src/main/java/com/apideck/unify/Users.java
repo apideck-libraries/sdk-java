@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmUsersDeleteOperation;
 import com.apideck.unify.operations.CrmUsersOneOperation;
 import com.apideck.unify.operations.CrmUsersUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersAllResponse list(CrmUsersAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmUsersAllResponse list(@Nonnull CrmUsersAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Users {
      * @throws Exception if the API call fails
      */
     public CrmUsersAllResponse list(
-            CrmUsersAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmUsersAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
               = new CrmUsersAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersAddResponse create(CrmUsersAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmUsersAddResponse create(@Nonnull CrmUsersAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Users {
      * @throws Exception if the API call fails
      */
     public CrmUsersAddResponse create(
-            CrmUsersAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmUsersAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
               = new CrmUsersAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersOneResponse get(CrmUsersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmUsersOneResponse get(@Nonnull CrmUsersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Users {
      * @throws Exception if the API call fails
      */
     public CrmUsersOneResponse get(
-            CrmUsersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmUsersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
               = new CrmUsersOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersUpdateResponse update(CrmUsersUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmUsersUpdateResponse update(@Nonnull CrmUsersUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Users {
      * @throws Exception if the API call fails
      */
     public CrmUsersUpdateResponse update(
-            CrmUsersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmUsersUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
               = new CrmUsersUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersDeleteResponse delete(CrmUsersDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmUsersDeleteResponse delete(@Nonnull CrmUsersDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Users {
      * @throws Exception if the API call fails
      */
     public CrmUsersDeleteResponse delete(
-            CrmUsersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmUsersDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
               = new CrmUsersDeleteOperation(
                 sdkConfiguration,

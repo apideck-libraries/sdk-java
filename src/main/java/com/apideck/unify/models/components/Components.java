@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
@@ -26,7 +26,7 @@ public class Components {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -40,43 +40,38 @@ public class Components {
 
     @JsonCreator
     public Components(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("rate") JsonNullable<Double> rate,
-            @JsonProperty("compound") JsonNullable<Boolean> compound) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(rate, "rate");
-        Utils.checkNotNull(compound, "compound");
-        this.id = id;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("rate") @Nullable JsonNullable<Double> rate,
+            @JsonProperty("compound") @Nullable JsonNullable<Boolean> compound) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
         this.name = name;
-        this.rate = rate;
-        this.compound = compound;
+        this.rate = Optional.ofNullable(rate)
+            .orElse(JsonNullable.undefined());
+        this.compound = Optional.ofNullable(compound)
+            .orElse(JsonNullable.undefined());
     }
     
     public Components() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
-    @JsonIgnore
     public JsonNullable<Double> rate() {
-        return rate;
+        return this.rate;
     }
 
-    @JsonIgnore
     public JsonNullable<Boolean> compound() {
-        return compound;
+        return this.compound;
     }
 
     public static Builder builder() {
@@ -84,54 +79,29 @@ public class Components {
     }
 
 
-    public Components withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Components withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    public Components withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
-    public Components withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    public Components withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Components withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    public Components withRate(double rate) {
-        Utils.checkNotNull(rate, "rate");
+
+    public Components withRate(@Nullable Double rate) {
         this.rate = JsonNullable.of(rate);
         return this;
     }
 
-    public Components withRate(JsonNullable<Double> rate) {
-        Utils.checkNotNull(rate, "rate");
-        this.rate = rate;
-        return this;
-    }
 
-    public Components withCompound(boolean compound) {
-        Utils.checkNotNull(compound, "compound");
+    public Components withCompound(@Nullable Boolean compound) {
         this.compound = JsonNullable.of(compound);
         return this;
     }
 
-    public Components withCompound(JsonNullable<Boolean> compound) {
-        Utils.checkNotNull(compound, "compound");
-        this.compound = compound;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -168,72 +138,39 @@ public class Components {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<Double> rate = JsonNullable.undefined();
+        private JsonNullable<Double> rate;
 
-        private JsonNullable<Boolean> compound = JsonNullable.undefined();
+        private JsonNullable<Boolean> compound;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
-        public Builder rate(double rate) {
-            Utils.checkNotNull(rate, "rate");
+        public Builder rate(@Nullable Double rate) {
             this.rate = JsonNullable.of(rate);
             return this;
         }
 
-        public Builder rate(JsonNullable<Double> rate) {
-            Utils.checkNotNull(rate, "rate");
-            this.rate = rate;
-            return this;
-        }
-
-
-        public Builder compound(boolean compound) {
-            Utils.checkNotNull(compound, "compound");
+        public Builder compound(@Nullable Boolean compound) {
             this.compound = JsonNullable.of(compound);
             return this;
         }
 
-        public Builder compound(JsonNullable<Boolean> compound) {
-            Utils.checkNotNull(compound, "compound");
-            this.compound = compound;
-            return this;
-        }
-
         public Components build() {
-
             return new Components(
                 id, name, rate,
                 compound);

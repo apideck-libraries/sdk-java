@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,7 @@ public class LinkedEcommerceOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The total amount of the order.
@@ -40,48 +39,43 @@ public class LinkedEcommerceOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends EcommerceOrderStatus> status;
+    private JsonNullable<EcommerceOrderStatus> status;
 
     @JsonCreator
     public LinkedEcommerceOrder(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("total") JsonNullable<String> total,
-            @JsonProperty("status") JsonNullable<? extends EcommerceOrderStatus> status) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(total, "total");
-        Utils.checkNotNull(status, "status");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("total") @Nullable JsonNullable<String> total,
+            @JsonProperty("status") @Nullable JsonNullable<EcommerceOrderStatus> status) {
         this.id = id;
-        this.total = total;
-        this.status = status;
+        this.total = Optional.ofNullable(total)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedEcommerceOrder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The total amount of the order.
      */
-    @JsonIgnore
     public JsonNullable<String> total() {
-        return total;
+        return this.total;
     }
 
     /**
      * Current status of the order.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EcommerceOrderStatus> status() {
-        return (JsonNullable<EcommerceOrderStatus>) status;
+        return this.status;
     }
 
     public static Builder builder() {
@@ -92,57 +86,29 @@ public class LinkedEcommerceOrder {
     /**
      * A unique identifier for an object.
      */
-    public LinkedEcommerceOrder withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public LinkedEcommerceOrder withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedEcommerceOrder withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The total amount of the order.
      */
-    public LinkedEcommerceOrder withTotal(String total) {
-        Utils.checkNotNull(total, "total");
+    public LinkedEcommerceOrder withTotal(@Nullable String total) {
         this.total = JsonNullable.of(total);
         return this;
     }
 
-    /**
-     * The total amount of the order.
-     */
-    public LinkedEcommerceOrder withTotal(JsonNullable<String> total) {
-        Utils.checkNotNull(total, "total");
-        this.total = total;
-        return this;
-    }
 
     /**
      * Current status of the order.
      */
-    public LinkedEcommerceOrder withStatus(EcommerceOrderStatus status) {
-        Utils.checkNotNull(status, "status");
+    public LinkedEcommerceOrder withStatus(@Nullable EcommerceOrderStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Current status of the order.
-     */
-    public LinkedEcommerceOrder withStatus(JsonNullable<? extends EcommerceOrderStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -176,75 +142,41 @@ public class LinkedEcommerceOrder {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> total = JsonNullable.undefined();
+        private JsonNullable<String> total;
 
-        private JsonNullable<? extends EcommerceOrderStatus> status = JsonNullable.undefined();
+        private JsonNullable<EcommerceOrderStatus> status;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The total amount of the order.
          */
-        public Builder total(String total) {
-            Utils.checkNotNull(total, "total");
+        public Builder total(@Nullable String total) {
             this.total = JsonNullable.of(total);
             return this;
         }
 
         /**
-         * The total amount of the order.
-         */
-        public Builder total(JsonNullable<String> total) {
-            Utils.checkNotNull(total, "total");
-            this.total = total;
-            return this;
-        }
-
-
-        /**
          * Current status of the order.
          */
-        public Builder status(EcommerceOrderStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable EcommerceOrderStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        /**
-         * Current status of the order.
-         */
-        public Builder status(JsonNullable<? extends EcommerceOrderStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
         public LinkedEcommerceOrder build() {
-
             return new LinkedEcommerceOrder(
                 id, total, status);
         }

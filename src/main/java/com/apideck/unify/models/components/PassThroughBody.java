@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -30,76 +30,67 @@ public class PassThroughBody {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("operation_id")
-    private Optional<String> operationId;
+    private String operationId;
 
     /**
      * Simple object allowing any properties for direct extension.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extend_object")
-    private Optional<? extends Map<String, Object>> extendObject;
+    private Map<String, Object> extendObject;
 
     /**
      * Array of objects for structured data modifications via paths.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("extend_paths")
-    private Optional<? extends List<ExtendPaths>> extendPaths;
+    private List<ExtendPaths> extendPaths;
 
     @JsonCreator
     public PassThroughBody(
-            @JsonProperty("service_id") String serviceId,
-            @JsonProperty("operation_id") Optional<String> operationId,
-            @JsonProperty("extend_object") Optional<? extends Map<String, Object>> extendObject,
-            @JsonProperty("extend_paths") Optional<? extends List<ExtendPaths>> extendPaths) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(operationId, "operationId");
-        Utils.checkNotNull(extendObject, "extendObject");
-        Utils.checkNotNull(extendPaths, "extendPaths");
-        this.serviceId = serviceId;
+            @JsonProperty("service_id") @Nonnull String serviceId,
+            @JsonProperty("operation_id") @Nullable String operationId,
+            @JsonProperty("extend_object") @Nullable Map<String, Object> extendObject,
+            @JsonProperty("extend_paths") @Nullable List<ExtendPaths> extendPaths) {
+        this.serviceId = Optional.ofNullable(serviceId)
+            .orElseThrow(() -> new IllegalArgumentException("serviceId cannot be null"));
         this.operationId = operationId;
         this.extendObject = extendObject;
         this.extendPaths = extendPaths;
     }
     
     public PassThroughBody(
-            String serviceId) {
-        this(serviceId, Optional.empty(), Optional.empty(),
-            Optional.empty());
+            @Nonnull String serviceId) {
+        this(serviceId, null, null,
+            null);
     }
 
     /**
      * Identifier for the service to which this pass_through should be applied.
      */
-    @JsonIgnore
     public String serviceId() {
-        return serviceId;
+        return this.serviceId;
     }
 
     /**
      * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
      */
-    @JsonIgnore
     public Optional<String> operationId() {
-        return operationId;
+        return Optional.ofNullable(this.operationId);
     }
 
     /**
      * Simple object allowing any properties for direct extension.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Map<String, Object>> extendObject() {
-        return (Optional<Map<String, Object>>) extendObject;
+        return Optional.ofNullable(this.extendObject);
     }
 
     /**
      * Array of objects for structured data modifications via paths.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ExtendPaths>> extendPaths() {
-        return (Optional<List<ExtendPaths>>) extendPaths;
+        return Optional.ofNullable(this.extendPaths);
     }
 
     public static Builder builder() {
@@ -110,18 +101,8 @@ public class PassThroughBody {
     /**
      * Identifier for the service to which this pass_through should be applied.
      */
-    public PassThroughBody withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
-        return this;
-    }
-
-    /**
-     * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-     */
-    public PassThroughBody withOperationId(String operationId) {
-        Utils.checkNotNull(operationId, "operationId");
-        this.operationId = Optional.ofNullable(operationId);
+    public PassThroughBody withServiceId(@Nonnull String serviceId) {
+        this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
         return this;
     }
 
@@ -129,49 +110,29 @@ public class PassThroughBody {
     /**
      * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
      */
-    public PassThroughBody withOperationId(Optional<String> operationId) {
-        Utils.checkNotNull(operationId, "operationId");
+    public PassThroughBody withOperationId(@Nullable String operationId) {
         this.operationId = operationId;
         return this;
     }
 
-    /**
-     * Simple object allowing any properties for direct extension.
-     */
-    public PassThroughBody withExtendObject(Map<String, Object> extendObject) {
-        Utils.checkNotNull(extendObject, "extendObject");
-        this.extendObject = Optional.ofNullable(extendObject);
-        return this;
-    }
-
 
     /**
      * Simple object allowing any properties for direct extension.
      */
-    public PassThroughBody withExtendObject(Optional<? extends Map<String, Object>> extendObject) {
-        Utils.checkNotNull(extendObject, "extendObject");
+    public PassThroughBody withExtendObject(@Nullable Map<String, Object> extendObject) {
         this.extendObject = extendObject;
         return this;
     }
 
-    /**
-     * Array of objects for structured data modifications via paths.
-     */
-    public PassThroughBody withExtendPaths(List<ExtendPaths> extendPaths) {
-        Utils.checkNotNull(extendPaths, "extendPaths");
-        this.extendPaths = Optional.ofNullable(extendPaths);
-        return this;
-    }
-
 
     /**
      * Array of objects for structured data modifications via paths.
      */
-    public PassThroughBody withExtendPaths(Optional<? extends List<ExtendPaths>> extendPaths) {
-        Utils.checkNotNull(extendPaths, "extendPaths");
+    public PassThroughBody withExtendPaths(@Nullable List<ExtendPaths> extendPaths) {
         this.extendPaths = extendPaths;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -210,85 +171,49 @@ public class PassThroughBody {
 
         private String serviceId;
 
-        private Optional<String> operationId = Optional.empty();
+        private String operationId;
 
-        private Optional<? extends Map<String, Object>> extendObject = Optional.empty();
+        private Map<String, Object> extendObject;
 
-        private Optional<? extends List<ExtendPaths>> extendPaths = Optional.empty();
+        private List<ExtendPaths> extendPaths;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Identifier for the service to which this pass_through should be applied.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = serviceId;
-            return this;
-        }
-
-
-        /**
-         * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
-         */
-        public Builder operationId(String operationId) {
-            Utils.checkNotNull(operationId, "operationId");
-            this.operationId = Optional.ofNullable(operationId);
+        public Builder serviceId(@Nonnull String serviceId) {
+            this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
             return this;
         }
 
         /**
          * Optional identifier for a workflow operation to which this pass_through should be applied. This is useful for Unify calls that are making more than one downstream request.
          */
-        public Builder operationId(Optional<String> operationId) {
-            Utils.checkNotNull(operationId, "operationId");
+        public Builder operationId(@Nullable String operationId) {
             this.operationId = operationId;
             return this;
         }
 
-
         /**
          * Simple object allowing any properties for direct extension.
          */
-        public Builder extendObject(Map<String, Object> extendObject) {
-            Utils.checkNotNull(extendObject, "extendObject");
-            this.extendObject = Optional.ofNullable(extendObject);
-            return this;
-        }
-
-        /**
-         * Simple object allowing any properties for direct extension.
-         */
-        public Builder extendObject(Optional<? extends Map<String, Object>> extendObject) {
-            Utils.checkNotNull(extendObject, "extendObject");
+        public Builder extendObject(@Nullable Map<String, Object> extendObject) {
             this.extendObject = extendObject;
             return this;
         }
 
-
         /**
          * Array of objects for structured data modifications via paths.
          */
-        public Builder extendPaths(List<ExtendPaths> extendPaths) {
-            Utils.checkNotNull(extendPaths, "extendPaths");
-            this.extendPaths = Optional.ofNullable(extendPaths);
-            return this;
-        }
-
-        /**
-         * Array of objects for structured data modifications via paths.
-         */
-        public Builder extendPaths(Optional<? extends List<ExtendPaths>> extendPaths) {
-            Utils.checkNotNull(extendPaths, "extendPaths");
+        public Builder extendPaths(@Nullable List<ExtendPaths> extendPaths) {
             this.extendPaths = extendPaths;
             return this;
         }
 
         public PassThroughBody build() {
-
             return new PassThroughBody(
                 serviceId, operationId, extendObject,
                 extendPaths);

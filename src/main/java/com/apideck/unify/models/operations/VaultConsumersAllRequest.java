@@ -7,8 +7,8 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -21,7 +21,7 @@ public class VaultConsumersAllRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
@@ -33,47 +33,43 @@ public class VaultConsumersAllRequest {
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
-    private Optional<Long> limit;
+    private Long limit;
 
     @JsonCreator
     public VaultConsumersAllRequest(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(cursor, "cursor");
-        Utils.checkNotNull(limit, "limit");
+            @Nullable String appId,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit) {
         this.appId = appId;
-        this.cursor = cursor;
-        this.limit = limit;
+        this.cursor = Optional.ofNullable(cursor)
+            .orElse(JsonNullable.undefined());
+        this.limit = Optional.ofNullable(limit)
+            .orElse(Builder._SINGLETON_VALUE_Limit.value());
     }
     
     public VaultConsumersAllRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    @JsonIgnore
     public JsonNullable<String> cursor() {
-        return cursor;
+        return this.cursor;
     }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    @JsonIgnore
     public Optional<Long> limit() {
-        return limit;
+        return Optional.ofNullable(this.limit);
     }
 
     public static Builder builder() {
@@ -84,58 +80,29 @@ public class VaultConsumersAllRequest {
     /**
      * The ID of your Unify application
      */
-    public VaultConsumersAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConsumersAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConsumersAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    public VaultConsumersAllRequest withCursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
+    public VaultConsumersAllRequest withCursor(@Nullable String cursor) {
         this.cursor = JsonNullable.of(cursor);
         return this;
     }
 
-    /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-     */
-    public VaultConsumersAllRequest withCursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    public VaultConsumersAllRequest withLimit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.ofNullable(limit);
-        return this;
-    }
-
-
-    /**
-     * Number of results to return. Minimum 1, Maximum 200, Default 20
-     */
-    public VaultConsumersAllRequest withLimit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
+    public VaultConsumersAllRequest withLimit(@Nullable Long limit) {
         this.limit = limit;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -169,87 +136,50 @@ public class VaultConsumersAllRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private JsonNullable<String> cursor = JsonNullable.undefined();
+        private JsonNullable<String> cursor;
 
-        private Optional<Long> limit;
+        private Long limit;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
-        public Builder cursor(String cursor) {
-            Utils.checkNotNull(cursor, "cursor");
+        public Builder cursor(@Nullable String cursor) {
             this.cursor = JsonNullable.of(cursor);
             return this;
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-         */
-        public Builder cursor(JsonNullable<String> cursor) {
-            Utils.checkNotNull(cursor, "cursor");
-            this.cursor = cursor;
-            return this;
-        }
-
-
-        /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
-        public Builder limit(long limit) {
-            Utils.checkNotNull(limit, "limit");
-            this.limit = Optional.ofNullable(limit);
-            return this;
-        }
-
-        /**
-         * Number of results to return. Minimum 1, Maximum 200, Default 20
-         */
-        public Builder limit(Optional<Long> limit) {
-            Utils.checkNotNull(limit, "limit");
+        public Builder limit(@Nullable Long limit) {
             this.limit = limit;
             return this;
         }
 
         public VaultConsumersAllRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-
             return new VaultConsumersAllRequest(
                 appId, cursor, limit);
         }
 
 
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
+        private static final LazySingletonValue<Long> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(
                         "limit",
                         "20",
-                        new TypeReference<Optional<Long>>() {});
+                        new TypeReference<Long>() {});
     }
 }

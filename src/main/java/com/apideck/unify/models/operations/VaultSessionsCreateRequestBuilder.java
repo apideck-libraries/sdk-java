@@ -10,92 +10,64 @@ import com.apideck.unify.models.components.Session;
 import com.apideck.unify.operations.VaultSessionsCreateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
-import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultSessionsCreateRequestBuilder {
-
-    private Optional<String> consumerId = Optional.empty();
-    private Optional<String> appId = Optional.empty();
-    private Optional<? extends Session> session = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultSessionsCreateRequest.Builder pojoBuilder;
+    private VaultSessionsCreateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultSessionsCreateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultSessionsCreateRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultSessionsCreateRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.of(consumerId);
+
+    public VaultSessionsCreateRequestBuilder consumerId(@Nullable String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultSessionsCreateRequestBuilder consumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-                
-    public VaultSessionsCreateRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public VaultSessionsCreateRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultSessionsCreateRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-                
-    public VaultSessionsCreateRequestBuilder session(Session session) {
-        Utils.checkNotNull(session, "session");
-        this.session = Optional.of(session);
+    public VaultSessionsCreateRequestBuilder session(@Nullable Session session) {
+        this.pojoBuilder.session(session);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultSessionsCreateRequestBuilder session(Optional<? extends Session> session) {
-        Utils.checkNotNull(session, "session");
-        this.session = session;
-        return this;
-    }
-                
     public VaultSessionsCreateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultSessionsCreateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultSessionsCreateRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultSessionsCreateRequest buildRequest() {
-
-        VaultSessionsCreateRequest request = new VaultSessionsCreateRequest(consumerId,
-            appId,
-            session);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultSessionsCreateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
               = new VaultSessionsCreateOperation(
                 sdkConfiguration,
                 options);
-        VaultSessionsCreateRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

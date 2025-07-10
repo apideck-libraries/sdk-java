@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -70,116 +69,103 @@ public class Variants {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private Optional<? extends List<EcommerceProductVariantsOptions>> options;
+    private List<EcommerceProductVariantsOptions> options;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("images")
-    private Optional<? extends List<EcommerceProductImages>> images;
+    private List<EcommerceProductImages> images;
 
     @JsonCreator
     public Variants(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("price") JsonNullable<String> price,
-            @JsonProperty("sku") JsonNullable<String> sku,
-            @JsonProperty("inventory_quantity") JsonNullable<String> inventoryQuantity,
-            @JsonProperty("weight") JsonNullable<String> weight,
-            @JsonProperty("weight_unit") JsonNullable<String> weightUnit,
-            @JsonProperty("options") Optional<? extends List<EcommerceProductVariantsOptions>> options,
-            @JsonProperty("images") Optional<? extends List<EcommerceProductImages>> images) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(price, "price");
-        Utils.checkNotNull(sku, "sku");
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-        Utils.checkNotNull(weight, "weight");
-        Utils.checkNotNull(weightUnit, "weightUnit");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(images, "images");
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.sku = sku;
-        this.inventoryQuantity = inventoryQuantity;
-        this.weight = weight;
-        this.weightUnit = weightUnit;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("price") @Nullable JsonNullable<String> price,
+            @JsonProperty("sku") @Nullable JsonNullable<String> sku,
+            @JsonProperty("inventory_quantity") @Nullable JsonNullable<String> inventoryQuantity,
+            @JsonProperty("weight") @Nullable JsonNullable<String> weight,
+            @JsonProperty("weight_unit") @Nullable JsonNullable<String> weightUnit,
+            @JsonProperty("options") @Nullable List<EcommerceProductVariantsOptions> options,
+            @JsonProperty("images") @Nullable List<EcommerceProductImages> images) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.price = Optional.ofNullable(price)
+            .orElse(JsonNullable.undefined());
+        this.sku = Optional.ofNullable(sku)
+            .orElse(JsonNullable.undefined());
+        this.inventoryQuantity = Optional.ofNullable(inventoryQuantity)
+            .orElse(JsonNullable.undefined());
+        this.weight = Optional.ofNullable(weight)
+            .orElse(JsonNullable.undefined());
+        this.weightUnit = Optional.ofNullable(weightUnit)
+            .orElse(JsonNullable.undefined());
         this.options = options;
         this.images = images;
     }
     
     public Variants() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for the variant of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name for the variant, used for displaying to customers.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The price of the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> price() {
-        return price;
+        return this.price;
     }
 
     /**
      * The stock keeping unit of the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> sku() {
-        return sku;
+        return this.sku;
     }
 
     /**
      * The quantity of the variant in stock.
      */
-    @JsonIgnore
     public JsonNullable<String> inventoryQuantity() {
-        return inventoryQuantity;
+        return this.inventoryQuantity;
     }
 
     /**
      * The weight of the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> weight() {
-        return weight;
+        return this.weight;
     }
 
     /**
      * The unit of measurement for the weight of the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> weightUnit() {
-        return weightUnit;
+        return this.weightUnit;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceProductVariantsOptions>> options() {
-        return (Optional<List<EcommerceProductVariantsOptions>>) options;
+        return Optional.ofNullable(this.options);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceProductImages>> images() {
-        return (Optional<List<EcommerceProductImages>>) images;
+        return Optional.ofNullable(this.images);
     }
 
     public static Builder builder() {
@@ -190,154 +176,77 @@ public class Variants {
     /**
      * A unique identifier for the variant of the product.
      */
-    public Variants withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Variants withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for the variant of the product.
-     */
-    public Variants withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The name for the variant, used for displaying to customers.
      */
-    public Variants withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Variants withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name for the variant, used for displaying to customers.
-     */
-    public Variants withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The price of the variant.
      */
-    public Variants withPrice(String price) {
-        Utils.checkNotNull(price, "price");
+    public Variants withPrice(@Nullable String price) {
         this.price = JsonNullable.of(price);
         return this;
     }
 
-    /**
-     * The price of the variant.
-     */
-    public Variants withPrice(JsonNullable<String> price) {
-        Utils.checkNotNull(price, "price");
-        this.price = price;
-        return this;
-    }
 
     /**
      * The stock keeping unit of the variant.
      */
-    public Variants withSku(String sku) {
-        Utils.checkNotNull(sku, "sku");
+    public Variants withSku(@Nullable String sku) {
         this.sku = JsonNullable.of(sku);
         return this;
     }
 
-    /**
-     * The stock keeping unit of the variant.
-     */
-    public Variants withSku(JsonNullable<String> sku) {
-        Utils.checkNotNull(sku, "sku");
-        this.sku = sku;
-        return this;
-    }
 
     /**
      * The quantity of the variant in stock.
      */
-    public Variants withInventoryQuantity(String inventoryQuantity) {
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
+    public Variants withInventoryQuantity(@Nullable String inventoryQuantity) {
         this.inventoryQuantity = JsonNullable.of(inventoryQuantity);
         return this;
     }
 
-    /**
-     * The quantity of the variant in stock.
-     */
-    public Variants withInventoryQuantity(JsonNullable<String> inventoryQuantity) {
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-        this.inventoryQuantity = inventoryQuantity;
-        return this;
-    }
 
     /**
      * The weight of the variant.
      */
-    public Variants withWeight(String weight) {
-        Utils.checkNotNull(weight, "weight");
+    public Variants withWeight(@Nullable String weight) {
         this.weight = JsonNullable.of(weight);
         return this;
     }
 
-    /**
-     * The weight of the variant.
-     */
-    public Variants withWeight(JsonNullable<String> weight) {
-        Utils.checkNotNull(weight, "weight");
-        this.weight = weight;
-        return this;
-    }
 
     /**
      * The unit of measurement for the weight of the variant.
      */
-    public Variants withWeightUnit(String weightUnit) {
-        Utils.checkNotNull(weightUnit, "weightUnit");
+    public Variants withWeightUnit(@Nullable String weightUnit) {
         this.weightUnit = JsonNullable.of(weightUnit);
         return this;
     }
 
-    /**
-     * The unit of measurement for the weight of the variant.
-     */
-    public Variants withWeightUnit(JsonNullable<String> weightUnit) {
-        Utils.checkNotNull(weightUnit, "weightUnit");
-        this.weightUnit = weightUnit;
-        return this;
-    }
 
-    public Variants withOptions(List<EcommerceProductVariantsOptions> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = Optional.ofNullable(options);
-        return this;
-    }
-
-
-    public Variants withOptions(Optional<? extends List<EcommerceProductVariantsOptions>> options) {
-        Utils.checkNotNull(options, "options");
+    public Variants withOptions(@Nullable List<EcommerceProductVariantsOptions> options) {
         this.options = options;
         return this;
     }
 
-    public Variants withImages(List<EcommerceProductImages> images) {
-        Utils.checkNotNull(images, "images");
-        this.images = Optional.ofNullable(images);
-        return this;
-    }
 
-
-    public Variants withImages(Optional<? extends List<EcommerceProductImages>> images) {
-        Utils.checkNotNull(images, "images");
+    public Variants withImages(@Nullable List<EcommerceProductImages> images) {
         this.images = images;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -385,189 +294,95 @@ public class Variants {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> price = JsonNullable.undefined();
+        private JsonNullable<String> price;
 
-        private JsonNullable<String> sku = JsonNullable.undefined();
+        private JsonNullable<String> sku;
 
-        private JsonNullable<String> inventoryQuantity = JsonNullable.undefined();
+        private JsonNullable<String> inventoryQuantity;
 
-        private JsonNullable<String> weight = JsonNullable.undefined();
+        private JsonNullable<String> weight;
 
-        private JsonNullable<String> weightUnit = JsonNullable.undefined();
+        private JsonNullable<String> weightUnit;
 
-        private Optional<? extends List<EcommerceProductVariantsOptions>> options = Optional.empty();
+        private List<EcommerceProductVariantsOptions> options;
 
-        private Optional<? extends List<EcommerceProductImages>> images = Optional.empty();
+        private List<EcommerceProductImages> images;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for the variant of the product.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for the variant of the product.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The name for the variant, used for displaying to customers.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name for the variant, used for displaying to customers.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The price of the variant.
          */
-        public Builder price(String price) {
-            Utils.checkNotNull(price, "price");
+        public Builder price(@Nullable String price) {
             this.price = JsonNullable.of(price);
             return this;
         }
 
         /**
-         * The price of the variant.
-         */
-        public Builder price(JsonNullable<String> price) {
-            Utils.checkNotNull(price, "price");
-            this.price = price;
-            return this;
-        }
-
-
-        /**
          * The stock keeping unit of the variant.
          */
-        public Builder sku(String sku) {
-            Utils.checkNotNull(sku, "sku");
+        public Builder sku(@Nullable String sku) {
             this.sku = JsonNullable.of(sku);
             return this;
         }
 
         /**
-         * The stock keeping unit of the variant.
-         */
-        public Builder sku(JsonNullable<String> sku) {
-            Utils.checkNotNull(sku, "sku");
-            this.sku = sku;
-            return this;
-        }
-
-
-        /**
          * The quantity of the variant in stock.
          */
-        public Builder inventoryQuantity(String inventoryQuantity) {
-            Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
+        public Builder inventoryQuantity(@Nullable String inventoryQuantity) {
             this.inventoryQuantity = JsonNullable.of(inventoryQuantity);
             return this;
         }
 
         /**
-         * The quantity of the variant in stock.
-         */
-        public Builder inventoryQuantity(JsonNullable<String> inventoryQuantity) {
-            Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-            this.inventoryQuantity = inventoryQuantity;
-            return this;
-        }
-
-
-        /**
          * The weight of the variant.
          */
-        public Builder weight(String weight) {
-            Utils.checkNotNull(weight, "weight");
+        public Builder weight(@Nullable String weight) {
             this.weight = JsonNullable.of(weight);
             return this;
         }
 
         /**
-         * The weight of the variant.
-         */
-        public Builder weight(JsonNullable<String> weight) {
-            Utils.checkNotNull(weight, "weight");
-            this.weight = weight;
-            return this;
-        }
-
-
-        /**
          * The unit of measurement for the weight of the variant.
          */
-        public Builder weightUnit(String weightUnit) {
-            Utils.checkNotNull(weightUnit, "weightUnit");
+        public Builder weightUnit(@Nullable String weightUnit) {
             this.weightUnit = JsonNullable.of(weightUnit);
             return this;
         }
 
-        /**
-         * The unit of measurement for the weight of the variant.
-         */
-        public Builder weightUnit(JsonNullable<String> weightUnit) {
-            Utils.checkNotNull(weightUnit, "weightUnit");
-            this.weightUnit = weightUnit;
-            return this;
-        }
-
-
-        public Builder options(List<EcommerceProductVariantsOptions> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = Optional.ofNullable(options);
-            return this;
-        }
-
-        public Builder options(Optional<? extends List<EcommerceProductVariantsOptions>> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<EcommerceProductVariantsOptions> options) {
             this.options = options;
             return this;
         }
 
-
-        public Builder images(List<EcommerceProductImages> images) {
-            Utils.checkNotNull(images, "images");
-            this.images = Optional.ofNullable(images);
-            return this;
-        }
-
-        public Builder images(Optional<? extends List<EcommerceProductImages>> images) {
-            Utils.checkNotNull(images, "images");
+        public Builder images(@Nullable List<EcommerceProductImages> images) {
             this.images = images;
             return this;
         }
 
         public Variants build() {
-
             return new Variants(
                 id, name, price,
                 sku, inventoryQuantity, weight,

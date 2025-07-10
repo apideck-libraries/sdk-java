@@ -31,6 +31,8 @@ import com.apideck.unify.utils.SerializedBody;
 import com.apideck.unify.utils.Utils.JsonShape;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
@@ -46,18 +48,18 @@ import java.util.concurrent.TimeUnit;
 public class VaultCreateCallbackStateOperation implements RequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> {
     
     private final SDKConfiguration sdkConfiguration;
-    private final Optional<Options> options;
+    private final Options options;
 
     public VaultCreateCallbackStateOperation(
-            SDKConfiguration sdkConfiguration,
-            Optional<Options> options) {
+            @Nonnull SDKConfiguration sdkConfiguration,
+            @Nullable Options options) {
         this.sdkConfiguration = sdkConfiguration;
         this.options = options;
     }
     
     @Override
     public HttpResponse<InputStream> doRequest(VaultCreateCallbackStateRequest request) throws Exception {
-        options
+        Optional.ofNullable(options)
                 .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
@@ -90,7 +92,7 @@ public class VaultCreateCallbackStateOperation implements RequestOperation<Vault
                 this.sdkConfiguration.securitySource().getSecurity());
         HTTPClient client = this.sdkConfiguration.client();
         HTTPRequest finalReq = req;
-        RetryConfig retryConfig = options
+        RetryConfig retryConfig = Optional.ofNullable(options)
                 .flatMap(Options::retryConfig)
                 .or(this.sdkConfiguration::retryConfig)
                 .orElse(RetryConfig.builder()

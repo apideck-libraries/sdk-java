@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class ConnectorApiResourceCoverageOneRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the record you are acting upon.
@@ -33,45 +34,41 @@ public class ConnectorApiResourceCoverageOneRequest {
 
     @JsonCreator
     public ConnectorApiResourceCoverageOneRequest(
-            Optional<String> appId,
-            String id,
-            String resourceId) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(resourceId, "resourceId");
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String resourceId) {
         this.appId = appId;
-        this.id = id;
-        this.resourceId = resourceId;
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.resourceId = Optional.ofNullable(resourceId)
+            .orElseThrow(() -> new IllegalArgumentException("resourceId cannot be null"));
     }
     
     public ConnectorApiResourceCoverageOneRequest(
-            String id,
-            String resourceId) {
-        this(Optional.empty(), id, resourceId);
+            @Nonnull String id,
+            @Nonnull String resourceId) {
+        this(null, id, resourceId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the resource you are acting upon.
      */
-    @JsonIgnore
     public String resourceId() {
-        return resourceId;
+        return this.resourceId;
     }
 
     public static Builder builder() {
@@ -82,39 +79,29 @@ public class ConnectorApiResourceCoverageOneRequest {
     /**
      * The ID of your Unify application
      */
-    public ConnectorApiResourceCoverageOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public ConnectorApiResourceCoverageOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public ConnectorApiResourceCoverageOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the record you are acting upon.
      */
-    public ConnectorApiResourceCoverageOneRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorApiResourceCoverageOneRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * ID of the resource you are acting upon.
      */
-    public ConnectorApiResourceCoverageOneRequest withResourceId(String resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
-        this.resourceId = resourceId;
+    public ConnectorApiResourceCoverageOneRequest withResourceId(@Nonnull String resourceId) {
+        this.resourceId = Utils.checkNotNull(resourceId, "resourceId");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -148,7 +135,7 @@ public class ConnectorApiResourceCoverageOneRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String id;
 
@@ -158,47 +145,31 @@ public class ConnectorApiResourceCoverageOneRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * ID of the resource you are acting upon.
          */
-        public Builder resourceId(String resourceId) {
-            Utils.checkNotNull(resourceId, "resourceId");
-            this.resourceId = resourceId;
+        public Builder resourceId(@Nonnull String resourceId) {
+            this.resourceId = Utils.checkNotNull(resourceId, "resourceId");
             return this;
         }
 
         public ConnectorApiResourceCoverageOneRequest build() {
-
             return new ConnectorApiResourceCoverageOneRequest(
                 appId, id, resourceId);
         }

@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -22,62 +21,55 @@ public class PaginationCoverage {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("mode")
-    private Optional<? extends PaginationCoverageMode> mode;
+    private PaginationCoverageMode mode;
 
     /**
      * Indicates whether the connector supports paging through results using the cursor parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("paging_support")
-    private Optional<Boolean> pagingSupport;
+    private Boolean pagingSupport;
 
     /**
      * Indicates whether the connector supports changing the page size by using the limit parameter.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("limit_support")
-    private Optional<Boolean> limitSupport;
+    private Boolean limitSupport;
 
     @JsonCreator
     public PaginationCoverage(
-            @JsonProperty("mode") Optional<? extends PaginationCoverageMode> mode,
-            @JsonProperty("paging_support") Optional<Boolean> pagingSupport,
-            @JsonProperty("limit_support") Optional<Boolean> limitSupport) {
-        Utils.checkNotNull(mode, "mode");
-        Utils.checkNotNull(pagingSupport, "pagingSupport");
-        Utils.checkNotNull(limitSupport, "limitSupport");
+            @JsonProperty("mode") @Nullable PaginationCoverageMode mode,
+            @JsonProperty("paging_support") @Nullable Boolean pagingSupport,
+            @JsonProperty("limit_support") @Nullable Boolean limitSupport) {
         this.mode = mode;
         this.pagingSupport = pagingSupport;
         this.limitSupport = limitSupport;
     }
     
     public PaginationCoverage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<PaginationCoverageMode> mode() {
-        return (Optional<PaginationCoverageMode>) mode;
+        return Optional.ofNullable(this.mode);
     }
 
     /**
      * Indicates whether the connector supports paging through results using the cursor parameter.
      */
-    @JsonIgnore
     public Optional<Boolean> pagingSupport() {
-        return pagingSupport;
+        return Optional.ofNullable(this.pagingSupport);
     }
 
     /**
      * Indicates whether the connector supports changing the page size by using the limit parameter.
      */
-    @JsonIgnore
     public Optional<Boolean> limitSupport() {
-        return limitSupport;
+        return Optional.ofNullable(this.limitSupport);
     }
 
     public static Builder builder() {
@@ -88,59 +80,29 @@ public class PaginationCoverage {
     /**
      * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
      */
-    public PaginationCoverage withMode(PaginationCoverageMode mode) {
-        Utils.checkNotNull(mode, "mode");
-        this.mode = Optional.ofNullable(mode);
-        return this;
-    }
-
-
-    /**
-     * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
-     */
-    public PaginationCoverage withMode(Optional<? extends PaginationCoverageMode> mode) {
-        Utils.checkNotNull(mode, "mode");
+    public PaginationCoverage withMode(@Nullable PaginationCoverageMode mode) {
         this.mode = mode;
         return this;
     }
 
-    /**
-     * Indicates whether the connector supports paging through results using the cursor parameter.
-     */
-    public PaginationCoverage withPagingSupport(boolean pagingSupport) {
-        Utils.checkNotNull(pagingSupport, "pagingSupport");
-        this.pagingSupport = Optional.ofNullable(pagingSupport);
-        return this;
-    }
-
 
     /**
      * Indicates whether the connector supports paging through results using the cursor parameter.
      */
-    public PaginationCoverage withPagingSupport(Optional<Boolean> pagingSupport) {
-        Utils.checkNotNull(pagingSupport, "pagingSupport");
+    public PaginationCoverage withPagingSupport(@Nullable Boolean pagingSupport) {
         this.pagingSupport = pagingSupport;
         return this;
     }
 
-    /**
-     * Indicates whether the connector supports changing the page size by using the limit parameter.
-     */
-    public PaginationCoverage withLimitSupport(boolean limitSupport) {
-        Utils.checkNotNull(limitSupport, "limitSupport");
-        this.limitSupport = Optional.ofNullable(limitSupport);
-        return this;
-    }
-
 
     /**
      * Indicates whether the connector supports changing the page size by using the limit parameter.
      */
-    public PaginationCoverage withLimitSupport(Optional<Boolean> limitSupport) {
-        Utils.checkNotNull(limitSupport, "limitSupport");
+    public PaginationCoverage withLimitSupport(@Nullable Boolean limitSupport) {
         this.limitSupport = limitSupport;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -174,75 +136,41 @@ public class PaginationCoverage {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends PaginationCoverageMode> mode = Optional.empty();
+        private PaginationCoverageMode mode;
 
-        private Optional<Boolean> pagingSupport = Optional.empty();
+        private Boolean pagingSupport;
 
-        private Optional<Boolean> limitSupport = Optional.empty();
+        private Boolean limitSupport;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
          */
-        public Builder mode(PaginationCoverageMode mode) {
-            Utils.checkNotNull(mode, "mode");
-            this.mode = Optional.ofNullable(mode);
-            return this;
-        }
-
-        /**
-         * How pagination is implemented on this connector. Native mode means Apideck is using the pagination parameters of the connector. With virtual pagination, the connector does not support pagination, but Apideck emulates it.
-         */
-        public Builder mode(Optional<? extends PaginationCoverageMode> mode) {
-            Utils.checkNotNull(mode, "mode");
+        public Builder mode(@Nullable PaginationCoverageMode mode) {
             this.mode = mode;
             return this;
         }
 
-
         /**
          * Indicates whether the connector supports paging through results using the cursor parameter.
          */
-        public Builder pagingSupport(boolean pagingSupport) {
-            Utils.checkNotNull(pagingSupport, "pagingSupport");
-            this.pagingSupport = Optional.ofNullable(pagingSupport);
-            return this;
-        }
-
-        /**
-         * Indicates whether the connector supports paging through results using the cursor parameter.
-         */
-        public Builder pagingSupport(Optional<Boolean> pagingSupport) {
-            Utils.checkNotNull(pagingSupport, "pagingSupport");
+        public Builder pagingSupport(@Nullable Boolean pagingSupport) {
             this.pagingSupport = pagingSupport;
             return this;
         }
 
-
         /**
          * Indicates whether the connector supports changing the page size by using the limit parameter.
          */
-        public Builder limitSupport(boolean limitSupport) {
-            Utils.checkNotNull(limitSupport, "limitSupport");
-            this.limitSupport = Optional.ofNullable(limitSupport);
-            return this;
-        }
-
-        /**
-         * Indicates whether the connector supports changing the page size by using the limit parameter.
-         */
-        public Builder limitSupport(Optional<Boolean> limitSupport) {
-            Utils.checkNotNull(limitSupport, "limitSupport");
+        public Builder limitSupport(@Nullable Boolean limitSupport) {
             this.limitSupport = limitSupport;
             return this;
         }
 
         public PaginationCoverage build() {
-
             return new PaginationCoverage(
                 mode, pagingSupport, limitSupport);
         }

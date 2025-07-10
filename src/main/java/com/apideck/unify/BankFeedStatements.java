@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingBankFeedStatementsDeleteOperation;
 import com.apideck.unify.operations.AccountingBankFeedStatementsOneOperation;
 import com.apideck.unify.operations.AccountingBankFeedStatementsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class BankFeedStatements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedStatementsAllResponse list(AccountingBankFeedStatementsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingBankFeedStatementsAllResponse list(@Nonnull AccountingBankFeedStatementsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class BankFeedStatements {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedStatementsAllResponse list(
-            AccountingBankFeedStatementsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedStatementsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsAllRequest, AccountingBankFeedStatementsAllResponse> operation
               = new AccountingBankFeedStatementsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class BankFeedStatements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedStatementsAddResponse create(AccountingBankFeedStatementsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingBankFeedStatementsAddResponse create(@Nonnull AccountingBankFeedStatementsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class BankFeedStatements {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedStatementsAddResponse create(
-            AccountingBankFeedStatementsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedStatementsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsAddRequest, AccountingBankFeedStatementsAddResponse> operation
               = new AccountingBankFeedStatementsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class BankFeedStatements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedStatementsOneResponse get(AccountingBankFeedStatementsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingBankFeedStatementsOneResponse get(@Nonnull AccountingBankFeedStatementsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class BankFeedStatements {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedStatementsOneResponse get(
-            AccountingBankFeedStatementsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedStatementsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsOneRequest, AccountingBankFeedStatementsOneResponse> operation
               = new AccountingBankFeedStatementsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class BankFeedStatements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedStatementsUpdateResponse update(AccountingBankFeedStatementsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingBankFeedStatementsUpdateResponse update(@Nonnull AccountingBankFeedStatementsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class BankFeedStatements {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedStatementsUpdateResponse update(
-            AccountingBankFeedStatementsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedStatementsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsUpdateRequest, AccountingBankFeedStatementsUpdateResponse> operation
               = new AccountingBankFeedStatementsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class BankFeedStatements {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedStatementsDeleteResponse delete(AccountingBankFeedStatementsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingBankFeedStatementsDeleteResponse delete(@Nonnull AccountingBankFeedStatementsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class BankFeedStatements {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedStatementsDeleteResponse delete(
-            AccountingBankFeedStatementsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedStatementsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedStatementsDeleteRequest, AccountingBankFeedStatementsDeleteResponse> operation
               = new AccountingBankFeedStatementsDeleteOperation(
                 sdkConfiguration,

@@ -5,12 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -37,44 +39,41 @@ public class SocialLinks {
 
     @JsonCreator
     public SocialLinks(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("url") String url,
-            @JsonProperty("type") JsonNullable<String> type) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(type, "type");
-        this.id = id;
-        this.url = url;
-        this.type = type;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("url") @Nonnull String url,
+            @JsonProperty("type") @Nullable JsonNullable<String> type) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.url = Optional.ofNullable(url)
+            .orElseThrow(() -> new IllegalArgumentException("url cannot be null"));
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
     }
     
     public SocialLinks(
-            String url) {
-        this(JsonNullable.undefined(), url, JsonNullable.undefined());
+            @Nonnull String url) {
+        this(null, url, null);
     }
 
     /**
      * Unique identifier of the social link
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * URL of the social link, e.g. https://www.twitter.com/apideck
      */
-    @JsonIgnore
     public String url() {
-        return url;
+        return this.url;
     }
 
     /**
      * Type of the social link, e.g. twitter
      */
-    @JsonIgnore
     public JsonNullable<String> type() {
-        return type;
+        return this.type;
     }
 
     public static Builder builder() {
@@ -85,47 +84,29 @@ public class SocialLinks {
     /**
      * Unique identifier of the social link
      */
-    public SocialLinks withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public SocialLinks withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * Unique identifier of the social link
-     */
-    public SocialLinks withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * URL of the social link, e.g. https://www.twitter.com/apideck
      */
-    public SocialLinks withUrl(String url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
+    public SocialLinks withUrl(@Nonnull String url) {
+        this.url = Utils.checkNotNull(url, "url");
         return this;
     }
+
 
     /**
      * Type of the social link, e.g. twitter
      */
-    public SocialLinks withType(String type) {
-        Utils.checkNotNull(type, "type");
+    public SocialLinks withType(@Nullable String type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Type of the social link, e.g. twitter
-     */
-    public SocialLinks withType(JsonNullable<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -159,66 +140,41 @@ public class SocialLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
         private String url;
 
-        private JsonNullable<String> type = JsonNullable.undefined();
+        private JsonNullable<String> type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier of the social link
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * Unique identifier of the social link
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * URL of the social link, e.g. https://www.twitter.com/apideck
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
+        public Builder url(@Nonnull String url) {
+            this.url = Utils.checkNotNull(url, "url");
             return this;
         }
-
 
         /**
          * Type of the social link, e.g. twitter
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * Type of the social link, e.g. twitter
-         */
-        public Builder type(JsonNullable<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
         public SocialLinks build() {
-
             return new SocialLinks(
                 id, url, type);
         }

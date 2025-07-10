@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,7 +22,7 @@ public class CopyFolderRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
@@ -35,49 +35,43 @@ public class CopyFolderRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public CopyFolderRequest(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("parent_folder_id") String parentFolderId,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("parent_folder_id") @Nonnull String parentFolderId,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.name = name;
-        this.parentFolderId = parentFolderId;
+        this.parentFolderId = Optional.ofNullable(parentFolderId)
+            .orElseThrow(() -> new IllegalArgumentException("parentFolderId cannot be null"));
         this.passThrough = passThrough;
     }
     
     public CopyFolderRequest(
-            String parentFolderId) {
-        this(Optional.empty(), parentFolderId, Optional.empty());
+            @Nonnull String parentFolderId) {
+        this(null, parentFolderId, null);
     }
 
     /**
      * The name of the folder.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    @JsonIgnore
     public String parentFolderId() {
-        return parentFolderId;
+        return this.parentFolderId;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -88,37 +82,17 @@ public class CopyFolderRequest {
     /**
      * The name of the folder.
      */
-    public CopyFolderRequest withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the folder.
-     */
-    public CopyFolderRequest withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public CopyFolderRequest withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
+
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    public CopyFolderRequest withParentFolderId(String parentFolderId) {
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        this.parentFolderId = parentFolderId;
-        return this;
-    }
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public CopyFolderRequest withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
+    public CopyFolderRequest withParentFolderId(@Nonnull String parentFolderId) {
+        this.parentFolderId = Utils.checkNotNull(parentFolderId, "parentFolderId");
         return this;
     }
 
@@ -126,11 +100,11 @@ public class CopyFolderRequest {
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public CopyFolderRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public CopyFolderRequest withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -164,66 +138,41 @@ public class CopyFolderRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
         private String parentFolderId;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the folder.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the folder.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
-        public Builder parentFolderId(String parentFolderId) {
-            Utils.checkNotNull(parentFolderId, "parentFolderId");
-            this.parentFolderId = parentFolderId;
-            return this;
-        }
-
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
+        public Builder parentFolderId(@Nonnull String parentFolderId) {
+            this.parentFolderId = Utils.checkNotNull(parentFolderId, "parentFolderId");
             return this;
         }
 
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public CopyFolderRequest build() {
-
             return new CopyFolderRequest(
                 name, parentFolderId, passThrough);
         }

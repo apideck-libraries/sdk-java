@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneReques
 import com.apideck.unify.models.operations.ConnectorApiResourceCoverageOneResponse;
 import com.apideck.unify.operations.ConnectorApiResourceCoverageOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -44,10 +46,10 @@ public class ApiResourceCoverage {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourceCoverageOneResponse get(
-            String id,
-            String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId,
-            Optional.empty());
+            @Nonnull String id,
+            @Nonnull String resourceId) throws Exception {
+        return get(null, id, resourceId,
+            null);
     }
 
     /**
@@ -63,17 +65,14 @@ public class ApiResourceCoverage {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourceCoverageOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<Options> options) throws Exception {
-        ConnectorApiResourceCoverageOneRequest request =
-            ConnectorApiResourceCoverageOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .resourceId(resourceId)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String resourceId,
+            @Nullable Options options) throws Exception {
+        ConnectorApiResourceCoverageOneRequest request = new ConnectorApiResourceCoverageOneRequest(
+            appId,
+            id,
+            resourceId);
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
               = new ConnectorApiResourceCoverageOneOperation(
                 sdkConfiguration,

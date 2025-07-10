@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultCustomMappingsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -44,10 +46,10 @@ public class CustomMappings {
      * @throws Exception if the API call fails
      */
     public VaultCustomMappingsAllResponse list(
-            String unifiedApi,
-            String serviceId) throws Exception {
-        return list(Optional.empty(), Optional.empty(), unifiedApi,
-            serviceId, Optional.empty());
+            @Nonnull String unifiedApi,
+            @Nonnull String serviceId) throws Exception {
+        return list(null, null, unifiedApi,
+            serviceId, null);
     }
 
     /**
@@ -64,19 +66,16 @@ public class CustomMappings {
      * @throws Exception if the API call fails
      */
     public VaultCustomMappingsAllResponse list(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String unifiedApi,
-            String serviceId,
-            Optional<Options> options) throws Exception {
-        VaultCustomMappingsAllRequest request =
-            VaultCustomMappingsAllRequest
-                .builder()
-                .consumerId(consumerId)
-                .appId(appId)
-                .unifiedApi(unifiedApi)
-                .serviceId(serviceId)
-                .build();
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nonnull String unifiedApi,
+            @Nonnull String serviceId,
+            @Nullable Options options) throws Exception {
+        VaultCustomMappingsAllRequest request = new VaultCustomMappingsAllRequest(
+            consumerId,
+            appId,
+            unifiedApi,
+            serviceId);
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
               = new VaultCustomMappingsAllOperation(
                 sdkConfiguration,

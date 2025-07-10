@@ -7,7 +7,8 @@ import com.apideck.unify.models.components.ConnectionInput;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,13 +19,13 @@ public class VaultConnectionSettingsUpdateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Service ID of the resource to return
@@ -52,81 +53,73 @@ public class VaultConnectionSettingsUpdateRequest {
 
     @JsonCreator
     public VaultConnectionSettingsUpdateRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String serviceId,
-            String unifiedApi,
-            String resource,
-            ConnectionInput connection) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(resource, "resource");
-        Utils.checkNotNull(connection, "connection");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi,
+            @Nonnull String resource,
+            @Nonnull ConnectionInput connection) {
         this.consumerId = consumerId;
         this.appId = appId;
-        this.serviceId = serviceId;
-        this.unifiedApi = unifiedApi;
-        this.resource = resource;
-        this.connection = connection;
+        this.serviceId = Optional.ofNullable(serviceId)
+            .orElseThrow(() -> new IllegalArgumentException("serviceId cannot be null"));
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
+        this.resource = Optional.ofNullable(resource)
+            .orElseThrow(() -> new IllegalArgumentException("resource cannot be null"));
+        this.connection = Optional.ofNullable(connection)
+            .orElseThrow(() -> new IllegalArgumentException("connection cannot be null"));
     }
     
     public VaultConnectionSettingsUpdateRequest(
-            String serviceId,
-            String unifiedApi,
-            String resource,
-            ConnectionInput connection) {
-        this(Optional.empty(), Optional.empty(), serviceId,
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi,
+            @Nonnull String resource,
+            @Nonnull ConnectionInput connection) {
+        this(null, null, serviceId,
             unifiedApi, resource, connection);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Service ID of the resource to return
      */
-    @JsonIgnore
     public String serviceId() {
-        return serviceId;
+        return this.serviceId;
     }
 
     /**
      * Unified API
      */
-    @JsonIgnore
     public String unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     /**
      * Name of the resource (plural)
      */
-    @JsonIgnore
     public String resource() {
-        return resource;
+        return this.resource;
     }
 
     /**
      * Fields that need to be updated on the resource
      */
-    @JsonIgnore
     public ConnectionInput connection() {
-        return connection;
+        return this.connection;
     }
 
     public static Builder builder() {
@@ -137,76 +130,56 @@ public class VaultConnectionSettingsUpdateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultConnectionSettingsUpdateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultConnectionSettingsUpdateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultConnectionSettingsUpdateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConnectionSettingsUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultConnectionSettingsUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConnectionSettingsUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * Service ID of the resource to return
      */
-    public VaultConnectionSettingsUpdateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
+    public VaultConnectionSettingsUpdateRequest withServiceId(@Nonnull String serviceId) {
+        this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
         return this;
     }
+
 
     /**
      * Unified API
      */
-    public VaultConnectionSettingsUpdateRequest withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public VaultConnectionSettingsUpdateRequest withUnifiedApi(@Nonnull String unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     /**
      * Name of the resource (plural)
      */
-    public VaultConnectionSettingsUpdateRequest withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = resource;
+    public VaultConnectionSettingsUpdateRequest withResource(@Nonnull String resource) {
+        this.resource = Utils.checkNotNull(resource, "resource");
         return this;
     }
+
 
     /**
      * Fields that need to be updated on the resource
      */
-    public VaultConnectionSettingsUpdateRequest withConnection(ConnectionInput connection) {
-        Utils.checkNotNull(connection, "connection");
-        this.connection = connection;
+    public VaultConnectionSettingsUpdateRequest withConnection(@Nonnull ConnectionInput connection) {
+        this.connection = Utils.checkNotNull(connection, "connection");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -247,9 +220,9 @@ public class VaultConnectionSettingsUpdateRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String serviceId;
 
@@ -263,86 +236,55 @@ public class VaultConnectionSettingsUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Service ID of the resource to return
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = serviceId;
+        public Builder serviceId(@Nonnull String serviceId) {
+            this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
             return this;
         }
-
 
         /**
          * Unified API
          */
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull String unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
-
 
         /**
          * Name of the resource (plural)
          */
-        public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = resource;
+        public Builder resource(@Nonnull String resource) {
+            this.resource = Utils.checkNotNull(resource, "resource");
             return this;
         }
-
 
         /**
          * Fields that need to be updated on the resource
          */
-        public Builder connection(ConnectionInput connection) {
-            Utils.checkNotNull(connection, "connection");
-            this.connection = connection;
+        public Builder connection(@Nonnull ConnectionInput connection) {
+            this.connection = Utils.checkNotNull(connection, "connection");
             return this;
         }
 
         public VaultConnectionSettingsUpdateRequest build() {
-
             return new VaultConnectionSettingsUpdateRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, resource, connection);

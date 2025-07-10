@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
  * UnifiedId
@@ -24,17 +25,16 @@ public class UnifiedId {
 
     @JsonCreator
     public UnifiedId(
-            @JsonProperty("id") String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+            @JsonProperty("id") @Nonnull String id) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
     }
 
     /**
      * The unique identifier of the resource
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     public static Builder builder() {
@@ -45,11 +45,11 @@ public class UnifiedId {
     /**
      * The unique identifier of the resource
      */
-    public UnifiedId withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UnifiedId withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -85,18 +85,15 @@ public class UnifiedId {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the resource
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         public UnifiedId build() {
-
             return new UnifiedId(
                 id);
         }

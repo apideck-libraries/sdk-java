@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UpdateDriveGroupResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class FileStorageDriveGroupsUpdateResponse implements Response {
     /**
      * DriveGroups
      */
-    private Optional<? extends UpdateDriveGroupResponse> updateDriveGroupResponse;
+    private UpdateDriveGroupResponse updateDriveGroupResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public FileStorageDriveGroupsUpdateResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends UpdateDriveGroupResponse> updateDriveGroupResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(updateDriveGroupResponse, "updateDriveGroupResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable UpdateDriveGroupResponse updateDriveGroupResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.updateDriveGroupResponse = updateDriveGroupResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public FileStorageDriveGroupsUpdateResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * DriveGroups
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UpdateDriveGroupResponse> updateDriveGroupResponse() {
-        return (Optional<UpdateDriveGroupResponse>) updateDriveGroupResponse;
+        return Optional.ofNullable(this.updateDriveGroupResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class FileStorageDriveGroupsUpdateResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public FileStorageDriveGroupsUpdateResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public FileStorageDriveGroupsUpdateResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public FileStorageDriveGroupsUpdateResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public FileStorageDriveGroupsUpdateResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * DriveGroups
-     */
-    public FileStorageDriveGroupsUpdateResponse withUpdateDriveGroupResponse(UpdateDriveGroupResponse updateDriveGroupResponse) {
-        Utils.checkNotNull(updateDriveGroupResponse, "updateDriveGroupResponse");
-        this.updateDriveGroupResponse = Optional.ofNullable(updateDriveGroupResponse);
+    public FileStorageDriveGroupsUpdateResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class FileStorageDriveGroupsUpdateResponse implements Response {
     /**
      * DriveGroups
      */
-    public FileStorageDriveGroupsUpdateResponse withUpdateDriveGroupResponse(Optional<? extends UpdateDriveGroupResponse> updateDriveGroupResponse) {
-        Utils.checkNotNull(updateDriveGroupResponse, "updateDriveGroupResponse");
+    public FileStorageDriveGroupsUpdateResponse withUpdateDriveGroupResponse(@Nullable UpdateDriveGroupResponse updateDriveGroupResponse) {
         this.updateDriveGroupResponse = updateDriveGroupResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public FileStorageDriveGroupsUpdateResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public FileStorageDriveGroupsUpdateResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public FileStorageDriveGroupsUpdateResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class FileStorageDriveGroupsUpdateResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends UpdateDriveGroupResponse> updateDriveGroupResponse = Optional.empty();
+        private UpdateDriveGroupResponse updateDriveGroupResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * DriveGroups
-         */
-        public Builder updateDriveGroupResponse(UpdateDriveGroupResponse updateDriveGroupResponse) {
-            Utils.checkNotNull(updateDriveGroupResponse, "updateDriveGroupResponse");
-            this.updateDriveGroupResponse = Optional.ofNullable(updateDriveGroupResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * DriveGroups
          */
-        public Builder updateDriveGroupResponse(Optional<? extends UpdateDriveGroupResponse> updateDriveGroupResponse) {
-            Utils.checkNotNull(updateDriveGroupResponse, "updateDriveGroupResponse");
+        public Builder updateDriveGroupResponse(@Nullable UpdateDriveGroupResponse updateDriveGroupResponse) {
             this.updateDriveGroupResponse = updateDriveGroupResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public FileStorageDriveGroupsUpdateResponse build() {
-
             return new FileStorageDriveGroupsUpdateResponse(
                 contentType, statusCode, rawResponse,
                 updateDriveGroupResponse, unexpectedErrorResponse);

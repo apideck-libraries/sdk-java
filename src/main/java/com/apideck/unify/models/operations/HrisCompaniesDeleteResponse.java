@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class HrisCompaniesDeleteResponse implements Response {
     /**
      * Companies
      */
-    private Optional<? extends DeleteHrisCompanyResponse> deleteHrisCompanyResponse;
+    private DeleteHrisCompanyResponse deleteHrisCompanyResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public HrisCompaniesDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends DeleteHrisCompanyResponse> deleteHrisCompanyResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(deleteHrisCompanyResponse, "deleteHrisCompanyResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable DeleteHrisCompanyResponse deleteHrisCompanyResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.deleteHrisCompanyResponse = deleteHrisCompanyResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public HrisCompaniesDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Companies
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<DeleteHrisCompanyResponse> deleteHrisCompanyResponse() {
-        return (Optional<DeleteHrisCompanyResponse>) deleteHrisCompanyResponse;
+        return Optional.ofNullable(this.deleteHrisCompanyResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class HrisCompaniesDeleteResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public HrisCompaniesDeleteResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public HrisCompaniesDeleteResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public HrisCompaniesDeleteResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public HrisCompaniesDeleteResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Companies
-     */
-    public HrisCompaniesDeleteResponse withDeleteHrisCompanyResponse(DeleteHrisCompanyResponse deleteHrisCompanyResponse) {
-        Utils.checkNotNull(deleteHrisCompanyResponse, "deleteHrisCompanyResponse");
-        this.deleteHrisCompanyResponse = Optional.ofNullable(deleteHrisCompanyResponse);
+    public HrisCompaniesDeleteResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class HrisCompaniesDeleteResponse implements Response {
     /**
      * Companies
      */
-    public HrisCompaniesDeleteResponse withDeleteHrisCompanyResponse(Optional<? extends DeleteHrisCompanyResponse> deleteHrisCompanyResponse) {
-        Utils.checkNotNull(deleteHrisCompanyResponse, "deleteHrisCompanyResponse");
+    public HrisCompaniesDeleteResponse withDeleteHrisCompanyResponse(@Nullable DeleteHrisCompanyResponse deleteHrisCompanyResponse) {
         this.deleteHrisCompanyResponse = deleteHrisCompanyResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public HrisCompaniesDeleteResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public HrisCompaniesDeleteResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public HrisCompaniesDeleteResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class HrisCompaniesDeleteResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends DeleteHrisCompanyResponse> deleteHrisCompanyResponse = Optional.empty();
+        private DeleteHrisCompanyResponse deleteHrisCompanyResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Companies
-         */
-        public Builder deleteHrisCompanyResponse(DeleteHrisCompanyResponse deleteHrisCompanyResponse) {
-            Utils.checkNotNull(deleteHrisCompanyResponse, "deleteHrisCompanyResponse");
-            this.deleteHrisCompanyResponse = Optional.ofNullable(deleteHrisCompanyResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Companies
          */
-        public Builder deleteHrisCompanyResponse(Optional<? extends DeleteHrisCompanyResponse> deleteHrisCompanyResponse) {
-            Utils.checkNotNull(deleteHrisCompanyResponse, "deleteHrisCompanyResponse");
+        public Builder deleteHrisCompanyResponse(@Nullable DeleteHrisCompanyResponse deleteHrisCompanyResponse) {
             this.deleteHrisCompanyResponse = deleteHrisCompanyResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public HrisCompaniesDeleteResponse build() {
-
             return new HrisCompaniesDeleteResponse(
                 contentType, statusCode, rawResponse,
                 deleteHrisCompanyResponse, unexpectedErrorResponse);

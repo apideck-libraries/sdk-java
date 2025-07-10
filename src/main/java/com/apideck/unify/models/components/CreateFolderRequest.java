@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +28,7 @@ public class CreateFolderRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
@@ -41,80 +41,71 @@ public class CreateFolderRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("drive_id")
-    private Optional<String> driveId;
+    private String driveId;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public CreateFolderRequest(
-            @JsonProperty("name") String name,
-            @JsonProperty("description") Optional<String> description,
-            @JsonProperty("parent_folder_id") String parentFolderId,
-            @JsonProperty("drive_id") Optional<String> driveId,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        Utils.checkNotNull(driveId, "driveId");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.name = name;
+            @JsonProperty("name") @Nonnull String name,
+            @JsonProperty("description") @Nullable String description,
+            @JsonProperty("parent_folder_id") @Nonnull String parentFolderId,
+            @JsonProperty("drive_id") @Nullable String driveId,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
         this.description = description;
-        this.parentFolderId = parentFolderId;
+        this.parentFolderId = Optional.ofNullable(parentFolderId)
+            .orElseThrow(() -> new IllegalArgumentException("parentFolderId cannot be null"));
         this.driveId = driveId;
         this.passThrough = passThrough;
     }
     
     public CreateFolderRequest(
-            String name,
-            String parentFolderId) {
-        this(name, Optional.empty(), parentFolderId,
-            Optional.empty(), Optional.empty());
+            @Nonnull String name,
+            @Nonnull String parentFolderId) {
+        this(name, null, parentFolderId,
+            null, null);
     }
 
     /**
      * The name of the folder.
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     /**
      * Optional description of the folder.
      */
-    @JsonIgnore
     public Optional<String> description() {
-        return description;
+        return Optional.ofNullable(this.description);
     }
 
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    @JsonIgnore
     public String parentFolderId() {
-        return parentFolderId;
+        return this.parentFolderId;
     }
 
     /**
      * ID of the drive to create the folder in.
      */
-    @JsonIgnore
     public Optional<String> driveId() {
-        return driveId;
+        return Optional.ofNullable(this.driveId);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -125,18 +116,8 @@ public class CreateFolderRequest {
     /**
      * The name of the folder.
      */
-    public CreateFolderRequest withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
-
-    /**
-     * Optional description of the folder.
-     */
-    public CreateFolderRequest withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
+    public CreateFolderRequest withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
 
@@ -144,27 +125,17 @@ public class CreateFolderRequest {
     /**
      * Optional description of the folder.
      */
-    public CreateFolderRequest withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
+    public CreateFolderRequest withDescription(@Nullable String description) {
         this.description = description;
         return this;
     }
 
+
     /**
      * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
      */
-    public CreateFolderRequest withParentFolderId(String parentFolderId) {
-        Utils.checkNotNull(parentFolderId, "parentFolderId");
-        this.parentFolderId = parentFolderId;
-        return this;
-    }
-
-    /**
-     * ID of the drive to create the folder in.
-     */
-    public CreateFolderRequest withDriveId(String driveId) {
-        Utils.checkNotNull(driveId, "driveId");
-        this.driveId = Optional.ofNullable(driveId);
+    public CreateFolderRequest withParentFolderId(@Nonnull String parentFolderId) {
+        this.parentFolderId = Utils.checkNotNull(parentFolderId, "parentFolderId");
         return this;
     }
 
@@ -172,30 +143,20 @@ public class CreateFolderRequest {
     /**
      * ID of the drive to create the folder in.
      */
-    public CreateFolderRequest withDriveId(Optional<String> driveId) {
-        Utils.checkNotNull(driveId, "driveId");
+    public CreateFolderRequest withDriveId(@Nullable String driveId) {
         this.driveId = driveId;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public CreateFolderRequest withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public CreateFolderRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public CreateFolderRequest withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -236,97 +197,59 @@ public class CreateFolderRequest {
 
         private String name;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private String parentFolderId;
 
-        private Optional<String> driveId = Optional.empty();
+        private String driveId;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the folder.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
-         * Optional description of the folder.
-         */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
 
         /**
          * Optional description of the folder.
          */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
 
-
         /**
          * The parent folder to create the new file within. This can be an ID or a path depending on the downstream folder. Please see the connector section below to see downstream specific gotchas.
          */
-        public Builder parentFolderId(String parentFolderId) {
-            Utils.checkNotNull(parentFolderId, "parentFolderId");
-            this.parentFolderId = parentFolderId;
-            return this;
-        }
-
-
-        /**
-         * ID of the drive to create the folder in.
-         */
-        public Builder driveId(String driveId) {
-            Utils.checkNotNull(driveId, "driveId");
-            this.driveId = Optional.ofNullable(driveId);
+        public Builder parentFolderId(@Nonnull String parentFolderId) {
+            this.parentFolderId = Utils.checkNotNull(parentFolderId, "parentFolderId");
             return this;
         }
 
         /**
          * ID of the drive to create the folder in.
          */
-        public Builder driveId(Optional<String> driveId) {
-            Utils.checkNotNull(driveId, "driveId");
+        public Builder driveId(@Nullable String driveId) {
             this.driveId = driveId;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public CreateFolderRequest build() {
-
             return new CreateFolderRequest(
                 name, description, parentFolderId,
                 driveId, passThrough);

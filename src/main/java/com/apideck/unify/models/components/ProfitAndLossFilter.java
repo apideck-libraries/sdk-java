@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,59 +17,69 @@ public class ProfitAndLossFilter {
      * Filter by customer id
      */
     @SpeakeasyMetadata("queryParam:name=customer_id")
-    private Optional<String> customerId;
+    private String customerId;
 
     /**
      * Filter by start date. If start date is given, end date is required.
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * Filter by end date. If end date is given, start date is required.
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
-    private Optional<String> endDate;
+    private String endDate;
+
+    /**
+     * Filter by location id
+     */
+    @SpeakeasyMetadata("queryParam:name=location_id")
+    private String locationId;
 
     @JsonCreator
     public ProfitAndLossFilter(
-            Optional<String> customerId,
-            Optional<String> startDate,
-            Optional<String> endDate) {
-        Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
+            @Nullable String customerId,
+            @Nullable String startDate,
+            @Nullable String endDate,
+            @Nullable String locationId) {
         this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.locationId = locationId;
     }
     
     public ProfitAndLossFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * Filter by customer id
      */
-    @JsonIgnore
     public Optional<String> customerId() {
-        return customerId;
+        return Optional.ofNullable(this.customerId);
     }
 
     /**
      * Filter by start date. If start date is given, end date is required.
      */
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * Filter by end date. If end date is given, start date is required.
      */
-    @JsonIgnore
     public Optional<String> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
+    }
+
+    /**
+     * Filter by location id
+     */
+    public Optional<String> locationId() {
+        return Optional.ofNullable(this.locationId);
     }
 
     public static Builder builder() {
@@ -80,59 +90,38 @@ public class ProfitAndLossFilter {
     /**
      * Filter by customer id
      */
-    public ProfitAndLossFilter withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    /**
-     * Filter by customer id
-     */
-    public ProfitAndLossFilter withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
+    public ProfitAndLossFilter withCustomerId(@Nullable String customerId) {
         this.customerId = customerId;
         return this;
     }
 
-    /**
-     * Filter by start date. If start date is given, end date is required.
-     */
-    public ProfitAndLossFilter withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
 
     /**
      * Filter by start date. If start date is given, end date is required.
      */
-    public ProfitAndLossFilter withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public ProfitAndLossFilter withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * Filter by end date. If end date is given, start date is required.
-     */
-    public ProfitAndLossFilter withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * Filter by end date. If end date is given, start date is required.
      */
-    public ProfitAndLossFilter withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public ProfitAndLossFilter withEndDate(@Nullable String endDate) {
         this.endDate = endDate;
         return this;
     }
+
+
+    /**
+     * Filter by location id
+     */
+    public ProfitAndLossFilter withLocationId(@Nullable String locationId) {
+        this.locationId = locationId;
+        return this;
+    }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -146,13 +135,15 @@ public class ProfitAndLossFilter {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
-            Utils.enhancedDeepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, startDate, endDate);
+            customerId, startDate, endDate,
+            locationId);
     }
     
     @Override
@@ -160,83 +151,61 @@ public class ProfitAndLossFilter {
         return Utils.toString(ProfitAndLossFilter.class,
                 "customerId", customerId,
                 "startDate", startDate,
-                "endDate", endDate);
+                "endDate", endDate,
+                "locationId", locationId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> customerId = Optional.empty();
+        private String customerId;
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
+
+        private String locationId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Filter by customer id
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        /**
-         * Filter by customer id
-         */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
+        public Builder customerId(@Nullable String customerId) {
             this.customerId = customerId;
             return this;
         }
 
-
         /**
          * Filter by start date. If start date is given, end date is required.
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * Filter by start date. If start date is given, end date is required.
-         */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * Filter by end date. If end date is given, start date is required.
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * Filter by end date. If end date is given, start date is required.
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
-        public ProfitAndLossFilter build() {
+        /**
+         * Filter by location id
+         */
+        public Builder locationId(@Nullable String locationId) {
+            this.locationId = locationId;
+            return this;
+        }
 
+        public ProfitAndLossFilter build() {
             return new ProfitAndLossFilter(
-                customerId, startDate, endDate);
+                customerId, startDate, endDate,
+                locationId);
         }
 
     }

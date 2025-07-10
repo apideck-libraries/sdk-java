@@ -26,6 +26,8 @@ import com.apideck.unify.operations.SmsMessagesDeleteOperation;
 import com.apideck.unify.operations.SmsMessagesOneOperation;
 import com.apideck.unify.operations.SmsMessagesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesAllResponse list(SmsMessagesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public SmsMessagesAllResponse list(@Nonnull SmsMessagesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Messages {
      * @throws Exception if the API call fails
      */
     public SmsMessagesAllResponse list(
-            SmsMessagesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull SmsMessagesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
               = new SmsMessagesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesAddResponse create(SmsMessagesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public SmsMessagesAddResponse create(@Nonnull SmsMessagesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Messages {
      * @throws Exception if the API call fails
      */
     public SmsMessagesAddResponse create(
-            SmsMessagesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull SmsMessagesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
               = new SmsMessagesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesOneResponse get(SmsMessagesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public SmsMessagesOneResponse get(@Nonnull SmsMessagesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Messages {
      * @throws Exception if the API call fails
      */
     public SmsMessagesOneResponse get(
-            SmsMessagesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull SmsMessagesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
               = new SmsMessagesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public SmsMessagesUpdateResponse update(@Nonnull SmsMessagesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Messages {
      * @throws Exception if the API call fails
      */
     public SmsMessagesUpdateResponse update(
-            SmsMessagesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull SmsMessagesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
               = new SmsMessagesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public SmsMessagesDeleteResponse delete(@Nonnull SmsMessagesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Messages {
      * @throws Exception if the API call fails
      */
     public SmsMessagesDeleteResponse delete(
-            SmsMessagesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull SmsMessagesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
               = new SmsMessagesDeleteOperation(
                 sdkConfiguration,

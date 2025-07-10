@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -60,14 +59,14 @@ public class EmployeeJobInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * Unit of measurement for employee compensation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_unit")
-    private JsonNullable<? extends PaymentUnit> paymentUnit;
+    private JsonNullable<PaymentUnit> paymentUnit;
 
     /**
      * The date on which the employee was hired by the organization
@@ -95,155 +94,138 @@ public class EmployeeJobInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends EmployeeJobStatus> status;
+    private JsonNullable<EmployeeJobStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location")
-    private Optional<? extends Address> location;
+    private Address location;
 
     @JsonCreator
     public EmployeeJobInput(
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("role") JsonNullable<String> role,
-            @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
-            @JsonProperty("end_date") JsonNullable<LocalDate> endDate,
-            @JsonProperty("compensation_rate") JsonNullable<Double> compensationRate,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("payment_unit") JsonNullable<? extends PaymentUnit> paymentUnit,
-            @JsonProperty("hired_at") JsonNullable<LocalDate> hiredAt,
-            @JsonProperty("is_primary") JsonNullable<Boolean> isPrimary,
-            @JsonProperty("is_manager") JsonNullable<Boolean> isManager,
-            @JsonProperty("status") JsonNullable<? extends EmployeeJobStatus> status,
-            @JsonProperty("location") Optional<? extends Address> location) {
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(role, "role");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(compensationRate, "compensationRate");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
-        Utils.checkNotNull(hiredAt, "hiredAt");
-        Utils.checkNotNull(isPrimary, "isPrimary");
-        Utils.checkNotNull(isManager, "isManager");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(location, "location");
-        this.title = title;
-        this.role = role;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.compensationRate = compensationRate;
-        this.currency = currency;
-        this.paymentUnit = paymentUnit;
-        this.hiredAt = hiredAt;
-        this.isPrimary = isPrimary;
-        this.isManager = isManager;
-        this.status = status;
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("role") @Nullable JsonNullable<String> role,
+            @JsonProperty("start_date") @Nullable JsonNullable<LocalDate> startDate,
+            @JsonProperty("end_date") @Nullable JsonNullable<LocalDate> endDate,
+            @JsonProperty("compensation_rate") @Nullable JsonNullable<Double> compensationRate,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("payment_unit") @Nullable JsonNullable<PaymentUnit> paymentUnit,
+            @JsonProperty("hired_at") @Nullable JsonNullable<LocalDate> hiredAt,
+            @JsonProperty("is_primary") @Nullable JsonNullable<Boolean> isPrimary,
+            @JsonProperty("is_manager") @Nullable JsonNullable<Boolean> isManager,
+            @JsonProperty("status") @Nullable JsonNullable<EmployeeJobStatus> status,
+            @JsonProperty("location") @Nullable Address location) {
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.role = Optional.ofNullable(role)
+            .orElse(JsonNullable.undefined());
+        this.startDate = Optional.ofNullable(startDate)
+            .orElse(JsonNullable.undefined());
+        this.endDate = Optional.ofNullable(endDate)
+            .orElse(JsonNullable.undefined());
+        this.compensationRate = Optional.ofNullable(compensationRate)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.paymentUnit = Optional.ofNullable(paymentUnit)
+            .orElse(JsonNullable.undefined());
+        this.hiredAt = Optional.ofNullable(hiredAt)
+            .orElse(JsonNullable.undefined());
+        this.isPrimary = Optional.ofNullable(isPrimary)
+            .orElse(JsonNullable.undefined());
+        this.isManager = Optional.ofNullable(isManager)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
         this.location = location;
     }
     
     public EmployeeJobInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The position and responsibilities of the person within the organization.
      */
-    @JsonIgnore
     public JsonNullable<String> role() {
-        return role;
+        return this.role;
     }
 
     /**
      * The date on which the employee starts working in their current job role.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> startDate() {
-        return startDate;
+        return this.startDate;
     }
 
     /**
      * The date on which the employee leaves or is expected to leave their current job role.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     /**
      * The rate of pay for the employee in their current job role.
      */
-    @JsonIgnore
     public JsonNullable<Double> compensationRate() {
-        return compensationRate;
+        return this.compensationRate;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * Unit of measurement for employee compensation.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<PaymentUnit> paymentUnit() {
-        return (JsonNullable<PaymentUnit>) paymentUnit;
+        return this.paymentUnit;
     }
 
     /**
      * The date on which the employee was hired by the organization
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> hiredAt() {
-        return hiredAt;
+        return this.hiredAt;
     }
 
     /**
      * Indicates whether this the employee's primary job.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> isPrimary() {
-        return isPrimary;
+        return this.isPrimary;
     }
 
     /**
      * Indicates whether this the employee has a manager role.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> isManager() {
-        return isManager;
+        return this.isManager;
     }
 
     /**
      * Indicates the status of the job.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EmployeeJobStatus> status() {
-        return (JsonNullable<EmployeeJobStatus>) status;
+        return this.status;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> location() {
-        return (Optional<Address>) location;
+        return Optional.ofNullable(this.location);
     }
 
     public static Builder builder() {
@@ -254,213 +236,107 @@ public class EmployeeJobInput {
     /**
      * The job title of the person.
      */
-    public EmployeeJobInput withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public EmployeeJobInput withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public EmployeeJobInput withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * The position and responsibilities of the person within the organization.
      */
-    public EmployeeJobInput withRole(String role) {
-        Utils.checkNotNull(role, "role");
+    public EmployeeJobInput withRole(@Nullable String role) {
         this.role = JsonNullable.of(role);
         return this;
     }
 
-    /**
-     * The position and responsibilities of the person within the organization.
-     */
-    public EmployeeJobInput withRole(JsonNullable<String> role) {
-        Utils.checkNotNull(role, "role");
-        this.role = role;
-        return this;
-    }
 
     /**
      * The date on which the employee starts working in their current job role.
      */
-    public EmployeeJobInput withStartDate(LocalDate startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public EmployeeJobInput withStartDate(@Nullable LocalDate startDate) {
         this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
-    /**
-     * The date on which the employee starts working in their current job role.
-     */
-    public EmployeeJobInput withStartDate(JsonNullable<LocalDate> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
-        return this;
-    }
 
     /**
      * The date on which the employee leaves or is expected to leave their current job role.
      */
-    public EmployeeJobInput withEndDate(LocalDate endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public EmployeeJobInput withEndDate(@Nullable LocalDate endDate) {
         this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
-    /**
-     * The date on which the employee leaves or is expected to leave their current job role.
-     */
-    public EmployeeJobInput withEndDate(JsonNullable<LocalDate> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
 
     /**
      * The rate of pay for the employee in their current job role.
      */
-    public EmployeeJobInput withCompensationRate(double compensationRate) {
-        Utils.checkNotNull(compensationRate, "compensationRate");
+    public EmployeeJobInput withCompensationRate(@Nullable Double compensationRate) {
         this.compensationRate = JsonNullable.of(compensationRate);
         return this;
     }
 
-    /**
-     * The rate of pay for the employee in their current job role.
-     */
-    public EmployeeJobInput withCompensationRate(JsonNullable<Double> compensationRate) {
-        Utils.checkNotNull(compensationRate, "compensationRate");
-        this.compensationRate = compensationRate;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public EmployeeJobInput withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public EmployeeJobInput withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public EmployeeJobInput withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * Unit of measurement for employee compensation.
      */
-    public EmployeeJobInput withPaymentUnit(PaymentUnit paymentUnit) {
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
+    public EmployeeJobInput withPaymentUnit(@Nullable PaymentUnit paymentUnit) {
         this.paymentUnit = JsonNullable.of(paymentUnit);
         return this;
     }
 
-    /**
-     * Unit of measurement for employee compensation.
-     */
-    public EmployeeJobInput withPaymentUnit(JsonNullable<? extends PaymentUnit> paymentUnit) {
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
-        this.paymentUnit = paymentUnit;
-        return this;
-    }
 
     /**
      * The date on which the employee was hired by the organization
      */
-    public EmployeeJobInput withHiredAt(LocalDate hiredAt) {
-        Utils.checkNotNull(hiredAt, "hiredAt");
+    public EmployeeJobInput withHiredAt(@Nullable LocalDate hiredAt) {
         this.hiredAt = JsonNullable.of(hiredAt);
         return this;
     }
 
-    /**
-     * The date on which the employee was hired by the organization
-     */
-    public EmployeeJobInput withHiredAt(JsonNullable<LocalDate> hiredAt) {
-        Utils.checkNotNull(hiredAt, "hiredAt");
-        this.hiredAt = hiredAt;
-        return this;
-    }
 
     /**
      * Indicates whether this the employee's primary job.
      */
-    public EmployeeJobInput withIsPrimary(boolean isPrimary) {
-        Utils.checkNotNull(isPrimary, "isPrimary");
+    public EmployeeJobInput withIsPrimary(@Nullable Boolean isPrimary) {
         this.isPrimary = JsonNullable.of(isPrimary);
         return this;
     }
 
-    /**
-     * Indicates whether this the employee's primary job.
-     */
-    public EmployeeJobInput withIsPrimary(JsonNullable<Boolean> isPrimary) {
-        Utils.checkNotNull(isPrimary, "isPrimary");
-        this.isPrimary = isPrimary;
-        return this;
-    }
 
     /**
      * Indicates whether this the employee has a manager role.
      */
-    public EmployeeJobInput withIsManager(boolean isManager) {
-        Utils.checkNotNull(isManager, "isManager");
+    public EmployeeJobInput withIsManager(@Nullable Boolean isManager) {
         this.isManager = JsonNullable.of(isManager);
         return this;
     }
 
-    /**
-     * Indicates whether this the employee has a manager role.
-     */
-    public EmployeeJobInput withIsManager(JsonNullable<Boolean> isManager) {
-        Utils.checkNotNull(isManager, "isManager");
-        this.isManager = isManager;
-        return this;
-    }
 
     /**
      * Indicates the status of the job.
      */
-    public EmployeeJobInput withStatus(EmployeeJobStatus status) {
-        Utils.checkNotNull(status, "status");
+    public EmployeeJobInput withStatus(@Nullable EmployeeJobStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Indicates the status of the job.
-     */
-    public EmployeeJobInput withStatus(JsonNullable<? extends EmployeeJobStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
-    public EmployeeJobInput withLocation(Address location) {
-        Utils.checkNotNull(location, "location");
-        this.location = Optional.ofNullable(location);
-        return this;
-    }
-
-
-    public EmployeeJobInput withLocation(Optional<? extends Address> location) {
-        Utils.checkNotNull(location, "location");
+    public EmployeeJobInput withLocation(@Nullable Address location) {
         this.location = location;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -515,258 +391,128 @@ public class EmployeeJobInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> role = JsonNullable.undefined();
+        private JsonNullable<String> role;
 
-        private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> startDate;
 
-        private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> endDate;
 
-        private JsonNullable<Double> compensationRate = JsonNullable.undefined();
+        private JsonNullable<Double> compensationRate;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<? extends PaymentUnit> paymentUnit = JsonNullable.undefined();
+        private JsonNullable<PaymentUnit> paymentUnit;
 
-        private JsonNullable<LocalDate> hiredAt = JsonNullable.undefined();
+        private JsonNullable<LocalDate> hiredAt;
 
-        private JsonNullable<Boolean> isPrimary = JsonNullable.undefined();
+        private JsonNullable<Boolean> isPrimary;
 
-        private JsonNullable<Boolean> isManager = JsonNullable.undefined();
+        private JsonNullable<Boolean> isManager;
 
-        private JsonNullable<? extends EmployeeJobStatus> status = JsonNullable.undefined();
+        private JsonNullable<EmployeeJobStatus> status;
 
-        private Optional<? extends Address> location = Optional.empty();
+        private Address location;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * The position and responsibilities of the person within the organization.
          */
-        public Builder role(String role) {
-            Utils.checkNotNull(role, "role");
+        public Builder role(@Nullable String role) {
             this.role = JsonNullable.of(role);
             return this;
         }
 
         /**
-         * The position and responsibilities of the person within the organization.
-         */
-        public Builder role(JsonNullable<String> role) {
-            Utils.checkNotNull(role, "role");
-            this.role = role;
-            return this;
-        }
-
-
-        /**
          * The date on which the employee starts working in their current job role.
          */
-        public Builder startDate(LocalDate startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable LocalDate startDate) {
             this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
-         * The date on which the employee starts working in their current job role.
-         */
-        public Builder startDate(JsonNullable<LocalDate> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = startDate;
-            return this;
-        }
-
-
-        /**
          * The date on which the employee leaves or is expected to leave their current job role.
          */
-        public Builder endDate(LocalDate endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable LocalDate endDate) {
             this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
-         * The date on which the employee leaves or is expected to leave their current job role.
-         */
-        public Builder endDate(JsonNullable<LocalDate> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
-            return this;
-        }
-
-
-        /**
          * The rate of pay for the employee in their current job role.
          */
-        public Builder compensationRate(double compensationRate) {
-            Utils.checkNotNull(compensationRate, "compensationRate");
+        public Builder compensationRate(@Nullable Double compensationRate) {
             this.compensationRate = JsonNullable.of(compensationRate);
             return this;
         }
 
         /**
-         * The rate of pay for the employee in their current job role.
-         */
-        public Builder compensationRate(JsonNullable<Double> compensationRate) {
-            Utils.checkNotNull(compensationRate, "compensationRate");
-            this.compensationRate = compensationRate;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * Unit of measurement for employee compensation.
          */
-        public Builder paymentUnit(PaymentUnit paymentUnit) {
-            Utils.checkNotNull(paymentUnit, "paymentUnit");
+        public Builder paymentUnit(@Nullable PaymentUnit paymentUnit) {
             this.paymentUnit = JsonNullable.of(paymentUnit);
             return this;
         }
 
         /**
-         * Unit of measurement for employee compensation.
-         */
-        public Builder paymentUnit(JsonNullable<? extends PaymentUnit> paymentUnit) {
-            Utils.checkNotNull(paymentUnit, "paymentUnit");
-            this.paymentUnit = paymentUnit;
-            return this;
-        }
-
-
-        /**
          * The date on which the employee was hired by the organization
          */
-        public Builder hiredAt(LocalDate hiredAt) {
-            Utils.checkNotNull(hiredAt, "hiredAt");
+        public Builder hiredAt(@Nullable LocalDate hiredAt) {
             this.hiredAt = JsonNullable.of(hiredAt);
             return this;
         }
 
         /**
-         * The date on which the employee was hired by the organization
-         */
-        public Builder hiredAt(JsonNullable<LocalDate> hiredAt) {
-            Utils.checkNotNull(hiredAt, "hiredAt");
-            this.hiredAt = hiredAt;
-            return this;
-        }
-
-
-        /**
          * Indicates whether this the employee's primary job.
          */
-        public Builder isPrimary(boolean isPrimary) {
-            Utils.checkNotNull(isPrimary, "isPrimary");
+        public Builder isPrimary(@Nullable Boolean isPrimary) {
             this.isPrimary = JsonNullable.of(isPrimary);
             return this;
         }
 
         /**
-         * Indicates whether this the employee's primary job.
-         */
-        public Builder isPrimary(JsonNullable<Boolean> isPrimary) {
-            Utils.checkNotNull(isPrimary, "isPrimary");
-            this.isPrimary = isPrimary;
-            return this;
-        }
-
-
-        /**
          * Indicates whether this the employee has a manager role.
          */
-        public Builder isManager(boolean isManager) {
-            Utils.checkNotNull(isManager, "isManager");
+        public Builder isManager(@Nullable Boolean isManager) {
             this.isManager = JsonNullable.of(isManager);
             return this;
         }
 
         /**
-         * Indicates whether this the employee has a manager role.
-         */
-        public Builder isManager(JsonNullable<Boolean> isManager) {
-            Utils.checkNotNull(isManager, "isManager");
-            this.isManager = isManager;
-            return this;
-        }
-
-
-        /**
          * Indicates the status of the job.
          */
-        public Builder status(EmployeeJobStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable EmployeeJobStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        /**
-         * Indicates the status of the job.
-         */
-        public Builder status(JsonNullable<? extends EmployeeJobStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        public Builder location(Address location) {
-            Utils.checkNotNull(location, "location");
-            this.location = Optional.ofNullable(location);
-            return this;
-        }
-
-        public Builder location(Optional<? extends Address> location) {
-            Utils.checkNotNull(location, "location");
+        public Builder location(@Nullable Address location) {
             this.location = location;
             return this;
         }
 
         public EmployeeJobInput build() {
-
             return new EmployeeJobInput(
                 title, role, startDate,
                 endDate, compensationRate, currency,

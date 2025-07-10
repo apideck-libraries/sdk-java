@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -42,43 +43,40 @@ public class EcommerceDiscount {
 
     @JsonCreator
     public EcommerceDiscount(
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("amount") JsonNullable<String> amount,
-            @JsonProperty("percentage") JsonNullable<String> percentage) {
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(percentage, "percentage");
-        this.code = code;
-        this.amount = amount;
-        this.percentage = percentage;
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("amount") @Nullable JsonNullable<String> amount,
+            @JsonProperty("percentage") @Nullable JsonNullable<String> percentage) {
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.amount = Optional.ofNullable(amount)
+            .orElse(JsonNullable.undefined());
+        this.percentage = Optional.ofNullable(percentage)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceDiscount() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * The code used to apply the discount.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * The fixed amount of the discount.
      */
-    @JsonIgnore
     public JsonNullable<String> amount() {
-        return amount;
+        return this.amount;
     }
 
     /**
      * The percentage of the discount.
      */
-    @JsonIgnore
     public JsonNullable<String> percentage() {
-        return percentage;
+        return this.percentage;
     }
 
     public static Builder builder() {
@@ -89,56 +87,29 @@ public class EcommerceDiscount {
     /**
      * The code used to apply the discount.
      */
-    public EcommerceDiscount withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public EcommerceDiscount withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * The code used to apply the discount.
-     */
-    public EcommerceDiscount withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * The fixed amount of the discount.
      */
-    public EcommerceDiscount withAmount(String amount) {
-        Utils.checkNotNull(amount, "amount");
+    public EcommerceDiscount withAmount(@Nullable String amount) {
         this.amount = JsonNullable.of(amount);
         return this;
     }
 
-    /**
-     * The fixed amount of the discount.
-     */
-    public EcommerceDiscount withAmount(JsonNullable<String> amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = amount;
-        return this;
-    }
 
     /**
      * The percentage of the discount.
      */
-    public EcommerceDiscount withPercentage(String percentage) {
-        Utils.checkNotNull(percentage, "percentage");
+    public EcommerceDiscount withPercentage(@Nullable String percentage) {
         this.percentage = JsonNullable.of(percentage);
         return this;
     }
 
-    /**
-     * The percentage of the discount.
-     */
-    public EcommerceDiscount withPercentage(JsonNullable<String> percentage) {
-        Utils.checkNotNull(percentage, "percentage");
-        this.percentage = percentage;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -172,75 +143,41 @@ public class EcommerceDiscount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<String> amount = JsonNullable.undefined();
+        private JsonNullable<String> amount;
 
-        private JsonNullable<String> percentage = JsonNullable.undefined();
+        private JsonNullable<String> percentage;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The code used to apply the discount.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * The code used to apply the discount.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * The fixed amount of the discount.
          */
-        public Builder amount(String amount) {
-            Utils.checkNotNull(amount, "amount");
+        public Builder amount(@Nullable String amount) {
             this.amount = JsonNullable.of(amount);
             return this;
         }
 
         /**
-         * The fixed amount of the discount.
-         */
-        public Builder amount(JsonNullable<String> amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = amount;
-            return this;
-        }
-
-
-        /**
          * The percentage of the discount.
          */
-        public Builder percentage(String percentage) {
-            Utils.checkNotNull(percentage, "percentage");
+        public Builder percentage(@Nullable String percentage) {
             this.percentage = JsonNullable.of(percentage);
             return this;
         }
 
-        /**
-         * The percentage of the discount.
-         */
-        public Builder percentage(JsonNullable<String> percentage) {
-            Utils.checkNotNull(percentage, "percentage");
-            this.percentage = percentage;
-            return this;
-        }
-
         public EcommerceDiscount build() {
-
             return new EcommerceDiscount(
                 code, amount, percentage);
         }

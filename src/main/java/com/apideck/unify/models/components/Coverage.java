@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,82 +22,73 @@ public class Coverage {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_id")
-    private Optional<String> downstreamId;
+    private String downstreamId;
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_name")
-    private Optional<String> downstreamName;
+    private String downstreamName;
 
     /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination_supported")
-    private Optional<Boolean> paginationSupported;
+    private Boolean paginationSupported;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pagination")
-    private Optional<? extends PaginationCoverage> pagination;
+    private PaginationCoverage pagination;
 
     /**
      * List of supported operations on the resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_operations")
-    private Optional<? extends List<String>> supportedOperations;
+    private List<String> supportedOperations;
 
     /**
      * Supported filters on the list endpoint of the resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_filters")
-    private Optional<? extends List<String>> supportedFilters;
+    private List<String> supportedFilters;
 
     /**
      * Supported sorting properties on the list endpoint of the resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_sort_by")
-    private Optional<? extends List<String>> supportedSortBy;
+    private List<String> supportedSortBy;
 
     /**
      * Supported fields on the detail endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_fields")
-    private Optional<? extends List<SupportedProperty>> supportedFields;
+    private List<SupportedProperty> supportedFields;
 
     /**
      * Supported fields on the list endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_list_fields")
-    private Optional<? extends List<SupportedProperty>> supportedListFields;
+    private List<SupportedProperty> supportedListFields;
 
     @JsonCreator
     public Coverage(
-            @JsonProperty("downstream_id") Optional<String> downstreamId,
-            @JsonProperty("downstream_name") Optional<String> downstreamName,
-            @JsonProperty("pagination_supported") Optional<Boolean> paginationSupported,
-            @JsonProperty("pagination") Optional<? extends PaginationCoverage> pagination,
-            @JsonProperty("supported_operations") Optional<? extends List<String>> supportedOperations,
-            @JsonProperty("supported_filters") Optional<? extends List<String>> supportedFilters,
-            @JsonProperty("supported_sort_by") Optional<? extends List<String>> supportedSortBy,
-            @JsonProperty("supported_fields") Optional<? extends List<SupportedProperty>> supportedFields,
-            @JsonProperty("supported_list_fields") Optional<? extends List<SupportedProperty>> supportedListFields) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(downstreamName, "downstreamName");
-        Utils.checkNotNull(paginationSupported, "paginationSupported");
-        Utils.checkNotNull(pagination, "pagination");
-        Utils.checkNotNull(supportedOperations, "supportedOperations");
-        Utils.checkNotNull(supportedFilters, "supportedFilters");
-        Utils.checkNotNull(supportedSortBy, "supportedSortBy");
-        Utils.checkNotNull(supportedFields, "supportedFields");
-        Utils.checkNotNull(supportedListFields, "supportedListFields");
+            @JsonProperty("downstream_id") @Nullable String downstreamId,
+            @JsonProperty("downstream_name") @Nullable String downstreamName,
+            @JsonProperty("pagination_supported") @Nullable Boolean paginationSupported,
+            @JsonProperty("pagination") @Nullable PaginationCoverage pagination,
+            @JsonProperty("supported_operations") @Nullable List<String> supportedOperations,
+            @JsonProperty("supported_filters") @Nullable List<String> supportedFilters,
+            @JsonProperty("supported_sort_by") @Nullable List<String> supportedSortBy,
+            @JsonProperty("supported_fields") @Nullable List<SupportedProperty> supportedFields,
+            @JsonProperty("supported_list_fields") @Nullable List<SupportedProperty> supportedListFields) {
         this.downstreamId = downstreamId;
         this.downstreamName = downstreamName;
         this.paginationSupported = paginationSupported;
@@ -111,84 +101,69 @@ public class Coverage {
     }
     
     public Coverage() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * ID of the resource in the Connector's API (downstream)
      */
-    @JsonIgnore
     public Optional<String> downstreamId() {
-        return downstreamId;
+        return Optional.ofNullable(this.downstreamId);
     }
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
-    @JsonIgnore
     public Optional<String> downstreamName() {
-        return downstreamName;
+        return Optional.ofNullable(this.downstreamName);
     }
 
     /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
      */
-    @JsonIgnore
     public Optional<Boolean> paginationSupported() {
-        return paginationSupported;
+        return Optional.ofNullable(this.paginationSupported);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<PaginationCoverage> pagination() {
-        return (Optional<PaginationCoverage>) pagination;
+        return Optional.ofNullable(this.pagination);
     }
 
     /**
      * List of supported operations on the resource.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> supportedOperations() {
-        return (Optional<List<String>>) supportedOperations;
+        return Optional.ofNullable(this.supportedOperations);
     }
 
     /**
      * Supported filters on the list endpoint of the resource.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> supportedFilters() {
-        return (Optional<List<String>>) supportedFilters;
+        return Optional.ofNullable(this.supportedFilters);
     }
 
     /**
      * Supported sorting properties on the list endpoint of the resource.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> supportedSortBy() {
-        return (Optional<List<String>>) supportedSortBy;
+        return Optional.ofNullable(this.supportedSortBy);
     }
 
     /**
      * Supported fields on the detail endpoint.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SupportedProperty>> supportedFields() {
-        return (Optional<List<SupportedProperty>>) supportedFields;
+        return Optional.ofNullable(this.supportedFields);
     }
 
     /**
      * Supported fields on the list endpoint.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SupportedProperty>> supportedListFields() {
-        return (Optional<List<SupportedProperty>>) supportedListFields;
+        return Optional.ofNullable(this.supportedListFields);
     }
 
     public static Builder builder() {
@@ -199,167 +174,80 @@ public class Coverage {
     /**
      * ID of the resource in the Connector's API (downstream)
      */
-    public Coverage withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = Optional.ofNullable(downstreamId);
-        return this;
-    }
-
-
-    /**
-     * ID of the resource in the Connector's API (downstream)
-     */
-    public Coverage withDownstreamId(Optional<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public Coverage withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = downstreamId;
         return this;
     }
 
-    /**
-     * Name of the resource in the Connector's API (downstream)
-     */
-    public Coverage withDownstreamName(String downstreamName) {
-        Utils.checkNotNull(downstreamName, "downstreamName");
-        this.downstreamName = Optional.ofNullable(downstreamName);
-        return this;
-    }
-
 
     /**
      * Name of the resource in the Connector's API (downstream)
      */
-    public Coverage withDownstreamName(Optional<String> downstreamName) {
-        Utils.checkNotNull(downstreamName, "downstreamName");
+    public Coverage withDownstreamName(@Nullable String downstreamName) {
         this.downstreamName = downstreamName;
         return this;
     }
 
-    /**
-     * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
-     */
-    public Coverage withPaginationSupported(boolean paginationSupported) {
-        Utils.checkNotNull(paginationSupported, "paginationSupported");
-        this.paginationSupported = Optional.ofNullable(paginationSupported);
-        return this;
-    }
-
 
     /**
      * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
      */
-    public Coverage withPaginationSupported(Optional<Boolean> paginationSupported) {
-        Utils.checkNotNull(paginationSupported, "paginationSupported");
+    public Coverage withPaginationSupported(@Nullable Boolean paginationSupported) {
         this.paginationSupported = paginationSupported;
         return this;
     }
 
-    public Coverage withPagination(PaginationCoverage pagination) {
-        Utils.checkNotNull(pagination, "pagination");
-        this.pagination = Optional.ofNullable(pagination);
-        return this;
-    }
 
-
-    public Coverage withPagination(Optional<? extends PaginationCoverage> pagination) {
-        Utils.checkNotNull(pagination, "pagination");
+    public Coverage withPagination(@Nullable PaginationCoverage pagination) {
         this.pagination = pagination;
         return this;
     }
 
-    /**
-     * List of supported operations on the resource.
-     */
-    public Coverage withSupportedOperations(List<String> supportedOperations) {
-        Utils.checkNotNull(supportedOperations, "supportedOperations");
-        this.supportedOperations = Optional.ofNullable(supportedOperations);
-        return this;
-    }
-
 
     /**
      * List of supported operations on the resource.
      */
-    public Coverage withSupportedOperations(Optional<? extends List<String>> supportedOperations) {
-        Utils.checkNotNull(supportedOperations, "supportedOperations");
+    public Coverage withSupportedOperations(@Nullable List<String> supportedOperations) {
         this.supportedOperations = supportedOperations;
         return this;
     }
 
-    /**
-     * Supported filters on the list endpoint of the resource.
-     */
-    public Coverage withSupportedFilters(List<String> supportedFilters) {
-        Utils.checkNotNull(supportedFilters, "supportedFilters");
-        this.supportedFilters = Optional.ofNullable(supportedFilters);
-        return this;
-    }
-
 
     /**
      * Supported filters on the list endpoint of the resource.
      */
-    public Coverage withSupportedFilters(Optional<? extends List<String>> supportedFilters) {
-        Utils.checkNotNull(supportedFilters, "supportedFilters");
+    public Coverage withSupportedFilters(@Nullable List<String> supportedFilters) {
         this.supportedFilters = supportedFilters;
         return this;
     }
 
-    /**
-     * Supported sorting properties on the list endpoint of the resource.
-     */
-    public Coverage withSupportedSortBy(List<String> supportedSortBy) {
-        Utils.checkNotNull(supportedSortBy, "supportedSortBy");
-        this.supportedSortBy = Optional.ofNullable(supportedSortBy);
-        return this;
-    }
-
 
     /**
      * Supported sorting properties on the list endpoint of the resource.
      */
-    public Coverage withSupportedSortBy(Optional<? extends List<String>> supportedSortBy) {
-        Utils.checkNotNull(supportedSortBy, "supportedSortBy");
+    public Coverage withSupportedSortBy(@Nullable List<String> supportedSortBy) {
         this.supportedSortBy = supportedSortBy;
         return this;
     }
 
-    /**
-     * Supported fields on the detail endpoint.
-     */
-    public Coverage withSupportedFields(List<SupportedProperty> supportedFields) {
-        Utils.checkNotNull(supportedFields, "supportedFields");
-        this.supportedFields = Optional.ofNullable(supportedFields);
-        return this;
-    }
-
 
     /**
      * Supported fields on the detail endpoint.
      */
-    public Coverage withSupportedFields(Optional<? extends List<SupportedProperty>> supportedFields) {
-        Utils.checkNotNull(supportedFields, "supportedFields");
+    public Coverage withSupportedFields(@Nullable List<SupportedProperty> supportedFields) {
         this.supportedFields = supportedFields;
         return this;
     }
 
-    /**
-     * Supported fields on the list endpoint.
-     */
-    public Coverage withSupportedListFields(List<SupportedProperty> supportedListFields) {
-        Utils.checkNotNull(supportedListFields, "supportedListFields");
-        this.supportedListFields = Optional.ofNullable(supportedListFields);
-        return this;
-    }
-
 
     /**
      * Supported fields on the list endpoint.
      */
-    public Coverage withSupportedListFields(Optional<? extends List<SupportedProperty>> supportedListFields) {
-        Utils.checkNotNull(supportedListFields, "supportedListFields");
+    public Coverage withSupportedListFields(@Nullable List<SupportedProperty> supportedListFields) {
         this.supportedListFields = supportedListFields;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -407,195 +295,98 @@ public class Coverage {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> downstreamId = Optional.empty();
+        private String downstreamId;
 
-        private Optional<String> downstreamName = Optional.empty();
+        private String downstreamName;
 
-        private Optional<Boolean> paginationSupported = Optional.empty();
+        private Boolean paginationSupported;
 
-        private Optional<? extends PaginationCoverage> pagination = Optional.empty();
+        private PaginationCoverage pagination;
 
-        private Optional<? extends List<String>> supportedOperations = Optional.empty();
+        private List<String> supportedOperations;
 
-        private Optional<? extends List<String>> supportedFilters = Optional.empty();
+        private List<String> supportedFilters;
 
-        private Optional<? extends List<String>> supportedSortBy = Optional.empty();
+        private List<String> supportedSortBy;
 
-        private Optional<? extends List<SupportedProperty>> supportedFields = Optional.empty();
+        private List<SupportedProperty> supportedFields;
 
-        private Optional<? extends List<SupportedProperty>> supportedListFields = Optional.empty();
+        private List<SupportedProperty> supportedListFields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the resource in the Connector's API (downstream)
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = Optional.ofNullable(downstreamId);
-            return this;
-        }
-
-        /**
-         * ID of the resource in the Connector's API (downstream)
-         */
-        public Builder downstreamId(Optional<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = downstreamId;
             return this;
         }
 
-
         /**
          * Name of the resource in the Connector's API (downstream)
          */
-        public Builder downstreamName(String downstreamName) {
-            Utils.checkNotNull(downstreamName, "downstreamName");
-            this.downstreamName = Optional.ofNullable(downstreamName);
-            return this;
-        }
-
-        /**
-         * Name of the resource in the Connector's API (downstream)
-         */
-        public Builder downstreamName(Optional<String> downstreamName) {
-            Utils.checkNotNull(downstreamName, "downstreamName");
+        public Builder downstreamName(@Nullable String downstreamName) {
             this.downstreamName = downstreamName;
             return this;
         }
 
-
         /**
          * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
          */
-        public Builder paginationSupported(boolean paginationSupported) {
-            Utils.checkNotNull(paginationSupported, "paginationSupported");
-            this.paginationSupported = Optional.ofNullable(paginationSupported);
-            return this;
-        }
-
-        /**
-         * Indicates if pagination (cursor and limit parameters) is supported on the list endpoint of the resource.
-         */
-        public Builder paginationSupported(Optional<Boolean> paginationSupported) {
-            Utils.checkNotNull(paginationSupported, "paginationSupported");
+        public Builder paginationSupported(@Nullable Boolean paginationSupported) {
             this.paginationSupported = paginationSupported;
             return this;
         }
 
-
-        public Builder pagination(PaginationCoverage pagination) {
-            Utils.checkNotNull(pagination, "pagination");
-            this.pagination = Optional.ofNullable(pagination);
-            return this;
-        }
-
-        public Builder pagination(Optional<? extends PaginationCoverage> pagination) {
-            Utils.checkNotNull(pagination, "pagination");
+        public Builder pagination(@Nullable PaginationCoverage pagination) {
             this.pagination = pagination;
             return this;
         }
 
-
         /**
          * List of supported operations on the resource.
          */
-        public Builder supportedOperations(List<String> supportedOperations) {
-            Utils.checkNotNull(supportedOperations, "supportedOperations");
-            this.supportedOperations = Optional.ofNullable(supportedOperations);
-            return this;
-        }
-
-        /**
-         * List of supported operations on the resource.
-         */
-        public Builder supportedOperations(Optional<? extends List<String>> supportedOperations) {
-            Utils.checkNotNull(supportedOperations, "supportedOperations");
+        public Builder supportedOperations(@Nullable List<String> supportedOperations) {
             this.supportedOperations = supportedOperations;
             return this;
         }
 
-
         /**
          * Supported filters on the list endpoint of the resource.
          */
-        public Builder supportedFilters(List<String> supportedFilters) {
-            Utils.checkNotNull(supportedFilters, "supportedFilters");
-            this.supportedFilters = Optional.ofNullable(supportedFilters);
-            return this;
-        }
-
-        /**
-         * Supported filters on the list endpoint of the resource.
-         */
-        public Builder supportedFilters(Optional<? extends List<String>> supportedFilters) {
-            Utils.checkNotNull(supportedFilters, "supportedFilters");
+        public Builder supportedFilters(@Nullable List<String> supportedFilters) {
             this.supportedFilters = supportedFilters;
             return this;
         }
 
-
         /**
          * Supported sorting properties on the list endpoint of the resource.
          */
-        public Builder supportedSortBy(List<String> supportedSortBy) {
-            Utils.checkNotNull(supportedSortBy, "supportedSortBy");
-            this.supportedSortBy = Optional.ofNullable(supportedSortBy);
-            return this;
-        }
-
-        /**
-         * Supported sorting properties on the list endpoint of the resource.
-         */
-        public Builder supportedSortBy(Optional<? extends List<String>> supportedSortBy) {
-            Utils.checkNotNull(supportedSortBy, "supportedSortBy");
+        public Builder supportedSortBy(@Nullable List<String> supportedSortBy) {
             this.supportedSortBy = supportedSortBy;
             return this;
         }
 
-
         /**
          * Supported fields on the detail endpoint.
          */
-        public Builder supportedFields(List<SupportedProperty> supportedFields) {
-            Utils.checkNotNull(supportedFields, "supportedFields");
-            this.supportedFields = Optional.ofNullable(supportedFields);
-            return this;
-        }
-
-        /**
-         * Supported fields on the detail endpoint.
-         */
-        public Builder supportedFields(Optional<? extends List<SupportedProperty>> supportedFields) {
-            Utils.checkNotNull(supportedFields, "supportedFields");
+        public Builder supportedFields(@Nullable List<SupportedProperty> supportedFields) {
             this.supportedFields = supportedFields;
             return this;
         }
 
-
         /**
          * Supported fields on the list endpoint.
          */
-        public Builder supportedListFields(List<SupportedProperty> supportedListFields) {
-            Utils.checkNotNull(supportedListFields, "supportedListFields");
-            this.supportedListFields = Optional.ofNullable(supportedListFields);
-            return this;
-        }
-
-        /**
-         * Supported fields on the list endpoint.
-         */
-        public Builder supportedListFields(Optional<? extends List<SupportedProperty>> supportedListFields) {
-            Utils.checkNotNull(supportedListFields, "supportedListFields");
+        public Builder supportedListFields(@Nullable List<SupportedProperty> supportedListFields) {
             this.supportedListFields = supportedListFields;
             return this;
         }
 
         public Coverage build() {
-
             return new Coverage(
                 downstreamId, downstreamName, paginationSupported,
                 pagination, supportedOperations, supportedFilters,

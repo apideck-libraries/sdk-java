@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.VaultConnectionSettingsUpdateResponse
 import com.apideck.unify.operations.VaultConnectionSettingsAllOperation;
 import com.apideck.unify.operations.VaultConnectionSettingsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class ConnectionSettings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public VaultConnectionSettingsAllResponse list(@Nonnull VaultConnectionSettingsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class ConnectionSettings {
      * @throws Exception if the API call fails
      */
     public VaultConnectionSettingsAllResponse list(
-            VaultConnectionSettingsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultConnectionSettingsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
               = new VaultConnectionSettingsAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class ConnectionSettings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public VaultConnectionSettingsUpdateResponse update(@Nonnull VaultConnectionSettingsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class ConnectionSettings {
      * @throws Exception if the API call fails
      */
     public VaultConnectionSettingsUpdateResponse update(
-            VaultConnectionSettingsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultConnectionSettingsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
               = new VaultConnectionSettingsUpdateOperation(
                 sdkConfiguration,

@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,64 +22,57 @@ public class UnifiedApis {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<? extends UnifiedApiId> id;
+    private UnifiedApiId id;
 
     /**
      * Name of the API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_only")
-    private Optional<Boolean> authOnly;
+    private Boolean authOnly;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_scopes")
-    private Optional<? extends List<ConnectorOauthScopes>> oauthScopes;
+    private List<ConnectorOauthScopes> oauthScopes;
 
     /**
      * List of resources that are supported on the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_resources")
-    private Optional<? extends List<LinkedConnectorResource>> supportedResources;
+    private List<LinkedConnectorResource> supportedResources;
 
     /**
      * List of resources that are not supported on the downstream.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downstream_unsupported_resources")
-    private Optional<? extends List<String>> downstreamUnsupportedResources;
+    private List<String> downstreamUnsupportedResources;
 
     /**
      * List of events that are supported on the connector for this Unified API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_events")
-    private Optional<? extends List<ConnectorEvent>> supportedEvents;
+    private List<ConnectorEvent> supportedEvents;
 
     @JsonCreator
     public UnifiedApis(
-            @JsonProperty("id") Optional<? extends UnifiedApiId> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("auth_only") Optional<Boolean> authOnly,
-            @JsonProperty("oauth_scopes") Optional<? extends List<ConnectorOauthScopes>> oauthScopes,
-            @JsonProperty("supported_resources") Optional<? extends List<LinkedConnectorResource>> supportedResources,
-            @JsonProperty("downstream_unsupported_resources") Optional<? extends List<String>> downstreamUnsupportedResources,
-            @JsonProperty("supported_events") Optional<? extends List<ConnectorEvent>> supportedEvents) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(authOnly, "authOnly");
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
-        Utils.checkNotNull(supportedResources, "supportedResources");
-        Utils.checkNotNull(downstreamUnsupportedResources, "downstreamUnsupportedResources");
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
+            @JsonProperty("id") @Nullable UnifiedApiId id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("auth_only") @Nullable Boolean authOnly,
+            @JsonProperty("oauth_scopes") @Nullable List<ConnectorOauthScopes> oauthScopes,
+            @JsonProperty("supported_resources") @Nullable List<LinkedConnectorResource> supportedResources,
+            @JsonProperty("downstream_unsupported_resources") @Nullable List<String> downstreamUnsupportedResources,
+            @JsonProperty("supported_events") @Nullable List<ConnectorEvent> supportedEvents) {
         this.id = id;
         this.name = name;
         this.authOnly = authOnly;
@@ -91,67 +83,55 @@ public class UnifiedApis {
     }
     
     public UnifiedApis() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Name of Apideck Unified API
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnifiedApiId> id() {
-        return (Optional<UnifiedApiId>) id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the API.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
-    @JsonIgnore
     public Optional<Boolean> authOnly() {
-        return authOnly;
+        return Optional.ofNullable(this.authOnly);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectorOauthScopes>> oauthScopes() {
-        return (Optional<List<ConnectorOauthScopes>>) oauthScopes;
+        return Optional.ofNullable(this.oauthScopes);
     }
 
     /**
      * List of resources that are supported on the connector.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LinkedConnectorResource>> supportedResources() {
-        return (Optional<List<LinkedConnectorResource>>) supportedResources;
+        return Optional.ofNullable(this.supportedResources);
     }
 
     /**
      * List of resources that are not supported on the downstream.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> downstreamUnsupportedResources() {
-        return (Optional<List<String>>) downstreamUnsupportedResources;
+        return Optional.ofNullable(this.downstreamUnsupportedResources);
     }
 
     /**
      * List of events that are supported on the connector for this Unified API.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectorEvent>> supportedEvents() {
-        return (Optional<List<ConnectorEvent>>) supportedEvents;
+        return Optional.ofNullable(this.supportedEvents);
     }
 
     public static Builder builder() {
@@ -162,129 +142,62 @@ public class UnifiedApis {
     /**
      * Name of Apideck Unified API
      */
-    public UnifiedApis withId(UnifiedApiId id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * Name of Apideck Unified API
-     */
-    public UnifiedApis withId(Optional<? extends UnifiedApiId> id) {
-        Utils.checkNotNull(id, "id");
+    public UnifiedApis withId(@Nullable UnifiedApiId id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the API.
-     */
-    public UnifiedApis withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the API.
      */
-    public UnifiedApis withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public UnifiedApis withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
-     */
-    public UnifiedApis withAuthOnly(boolean authOnly) {
-        Utils.checkNotNull(authOnly, "authOnly");
-        this.authOnly = Optional.ofNullable(authOnly);
-        return this;
-    }
-
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
-    public UnifiedApis withAuthOnly(Optional<Boolean> authOnly) {
-        Utils.checkNotNull(authOnly, "authOnly");
+    public UnifiedApis withAuthOnly(@Nullable Boolean authOnly) {
         this.authOnly = authOnly;
         return this;
     }
 
-    public UnifiedApis withOauthScopes(List<ConnectorOauthScopes> oauthScopes) {
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
-        this.oauthScopes = Optional.ofNullable(oauthScopes);
-        return this;
-    }
 
-
-    public UnifiedApis withOauthScopes(Optional<? extends List<ConnectorOauthScopes>> oauthScopes) {
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
+    public UnifiedApis withOauthScopes(@Nullable List<ConnectorOauthScopes> oauthScopes) {
         this.oauthScopes = oauthScopes;
         return this;
     }
 
-    /**
-     * List of resources that are supported on the connector.
-     */
-    public UnifiedApis withSupportedResources(List<LinkedConnectorResource> supportedResources) {
-        Utils.checkNotNull(supportedResources, "supportedResources");
-        this.supportedResources = Optional.ofNullable(supportedResources);
-        return this;
-    }
-
 
     /**
      * List of resources that are supported on the connector.
      */
-    public UnifiedApis withSupportedResources(Optional<? extends List<LinkedConnectorResource>> supportedResources) {
-        Utils.checkNotNull(supportedResources, "supportedResources");
+    public UnifiedApis withSupportedResources(@Nullable List<LinkedConnectorResource> supportedResources) {
         this.supportedResources = supportedResources;
         return this;
     }
 
-    /**
-     * List of resources that are not supported on the downstream.
-     */
-    public UnifiedApis withDownstreamUnsupportedResources(List<String> downstreamUnsupportedResources) {
-        Utils.checkNotNull(downstreamUnsupportedResources, "downstreamUnsupportedResources");
-        this.downstreamUnsupportedResources = Optional.ofNullable(downstreamUnsupportedResources);
-        return this;
-    }
-
 
     /**
      * List of resources that are not supported on the downstream.
      */
-    public UnifiedApis withDownstreamUnsupportedResources(Optional<? extends List<String>> downstreamUnsupportedResources) {
-        Utils.checkNotNull(downstreamUnsupportedResources, "downstreamUnsupportedResources");
+    public UnifiedApis withDownstreamUnsupportedResources(@Nullable List<String> downstreamUnsupportedResources) {
         this.downstreamUnsupportedResources = downstreamUnsupportedResources;
         return this;
     }
 
-    /**
-     * List of events that are supported on the connector for this Unified API.
-     */
-    public UnifiedApis withSupportedEvents(List<ConnectorEvent> supportedEvents) {
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
-        this.supportedEvents = Optional.ofNullable(supportedEvents);
-        return this;
-    }
-
 
     /**
      * List of events that are supported on the connector for this Unified API.
      */
-    public UnifiedApis withSupportedEvents(Optional<? extends List<ConnectorEvent>> supportedEvents) {
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
+    public UnifiedApis withSupportedEvents(@Nullable List<ConnectorEvent> supportedEvents) {
         this.supportedEvents = supportedEvents;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -328,153 +241,78 @@ public class UnifiedApis {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends UnifiedApiId> id = Optional.empty();
+        private UnifiedApiId id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<Boolean> authOnly = Optional.empty();
+        private Boolean authOnly;
 
-        private Optional<? extends List<ConnectorOauthScopes>> oauthScopes = Optional.empty();
+        private List<ConnectorOauthScopes> oauthScopes;
 
-        private Optional<? extends List<LinkedConnectorResource>> supportedResources = Optional.empty();
+        private List<LinkedConnectorResource> supportedResources;
 
-        private Optional<? extends List<String>> downstreamUnsupportedResources = Optional.empty();
+        private List<String> downstreamUnsupportedResources;
 
-        private Optional<? extends List<ConnectorEvent>> supportedEvents = Optional.empty();
+        private List<ConnectorEvent> supportedEvents;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of Apideck Unified API
          */
-        public Builder id(UnifiedApiId id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * Name of Apideck Unified API
-         */
-        public Builder id(Optional<? extends UnifiedApiId> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable UnifiedApiId id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the API.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the API.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
          */
-        public Builder authOnly(boolean authOnly) {
-            Utils.checkNotNull(authOnly, "authOnly");
-            this.authOnly = Optional.ofNullable(authOnly);
-            return this;
-        }
-
-        /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
-         */
-        public Builder authOnly(Optional<Boolean> authOnly) {
-            Utils.checkNotNull(authOnly, "authOnly");
+        public Builder authOnly(@Nullable Boolean authOnly) {
             this.authOnly = authOnly;
             return this;
         }
 
-
-        public Builder oauthScopes(List<ConnectorOauthScopes> oauthScopes) {
-            Utils.checkNotNull(oauthScopes, "oauthScopes");
-            this.oauthScopes = Optional.ofNullable(oauthScopes);
-            return this;
-        }
-
-        public Builder oauthScopes(Optional<? extends List<ConnectorOauthScopes>> oauthScopes) {
-            Utils.checkNotNull(oauthScopes, "oauthScopes");
+        public Builder oauthScopes(@Nullable List<ConnectorOauthScopes> oauthScopes) {
             this.oauthScopes = oauthScopes;
             return this;
         }
 
-
         /**
          * List of resources that are supported on the connector.
          */
-        public Builder supportedResources(List<LinkedConnectorResource> supportedResources) {
-            Utils.checkNotNull(supportedResources, "supportedResources");
-            this.supportedResources = Optional.ofNullable(supportedResources);
-            return this;
-        }
-
-        /**
-         * List of resources that are supported on the connector.
-         */
-        public Builder supportedResources(Optional<? extends List<LinkedConnectorResource>> supportedResources) {
-            Utils.checkNotNull(supportedResources, "supportedResources");
+        public Builder supportedResources(@Nullable List<LinkedConnectorResource> supportedResources) {
             this.supportedResources = supportedResources;
             return this;
         }
 
-
         /**
          * List of resources that are not supported on the downstream.
          */
-        public Builder downstreamUnsupportedResources(List<String> downstreamUnsupportedResources) {
-            Utils.checkNotNull(downstreamUnsupportedResources, "downstreamUnsupportedResources");
-            this.downstreamUnsupportedResources = Optional.ofNullable(downstreamUnsupportedResources);
-            return this;
-        }
-
-        /**
-         * List of resources that are not supported on the downstream.
-         */
-        public Builder downstreamUnsupportedResources(Optional<? extends List<String>> downstreamUnsupportedResources) {
-            Utils.checkNotNull(downstreamUnsupportedResources, "downstreamUnsupportedResources");
+        public Builder downstreamUnsupportedResources(@Nullable List<String> downstreamUnsupportedResources) {
             this.downstreamUnsupportedResources = downstreamUnsupportedResources;
             return this;
         }
 
-
         /**
          * List of events that are supported on the connector for this Unified API.
          */
-        public Builder supportedEvents(List<ConnectorEvent> supportedEvents) {
-            Utils.checkNotNull(supportedEvents, "supportedEvents");
-            this.supportedEvents = Optional.ofNullable(supportedEvents);
-            return this;
-        }
-
-        /**
-         * List of events that are supported on the connector for this Unified API.
-         */
-        public Builder supportedEvents(Optional<? extends List<ConnectorEvent>> supportedEvents) {
-            Utils.checkNotNull(supportedEvents, "supportedEvents");
+        public Builder supportedEvents(@Nullable List<ConnectorEvent> supportedEvents) {
             this.supportedEvents = supportedEvents;
             return this;
         }
 
         public UnifiedApis build() {
-
             return new UnifiedApis(
                 id, name, authOnly,
                 oauthScopes, supportedResources, downstreamUnsupportedResources,

@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.LocalDate;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -32,32 +33,30 @@ public class ProbationPeriod {
 
     @JsonCreator
     public ProbationPeriod(
-            @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
-            @JsonProperty("end_date") JsonNullable<LocalDate> endDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        this.startDate = startDate;
-        this.endDate = endDate;
+            @JsonProperty("start_date") @Nullable JsonNullable<LocalDate> startDate,
+            @JsonProperty("end_date") @Nullable JsonNullable<LocalDate> endDate) {
+        this.startDate = Optional.ofNullable(startDate)
+            .orElse(JsonNullable.undefined());
+        this.endDate = Optional.ofNullable(endDate)
+            .orElse(JsonNullable.undefined());
     }
     
     public ProbationPeriod() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null);
     }
 
     /**
      * The date that the employee started their probation period at the company.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> startDate() {
-        return startDate;
+        return this.startDate;
     }
 
     /**
      * The date that the employee ended their probation period at the company.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     public static Builder builder() {
@@ -68,38 +67,20 @@ public class ProbationPeriod {
     /**
      * The date that the employee started their probation period at the company.
      */
-    public ProbationPeriod withStartDate(LocalDate startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public ProbationPeriod withStartDate(@Nullable LocalDate startDate) {
         this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
-    /**
-     * The date that the employee started their probation period at the company.
-     */
-    public ProbationPeriod withStartDate(JsonNullable<LocalDate> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
-        return this;
-    }
 
     /**
      * The date that the employee ended their probation period at the company.
      */
-    public ProbationPeriod withEndDate(LocalDate endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public ProbationPeriod withEndDate(@Nullable LocalDate endDate) {
         this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
-    /**
-     * The date that the employee ended their probation period at the company.
-     */
-    public ProbationPeriod withEndDate(JsonNullable<LocalDate> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,54 +112,31 @@ public class ProbationPeriod {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> startDate;
 
-        private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> endDate;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The date that the employee started their probation period at the company.
          */
-        public Builder startDate(LocalDate startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable LocalDate startDate) {
             this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
-         * The date that the employee started their probation period at the company.
-         */
-        public Builder startDate(JsonNullable<LocalDate> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = startDate;
-            return this;
-        }
-
-
-        /**
          * The date that the employee ended their probation period at the company.
          */
-        public Builder endDate(LocalDate endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable LocalDate endDate) {
             this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
-        /**
-         * The date that the employee ended their probation period at the company.
-         */
-        public Builder endDate(JsonNullable<LocalDate> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
-            return this;
-        }
-
         public ProbationPeriod build() {
-
             return new ProbationPeriod(
                 startDate, endDate);
         }

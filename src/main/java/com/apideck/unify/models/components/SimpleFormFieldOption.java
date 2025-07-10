@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -23,7 +23,7 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends SimpleFormFieldOptionValue> value;
+    private SimpleFormFieldOptionValue value;
 
 
     @JsonProperty("option_type")
@@ -31,35 +31,30 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
     @JsonCreator
     public SimpleFormFieldOption(
-            @JsonProperty("label") String label,
-            @JsonProperty("value") Optional<? extends SimpleFormFieldOptionValue> value,
-            @JsonProperty("option_type") OptionType optionType) {
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(optionType, "optionType");
-        this.label = label;
+            @JsonProperty("label") @Nonnull String label,
+            @JsonProperty("value") @Nullable SimpleFormFieldOptionValue value,
+            @JsonProperty("option_type") @Nonnull OptionType optionType) {
+        this.label = Optional.ofNullable(label)
+            .orElseThrow(() -> new IllegalArgumentException("label cannot be null"));
         this.value = value;
-        this.optionType = optionType;
+        this.optionType = Optional.ofNullable(optionType)
+            .orElseThrow(() -> new IllegalArgumentException("optionType cannot be null"));
     }
     
     public SimpleFormFieldOption(
-            String label,
-            OptionType optionType) {
-        this(label, Optional.empty(), optionType);
+            @Nonnull String label,
+            @Nonnull OptionType optionType) {
+        this(label, null, optionType);
     }
 
-    @JsonIgnore
     public String label() {
-        return label;
+        return this.label;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SimpleFormFieldOptionValue> value() {
-        return (Optional<SimpleFormFieldOptionValue>) value;
+        return Optional.ofNullable(this.value);
     }
 
-    @JsonIgnore
     @Override
     public String optionType() {
         return Utils.discriminatorToString(optionType);
@@ -70,30 +65,23 @@ public class SimpleFormFieldOption implements FormFieldOption {
     }
 
 
-    public SimpleFormFieldOption withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = label;
-        return this;
-    }
-
-    public SimpleFormFieldOption withValue(SimpleFormFieldOptionValue value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
+    public SimpleFormFieldOption withLabel(@Nonnull String label) {
+        this.label = Utils.checkNotNull(label, "label");
         return this;
     }
 
 
-    public SimpleFormFieldOption withValue(Optional<? extends SimpleFormFieldOptionValue> value) {
-        Utils.checkNotNull(value, "value");
+    public SimpleFormFieldOption withValue(@Nullable SimpleFormFieldOptionValue value) {
         this.value = value;
         return this;
     }
 
-    public SimpleFormFieldOption withOptionType(OptionType optionType) {
-        Utils.checkNotNull(optionType, "optionType");
-        this.optionType = optionType;
+
+    public SimpleFormFieldOption withOptionType(@Nonnull OptionType optionType) {
+        this.optionType = Utils.checkNotNull(optionType, "optionType");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -129,7 +117,7 @@ public class SimpleFormFieldOption implements FormFieldOption {
 
         private String label;
 
-        private Optional<? extends SimpleFormFieldOptionValue> value = Optional.empty();
+        private SimpleFormFieldOptionValue value;
 
         private OptionType optionType;
 
@@ -137,35 +125,22 @@ public class SimpleFormFieldOption implements FormFieldOption {
           // force use of static builder() method
         }
 
-
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = label;
+        public Builder label(@Nonnull String label) {
+            this.label = Utils.checkNotNull(label, "label");
             return this;
         }
 
-
-        public Builder value(SimpleFormFieldOptionValue value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        public Builder value(Optional<? extends SimpleFormFieldOptionValue> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable SimpleFormFieldOptionValue value) {
             this.value = value;
             return this;
         }
 
-
-        public Builder optionType(OptionType optionType) {
-            Utils.checkNotNull(optionType, "optionType");
-            this.optionType = optionType;
+        public Builder optionType(@Nonnull OptionType optionType) {
+            this.optionType = Utils.checkNotNull(optionType, "optionType");
             return this;
         }
 
         public SimpleFormFieldOption build() {
-
             return new SimpleFormFieldOption(
                 label, value, optionType);
         }

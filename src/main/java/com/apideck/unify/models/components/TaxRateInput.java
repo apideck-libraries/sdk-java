@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -31,7 +30,7 @@ public class TaxRateInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Tax code assigned to identify this tax rate.
@@ -78,7 +77,7 @@ public class TaxRateInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("components")
-    private JsonNullable<? extends List<Components>> components;
+    private JsonNullable<List<Components>> components;
 
     /**
      * Tax type used to indicate the source of tax collected or paid
@@ -106,7 +105,7 @@ public class TaxRateInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends TaxRateStatus> status;
+    private JsonNullable<TaxRateStatus> status;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -120,217 +119,191 @@ public class TaxRateInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     /**
      * The subsidiaries this belongs to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
-    private Optional<? extends List<Subsidiaries>> subsidiaries;
+    private List<Subsidiaries> subsidiaries;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     @JsonCreator
     public TaxRateInput(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("effective_tax_rate") JsonNullable<Double> effectiveTaxRate,
-            @JsonProperty("total_tax_rate") JsonNullable<Double> totalTaxRate,
-            @JsonProperty("tax_payable_account_id") JsonNullable<String> taxPayableAccountId,
-            @JsonProperty("tax_remitted_account_id") JsonNullable<String> taxRemittedAccountId,
-            @JsonProperty("components") JsonNullable<? extends List<Components>> components,
-            @JsonProperty("type") JsonNullable<String> type,
-            @JsonProperty("report_tax_type") JsonNullable<String> reportTaxType,
-            @JsonProperty("original_tax_rate_id") JsonNullable<String> originalTaxRateId,
-            @JsonProperty("status") JsonNullable<? extends TaxRateStatus> status,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiaries") Optional<? extends List<Subsidiaries>> subsidiaries,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
-        Utils.checkNotNull(totalTaxRate, "totalTaxRate");
-        Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
-        Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
-        Utils.checkNotNull(components, "components");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(reportTaxType, "reportTaxType");
-        Utils.checkNotNull(originalTaxRateId, "originalTaxRateId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
-        Utils.checkNotNull(customFields, "customFields");
-        this.id = id;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("effective_tax_rate") @Nullable JsonNullable<Double> effectiveTaxRate,
+            @JsonProperty("total_tax_rate") @Nullable JsonNullable<Double> totalTaxRate,
+            @JsonProperty("tax_payable_account_id") @Nullable JsonNullable<String> taxPayableAccountId,
+            @JsonProperty("tax_remitted_account_id") @Nullable JsonNullable<String> taxRemittedAccountId,
+            @JsonProperty("components") @Nullable JsonNullable<List<Components>> components,
+            @JsonProperty("type") @Nullable JsonNullable<String> type,
+            @JsonProperty("report_tax_type") @Nullable JsonNullable<String> reportTaxType,
+            @JsonProperty("original_tax_rate_id") @Nullable JsonNullable<String> originalTaxRateId,
+            @JsonProperty("status") @Nullable JsonNullable<TaxRateStatus> status,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough,
+            @JsonProperty("subsidiaries") @Nullable List<Subsidiaries> subsidiaries,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
         this.name = name;
-        this.code = code;
-        this.description = description;
-        this.effectiveTaxRate = effectiveTaxRate;
-        this.totalTaxRate = totalTaxRate;
-        this.taxPayableAccountId = taxPayableAccountId;
-        this.taxRemittedAccountId = taxRemittedAccountId;
-        this.components = components;
-        this.type = type;
-        this.reportTaxType = reportTaxType;
-        this.originalTaxRateId = originalTaxRateId;
-        this.status = status;
-        this.rowVersion = rowVersion;
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.effectiveTaxRate = Optional.ofNullable(effectiveTaxRate)
+            .orElse(JsonNullable.undefined());
+        this.totalTaxRate = Optional.ofNullable(totalTaxRate)
+            .orElse(JsonNullable.undefined());
+        this.taxPayableAccountId = Optional.ofNullable(taxPayableAccountId)
+            .orElse(JsonNullable.undefined());
+        this.taxRemittedAccountId = Optional.ofNullable(taxRemittedAccountId)
+            .orElse(JsonNullable.undefined());
+        this.components = Optional.ofNullable(components)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.reportTaxType = Optional.ofNullable(reportTaxType)
+            .orElse(JsonNullable.undefined());
+        this.originalTaxRateId = Optional.ofNullable(originalTaxRateId)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
         this.subsidiaries = subsidiaries;
         this.customFields = customFields;
     }
     
     public TaxRateInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * ID assigned to identify this tax rate.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Name assigned to identify this tax rate.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Tax code assigned to identify this tax rate.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * Description of tax rate
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Effective tax rate
      */
-    @JsonIgnore
     public JsonNullable<Double> effectiveTaxRate() {
-        return effectiveTaxRate;
+        return this.effectiveTaxRate;
     }
 
     /**
      * Not compounded sum of the components of a tax rate
      */
-    @JsonIgnore
     public JsonNullable<Double> totalTaxRate() {
-        return totalTaxRate;
+        return this.totalTaxRate;
     }
 
     /**
      * Unique identifier for the account for tax collected.
      */
-    @JsonIgnore
     public JsonNullable<String> taxPayableAccountId() {
-        return taxPayableAccountId;
+        return this.taxPayableAccountId;
     }
 
     /**
      * Unique identifier for the account for tax remitted.
      */
-    @JsonIgnore
     public JsonNullable<String> taxRemittedAccountId() {
-        return taxRemittedAccountId;
+        return this.taxRemittedAccountId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<Components>> components() {
-        return (JsonNullable<List<Components>>) components;
+        return this.components;
     }
 
     /**
      * Tax type used to indicate the source of tax collected or paid
      */
-    @JsonIgnore
     public JsonNullable<String> type() {
-        return type;
+        return this.type;
     }
 
     /**
      * Report Tax type to aggregate tax collected or paid for reporting purposes
      */
-    @JsonIgnore
     public JsonNullable<String> reportTaxType() {
-        return reportTaxType;
+        return this.reportTaxType;
     }
 
     /**
      * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
      */
-    @JsonIgnore
     public JsonNullable<String> originalTaxRateId() {
-        return originalTaxRateId;
+        return this.originalTaxRateId;
     }
 
     /**
      * Tax rate status
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<TaxRateStatus> status() {
-        return (JsonNullable<TaxRateStatus>) status;
+        return this.status;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The subsidiaries this belongs to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Subsidiaries>> subsidiaries() {
-        return (Optional<List<Subsidiaries>>) subsidiaries;
+        return Optional.ofNullable(this.subsidiaries);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     public static Builder builder() {
@@ -341,300 +314,149 @@ public class TaxRateInput {
     /**
      * ID assigned to identify this tax rate.
      */
-    public TaxRateInput withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public TaxRateInput withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * ID assigned to identify this tax rate.
-     */
-    public TaxRateInput withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Name assigned to identify this tax rate.
      */
-    public TaxRateInput withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name assigned to identify this tax rate.
-     */
-    public TaxRateInput withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public TaxRateInput withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
+
     /**
      * Tax code assigned to identify this tax rate.
      */
-    public TaxRateInput withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public TaxRateInput withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * Tax code assigned to identify this tax rate.
-     */
-    public TaxRateInput withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * Description of tax rate
      */
-    public TaxRateInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public TaxRateInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * Description of tax rate
-     */
-    public TaxRateInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Effective tax rate
      */
-    public TaxRateInput withEffectiveTaxRate(double effectiveTaxRate) {
-        Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
+    public TaxRateInput withEffectiveTaxRate(@Nullable Double effectiveTaxRate) {
         this.effectiveTaxRate = JsonNullable.of(effectiveTaxRate);
         return this;
     }
 
-    /**
-     * Effective tax rate
-     */
-    public TaxRateInput withEffectiveTaxRate(JsonNullable<Double> effectiveTaxRate) {
-        Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
-        this.effectiveTaxRate = effectiveTaxRate;
-        return this;
-    }
 
     /**
      * Not compounded sum of the components of a tax rate
      */
-    public TaxRateInput withTotalTaxRate(double totalTaxRate) {
-        Utils.checkNotNull(totalTaxRate, "totalTaxRate");
+    public TaxRateInput withTotalTaxRate(@Nullable Double totalTaxRate) {
         this.totalTaxRate = JsonNullable.of(totalTaxRate);
         return this;
     }
 
-    /**
-     * Not compounded sum of the components of a tax rate
-     */
-    public TaxRateInput withTotalTaxRate(JsonNullable<Double> totalTaxRate) {
-        Utils.checkNotNull(totalTaxRate, "totalTaxRate");
-        this.totalTaxRate = totalTaxRate;
-        return this;
-    }
 
     /**
      * Unique identifier for the account for tax collected.
      */
-    public TaxRateInput withTaxPayableAccountId(String taxPayableAccountId) {
-        Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
+    public TaxRateInput withTaxPayableAccountId(@Nullable String taxPayableAccountId) {
         this.taxPayableAccountId = JsonNullable.of(taxPayableAccountId);
         return this;
     }
 
-    /**
-     * Unique identifier for the account for tax collected.
-     */
-    public TaxRateInput withTaxPayableAccountId(JsonNullable<String> taxPayableAccountId) {
-        Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
-        this.taxPayableAccountId = taxPayableAccountId;
-        return this;
-    }
 
     /**
      * Unique identifier for the account for tax remitted.
      */
-    public TaxRateInput withTaxRemittedAccountId(String taxRemittedAccountId) {
-        Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
+    public TaxRateInput withTaxRemittedAccountId(@Nullable String taxRemittedAccountId) {
         this.taxRemittedAccountId = JsonNullable.of(taxRemittedAccountId);
         return this;
     }
 
-    /**
-     * Unique identifier for the account for tax remitted.
-     */
-    public TaxRateInput withTaxRemittedAccountId(JsonNullable<String> taxRemittedAccountId) {
-        Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
-        this.taxRemittedAccountId = taxRemittedAccountId;
-        return this;
-    }
 
-    public TaxRateInput withComponents(List<Components> components) {
-        Utils.checkNotNull(components, "components");
+    public TaxRateInput withComponents(@Nullable List<Components> components) {
         this.components = JsonNullable.of(components);
         return this;
     }
 
-    public TaxRateInput withComponents(JsonNullable<? extends List<Components>> components) {
-        Utils.checkNotNull(components, "components");
-        this.components = components;
-        return this;
-    }
 
     /**
      * Tax type used to indicate the source of tax collected or paid
      */
-    public TaxRateInput withType(String type) {
-        Utils.checkNotNull(type, "type");
+    public TaxRateInput withType(@Nullable String type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Tax type used to indicate the source of tax collected or paid
-     */
-    public TaxRateInput withType(JsonNullable<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * Report Tax type to aggregate tax collected or paid for reporting purposes
      */
-    public TaxRateInput withReportTaxType(String reportTaxType) {
-        Utils.checkNotNull(reportTaxType, "reportTaxType");
+    public TaxRateInput withReportTaxType(@Nullable String reportTaxType) {
         this.reportTaxType = JsonNullable.of(reportTaxType);
         return this;
     }
 
-    /**
-     * Report Tax type to aggregate tax collected or paid for reporting purposes
-     */
-    public TaxRateInput withReportTaxType(JsonNullable<String> reportTaxType) {
-        Utils.checkNotNull(reportTaxType, "reportTaxType");
-        this.reportTaxType = reportTaxType;
-        return this;
-    }
 
     /**
      * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
      */
-    public TaxRateInput withOriginalTaxRateId(String originalTaxRateId) {
-        Utils.checkNotNull(originalTaxRateId, "originalTaxRateId");
+    public TaxRateInput withOriginalTaxRateId(@Nullable String originalTaxRateId) {
         this.originalTaxRateId = JsonNullable.of(originalTaxRateId);
         return this;
     }
 
-    /**
-     * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
-     */
-    public TaxRateInput withOriginalTaxRateId(JsonNullable<String> originalTaxRateId) {
-        Utils.checkNotNull(originalTaxRateId, "originalTaxRateId");
-        this.originalTaxRateId = originalTaxRateId;
-        return this;
-    }
 
     /**
      * Tax rate status
      */
-    public TaxRateInput withStatus(TaxRateStatus status) {
-        Utils.checkNotNull(status, "status");
+    public TaxRateInput withStatus(@Nullable TaxRateStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Tax rate status
-     */
-    public TaxRateInput withStatus(JsonNullable<? extends TaxRateStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public TaxRateInput withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public TaxRateInput withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public TaxRateInput withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public TaxRateInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public TaxRateInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public TaxRateInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
-    /**
-     * The subsidiaries this belongs to.
-     */
-    public TaxRateInput withSubsidiaries(List<Subsidiaries> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
-        this.subsidiaries = Optional.ofNullable(subsidiaries);
-        return this;
-    }
-
 
     /**
      * The subsidiaries this belongs to.
      */
-    public TaxRateInput withSubsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
+    public TaxRateInput withSubsidiaries(@Nullable List<Subsidiaries> subsidiaries) {
         this.subsidiaries = subsidiaries;
         return this;
     }
 
-    public TaxRateInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
 
-
-    public TaxRateInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public TaxRateInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -701,357 +523,175 @@ public class TaxRateInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<Double> effectiveTaxRate = JsonNullable.undefined();
+        private JsonNullable<Double> effectiveTaxRate;
 
-        private JsonNullable<Double> totalTaxRate = JsonNullable.undefined();
+        private JsonNullable<Double> totalTaxRate;
 
-        private JsonNullable<String> taxPayableAccountId = JsonNullable.undefined();
+        private JsonNullable<String> taxPayableAccountId;
 
-        private JsonNullable<String> taxRemittedAccountId = JsonNullable.undefined();
+        private JsonNullable<String> taxRemittedAccountId;
 
-        private JsonNullable<? extends List<Components>> components = JsonNullable.undefined();
+        private JsonNullable<List<Components>> components;
 
-        private JsonNullable<String> type = JsonNullable.undefined();
+        private JsonNullable<String> type;
 
-        private JsonNullable<String> reportTaxType = JsonNullable.undefined();
+        private JsonNullable<String> reportTaxType;
 
-        private JsonNullable<String> originalTaxRateId = JsonNullable.undefined();
+        private JsonNullable<String> originalTaxRateId;
 
-        private JsonNullable<? extends TaxRateStatus> status = JsonNullable.undefined();
+        private JsonNullable<TaxRateStatus> status;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
-        private Optional<? extends List<Subsidiaries>> subsidiaries = Optional.empty();
+        private List<Subsidiaries> subsidiaries;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID assigned to identify this tax rate.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * ID assigned to identify this tax rate.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * Name assigned to identify this tax rate.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name assigned to identify this tax rate.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Tax code assigned to identify this tax rate.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * Tax code assigned to identify this tax rate.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * Description of tax rate
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * Description of tax rate
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Effective tax rate
          */
-        public Builder effectiveTaxRate(double effectiveTaxRate) {
-            Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
+        public Builder effectiveTaxRate(@Nullable Double effectiveTaxRate) {
             this.effectiveTaxRate = JsonNullable.of(effectiveTaxRate);
             return this;
         }
 
         /**
-         * Effective tax rate
-         */
-        public Builder effectiveTaxRate(JsonNullable<Double> effectiveTaxRate) {
-            Utils.checkNotNull(effectiveTaxRate, "effectiveTaxRate");
-            this.effectiveTaxRate = effectiveTaxRate;
-            return this;
-        }
-
-
-        /**
          * Not compounded sum of the components of a tax rate
          */
-        public Builder totalTaxRate(double totalTaxRate) {
-            Utils.checkNotNull(totalTaxRate, "totalTaxRate");
+        public Builder totalTaxRate(@Nullable Double totalTaxRate) {
             this.totalTaxRate = JsonNullable.of(totalTaxRate);
             return this;
         }
 
         /**
-         * Not compounded sum of the components of a tax rate
-         */
-        public Builder totalTaxRate(JsonNullable<Double> totalTaxRate) {
-            Utils.checkNotNull(totalTaxRate, "totalTaxRate");
-            this.totalTaxRate = totalTaxRate;
-            return this;
-        }
-
-
-        /**
          * Unique identifier for the account for tax collected.
          */
-        public Builder taxPayableAccountId(String taxPayableAccountId) {
-            Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
+        public Builder taxPayableAccountId(@Nullable String taxPayableAccountId) {
             this.taxPayableAccountId = JsonNullable.of(taxPayableAccountId);
             return this;
         }
 
         /**
-         * Unique identifier for the account for tax collected.
-         */
-        public Builder taxPayableAccountId(JsonNullable<String> taxPayableAccountId) {
-            Utils.checkNotNull(taxPayableAccountId, "taxPayableAccountId");
-            this.taxPayableAccountId = taxPayableAccountId;
-            return this;
-        }
-
-
-        /**
          * Unique identifier for the account for tax remitted.
          */
-        public Builder taxRemittedAccountId(String taxRemittedAccountId) {
-            Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
+        public Builder taxRemittedAccountId(@Nullable String taxRemittedAccountId) {
             this.taxRemittedAccountId = JsonNullable.of(taxRemittedAccountId);
             return this;
         }
 
-        /**
-         * Unique identifier for the account for tax remitted.
-         */
-        public Builder taxRemittedAccountId(JsonNullable<String> taxRemittedAccountId) {
-            Utils.checkNotNull(taxRemittedAccountId, "taxRemittedAccountId");
-            this.taxRemittedAccountId = taxRemittedAccountId;
-            return this;
-        }
-
-
-        public Builder components(List<Components> components) {
-            Utils.checkNotNull(components, "components");
+        public Builder components(@Nullable List<Components> components) {
             this.components = JsonNullable.of(components);
             return this;
         }
 
-        public Builder components(JsonNullable<? extends List<Components>> components) {
-            Utils.checkNotNull(components, "components");
-            this.components = components;
-            return this;
-        }
-
-
         /**
          * Tax type used to indicate the source of tax collected or paid
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * Tax type used to indicate the source of tax collected or paid
-         */
-        public Builder type(JsonNullable<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * Report Tax type to aggregate tax collected or paid for reporting purposes
          */
-        public Builder reportTaxType(String reportTaxType) {
-            Utils.checkNotNull(reportTaxType, "reportTaxType");
+        public Builder reportTaxType(@Nullable String reportTaxType) {
             this.reportTaxType = JsonNullable.of(reportTaxType);
             return this;
         }
 
         /**
-         * Report Tax type to aggregate tax collected or paid for reporting purposes
-         */
-        public Builder reportTaxType(JsonNullable<String> reportTaxType) {
-            Utils.checkNotNull(reportTaxType, "reportTaxType");
-            this.reportTaxType = reportTaxType;
-            return this;
-        }
-
-
-        /**
          * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
          */
-        public Builder originalTaxRateId(String originalTaxRateId) {
-            Utils.checkNotNull(originalTaxRateId, "originalTaxRateId");
+        public Builder originalTaxRateId(@Nullable String originalTaxRateId) {
             this.originalTaxRateId = JsonNullable.of(originalTaxRateId);
             return this;
         }
 
         /**
-         * ID of the original tax rate from which the new tax rate is derived. Helps to understand the relationship between corresponding tax rate entities.
-         */
-        public Builder originalTaxRateId(JsonNullable<String> originalTaxRateId) {
-            Utils.checkNotNull(originalTaxRateId, "originalTaxRateId");
-            this.originalTaxRateId = originalTaxRateId;
-            return this;
-        }
-
-
-        /**
          * Tax rate status
          */
-        public Builder status(TaxRateStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable TaxRateStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * Tax rate status
-         */
-        public Builder status(JsonNullable<? extends TaxRateStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The subsidiaries this belongs to.
          */
-        public Builder subsidiaries(List<Subsidiaries> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
-            this.subsidiaries = Optional.ofNullable(subsidiaries);
-            return this;
-        }
-
-        /**
-         * The subsidiaries this belongs to.
-         */
-        public Builder subsidiaries(Optional<? extends List<Subsidiaries>> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
+        public Builder subsidiaries(@Nullable List<Subsidiaries> subsidiaries) {
             this.subsidiaries = subsidiaries;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
         public TaxRateInput build() {
-
             return new TaxRateInput(
                 id, name, code,
                 description, effectiveTaxRate, totalTaxRate,

@@ -6,10 +6,10 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -18,26 +18,24 @@ public class InvoiceItemFilter {
      * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
      */
     @SpeakeasyMetadata("queryParam:name=type")
-    private JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type;
+    private JsonNullable<InvoiceItemFilterInvoiceItemType> type;
 
     @JsonCreator
     public InvoiceItemFilter(
-            JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
+            @Nullable JsonNullable<InvoiceItemFilterInvoiceItemType> type) {
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
     }
     
     public InvoiceItemFilter() {
-        this(JsonNullable.undefined());
+        this(null);
     }
 
     /**
      * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<InvoiceItemFilterInvoiceItemType> type() {
-        return (JsonNullable<InvoiceItemFilterInvoiceItemType>) type;
+        return this.type;
     }
 
     public static Builder builder() {
@@ -48,20 +46,11 @@ public class InvoiceItemFilter {
     /**
      * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
      */
-    public InvoiceItemFilter withType(InvoiceItemFilterInvoiceItemType type) {
-        Utils.checkNotNull(type, "type");
+    public InvoiceItemFilter withType(@Nullable InvoiceItemFilterInvoiceItemType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-     */
-    public InvoiceItemFilter withType(JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -91,33 +80,21 @@ public class InvoiceItemFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type = JsonNullable.undefined();
+        private JsonNullable<InvoiceItemFilterInvoiceItemType> type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
          */
-        public Builder type(InvoiceItemFilterInvoiceItemType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable InvoiceItemFilterInvoiceItemType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * The type of invoice item, indicating whether it is an inventory item, a service, or another type.
-         */
-        public Builder type(JsonNullable<? extends InvoiceItemFilterInvoiceItemType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
         public InvoiceItemFilter build() {
-
             return new InvoiceItemFilter(
                 type);
         }

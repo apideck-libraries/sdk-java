@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class DrivesFilter {
      * ID of the drive group to filter on
      */
     @SpeakeasyMetadata("queryParam:name=group_id")
-    private Optional<String> groupId;
+    private String groupId;
 
     @JsonCreator
     public DrivesFilter(
-            Optional<String> groupId) {
-        Utils.checkNotNull(groupId, "groupId");
+            @Nullable String groupId) {
         this.groupId = groupId;
     }
     
     public DrivesFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * ID of the drive group to filter on
      */
-    @JsonIgnore
     public Optional<String> groupId() {
-        return groupId;
+        return Optional.ofNullable(this.groupId);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class DrivesFilter {
     /**
      * ID of the drive group to filter on
      */
-    public DrivesFilter withGroupId(String groupId) {
-        Utils.checkNotNull(groupId, "groupId");
-        this.groupId = Optional.ofNullable(groupId);
-        return this;
-    }
-
-
-    /**
-     * ID of the drive group to filter on
-     */
-    public DrivesFilter withGroupId(Optional<String> groupId) {
-        Utils.checkNotNull(groupId, "groupId");
+    public DrivesFilter withGroupId(@Nullable String groupId) {
         this.groupId = groupId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class DrivesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> groupId = Optional.empty();
+        private String groupId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the drive group to filter on
          */
-        public Builder groupId(String groupId) {
-            Utils.checkNotNull(groupId, "groupId");
-            this.groupId = Optional.ofNullable(groupId);
-            return this;
-        }
-
-        /**
-         * ID of the drive group to filter on
-         */
-        public Builder groupId(Optional<String> groupId) {
-            Utils.checkNotNull(groupId, "groupId");
+        public Builder groupId(@Nullable String groupId) {
             this.groupId = groupId;
             return this;
         }
 
         public DrivesFilter build() {
-
             return new DrivesFilter(
                 groupId);
         }

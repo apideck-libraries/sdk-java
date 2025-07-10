@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class CollectionTagInput {
@@ -20,25 +20,23 @@ public class CollectionTagInput {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
 
     @JsonCreator
     public CollectionTagInput(
-            @JsonProperty("id") Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+            @JsonProperty("id") @Nullable String id) {
+        this.id = JsonNullable.of(id);
     }
     
     public CollectionTagInput() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+    public JsonNullable<String> id() {
+        return this.id;
     }
 
     public static Builder builder() {
@@ -49,21 +47,11 @@ public class CollectionTagInput {
     /**
      * A unique identifier for an object.
      */
-    public CollectionTagInput withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+    public CollectionTagInput withId(@Nullable String id) {
+        this.id = JsonNullable.of(id);
         return this;
     }
 
-
-    /**
-     * A unique identifier for an object.
-     */
-    public CollectionTagInput withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -93,33 +81,21 @@ public class CollectionTagInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
         public CollectionTagInput build() {
-
             return new CollectionTagInput(
                 id);
         }

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -30,14 +29,14 @@ public class SharedLinkInput {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("target_id")
-    private Optional<String> targetId;
+    private JsonNullable<String> targetId;
 
     /**
      * The scope of the shared link.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scope")
-    private JsonNullable<? extends Scope> scope;
+    private JsonNullable<Scope> scope;
 
     /**
      * Optional password for the shared link.
@@ -51,72 +50,63 @@ public class SharedLinkInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public SharedLinkInput(
-            @JsonProperty("download_url") JsonNullable<String> downloadUrl,
-            @JsonProperty("target_id") Optional<String> targetId,
-            @JsonProperty("scope") JsonNullable<? extends Scope> scope,
-            @JsonProperty("password") JsonNullable<String> password,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
-        Utils.checkNotNull(targetId, "targetId");
-        Utils.checkNotNull(scope, "scope");
-        Utils.checkNotNull(password, "password");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.downloadUrl = downloadUrl;
-        this.targetId = targetId;
-        this.scope = scope;
-        this.password = password;
+            @JsonProperty("download_url") @Nullable JsonNullable<String> downloadUrl,
+            @JsonProperty("target_id") @Nullable String targetId,
+            @JsonProperty("scope") @Nullable JsonNullable<Scope> scope,
+            @JsonProperty("password") @Nullable JsonNullable<String> password,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.downloadUrl = Optional.ofNullable(downloadUrl)
+            .orElse(JsonNullable.undefined());
+        this.targetId = JsonNullable.of(targetId);
+        this.scope = Optional.ofNullable(scope)
+            .orElse(JsonNullable.undefined());
+        this.password = Optional.ofNullable(password)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public SharedLinkInput() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * The URL that can be used to download the file.
      */
-    @JsonIgnore
     public JsonNullable<String> downloadUrl() {
-        return downloadUrl;
+        return this.downloadUrl;
     }
 
     /**
      * The ID of the file or folder to link.
      */
-    @JsonIgnore
-    public Optional<String> targetId() {
-        return targetId;
+    public JsonNullable<String> targetId() {
+        return this.targetId;
     }
 
     /**
      * The scope of the shared link.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Scope> scope() {
-        return (JsonNullable<Scope>) scope;
+        return this.scope;
     }
 
     /**
      * Optional password for the shared link.
      */
-    @JsonIgnore
     public JsonNullable<String> password() {
-        return password;
+        return this.password;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -127,94 +117,47 @@ public class SharedLinkInput {
     /**
      * The URL that can be used to download the file.
      */
-    public SharedLinkInput withDownloadUrl(String downloadUrl) {
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
+    public SharedLinkInput withDownloadUrl(@Nullable String downloadUrl) {
         this.downloadUrl = JsonNullable.of(downloadUrl);
         return this;
     }
 
-    /**
-     * The URL that can be used to download the file.
-     */
-    public SharedLinkInput withDownloadUrl(JsonNullable<String> downloadUrl) {
-        Utils.checkNotNull(downloadUrl, "downloadUrl");
-        this.downloadUrl = downloadUrl;
-        return this;
-    }
 
     /**
      * The ID of the file or folder to link.
      */
-    public SharedLinkInput withTargetId(String targetId) {
-        Utils.checkNotNull(targetId, "targetId");
-        this.targetId = Optional.ofNullable(targetId);
+    public SharedLinkInput withTargetId(@Nullable String targetId) {
+        this.targetId = JsonNullable.of(targetId);
         return this;
     }
 
-
-    /**
-     * The ID of the file or folder to link.
-     */
-    public SharedLinkInput withTargetId(Optional<String> targetId) {
-        Utils.checkNotNull(targetId, "targetId");
-        this.targetId = targetId;
-        return this;
-    }
 
     /**
      * The scope of the shared link.
      */
-    public SharedLinkInput withScope(Scope scope) {
-        Utils.checkNotNull(scope, "scope");
+    public SharedLinkInput withScope(@Nullable Scope scope) {
         this.scope = JsonNullable.of(scope);
         return this;
     }
 
-    /**
-     * The scope of the shared link.
-     */
-    public SharedLinkInput withScope(JsonNullable<? extends Scope> scope) {
-        Utils.checkNotNull(scope, "scope");
-        this.scope = scope;
-        return this;
-    }
 
     /**
      * Optional password for the shared link.
      */
-    public SharedLinkInput withPassword(String password) {
-        Utils.checkNotNull(password, "password");
+    public SharedLinkInput withPassword(@Nullable String password) {
         this.password = JsonNullable.of(password);
         return this;
     }
 
-    /**
-     * Optional password for the shared link.
-     */
-    public SharedLinkInput withPassword(JsonNullable<String> password) {
-        Utils.checkNotNull(password, "password");
-        this.password = password;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public SharedLinkInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public SharedLinkInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public SharedLinkInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -253,117 +196,61 @@ public class SharedLinkInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> downloadUrl = JsonNullable.undefined();
+        private JsonNullable<String> downloadUrl;
 
-        private Optional<String> targetId = Optional.empty();
+        private String targetId;
 
-        private JsonNullable<? extends Scope> scope = JsonNullable.undefined();
+        private JsonNullable<Scope> scope;
 
-        private JsonNullable<String> password = JsonNullable.undefined();
+        private JsonNullable<String> password;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The URL that can be used to download the file.
          */
-        public Builder downloadUrl(String downloadUrl) {
-            Utils.checkNotNull(downloadUrl, "downloadUrl");
+        public Builder downloadUrl(@Nullable String downloadUrl) {
             this.downloadUrl = JsonNullable.of(downloadUrl);
             return this;
         }
 
         /**
-         * The URL that can be used to download the file.
-         */
-        public Builder downloadUrl(JsonNullable<String> downloadUrl) {
-            Utils.checkNotNull(downloadUrl, "downloadUrl");
-            this.downloadUrl = downloadUrl;
-            return this;
-        }
-
-
-        /**
          * The ID of the file or folder to link.
          */
-        public Builder targetId(String targetId) {
-            Utils.checkNotNull(targetId, "targetId");
-            this.targetId = Optional.ofNullable(targetId);
-            return this;
-        }
-
-        /**
-         * The ID of the file or folder to link.
-         */
-        public Builder targetId(Optional<String> targetId) {
-            Utils.checkNotNull(targetId, "targetId");
+        public Builder targetId(@Nullable String targetId) {
             this.targetId = targetId;
             return this;
         }
 
-
         /**
          * The scope of the shared link.
          */
-        public Builder scope(Scope scope) {
-            Utils.checkNotNull(scope, "scope");
+        public Builder scope(@Nullable Scope scope) {
             this.scope = JsonNullable.of(scope);
             return this;
         }
 
         /**
-         * The scope of the shared link.
-         */
-        public Builder scope(JsonNullable<? extends Scope> scope) {
-            Utils.checkNotNull(scope, "scope");
-            this.scope = scope;
-            return this;
-        }
-
-
-        /**
          * Optional password for the shared link.
          */
-        public Builder password(String password) {
-            Utils.checkNotNull(password, "password");
+        public Builder password(@Nullable String password) {
             this.password = JsonNullable.of(password);
             return this;
         }
 
         /**
-         * Optional password for the shared link.
-         */
-        public Builder password(JsonNullable<String> password) {
-            Utils.checkNotNull(password, "password");
-            this.password = password;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public SharedLinkInput build() {
-
             return new SharedLinkInput(
                 downloadUrl, targetId, scope,
                 password, passThrough);

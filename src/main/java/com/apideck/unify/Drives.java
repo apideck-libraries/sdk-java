@@ -26,6 +26,8 @@ import com.apideck.unify.operations.FileStorageDrivesDeleteOperation;
 import com.apideck.unify.operations.FileStorageDrivesOneOperation;
 import com.apideck.unify.operations.FileStorageDrivesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public FileStorageDrivesAllResponse list(@Nonnull FileStorageDrivesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Drives {
      * @throws Exception if the API call fails
      */
     public FileStorageDrivesAllResponse list(
-            FileStorageDrivesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDrivesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
               = new FileStorageDrivesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public FileStorageDrivesAddResponse create(@Nonnull FileStorageDrivesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Drives {
      * @throws Exception if the API call fails
      */
     public FileStorageDrivesAddResponse create(
-            FileStorageDrivesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDrivesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
               = new FileStorageDrivesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public FileStorageDrivesOneResponse get(@Nonnull FileStorageDrivesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Drives {
      * @throws Exception if the API call fails
      */
     public FileStorageDrivesOneResponse get(
-            FileStorageDrivesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDrivesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
               = new FileStorageDrivesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public FileStorageDrivesUpdateResponse update(@Nonnull FileStorageDrivesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Drives {
      * @throws Exception if the API call fails
      */
     public FileStorageDrivesUpdateResponse update(
-            FileStorageDrivesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDrivesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
               = new FileStorageDrivesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageDrivesDeleteResponse delete(@Nonnull FileStorageDrivesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Drives {
      * @throws Exception if the API call fails
      */
     public FileStorageDrivesDeleteResponse delete(
-            FileStorageDrivesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDrivesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
               = new FileStorageDrivesDeleteOperation(
                 sdkConfiguration,

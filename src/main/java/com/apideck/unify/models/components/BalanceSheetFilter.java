@@ -6,12 +6,11 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -23,45 +22,49 @@ public class BalanceSheetFilter {
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
     @Deprecated
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * The end date of the period to include in the resource.
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
-    private Optional<String> endDate;
+    private String endDate;
 
     /**
      * The number of periods to include in the resource.
      */
     @SpeakeasyMetadata("queryParam:name=period_count")
-    private Optional<Long> periodCount;
+    private Long periodCount;
 
     /**
      * The type of period to include in the resource: month, quarter, year.
      */
     @SpeakeasyMetadata("queryParam:name=period_type")
-    private Optional<? extends PeriodType> periodType;
+    private PeriodType periodType;
+
+    /**
+     * The ID of the location to include in the resource.
+     */
+    @SpeakeasyMetadata("queryParam:name=location_id")
+    private String locationId;
 
     @JsonCreator
     public BalanceSheetFilter(
-            Optional<String> startDate,
-            Optional<String> endDate,
-            Optional<Long> periodCount,
-            Optional<? extends PeriodType> periodType) {
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(periodCount, "periodCount");
-        Utils.checkNotNull(periodType, "periodType");
+            @Nullable String startDate,
+            @Nullable String endDate,
+            @Nullable Long periodCount,
+            @Nullable PeriodType periodType,
+            @Nullable String locationId) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.periodCount = periodCount;
         this.periodType = periodType;
+        this.locationId = locationId;
     }
     
     public BalanceSheetFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
@@ -70,34 +73,36 @@ public class BalanceSheetFilter {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * The end date of the period to include in the resource.
      */
-    @JsonIgnore
     public Optional<String> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
     }
 
     /**
      * The number of periods to include in the resource.
      */
-    @JsonIgnore
     public Optional<Long> periodCount() {
-        return periodCount;
+        return Optional.ofNullable(this.periodCount);
     }
 
     /**
      * The type of period to include in the resource: month, quarter, year.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<PeriodType> periodType() {
-        return (Optional<PeriodType>) periodType;
+        return Optional.ofNullable(this.periodType);
+    }
+
+    /**
+     * The ID of the location to include in the resource.
+     */
+    public Optional<String> locationId() {
+        return Optional.ofNullable(this.locationId);
     }
 
     public static Builder builder() {
@@ -111,81 +116,47 @@ public class BalanceSheetFilter {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public BalanceSheetFilter withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
-
-    /**
-     * The start date of the period to include in the resource.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public BalanceSheetFilter withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public BalanceSheetFilter withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * The end date of the period to include in the resource.
-     */
-    public BalanceSheetFilter withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * The end date of the period to include in the resource.
      */
-    public BalanceSheetFilter withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public BalanceSheetFilter withEndDate(@Nullable String endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    /**
-     * The number of periods to include in the resource.
-     */
-    public BalanceSheetFilter withPeriodCount(long periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
-        this.periodCount = Optional.ofNullable(periodCount);
-        return this;
-    }
-
 
     /**
      * The number of periods to include in the resource.
      */
-    public BalanceSheetFilter withPeriodCount(Optional<Long> periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
+    public BalanceSheetFilter withPeriodCount(@Nullable Long periodCount) {
         this.periodCount = periodCount;
         return this;
     }
 
-    /**
-     * The type of period to include in the resource: month, quarter, year.
-     */
-    public BalanceSheetFilter withPeriodType(PeriodType periodType) {
-        Utils.checkNotNull(periodType, "periodType");
-        this.periodType = Optional.ofNullable(periodType);
-        return this;
-    }
-
 
     /**
      * The type of period to include in the resource: month, quarter, year.
      */
-    public BalanceSheetFilter withPeriodType(Optional<? extends PeriodType> periodType) {
-        Utils.checkNotNull(periodType, "periodType");
+    public BalanceSheetFilter withPeriodType(@Nullable PeriodType periodType) {
         this.periodType = periodType;
         return this;
     }
+
+
+    /**
+     * The ID of the location to include in the resource.
+     */
+    public BalanceSheetFilter withLocationId(@Nullable String locationId) {
+        this.locationId = locationId;
+        return this;
+    }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -200,14 +171,15 @@ public class BalanceSheetFilter {
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
-            Utils.enhancedDeepEquals(this.periodType, other.periodType);
+            Utils.enhancedDeepEquals(this.periodType, other.periodType) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             startDate, endDate, periodCount,
-            periodType);
+            periodType, locationId);
     }
     
     @Override
@@ -216,112 +188,75 @@ public class BalanceSheetFilter {
                 "startDate", startDate,
                 "endDate", endDate,
                 "periodCount", periodCount,
-                "periodType", periodType);
+                "periodType", periodType,
+                "locationId", locationId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
         @Deprecated
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
 
-        private Optional<Long> periodCount = Optional.empty();
+        private Long periodCount;
 
-        private Optional<? extends PeriodType> periodType = Optional.empty();
+        private PeriodType periodType;
+
+        private String locationId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The start date of the period to include in the resource.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * The start date of the period to include in the resource.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * The end date of the period to include in the resource.
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * The end date of the period to include in the resource.
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
-
         /**
          * The number of periods to include in the resource.
          */
-        public Builder periodCount(long periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
-            this.periodCount = Optional.ofNullable(periodCount);
-            return this;
-        }
-
-        /**
-         * The number of periods to include in the resource.
-         */
-        public Builder periodCount(Optional<Long> periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
+        public Builder periodCount(@Nullable Long periodCount) {
             this.periodCount = periodCount;
             return this;
         }
 
-
         /**
          * The type of period to include in the resource: month, quarter, year.
          */
-        public Builder periodType(PeriodType periodType) {
-            Utils.checkNotNull(periodType, "periodType");
-            this.periodType = Optional.ofNullable(periodType);
-            return this;
-        }
-
-        /**
-         * The type of period to include in the resource: month, quarter, year.
-         */
-        public Builder periodType(Optional<? extends PeriodType> periodType) {
-            Utils.checkNotNull(periodType, "periodType");
+        public Builder periodType(@Nullable PeriodType periodType) {
             this.periodType = periodType;
             return this;
         }
 
-        public BalanceSheetFilter build() {
+        /**
+         * The ID of the location to include in the resource.
+         */
+        public Builder locationId(@Nullable String locationId) {
+            this.locationId = locationId;
+            return this;
+        }
 
+        public BalanceSheetFilter build() {
             return new BalanceSheetFilter(
                 startDate, endDate, periodCount,
-                periodType);
+                periodType, locationId);
         }
 
     }

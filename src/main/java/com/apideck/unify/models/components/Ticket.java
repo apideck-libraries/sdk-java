@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -74,12 +74,12 @@ public class Ticket {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("priority")
-    private JsonNullable<? extends Priority> priority;
+    private JsonNullable<Priority> priority;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("assignees")
-    private Optional<? extends List<Assignee>> assignees;
+    private List<Assignee> assignees;
 
     /**
      * The date and time when the object was last updated.
@@ -119,220 +119,195 @@ public class Ticket {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private Optional<? extends List<CollectionTag>> tags;
+    private List<CollectionTag> tags;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Ticket(
-            @JsonProperty("id") String id,
-            @JsonProperty("parent_id") JsonNullable<String> parentId,
-            @JsonProperty("collection_id") JsonNullable<String> collectionId,
-            @JsonProperty("type") JsonNullable<String> type,
-            @JsonProperty("subject") JsonNullable<String> subject,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("priority") JsonNullable<? extends Priority> priority,
-            @JsonProperty("assignees") Optional<? extends List<Assignee>> assignees,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("due_date") JsonNullable<OffsetDateTime> dueDate,
-            @JsonProperty("completed_at") JsonNullable<OffsetDateTime> completedAt,
-            @JsonProperty("tags") Optional<? extends List<CollectionTag>> tags,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(parentId, "parentId");
-        Utils.checkNotNull(collectionId, "collectionId");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(subject, "subject");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(priority, "priority");
-        Utils.checkNotNull(assignees, "assignees");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(dueDate, "dueDate");
-        Utils.checkNotNull(completedAt, "completedAt");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.id = id;
-        this.parentId = parentId;
-        this.collectionId = collectionId;
-        this.type = type;
-        this.subject = subject;
-        this.description = description;
-        this.status = status;
-        this.priority = priority;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("parent_id") @Nullable JsonNullable<String> parentId,
+            @JsonProperty("collection_id") @Nullable JsonNullable<String> collectionId,
+            @JsonProperty("type") @Nullable JsonNullable<String> type,
+            @JsonProperty("subject") @Nullable JsonNullable<String> subject,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("status") @Nullable JsonNullable<String> status,
+            @JsonProperty("priority") @Nullable JsonNullable<Priority> priority,
+            @JsonProperty("assignees") @Nullable List<Assignee> assignees,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("due_date") @Nullable JsonNullable<OffsetDateTime> dueDate,
+            @JsonProperty("completed_at") @Nullable JsonNullable<OffsetDateTime> completedAt,
+            @JsonProperty("tags") @Nullable List<CollectionTag> tags,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.parentId = Optional.ofNullable(parentId)
+            .orElse(JsonNullable.undefined());
+        this.collectionId = Optional.ofNullable(collectionId)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.subject = Optional.ofNullable(subject)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.priority = Optional.ofNullable(priority)
+            .orElse(JsonNullable.undefined());
         this.assignees = assignees;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
-        this.createdBy = createdBy;
-        this.dueDate = dueDate;
-        this.completedAt = completedAt;
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.dueDate = Optional.ofNullable(dueDate)
+            .orElse(JsonNullable.undefined());
+        this.completedAt = Optional.ofNullable(completedAt)
+            .orElse(JsonNullable.undefined());
         this.tags = tags;
-        this.customMappings = customMappings;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Ticket(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The ticket's parent ID
      */
-    @JsonIgnore
     public JsonNullable<String> parentId() {
-        return parentId;
+        return this.parentId;
     }
 
     /**
      * The ticket's collection ID
      */
-    @JsonIgnore
     public JsonNullable<String> collectionId() {
-        return collectionId;
+        return this.collectionId;
     }
 
     /**
      * The ticket's type
      */
-    @JsonIgnore
     public JsonNullable<String> type() {
-        return type;
+        return this.type;
     }
 
     /**
      * Subject of the ticket
      */
-    @JsonIgnore
     public JsonNullable<String> subject() {
-        return subject;
+        return this.subject;
     }
 
     /**
      * The ticket's description. HTML version of description is mapped if supported by the third-party platform
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
      */
-    @JsonIgnore
     public JsonNullable<String> status() {
-        return status;
+        return this.status;
     }
 
     /**
      * Priority of the ticket
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Priority> priority() {
-        return (JsonNullable<Priority>) priority;
+        return this.priority;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Assignee>> assignees() {
-        return (Optional<List<Assignee>>) assignees;
+        return Optional.ofNullable(this.assignees);
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * Due date of the ticket
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> dueDate() {
-        return dueDate;
+        return this.dueDate;
     }
 
     /**
      * When the ticket was completed
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> completedAt() {
-        return completedAt;
+        return this.completedAt;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CollectionTag>> tags() {
-        return (Optional<List<CollectionTag>>) tags;
+        return Optional.ofNullable(this.tags);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -343,290 +318,149 @@ public class Ticket {
     /**
      * A unique identifier for an object.
      */
-    public Ticket withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Ticket withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The ticket's parent ID
      */
-    public Ticket withParentId(String parentId) {
-        Utils.checkNotNull(parentId, "parentId");
+    public Ticket withParentId(@Nullable String parentId) {
         this.parentId = JsonNullable.of(parentId);
         return this;
     }
 
-    /**
-     * The ticket's parent ID
-     */
-    public Ticket withParentId(JsonNullable<String> parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = parentId;
-        return this;
-    }
 
     /**
      * The ticket's collection ID
      */
-    public Ticket withCollectionId(String collectionId) {
-        Utils.checkNotNull(collectionId, "collectionId");
+    public Ticket withCollectionId(@Nullable String collectionId) {
         this.collectionId = JsonNullable.of(collectionId);
         return this;
     }
 
-    /**
-     * The ticket's collection ID
-     */
-    public Ticket withCollectionId(JsonNullable<String> collectionId) {
-        Utils.checkNotNull(collectionId, "collectionId");
-        this.collectionId = collectionId;
-        return this;
-    }
 
     /**
      * The ticket's type
      */
-    public Ticket withType(String type) {
-        Utils.checkNotNull(type, "type");
+    public Ticket withType(@Nullable String type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The ticket's type
-     */
-    public Ticket withType(JsonNullable<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * Subject of the ticket
      */
-    public Ticket withSubject(String subject) {
-        Utils.checkNotNull(subject, "subject");
+    public Ticket withSubject(@Nullable String subject) {
         this.subject = JsonNullable.of(subject);
         return this;
     }
 
-    /**
-     * Subject of the ticket
-     */
-    public Ticket withSubject(JsonNullable<String> subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = subject;
-        return this;
-    }
 
     /**
      * The ticket's description. HTML version of description is mapped if supported by the third-party platform
      */
-    public Ticket withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Ticket withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The ticket's description. HTML version of description is mapped if supported by the third-party platform
-     */
-    public Ticket withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
      */
-    public Ticket withStatus(String status) {
-        Utils.checkNotNull(status, "status");
+    public Ticket withStatus(@Nullable String status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
-     */
-    public Ticket withStatus(JsonNullable<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Priority of the ticket
      */
-    public Ticket withPriority(Priority priority) {
-        Utils.checkNotNull(priority, "priority");
+    public Ticket withPriority(@Nullable Priority priority) {
         this.priority = JsonNullable.of(priority);
         return this;
     }
 
-    /**
-     * Priority of the ticket
-     */
-    public Ticket withPriority(JsonNullable<? extends Priority> priority) {
-        Utils.checkNotNull(priority, "priority");
-        this.priority = priority;
-        return this;
-    }
 
-    public Ticket withAssignees(List<Assignee> assignees) {
-        Utils.checkNotNull(assignees, "assignees");
-        this.assignees = Optional.ofNullable(assignees);
-        return this;
-    }
-
-
-    public Ticket withAssignees(Optional<? extends List<Assignee>> assignees) {
-        Utils.checkNotNull(assignees, "assignees");
+    public Ticket withAssignees(@Nullable List<Assignee> assignees) {
         this.assignees = assignees;
         return this;
     }
 
+
     /**
      * The date and time when the object was last updated.
      */
-    public Ticket withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Ticket withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Ticket withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Ticket withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Ticket withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Ticket withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Ticket withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Ticket withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Ticket withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * Due date of the ticket
      */
-    public Ticket withDueDate(OffsetDateTime dueDate) {
-        Utils.checkNotNull(dueDate, "dueDate");
+    public Ticket withDueDate(@Nullable OffsetDateTime dueDate) {
         this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
 
-    /**
-     * Due date of the ticket
-     */
-    public Ticket withDueDate(JsonNullable<OffsetDateTime> dueDate) {
-        Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = dueDate;
-        return this;
-    }
 
     /**
      * When the ticket was completed
      */
-    public Ticket withCompletedAt(OffsetDateTime completedAt) {
-        Utils.checkNotNull(completedAt, "completedAt");
+    public Ticket withCompletedAt(@Nullable OffsetDateTime completedAt) {
         this.completedAt = JsonNullable.of(completedAt);
         return this;
     }
 
-    /**
-     * When the ticket was completed
-     */
-    public Ticket withCompletedAt(JsonNullable<OffsetDateTime> completedAt) {
-        Utils.checkNotNull(completedAt, "completedAt");
-        this.completedAt = completedAt;
-        return this;
-    }
 
-    public Ticket withTags(List<CollectionTag> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = Optional.ofNullable(tags);
-        return this;
-    }
-
-
-    public Ticket withTags(Optional<? extends List<CollectionTag>> tags) {
-        Utils.checkNotNull(tags, "tags");
+    public Ticket withTags(@Nullable List<CollectionTag> tags) {
         this.tags = tags;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Ticket withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Ticket withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Ticket withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Ticket withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Ticket withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Ticket withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -695,346 +529,173 @@ public class Ticket {
 
         private String id;
 
-        private JsonNullable<String> parentId = JsonNullable.undefined();
+        private JsonNullable<String> parentId;
 
-        private JsonNullable<String> collectionId = JsonNullable.undefined();
+        private JsonNullable<String> collectionId;
 
-        private JsonNullable<String> type = JsonNullable.undefined();
+        private JsonNullable<String> type;
 
-        private JsonNullable<String> subject = JsonNullable.undefined();
+        private JsonNullable<String> subject;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private JsonNullable<String> status;
 
-        private JsonNullable<? extends Priority> priority = JsonNullable.undefined();
+        private JsonNullable<Priority> priority;
 
-        private Optional<? extends List<Assignee>> assignees = Optional.empty();
+        private List<Assignee> assignees;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> dueDate = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> dueDate;
 
-        private JsonNullable<OffsetDateTime> completedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> completedAt;
 
-        private Optional<? extends List<CollectionTag>> tags = Optional.empty();
+        private List<CollectionTag> tags;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The ticket's parent ID
          */
-        public Builder parentId(String parentId) {
-            Utils.checkNotNull(parentId, "parentId");
+        public Builder parentId(@Nullable String parentId) {
             this.parentId = JsonNullable.of(parentId);
             return this;
         }
 
         /**
-         * The ticket's parent ID
-         */
-        public Builder parentId(JsonNullable<String> parentId) {
-            Utils.checkNotNull(parentId, "parentId");
-            this.parentId = parentId;
-            return this;
-        }
-
-
-        /**
          * The ticket's collection ID
          */
-        public Builder collectionId(String collectionId) {
-            Utils.checkNotNull(collectionId, "collectionId");
+        public Builder collectionId(@Nullable String collectionId) {
             this.collectionId = JsonNullable.of(collectionId);
             return this;
         }
 
         /**
-         * The ticket's collection ID
-         */
-        public Builder collectionId(JsonNullable<String> collectionId) {
-            Utils.checkNotNull(collectionId, "collectionId");
-            this.collectionId = collectionId;
-            return this;
-        }
-
-
-        /**
          * The ticket's type
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * The ticket's type
-         */
-        public Builder type(JsonNullable<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * Subject of the ticket
          */
-        public Builder subject(String subject) {
-            Utils.checkNotNull(subject, "subject");
+        public Builder subject(@Nullable String subject) {
             this.subject = JsonNullable.of(subject);
             return this;
         }
 
         /**
-         * Subject of the ticket
-         */
-        public Builder subject(JsonNullable<String> subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = subject;
-            return this;
-        }
-
-
-        /**
          * The ticket's description. HTML version of description is mapped if supported by the third-party platform
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * The ticket's description. HTML version of description is mapped if supported by the third-party platform
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The current status of the ticket. Possible values include: open, in_progress, closed, or - in cases where there is no clear mapping - the original value passed through.
-         */
-        public Builder status(JsonNullable<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Priority of the ticket
          */
-        public Builder priority(Priority priority) {
-            Utils.checkNotNull(priority, "priority");
+        public Builder priority(@Nullable Priority priority) {
             this.priority = JsonNullable.of(priority);
             return this;
         }
 
-        /**
-         * Priority of the ticket
-         */
-        public Builder priority(JsonNullable<? extends Priority> priority) {
-            Utils.checkNotNull(priority, "priority");
-            this.priority = priority;
-            return this;
-        }
-
-
-        public Builder assignees(List<Assignee> assignees) {
-            Utils.checkNotNull(assignees, "assignees");
-            this.assignees = Optional.ofNullable(assignees);
-            return this;
-        }
-
-        public Builder assignees(Optional<? extends List<Assignee>> assignees) {
-            Utils.checkNotNull(assignees, "assignees");
+        public Builder assignees(@Nullable List<Assignee> assignees) {
             this.assignees = assignees;
             return this;
         }
 
-
         /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * Due date of the ticket
          */
-        public Builder dueDate(OffsetDateTime dueDate) {
-            Utils.checkNotNull(dueDate, "dueDate");
+        public Builder dueDate(@Nullable OffsetDateTime dueDate) {
             this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
-         * Due date of the ticket
-         */
-        public Builder dueDate(JsonNullable<OffsetDateTime> dueDate) {
-            Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = dueDate;
-            return this;
-        }
-
-
-        /**
          * When the ticket was completed
          */
-        public Builder completedAt(OffsetDateTime completedAt) {
-            Utils.checkNotNull(completedAt, "completedAt");
+        public Builder completedAt(@Nullable OffsetDateTime completedAt) {
             this.completedAt = JsonNullable.of(completedAt);
             return this;
         }
 
-        /**
-         * When the ticket was completed
-         */
-        public Builder completedAt(JsonNullable<OffsetDateTime> completedAt) {
-            Utils.checkNotNull(completedAt, "completedAt");
-            this.completedAt = completedAt;
-            return this;
-        }
-
-
-        public Builder tags(List<CollectionTag> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = Optional.ofNullable(tags);
-            return this;
-        }
-
-        public Builder tags(Optional<? extends List<CollectionTag>> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<CollectionTag> tags) {
             this.tags = tags;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Ticket build() {
-
             return new Ticket(
                 id, parentId, collectionId,
                 type, subject, description,

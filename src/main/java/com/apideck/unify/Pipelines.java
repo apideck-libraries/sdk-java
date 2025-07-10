@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmPipelinesDeleteOperation;
 import com.apideck.unify.operations.CrmPipelinesOneOperation;
 import com.apideck.unify.operations.CrmPipelinesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmPipelinesAllResponse list(@Nonnull CrmPipelinesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Pipelines {
      * @throws Exception if the API call fails
      */
     public CrmPipelinesAllResponse list(
-            CrmPipelinesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmPipelinesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
               = new CrmPipelinesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmPipelinesAddResponse create(@Nonnull CrmPipelinesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Pipelines {
      * @throws Exception if the API call fails
      */
     public CrmPipelinesAddResponse create(
-            CrmPipelinesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmPipelinesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
               = new CrmPipelinesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmPipelinesOneResponse get(@Nonnull CrmPipelinesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Pipelines {
      * @throws Exception if the API call fails
      */
     public CrmPipelinesOneResponse get(
-            CrmPipelinesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmPipelinesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
               = new CrmPipelinesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmPipelinesUpdateResponse update(@Nonnull CrmPipelinesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Pipelines {
      * @throws Exception if the API call fails
      */
     public CrmPipelinesUpdateResponse update(
-            CrmPipelinesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmPipelinesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
               = new CrmPipelinesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmPipelinesDeleteResponse delete(@Nonnull CrmPipelinesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Pipelines {
      * @throws Exception if the API call fails
      */
     public CrmPipelinesDeleteResponse delete(
-            CrmPipelinesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmPipelinesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
               = new CrmPipelinesDeleteOperation(
                 sdkConfiguration,

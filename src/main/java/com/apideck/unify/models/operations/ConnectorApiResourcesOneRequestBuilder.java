@@ -10,79 +10,65 @@ import com.apideck.unify.operations.ConnectorApiResourcesOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class ConnectorApiResourcesOneRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String id;
-    private String resourceId;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final ConnectorApiResourcesOneRequest.Builder pojoBuilder;
+    private ConnectorApiResourcesOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public ConnectorApiResourcesOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = ConnectorApiResourcesOneRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public ConnectorApiResourcesOneRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public ConnectorApiResourcesOneRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourcesOneRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public ConnectorApiResourcesOneRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourcesOneRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorApiResourcesOneRequestBuilder resourceId(@Nonnull String resourceId) {
+        this.pojoBuilder.resourceId(resourceId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourcesOneRequestBuilder resourceId(String resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
-        this.resourceId = resourceId;
-        return this;
-    }
-                
     public ConnectorApiResourcesOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public ConnectorApiResourcesOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private ConnectorApiResourcesOneRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private ConnectorApiResourcesOneRequest buildRequest() {
-
-        ConnectorApiResourcesOneRequest request = new ConnectorApiResourcesOneRequest(appId,
-            id,
-            resourceId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public ConnectorApiResourcesOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
               = new ConnectorApiResourcesOneOperation(
                 sdkConfiguration,
                 options);
-        ConnectorApiResourcesOneRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

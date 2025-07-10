@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AtsApplicantsDeleteOperation;
 import com.apideck.unify.operations.AtsApplicantsOneOperation;
 import com.apideck.unify.operations.AtsApplicantsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsAllResponse list(AtsApplicantsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AtsApplicantsAllResponse list(@Nonnull AtsApplicantsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Applicants {
      * @throws Exception if the API call fails
      */
     public AtsApplicantsAllResponse list(
-            AtsApplicantsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsApplicantsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
               = new AtsApplicantsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsAddResponse create(AtsApplicantsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AtsApplicantsAddResponse create(@Nonnull AtsApplicantsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Applicants {
      * @throws Exception if the API call fails
      */
     public AtsApplicantsAddResponse create(
-            AtsApplicantsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsApplicantsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
               = new AtsApplicantsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsOneResponse get(AtsApplicantsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AtsApplicantsOneResponse get(@Nonnull AtsApplicantsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Applicants {
      * @throws Exception if the API call fails
      */
     public AtsApplicantsOneResponse get(
-            AtsApplicantsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsApplicantsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
               = new AtsApplicantsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsUpdateResponse update(AtsApplicantsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AtsApplicantsUpdateResponse update(@Nonnull AtsApplicantsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Applicants {
      * @throws Exception if the API call fails
      */
     public AtsApplicantsUpdateResponse update(
-            AtsApplicantsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsApplicantsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
               = new AtsApplicantsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsDeleteResponse delete(AtsApplicantsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AtsApplicantsDeleteResponse delete(@Nonnull AtsApplicantsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Applicants {
      * @throws Exception if the API call fails
      */
     public AtsApplicantsDeleteResponse delete(
-            AtsApplicantsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsApplicantsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
               = new AtsApplicantsDeleteOperation(
                 sdkConfiguration,

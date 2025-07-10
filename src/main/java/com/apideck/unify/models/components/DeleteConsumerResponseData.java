@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -20,25 +20,23 @@ public class DeleteConsumerResponseData {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     @JsonCreator
     public DeleteConsumerResponseData(
-            @JsonProperty("consumer_id") Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+            @JsonProperty("consumer_id") @Nullable String consumerId) {
         this.consumerId = consumerId;
     }
     
     public DeleteConsumerResponseData() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     public static Builder builder() {
@@ -49,21 +47,11 @@ public class DeleteConsumerResponseData {
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
-    public DeleteConsumerResponseData withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
-     */
-    public DeleteConsumerResponseData withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public DeleteConsumerResponseData withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -93,33 +81,21 @@ public class DeleteConsumerResponseData {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
         public DeleteConsumerResponseData build() {
-
             return new DeleteConsumerResponseData(
                 consumerId);
         }

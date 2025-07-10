@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -60,47 +60,47 @@ public class EcommerceCustomer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends CustomerStatus> status;
+    private JsonNullable<CustomerStatus> status;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * An array of email addresses for the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private JsonNullable<? extends List<Email>> emails;
+    private JsonNullable<List<Email>> emails;
 
     /**
      * An array of phone numbers for the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private JsonNullable<? extends List<PhoneNumber>> phoneNumbers;
+    private JsonNullable<List<PhoneNumber>> phoneNumbers;
 
     /**
      * An array of addresses for the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Addresses>> addresses;
+    private List<Addresses> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("orders")
-    private Optional<? extends List<LinkedEcommerceOrder>> orders;
+    private List<LinkedEcommerceOrder> orders;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The date and time when the object was created.
@@ -118,173 +118,150 @@ public class EcommerceCustomer {
 
     @JsonCreator
     public EcommerceCustomer(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("status") JsonNullable<? extends CustomerStatus> status,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("emails") JsonNullable<? extends List<Email>> emails,
-            @JsonProperty("phone_numbers") JsonNullable<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("addresses") Optional<? extends List<Addresses>> addresses,
-            @JsonProperty("orders") Optional<? extends List<LinkedEcommerceOrder>> orders,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(orders, "orders");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.id = id;
-        this.name = name;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.companyName = companyName;
-        this.status = status;
-        this.currency = currency;
-        this.emails = emails;
-        this.phoneNumbers = phoneNumbers;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("status") @Nullable JsonNullable<CustomerStatus> status,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("emails") @Nullable JsonNullable<List<Email>> emails,
+            @JsonProperty("phone_numbers") @Nullable JsonNullable<List<PhoneNumber>> phoneNumbers,
+            @JsonProperty("addresses") @Nullable List<Addresses> addresses,
+            @JsonProperty("orders") @Nullable List<LinkedEcommerceOrder> orders,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.emails = Optional.ofNullable(emails)
+            .orElse(JsonNullable.undefined());
+        this.phoneNumbers = Optional.ofNullable(phoneNumbers)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.orders = orders;
-        this.customMappings = customMappings;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceCustomer(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Full name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * First name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * Last name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Company name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * The current status of the customer
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<CustomerStatus> status() {
-        return (JsonNullable<CustomerStatus>) status;
+        return this.status;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * An array of email addresses for the customer.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<Email>> emails() {
-        return (JsonNullable<List<Email>>) emails;
+        return this.emails;
     }
 
     /**
      * An array of phone numbers for the customer.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<PhoneNumber>> phoneNumbers() {
-        return (JsonNullable<List<PhoneNumber>>) phoneNumbers;
+        return this.phoneNumbers;
     }
 
     /**
      * An array of addresses for the customer.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Addresses>> addresses() {
-        return (Optional<List<Addresses>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LinkedEcommerceOrder>> orders() {
-        return (Optional<List<LinkedEcommerceOrder>>) orders;
+        return Optional.ofNullable(this.orders);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -295,241 +272,125 @@ public class EcommerceCustomer {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceCustomer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public EcommerceCustomer withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * Full name of the customer
      */
-    public EcommerceCustomer withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public EcommerceCustomer withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Full name of the customer
-     */
-    public EcommerceCustomer withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * First name of the customer
      */
-    public EcommerceCustomer withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public EcommerceCustomer withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * First name of the customer
-     */
-    public EcommerceCustomer withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * Last name of the customer
      */
-    public EcommerceCustomer withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public EcommerceCustomer withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * Last name of the customer
-     */
-    public EcommerceCustomer withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Company name of the customer
      */
-    public EcommerceCustomer withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public EcommerceCustomer withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * Company name of the customer
-     */
-    public EcommerceCustomer withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * The current status of the customer
      */
-    public EcommerceCustomer withStatus(CustomerStatus status) {
-        Utils.checkNotNull(status, "status");
+    public EcommerceCustomer withStatus(@Nullable CustomerStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The current status of the customer
-     */
-    public EcommerceCustomer withStatus(JsonNullable<? extends CustomerStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public EcommerceCustomer withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public EcommerceCustomer withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public EcommerceCustomer withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * An array of email addresses for the customer.
      */
-    public EcommerceCustomer withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public EcommerceCustomer withEmails(@Nullable List<Email> emails) {
         this.emails = JsonNullable.of(emails);
         return this;
     }
 
-    /**
-     * An array of email addresses for the customer.
-     */
-    public EcommerceCustomer withEmails(JsonNullable<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = emails;
-        return this;
-    }
 
     /**
      * An array of phone numbers for the customer.
      */
-    public EcommerceCustomer withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public EcommerceCustomer withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = JsonNullable.of(phoneNumbers);
         return this;
     }
 
-    /**
-     * An array of phone numbers for the customer.
-     */
-    public EcommerceCustomer withPhoneNumbers(JsonNullable<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = phoneNumbers;
-        return this;
-    }
 
     /**
      * An array of addresses for the customer.
      */
-    public EcommerceCustomer withAddresses(List<Addresses> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    /**
-     * An array of addresses for the customer.
-     */
-    public EcommerceCustomer withAddresses(Optional<? extends List<Addresses>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public EcommerceCustomer withAddresses(@Nullable List<Addresses> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public EcommerceCustomer withOrders(List<LinkedEcommerceOrder> orders) {
-        Utils.checkNotNull(orders, "orders");
-        this.orders = Optional.ofNullable(orders);
-        return this;
-    }
 
-
-    public EcommerceCustomer withOrders(Optional<? extends List<LinkedEcommerceOrder>> orders) {
-        Utils.checkNotNull(orders, "orders");
+    public EcommerceCustomer withOrders(@Nullable List<LinkedEcommerceOrder> orders) {
         this.orders = orders;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public EcommerceCustomer withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public EcommerceCustomer withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public EcommerceCustomer withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public EcommerceCustomer withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public EcommerceCustomer withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public EcommerceCustomer withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public EcommerceCustomer withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public EcommerceCustomer withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public EcommerceCustomer withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -591,289 +452,146 @@ public class EcommerceCustomer {
 
         private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<? extends CustomerStatus> status = JsonNullable.undefined();
+        private JsonNullable<CustomerStatus> status;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<? extends List<Email>> emails = JsonNullable.undefined();
+        private JsonNullable<List<Email>> emails;
 
-        private JsonNullable<? extends List<PhoneNumber>> phoneNumbers = JsonNullable.undefined();
+        private JsonNullable<List<PhoneNumber>> phoneNumbers;
 
-        private Optional<? extends List<Addresses>> addresses = Optional.empty();
+        private List<Addresses> addresses;
 
-        private Optional<? extends List<LinkedEcommerceOrder>> orders = Optional.empty();
+        private List<LinkedEcommerceOrder> orders;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * Full name of the customer
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Full name of the customer
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * First name of the customer
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * First name of the customer
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * Last name of the customer
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * Last name of the customer
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Company name of the customer
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * Company name of the customer
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * The current status of the customer
          */
-        public Builder status(CustomerStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable CustomerStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The current status of the customer
-         */
-        public Builder status(JsonNullable<? extends CustomerStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * An array of email addresses for the customer.
          */
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = JsonNullable.of(emails);
             return this;
         }
 
         /**
-         * An array of email addresses for the customer.
-         */
-        public Builder emails(JsonNullable<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = emails;
-            return this;
-        }
-
-
-        /**
          * An array of phone numbers for the customer.
          */
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = JsonNullable.of(phoneNumbers);
             return this;
         }
 
         /**
-         * An array of phone numbers for the customer.
-         */
-        public Builder phoneNumbers(JsonNullable<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = phoneNumbers;
-            return this;
-        }
-
-
-        /**
          * An array of addresses for the customer.
          */
-        public Builder addresses(List<Addresses> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        /**
-         * An array of addresses for the customer.
-         */
-        public Builder addresses(Optional<? extends List<Addresses>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Addresses> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder orders(List<LinkedEcommerceOrder> orders) {
-            Utils.checkNotNull(orders, "orders");
-            this.orders = Optional.ofNullable(orders);
-            return this;
-        }
-
-        public Builder orders(Optional<? extends List<LinkedEcommerceOrder>> orders) {
-            Utils.checkNotNull(orders, "orders");
+        public Builder orders(@Nullable List<LinkedEcommerceOrder> orders) {
             this.orders = orders;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public EcommerceCustomer build() {
-
             return new EcommerceCustomer(
                 id, name, firstName,
                 lastName, companyName, status,

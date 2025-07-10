@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,7 +23,7 @@ public class EmployeePayroll {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
 
     /**
      * ID of the employee
@@ -45,7 +44,7 @@ public class EmployeePayroll {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("processed")
-    private Optional<Boolean> processed;
+    private JsonNullable<Boolean> processed;
 
     /**
      * The date the payroll was processed.
@@ -59,157 +58,138 @@ public class EmployeePayroll {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("check_date")
-    private Optional<String> checkDate;
+    private JsonNullable<String> checkDate;
 
     /**
      * The start date, inclusive, of the pay period.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("start_date")
-    private Optional<String> startDate;
+    private JsonNullable<String> startDate;
 
     /**
      * The end date, inclusive, of the pay period.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("end_date")
-    private Optional<String> endDate;
+    private JsonNullable<String> endDate;
 
     /**
      * The overview of the payroll totals.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("totals")
-    private Optional<? extends PayrollTotals> totals;
+    private PayrollTotals totals;
 
     /**
      * An array of compensations for the payroll.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("compensations")
-    private Optional<? extends List<Compensation>> compensations;
+    private List<Compensation> compensations;
 
     @JsonCreator
     public EmployeePayroll(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("employee_id") JsonNullable<String> employeeId,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("processed") Optional<Boolean> processed,
-            @JsonProperty("processed_date") JsonNullable<String> processedDate,
-            @JsonProperty("check_date") Optional<String> checkDate,
-            @JsonProperty("start_date") Optional<String> startDate,
-            @JsonProperty("end_date") Optional<String> endDate,
-            @JsonProperty("totals") Optional<? extends PayrollTotals> totals,
-            @JsonProperty("compensations") Optional<? extends List<Compensation>> compensations) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(employeeId, "employeeId");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(processed, "processed");
-        Utils.checkNotNull(processedDate, "processedDate");
-        Utils.checkNotNull(checkDate, "checkDate");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(totals, "totals");
-        Utils.checkNotNull(compensations, "compensations");
-        this.id = id;
-        this.employeeId = employeeId;
-        this.companyId = companyId;
-        this.processed = processed;
-        this.processedDate = processedDate;
-        this.checkDate = checkDate;
-        this.startDate = startDate;
-        this.endDate = endDate;
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("employee_id") @Nullable JsonNullable<String> employeeId,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("processed") @Nullable Boolean processed,
+            @JsonProperty("processed_date") @Nullable JsonNullable<String> processedDate,
+            @JsonProperty("check_date") @Nullable String checkDate,
+            @JsonProperty("start_date") @Nullable String startDate,
+            @JsonProperty("end_date") @Nullable String endDate,
+            @JsonProperty("totals") @Nullable PayrollTotals totals,
+            @JsonProperty("compensations") @Nullable List<Compensation> compensations) {
+        this.id = JsonNullable.of(id);
+        this.employeeId = Optional.ofNullable(employeeId)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.processed = JsonNullable.of(processed);
+        this.processedDate = Optional.ofNullable(processedDate)
+            .orElse(JsonNullable.undefined());
+        this.checkDate = JsonNullable.of(checkDate);
+        this.startDate = JsonNullable.of(startDate);
+        this.endDate = JsonNullable.of(endDate);
         this.totals = totals;
         this.compensations = compensations;
     }
     
     public EmployeePayroll() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+    public JsonNullable<String> id() {
+        return this.id;
     }
 
     /**
      * ID of the employee
      */
-    @JsonIgnore
     public JsonNullable<String> employeeId() {
-        return employeeId;
+        return this.employeeId;
     }
 
     /**
      * The unique identifier of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
      */
-    @JsonIgnore
-    public Optional<Boolean> processed() {
-        return processed;
+    public JsonNullable<Boolean> processed() {
+        return this.processed;
     }
 
     /**
      * The date the payroll was processed.
      */
-    @JsonIgnore
     public JsonNullable<String> processedDate() {
-        return processedDate;
+        return this.processedDate;
     }
 
     /**
      * The date on which employees will be paid for the payroll.
      */
-    @JsonIgnore
-    public Optional<String> checkDate() {
-        return checkDate;
+    public JsonNullable<String> checkDate() {
+        return this.checkDate;
     }
 
     /**
      * The start date, inclusive, of the pay period.
      */
-    @JsonIgnore
-    public Optional<String> startDate() {
-        return startDate;
+    public JsonNullable<String> startDate() {
+        return this.startDate;
     }
 
     /**
      * The end date, inclusive, of the pay period.
      */
-    @JsonIgnore
-    public Optional<String> endDate() {
-        return endDate;
+    public JsonNullable<String> endDate() {
+        return this.endDate;
     }
 
     /**
      * The overview of the payroll totals.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<PayrollTotals> totals() {
-        return (Optional<PayrollTotals>) totals;
+        return Optional.ofNullable(this.totals);
     }
 
     /**
      * An array of compensations for the payroll.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Compensation>> compensations() {
-        return (Optional<List<Compensation>>) compensations;
+        return Optional.ofNullable(this.compensations);
     }
 
     public static Builder builder() {
@@ -220,120 +200,53 @@ public class EmployeePayroll {
     /**
      * A unique identifier for an object.
      */
-    public EmployeePayroll withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+    public EmployeePayroll withId(@Nullable String id) {
+        this.id = JsonNullable.of(id);
         return this;
     }
 
-
-    /**
-     * A unique identifier for an object.
-     */
-    public EmployeePayroll withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * ID of the employee
      */
-    public EmployeePayroll withEmployeeId(String employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
+    public EmployeePayroll withEmployeeId(@Nullable String employeeId) {
         this.employeeId = JsonNullable.of(employeeId);
         return this;
     }
 
-    /**
-     * ID of the employee
-     */
-    public EmployeePayroll withEmployeeId(JsonNullable<String> employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = employeeId;
-        return this;
-    }
 
     /**
      * The unique identifier of the company.
      */
-    public EmployeePayroll withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public EmployeePayroll withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The unique identifier of the company.
-     */
-    public EmployeePayroll withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
      */
-    public EmployeePayroll withProcessed(boolean processed) {
-        Utils.checkNotNull(processed, "processed");
-        this.processed = Optional.ofNullable(processed);
+    public EmployeePayroll withProcessed(@Nullable Boolean processed) {
+        this.processed = JsonNullable.of(processed);
         return this;
     }
 
-
-    /**
-     * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
-     */
-    public EmployeePayroll withProcessed(Optional<Boolean> processed) {
-        Utils.checkNotNull(processed, "processed");
-        this.processed = processed;
-        return this;
-    }
 
     /**
      * The date the payroll was processed.
      */
-    public EmployeePayroll withProcessedDate(String processedDate) {
-        Utils.checkNotNull(processedDate, "processedDate");
+    public EmployeePayroll withProcessedDate(@Nullable String processedDate) {
         this.processedDate = JsonNullable.of(processedDate);
         return this;
     }
 
-    /**
-     * The date the payroll was processed.
-     */
-    public EmployeePayroll withProcessedDate(JsonNullable<String> processedDate) {
-        Utils.checkNotNull(processedDate, "processedDate");
-        this.processedDate = processedDate;
-        return this;
-    }
 
     /**
      * The date on which employees will be paid for the payroll.
      */
-    public EmployeePayroll withCheckDate(String checkDate) {
-        Utils.checkNotNull(checkDate, "checkDate");
-        this.checkDate = Optional.ofNullable(checkDate);
-        return this;
-    }
-
-
-    /**
-     * The date on which employees will be paid for the payroll.
-     */
-    public EmployeePayroll withCheckDate(Optional<String> checkDate) {
-        Utils.checkNotNull(checkDate, "checkDate");
-        this.checkDate = checkDate;
-        return this;
-    }
-
-    /**
-     * The start date, inclusive, of the pay period.
-     */
-    public EmployeePayroll withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
+    public EmployeePayroll withCheckDate(@Nullable String checkDate) {
+        this.checkDate = JsonNullable.of(checkDate);
         return this;
     }
 
@@ -341,18 +254,8 @@ public class EmployeePayroll {
     /**
      * The start date, inclusive, of the pay period.
      */
-    public EmployeePayroll withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
-        return this;
-    }
-
-    /**
-     * The end date, inclusive, of the pay period.
-     */
-    public EmployeePayroll withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
+    public EmployeePayroll withStartDate(@Nullable String startDate) {
+        this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
@@ -360,18 +263,8 @@ public class EmployeePayroll {
     /**
      * The end date, inclusive, of the pay period.
      */
-    public EmployeePayroll withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
-
-    /**
-     * The overview of the payroll totals.
-     */
-    public EmployeePayroll withTotals(PayrollTotals totals) {
-        Utils.checkNotNull(totals, "totals");
-        this.totals = Optional.ofNullable(totals);
+    public EmployeePayroll withEndDate(@Nullable String endDate) {
+        this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
@@ -379,30 +272,20 @@ public class EmployeePayroll {
     /**
      * The overview of the payroll totals.
      */
-    public EmployeePayroll withTotals(Optional<? extends PayrollTotals> totals) {
-        Utils.checkNotNull(totals, "totals");
+    public EmployeePayroll withTotals(@Nullable PayrollTotals totals) {
         this.totals = totals;
         return this;
     }
 
-    /**
-     * An array of compensations for the payroll.
-     */
-    public EmployeePayroll withCompensations(List<Compensation> compensations) {
-        Utils.checkNotNull(compensations, "compensations");
-        this.compensations = Optional.ofNullable(compensations);
-        return this;
-    }
-
 
     /**
      * An array of compensations for the payroll.
      */
-    public EmployeePayroll withCompensations(Optional<? extends List<Compensation>> compensations) {
-        Utils.checkNotNull(compensations, "compensations");
+    public EmployeePayroll withCompensations(@Nullable List<Compensation> compensations) {
         this.compensations = compensations;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -453,222 +336,111 @@ public class EmployeePayroll {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> employeeId = JsonNullable.undefined();
+        private JsonNullable<String> employeeId;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private Optional<Boolean> processed = Optional.empty();
+        private Boolean processed;
 
-        private JsonNullable<String> processedDate = JsonNullable.undefined();
+        private JsonNullable<String> processedDate;
 
-        private Optional<String> checkDate = Optional.empty();
+        private String checkDate;
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
 
-        private Optional<? extends PayrollTotals> totals = Optional.empty();
+        private PayrollTotals totals;
 
-        private Optional<? extends List<Compensation>> compensations = Optional.empty();
+        private List<Compensation> compensations;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * ID of the employee
          */
-        public Builder employeeId(String employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
+        public Builder employeeId(@Nullable String employeeId) {
             this.employeeId = JsonNullable.of(employeeId);
             return this;
         }
 
         /**
-         * ID of the employee
-         */
-        public Builder employeeId(JsonNullable<String> employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = employeeId;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the company.
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The unique identifier of the company.
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
          */
-        public Builder processed(boolean processed) {
-            Utils.checkNotNull(processed, "processed");
-            this.processed = Optional.ofNullable(processed);
-            return this;
-        }
-
-        /**
-         * Whether or not the payroll has been successfully processed. Note that processed payrolls cannot be updated.
-         */
-        public Builder processed(Optional<Boolean> processed) {
-            Utils.checkNotNull(processed, "processed");
+        public Builder processed(@Nullable Boolean processed) {
             this.processed = processed;
             return this;
         }
 
-
         /**
          * The date the payroll was processed.
          */
-        public Builder processedDate(String processedDate) {
-            Utils.checkNotNull(processedDate, "processedDate");
+        public Builder processedDate(@Nullable String processedDate) {
             this.processedDate = JsonNullable.of(processedDate);
             return this;
         }
 
         /**
-         * The date the payroll was processed.
-         */
-        public Builder processedDate(JsonNullable<String> processedDate) {
-            Utils.checkNotNull(processedDate, "processedDate");
-            this.processedDate = processedDate;
-            return this;
-        }
-
-
-        /**
          * The date on which employees will be paid for the payroll.
          */
-        public Builder checkDate(String checkDate) {
-            Utils.checkNotNull(checkDate, "checkDate");
-            this.checkDate = Optional.ofNullable(checkDate);
-            return this;
-        }
-
-        /**
-         * The date on which employees will be paid for the payroll.
-         */
-        public Builder checkDate(Optional<String> checkDate) {
-            Utils.checkNotNull(checkDate, "checkDate");
+        public Builder checkDate(@Nullable String checkDate) {
             this.checkDate = checkDate;
             return this;
         }
 
-
         /**
          * The start date, inclusive, of the pay period.
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * The start date, inclusive, of the pay period.
-         */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * The end date, inclusive, of the pay period.
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * The end date, inclusive, of the pay period.
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
-
         /**
          * The overview of the payroll totals.
          */
-        public Builder totals(PayrollTotals totals) {
-            Utils.checkNotNull(totals, "totals");
-            this.totals = Optional.ofNullable(totals);
-            return this;
-        }
-
-        /**
-         * The overview of the payroll totals.
-         */
-        public Builder totals(Optional<? extends PayrollTotals> totals) {
-            Utils.checkNotNull(totals, "totals");
+        public Builder totals(@Nullable PayrollTotals totals) {
             this.totals = totals;
             return this;
         }
 
-
         /**
          * An array of compensations for the payroll.
          */
-        public Builder compensations(List<Compensation> compensations) {
-            Utils.checkNotNull(compensations, "compensations");
-            this.compensations = Optional.ofNullable(compensations);
-            return this;
-        }
-
-        /**
-         * An array of compensations for the payroll.
-         */
-        public Builder compensations(Optional<? extends List<Compensation>> compensations) {
-            Utils.checkNotNull(compensations, "compensations");
+        public Builder compensations(@Nullable List<Compensation> compensations) {
             this.compensations = compensations;
             return this;
         }
 
         public EmployeePayroll build() {
-
             return new EmployeePayroll(
                 id, employeeId, companyId,
                 processed, processedDate, checkDate,

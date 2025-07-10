@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
  * Operation
@@ -30,28 +31,26 @@ public class Operation {
 
     @JsonCreator
     public Operation(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
-        this.name = name;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nonnull String name) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
     }
 
     /**
      * The OpenApi Operation Id associated with the request
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The OpenApi Operation name associated with the request
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -62,20 +61,20 @@ public class Operation {
     /**
      * The OpenApi Operation Id associated with the request
      */
-    public Operation withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Operation withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The OpenApi Operation name associated with the request
      */
-    public Operation withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public Operation withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -115,28 +114,23 @@ public class Operation {
           // force use of static builder() method
         }
 
-
         /**
          * The OpenApi Operation Id associated with the request
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The OpenApi Operation name associated with the request
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
 
         public Operation build() {
-
             return new Operation(
                 id, name);
         }

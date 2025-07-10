@@ -26,6 +26,8 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsDeleteO
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOneOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsAllResponse list(IssueTrackingCollectionTicketCommentsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public IssueTrackingCollectionTicketCommentsAllResponse list(@Nonnull IssueTrackingCollectionTicketCommentsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class CollectionTicketComments {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketCommentsAllResponse list(
-            IssueTrackingCollectionTicketCommentsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketCommentsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
               = new IssueTrackingCollectionTicketCommentsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsAddResponse create(IssueTrackingCollectionTicketCommentsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public IssueTrackingCollectionTicketCommentsAddResponse create(@Nonnull IssueTrackingCollectionTicketCommentsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class CollectionTicketComments {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketCommentsAddResponse create(
-            IssueTrackingCollectionTicketCommentsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketCommentsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
               = new IssueTrackingCollectionTicketCommentsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsOneResponse get(IssueTrackingCollectionTicketCommentsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public IssueTrackingCollectionTicketCommentsOneResponse get(@Nonnull IssueTrackingCollectionTicketCommentsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class CollectionTicketComments {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketCommentsOneResponse get(
-            IssueTrackingCollectionTicketCommentsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketCommentsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
               = new IssueTrackingCollectionTicketCommentsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsUpdateResponse update(IssueTrackingCollectionTicketCommentsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public IssueTrackingCollectionTicketCommentsUpdateResponse update(@Nonnull IssueTrackingCollectionTicketCommentsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class CollectionTicketComments {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketCommentsUpdateResponse update(
-            IssueTrackingCollectionTicketCommentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketCommentsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
               = new IssueTrackingCollectionTicketCommentsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsDeleteResponse delete(IssueTrackingCollectionTicketCommentsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public IssueTrackingCollectionTicketCommentsDeleteResponse delete(@Nonnull IssueTrackingCollectionTicketCommentsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class CollectionTicketComments {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTicketCommentsDeleteResponse delete(
-            IssueTrackingCollectionTicketCommentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTicketCommentsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
               = new IssueTrackingCollectionTicketCommentsDeleteOperation(
                 sdkConfiguration,

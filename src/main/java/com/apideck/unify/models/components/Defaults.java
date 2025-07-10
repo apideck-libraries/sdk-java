@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,33 +19,29 @@ public class Defaults {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target")
-    private Optional<? extends Target> target;
+    private Target target;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private Optional<? extends List<FormFieldOption>> options;
+    private List<FormFieldOption> options;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends ConnectionValue> value;
+    private ConnectionValue value;
 
     @JsonCreator
     public Defaults(
-            @JsonProperty("target") Optional<? extends Target> target,
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("options") Optional<? extends List<FormFieldOption>> options,
-            @JsonProperty("value") Optional<? extends ConnectionValue> value) {
-        Utils.checkNotNull(target, "target");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(value, "value");
+            @JsonProperty("target") @Nullable Target target,
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("options") @Nullable List<FormFieldOption> options,
+            @JsonProperty("value") @Nullable ConnectionValue value) {
         this.target = target;
         this.id = id;
         this.options = options;
@@ -54,31 +49,24 @@ public class Defaults {
     }
     
     public Defaults() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Target> target() {
-        return (Optional<Target>) target;
+        return Optional.ofNullable(this.target);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<FormFieldOption>> options() {
-        return (Optional<List<FormFieldOption>>) options;
+        return Optional.ofNullable(this.options);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectionValue> value() {
-        return (Optional<ConnectionValue>) value;
+        return Optional.ofNullable(this.value);
     }
 
     public static Builder builder() {
@@ -86,57 +74,29 @@ public class Defaults {
     }
 
 
-    public Defaults withTarget(Target target) {
-        Utils.checkNotNull(target, "target");
-        this.target = Optional.ofNullable(target);
-        return this;
-    }
-
-
-    public Defaults withTarget(Optional<? extends Target> target) {
-        Utils.checkNotNull(target, "target");
+    public Defaults withTarget(@Nullable Target target) {
         this.target = target;
         return this;
     }
 
-    public Defaults withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
 
-
-    public Defaults withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Defaults withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public Defaults withOptions(List<FormFieldOption> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = Optional.ofNullable(options);
-        return this;
-    }
 
-
-    public Defaults withOptions(Optional<? extends List<FormFieldOption>> options) {
-        Utils.checkNotNull(options, "options");
+    public Defaults withOptions(@Nullable List<FormFieldOption> options) {
         this.options = options;
         return this;
     }
 
-    public Defaults withValue(ConnectionValue value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
 
-
-    public Defaults withValue(Optional<? extends ConnectionValue> value) {
-        Utils.checkNotNull(value, "value");
+    public Defaults withValue(@Nullable ConnectionValue value) {
         this.value = value;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -173,72 +133,39 @@ public class Defaults {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Target> target = Optional.empty();
+        private Target target;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends List<FormFieldOption>> options = Optional.empty();
+        private List<FormFieldOption> options;
 
-        private Optional<? extends ConnectionValue> value = Optional.empty();
+        private ConnectionValue value;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder target(Target target) {
-            Utils.checkNotNull(target, "target");
-            this.target = Optional.ofNullable(target);
-            return this;
-        }
-
-        public Builder target(Optional<? extends Target> target) {
-            Utils.checkNotNull(target, "target");
+        public Builder target(@Nullable Target target) {
             this.target = target;
             return this;
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder options(List<FormFieldOption> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = Optional.ofNullable(options);
-            return this;
-        }
-
-        public Builder options(Optional<? extends List<FormFieldOption>> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<FormFieldOption> options) {
             this.options = options;
             return this;
         }
 
-
-        public Builder value(ConnectionValue value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        public Builder value(Optional<? extends ConnectionValue> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable ConnectionValue value) {
             this.value = value;
             return this;
         }
 
         public Defaults build() {
-
             return new Defaults(
                 target, id, options,
                 value);

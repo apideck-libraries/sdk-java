@@ -49,7 +49,6 @@ public class VaultConnectionsTokenRequestBody {
         }
 
         public VaultConnectionsTokenRequestBody build() {
-
             return new VaultConnectionsTokenRequestBody(
                 );
         }

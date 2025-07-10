@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.AccountingCategoriesOneResponse;
 import com.apideck.unify.operations.AccountingCategoriesAllOperation;
 import com.apideck.unify.operations.AccountingCategoriesOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class Categories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCategoriesAllResponse list(AccountingCategoriesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingCategoriesAllResponse list(@Nonnull AccountingCategoriesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class Categories {
      * @throws Exception if the API call fails
      */
     public AccountingCategoriesAllResponse list(
-            AccountingCategoriesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCategoriesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
               = new AccountingCategoriesAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class Categories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCategoriesOneResponse get(AccountingCategoriesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingCategoriesOneResponse get(@Nonnull AccountingCategoriesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class Categories {
      * @throws Exception if the API call fails
      */
     public AccountingCategoriesOneResponse get(
-            AccountingCategoriesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCategoriesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
               = new AccountingCategoriesOneOperation(
                 sdkConfiguration,

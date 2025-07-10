@@ -5,12 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -30,33 +32,31 @@ public class LinkedFolder {
 
     @JsonCreator
     public LinkedFolder(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
-        this.name = name;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedFolder(
-            String id) {
-        this(id, JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the folder
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -67,29 +67,20 @@ public class LinkedFolder {
     /**
      * A unique identifier for an object.
      */
-    public LinkedFolder withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public LinkedFolder withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The name of the folder
      */
-    public LinkedFolder withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedFolder withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the folder
-     */
-    public LinkedFolder withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -123,43 +114,29 @@ public class LinkedFolder {
 
         private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The name of the folder
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * The name of the folder
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public LinkedFolder build() {
-
             return new LinkedFolder(
                 id, name);
         }

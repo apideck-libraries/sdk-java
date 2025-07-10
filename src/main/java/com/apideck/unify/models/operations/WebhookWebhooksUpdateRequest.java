@@ -7,7 +7,8 @@ import com.apideck.unify.models.components.UpdateWebhookRequest;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public class WebhookWebhooksUpdateRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -32,42 +33,38 @@ public class WebhookWebhooksUpdateRequest {
 
     @JsonCreator
     public WebhookWebhooksUpdateRequest(
-            String id,
-            Optional<String> appId,
-            UpdateWebhookRequest updateWebhookRequest) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
-        this.id = id;
+            @Nonnull String id,
+            @Nullable String appId,
+            @Nonnull UpdateWebhookRequest updateWebhookRequest) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.appId = appId;
-        this.updateWebhookRequest = updateWebhookRequest;
+        this.updateWebhookRequest = Optional.ofNullable(updateWebhookRequest)
+            .orElseThrow(() -> new IllegalArgumentException("updateWebhookRequest cannot be null"));
     }
     
     public WebhookWebhooksUpdateRequest(
-            String id,
-            UpdateWebhookRequest updateWebhookRequest) {
-        this(id, Optional.empty(), updateWebhookRequest);
+            @Nonnull String id,
+            @Nonnull UpdateWebhookRequest updateWebhookRequest) {
+        this(id, null, updateWebhookRequest);
     }
 
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
-    @JsonIgnore
     public UpdateWebhookRequest updateWebhookRequest() {
-        return updateWebhookRequest;
+        return this.updateWebhookRequest;
     }
 
     public static Builder builder() {
@@ -78,18 +75,8 @@ public class WebhookWebhooksUpdateRequest {
     /**
      * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
      */
-    public WebhookWebhooksUpdateRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * The ID of your Unify application
-     */
-    public WebhookWebhooksUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
+    public WebhookWebhooksUpdateRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -97,17 +84,17 @@ public class WebhookWebhooksUpdateRequest {
     /**
      * The ID of your Unify application
      */
-    public WebhookWebhooksUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public WebhookWebhooksUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    public WebhookWebhooksUpdateRequest withUpdateWebhookRequest(UpdateWebhookRequest updateWebhookRequest) {
-        Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
-        this.updateWebhookRequest = updateWebhookRequest;
+
+    public WebhookWebhooksUpdateRequest withUpdateWebhookRequest(@Nonnull UpdateWebhookRequest updateWebhookRequest) {
+        this.updateWebhookRequest = Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -143,7 +130,7 @@ public class WebhookWebhooksUpdateRequest {
 
         private String id;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private UpdateWebhookRequest updateWebhookRequest;
 
@@ -151,44 +138,28 @@ public class WebhookWebhooksUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * JWT Webhook token that represents the unifiedApi and applicationId associated to the event source.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * The ID of your Unify application
          */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
-        public Builder updateWebhookRequest(UpdateWebhookRequest updateWebhookRequest) {
-            Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
-            this.updateWebhookRequest = updateWebhookRequest;
+        public Builder updateWebhookRequest(@Nonnull UpdateWebhookRequest updateWebhookRequest) {
+            this.updateWebhookRequest = Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
             return this;
         }
 
         public WebhookWebhooksUpdateRequest build() {
-
             return new WebhookWebhooksUpdateRequest(
                 id, appId, updateWebhookRequest);
         }

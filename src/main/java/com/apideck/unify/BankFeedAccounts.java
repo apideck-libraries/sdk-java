@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingBankFeedAccountsDeleteOperation;
 import com.apideck.unify.operations.AccountingBankFeedAccountsOneOperation;
 import com.apideck.unify.operations.AccountingBankFeedAccountsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsAllResponse list(AccountingBankFeedAccountsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingBankFeedAccountsAllResponse list(@Nonnull AccountingBankFeedAccountsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class BankFeedAccounts {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedAccountsAllResponse list(
-            AccountingBankFeedAccountsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedAccountsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
               = new AccountingBankFeedAccountsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsAddResponse create(AccountingBankFeedAccountsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingBankFeedAccountsAddResponse create(@Nonnull AccountingBankFeedAccountsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class BankFeedAccounts {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedAccountsAddResponse create(
-            AccountingBankFeedAccountsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedAccountsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
               = new AccountingBankFeedAccountsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsOneResponse get(AccountingBankFeedAccountsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingBankFeedAccountsOneResponse get(@Nonnull AccountingBankFeedAccountsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class BankFeedAccounts {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedAccountsOneResponse get(
-            AccountingBankFeedAccountsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedAccountsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
               = new AccountingBankFeedAccountsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsUpdateResponse update(AccountingBankFeedAccountsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingBankFeedAccountsUpdateResponse update(@Nonnull AccountingBankFeedAccountsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class BankFeedAccounts {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedAccountsUpdateResponse update(
-            AccountingBankFeedAccountsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedAccountsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
               = new AccountingBankFeedAccountsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsDeleteResponse delete(AccountingBankFeedAccountsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingBankFeedAccountsDeleteResponse delete(@Nonnull AccountingBankFeedAccountsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class BankFeedAccounts {
      * @throws Exception if the API call fails
      */
     public AccountingBankFeedAccountsDeleteResponse delete(
-            AccountingBankFeedAccountsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBankFeedAccountsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
               = new AccountingBankFeedAccountsDeleteOperation(
                 sdkConfiguration,

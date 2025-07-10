@@ -7,10 +7,10 @@ import com.apideck.unify.models.components.UnifiedApiId;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,7 +19,7 @@ public class ConnectorConnectorResourcesOneRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the record you are acting upon.
@@ -37,62 +37,55 @@ public class ConnectorConnectorResourcesOneRequest {
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=unified_api")
-    private Optional<? extends UnifiedApiId> unifiedApi;
+    private UnifiedApiId unifiedApi;
 
     @JsonCreator
     public ConnectorConnectorResourcesOneRequest(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<? extends UnifiedApiId> unifiedApi) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(resourceId, "resourceId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String resourceId,
+            @Nullable UnifiedApiId unifiedApi) {
         this.appId = appId;
-        this.id = id;
-        this.resourceId = resourceId;
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.resourceId = Optional.ofNullable(resourceId)
+            .orElseThrow(() -> new IllegalArgumentException("resourceId cannot be null"));
         this.unifiedApi = unifiedApi;
     }
     
     public ConnectorConnectorResourcesOneRequest(
-            String id,
-            String resourceId) {
-        this(Optional.empty(), id, resourceId,
-            Optional.empty());
+            @Nonnull String id,
+            @Nonnull String resourceId) {
+        this(null, id, resourceId,
+            null);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the resource you are acting upon.
      */
-    @JsonIgnore
     public String resourceId() {
-        return resourceId;
+        return this.resourceId;
     }
 
     /**
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnifiedApiId> unifiedApi() {
-        return (Optional<UnifiedApiId>) unifiedApi;
+        return Optional.ofNullable(this.unifiedApi);
     }
 
     public static Builder builder() {
@@ -103,46 +96,26 @@ public class ConnectorConnectorResourcesOneRequest {
     /**
      * The ID of your Unify application
      */
-    public ConnectorConnectorResourcesOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public ConnectorConnectorResourcesOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public ConnectorConnectorResourcesOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the record you are acting upon.
      */
-    public ConnectorConnectorResourcesOneRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorConnectorResourcesOneRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * ID of the resource you are acting upon.
      */
-    public ConnectorConnectorResourcesOneRequest withResourceId(String resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
-        this.resourceId = resourceId;
-        return this;
-    }
-
-    /**
-     * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
-     */
-    public ConnectorConnectorResourcesOneRequest withUnifiedApi(UnifiedApiId unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = Optional.ofNullable(unifiedApi);
+    public ConnectorConnectorResourcesOneRequest withResourceId(@Nonnull String resourceId) {
+        this.resourceId = Utils.checkNotNull(resourceId, "resourceId");
         return this;
     }
 
@@ -150,11 +123,11 @@ public class ConnectorConnectorResourcesOneRequest {
     /**
      * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
      */
-    public ConnectorConnectorResourcesOneRequest withUnifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
+    public ConnectorConnectorResourcesOneRequest withUnifiedApi(@Nullable UnifiedApiId unifiedApi) {
         this.unifiedApi = unifiedApi;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -191,78 +164,51 @@ public class ConnectorConnectorResourcesOneRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String id;
 
         private String resourceId;
 
-        private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
+        private UnifiedApiId unifiedApi;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * ID of the resource you are acting upon.
          */
-        public Builder resourceId(String resourceId) {
-            Utils.checkNotNull(resourceId, "resourceId");
-            this.resourceId = resourceId;
-            return this;
-        }
-
-
-        /**
-         * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
-         */
-        public Builder unifiedApi(UnifiedApiId unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = Optional.ofNullable(unifiedApi);
+        public Builder resourceId(@Nonnull String resourceId) {
+            this.resourceId = Utils.checkNotNull(resourceId, "resourceId");
             return this;
         }
 
         /**
          * Specify unified API for the connector resource. This is useful when a resource appears in multiple APIs
          */
-        public Builder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
+        public Builder unifiedApi(@Nullable UnifiedApiId unifiedApi) {
             this.unifiedApi = unifiedApi;
             return this;
         }
 
         public ConnectorConnectorResourcesOneRequest build() {
-
             return new ConnectorConnectorResourcesOneRequest(
                 appId, id, resourceId,
                 unifiedApi);

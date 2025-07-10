@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -39,43 +40,40 @@ public class Benefit {
 
     @JsonCreator
     public Benefit(
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("employee_deduction") JsonNullable<Double> employeeDeduction,
-            @JsonProperty("employer_contribution") JsonNullable<Double> employerContribution) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(employeeDeduction, "employeeDeduction");
-        Utils.checkNotNull(employerContribution, "employerContribution");
-        this.name = name;
-        this.employeeDeduction = employeeDeduction;
-        this.employerContribution = employerContribution;
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("employee_deduction") @Nullable JsonNullable<Double> employeeDeduction,
+            @JsonProperty("employer_contribution") @Nullable JsonNullable<Double> employerContribution) {
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.employeeDeduction = Optional.ofNullable(employeeDeduction)
+            .orElse(JsonNullable.undefined());
+        this.employerContribution = Optional.ofNullable(employerContribution)
+            .orElse(JsonNullable.undefined());
     }
     
     public Benefit() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * The name of the benefit.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The amount deducted for benefit.
      */
-    @JsonIgnore
     public JsonNullable<Double> employeeDeduction() {
-        return employeeDeduction;
+        return this.employeeDeduction;
     }
 
     /**
      * The amount of employer contribution.
      */
-    @JsonIgnore
     public JsonNullable<Double> employerContribution() {
-        return employerContribution;
+        return this.employerContribution;
     }
 
     public static Builder builder() {
@@ -86,56 +84,29 @@ public class Benefit {
     /**
      * The name of the benefit.
      */
-    public Benefit withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Benefit withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the benefit.
-     */
-    public Benefit withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The amount deducted for benefit.
      */
-    public Benefit withEmployeeDeduction(double employeeDeduction) {
-        Utils.checkNotNull(employeeDeduction, "employeeDeduction");
+    public Benefit withEmployeeDeduction(@Nullable Double employeeDeduction) {
         this.employeeDeduction = JsonNullable.of(employeeDeduction);
         return this;
     }
 
-    /**
-     * The amount deducted for benefit.
-     */
-    public Benefit withEmployeeDeduction(JsonNullable<Double> employeeDeduction) {
-        Utils.checkNotNull(employeeDeduction, "employeeDeduction");
-        this.employeeDeduction = employeeDeduction;
-        return this;
-    }
 
     /**
      * The amount of employer contribution.
      */
-    public Benefit withEmployerContribution(double employerContribution) {
-        Utils.checkNotNull(employerContribution, "employerContribution");
+    public Benefit withEmployerContribution(@Nullable Double employerContribution) {
         this.employerContribution = JsonNullable.of(employerContribution);
         return this;
     }
 
-    /**
-     * The amount of employer contribution.
-     */
-    public Benefit withEmployerContribution(JsonNullable<Double> employerContribution) {
-        Utils.checkNotNull(employerContribution, "employerContribution");
-        this.employerContribution = employerContribution;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -169,75 +140,41 @@ public class Benefit {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<Double> employeeDeduction = JsonNullable.undefined();
+        private JsonNullable<Double> employeeDeduction;
 
-        private JsonNullable<Double> employerContribution = JsonNullable.undefined();
+        private JsonNullable<Double> employerContribution;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the benefit.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the benefit.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The amount deducted for benefit.
          */
-        public Builder employeeDeduction(double employeeDeduction) {
-            Utils.checkNotNull(employeeDeduction, "employeeDeduction");
+        public Builder employeeDeduction(@Nullable Double employeeDeduction) {
             this.employeeDeduction = JsonNullable.of(employeeDeduction);
             return this;
         }
 
         /**
-         * The amount deducted for benefit.
-         */
-        public Builder employeeDeduction(JsonNullable<Double> employeeDeduction) {
-            Utils.checkNotNull(employeeDeduction, "employeeDeduction");
-            this.employeeDeduction = employeeDeduction;
-            return this;
-        }
-
-
-        /**
          * The amount of employer contribution.
          */
-        public Builder employerContribution(double employerContribution) {
-            Utils.checkNotNull(employerContribution, "employerContribution");
+        public Builder employerContribution(@Nullable Double employerContribution) {
             this.employerContribution = JsonNullable.of(employerContribution);
             return this;
         }
 
-        /**
-         * The amount of employer contribution.
-         */
-        public Builder employerContribution(JsonNullable<Double> employerContribution) {
-            Utils.checkNotNull(employerContribution, "employerContribution");
-            this.employerContribution = employerContribution;
-            return this;
-        }
-
         public Benefit build() {
-
             return new Benefit(
                 name, employeeDeduction, employerContribution);
         }

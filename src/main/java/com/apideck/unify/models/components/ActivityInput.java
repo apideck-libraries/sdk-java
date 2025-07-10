@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -137,7 +136,7 @@ public class ActivityInput {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("type")
-    private Optional<? extends ActivityType> type;
+    private JsonNullable<ActivityType> type;
 
     /**
      * The title of the activity
@@ -170,7 +169,7 @@ public class ActivityInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("location_address")
-    private Optional<? extends Address> locationAddress;
+    private Address locationAddress;
 
     /**
      * Whether the Activity is an all day event or not
@@ -231,7 +230,7 @@ public class ActivityInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_as")
-    private JsonNullable<? extends ShowAs> showAs;
+    private JsonNullable<ShowAs> showAs;
 
     /**
      * Whether the Activity is done or not
@@ -273,7 +272,7 @@ public class ActivityInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recurrent")
-    private Optional<Boolean> recurrent;
+    private Boolean recurrent;
 
     /**
      * The date and time of the reminder
@@ -308,521 +307,465 @@ public class ActivityInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("attendees")
-    private Optional<? extends List<ActivityAttendeeInput>> attendees;
+    private List<ActivityAttendeeInput> attendees;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public ActivityInput(
-            @JsonProperty("activity_datetime") JsonNullable<String> activityDatetime,
-            @JsonProperty("duration_seconds") JsonNullable<Long> durationSeconds,
-            @JsonProperty("user_id") JsonNullable<String> userId,
-            @JsonProperty("account_id") JsonNullable<String> accountId,
-            @JsonProperty("contact_id") JsonNullable<String> contactId,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("opportunity_id") JsonNullable<String> opportunityId,
-            @JsonProperty("lead_id") JsonNullable<String> leadId,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("campaign_id") JsonNullable<String> campaignId,
-            @JsonProperty("case_id") JsonNullable<String> caseId,
-            @JsonProperty("asset_id") JsonNullable<String> assetId,
-            @JsonProperty("contract_id") JsonNullable<String> contractId,
-            @JsonProperty("product_id") JsonNullable<String> productId,
-            @JsonProperty("solution_id") JsonNullable<String> solutionId,
-            @JsonProperty("custom_object_id") JsonNullable<String> customObjectId,
-            @JsonProperty("type") Optional<? extends ActivityType> type,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("note") JsonNullable<String> note,
-            @JsonProperty("location") JsonNullable<String> location,
-            @JsonProperty("location_address") Optional<? extends Address> locationAddress,
-            @JsonProperty("all_day_event") JsonNullable<Boolean> allDayEvent,
-            @JsonProperty("private") JsonNullable<Boolean> private_,
-            @JsonProperty("group_event") JsonNullable<Boolean> groupEvent,
-            @JsonProperty("event_sub_type") JsonNullable<String> eventSubType,
-            @JsonProperty("group_event_type") JsonNullable<String> groupEventType,
-            @JsonProperty("child") JsonNullable<Boolean> child,
-            @JsonProperty("archived") JsonNullable<Boolean> archived,
-            @JsonProperty("deleted") JsonNullable<Boolean> deleted,
-            @JsonProperty("show_as") JsonNullable<? extends ShowAs> showAs,
-            @JsonProperty("done") JsonNullable<Boolean> done,
-            @JsonProperty("start_datetime") JsonNullable<String> startDatetime,
-            @JsonProperty("end_datetime") JsonNullable<String> endDatetime,
-            @JsonProperty("activity_date") JsonNullable<String> activityDate,
-            @JsonProperty("end_date") JsonNullable<String> endDate,
-            @JsonProperty("recurrent") Optional<Boolean> recurrent,
-            @JsonProperty("reminder_datetime") JsonNullable<String> reminderDatetime,
-            @JsonProperty("reminder_set") JsonNullable<Boolean> reminderSet,
-            @JsonProperty("video_conference_url") JsonNullable<String> videoConferenceUrl,
-            @JsonProperty("video_conference_id") JsonNullable<String> videoConferenceId,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("attendees") Optional<? extends List<ActivityAttendeeInput>> attendees,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(activityDatetime, "activityDatetime");
-        Utils.checkNotNull(durationSeconds, "durationSeconds");
-        Utils.checkNotNull(userId, "userId");
-        Utils.checkNotNull(accountId, "accountId");
-        Utils.checkNotNull(contactId, "contactId");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(opportunityId, "opportunityId");
-        Utils.checkNotNull(leadId, "leadId");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(campaignId, "campaignId");
-        Utils.checkNotNull(caseId, "caseId");
-        Utils.checkNotNull(assetId, "assetId");
-        Utils.checkNotNull(contractId, "contractId");
-        Utils.checkNotNull(productId, "productId");
-        Utils.checkNotNull(solutionId, "solutionId");
-        Utils.checkNotNull(customObjectId, "customObjectId");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(note, "note");
-        Utils.checkNotNull(location, "location");
-        Utils.checkNotNull(locationAddress, "locationAddress");
-        Utils.checkNotNull(allDayEvent, "allDayEvent");
-        Utils.checkNotNull(private_, "private_");
-        Utils.checkNotNull(groupEvent, "groupEvent");
-        Utils.checkNotNull(eventSubType, "eventSubType");
-        Utils.checkNotNull(groupEventType, "groupEventType");
-        Utils.checkNotNull(child, "child");
-        Utils.checkNotNull(archived, "archived");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(showAs, "showAs");
-        Utils.checkNotNull(done, "done");
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        Utils.checkNotNull(activityDate, "activityDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(recurrent, "recurrent");
-        Utils.checkNotNull(reminderDatetime, "reminderDatetime");
-        Utils.checkNotNull(reminderSet, "reminderSet");
-        Utils.checkNotNull(videoConferenceUrl, "videoConferenceUrl");
-        Utils.checkNotNull(videoConferenceId, "videoConferenceId");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(attendees, "attendees");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.activityDatetime = activityDatetime;
-        this.durationSeconds = durationSeconds;
-        this.userId = userId;
-        this.accountId = accountId;
-        this.contactId = contactId;
-        this.companyId = companyId;
-        this.opportunityId = opportunityId;
-        this.leadId = leadId;
-        this.ownerId = ownerId;
-        this.campaignId = campaignId;
-        this.caseId = caseId;
-        this.assetId = assetId;
-        this.contractId = contractId;
-        this.productId = productId;
-        this.solutionId = solutionId;
-        this.customObjectId = customObjectId;
-        this.type = type;
-        this.title = title;
-        this.description = description;
-        this.note = note;
-        this.location = location;
+            @JsonProperty("activity_datetime") @Nullable JsonNullable<String> activityDatetime,
+            @JsonProperty("duration_seconds") @Nullable JsonNullable<Long> durationSeconds,
+            @JsonProperty("user_id") @Nullable JsonNullable<String> userId,
+            @JsonProperty("account_id") @Nullable JsonNullable<String> accountId,
+            @JsonProperty("contact_id") @Nullable JsonNullable<String> contactId,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("opportunity_id") @Nullable JsonNullable<String> opportunityId,
+            @JsonProperty("lead_id") @Nullable JsonNullable<String> leadId,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("campaign_id") @Nullable JsonNullable<String> campaignId,
+            @JsonProperty("case_id") @Nullable JsonNullable<String> caseId,
+            @JsonProperty("asset_id") @Nullable JsonNullable<String> assetId,
+            @JsonProperty("contract_id") @Nullable JsonNullable<String> contractId,
+            @JsonProperty("product_id") @Nullable JsonNullable<String> productId,
+            @JsonProperty("solution_id") @Nullable JsonNullable<String> solutionId,
+            @JsonProperty("custom_object_id") @Nullable JsonNullable<String> customObjectId,
+            @JsonProperty("type") @Nullable ActivityType type,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("note") @Nullable JsonNullable<String> note,
+            @JsonProperty("location") @Nullable JsonNullable<String> location,
+            @JsonProperty("location_address") @Nullable Address locationAddress,
+            @JsonProperty("all_day_event") @Nullable JsonNullable<Boolean> allDayEvent,
+            @JsonProperty("private") @Nullable JsonNullable<Boolean> private_,
+            @JsonProperty("group_event") @Nullable JsonNullable<Boolean> groupEvent,
+            @JsonProperty("event_sub_type") @Nullable JsonNullable<String> eventSubType,
+            @JsonProperty("group_event_type") @Nullable JsonNullable<String> groupEventType,
+            @JsonProperty("child") @Nullable JsonNullable<Boolean> child,
+            @JsonProperty("archived") @Nullable JsonNullable<Boolean> archived,
+            @JsonProperty("deleted") @Nullable JsonNullable<Boolean> deleted,
+            @JsonProperty("show_as") @Nullable JsonNullable<ShowAs> showAs,
+            @JsonProperty("done") @Nullable JsonNullable<Boolean> done,
+            @JsonProperty("start_datetime") @Nullable JsonNullable<String> startDatetime,
+            @JsonProperty("end_datetime") @Nullable JsonNullable<String> endDatetime,
+            @JsonProperty("activity_date") @Nullable JsonNullable<String> activityDate,
+            @JsonProperty("end_date") @Nullable JsonNullable<String> endDate,
+            @JsonProperty("recurrent") @Nullable Boolean recurrent,
+            @JsonProperty("reminder_datetime") @Nullable JsonNullable<String> reminderDatetime,
+            @JsonProperty("reminder_set") @Nullable JsonNullable<Boolean> reminderSet,
+            @JsonProperty("video_conference_url") @Nullable JsonNullable<String> videoConferenceUrl,
+            @JsonProperty("video_conference_id") @Nullable JsonNullable<String> videoConferenceId,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("attendees") @Nullable List<ActivityAttendeeInput> attendees,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.activityDatetime = Optional.ofNullable(activityDatetime)
+            .orElse(JsonNullable.undefined());
+        this.durationSeconds = Optional.ofNullable(durationSeconds)
+            .orElse(JsonNullable.undefined());
+        this.userId = Optional.ofNullable(userId)
+            .orElse(JsonNullable.undefined());
+        this.accountId = Optional.ofNullable(accountId)
+            .orElse(JsonNullable.undefined());
+        this.contactId = Optional.ofNullable(contactId)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.opportunityId = Optional.ofNullable(opportunityId)
+            .orElse(JsonNullable.undefined());
+        this.leadId = Optional.ofNullable(leadId)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.campaignId = Optional.ofNullable(campaignId)
+            .orElse(JsonNullable.undefined());
+        this.caseId = Optional.ofNullable(caseId)
+            .orElse(JsonNullable.undefined());
+        this.assetId = Optional.ofNullable(assetId)
+            .orElse(JsonNullable.undefined());
+        this.contractId = Optional.ofNullable(contractId)
+            .orElse(JsonNullable.undefined());
+        this.productId = Optional.ofNullable(productId)
+            .orElse(JsonNullable.undefined());
+        this.solutionId = Optional.ofNullable(solutionId)
+            .orElse(JsonNullable.undefined());
+        this.customObjectId = Optional.ofNullable(customObjectId)
+            .orElse(JsonNullable.undefined());
+        this.type = JsonNullable.of(type);
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.note = Optional.ofNullable(note)
+            .orElse(JsonNullable.undefined());
+        this.location = Optional.ofNullable(location)
+            .orElse(JsonNullable.undefined());
         this.locationAddress = locationAddress;
-        this.allDayEvent = allDayEvent;
-        this.private_ = private_;
-        this.groupEvent = groupEvent;
-        this.eventSubType = eventSubType;
-        this.groupEventType = groupEventType;
-        this.child = child;
-        this.archived = archived;
-        this.deleted = deleted;
-        this.showAs = showAs;
-        this.done = done;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
-        this.activityDate = activityDate;
-        this.endDate = endDate;
+        this.allDayEvent = Optional.ofNullable(allDayEvent)
+            .orElse(JsonNullable.undefined());
+        this.private_ = Optional.ofNullable(private_)
+            .orElse(JsonNullable.undefined());
+        this.groupEvent = Optional.ofNullable(groupEvent)
+            .orElse(JsonNullable.undefined());
+        this.eventSubType = Optional.ofNullable(eventSubType)
+            .orElse(JsonNullable.undefined());
+        this.groupEventType = Optional.ofNullable(groupEventType)
+            .orElse(JsonNullable.undefined());
+        this.child = Optional.ofNullable(child)
+            .orElse(JsonNullable.undefined());
+        this.archived = Optional.ofNullable(archived)
+            .orElse(JsonNullable.undefined());
+        this.deleted = Optional.ofNullable(deleted)
+            .orElse(JsonNullable.undefined());
+        this.showAs = Optional.ofNullable(showAs)
+            .orElse(JsonNullable.undefined());
+        this.done = Optional.ofNullable(done)
+            .orElse(JsonNullable.undefined());
+        this.startDatetime = Optional.ofNullable(startDatetime)
+            .orElse(JsonNullable.undefined());
+        this.endDatetime = Optional.ofNullable(endDatetime)
+            .orElse(JsonNullable.undefined());
+        this.activityDate = Optional.ofNullable(activityDate)
+            .orElse(JsonNullable.undefined());
+        this.endDate = Optional.ofNullable(endDate)
+            .orElse(JsonNullable.undefined());
         this.recurrent = recurrent;
-        this.reminderDatetime = reminderDatetime;
-        this.reminderSet = reminderSet;
-        this.videoConferenceUrl = videoConferenceUrl;
-        this.videoConferenceId = videoConferenceId;
+        this.reminderDatetime = Optional.ofNullable(reminderDatetime)
+            .orElse(JsonNullable.undefined());
+        this.reminderSet = Optional.ofNullable(reminderSet)
+            .orElse(JsonNullable.undefined());
+        this.videoConferenceUrl = Optional.ofNullable(videoConferenceUrl)
+            .orElse(JsonNullable.undefined());
+        this.videoConferenceId = Optional.ofNullable(videoConferenceId)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
         this.attendees = attendees;
         this.passThrough = passThrough;
     }
     
     public ActivityInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * The date and time of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> activityDatetime() {
-        return activityDatetime;
+        return this.activityDatetime;
     }
 
     /**
      * The duration of the activity in seconds
      */
-    @JsonIgnore
     public JsonNullable<Long> durationSeconds() {
-        return durationSeconds;
+        return this.durationSeconds;
     }
 
     /**
      * The user related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> userId() {
-        return userId;
+        return this.userId;
     }
 
     /**
      * The account related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> accountId() {
-        return accountId;
+        return this.accountId;
     }
 
     /**
      * The contact related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> contactId() {
-        return contactId;
+        return this.contactId;
     }
 
     /**
      * The company related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The opportunity related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> opportunityId() {
-        return opportunityId;
+        return this.opportunityId;
     }
 
     /**
      * The lead related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> leadId() {
-        return leadId;
+        return this.leadId;
     }
 
     /**
      * The owner of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     /**
      * The campaign related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> campaignId() {
-        return campaignId;
+        return this.campaignId;
     }
 
     /**
      * The case related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> caseId() {
-        return caseId;
+        return this.caseId;
     }
 
     /**
      * The asset related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> assetId() {
-        return assetId;
+        return this.assetId;
     }
 
     /**
      * The contract related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> contractId() {
-        return contractId;
+        return this.contractId;
     }
 
     /**
      * The product related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> productId() {
-        return productId;
+        return this.productId;
     }
 
     /**
      * The solution related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> solutionId() {
-        return solutionId;
+        return this.solutionId;
     }
 
     /**
      * The custom object related to the activity
      */
-    @JsonIgnore
     public JsonNullable<String> customObjectId() {
-        return customObjectId;
+        return this.customObjectId;
     }
 
     /**
      * The type of the activity
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<ActivityType> type() {
-        return (Optional<ActivityType>) type;
+    public JsonNullable<ActivityType> type() {
+        return this.type;
     }
 
     /**
      * The title of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * A description of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * An internal note about the activity
      */
-    @JsonIgnore
     public JsonNullable<String> note() {
-        return note;
+        return this.note;
     }
 
     /**
      * The location of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> location() {
-        return location;
+        return this.location;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> locationAddress() {
-        return (Optional<Address>) locationAddress;
+        return Optional.ofNullable(this.locationAddress);
     }
 
     /**
      * Whether the Activity is an all day event or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> allDayEvent() {
-        return allDayEvent;
+        return this.allDayEvent;
     }
 
     /**
      * Whether the Activity is private or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> private_() {
-        return private_;
+        return this.private_;
     }
 
     /**
      * Whether the Activity is a group event or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> groupEvent() {
-        return groupEvent;
+        return this.groupEvent;
     }
 
     /**
      * The sub type of the group event
      */
-    @JsonIgnore
     public JsonNullable<String> eventSubType() {
-        return eventSubType;
+        return this.eventSubType;
     }
 
     /**
      * The type of the group event
      */
-    @JsonIgnore
     public JsonNullable<String> groupEventType() {
-        return groupEventType;
+        return this.groupEventType;
     }
 
     /**
      * Whether the activity is a child of another activity or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> child() {
-        return child;
+        return this.child;
     }
 
     /**
      * Whether the activity is archived or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> archived() {
-        return archived;
+        return this.archived;
     }
 
     /**
      * Whether the activity is deleted or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> deleted() {
-        return deleted;
+        return this.deleted;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ShowAs> showAs() {
-        return (JsonNullable<ShowAs>) showAs;
+        return this.showAs;
     }
 
     /**
      * Whether the Activity is done or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> done() {
-        return done;
+        return this.done;
     }
 
     /**
      * The start date and time of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> startDatetime() {
-        return startDatetime;
+        return this.startDatetime;
     }
 
     /**
      * The end date and time of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> endDatetime() {
-        return endDatetime;
+        return this.endDatetime;
     }
 
     /**
      * The date of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> activityDate() {
-        return activityDate;
+        return this.activityDate;
     }
 
     /**
      * The end date of the activity
      */
-    @JsonIgnore
     public JsonNullable<String> endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     /**
      * Whether the activity is recurrent or not
      */
-    @JsonIgnore
     public Optional<Boolean> recurrent() {
-        return recurrent;
+        return Optional.ofNullable(this.recurrent);
     }
 
     /**
      * The date and time of the reminder
      */
-    @JsonIgnore
     public JsonNullable<String> reminderDatetime() {
-        return reminderDatetime;
+        return this.reminderDatetime;
     }
 
     /**
      * Whether the reminder is set or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> reminderSet() {
-        return reminderSet;
+        return this.reminderSet;
     }
 
     /**
      * The URL of the video conference
      */
-    @JsonIgnore
     public JsonNullable<String> videoConferenceUrl() {
-        return videoConferenceUrl;
+        return this.videoConferenceUrl;
     }
 
     /**
      * The ID of the video conference
      */
-    @JsonIgnore
     public JsonNullable<String> videoConferenceId() {
-        return videoConferenceId;
+        return this.videoConferenceId;
     }
 
     /**
      * Custom fields of the activity
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ActivityAttendeeInput>> attendees() {
-        return (Optional<List<ActivityAttendeeInput>>) attendees;
+        return Optional.ofNullable(this.attendees);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -833,782 +776,389 @@ public class ActivityInput {
     /**
      * The date and time of the activity
      */
-    public ActivityInput withActivityDatetime(String activityDatetime) {
-        Utils.checkNotNull(activityDatetime, "activityDatetime");
+    public ActivityInput withActivityDatetime(@Nullable String activityDatetime) {
         this.activityDatetime = JsonNullable.of(activityDatetime);
         return this;
     }
 
-    /**
-     * The date and time of the activity
-     */
-    public ActivityInput withActivityDatetime(JsonNullable<String> activityDatetime) {
-        Utils.checkNotNull(activityDatetime, "activityDatetime");
-        this.activityDatetime = activityDatetime;
-        return this;
-    }
 
     /**
      * The duration of the activity in seconds
      */
-    public ActivityInput withDurationSeconds(long durationSeconds) {
-        Utils.checkNotNull(durationSeconds, "durationSeconds");
+    public ActivityInput withDurationSeconds(@Nullable Long durationSeconds) {
         this.durationSeconds = JsonNullable.of(durationSeconds);
         return this;
     }
 
-    /**
-     * The duration of the activity in seconds
-     */
-    public ActivityInput withDurationSeconds(JsonNullable<Long> durationSeconds) {
-        Utils.checkNotNull(durationSeconds, "durationSeconds");
-        this.durationSeconds = durationSeconds;
-        return this;
-    }
 
     /**
      * The user related to the activity
      */
-    public ActivityInput withUserId(String userId) {
-        Utils.checkNotNull(userId, "userId");
+    public ActivityInput withUserId(@Nullable String userId) {
         this.userId = JsonNullable.of(userId);
         return this;
     }
 
-    /**
-     * The user related to the activity
-     */
-    public ActivityInput withUserId(JsonNullable<String> userId) {
-        Utils.checkNotNull(userId, "userId");
-        this.userId = userId;
-        return this;
-    }
 
     /**
      * The account related to the activity
      */
-    public ActivityInput withAccountId(String accountId) {
-        Utils.checkNotNull(accountId, "accountId");
+    public ActivityInput withAccountId(@Nullable String accountId) {
         this.accountId = JsonNullable.of(accountId);
         return this;
     }
 
-    /**
-     * The account related to the activity
-     */
-    public ActivityInput withAccountId(JsonNullable<String> accountId) {
-        Utils.checkNotNull(accountId, "accountId");
-        this.accountId = accountId;
-        return this;
-    }
 
     /**
      * The contact related to the activity
      */
-    public ActivityInput withContactId(String contactId) {
-        Utils.checkNotNull(contactId, "contactId");
+    public ActivityInput withContactId(@Nullable String contactId) {
         this.contactId = JsonNullable.of(contactId);
         return this;
     }
 
-    /**
-     * The contact related to the activity
-     */
-    public ActivityInput withContactId(JsonNullable<String> contactId) {
-        Utils.checkNotNull(contactId, "contactId");
-        this.contactId = contactId;
-        return this;
-    }
 
     /**
      * The company related to the activity
      */
-    public ActivityInput withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public ActivityInput withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company related to the activity
-     */
-    public ActivityInput withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The opportunity related to the activity
      */
-    public ActivityInput withOpportunityId(String opportunityId) {
-        Utils.checkNotNull(opportunityId, "opportunityId");
+    public ActivityInput withOpportunityId(@Nullable String opportunityId) {
         this.opportunityId = JsonNullable.of(opportunityId);
         return this;
     }
 
-    /**
-     * The opportunity related to the activity
-     */
-    public ActivityInput withOpportunityId(JsonNullable<String> opportunityId) {
-        Utils.checkNotNull(opportunityId, "opportunityId");
-        this.opportunityId = opportunityId;
-        return this;
-    }
 
     /**
      * The lead related to the activity
      */
-    public ActivityInput withLeadId(String leadId) {
-        Utils.checkNotNull(leadId, "leadId");
+    public ActivityInput withLeadId(@Nullable String leadId) {
         this.leadId = JsonNullable.of(leadId);
         return this;
     }
 
-    /**
-     * The lead related to the activity
-     */
-    public ActivityInput withLeadId(JsonNullable<String> leadId) {
-        Utils.checkNotNull(leadId, "leadId");
-        this.leadId = leadId;
-        return this;
-    }
 
     /**
      * The owner of the activity
      */
-    public ActivityInput withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public ActivityInput withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    /**
-     * The owner of the activity
-     */
-    public ActivityInput withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
     /**
      * The campaign related to the activity
      */
-    public ActivityInput withCampaignId(String campaignId) {
-        Utils.checkNotNull(campaignId, "campaignId");
+    public ActivityInput withCampaignId(@Nullable String campaignId) {
         this.campaignId = JsonNullable.of(campaignId);
         return this;
     }
 
-    /**
-     * The campaign related to the activity
-     */
-    public ActivityInput withCampaignId(JsonNullable<String> campaignId) {
-        Utils.checkNotNull(campaignId, "campaignId");
-        this.campaignId = campaignId;
-        return this;
-    }
 
     /**
      * The case related to the activity
      */
-    public ActivityInput withCaseId(String caseId) {
-        Utils.checkNotNull(caseId, "caseId");
+    public ActivityInput withCaseId(@Nullable String caseId) {
         this.caseId = JsonNullable.of(caseId);
         return this;
     }
 
-    /**
-     * The case related to the activity
-     */
-    public ActivityInput withCaseId(JsonNullable<String> caseId) {
-        Utils.checkNotNull(caseId, "caseId");
-        this.caseId = caseId;
-        return this;
-    }
 
     /**
      * The asset related to the activity
      */
-    public ActivityInput withAssetId(String assetId) {
-        Utils.checkNotNull(assetId, "assetId");
+    public ActivityInput withAssetId(@Nullable String assetId) {
         this.assetId = JsonNullable.of(assetId);
         return this;
     }
 
-    /**
-     * The asset related to the activity
-     */
-    public ActivityInput withAssetId(JsonNullable<String> assetId) {
-        Utils.checkNotNull(assetId, "assetId");
-        this.assetId = assetId;
-        return this;
-    }
 
     /**
      * The contract related to the activity
      */
-    public ActivityInput withContractId(String contractId) {
-        Utils.checkNotNull(contractId, "contractId");
+    public ActivityInput withContractId(@Nullable String contractId) {
         this.contractId = JsonNullable.of(contractId);
         return this;
     }
 
-    /**
-     * The contract related to the activity
-     */
-    public ActivityInput withContractId(JsonNullable<String> contractId) {
-        Utils.checkNotNull(contractId, "contractId");
-        this.contractId = contractId;
-        return this;
-    }
 
     /**
      * The product related to the activity
      */
-    public ActivityInput withProductId(String productId) {
-        Utils.checkNotNull(productId, "productId");
+    public ActivityInput withProductId(@Nullable String productId) {
         this.productId = JsonNullable.of(productId);
         return this;
     }
 
-    /**
-     * The product related to the activity
-     */
-    public ActivityInput withProductId(JsonNullable<String> productId) {
-        Utils.checkNotNull(productId, "productId");
-        this.productId = productId;
-        return this;
-    }
 
     /**
      * The solution related to the activity
      */
-    public ActivityInput withSolutionId(String solutionId) {
-        Utils.checkNotNull(solutionId, "solutionId");
+    public ActivityInput withSolutionId(@Nullable String solutionId) {
         this.solutionId = JsonNullable.of(solutionId);
         return this;
     }
 
-    /**
-     * The solution related to the activity
-     */
-    public ActivityInput withSolutionId(JsonNullable<String> solutionId) {
-        Utils.checkNotNull(solutionId, "solutionId");
-        this.solutionId = solutionId;
-        return this;
-    }
 
     /**
      * The custom object related to the activity
      */
-    public ActivityInput withCustomObjectId(String customObjectId) {
-        Utils.checkNotNull(customObjectId, "customObjectId");
+    public ActivityInput withCustomObjectId(@Nullable String customObjectId) {
         this.customObjectId = JsonNullable.of(customObjectId);
         return this;
     }
 
-    /**
-     * The custom object related to the activity
-     */
-    public ActivityInput withCustomObjectId(JsonNullable<String> customObjectId) {
-        Utils.checkNotNull(customObjectId, "customObjectId");
-        this.customObjectId = customObjectId;
-        return this;
-    }
 
     /**
      * The type of the activity
      */
-    public ActivityInput withType(ActivityType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+    public ActivityInput withType(@Nullable ActivityType type) {
+        this.type = JsonNullable.of(type);
         return this;
     }
 
-
-    /**
-     * The type of the activity
-     */
-    public ActivityInput withType(Optional<? extends ActivityType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * The title of the activity
      */
-    public ActivityInput withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public ActivityInput withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The title of the activity
-     */
-    public ActivityInput withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * A description of the activity
      */
-    public ActivityInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public ActivityInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the activity
-     */
-    public ActivityInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * An internal note about the activity
      */
-    public ActivityInput withNote(String note) {
-        Utils.checkNotNull(note, "note");
+    public ActivityInput withNote(@Nullable String note) {
         this.note = JsonNullable.of(note);
         return this;
     }
 
-    /**
-     * An internal note about the activity
-     */
-    public ActivityInput withNote(JsonNullable<String> note) {
-        Utils.checkNotNull(note, "note");
-        this.note = note;
-        return this;
-    }
 
     /**
      * The location of the activity
      */
-    public ActivityInput withLocation(String location) {
-        Utils.checkNotNull(location, "location");
+    public ActivityInput withLocation(@Nullable String location) {
         this.location = JsonNullable.of(location);
         return this;
     }
 
-    /**
-     * The location of the activity
-     */
-    public ActivityInput withLocation(JsonNullable<String> location) {
-        Utils.checkNotNull(location, "location");
-        this.location = location;
-        return this;
-    }
 
-    public ActivityInput withLocationAddress(Address locationAddress) {
-        Utils.checkNotNull(locationAddress, "locationAddress");
-        this.locationAddress = Optional.ofNullable(locationAddress);
-        return this;
-    }
-
-
-    public ActivityInput withLocationAddress(Optional<? extends Address> locationAddress) {
-        Utils.checkNotNull(locationAddress, "locationAddress");
+    public ActivityInput withLocationAddress(@Nullable Address locationAddress) {
         this.locationAddress = locationAddress;
         return this;
     }
 
+
     /**
      * Whether the Activity is an all day event or not
      */
-    public ActivityInput withAllDayEvent(boolean allDayEvent) {
-        Utils.checkNotNull(allDayEvent, "allDayEvent");
+    public ActivityInput withAllDayEvent(@Nullable Boolean allDayEvent) {
         this.allDayEvent = JsonNullable.of(allDayEvent);
         return this;
     }
 
-    /**
-     * Whether the Activity is an all day event or not
-     */
-    public ActivityInput withAllDayEvent(JsonNullable<Boolean> allDayEvent) {
-        Utils.checkNotNull(allDayEvent, "allDayEvent");
-        this.allDayEvent = allDayEvent;
-        return this;
-    }
 
     /**
      * Whether the Activity is private or not
      */
-    public ActivityInput withPrivate(boolean private_) {
-        Utils.checkNotNull(private_, "private_");
+    public ActivityInput withPrivate(@Nullable Boolean private_) {
         this.private_ = JsonNullable.of(private_);
         return this;
     }
 
-    /**
-     * Whether the Activity is private or not
-     */
-    public ActivityInput withPrivate(JsonNullable<Boolean> private_) {
-        Utils.checkNotNull(private_, "private_");
-        this.private_ = private_;
-        return this;
-    }
 
     /**
      * Whether the Activity is a group event or not
      */
-    public ActivityInput withGroupEvent(boolean groupEvent) {
-        Utils.checkNotNull(groupEvent, "groupEvent");
+    public ActivityInput withGroupEvent(@Nullable Boolean groupEvent) {
         this.groupEvent = JsonNullable.of(groupEvent);
         return this;
     }
 
-    /**
-     * Whether the Activity is a group event or not
-     */
-    public ActivityInput withGroupEvent(JsonNullable<Boolean> groupEvent) {
-        Utils.checkNotNull(groupEvent, "groupEvent");
-        this.groupEvent = groupEvent;
-        return this;
-    }
 
     /**
      * The sub type of the group event
      */
-    public ActivityInput withEventSubType(String eventSubType) {
-        Utils.checkNotNull(eventSubType, "eventSubType");
+    public ActivityInput withEventSubType(@Nullable String eventSubType) {
         this.eventSubType = JsonNullable.of(eventSubType);
         return this;
     }
 
-    /**
-     * The sub type of the group event
-     */
-    public ActivityInput withEventSubType(JsonNullable<String> eventSubType) {
-        Utils.checkNotNull(eventSubType, "eventSubType");
-        this.eventSubType = eventSubType;
-        return this;
-    }
 
     /**
      * The type of the group event
      */
-    public ActivityInput withGroupEventType(String groupEventType) {
-        Utils.checkNotNull(groupEventType, "groupEventType");
+    public ActivityInput withGroupEventType(@Nullable String groupEventType) {
         this.groupEventType = JsonNullable.of(groupEventType);
         return this;
     }
 
-    /**
-     * The type of the group event
-     */
-    public ActivityInput withGroupEventType(JsonNullable<String> groupEventType) {
-        Utils.checkNotNull(groupEventType, "groupEventType");
-        this.groupEventType = groupEventType;
-        return this;
-    }
 
     /**
      * Whether the activity is a child of another activity or not
      */
-    public ActivityInput withChild(boolean child) {
-        Utils.checkNotNull(child, "child");
+    public ActivityInput withChild(@Nullable Boolean child) {
         this.child = JsonNullable.of(child);
         return this;
     }
 
-    /**
-     * Whether the activity is a child of another activity or not
-     */
-    public ActivityInput withChild(JsonNullable<Boolean> child) {
-        Utils.checkNotNull(child, "child");
-        this.child = child;
-        return this;
-    }
 
     /**
      * Whether the activity is archived or not
      */
-    public ActivityInput withArchived(boolean archived) {
-        Utils.checkNotNull(archived, "archived");
+    public ActivityInput withArchived(@Nullable Boolean archived) {
         this.archived = JsonNullable.of(archived);
         return this;
     }
 
-    /**
-     * Whether the activity is archived or not
-     */
-    public ActivityInput withArchived(JsonNullable<Boolean> archived) {
-        Utils.checkNotNull(archived, "archived");
-        this.archived = archived;
-        return this;
-    }
 
     /**
      * Whether the activity is deleted or not
      */
-    public ActivityInput withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public ActivityInput withDeleted(@Nullable Boolean deleted) {
         this.deleted = JsonNullable.of(deleted);
         return this;
     }
 
-    /**
-     * Whether the activity is deleted or not
-     */
-    public ActivityInput withDeleted(JsonNullable<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = deleted;
-        return this;
-    }
 
-    public ActivityInput withShowAs(ShowAs showAs) {
-        Utils.checkNotNull(showAs, "showAs");
+    public ActivityInput withShowAs(@Nullable ShowAs showAs) {
         this.showAs = JsonNullable.of(showAs);
         return this;
     }
 
-    public ActivityInput withShowAs(JsonNullable<? extends ShowAs> showAs) {
-        Utils.checkNotNull(showAs, "showAs");
-        this.showAs = showAs;
-        return this;
-    }
 
     /**
      * Whether the Activity is done or not
      */
-    public ActivityInput withDone(boolean done) {
-        Utils.checkNotNull(done, "done");
+    public ActivityInput withDone(@Nullable Boolean done) {
         this.done = JsonNullable.of(done);
         return this;
     }
 
-    /**
-     * Whether the Activity is done or not
-     */
-    public ActivityInput withDone(JsonNullable<Boolean> done) {
-        Utils.checkNotNull(done, "done");
-        this.done = done;
-        return this;
-    }
 
     /**
      * The start date and time of the activity
      */
-    public ActivityInput withStartDatetime(String startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
+    public ActivityInput withStartDatetime(@Nullable String startDatetime) {
         this.startDatetime = JsonNullable.of(startDatetime);
         return this;
     }
 
-    /**
-     * The start date and time of the activity
-     */
-    public ActivityInput withStartDatetime(JsonNullable<String> startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        this.startDatetime = startDatetime;
-        return this;
-    }
 
     /**
      * The end date and time of the activity
      */
-    public ActivityInput withEndDatetime(String endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
+    public ActivityInput withEndDatetime(@Nullable String endDatetime) {
         this.endDatetime = JsonNullable.of(endDatetime);
         return this;
     }
 
-    /**
-     * The end date and time of the activity
-     */
-    public ActivityInput withEndDatetime(JsonNullable<String> endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        this.endDatetime = endDatetime;
-        return this;
-    }
 
     /**
      * The date of the activity
      */
-    public ActivityInput withActivityDate(String activityDate) {
-        Utils.checkNotNull(activityDate, "activityDate");
+    public ActivityInput withActivityDate(@Nullable String activityDate) {
         this.activityDate = JsonNullable.of(activityDate);
         return this;
     }
 
-    /**
-     * The date of the activity
-     */
-    public ActivityInput withActivityDate(JsonNullable<String> activityDate) {
-        Utils.checkNotNull(activityDate, "activityDate");
-        this.activityDate = activityDate;
-        return this;
-    }
 
     /**
      * The end date of the activity
      */
-    public ActivityInput withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public ActivityInput withEndDate(@Nullable String endDate) {
         this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
-    /**
-     * The end date of the activity
-     */
-    public ActivityInput withEndDate(JsonNullable<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
 
     /**
      * Whether the activity is recurrent or not
      */
-    public ActivityInput withRecurrent(boolean recurrent) {
-        Utils.checkNotNull(recurrent, "recurrent");
-        this.recurrent = Optional.ofNullable(recurrent);
-        return this;
-    }
-
-
-    /**
-     * Whether the activity is recurrent or not
-     */
-    public ActivityInput withRecurrent(Optional<Boolean> recurrent) {
-        Utils.checkNotNull(recurrent, "recurrent");
+    public ActivityInput withRecurrent(@Nullable Boolean recurrent) {
         this.recurrent = recurrent;
         return this;
     }
 
+
     /**
      * The date and time of the reminder
      */
-    public ActivityInput withReminderDatetime(String reminderDatetime) {
-        Utils.checkNotNull(reminderDatetime, "reminderDatetime");
+    public ActivityInput withReminderDatetime(@Nullable String reminderDatetime) {
         this.reminderDatetime = JsonNullable.of(reminderDatetime);
         return this;
     }
 
-    /**
-     * The date and time of the reminder
-     */
-    public ActivityInput withReminderDatetime(JsonNullable<String> reminderDatetime) {
-        Utils.checkNotNull(reminderDatetime, "reminderDatetime");
-        this.reminderDatetime = reminderDatetime;
-        return this;
-    }
 
     /**
      * Whether the reminder is set or not
      */
-    public ActivityInput withReminderSet(boolean reminderSet) {
-        Utils.checkNotNull(reminderSet, "reminderSet");
+    public ActivityInput withReminderSet(@Nullable Boolean reminderSet) {
         this.reminderSet = JsonNullable.of(reminderSet);
         return this;
     }
 
-    /**
-     * Whether the reminder is set or not
-     */
-    public ActivityInput withReminderSet(JsonNullable<Boolean> reminderSet) {
-        Utils.checkNotNull(reminderSet, "reminderSet");
-        this.reminderSet = reminderSet;
-        return this;
-    }
 
     /**
      * The URL of the video conference
      */
-    public ActivityInput withVideoConferenceUrl(String videoConferenceUrl) {
-        Utils.checkNotNull(videoConferenceUrl, "videoConferenceUrl");
+    public ActivityInput withVideoConferenceUrl(@Nullable String videoConferenceUrl) {
         this.videoConferenceUrl = JsonNullable.of(videoConferenceUrl);
         return this;
     }
 
-    /**
-     * The URL of the video conference
-     */
-    public ActivityInput withVideoConferenceUrl(JsonNullable<String> videoConferenceUrl) {
-        Utils.checkNotNull(videoConferenceUrl, "videoConferenceUrl");
-        this.videoConferenceUrl = videoConferenceUrl;
-        return this;
-    }
 
     /**
      * The ID of the video conference
      */
-    public ActivityInput withVideoConferenceId(String videoConferenceId) {
-        Utils.checkNotNull(videoConferenceId, "videoConferenceId");
+    public ActivityInput withVideoConferenceId(@Nullable String videoConferenceId) {
         this.videoConferenceId = JsonNullable.of(videoConferenceId);
         return this;
     }
 
-    /**
-     * The ID of the video conference
-     */
-    public ActivityInput withVideoConferenceId(JsonNullable<String> videoConferenceId) {
-        Utils.checkNotNull(videoConferenceId, "videoConferenceId");
-        this.videoConferenceId = videoConferenceId;
-        return this;
-    }
 
     /**
      * Custom fields of the activity
      */
-    public ActivityInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    /**
-     * Custom fields of the activity
-     */
-    public ActivityInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public ActivityInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
-    public ActivityInput withAttendees(List<ActivityAttendeeInput> attendees) {
-        Utils.checkNotNull(attendees, "attendees");
-        this.attendees = Optional.ofNullable(attendees);
-        return this;
-    }
 
-
-    public ActivityInput withAttendees(Optional<? extends List<ActivityAttendeeInput>> attendees) {
-        Utils.checkNotNull(attendees, "attendees");
+    public ActivityInput withAttendees(@Nullable List<ActivityAttendeeInput> attendees) {
         this.attendees = attendees;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public ActivityInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public ActivityInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public ActivityInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1738,918 +1288,442 @@ public class ActivityInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> activityDatetime = JsonNullable.undefined();
+        private JsonNullable<String> activityDatetime;
 
-        private JsonNullable<Long> durationSeconds = JsonNullable.undefined();
+        private JsonNullable<Long> durationSeconds;
 
-        private JsonNullable<String> userId = JsonNullable.undefined();
+        private JsonNullable<String> userId;
 
-        private JsonNullable<String> accountId = JsonNullable.undefined();
+        private JsonNullable<String> accountId;
 
-        private JsonNullable<String> contactId = JsonNullable.undefined();
+        private JsonNullable<String> contactId;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> opportunityId = JsonNullable.undefined();
+        private JsonNullable<String> opportunityId;
 
-        private JsonNullable<String> leadId = JsonNullable.undefined();
+        private JsonNullable<String> leadId;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> campaignId = JsonNullable.undefined();
+        private JsonNullable<String> campaignId;
 
-        private JsonNullable<String> caseId = JsonNullable.undefined();
+        private JsonNullable<String> caseId;
 
-        private JsonNullable<String> assetId = JsonNullable.undefined();
+        private JsonNullable<String> assetId;
 
-        private JsonNullable<String> contractId = JsonNullable.undefined();
+        private JsonNullable<String> contractId;
 
-        private JsonNullable<String> productId = JsonNullable.undefined();
+        private JsonNullable<String> productId;
 
-        private JsonNullable<String> solutionId = JsonNullable.undefined();
+        private JsonNullable<String> solutionId;
 
-        private JsonNullable<String> customObjectId = JsonNullable.undefined();
+        private JsonNullable<String> customObjectId;
 
-        private Optional<? extends ActivityType> type = Optional.empty();
+        private ActivityType type;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> note = JsonNullable.undefined();
+        private JsonNullable<String> note;
 
-        private JsonNullable<String> location = JsonNullable.undefined();
+        private JsonNullable<String> location;
 
-        private Optional<? extends Address> locationAddress = Optional.empty();
+        private Address locationAddress;
 
-        private JsonNullable<Boolean> allDayEvent = JsonNullable.undefined();
+        private JsonNullable<Boolean> allDayEvent;
 
-        private JsonNullable<Boolean> private_ = JsonNullable.undefined();
+        private JsonNullable<Boolean> private_;
 
-        private JsonNullable<Boolean> groupEvent = JsonNullable.undefined();
+        private JsonNullable<Boolean> groupEvent;
 
-        private JsonNullable<String> eventSubType = JsonNullable.undefined();
+        private JsonNullable<String> eventSubType;
 
-        private JsonNullable<String> groupEventType = JsonNullable.undefined();
+        private JsonNullable<String> groupEventType;
 
-        private JsonNullable<Boolean> child = JsonNullable.undefined();
+        private JsonNullable<Boolean> child;
 
-        private JsonNullable<Boolean> archived = JsonNullable.undefined();
+        private JsonNullable<Boolean> archived;
 
-        private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+        private JsonNullable<Boolean> deleted;
 
-        private JsonNullable<? extends ShowAs> showAs = JsonNullable.undefined();
+        private JsonNullable<ShowAs> showAs;
 
-        private JsonNullable<Boolean> done = JsonNullable.undefined();
+        private JsonNullable<Boolean> done;
 
-        private JsonNullable<String> startDatetime = JsonNullable.undefined();
+        private JsonNullable<String> startDatetime;
 
-        private JsonNullable<String> endDatetime = JsonNullable.undefined();
+        private JsonNullable<String> endDatetime;
 
-        private JsonNullable<String> activityDate = JsonNullable.undefined();
+        private JsonNullable<String> activityDate;
 
-        private JsonNullable<String> endDate = JsonNullable.undefined();
+        private JsonNullable<String> endDate;
 
-        private Optional<Boolean> recurrent = Optional.empty();
+        private Boolean recurrent;
 
-        private JsonNullable<String> reminderDatetime = JsonNullable.undefined();
+        private JsonNullable<String> reminderDatetime;
 
-        private JsonNullable<Boolean> reminderSet = JsonNullable.undefined();
+        private JsonNullable<Boolean> reminderSet;
 
-        private JsonNullable<String> videoConferenceUrl = JsonNullable.undefined();
+        private JsonNullable<String> videoConferenceUrl;
 
-        private JsonNullable<String> videoConferenceId = JsonNullable.undefined();
+        private JsonNullable<String> videoConferenceId;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private Optional<? extends List<ActivityAttendeeInput>> attendees = Optional.empty();
+        private List<ActivityAttendeeInput> attendees;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The date and time of the activity
          */
-        public Builder activityDatetime(String activityDatetime) {
-            Utils.checkNotNull(activityDatetime, "activityDatetime");
+        public Builder activityDatetime(@Nullable String activityDatetime) {
             this.activityDatetime = JsonNullable.of(activityDatetime);
             return this;
         }
 
         /**
-         * The date and time of the activity
-         */
-        public Builder activityDatetime(JsonNullable<String> activityDatetime) {
-            Utils.checkNotNull(activityDatetime, "activityDatetime");
-            this.activityDatetime = activityDatetime;
-            return this;
-        }
-
-
-        /**
          * The duration of the activity in seconds
          */
-        public Builder durationSeconds(long durationSeconds) {
-            Utils.checkNotNull(durationSeconds, "durationSeconds");
+        public Builder durationSeconds(@Nullable Long durationSeconds) {
             this.durationSeconds = JsonNullable.of(durationSeconds);
             return this;
         }
 
         /**
-         * The duration of the activity in seconds
-         */
-        public Builder durationSeconds(JsonNullable<Long> durationSeconds) {
-            Utils.checkNotNull(durationSeconds, "durationSeconds");
-            this.durationSeconds = durationSeconds;
-            return this;
-        }
-
-
-        /**
          * The user related to the activity
          */
-        public Builder userId(String userId) {
-            Utils.checkNotNull(userId, "userId");
+        public Builder userId(@Nullable String userId) {
             this.userId = JsonNullable.of(userId);
             return this;
         }
 
         /**
-         * The user related to the activity
-         */
-        public Builder userId(JsonNullable<String> userId) {
-            Utils.checkNotNull(userId, "userId");
-            this.userId = userId;
-            return this;
-        }
-
-
-        /**
          * The account related to the activity
          */
-        public Builder accountId(String accountId) {
-            Utils.checkNotNull(accountId, "accountId");
+        public Builder accountId(@Nullable String accountId) {
             this.accountId = JsonNullable.of(accountId);
             return this;
         }
 
         /**
-         * The account related to the activity
-         */
-        public Builder accountId(JsonNullable<String> accountId) {
-            Utils.checkNotNull(accountId, "accountId");
-            this.accountId = accountId;
-            return this;
-        }
-
-
-        /**
          * The contact related to the activity
          */
-        public Builder contactId(String contactId) {
-            Utils.checkNotNull(contactId, "contactId");
+        public Builder contactId(@Nullable String contactId) {
             this.contactId = JsonNullable.of(contactId);
             return this;
         }
 
         /**
-         * The contact related to the activity
-         */
-        public Builder contactId(JsonNullable<String> contactId) {
-            Utils.checkNotNull(contactId, "contactId");
-            this.contactId = contactId;
-            return this;
-        }
-
-
-        /**
          * The company related to the activity
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company related to the activity
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The opportunity related to the activity
          */
-        public Builder opportunityId(String opportunityId) {
-            Utils.checkNotNull(opportunityId, "opportunityId");
+        public Builder opportunityId(@Nullable String opportunityId) {
             this.opportunityId = JsonNullable.of(opportunityId);
             return this;
         }
 
         /**
-         * The opportunity related to the activity
-         */
-        public Builder opportunityId(JsonNullable<String> opportunityId) {
-            Utils.checkNotNull(opportunityId, "opportunityId");
-            this.opportunityId = opportunityId;
-            return this;
-        }
-
-
-        /**
          * The lead related to the activity
          */
-        public Builder leadId(String leadId) {
-            Utils.checkNotNull(leadId, "leadId");
+        public Builder leadId(@Nullable String leadId) {
             this.leadId = JsonNullable.of(leadId);
             return this;
         }
 
         /**
-         * The lead related to the activity
-         */
-        public Builder leadId(JsonNullable<String> leadId) {
-            Utils.checkNotNull(leadId, "leadId");
-            this.leadId = leadId;
-            return this;
-        }
-
-
-        /**
          * The owner of the activity
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
         /**
-         * The owner of the activity
-         */
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        /**
          * The campaign related to the activity
          */
-        public Builder campaignId(String campaignId) {
-            Utils.checkNotNull(campaignId, "campaignId");
+        public Builder campaignId(@Nullable String campaignId) {
             this.campaignId = JsonNullable.of(campaignId);
             return this;
         }
 
         /**
-         * The campaign related to the activity
-         */
-        public Builder campaignId(JsonNullable<String> campaignId) {
-            Utils.checkNotNull(campaignId, "campaignId");
-            this.campaignId = campaignId;
-            return this;
-        }
-
-
-        /**
          * The case related to the activity
          */
-        public Builder caseId(String caseId) {
-            Utils.checkNotNull(caseId, "caseId");
+        public Builder caseId(@Nullable String caseId) {
             this.caseId = JsonNullable.of(caseId);
             return this;
         }
 
         /**
-         * The case related to the activity
-         */
-        public Builder caseId(JsonNullable<String> caseId) {
-            Utils.checkNotNull(caseId, "caseId");
-            this.caseId = caseId;
-            return this;
-        }
-
-
-        /**
          * The asset related to the activity
          */
-        public Builder assetId(String assetId) {
-            Utils.checkNotNull(assetId, "assetId");
+        public Builder assetId(@Nullable String assetId) {
             this.assetId = JsonNullable.of(assetId);
             return this;
         }
 
         /**
-         * The asset related to the activity
-         */
-        public Builder assetId(JsonNullable<String> assetId) {
-            Utils.checkNotNull(assetId, "assetId");
-            this.assetId = assetId;
-            return this;
-        }
-
-
-        /**
          * The contract related to the activity
          */
-        public Builder contractId(String contractId) {
-            Utils.checkNotNull(contractId, "contractId");
+        public Builder contractId(@Nullable String contractId) {
             this.contractId = JsonNullable.of(contractId);
             return this;
         }
 
         /**
-         * The contract related to the activity
-         */
-        public Builder contractId(JsonNullable<String> contractId) {
-            Utils.checkNotNull(contractId, "contractId");
-            this.contractId = contractId;
-            return this;
-        }
-
-
-        /**
          * The product related to the activity
          */
-        public Builder productId(String productId) {
-            Utils.checkNotNull(productId, "productId");
+        public Builder productId(@Nullable String productId) {
             this.productId = JsonNullable.of(productId);
             return this;
         }
 
         /**
-         * The product related to the activity
-         */
-        public Builder productId(JsonNullable<String> productId) {
-            Utils.checkNotNull(productId, "productId");
-            this.productId = productId;
-            return this;
-        }
-
-
-        /**
          * The solution related to the activity
          */
-        public Builder solutionId(String solutionId) {
-            Utils.checkNotNull(solutionId, "solutionId");
+        public Builder solutionId(@Nullable String solutionId) {
             this.solutionId = JsonNullable.of(solutionId);
             return this;
         }
 
         /**
-         * The solution related to the activity
-         */
-        public Builder solutionId(JsonNullable<String> solutionId) {
-            Utils.checkNotNull(solutionId, "solutionId");
-            this.solutionId = solutionId;
-            return this;
-        }
-
-
-        /**
          * The custom object related to the activity
          */
-        public Builder customObjectId(String customObjectId) {
-            Utils.checkNotNull(customObjectId, "customObjectId");
+        public Builder customObjectId(@Nullable String customObjectId) {
             this.customObjectId = JsonNullable.of(customObjectId);
             return this;
         }
 
         /**
-         * The custom object related to the activity
-         */
-        public Builder customObjectId(JsonNullable<String> customObjectId) {
-            Utils.checkNotNull(customObjectId, "customObjectId");
-            this.customObjectId = customObjectId;
-            return this;
-        }
-
-
-        /**
          * The type of the activity
          */
-        public Builder type(ActivityType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The type of the activity
-         */
-        public Builder type(Optional<? extends ActivityType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable ActivityType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * The title of the activity
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The title of the activity
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * A description of the activity
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the activity
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * An internal note about the activity
          */
-        public Builder note(String note) {
-            Utils.checkNotNull(note, "note");
+        public Builder note(@Nullable String note) {
             this.note = JsonNullable.of(note);
             return this;
         }
 
         /**
-         * An internal note about the activity
-         */
-        public Builder note(JsonNullable<String> note) {
-            Utils.checkNotNull(note, "note");
-            this.note = note;
-            return this;
-        }
-
-
-        /**
          * The location of the activity
          */
-        public Builder location(String location) {
-            Utils.checkNotNull(location, "location");
+        public Builder location(@Nullable String location) {
             this.location = JsonNullable.of(location);
             return this;
         }
 
-        /**
-         * The location of the activity
-         */
-        public Builder location(JsonNullable<String> location) {
-            Utils.checkNotNull(location, "location");
-            this.location = location;
-            return this;
-        }
-
-
-        public Builder locationAddress(Address locationAddress) {
-            Utils.checkNotNull(locationAddress, "locationAddress");
-            this.locationAddress = Optional.ofNullable(locationAddress);
-            return this;
-        }
-
-        public Builder locationAddress(Optional<? extends Address> locationAddress) {
-            Utils.checkNotNull(locationAddress, "locationAddress");
+        public Builder locationAddress(@Nullable Address locationAddress) {
             this.locationAddress = locationAddress;
             return this;
         }
 
-
         /**
          * Whether the Activity is an all day event or not
          */
-        public Builder allDayEvent(boolean allDayEvent) {
-            Utils.checkNotNull(allDayEvent, "allDayEvent");
+        public Builder allDayEvent(@Nullable Boolean allDayEvent) {
             this.allDayEvent = JsonNullable.of(allDayEvent);
             return this;
         }
 
         /**
-         * Whether the Activity is an all day event or not
-         */
-        public Builder allDayEvent(JsonNullable<Boolean> allDayEvent) {
-            Utils.checkNotNull(allDayEvent, "allDayEvent");
-            this.allDayEvent = allDayEvent;
-            return this;
-        }
-
-
-        /**
          * Whether the Activity is private or not
          */
-        public Builder private_(boolean private_) {
-            Utils.checkNotNull(private_, "private_");
+        public Builder private_(@Nullable Boolean private_) {
             this.private_ = JsonNullable.of(private_);
             return this;
         }
 
         /**
-         * Whether the Activity is private or not
-         */
-        public Builder private_(JsonNullable<Boolean> private_) {
-            Utils.checkNotNull(private_, "private_");
-            this.private_ = private_;
-            return this;
-        }
-
-
-        /**
          * Whether the Activity is a group event or not
          */
-        public Builder groupEvent(boolean groupEvent) {
-            Utils.checkNotNull(groupEvent, "groupEvent");
+        public Builder groupEvent(@Nullable Boolean groupEvent) {
             this.groupEvent = JsonNullable.of(groupEvent);
             return this;
         }
 
         /**
-         * Whether the Activity is a group event or not
-         */
-        public Builder groupEvent(JsonNullable<Boolean> groupEvent) {
-            Utils.checkNotNull(groupEvent, "groupEvent");
-            this.groupEvent = groupEvent;
-            return this;
-        }
-
-
-        /**
          * The sub type of the group event
          */
-        public Builder eventSubType(String eventSubType) {
-            Utils.checkNotNull(eventSubType, "eventSubType");
+        public Builder eventSubType(@Nullable String eventSubType) {
             this.eventSubType = JsonNullable.of(eventSubType);
             return this;
         }
 
         /**
-         * The sub type of the group event
-         */
-        public Builder eventSubType(JsonNullable<String> eventSubType) {
-            Utils.checkNotNull(eventSubType, "eventSubType");
-            this.eventSubType = eventSubType;
-            return this;
-        }
-
-
-        /**
          * The type of the group event
          */
-        public Builder groupEventType(String groupEventType) {
-            Utils.checkNotNull(groupEventType, "groupEventType");
+        public Builder groupEventType(@Nullable String groupEventType) {
             this.groupEventType = JsonNullable.of(groupEventType);
             return this;
         }
 
         /**
-         * The type of the group event
-         */
-        public Builder groupEventType(JsonNullable<String> groupEventType) {
-            Utils.checkNotNull(groupEventType, "groupEventType");
-            this.groupEventType = groupEventType;
-            return this;
-        }
-
-
-        /**
          * Whether the activity is a child of another activity or not
          */
-        public Builder child(boolean child) {
-            Utils.checkNotNull(child, "child");
+        public Builder child(@Nullable Boolean child) {
             this.child = JsonNullable.of(child);
             return this;
         }
 
         /**
-         * Whether the activity is a child of another activity or not
-         */
-        public Builder child(JsonNullable<Boolean> child) {
-            Utils.checkNotNull(child, "child");
-            this.child = child;
-            return this;
-        }
-
-
-        /**
          * Whether the activity is archived or not
          */
-        public Builder archived(boolean archived) {
-            Utils.checkNotNull(archived, "archived");
+        public Builder archived(@Nullable Boolean archived) {
             this.archived = JsonNullable.of(archived);
             return this;
         }
 
         /**
-         * Whether the activity is archived or not
-         */
-        public Builder archived(JsonNullable<Boolean> archived) {
-            Utils.checkNotNull(archived, "archived");
-            this.archived = archived;
-            return this;
-        }
-
-
-        /**
          * Whether the activity is deleted or not
          */
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = JsonNullable.of(deleted);
             return this;
         }
 
-        /**
-         * Whether the activity is deleted or not
-         */
-        public Builder deleted(JsonNullable<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = deleted;
-            return this;
-        }
-
-
-        public Builder showAs(ShowAs showAs) {
-            Utils.checkNotNull(showAs, "showAs");
+        public Builder showAs(@Nullable ShowAs showAs) {
             this.showAs = JsonNullable.of(showAs);
             return this;
         }
 
-        public Builder showAs(JsonNullable<? extends ShowAs> showAs) {
-            Utils.checkNotNull(showAs, "showAs");
-            this.showAs = showAs;
-            return this;
-        }
-
-
         /**
          * Whether the Activity is done or not
          */
-        public Builder done(boolean done) {
-            Utils.checkNotNull(done, "done");
+        public Builder done(@Nullable Boolean done) {
             this.done = JsonNullable.of(done);
             return this;
         }
 
         /**
-         * Whether the Activity is done or not
-         */
-        public Builder done(JsonNullable<Boolean> done) {
-            Utils.checkNotNull(done, "done");
-            this.done = done;
-            return this;
-        }
-
-
-        /**
          * The start date and time of the activity
          */
-        public Builder startDatetime(String startDatetime) {
-            Utils.checkNotNull(startDatetime, "startDatetime");
+        public Builder startDatetime(@Nullable String startDatetime) {
             this.startDatetime = JsonNullable.of(startDatetime);
             return this;
         }
 
         /**
-         * The start date and time of the activity
-         */
-        public Builder startDatetime(JsonNullable<String> startDatetime) {
-            Utils.checkNotNull(startDatetime, "startDatetime");
-            this.startDatetime = startDatetime;
-            return this;
-        }
-
-
-        /**
          * The end date and time of the activity
          */
-        public Builder endDatetime(String endDatetime) {
-            Utils.checkNotNull(endDatetime, "endDatetime");
+        public Builder endDatetime(@Nullable String endDatetime) {
             this.endDatetime = JsonNullable.of(endDatetime);
             return this;
         }
 
         /**
-         * The end date and time of the activity
-         */
-        public Builder endDatetime(JsonNullable<String> endDatetime) {
-            Utils.checkNotNull(endDatetime, "endDatetime");
-            this.endDatetime = endDatetime;
-            return this;
-        }
-
-
-        /**
          * The date of the activity
          */
-        public Builder activityDate(String activityDate) {
-            Utils.checkNotNull(activityDate, "activityDate");
+        public Builder activityDate(@Nullable String activityDate) {
             this.activityDate = JsonNullable.of(activityDate);
             return this;
         }
 
         /**
-         * The date of the activity
-         */
-        public Builder activityDate(JsonNullable<String> activityDate) {
-            Utils.checkNotNull(activityDate, "activityDate");
-            this.activityDate = activityDate;
-            return this;
-        }
-
-
-        /**
          * The end date of the activity
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
-         * The end date of the activity
-         */
-        public Builder endDate(JsonNullable<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
-            return this;
-        }
-
-
-        /**
          * Whether the activity is recurrent or not
          */
-        public Builder recurrent(boolean recurrent) {
-            Utils.checkNotNull(recurrent, "recurrent");
-            this.recurrent = Optional.ofNullable(recurrent);
-            return this;
-        }
-
-        /**
-         * Whether the activity is recurrent or not
-         */
-        public Builder recurrent(Optional<Boolean> recurrent) {
-            Utils.checkNotNull(recurrent, "recurrent");
+        public Builder recurrent(@Nullable Boolean recurrent) {
             this.recurrent = recurrent;
             return this;
         }
 
-
         /**
          * The date and time of the reminder
          */
-        public Builder reminderDatetime(String reminderDatetime) {
-            Utils.checkNotNull(reminderDatetime, "reminderDatetime");
+        public Builder reminderDatetime(@Nullable String reminderDatetime) {
             this.reminderDatetime = JsonNullable.of(reminderDatetime);
             return this;
         }
 
         /**
-         * The date and time of the reminder
-         */
-        public Builder reminderDatetime(JsonNullable<String> reminderDatetime) {
-            Utils.checkNotNull(reminderDatetime, "reminderDatetime");
-            this.reminderDatetime = reminderDatetime;
-            return this;
-        }
-
-
-        /**
          * Whether the reminder is set or not
          */
-        public Builder reminderSet(boolean reminderSet) {
-            Utils.checkNotNull(reminderSet, "reminderSet");
+        public Builder reminderSet(@Nullable Boolean reminderSet) {
             this.reminderSet = JsonNullable.of(reminderSet);
             return this;
         }
 
         /**
-         * Whether the reminder is set or not
-         */
-        public Builder reminderSet(JsonNullable<Boolean> reminderSet) {
-            Utils.checkNotNull(reminderSet, "reminderSet");
-            this.reminderSet = reminderSet;
-            return this;
-        }
-
-
-        /**
          * The URL of the video conference
          */
-        public Builder videoConferenceUrl(String videoConferenceUrl) {
-            Utils.checkNotNull(videoConferenceUrl, "videoConferenceUrl");
+        public Builder videoConferenceUrl(@Nullable String videoConferenceUrl) {
             this.videoConferenceUrl = JsonNullable.of(videoConferenceUrl);
             return this;
         }
 
         /**
-         * The URL of the video conference
-         */
-        public Builder videoConferenceUrl(JsonNullable<String> videoConferenceUrl) {
-            Utils.checkNotNull(videoConferenceUrl, "videoConferenceUrl");
-            this.videoConferenceUrl = videoConferenceUrl;
-            return this;
-        }
-
-
-        /**
          * The ID of the video conference
          */
-        public Builder videoConferenceId(String videoConferenceId) {
-            Utils.checkNotNull(videoConferenceId, "videoConferenceId");
+        public Builder videoConferenceId(@Nullable String videoConferenceId) {
             this.videoConferenceId = JsonNullable.of(videoConferenceId);
             return this;
         }
 
         /**
-         * The ID of the video conference
-         */
-        public Builder videoConferenceId(JsonNullable<String> videoConferenceId) {
-            Utils.checkNotNull(videoConferenceId, "videoConferenceId");
-            this.videoConferenceId = videoConferenceId;
-            return this;
-        }
-
-
-        /**
          * Custom fields of the activity
          */
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        /**
-         * Custom fields of the activity
-         */
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
-        public Builder attendees(List<ActivityAttendeeInput> attendees) {
-            Utils.checkNotNull(attendees, "attendees");
-            this.attendees = Optional.ofNullable(attendees);
-            return this;
-        }
-
-        public Builder attendees(Optional<? extends List<ActivityAttendeeInput>> attendees) {
-            Utils.checkNotNull(attendees, "attendees");
+        public Builder attendees(@Nullable List<ActivityAttendeeInput> attendees) {
             this.attendees = attendees;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public ActivityInput build() {
-
             return new ActivityInput(
                 activityDatetime, durationSeconds, userId,
                 accountId, contactId, companyId,

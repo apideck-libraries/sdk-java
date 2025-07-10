@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -20,60 +19,53 @@ public class IssuesFilter {
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
      */
     @SpeakeasyMetadata("queryParam:name=status")
-    private Optional<? extends List<String>> status;
+    private List<String> status;
 
     /**
      * Only return tickets since a specific date
      */
     @SpeakeasyMetadata("queryParam:name=since")
-    private Optional<OffsetDateTime> since;
+    private OffsetDateTime since;
 
     /**
      * Only return tickets assigned to a specific user
      */
     @SpeakeasyMetadata("queryParam:name=assignee_id")
-    private Optional<String> assigneeId;
+    private String assigneeId;
 
     @JsonCreator
     public IssuesFilter(
-            Optional<? extends List<String>> status,
-            Optional<OffsetDateTime> since,
-            Optional<String> assigneeId) {
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(since, "since");
-        Utils.checkNotNull(assigneeId, "assigneeId");
+            @Nullable List<String> status,
+            @Nullable OffsetDateTime since,
+            @Nullable String assigneeId) {
         this.status = status;
         this.since = since;
         this.assigneeId = assigneeId;
     }
     
     public IssuesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> status() {
-        return (Optional<List<String>>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Only return tickets since a specific date
      */
-    @JsonIgnore
     public Optional<OffsetDateTime> since() {
-        return since;
+        return Optional.ofNullable(this.since);
     }
 
     /**
      * Only return tickets assigned to a specific user
      */
-    @JsonIgnore
     public Optional<String> assigneeId() {
-        return assigneeId;
+        return Optional.ofNullable(this.assigneeId);
     }
 
     public static Builder builder() {
@@ -84,59 +76,29 @@ public class IssuesFilter {
     /**
      * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
      */
-    public IssuesFilter withStatus(List<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
-     */
-    public IssuesFilter withStatus(Optional<? extends List<String>> status) {
-        Utils.checkNotNull(status, "status");
+    public IssuesFilter withStatus(@Nullable List<String> status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Only return tickets since a specific date
-     */
-    public IssuesFilter withSince(OffsetDateTime since) {
-        Utils.checkNotNull(since, "since");
-        this.since = Optional.ofNullable(since);
-        return this;
-    }
-
 
     /**
      * Only return tickets since a specific date
      */
-    public IssuesFilter withSince(Optional<OffsetDateTime> since) {
-        Utils.checkNotNull(since, "since");
+    public IssuesFilter withSince(@Nullable OffsetDateTime since) {
         this.since = since;
         return this;
     }
 
-    /**
-     * Only return tickets assigned to a specific user
-     */
-    public IssuesFilter withAssigneeId(String assigneeId) {
-        Utils.checkNotNull(assigneeId, "assigneeId");
-        this.assigneeId = Optional.ofNullable(assigneeId);
-        return this;
-    }
-
 
     /**
      * Only return tickets assigned to a specific user
      */
-    public IssuesFilter withAssigneeId(Optional<String> assigneeId) {
-        Utils.checkNotNull(assigneeId, "assigneeId");
+    public IssuesFilter withAssigneeId(@Nullable String assigneeId) {
         this.assigneeId = assigneeId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -170,75 +132,41 @@ public class IssuesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<String>> status = Optional.empty();
+        private List<String> status;
 
-        private Optional<OffsetDateTime> since = Optional.empty();
+        private OffsetDateTime since;
 
-        private Optional<String> assigneeId = Optional.empty();
+        private String assigneeId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
          */
-        public Builder status(List<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Filter by ticket status, can be `open`, `closed` or `all`. Will passthrough if none of the above match
-         */
-        public Builder status(Optional<? extends List<String>> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable List<String> status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Only return tickets since a specific date
          */
-        public Builder since(OffsetDateTime since) {
-            Utils.checkNotNull(since, "since");
-            this.since = Optional.ofNullable(since);
-            return this;
-        }
-
-        /**
-         * Only return tickets since a specific date
-         */
-        public Builder since(Optional<OffsetDateTime> since) {
-            Utils.checkNotNull(since, "since");
+        public Builder since(@Nullable OffsetDateTime since) {
             this.since = since;
             return this;
         }
 
-
         /**
          * Only return tickets assigned to a specific user
          */
-        public Builder assigneeId(String assigneeId) {
-            Utils.checkNotNull(assigneeId, "assigneeId");
-            this.assigneeId = Optional.ofNullable(assigneeId);
-            return this;
-        }
-
-        /**
-         * Only return tickets assigned to a specific user
-         */
-        public Builder assigneeId(Optional<String> assigneeId) {
-            Utils.checkNotNull(assigneeId, "assigneeId");
+        public Builder assigneeId(@Nullable String assigneeId) {
             this.assigneeId = assigneeId;
             return this;
         }
 
         public IssuesFilter build() {
-
             return new IssuesFilter(
                 status, since, assigneeId);
         }

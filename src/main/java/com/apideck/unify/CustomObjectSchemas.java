@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmCustomObjectSchemasDeleteOperation;
 import com.apideck.unify.operations.CrmCustomObjectSchemasOneOperation;
 import com.apideck.unify.operations.CrmCustomObjectSchemasUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmCustomObjectSchemasAllResponse list(@Nonnull CrmCustomObjectSchemasAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class CustomObjectSchemas {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectSchemasAllResponse list(
-            CrmCustomObjectSchemasAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectSchemasAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
               = new CrmCustomObjectSchemasAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmCustomObjectSchemasAddResponse create(@Nonnull CrmCustomObjectSchemasAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class CustomObjectSchemas {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectSchemasAddResponse create(
-            CrmCustomObjectSchemasAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectSchemasAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
               = new CrmCustomObjectSchemasAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmCustomObjectSchemasOneResponse get(@Nonnull CrmCustomObjectSchemasOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class CustomObjectSchemas {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectSchemasOneResponse get(
-            CrmCustomObjectSchemasOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectSchemasOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
               = new CrmCustomObjectSchemasOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmCustomObjectSchemasUpdateResponse update(@Nonnull CrmCustomObjectSchemasUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class CustomObjectSchemas {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectSchemasUpdateResponse update(
-            CrmCustomObjectSchemasUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectSchemasUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
               = new CrmCustomObjectSchemasUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmCustomObjectSchemasDeleteResponse delete(@Nonnull CrmCustomObjectSchemasDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class CustomObjectSchemas {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectSchemasDeleteResponse delete(
-            CrmCustomObjectSchemasDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectSchemasDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
               = new CrmCustomObjectSchemasDeleteOperation(
                 sdkConfiguration,

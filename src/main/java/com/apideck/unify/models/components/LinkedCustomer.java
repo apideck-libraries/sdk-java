@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
@@ -26,7 +26,7 @@ public class LinkedCustomer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The display ID of the customer.
@@ -50,7 +50,7 @@ public class LinkedCustomer {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     @Deprecated
-    private Optional<String> name;
+    private String name;
 
     /**
      * The company name of the customer.
@@ -64,57 +64,51 @@ public class LinkedCustomer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     @JsonCreator
     public LinkedCustomer(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("display_id") JsonNullable<String> displayId,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("email") Optional<String> email) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(displayId, "displayId");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(email, "email");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("display_id") @Nullable JsonNullable<String> displayId,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("email") @Nullable String email) {
         this.id = id;
-        this.displayId = displayId;
-        this.displayName = displayName;
+        this.displayId = Optional.ofNullable(displayId)
+            .orElse(JsonNullable.undefined());
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
         this.name = name;
-        this.companyName = companyName;
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
         this.email = email;
     }
     
     public LinkedCustomer() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null);
     }
 
     /**
      * The ID of the customer this entity is linked to.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The display ID of the customer.
      */
-    @JsonIgnore
     public JsonNullable<String> displayId() {
-        return displayId;
+        return this.displayId;
     }
 
     /**
      * The display name of the customer.
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
     /**
@@ -123,25 +117,22 @@ public class LinkedCustomer {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The company name of the customer.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * The email address of the customer.
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     public static Builder builder() {
@@ -152,57 +143,29 @@ public class LinkedCustomer {
     /**
      * The ID of the customer this entity is linked to.
      */
-    public LinkedCustomer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The ID of the customer this entity is linked to.
-     */
-    public LinkedCustomer withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedCustomer withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The display ID of the customer.
      */
-    public LinkedCustomer withDisplayId(String displayId) {
-        Utils.checkNotNull(displayId, "displayId");
+    public LinkedCustomer withDisplayId(@Nullable String displayId) {
         this.displayId = JsonNullable.of(displayId);
         return this;
     }
 
-    /**
-     * The display ID of the customer.
-     */
-    public LinkedCustomer withDisplayId(JsonNullable<String> displayId) {
-        Utils.checkNotNull(displayId, "displayId");
-        this.displayId = displayId;
-        return this;
-    }
 
     /**
      * The display name of the customer.
      */
-    public LinkedCustomer withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public LinkedCustomer withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The display name of the customer.
-     */
-    public LinkedCustomer withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
     /**
      * The name of the customer. Deprecated, use display_name instead.
@@ -210,61 +173,29 @@ public class LinkedCustomer {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public LinkedCustomer withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the customer. Deprecated, use display_name instead.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public LinkedCustomer withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedCustomer withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
+
     /**
      * The company name of the customer.
      */
-    public LinkedCustomer withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public LinkedCustomer withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The company name of the customer.
-     */
-    public LinkedCustomer withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * The email address of the customer.
      */
-    public LinkedCustomer withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
-
-    /**
-     * The email address of the customer.
-     */
-    public LinkedCustomer withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public LinkedCustomer withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -305,145 +236,75 @@ public class LinkedCustomer {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> displayId = JsonNullable.undefined();
+        private JsonNullable<String> displayId;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
         @Deprecated
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the customer this entity is linked to.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The ID of the customer this entity is linked to.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The display ID of the customer.
          */
-        public Builder displayId(String displayId) {
-            Utils.checkNotNull(displayId, "displayId");
+        public Builder displayId(@Nullable String displayId) {
             this.displayId = JsonNullable.of(displayId);
             return this;
         }
 
         /**
-         * The display ID of the customer.
-         */
-        public Builder displayId(JsonNullable<String> displayId) {
-            Utils.checkNotNull(displayId, "displayId");
-            this.displayId = displayId;
-            return this;
-        }
-
-
-        /**
          * The display name of the customer.
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
         /**
-         * The display name of the customer.
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        /**
          * The name of the customer. Deprecated, use display_name instead.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the customer. Deprecated, use display_name instead.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The company name of the customer.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The company name of the customer.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * The email address of the customer.
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email address of the customer.
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
         public LinkedCustomer build() {
-
             return new LinkedCustomer(
                 id, displayId, displayName,
                 name, companyName, email);

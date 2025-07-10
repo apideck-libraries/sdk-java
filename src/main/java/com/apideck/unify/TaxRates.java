@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingTaxRatesDeleteOperation;
 import com.apideck.unify.operations.AccountingTaxRatesOneOperation;
 import com.apideck.unify.operations.AccountingTaxRatesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesAllResponse list(AccountingTaxRatesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingTaxRatesAllResponse list(@Nonnull AccountingTaxRatesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class TaxRates {
      * @throws Exception if the API call fails
      */
     public AccountingTaxRatesAllResponse list(
-            AccountingTaxRatesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTaxRatesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
               = new AccountingTaxRatesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesAddResponse create(AccountingTaxRatesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingTaxRatesAddResponse create(@Nonnull AccountingTaxRatesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class TaxRates {
      * @throws Exception if the API call fails
      */
     public AccountingTaxRatesAddResponse create(
-            AccountingTaxRatesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTaxRatesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
               = new AccountingTaxRatesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesOneResponse get(AccountingTaxRatesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingTaxRatesOneResponse get(@Nonnull AccountingTaxRatesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class TaxRates {
      * @throws Exception if the API call fails
      */
     public AccountingTaxRatesOneResponse get(
-            AccountingTaxRatesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTaxRatesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
               = new AccountingTaxRatesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesUpdateResponse update(AccountingTaxRatesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingTaxRatesUpdateResponse update(@Nonnull AccountingTaxRatesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class TaxRates {
      * @throws Exception if the API call fails
      */
     public AccountingTaxRatesUpdateResponse update(
-            AccountingTaxRatesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTaxRatesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
               = new AccountingTaxRatesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesDeleteResponse delete(AccountingTaxRatesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingTaxRatesDeleteResponse delete(@Nonnull AccountingTaxRatesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class TaxRates {
      * @throws Exception if the API call fails
      */
     public AccountingTaxRatesDeleteResponse delete(
-            AccountingTaxRatesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTaxRatesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
               = new AccountingTaxRatesDeleteOperation(
                 sdkConfiguration,

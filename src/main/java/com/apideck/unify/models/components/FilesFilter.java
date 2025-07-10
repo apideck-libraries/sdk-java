@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -18,59 +18,53 @@ public class FilesFilter {
      * ID of the drive to filter on
      */
     @SpeakeasyMetadata("queryParam:name=drive_id")
-    private Optional<String> driveId;
+    private String driveId;
 
     /**
      * ID of the folder to filter on. The root folder has an alias "root"
      */
     @SpeakeasyMetadata("queryParam:name=folder_id")
-    private Optional<String> folderId;
+    private String folderId;
 
     /**
      * Only return files and folders that are shared
      */
     @SpeakeasyMetadata("queryParam:name=shared")
-    private Optional<Boolean> shared;
+    private Boolean shared;
 
     @JsonCreator
     public FilesFilter(
-            Optional<String> driveId,
-            Optional<String> folderId,
-            Optional<Boolean> shared) {
-        Utils.checkNotNull(driveId, "driveId");
-        Utils.checkNotNull(folderId, "folderId");
-        Utils.checkNotNull(shared, "shared");
+            @Nullable String driveId,
+            @Nullable String folderId,
+            @Nullable Boolean shared) {
         this.driveId = driveId;
         this.folderId = folderId;
         this.shared = shared;
     }
     
     public FilesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * ID of the drive to filter on
      */
-    @JsonIgnore
     public Optional<String> driveId() {
-        return driveId;
+        return Optional.ofNullable(this.driveId);
     }
 
     /**
      * ID of the folder to filter on. The root folder has an alias "root"
      */
-    @JsonIgnore
     public Optional<String> folderId() {
-        return folderId;
+        return Optional.ofNullable(this.folderId);
     }
 
     /**
      * Only return files and folders that are shared
      */
-    @JsonIgnore
     public Optional<Boolean> shared() {
-        return shared;
+        return Optional.ofNullable(this.shared);
     }
 
     public static Builder builder() {
@@ -81,59 +75,29 @@ public class FilesFilter {
     /**
      * ID of the drive to filter on
      */
-    public FilesFilter withDriveId(String driveId) {
-        Utils.checkNotNull(driveId, "driveId");
-        this.driveId = Optional.ofNullable(driveId);
-        return this;
-    }
-
-
-    /**
-     * ID of the drive to filter on
-     */
-    public FilesFilter withDriveId(Optional<String> driveId) {
-        Utils.checkNotNull(driveId, "driveId");
+    public FilesFilter withDriveId(@Nullable String driveId) {
         this.driveId = driveId;
         return this;
     }
 
-    /**
-     * ID of the folder to filter on. The root folder has an alias "root"
-     */
-    public FilesFilter withFolderId(String folderId) {
-        Utils.checkNotNull(folderId, "folderId");
-        this.folderId = Optional.ofNullable(folderId);
-        return this;
-    }
-
 
     /**
      * ID of the folder to filter on. The root folder has an alias "root"
      */
-    public FilesFilter withFolderId(Optional<String> folderId) {
-        Utils.checkNotNull(folderId, "folderId");
+    public FilesFilter withFolderId(@Nullable String folderId) {
         this.folderId = folderId;
         return this;
     }
 
-    /**
-     * Only return files and folders that are shared
-     */
-    public FilesFilter withShared(boolean shared) {
-        Utils.checkNotNull(shared, "shared");
-        this.shared = Optional.ofNullable(shared);
-        return this;
-    }
-
 
     /**
      * Only return files and folders that are shared
      */
-    public FilesFilter withShared(Optional<Boolean> shared) {
-        Utils.checkNotNull(shared, "shared");
+    public FilesFilter withShared(@Nullable Boolean shared) {
         this.shared = shared;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -167,75 +131,41 @@ public class FilesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> driveId = Optional.empty();
+        private String driveId;
 
-        private Optional<String> folderId = Optional.empty();
+        private String folderId;
 
-        private Optional<Boolean> shared = Optional.empty();
+        private Boolean shared;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the drive to filter on
          */
-        public Builder driveId(String driveId) {
-            Utils.checkNotNull(driveId, "driveId");
-            this.driveId = Optional.ofNullable(driveId);
-            return this;
-        }
-
-        /**
-         * ID of the drive to filter on
-         */
-        public Builder driveId(Optional<String> driveId) {
-            Utils.checkNotNull(driveId, "driveId");
+        public Builder driveId(@Nullable String driveId) {
             this.driveId = driveId;
             return this;
         }
 
-
         /**
          * ID of the folder to filter on. The root folder has an alias "root"
          */
-        public Builder folderId(String folderId) {
-            Utils.checkNotNull(folderId, "folderId");
-            this.folderId = Optional.ofNullable(folderId);
-            return this;
-        }
-
-        /**
-         * ID of the folder to filter on. The root folder has an alias "root"
-         */
-        public Builder folderId(Optional<String> folderId) {
-            Utils.checkNotNull(folderId, "folderId");
+        public Builder folderId(@Nullable String folderId) {
             this.folderId = folderId;
             return this;
         }
 
-
         /**
          * Only return files and folders that are shared
          */
-        public Builder shared(boolean shared) {
-            Utils.checkNotNull(shared, "shared");
-            this.shared = Optional.ofNullable(shared);
-            return this;
-        }
-
-        /**
-         * Only return files and folders that are shared
-         */
-        public Builder shared(Optional<Boolean> shared) {
-            Utils.checkNotNull(shared, "shared");
+        public Builder shared(@Nullable Boolean shared) {
             this.shared = shared;
             return this;
         }
 
         public FilesFilter build() {
-
             return new FilesFilter(
                 driveId, folderId, shared);
         }

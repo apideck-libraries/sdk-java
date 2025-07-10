@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -33,31 +34,31 @@ public class AccountingAttachmentsUploadRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * Metadata to attach to the attachment file (JSON string)
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-metadata")
-    private Optional<String> xApideckMetadata;
+    private String xApideckMetadata;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
 
     @SpeakeasyMetadata("request:mediaType=*/*")
@@ -65,100 +66,88 @@ public class AccountingAttachmentsUploadRequest {
 
     @JsonCreator
     public AccountingAttachmentsUploadRequest(
-            AttachmentReferenceType referenceType,
-            String referenceId,
-            Optional<Boolean> raw,
-            Optional<String> xApideckMetadata,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            byte[] requestBody) {
-        Utils.checkNotNull(referenceType, "referenceType");
-        Utils.checkNotNull(referenceId, "referenceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(xApideckMetadata, "xApideckMetadata");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.referenceType = referenceType;
-        this.referenceId = referenceId;
-        this.raw = raw;
+            @Nonnull AttachmentReferenceType referenceType,
+            @Nonnull String referenceId,
+            @Nullable Boolean raw,
+            @Nullable String xApideckMetadata,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nonnull byte[] requestBody) {
+        this.referenceType = Optional.ofNullable(referenceType)
+            .orElseThrow(() -> new IllegalArgumentException("referenceType cannot be null"));
+        this.referenceId = Optional.ofNullable(referenceId)
+            .orElseThrow(() -> new IllegalArgumentException("referenceId cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.xApideckMetadata = xApideckMetadata;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.requestBody = requestBody;
+        this.requestBody = Optional.ofNullable(requestBody)
+            .orElseThrow(() -> new IllegalArgumentException("requestBody cannot be null"));
     }
     
     public AccountingAttachmentsUploadRequest(
-            AttachmentReferenceType referenceType,
-            String referenceId,
-            byte[] requestBody) {
-        this(referenceType, referenceId, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), requestBody);
+            @Nonnull AttachmentReferenceType referenceType,
+            @Nonnull String referenceId,
+            @Nonnull byte[] requestBody) {
+        this(referenceType, referenceId, null,
+            null, null, null,
+            null, requestBody);
     }
 
     /**
      * The reference type of the document.
      */
-    @JsonIgnore
     public AttachmentReferenceType referenceType() {
-        return referenceType;
+        return this.referenceType;
     }
 
     /**
      * The reference id of the object to retrieve.
      */
-    @JsonIgnore
     public String referenceId() {
-        return referenceId;
+        return this.referenceId;
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * Metadata to attach to the attachment file (JSON string)
      */
-    @JsonIgnore
     public Optional<String> xApideckMetadata() {
-        return xApideckMetadata;
+        return Optional.ofNullable(this.xApideckMetadata);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
-    @JsonIgnore
     public byte[] requestBody() {
-        return requestBody;
+        return this.requestBody;
     }
 
     public static Builder builder() {
@@ -169,27 +158,17 @@ public class AccountingAttachmentsUploadRequest {
     /**
      * The reference type of the document.
      */
-    public AccountingAttachmentsUploadRequest withReferenceType(AttachmentReferenceType referenceType) {
-        Utils.checkNotNull(referenceType, "referenceType");
-        this.referenceType = referenceType;
+    public AccountingAttachmentsUploadRequest withReferenceType(@Nonnull AttachmentReferenceType referenceType) {
+        this.referenceType = Utils.checkNotNull(referenceType, "referenceType");
         return this;
     }
+
 
     /**
      * The reference id of the object to retrieve.
      */
-    public AccountingAttachmentsUploadRequest withReferenceId(String referenceId) {
-        Utils.checkNotNull(referenceId, "referenceId");
-        this.referenceId = referenceId;
-        return this;
-    }
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public AccountingAttachmentsUploadRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
+    public AccountingAttachmentsUploadRequest withReferenceId(@Nonnull String referenceId) {
+        this.referenceId = Utils.checkNotNull(referenceId, "referenceId");
         return this;
     }
 
@@ -197,93 +176,53 @@ public class AccountingAttachmentsUploadRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public AccountingAttachmentsUploadRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public AccountingAttachmentsUploadRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * Metadata to attach to the attachment file (JSON string)
-     */
-    public AccountingAttachmentsUploadRequest withXApideckMetadata(String xApideckMetadata) {
-        Utils.checkNotNull(xApideckMetadata, "xApideckMetadata");
-        this.xApideckMetadata = Optional.ofNullable(xApideckMetadata);
-        return this;
-    }
-
 
     /**
      * Metadata to attach to the attachment file (JSON string)
      */
-    public AccountingAttachmentsUploadRequest withXApideckMetadata(Optional<String> xApideckMetadata) {
-        Utils.checkNotNull(xApideckMetadata, "xApideckMetadata");
+    public AccountingAttachmentsUploadRequest withXApideckMetadata(@Nullable String xApideckMetadata) {
         this.xApideckMetadata = xApideckMetadata;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public AccountingAttachmentsUploadRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingAttachmentsUploadRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public AccountingAttachmentsUploadRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public AccountingAttachmentsUploadRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public AccountingAttachmentsUploadRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public AccountingAttachmentsUploadRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public AccountingAttachmentsUploadRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public AccountingAttachmentsUploadRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public AccountingAttachmentsUploadRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public AccountingAttachmentsUploadRequest withRequestBody(byte[] requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+
+    public AccountingAttachmentsUploadRequest withRequestBody(@Nonnull byte[] requestBody) {
+        this.requestBody = Utils.checkNotNull(requestBody, "requestBody");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -333,15 +272,15 @@ public class AccountingAttachmentsUploadRequest {
 
         private String referenceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> xApideckMetadata = Optional.empty();
+        private String xApideckMetadata;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
         private byte[] requestBody;
 
@@ -349,133 +288,68 @@ public class AccountingAttachmentsUploadRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The reference type of the document.
          */
-        public Builder referenceType(AttachmentReferenceType referenceType) {
-            Utils.checkNotNull(referenceType, "referenceType");
-            this.referenceType = referenceType;
+        public Builder referenceType(@Nonnull AttachmentReferenceType referenceType) {
+            this.referenceType = Utils.checkNotNull(referenceType, "referenceType");
             return this;
         }
-
 
         /**
          * The reference id of the object to retrieve.
          */
-        public Builder referenceId(String referenceId) {
-            Utils.checkNotNull(referenceId, "referenceId");
-            this.referenceId = referenceId;
-            return this;
-        }
-
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
+        public Builder referenceId(@Nonnull String referenceId) {
+            this.referenceId = Utils.checkNotNull(referenceId, "referenceId");
             return this;
         }
 
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * Metadata to attach to the attachment file (JSON string)
          */
-        public Builder xApideckMetadata(String xApideckMetadata) {
-            Utils.checkNotNull(xApideckMetadata, "xApideckMetadata");
-            this.xApideckMetadata = Optional.ofNullable(xApideckMetadata);
-            return this;
-        }
-
-        /**
-         * Metadata to attach to the attachment file (JSON string)
-         */
-        public Builder xApideckMetadata(Optional<String> xApideckMetadata) {
-            Utils.checkNotNull(xApideckMetadata, "xApideckMetadata");
+        public Builder xApideckMetadata(@Nullable String xApideckMetadata) {
             this.xApideckMetadata = xApideckMetadata;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
-        public Builder requestBody(byte[] requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder requestBody(@Nonnull byte[] requestBody) {
+            this.requestBody = Utils.checkNotNull(requestBody, "requestBody");
             return this;
         }
 
         public AccountingAttachmentsUploadRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new AccountingAttachmentsUploadRequest(
                 referenceType, referenceId, raw,
                 xApideckMetadata, consumerId, appId,
@@ -483,10 +357,10 @@ public class AccountingAttachmentsUploadRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

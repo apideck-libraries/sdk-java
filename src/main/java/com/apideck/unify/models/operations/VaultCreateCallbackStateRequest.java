@@ -7,7 +7,8 @@ import com.apideck.unify.models.components.CreateCallbackState;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,13 +19,13 @@ public class VaultCreateCallbackStateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Service ID of the resource to return
@@ -46,69 +47,62 @@ public class VaultCreateCallbackStateRequest {
 
     @JsonCreator
     public VaultCreateCallbackStateRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String serviceId,
-            String unifiedApi,
-            CreateCallbackState createCallbackState) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(createCallbackState, "createCallbackState");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi,
+            @Nonnull CreateCallbackState createCallbackState) {
         this.consumerId = consumerId;
         this.appId = appId;
-        this.serviceId = serviceId;
-        this.unifiedApi = unifiedApi;
-        this.createCallbackState = createCallbackState;
+        this.serviceId = Optional.ofNullable(serviceId)
+            .orElseThrow(() -> new IllegalArgumentException("serviceId cannot be null"));
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
+        this.createCallbackState = Optional.ofNullable(createCallbackState)
+            .orElseThrow(() -> new IllegalArgumentException("createCallbackState cannot be null"));
     }
     
     public VaultCreateCallbackStateRequest(
-            String serviceId,
-            String unifiedApi,
-            CreateCallbackState createCallbackState) {
-        this(Optional.empty(), Optional.empty(), serviceId,
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi,
+            @Nonnull CreateCallbackState createCallbackState) {
+        this(null, null, serviceId,
             unifiedApi, createCallbackState);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Service ID of the resource to return
      */
-    @JsonIgnore
     public String serviceId() {
-        return serviceId;
+        return this.serviceId;
     }
 
     /**
      * Unified API
      */
-    @JsonIgnore
     public String unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     /**
      * Callback state data
      */
-    @JsonIgnore
     public CreateCallbackState createCallbackState() {
-        return createCallbackState;
+        return this.createCallbackState;
     }
 
     public static Builder builder() {
@@ -119,67 +113,47 @@ public class VaultCreateCallbackStateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultCreateCallbackStateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultCreateCallbackStateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultCreateCallbackStateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultCreateCallbackStateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultCreateCallbackStateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultCreateCallbackStateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * Service ID of the resource to return
      */
-    public VaultCreateCallbackStateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
+    public VaultCreateCallbackStateRequest withServiceId(@Nonnull String serviceId) {
+        this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
         return this;
     }
+
 
     /**
      * Unified API
      */
-    public VaultCreateCallbackStateRequest withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public VaultCreateCallbackStateRequest withUnifiedApi(@Nonnull String unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     /**
      * Callback state data
      */
-    public VaultCreateCallbackStateRequest withCreateCallbackState(CreateCallbackState createCallbackState) {
-        Utils.checkNotNull(createCallbackState, "createCallbackState");
-        this.createCallbackState = createCallbackState;
+    public VaultCreateCallbackStateRequest withCreateCallbackState(@Nonnull CreateCallbackState createCallbackState) {
+        this.createCallbackState = Utils.checkNotNull(createCallbackState, "createCallbackState");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -218,9 +192,9 @@ public class VaultCreateCallbackStateRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String serviceId;
 
@@ -232,76 +206,47 @@ public class VaultCreateCallbackStateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Service ID of the resource to return
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = serviceId;
+        public Builder serviceId(@Nonnull String serviceId) {
+            this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
             return this;
         }
-
 
         /**
          * Unified API
          */
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull String unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
-
 
         /**
          * Callback state data
          */
-        public Builder createCallbackState(CreateCallbackState createCallbackState) {
-            Utils.checkNotNull(createCallbackState, "createCallbackState");
-            this.createCallbackState = createCallbackState;
+        public Builder createCallbackState(@Nonnull CreateCallbackState createCallbackState) {
+            this.createCallbackState = Utils.checkNotNull(createCallbackState, "createCallbackState");
             return this;
         }
 
         public VaultCreateCallbackStateRequest build() {
-
             return new VaultCreateCallbackStateRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, createCallbackState);

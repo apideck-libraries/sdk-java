@@ -15,56 +15,55 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class HrisEmployeesAllRequestBuilder {
-
-    private HrisEmployeesAllRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private HrisEmployeesAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public HrisEmployeesAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public HrisEmployeesAllRequestBuilder request(HrisEmployeesAllRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public HrisEmployeesAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public HrisEmployeesAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public HrisEmployeesAllRequestBuilder request(@Nonnull HrisEmployeesAllRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private HrisEmployeesAllRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public HrisEmployeesAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
               = new HrisEmployeesAllOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
-
+    
     /**
     * Returns an iterable that performs next page calls till no more pages
     * are returned.
@@ -79,29 +78,27 @@ public class HrisEmployeesAllRequestBuilder {
     * @return An iterable that can be used to iterate through all pages
     */
     public Iterable<HrisEmployeesAllResponse> callAsIterable() {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
-        RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
-              = new HrisEmployeesAllOperation(
-                sdkConfiguration,
-                options);
+        HrisEmployeesAllRequest request = this.request;
+        Options options = optionsBuilder.build();
+        RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation =
+                new HrisEmployeesAllOperation(
+                    sdkConfiguration,
+                    options);
+        
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                HrisEmployeesAllRequest::withCursor,
+            HrisEmployeesAllRequest::withCursor,
             nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+
         return () -> transform(iterator, operation::handleResponse);
     }
 
     /**
-     * Returns a stream that performs next page calls till no more pages
-     * are returned.
-     **/  
+    * Returns a stream that performs next page calls till no more pages
+    * are returned.
+    **/  
     public Stream<HrisEmployeesAllResponse> callAsStream() {
         return toStream(callAsIterable());
     }
-
 }

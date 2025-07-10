@@ -5,16 +5,17 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -51,7 +52,7 @@ public class EcommerceStore {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The date and time when the object was created.
@@ -69,91 +70,83 @@ public class EcommerceStore {
 
     @JsonCreator
     public EcommerceStore(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("store_url") JsonNullable<String> storeUrl,
-            @JsonProperty("admin_url") JsonNullable<String> adminUrl,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(storeUrl, "storeUrl");
-        Utils.checkNotNull(adminUrl, "adminUrl");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.id = id;
-        this.name = name;
-        this.storeUrl = storeUrl;
-        this.adminUrl = adminUrl;
-        this.customMappings = customMappings;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("store_url") @Nullable JsonNullable<String> storeUrl,
+            @JsonProperty("admin_url") @Nullable JsonNullable<String> adminUrl,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.storeUrl = Optional.ofNullable(storeUrl)
+            .orElse(JsonNullable.undefined());
+        this.adminUrl = Optional.ofNullable(adminUrl)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceStore(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The store's name
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The store's website URL
      */
-    @JsonIgnore
     public JsonNullable<String> storeUrl() {
-        return storeUrl;
+        return this.storeUrl;
     }
 
     /**
      * The store's admin login URL
      */
-    @JsonIgnore
     public JsonNullable<String> adminUrl() {
-        return adminUrl;
+        return this.adminUrl;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -164,119 +157,65 @@ public class EcommerceStore {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceStore withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public EcommerceStore withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The store's name
      */
-    public EcommerceStore withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public EcommerceStore withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The store's name
-     */
-    public EcommerceStore withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The store's website URL
      */
-    public EcommerceStore withStoreUrl(String storeUrl) {
-        Utils.checkNotNull(storeUrl, "storeUrl");
+    public EcommerceStore withStoreUrl(@Nullable String storeUrl) {
         this.storeUrl = JsonNullable.of(storeUrl);
         return this;
     }
 
-    /**
-     * The store's website URL
-     */
-    public EcommerceStore withStoreUrl(JsonNullable<String> storeUrl) {
-        Utils.checkNotNull(storeUrl, "storeUrl");
-        this.storeUrl = storeUrl;
-        return this;
-    }
 
     /**
      * The store's admin login URL
      */
-    public EcommerceStore withAdminUrl(String adminUrl) {
-        Utils.checkNotNull(adminUrl, "adminUrl");
+    public EcommerceStore withAdminUrl(@Nullable String adminUrl) {
         this.adminUrl = JsonNullable.of(adminUrl);
         return this;
     }
 
-    /**
-     * The store's admin login URL
-     */
-    public EcommerceStore withAdminUrl(JsonNullable<String> adminUrl) {
-        Utils.checkNotNull(adminUrl, "adminUrl");
-        this.adminUrl = adminUrl;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public EcommerceStore withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public EcommerceStore withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public EcommerceStore withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public EcommerceStore withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public EcommerceStore withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public EcommerceStore withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public EcommerceStore withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public EcommerceStore withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public EcommerceStore withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -322,148 +261,79 @@ public class EcommerceStore {
 
         private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> storeUrl = JsonNullable.undefined();
+        private JsonNullable<String> storeUrl;
 
-        private JsonNullable<String> adminUrl = JsonNullable.undefined();
+        private JsonNullable<String> adminUrl;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The store's name
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The store's name
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The store's website URL
          */
-        public Builder storeUrl(String storeUrl) {
-            Utils.checkNotNull(storeUrl, "storeUrl");
+        public Builder storeUrl(@Nullable String storeUrl) {
             this.storeUrl = JsonNullable.of(storeUrl);
             return this;
         }
 
         /**
-         * The store's website URL
-         */
-        public Builder storeUrl(JsonNullable<String> storeUrl) {
-            Utils.checkNotNull(storeUrl, "storeUrl");
-            this.storeUrl = storeUrl;
-            return this;
-        }
-
-
-        /**
          * The store's admin login URL
          */
-        public Builder adminUrl(String adminUrl) {
-            Utils.checkNotNull(adminUrl, "adminUrl");
+        public Builder adminUrl(@Nullable String adminUrl) {
             this.adminUrl = JsonNullable.of(adminUrl);
             return this;
         }
 
         /**
-         * The store's admin login URL
-         */
-        public Builder adminUrl(JsonNullable<String> adminUrl) {
-            Utils.checkNotNull(adminUrl, "adminUrl");
-            this.adminUrl = adminUrl;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public EcommerceStore build() {
-
             return new EcommerceStore(
                 id, name, storeUrl,
                 adminUrl, customMappings, createdAt,

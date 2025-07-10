@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,48 +21,43 @@ public class ApiResource {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the resource (plural)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ResourceStatus> status;
+    private ResourceStatus status;
 
     /**
      * List of linked resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("linked_resources")
-    private Optional<? extends List<LinkedResources>> linkedResources;
+    private List<LinkedResources> linkedResources;
 
     /**
      * JSON Schema of the resource in our Unified API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schema")
-    private Optional<? extends Schema> schema;
+    private Schema schema;
 
     @JsonCreator
     public ApiResource(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ResourceStatus> status,
-            @JsonProperty("linked_resources") Optional<? extends List<LinkedResources>> linkedResources,
-            @JsonProperty("schema") Optional<? extends Schema> schema) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(linkedResources, "linkedResources");
-        Utils.checkNotNull(schema, "schema");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("status") @Nullable ResourceStatus status,
+            @JsonProperty("linked_resources") @Nullable List<LinkedResources> linkedResources,
+            @JsonProperty("schema") @Nullable Schema schema) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -72,51 +66,43 @@ public class ApiResource {
     }
     
     public ApiResource() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * ID of the resource, typically a lowercased version of name.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the resource (plural)
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ResourceStatus> status() {
-        return (Optional<ResourceStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * List of linked resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LinkedResources>> linkedResources() {
-        return (Optional<List<LinkedResources>>) linkedResources;
+        return Optional.ofNullable(this.linkedResources);
     }
 
     /**
      * JSON Schema of the resource in our Unified API
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Schema> schema() {
-        return (Optional<Schema>) schema;
+        return Optional.ofNullable(this.schema);
     }
 
     public static Builder builder() {
@@ -127,97 +113,47 @@ public class ApiResource {
     /**
      * ID of the resource, typically a lowercased version of name.
      */
-    public ApiResource withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the resource, typically a lowercased version of name.
-     */
-    public ApiResource withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ApiResource withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the resource (plural)
-     */
-    public ApiResource withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the resource (plural)
      */
-    public ApiResource withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ApiResource withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    public ApiResource withStatus(ResourceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    public ApiResource withStatus(Optional<? extends ResourceStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public ApiResource withStatus(@Nullable ResourceStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * List of linked resources.
-     */
-    public ApiResource withLinkedResources(List<LinkedResources> linkedResources) {
-        Utils.checkNotNull(linkedResources, "linkedResources");
-        this.linkedResources = Optional.ofNullable(linkedResources);
-        return this;
-    }
-
 
     /**
      * List of linked resources.
      */
-    public ApiResource withLinkedResources(Optional<? extends List<LinkedResources>> linkedResources) {
-        Utils.checkNotNull(linkedResources, "linkedResources");
+    public ApiResource withLinkedResources(@Nullable List<LinkedResources> linkedResources) {
         this.linkedResources = linkedResources;
         return this;
     }
 
-    /**
-     * JSON Schema of the resource in our Unified API
-     */
-    public ApiResource withSchema(Schema schema) {
-        Utils.checkNotNull(schema, "schema");
-        this.schema = Optional.ofNullable(schema);
-        return this;
-    }
-
 
     /**
      * JSON Schema of the resource in our Unified API
      */
-    public ApiResource withSchema(Optional<? extends Schema> schema) {
-        Utils.checkNotNull(schema, "schema");
+    public ApiResource withSchema(@Nullable Schema schema) {
         this.schema = schema;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -256,117 +192,61 @@ public class ApiResource {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends ResourceStatus> status = Optional.empty();
+        private ResourceStatus status;
 
-        private Optional<? extends List<LinkedResources>> linkedResources = Optional.empty();
+        private List<LinkedResources> linkedResources;
 
-        private Optional<? extends Schema> schema = Optional.empty();
+        private Schema schema;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the resource, typically a lowercased version of name.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the resource, typically a lowercased version of name.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the resource (plural)
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the resource (plural)
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Status of the resource. Resources with status live or beta are callable.
          */
-        public Builder status(ResourceStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the resource. Resources with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ResourceStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ResourceStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * List of linked resources.
          */
-        public Builder linkedResources(List<LinkedResources> linkedResources) {
-            Utils.checkNotNull(linkedResources, "linkedResources");
-            this.linkedResources = Optional.ofNullable(linkedResources);
-            return this;
-        }
-
-        /**
-         * List of linked resources.
-         */
-        public Builder linkedResources(Optional<? extends List<LinkedResources>> linkedResources) {
-            Utils.checkNotNull(linkedResources, "linkedResources");
+        public Builder linkedResources(@Nullable List<LinkedResources> linkedResources) {
             this.linkedResources = linkedResources;
             return this;
         }
 
-
         /**
          * JSON Schema of the resource in our Unified API
          */
-        public Builder schema(Schema schema) {
-            Utils.checkNotNull(schema, "schema");
-            this.schema = Optional.ofNullable(schema);
-            return this;
-        }
-
-        /**
-         * JSON Schema of the resource in our Unified API
-         */
-        public Builder schema(Optional<? extends Schema> schema) {
-            Utils.checkNotNull(schema, "schema");
+        public Builder schema(@Nullable Schema schema) {
             this.schema = schema;
             return this;
         }
 
         public ApiResource build() {
-
             return new ApiResource(
                 id, name, status,
                 linkedResources, schema);

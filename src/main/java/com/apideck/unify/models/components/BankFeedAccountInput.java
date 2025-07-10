@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -23,49 +22,49 @@ public class BankFeedAccountInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account_type")
-    private Optional<? extends BankAccountType> bankAccountType;
+    private BankAccountType bankAccountType;
 
     /**
      * The source account's unique identifier.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("source_account_id")
-    private Optional<String> sourceAccountId;
+    private String sourceAccountId;
 
     /**
      * The target account's unique identifier in the accounting connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_account_id")
-    private Optional<String> targetAccountId;
+    private String targetAccountId;
 
     /**
      * Name associated with the target account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_account_name")
-    private Optional<String> targetAccountName;
+    private String targetAccountName;
 
     /**
      * Account number of the destination bank account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("target_account_number")
-    private Optional<String> targetAccountNumber;
+    private String targetAccountNumber;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * Current status of the bank feed.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feed_status")
-    private Optional<? extends FeedStatus> feedStatus;
+    private FeedStatus feedStatus;
 
     /**
      * Country code according to ISO 3166-1 alpha-2.
@@ -77,116 +76,96 @@ public class BankFeedAccountInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     @JsonCreator
     public BankFeedAccountInput(
-            @JsonProperty("bank_account_type") Optional<? extends BankAccountType> bankAccountType,
-            @JsonProperty("source_account_id") Optional<String> sourceAccountId,
-            @JsonProperty("target_account_id") Optional<String> targetAccountId,
-            @JsonProperty("target_account_name") Optional<String> targetAccountName,
-            @JsonProperty("target_account_number") Optional<String> targetAccountNumber,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("feed_status") Optional<? extends FeedStatus> feedStatus,
-            @JsonProperty("country") JsonNullable<String> country,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(bankAccountType, "bankAccountType");
-        Utils.checkNotNull(sourceAccountId, "sourceAccountId");
-        Utils.checkNotNull(targetAccountId, "targetAccountId");
-        Utils.checkNotNull(targetAccountName, "targetAccountName");
-        Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(feedStatus, "feedStatus");
-        Utils.checkNotNull(country, "country");
-        Utils.checkNotNull(customFields, "customFields");
+            @JsonProperty("bank_account_type") @Nullable BankAccountType bankAccountType,
+            @JsonProperty("source_account_id") @Nullable String sourceAccountId,
+            @JsonProperty("target_account_id") @Nullable String targetAccountId,
+            @JsonProperty("target_account_name") @Nullable String targetAccountName,
+            @JsonProperty("target_account_number") @Nullable String targetAccountNumber,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("feed_status") @Nullable FeedStatus feedStatus,
+            @JsonProperty("country") @Nullable JsonNullable<String> country,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields) {
         this.bankAccountType = bankAccountType;
         this.sourceAccountId = sourceAccountId;
         this.targetAccountId = targetAccountId;
         this.targetAccountName = targetAccountName;
         this.targetAccountNumber = targetAccountNumber;
-        this.currency = currency;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
         this.feedStatus = feedStatus;
-        this.country = country;
+        this.country = Optional.ofNullable(country)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
     }
     
     public BankFeedAccountInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * Type of the bank account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BankAccountType> bankAccountType() {
-        return (Optional<BankAccountType>) bankAccountType;
+        return Optional.ofNullable(this.bankAccountType);
     }
 
     /**
      * The source account's unique identifier.
      */
-    @JsonIgnore
     public Optional<String> sourceAccountId() {
-        return sourceAccountId;
+        return Optional.ofNullable(this.sourceAccountId);
     }
 
     /**
      * The target account's unique identifier in the accounting connector.
      */
-    @JsonIgnore
     public Optional<String> targetAccountId() {
-        return targetAccountId;
+        return Optional.ofNullable(this.targetAccountId);
     }
 
     /**
      * Name associated with the target account.
      */
-    @JsonIgnore
     public Optional<String> targetAccountName() {
-        return targetAccountName;
+        return Optional.ofNullable(this.targetAccountName);
     }
 
     /**
      * Account number of the destination bank account.
      */
-    @JsonIgnore
     public Optional<String> targetAccountNumber() {
-        return targetAccountNumber;
+        return Optional.ofNullable(this.targetAccountNumber);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * Current status of the bank feed.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<FeedStatus> feedStatus() {
-        return (Optional<FeedStatus>) feedStatus;
+        return Optional.ofNullable(this.feedStatus);
     }
 
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    @JsonIgnore
     public JsonNullable<String> country() {
-        return country;
+        return this.country;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     public static Builder builder() {
@@ -197,165 +176,80 @@ public class BankFeedAccountInput {
     /**
      * Type of the bank account.
      */
-    public BankFeedAccountInput withBankAccountType(BankAccountType bankAccountType) {
-        Utils.checkNotNull(bankAccountType, "bankAccountType");
-        this.bankAccountType = Optional.ofNullable(bankAccountType);
-        return this;
-    }
-
-
-    /**
-     * Type of the bank account.
-     */
-    public BankFeedAccountInput withBankAccountType(Optional<? extends BankAccountType> bankAccountType) {
-        Utils.checkNotNull(bankAccountType, "bankAccountType");
+    public BankFeedAccountInput withBankAccountType(@Nullable BankAccountType bankAccountType) {
         this.bankAccountType = bankAccountType;
         return this;
     }
 
-    /**
-     * The source account's unique identifier.
-     */
-    public BankFeedAccountInput withSourceAccountId(String sourceAccountId) {
-        Utils.checkNotNull(sourceAccountId, "sourceAccountId");
-        this.sourceAccountId = Optional.ofNullable(sourceAccountId);
-        return this;
-    }
-
 
     /**
      * The source account's unique identifier.
      */
-    public BankFeedAccountInput withSourceAccountId(Optional<String> sourceAccountId) {
-        Utils.checkNotNull(sourceAccountId, "sourceAccountId");
+    public BankFeedAccountInput withSourceAccountId(@Nullable String sourceAccountId) {
         this.sourceAccountId = sourceAccountId;
         return this;
     }
 
-    /**
-     * The target account's unique identifier in the accounting connector.
-     */
-    public BankFeedAccountInput withTargetAccountId(String targetAccountId) {
-        Utils.checkNotNull(targetAccountId, "targetAccountId");
-        this.targetAccountId = Optional.ofNullable(targetAccountId);
-        return this;
-    }
-
 
     /**
      * The target account's unique identifier in the accounting connector.
      */
-    public BankFeedAccountInput withTargetAccountId(Optional<String> targetAccountId) {
-        Utils.checkNotNull(targetAccountId, "targetAccountId");
+    public BankFeedAccountInput withTargetAccountId(@Nullable String targetAccountId) {
         this.targetAccountId = targetAccountId;
         return this;
     }
 
-    /**
-     * Name associated with the target account.
-     */
-    public BankFeedAccountInput withTargetAccountName(String targetAccountName) {
-        Utils.checkNotNull(targetAccountName, "targetAccountName");
-        this.targetAccountName = Optional.ofNullable(targetAccountName);
-        return this;
-    }
-
 
     /**
      * Name associated with the target account.
      */
-    public BankFeedAccountInput withTargetAccountName(Optional<String> targetAccountName) {
-        Utils.checkNotNull(targetAccountName, "targetAccountName");
+    public BankFeedAccountInput withTargetAccountName(@Nullable String targetAccountName) {
         this.targetAccountName = targetAccountName;
         return this;
     }
 
-    /**
-     * Account number of the destination bank account.
-     */
-    public BankFeedAccountInput withTargetAccountNumber(String targetAccountNumber) {
-        Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
-        this.targetAccountNumber = Optional.ofNullable(targetAccountNumber);
-        return this;
-    }
-
 
     /**
      * Account number of the destination bank account.
      */
-    public BankFeedAccountInput withTargetAccountNumber(Optional<String> targetAccountNumber) {
-        Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
+    public BankFeedAccountInput withTargetAccountNumber(@Nullable String targetAccountNumber) {
         this.targetAccountNumber = targetAccountNumber;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public BankFeedAccountInput withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public BankFeedAccountInput withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public BankFeedAccountInput withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * Current status of the bank feed.
      */
-    public BankFeedAccountInput withFeedStatus(FeedStatus feedStatus) {
-        Utils.checkNotNull(feedStatus, "feedStatus");
-        this.feedStatus = Optional.ofNullable(feedStatus);
-        return this;
-    }
-
-
-    /**
-     * Current status of the bank feed.
-     */
-    public BankFeedAccountInput withFeedStatus(Optional<? extends FeedStatus> feedStatus) {
-        Utils.checkNotNull(feedStatus, "feedStatus");
+    public BankFeedAccountInput withFeedStatus(@Nullable FeedStatus feedStatus) {
         this.feedStatus = feedStatus;
         return this;
     }
 
+
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    public BankFeedAccountInput withCountry(String country) {
-        Utils.checkNotNull(country, "country");
+    public BankFeedAccountInput withCountry(@Nullable String country) {
         this.country = JsonNullable.of(country);
         return this;
     }
 
-    /**
-     * Country code according to ISO 3166-1 alpha-2.
-     */
-    public BankFeedAccountInput withCountry(JsonNullable<String> country) {
-        Utils.checkNotNull(country, "country");
-        this.country = country;
-        return this;
-    }
 
-    public BankFeedAccountInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public BankFeedAccountInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public BankFeedAccountInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -403,195 +297,98 @@ public class BankFeedAccountInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends BankAccountType> bankAccountType = Optional.empty();
+        private BankAccountType bankAccountType;
 
-        private Optional<String> sourceAccountId = Optional.empty();
+        private String sourceAccountId;
 
-        private Optional<String> targetAccountId = Optional.empty();
+        private String targetAccountId;
 
-        private Optional<String> targetAccountName = Optional.empty();
+        private String targetAccountName;
 
-        private Optional<String> targetAccountNumber = Optional.empty();
+        private String targetAccountNumber;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private Optional<? extends FeedStatus> feedStatus = Optional.empty();
+        private FeedStatus feedStatus;
 
-        private JsonNullable<String> country = JsonNullable.undefined();
+        private JsonNullable<String> country;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Type of the bank account.
          */
-        public Builder bankAccountType(BankAccountType bankAccountType) {
-            Utils.checkNotNull(bankAccountType, "bankAccountType");
-            this.bankAccountType = Optional.ofNullable(bankAccountType);
-            return this;
-        }
-
-        /**
-         * Type of the bank account.
-         */
-        public Builder bankAccountType(Optional<? extends BankAccountType> bankAccountType) {
-            Utils.checkNotNull(bankAccountType, "bankAccountType");
+        public Builder bankAccountType(@Nullable BankAccountType bankAccountType) {
             this.bankAccountType = bankAccountType;
             return this;
         }
 
-
         /**
          * The source account's unique identifier.
          */
-        public Builder sourceAccountId(String sourceAccountId) {
-            Utils.checkNotNull(sourceAccountId, "sourceAccountId");
-            this.sourceAccountId = Optional.ofNullable(sourceAccountId);
-            return this;
-        }
-
-        /**
-         * The source account's unique identifier.
-         */
-        public Builder sourceAccountId(Optional<String> sourceAccountId) {
-            Utils.checkNotNull(sourceAccountId, "sourceAccountId");
+        public Builder sourceAccountId(@Nullable String sourceAccountId) {
             this.sourceAccountId = sourceAccountId;
             return this;
         }
 
-
         /**
          * The target account's unique identifier in the accounting connector.
          */
-        public Builder targetAccountId(String targetAccountId) {
-            Utils.checkNotNull(targetAccountId, "targetAccountId");
-            this.targetAccountId = Optional.ofNullable(targetAccountId);
-            return this;
-        }
-
-        /**
-         * The target account's unique identifier in the accounting connector.
-         */
-        public Builder targetAccountId(Optional<String> targetAccountId) {
-            Utils.checkNotNull(targetAccountId, "targetAccountId");
+        public Builder targetAccountId(@Nullable String targetAccountId) {
             this.targetAccountId = targetAccountId;
             return this;
         }
 
-
         /**
          * Name associated with the target account.
          */
-        public Builder targetAccountName(String targetAccountName) {
-            Utils.checkNotNull(targetAccountName, "targetAccountName");
-            this.targetAccountName = Optional.ofNullable(targetAccountName);
-            return this;
-        }
-
-        /**
-         * Name associated with the target account.
-         */
-        public Builder targetAccountName(Optional<String> targetAccountName) {
-            Utils.checkNotNull(targetAccountName, "targetAccountName");
+        public Builder targetAccountName(@Nullable String targetAccountName) {
             this.targetAccountName = targetAccountName;
             return this;
         }
 
-
         /**
          * Account number of the destination bank account.
          */
-        public Builder targetAccountNumber(String targetAccountNumber) {
-            Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
-            this.targetAccountNumber = Optional.ofNullable(targetAccountNumber);
-            return this;
-        }
-
-        /**
-         * Account number of the destination bank account.
-         */
-        public Builder targetAccountNumber(Optional<String> targetAccountNumber) {
-            Utils.checkNotNull(targetAccountNumber, "targetAccountNumber");
+        public Builder targetAccountNumber(@Nullable String targetAccountNumber) {
             this.targetAccountNumber = targetAccountNumber;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * Current status of the bank feed.
          */
-        public Builder feedStatus(FeedStatus feedStatus) {
-            Utils.checkNotNull(feedStatus, "feedStatus");
-            this.feedStatus = Optional.ofNullable(feedStatus);
-            return this;
-        }
-
-        /**
-         * Current status of the bank feed.
-         */
-        public Builder feedStatus(Optional<? extends FeedStatus> feedStatus) {
-            Utils.checkNotNull(feedStatus, "feedStatus");
+        public Builder feedStatus(@Nullable FeedStatus feedStatus) {
             this.feedStatus = feedStatus;
             return this;
         }
 
-
         /**
          * Country code according to ISO 3166-1 alpha-2.
          */
-        public Builder country(String country) {
-            Utils.checkNotNull(country, "country");
+        public Builder country(@Nullable String country) {
             this.country = JsonNullable.of(country);
             return this;
         }
 
-        /**
-         * Country code according to ISO 3166-1 alpha-2.
-         */
-        public Builder country(JsonNullable<String> country) {
-            Utils.checkNotNull(country, "country");
-            this.country = country;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
         public BankFeedAccountInput build() {
-
             return new BankFeedAccountInput(
                 bankAccountType, sourceAccountId, targetAccountId,
                 targetAccountName, targetAccountNumber, currency,

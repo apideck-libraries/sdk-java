@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,44 +21,39 @@ public class SupportedProperty {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_property")
-    private Optional<String> unifiedProperty;
+    private String unifiedProperty;
 
     /**
      * List of child properties of the unified property.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("child_properties")
-    private Optional<? extends List<SupportedProperty>> childProperties;
+    private List<SupportedProperty> childProperties;
 
     @JsonCreator
     public SupportedProperty(
-            @JsonProperty("unified_property") Optional<String> unifiedProperty,
-            @JsonProperty("child_properties") Optional<? extends List<SupportedProperty>> childProperties) {
-        Utils.checkNotNull(unifiedProperty, "unifiedProperty");
-        Utils.checkNotNull(childProperties, "childProperties");
+            @JsonProperty("unified_property") @Nullable String unifiedProperty,
+            @JsonProperty("child_properties") @Nullable List<SupportedProperty> childProperties) {
         this.unifiedProperty = unifiedProperty;
         this.childProperties = childProperties;
     }
     
     public SupportedProperty() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Name of the property in our Unified API.
      */
-    @JsonIgnore
     public Optional<String> unifiedProperty() {
-        return unifiedProperty;
+        return Optional.ofNullable(this.unifiedProperty);
     }
 
     /**
      * List of child properties of the unified property.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SupportedProperty>> childProperties() {
-        return (Optional<List<SupportedProperty>>) childProperties;
+        return Optional.ofNullable(this.childProperties);
     }
 
     public static Builder builder() {
@@ -70,40 +64,20 @@ public class SupportedProperty {
     /**
      * Name of the property in our Unified API.
      */
-    public SupportedProperty withUnifiedProperty(String unifiedProperty) {
-        Utils.checkNotNull(unifiedProperty, "unifiedProperty");
-        this.unifiedProperty = Optional.ofNullable(unifiedProperty);
-        return this;
-    }
-
-
-    /**
-     * Name of the property in our Unified API.
-     */
-    public SupportedProperty withUnifiedProperty(Optional<String> unifiedProperty) {
-        Utils.checkNotNull(unifiedProperty, "unifiedProperty");
+    public SupportedProperty withUnifiedProperty(@Nullable String unifiedProperty) {
         this.unifiedProperty = unifiedProperty;
         return this;
     }
 
-    /**
-     * List of child properties of the unified property.
-     */
-    public SupportedProperty withChildProperties(List<SupportedProperty> childProperties) {
-        Utils.checkNotNull(childProperties, "childProperties");
-        this.childProperties = Optional.ofNullable(childProperties);
-        return this;
-    }
-
 
     /**
      * List of child properties of the unified property.
      */
-    public SupportedProperty withChildProperties(Optional<? extends List<SupportedProperty>> childProperties) {
-        Utils.checkNotNull(childProperties, "childProperties");
+    public SupportedProperty withChildProperties(@Nullable List<SupportedProperty> childProperties) {
         this.childProperties = childProperties;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -135,54 +109,31 @@ public class SupportedProperty {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> unifiedProperty = Optional.empty();
+        private String unifiedProperty;
 
-        private Optional<? extends List<SupportedProperty>> childProperties = Optional.empty();
+        private List<SupportedProperty> childProperties;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of the property in our Unified API.
          */
-        public Builder unifiedProperty(String unifiedProperty) {
-            Utils.checkNotNull(unifiedProperty, "unifiedProperty");
-            this.unifiedProperty = Optional.ofNullable(unifiedProperty);
-            return this;
-        }
-
-        /**
-         * Name of the property in our Unified API.
-         */
-        public Builder unifiedProperty(Optional<String> unifiedProperty) {
-            Utils.checkNotNull(unifiedProperty, "unifiedProperty");
+        public Builder unifiedProperty(@Nullable String unifiedProperty) {
             this.unifiedProperty = unifiedProperty;
             return this;
         }
 
-
         /**
          * List of child properties of the unified property.
          */
-        public Builder childProperties(List<SupportedProperty> childProperties) {
-            Utils.checkNotNull(childProperties, "childProperties");
-            this.childProperties = Optional.ofNullable(childProperties);
-            return this;
-        }
-
-        /**
-         * List of child properties of the unified property.
-         */
-        public Builder childProperties(Optional<? extends List<SupportedProperty>> childProperties) {
-            Utils.checkNotNull(childProperties, "childProperties");
+        public Builder childProperties(@Nullable List<SupportedProperty> childProperties) {
             this.childProperties = childProperties;
             return this;
         }
 
         public SupportedProperty build() {
-
             return new SupportedProperty(
                 unifiedProperty, childProperties);
         }

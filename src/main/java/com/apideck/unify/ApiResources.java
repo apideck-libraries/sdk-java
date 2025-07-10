@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.ConnectorApiResourcesOneRequestBuilde
 import com.apideck.unify.models.operations.ConnectorApiResourcesOneResponse;
 import com.apideck.unify.operations.ConnectorApiResourcesOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -44,10 +46,10 @@ public class ApiResources {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourcesOneResponse get(
-            String id,
-            String resourceId) throws Exception {
-        return get(Optional.empty(), id, resourceId,
-            Optional.empty());
+            @Nonnull String id,
+            @Nonnull String resourceId) throws Exception {
+        return get(null, id, resourceId,
+            null);
     }
 
     /**
@@ -63,17 +65,14 @@ public class ApiResources {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourcesOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<Options> options) throws Exception {
-        ConnectorApiResourcesOneRequest request =
-            ConnectorApiResourcesOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .resourceId(resourceId)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String resourceId,
+            @Nullable Options options) throws Exception {
+        ConnectorApiResourcesOneRequest request = new ConnectorApiResourcesOneRequest(
+            appId,
+            id,
+            resourceId);
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
               = new ConnectorApiResourcesOneOperation(
                 sdkConfiguration,

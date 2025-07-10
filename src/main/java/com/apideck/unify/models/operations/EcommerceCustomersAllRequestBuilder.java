@@ -15,56 +15,55 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class EcommerceCustomersAllRequestBuilder {
-
-    private EcommerceCustomersAllRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private EcommerceCustomersAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public EcommerceCustomersAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public EcommerceCustomersAllRequestBuilder request(EcommerceCustomersAllRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public EcommerceCustomersAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public EcommerceCustomersAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public EcommerceCustomersAllRequestBuilder request(@Nonnull EcommerceCustomersAllRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private EcommerceCustomersAllRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public EcommerceCustomersAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
               = new EcommerceCustomersAllOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
-
+    
     /**
     * Returns an iterable that performs next page calls till no more pages
     * are returned.
@@ -79,29 +78,27 @@ public class EcommerceCustomersAllRequestBuilder {
     * @return An iterable that can be used to iterate through all pages
     */
     public Iterable<EcommerceCustomersAllResponse> callAsIterable() {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
-        RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAllOperation(
-                sdkConfiguration,
-                options);
+        EcommerceCustomersAllRequest request = this.request;
+        Options options = optionsBuilder.build();
+        RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation =
+                new EcommerceCustomersAllOperation(
+                    sdkConfiguration,
+                    options);
+        
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                EcommerceCustomersAllRequest::withCursor,
+            EcommerceCustomersAllRequest::withCursor,
             nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+
         return () -> transform(iterator, operation::handleResponse);
     }
 
     /**
-     * Returns a stream that performs next page calls till no more pages
-     * are returned.
-     **/  
+    * Returns a stream that performs next page calls till no more pages
+    * are returned.
+    **/  
     public Stream<EcommerceCustomersAllResponse> callAsStream() {
         return toStream(callAsIterable());
     }
-
 }

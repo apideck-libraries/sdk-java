@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -26,14 +26,14 @@ public class TrackingItem {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("provider")
-    private Optional<String> provider;
+    private JsonNullable<String> provider;
 
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("number")
-    private Optional<String> number;
+    private JsonNullable<String> number;
 
     /**
      * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
@@ -51,55 +51,49 @@ public class TrackingItem {
 
     @JsonCreator
     public TrackingItem(
-            @JsonProperty("provider") Optional<String> provider,
-            @JsonProperty("number") Optional<String> number,
-            @JsonProperty("url") JsonNullable<String> url,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(provider, "provider");
-        Utils.checkNotNull(number, "number");
-        Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.provider = provider;
-        this.number = number;
-        this.url = url;
-        this.updatedAt = updatedAt;
+            @JsonProperty("provider") @Nullable String provider,
+            @JsonProperty("number") @Nullable String number,
+            @JsonProperty("url") @Nullable JsonNullable<String> url,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
+        this.provider = JsonNullable.of(provider);
+        this.number = JsonNullable.of(number);
+        this.url = Optional.ofNullable(url)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public TrackingItem() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
-    @JsonIgnore
-    public Optional<String> provider() {
-        return provider;
+    public JsonNullable<String> provider() {
+        return this.provider;
     }
 
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
      */
-    @JsonIgnore
-    public Optional<String> number() {
-        return number;
+    public JsonNullable<String> number() {
+        return this.number;
     }
 
     /**
      * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
      */
-    @JsonIgnore
     public JsonNullable<String> url() {
-        return url;
+        return this.url;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -110,28 +104,8 @@ public class TrackingItem {
     /**
      * The name or code of the carrier or shipping company that is handling the shipment.
      */
-    public TrackingItem withProvider(String provider) {
-        Utils.checkNotNull(provider, "provider");
-        this.provider = Optional.ofNullable(provider);
-        return this;
-    }
-
-
-    /**
-     * The name or code of the carrier or shipping company that is handling the shipment.
-     */
-    public TrackingItem withProvider(Optional<String> provider) {
-        Utils.checkNotNull(provider, "provider");
-        this.provider = provider;
-        return this;
-    }
-
-    /**
-     * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
-     */
-    public TrackingItem withNumber(String number) {
-        Utils.checkNotNull(number, "number");
-        this.number = Optional.ofNullable(number);
+    public TrackingItem withProvider(@Nullable String provider) {
+        this.provider = JsonNullable.of(provider);
         return this;
     }
 
@@ -139,47 +113,29 @@ public class TrackingItem {
     /**
      * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
      */
-    public TrackingItem withNumber(Optional<String> number) {
-        Utils.checkNotNull(number, "number");
-        this.number = number;
+    public TrackingItem withNumber(@Nullable String number) {
+        this.number = JsonNullable.of(number);
         return this;
     }
+
 
     /**
      * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
      */
-    public TrackingItem withUrl(String url) {
-        Utils.checkNotNull(url, "url");
+    public TrackingItem withUrl(@Nullable String url) {
         this.url = JsonNullable.of(url);
         return this;
     }
 
-    /**
-     * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
-     */
-    public TrackingItem withUrl(JsonNullable<String> url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public TrackingItem withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public TrackingItem withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public TrackingItem withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -216,96 +172,51 @@ public class TrackingItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> provider = Optional.empty();
+        private String provider;
 
-        private Optional<String> number = Optional.empty();
+        private String number;
 
-        private JsonNullable<String> url = JsonNullable.undefined();
+        private JsonNullable<String> url;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name or code of the carrier or shipping company that is handling the shipment.
          */
-        public Builder provider(String provider) {
-            Utils.checkNotNull(provider, "provider");
-            this.provider = Optional.ofNullable(provider);
-            return this;
-        }
-
-        /**
-         * The name or code of the carrier or shipping company that is handling the shipment.
-         */
-        public Builder provider(Optional<String> provider) {
-            Utils.checkNotNull(provider, "provider");
+        public Builder provider(@Nullable String provider) {
             this.provider = provider;
             return this;
         }
 
-
         /**
          * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
          */
-        public Builder number(String number) {
-            Utils.checkNotNull(number, "number");
-            this.number = Optional.ofNullable(number);
-            return this;
-        }
-
-        /**
-         * The tracking number associated with the shipment, which can be used to track the progress of the delivery.
-         */
-        public Builder number(Optional<String> number) {
-            Utils.checkNotNull(number, "number");
+        public Builder number(@Nullable String number) {
             this.number = number;
             return this;
         }
 
-
         /**
          * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = JsonNullable.of(url);
             return this;
         }
 
         /**
-         * The URL of the carrier's tracking page, which can be used to view detailed information about the shipment's progress.
-         */
-        public Builder url(JsonNullable<String> url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public TrackingItem build() {
-
             return new TrackingItem(
                 provider, number, url,
                 updatedAt);

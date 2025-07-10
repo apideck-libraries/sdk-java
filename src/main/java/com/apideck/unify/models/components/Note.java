@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,7 +25,7 @@ public class Note {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The title of the note
@@ -96,7 +95,7 @@ public class Note {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user that last updated the note.
@@ -131,197 +130,177 @@ public class Note {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Note(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("content") JsonNullable<String> content,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("contact_id") JsonNullable<String> contactId,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("opportunity_id") JsonNullable<String> opportunityId,
-            @JsonProperty("activity_id") JsonNullable<String> activityId,
-            @JsonProperty("lead_id") JsonNullable<String> leadId,
-            @JsonProperty("active") JsonNullable<Boolean> active,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("created_at") JsonNullable<String> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(content, "content");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(contactId, "contactId");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(opportunityId, "opportunityId");
-        Utils.checkNotNull(activityId, "activityId");
-        Utils.checkNotNull(leadId, "leadId");
-        Utils.checkNotNull(active, "active");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("content") @Nullable JsonNullable<String> content,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("contact_id") @Nullable JsonNullable<String> contactId,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("opportunity_id") @Nullable JsonNullable<String> opportunityId,
+            @JsonProperty("activity_id") @Nullable JsonNullable<String> activityId,
+            @JsonProperty("lead_id") @Nullable JsonNullable<String> leadId,
+            @JsonProperty("active") @Nullable JsonNullable<Boolean> active,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<String> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<String> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.title = title;
-        this.content = content;
-        this.ownerId = ownerId;
-        this.contactId = contactId;
-        this.companyId = companyId;
-        this.opportunityId = opportunityId;
-        this.activityId = activityId;
-        this.leadId = leadId;
-        this.active = active;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.content = Optional.ofNullable(content)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.contactId = Optional.ofNullable(contactId)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.opportunityId = Optional.ofNullable(opportunityId)
+            .orElse(JsonNullable.undefined());
+        this.activityId = Optional.ofNullable(activityId)
+            .orElse(JsonNullable.undefined());
+        this.leadId = Optional.ofNullable(leadId)
+            .orElse(JsonNullable.undefined());
+        this.active = Optional.ofNullable(active)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Note() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The unique identifier of the note
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The title of the note
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The content of the note.
      */
-    @JsonIgnore
     public JsonNullable<String> content() {
-        return content;
+        return this.content;
     }
 
     /**
      * The user that owns the note.
      */
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     /**
      * The contact that is related to the note.
      */
-    @JsonIgnore
     public JsonNullable<String> contactId() {
-        return contactId;
+        return this.contactId;
     }
 
     /**
      * The company that is related to the note.
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The opportunity that is related to the note.
      */
-    @JsonIgnore
     public JsonNullable<String> opportunityId() {
-        return opportunityId;
+        return this.opportunityId;
     }
 
     /**
      * The activity that is related to the note.
      */
-    @JsonIgnore
     public JsonNullable<String> activityId() {
-        return activityId;
+        return this.activityId;
     }
 
     /**
      * The lead that is related to the note.
      */
-    @JsonIgnore
     public JsonNullable<String> leadId() {
-        return leadId;
+        return this.leadId;
     }
 
     /**
      * Whether the Note is active or not.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> active() {
-        return active;
+        return this.active;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user that last updated the note.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user that created the note.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The timestamp when the note was last updated
      */
-    @JsonIgnore
     public JsonNullable<String> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The timestamp when the note was created
      */
-    @JsonIgnore
     public JsonNullable<String> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -332,292 +311,146 @@ public class Note {
     /**
      * The unique identifier of the note
      */
-    public Note withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the note
-     */
-    public Note withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Note withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The title of the note
      */
-    public Note withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public Note withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The title of the note
-     */
-    public Note withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * The content of the note.
      */
-    public Note withContent(String content) {
-        Utils.checkNotNull(content, "content");
+    public Note withContent(@Nullable String content) {
         this.content = JsonNullable.of(content);
         return this;
     }
 
-    /**
-     * The content of the note.
-     */
-    public Note withContent(JsonNullable<String> content) {
-        Utils.checkNotNull(content, "content");
-        this.content = content;
-        return this;
-    }
 
     /**
      * The user that owns the note.
      */
-    public Note withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public Note withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    /**
-     * The user that owns the note.
-     */
-    public Note withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
     /**
      * The contact that is related to the note.
      */
-    public Note withContactId(String contactId) {
-        Utils.checkNotNull(contactId, "contactId");
+    public Note withContactId(@Nullable String contactId) {
         this.contactId = JsonNullable.of(contactId);
         return this;
     }
 
-    /**
-     * The contact that is related to the note.
-     */
-    public Note withContactId(JsonNullable<String> contactId) {
-        Utils.checkNotNull(contactId, "contactId");
-        this.contactId = contactId;
-        return this;
-    }
 
     /**
      * The company that is related to the note.
      */
-    public Note withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public Note withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company that is related to the note.
-     */
-    public Note withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The opportunity that is related to the note.
      */
-    public Note withOpportunityId(String opportunityId) {
-        Utils.checkNotNull(opportunityId, "opportunityId");
+    public Note withOpportunityId(@Nullable String opportunityId) {
         this.opportunityId = JsonNullable.of(opportunityId);
         return this;
     }
 
-    /**
-     * The opportunity that is related to the note.
-     */
-    public Note withOpportunityId(JsonNullable<String> opportunityId) {
-        Utils.checkNotNull(opportunityId, "opportunityId");
-        this.opportunityId = opportunityId;
-        return this;
-    }
 
     /**
      * The activity that is related to the note.
      */
-    public Note withActivityId(String activityId) {
-        Utils.checkNotNull(activityId, "activityId");
+    public Note withActivityId(@Nullable String activityId) {
         this.activityId = JsonNullable.of(activityId);
         return this;
     }
 
-    /**
-     * The activity that is related to the note.
-     */
-    public Note withActivityId(JsonNullable<String> activityId) {
-        Utils.checkNotNull(activityId, "activityId");
-        this.activityId = activityId;
-        return this;
-    }
 
     /**
      * The lead that is related to the note.
      */
-    public Note withLeadId(String leadId) {
-        Utils.checkNotNull(leadId, "leadId");
+    public Note withLeadId(@Nullable String leadId) {
         this.leadId = JsonNullable.of(leadId);
         return this;
     }
 
-    /**
-     * The lead that is related to the note.
-     */
-    public Note withLeadId(JsonNullable<String> leadId) {
-        Utils.checkNotNull(leadId, "leadId");
-        this.leadId = leadId;
-        return this;
-    }
 
     /**
      * Whether the Note is active or not.
      */
-    public Note withActive(boolean active) {
-        Utils.checkNotNull(active, "active");
+    public Note withActive(@Nullable Boolean active) {
         this.active = JsonNullable.of(active);
         return this;
     }
 
-    /**
-     * Whether the Note is active or not.
-     */
-    public Note withActive(JsonNullable<Boolean> active) {
-        Utils.checkNotNull(active, "active");
-        this.active = active;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Note withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Note withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Note withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user that last updated the note.
      */
-    public Note withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Note withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user that last updated the note.
-     */
-    public Note withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user that created the note.
      */
-    public Note withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Note withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user that created the note.
-     */
-    public Note withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The timestamp when the note was last updated
      */
-    public Note withUpdatedAt(String updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Note withUpdatedAt(@Nullable String updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The timestamp when the note was last updated
-     */
-    public Note withUpdatedAt(JsonNullable<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The timestamp when the note was created
      */
-    public Note withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Note withCreatedAt(@Nullable String createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The timestamp when the note was created
-     */
-    public Note withCreatedAt(JsonNullable<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Note withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Note withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Note withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -682,348 +515,171 @@ public class Note {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> content = JsonNullable.undefined();
+        private JsonNullable<String> content;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> contactId = JsonNullable.undefined();
+        private JsonNullable<String> contactId;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> opportunityId = JsonNullable.undefined();
+        private JsonNullable<String> opportunityId;
 
-        private JsonNullable<String> activityId = JsonNullable.undefined();
+        private JsonNullable<String> activityId;
 
-        private JsonNullable<String> leadId = JsonNullable.undefined();
+        private JsonNullable<String> leadId;
 
-        private JsonNullable<Boolean> active = JsonNullable.undefined();
+        private JsonNullable<Boolean> active;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<String> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> updatedAt;
 
-        private JsonNullable<String> createdAt = JsonNullable.undefined();
+        private JsonNullable<String> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the note
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the note
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The title of the note
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The title of the note
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * The content of the note.
          */
-        public Builder content(String content) {
-            Utils.checkNotNull(content, "content");
+        public Builder content(@Nullable String content) {
             this.content = JsonNullable.of(content);
             return this;
         }
 
         /**
-         * The content of the note.
-         */
-        public Builder content(JsonNullable<String> content) {
-            Utils.checkNotNull(content, "content");
-            this.content = content;
-            return this;
-        }
-
-
-        /**
          * The user that owns the note.
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
         /**
-         * The user that owns the note.
-         */
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        /**
          * The contact that is related to the note.
          */
-        public Builder contactId(String contactId) {
-            Utils.checkNotNull(contactId, "contactId");
+        public Builder contactId(@Nullable String contactId) {
             this.contactId = JsonNullable.of(contactId);
             return this;
         }
 
         /**
-         * The contact that is related to the note.
-         */
-        public Builder contactId(JsonNullable<String> contactId) {
-            Utils.checkNotNull(contactId, "contactId");
-            this.contactId = contactId;
-            return this;
-        }
-
-
-        /**
          * The company that is related to the note.
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company that is related to the note.
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The opportunity that is related to the note.
          */
-        public Builder opportunityId(String opportunityId) {
-            Utils.checkNotNull(opportunityId, "opportunityId");
+        public Builder opportunityId(@Nullable String opportunityId) {
             this.opportunityId = JsonNullable.of(opportunityId);
             return this;
         }
 
         /**
-         * The opportunity that is related to the note.
-         */
-        public Builder opportunityId(JsonNullable<String> opportunityId) {
-            Utils.checkNotNull(opportunityId, "opportunityId");
-            this.opportunityId = opportunityId;
-            return this;
-        }
-
-
-        /**
          * The activity that is related to the note.
          */
-        public Builder activityId(String activityId) {
-            Utils.checkNotNull(activityId, "activityId");
+        public Builder activityId(@Nullable String activityId) {
             this.activityId = JsonNullable.of(activityId);
             return this;
         }
 
         /**
-         * The activity that is related to the note.
-         */
-        public Builder activityId(JsonNullable<String> activityId) {
-            Utils.checkNotNull(activityId, "activityId");
-            this.activityId = activityId;
-            return this;
-        }
-
-
-        /**
          * The lead that is related to the note.
          */
-        public Builder leadId(String leadId) {
-            Utils.checkNotNull(leadId, "leadId");
+        public Builder leadId(@Nullable String leadId) {
             this.leadId = JsonNullable.of(leadId);
             return this;
         }
 
         /**
-         * The lead that is related to the note.
-         */
-        public Builder leadId(JsonNullable<String> leadId) {
-            Utils.checkNotNull(leadId, "leadId");
-            this.leadId = leadId;
-            return this;
-        }
-
-
-        /**
          * Whether the Note is active or not.
          */
-        public Builder active(boolean active) {
-            Utils.checkNotNull(active, "active");
+        public Builder active(@Nullable Boolean active) {
             this.active = JsonNullable.of(active);
             return this;
         }
 
         /**
-         * Whether the Note is active or not.
-         */
-        public Builder active(JsonNullable<Boolean> active) {
-            Utils.checkNotNull(active, "active");
-            this.active = active;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user that last updated the note.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user that last updated the note.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user that created the note.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user that created the note.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The timestamp when the note was last updated
          */
-        public Builder updatedAt(String updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable String updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The timestamp when the note was last updated
-         */
-        public Builder updatedAt(JsonNullable<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The timestamp when the note was created
          */
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable String createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The timestamp when the note was created
-         */
-        public Builder createdAt(JsonNullable<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Note build() {
-
             return new Note(
                 id, title, content,
                 ownerId, contactId, companyId,

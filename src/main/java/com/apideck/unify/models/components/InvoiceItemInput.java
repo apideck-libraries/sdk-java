@@ -5,16 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -83,17 +82,17 @@ public class InvoiceItemInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends InvoiceItemTypeType> type;
+    private JsonNullable<InvoiceItemTypeType> type;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_details")
-    private Optional<? extends InvoiceItemSalesDetails> salesDetails;
+    private InvoiceItemSalesDetails salesDetails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("purchase_details")
-    private Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails;
+    private InvoiceItemPurchaseDetails purchaseDetails;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -108,17 +107,17 @@ public class InvoiceItemInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("asset_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount;
+    private JsonNullable<LinkedLedgerAccountInput> assetAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("income_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount;
+    private JsonNullable<LinkedLedgerAccountInput> incomeAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("expense_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount;
+    private JsonNullable<LinkedLedgerAccountInput> expenseAccount;
 
     /**
      * 
@@ -127,14 +126,14 @@ public class InvoiceItemInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_category")
     @Deprecated
-    private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory;
+    private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
     /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -181,210 +180,185 @@ public class InvoiceItemInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public InvoiceItemInput(
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("sold") JsonNullable<Boolean> sold,
-            @JsonProperty("purchased") JsonNullable<Boolean> purchased,
-            @JsonProperty("tracked") JsonNullable<Boolean> tracked,
-            @JsonProperty("taxable") JsonNullable<Boolean> taxable,
-            @JsonProperty("inventory_date") JsonNullable<LocalDate> inventoryDate,
-            @JsonProperty("type") JsonNullable<? extends InvoiceItemTypeType> type,
-            @JsonProperty("sales_details") Optional<? extends InvoiceItemSalesDetails> salesDetails,
-            @JsonProperty("purchase_details") Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails,
-            @JsonProperty("quantity") JsonNullable<Double> quantity,
-            @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
-            @JsonProperty("asset_account") JsonNullable<? extends LinkedLedgerAccountInput> assetAccount,
-            @JsonProperty("income_account") JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount,
-            @JsonProperty("expense_account") JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount,
-            @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("active") JsonNullable<Boolean> active,
-            @JsonProperty("department_id") JsonNullable<String> departmentId,
-            @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
-            @JsonProperty("tax_schedule_id") JsonNullable<String> taxScheduleId,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(sold, "sold");
-        Utils.checkNotNull(purchased, "purchased");
-        Utils.checkNotNull(tracked, "tracked");
-        Utils.checkNotNull(taxable, "taxable");
-        Utils.checkNotNull(inventoryDate, "inventoryDate");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(salesDetails, "salesDetails");
-        Utils.checkNotNull(purchaseDetails, "purchaseDetails");
-        Utils.checkNotNull(quantity, "quantity");
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        Utils.checkNotNull(assetAccount, "assetAccount");
-        Utils.checkNotNull(incomeAccount, "incomeAccount");
-        Utils.checkNotNull(expenseAccount, "expenseAccount");
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(active, "active");
-        Utils.checkNotNull(departmentId, "departmentId");
-        Utils.checkNotNull(locationId, "locationId");
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        Utils.checkNotNull(taxScheduleId, "taxScheduleId");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.name = name;
-        this.description = description;
-        this.code = code;
-        this.sold = sold;
-        this.purchased = purchased;
-        this.tracked = tracked;
-        this.taxable = taxable;
-        this.inventoryDate = inventoryDate;
-        this.type = type;
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("sold") @Nullable JsonNullable<Boolean> sold,
+            @JsonProperty("purchased") @Nullable JsonNullable<Boolean> purchased,
+            @JsonProperty("tracked") @Nullable JsonNullable<Boolean> tracked,
+            @JsonProperty("taxable") @Nullable JsonNullable<Boolean> taxable,
+            @JsonProperty("inventory_date") @Nullable JsonNullable<LocalDate> inventoryDate,
+            @JsonProperty("type") @Nullable JsonNullable<InvoiceItemTypeType> type,
+            @JsonProperty("sales_details") @Nullable InvoiceItemSalesDetails salesDetails,
+            @JsonProperty("purchase_details") @Nullable InvoiceItemPurchaseDetails purchaseDetails,
+            @JsonProperty("quantity") @Nullable JsonNullable<Double> quantity,
+            @JsonProperty("unit_price") @Nullable JsonNullable<Double> unitPrice,
+            @JsonProperty("asset_account") @Nullable JsonNullable<LinkedLedgerAccountInput> assetAccount,
+            @JsonProperty("income_account") @Nullable JsonNullable<LinkedLedgerAccountInput> incomeAccount,
+            @JsonProperty("expense_account") @Nullable JsonNullable<LinkedLedgerAccountInput> expenseAccount,
+            @JsonProperty("tracking_category") @Nullable JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory,
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("active") @Nullable JsonNullable<Boolean> active,
+            @JsonProperty("department_id") @Nullable JsonNullable<String> departmentId,
+            @JsonProperty("location_id") @Nullable JsonNullable<String> locationId,
+            @JsonProperty("subsidiary_id") @Nullable JsonNullable<String> subsidiaryId,
+            @JsonProperty("tax_schedule_id") @Nullable JsonNullable<String> taxScheduleId,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.sold = Optional.ofNullable(sold)
+            .orElse(JsonNullable.undefined());
+        this.purchased = Optional.ofNullable(purchased)
+            .orElse(JsonNullable.undefined());
+        this.tracked = Optional.ofNullable(tracked)
+            .orElse(JsonNullable.undefined());
+        this.taxable = Optional.ofNullable(taxable)
+            .orElse(JsonNullable.undefined());
+        this.inventoryDate = Optional.ofNullable(inventoryDate)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
         this.salesDetails = salesDetails;
         this.purchaseDetails = purchaseDetails;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-        this.assetAccount = assetAccount;
-        this.incomeAccount = incomeAccount;
-        this.expenseAccount = expenseAccount;
-        this.trackingCategory = trackingCategory;
-        this.trackingCategories = trackingCategories;
-        this.active = active;
-        this.departmentId = departmentId;
-        this.locationId = locationId;
-        this.subsidiaryId = subsidiaryId;
-        this.taxScheduleId = taxScheduleId;
-        this.rowVersion = rowVersion;
+        this.quantity = Optional.ofNullable(quantity)
+            .orElse(JsonNullable.undefined());
+        this.unitPrice = Optional.ofNullable(unitPrice)
+            .orElse(JsonNullable.undefined());
+        this.assetAccount = Optional.ofNullable(assetAccount)
+            .orElse(JsonNullable.undefined());
+        this.incomeAccount = Optional.ofNullable(incomeAccount)
+            .orElse(JsonNullable.undefined());
+        this.expenseAccount = Optional.ofNullable(expenseAccount)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategory = Optional.ofNullable(trackingCategory)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
+        this.active = Optional.ofNullable(active)
+            .orElse(JsonNullable.undefined());
+        this.departmentId = Optional.ofNullable(departmentId)
+            .orElse(JsonNullable.undefined());
+        this.locationId = Optional.ofNullable(locationId)
+            .orElse(JsonNullable.undefined());
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId)
+            .orElse(JsonNullable.undefined());
+        this.taxScheduleId = Optional.ofNullable(taxScheduleId)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public InvoiceItemInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Item name
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * A short description of the item
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * User defined item code
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * Item will be available on sales transactions
      */
-    @JsonIgnore
     public JsonNullable<Boolean> sold() {
-        return sold;
+        return this.sold;
     }
 
     /**
      * Item is available for purchase transactions
      */
-    @JsonIgnore
     public JsonNullable<Boolean> purchased() {
-        return purchased;
+        return this.purchased;
     }
 
     /**
      * Item is inventoried
      */
-    @JsonIgnore
     public JsonNullable<Boolean> tracked() {
-        return tracked;
+        return this.tracked;
     }
 
     /**
      * If true, transactions for this item are taxable
      */
-    @JsonIgnore
     public JsonNullable<Boolean> taxable() {
-        return taxable;
+        return this.taxable;
     }
 
     /**
      * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> inventoryDate() {
-        return inventoryDate;
+        return this.inventoryDate;
     }
 
     /**
      * Item type
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<InvoiceItemTypeType> type() {
-        return (JsonNullable<InvoiceItemTypeType>) type;
+        return this.type;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<InvoiceItemSalesDetails> salesDetails() {
-        return (Optional<InvoiceItemSalesDetails>) salesDetails;
+        return Optional.ofNullable(this.salesDetails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<InvoiceItemPurchaseDetails> purchaseDetails() {
-        return (Optional<InvoiceItemPurchaseDetails>) purchaseDetails;
+        return Optional.ofNullable(this.purchaseDetails);
     }
 
-    @JsonIgnore
     public JsonNullable<Double> quantity() {
-        return quantity;
+        return this.quantity;
     }
 
-    @JsonIgnore
     public JsonNullable<Double> unitPrice() {
-        return unitPrice;
+        return this.unitPrice;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccountInput> assetAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) assetAccount;
+        return this.assetAccount;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccountInput> incomeAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) incomeAccount;
+        return this.incomeAccount;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccountInput> expenseAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) expenseAccount;
+        return this.expenseAccount;
     }
 
     /**
@@ -392,73 +366,61 @@ public class InvoiceItemInput {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory() {
-        return (JsonNullable<DeprecatedLinkedTrackingCategory>) trackingCategory;
+        return this.trackingCategory;
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
-    @JsonIgnore
     public JsonNullable<Boolean> active() {
-        return active;
+        return this.active;
     }
 
     /**
      * The ID of the department
      */
-    @JsonIgnore
     public JsonNullable<String> departmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
     /**
      * The ID of the location
      */
-    @JsonIgnore
     public JsonNullable<String> locationId() {
-        return locationId;
+        return this.locationId;
     }
 
     /**
      * The ID of the subsidiary
      */
-    @JsonIgnore
     public JsonNullable<String> subsidiaryId() {
-        return subsidiaryId;
+        return this.subsidiaryId;
     }
 
     /**
      * The ID of the tax schedule
      */
-    @JsonIgnore
     public JsonNullable<String> taxScheduleId() {
-        return taxScheduleId;
+        return this.taxScheduleId;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -469,411 +431,205 @@ public class InvoiceItemInput {
     /**
      * Item name
      */
-    public InvoiceItemInput withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public InvoiceItemInput withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Item name
-     */
-    public InvoiceItemInput withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * A short description of the item
      */
-    public InvoiceItemInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public InvoiceItemInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A short description of the item
-     */
-    public InvoiceItemInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * User defined item code
      */
-    public InvoiceItemInput withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public InvoiceItemInput withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * User defined item code
-     */
-    public InvoiceItemInput withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * Item will be available on sales transactions
      */
-    public InvoiceItemInput withSold(boolean sold) {
-        Utils.checkNotNull(sold, "sold");
+    public InvoiceItemInput withSold(@Nullable Boolean sold) {
         this.sold = JsonNullable.of(sold);
         return this;
     }
 
-    /**
-     * Item will be available on sales transactions
-     */
-    public InvoiceItemInput withSold(JsonNullable<Boolean> sold) {
-        Utils.checkNotNull(sold, "sold");
-        this.sold = sold;
-        return this;
-    }
 
     /**
      * Item is available for purchase transactions
      */
-    public InvoiceItemInput withPurchased(boolean purchased) {
-        Utils.checkNotNull(purchased, "purchased");
+    public InvoiceItemInput withPurchased(@Nullable Boolean purchased) {
         this.purchased = JsonNullable.of(purchased);
         return this;
     }
 
-    /**
-     * Item is available for purchase transactions
-     */
-    public InvoiceItemInput withPurchased(JsonNullable<Boolean> purchased) {
-        Utils.checkNotNull(purchased, "purchased");
-        this.purchased = purchased;
-        return this;
-    }
 
     /**
      * Item is inventoried
      */
-    public InvoiceItemInput withTracked(boolean tracked) {
-        Utils.checkNotNull(tracked, "tracked");
+    public InvoiceItemInput withTracked(@Nullable Boolean tracked) {
         this.tracked = JsonNullable.of(tracked);
         return this;
     }
 
-    /**
-     * Item is inventoried
-     */
-    public InvoiceItemInput withTracked(JsonNullable<Boolean> tracked) {
-        Utils.checkNotNull(tracked, "tracked");
-        this.tracked = tracked;
-        return this;
-    }
 
     /**
      * If true, transactions for this item are taxable
      */
-    public InvoiceItemInput withTaxable(boolean taxable) {
-        Utils.checkNotNull(taxable, "taxable");
+    public InvoiceItemInput withTaxable(@Nullable Boolean taxable) {
         this.taxable = JsonNullable.of(taxable);
         return this;
     }
 
-    /**
-     * If true, transactions for this item are taxable
-     */
-    public InvoiceItemInput withTaxable(JsonNullable<Boolean> taxable) {
-        Utils.checkNotNull(taxable, "taxable");
-        this.taxable = taxable;
-        return this;
-    }
 
     /**
      * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
      */
-    public InvoiceItemInput withInventoryDate(LocalDate inventoryDate) {
-        Utils.checkNotNull(inventoryDate, "inventoryDate");
+    public InvoiceItemInput withInventoryDate(@Nullable LocalDate inventoryDate) {
         this.inventoryDate = JsonNullable.of(inventoryDate);
         return this;
     }
 
-    /**
-     * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
-     */
-    public InvoiceItemInput withInventoryDate(JsonNullable<LocalDate> inventoryDate) {
-        Utils.checkNotNull(inventoryDate, "inventoryDate");
-        this.inventoryDate = inventoryDate;
-        return this;
-    }
 
     /**
      * Item type
      */
-    public InvoiceItemInput withType(InvoiceItemTypeType type) {
-        Utils.checkNotNull(type, "type");
+    public InvoiceItemInput withType(@Nullable InvoiceItemTypeType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Item type
-     */
-    public InvoiceItemInput withType(JsonNullable<? extends InvoiceItemTypeType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
-    public InvoiceItemInput withSalesDetails(InvoiceItemSalesDetails salesDetails) {
-        Utils.checkNotNull(salesDetails, "salesDetails");
-        this.salesDetails = Optional.ofNullable(salesDetails);
-        return this;
-    }
-
-
-    public InvoiceItemInput withSalesDetails(Optional<? extends InvoiceItemSalesDetails> salesDetails) {
-        Utils.checkNotNull(salesDetails, "salesDetails");
+    public InvoiceItemInput withSalesDetails(@Nullable InvoiceItemSalesDetails salesDetails) {
         this.salesDetails = salesDetails;
         return this;
     }
 
-    public InvoiceItemInput withPurchaseDetails(InvoiceItemPurchaseDetails purchaseDetails) {
-        Utils.checkNotNull(purchaseDetails, "purchaseDetails");
-        this.purchaseDetails = Optional.ofNullable(purchaseDetails);
-        return this;
-    }
 
-
-    public InvoiceItemInput withPurchaseDetails(Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails) {
-        Utils.checkNotNull(purchaseDetails, "purchaseDetails");
+    public InvoiceItemInput withPurchaseDetails(@Nullable InvoiceItemPurchaseDetails purchaseDetails) {
         this.purchaseDetails = purchaseDetails;
         return this;
     }
 
-    public InvoiceItemInput withQuantity(double quantity) {
-        Utils.checkNotNull(quantity, "quantity");
+
+    public InvoiceItemInput withQuantity(@Nullable Double quantity) {
         this.quantity = JsonNullable.of(quantity);
         return this;
     }
 
-    public InvoiceItemInput withQuantity(JsonNullable<Double> quantity) {
-        Utils.checkNotNull(quantity, "quantity");
-        this.quantity = quantity;
-        return this;
-    }
 
-    public InvoiceItemInput withUnitPrice(double unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
+    public InvoiceItemInput withUnitPrice(@Nullable Double unitPrice) {
         this.unitPrice = JsonNullable.of(unitPrice);
         return this;
     }
 
-    public InvoiceItemInput withUnitPrice(JsonNullable<Double> unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        this.unitPrice = unitPrice;
-        return this;
-    }
 
-    public InvoiceItemInput withAssetAccount(LinkedLedgerAccountInput assetAccount) {
-        Utils.checkNotNull(assetAccount, "assetAccount");
+    public InvoiceItemInput withAssetAccount(@Nullable LinkedLedgerAccountInput assetAccount) {
         this.assetAccount = JsonNullable.of(assetAccount);
         return this;
     }
 
-    public InvoiceItemInput withAssetAccount(JsonNullable<? extends LinkedLedgerAccountInput> assetAccount) {
-        Utils.checkNotNull(assetAccount, "assetAccount");
-        this.assetAccount = assetAccount;
-        return this;
-    }
 
-    public InvoiceItemInput withIncomeAccount(LinkedLedgerAccountInput incomeAccount) {
-        Utils.checkNotNull(incomeAccount, "incomeAccount");
+    public InvoiceItemInput withIncomeAccount(@Nullable LinkedLedgerAccountInput incomeAccount) {
         this.incomeAccount = JsonNullable.of(incomeAccount);
         return this;
     }
 
-    public InvoiceItemInput withIncomeAccount(JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount) {
-        Utils.checkNotNull(incomeAccount, "incomeAccount");
-        this.incomeAccount = incomeAccount;
-        return this;
-    }
 
-    public InvoiceItemInput withExpenseAccount(LinkedLedgerAccountInput expenseAccount) {
-        Utils.checkNotNull(expenseAccount, "expenseAccount");
+    public InvoiceItemInput withExpenseAccount(@Nullable LinkedLedgerAccountInput expenseAccount) {
         this.expenseAccount = JsonNullable.of(expenseAccount);
         return this;
     }
 
-    public InvoiceItemInput withExpenseAccount(JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount) {
-        Utils.checkNotNull(expenseAccount, "expenseAccount");
-        this.expenseAccount = expenseAccount;
-        return this;
-    }
 
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public InvoiceItemInput withTrackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
+    public InvoiceItemInput withTrackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
         this.trackingCategory = JsonNullable.of(trackingCategory);
         return this;
     }
 
-    /**
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InvoiceItemInput withTrackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        this.trackingCategory = trackingCategory;
-        return this;
-    }
 
     /**
      * A list of linked tracking categories.
      */
-    public InvoiceItemInput withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public InvoiceItemInput withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public InvoiceItemInput withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
-        return this;
-    }
 
-    public InvoiceItemInput withActive(boolean active) {
-        Utils.checkNotNull(active, "active");
+    public InvoiceItemInput withActive(@Nullable Boolean active) {
         this.active = JsonNullable.of(active);
         return this;
     }
 
-    public InvoiceItemInput withActive(JsonNullable<Boolean> active) {
-        Utils.checkNotNull(active, "active");
-        this.active = active;
-        return this;
-    }
 
     /**
      * The ID of the department
      */
-    public InvoiceItemInput withDepartmentId(String departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
+    public InvoiceItemInput withDepartmentId(@Nullable String departmentId) {
         this.departmentId = JsonNullable.of(departmentId);
         return this;
     }
 
-    /**
-     * The ID of the department
-     */
-    public InvoiceItemInput withDepartmentId(JsonNullable<String> departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
-        this.departmentId = departmentId;
-        return this;
-    }
 
     /**
      * The ID of the location
      */
-    public InvoiceItemInput withLocationId(String locationId) {
-        Utils.checkNotNull(locationId, "locationId");
+    public InvoiceItemInput withLocationId(@Nullable String locationId) {
         this.locationId = JsonNullable.of(locationId);
         return this;
     }
 
-    /**
-     * The ID of the location
-     */
-    public InvoiceItemInput withLocationId(JsonNullable<String> locationId) {
-        Utils.checkNotNull(locationId, "locationId");
-        this.locationId = locationId;
-        return this;
-    }
 
     /**
      * The ID of the subsidiary
      */
-    public InvoiceItemInput withSubsidiaryId(String subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+    public InvoiceItemInput withSubsidiaryId(@Nullable String subsidiaryId) {
         this.subsidiaryId = JsonNullable.of(subsidiaryId);
         return this;
     }
 
-    /**
-     * The ID of the subsidiary
-     */
-    public InvoiceItemInput withSubsidiaryId(JsonNullable<String> subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.subsidiaryId = subsidiaryId;
-        return this;
-    }
 
     /**
      * The ID of the tax schedule
      */
-    public InvoiceItemInput withTaxScheduleId(String taxScheduleId) {
-        Utils.checkNotNull(taxScheduleId, "taxScheduleId");
+    public InvoiceItemInput withTaxScheduleId(@Nullable String taxScheduleId) {
         this.taxScheduleId = JsonNullable.of(taxScheduleId);
         return this;
     }
 
-    /**
-     * The ID of the tax schedule
-     */
-    public InvoiceItemInput withTaxScheduleId(JsonNullable<String> taxScheduleId) {
-        Utils.checkNotNull(taxScheduleId, "taxScheduleId");
-        this.taxScheduleId = taxScheduleId;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public InvoiceItemInput withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public InvoiceItemInput withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public InvoiceItemInput withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public InvoiceItemInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public InvoiceItemInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public InvoiceItemInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -959,494 +715,240 @@ public class InvoiceItemInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<Boolean> sold = JsonNullable.undefined();
+        private JsonNullable<Boolean> sold;
 
-        private JsonNullable<Boolean> purchased = JsonNullable.undefined();
+        private JsonNullable<Boolean> purchased;
 
-        private JsonNullable<Boolean> tracked = JsonNullable.undefined();
+        private JsonNullable<Boolean> tracked;
 
-        private JsonNullable<Boolean> taxable = JsonNullable.undefined();
+        private JsonNullable<Boolean> taxable;
 
-        private JsonNullable<LocalDate> inventoryDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> inventoryDate;
 
-        private JsonNullable<? extends InvoiceItemTypeType> type = JsonNullable.undefined();
+        private JsonNullable<InvoiceItemTypeType> type;
 
-        private Optional<? extends InvoiceItemSalesDetails> salesDetails = Optional.empty();
+        private InvoiceItemSalesDetails salesDetails;
 
-        private Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails = Optional.empty();
+        private InvoiceItemPurchaseDetails purchaseDetails;
 
-        private JsonNullable<Double> quantity = JsonNullable.undefined();
+        private JsonNullable<Double> quantity;
 
-        private JsonNullable<Double> unitPrice = JsonNullable.undefined();
+        private JsonNullable<Double> unitPrice;
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> assetAccount = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccountInput> assetAccount;
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccountInput> incomeAccount;
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccountInput> expenseAccount;
 
         @Deprecated
-        private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
+        private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private JsonNullable<Boolean> active = JsonNullable.undefined();
+        private JsonNullable<Boolean> active;
 
-        private JsonNullable<String> departmentId = JsonNullable.undefined();
+        private JsonNullable<String> departmentId;
 
-        private JsonNullable<String> locationId = JsonNullable.undefined();
+        private JsonNullable<String> locationId;
 
-        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+        private JsonNullable<String> subsidiaryId;
 
-        private JsonNullable<String> taxScheduleId = JsonNullable.undefined();
+        private JsonNullable<String> taxScheduleId;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Item name
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Item name
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * A short description of the item
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A short description of the item
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * User defined item code
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * User defined item code
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * Item will be available on sales transactions
          */
-        public Builder sold(boolean sold) {
-            Utils.checkNotNull(sold, "sold");
+        public Builder sold(@Nullable Boolean sold) {
             this.sold = JsonNullable.of(sold);
             return this;
         }
 
         /**
-         * Item will be available on sales transactions
-         */
-        public Builder sold(JsonNullable<Boolean> sold) {
-            Utils.checkNotNull(sold, "sold");
-            this.sold = sold;
-            return this;
-        }
-
-
-        /**
          * Item is available for purchase transactions
          */
-        public Builder purchased(boolean purchased) {
-            Utils.checkNotNull(purchased, "purchased");
+        public Builder purchased(@Nullable Boolean purchased) {
             this.purchased = JsonNullable.of(purchased);
             return this;
         }
 
         /**
-         * Item is available for purchase transactions
-         */
-        public Builder purchased(JsonNullable<Boolean> purchased) {
-            Utils.checkNotNull(purchased, "purchased");
-            this.purchased = purchased;
-            return this;
-        }
-
-
-        /**
          * Item is inventoried
          */
-        public Builder tracked(boolean tracked) {
-            Utils.checkNotNull(tracked, "tracked");
+        public Builder tracked(@Nullable Boolean tracked) {
             this.tracked = JsonNullable.of(tracked);
             return this;
         }
 
         /**
-         * Item is inventoried
-         */
-        public Builder tracked(JsonNullable<Boolean> tracked) {
-            Utils.checkNotNull(tracked, "tracked");
-            this.tracked = tracked;
-            return this;
-        }
-
-
-        /**
          * If true, transactions for this item are taxable
          */
-        public Builder taxable(boolean taxable) {
-            Utils.checkNotNull(taxable, "taxable");
+        public Builder taxable(@Nullable Boolean taxable) {
             this.taxable = JsonNullable.of(taxable);
             return this;
         }
 
         /**
-         * If true, transactions for this item are taxable
-         */
-        public Builder taxable(JsonNullable<Boolean> taxable) {
-            Utils.checkNotNull(taxable, "taxable");
-            this.taxable = taxable;
-            return this;
-        }
-
-
-        /**
          * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
          */
-        public Builder inventoryDate(LocalDate inventoryDate) {
-            Utils.checkNotNull(inventoryDate, "inventoryDate");
+        public Builder inventoryDate(@Nullable LocalDate inventoryDate) {
             this.inventoryDate = JsonNullable.of(inventoryDate);
             return this;
         }
 
         /**
-         * The date of opening balance if inventory item is tracked - YYYY-MM-DD.
-         */
-        public Builder inventoryDate(JsonNullable<LocalDate> inventoryDate) {
-            Utils.checkNotNull(inventoryDate, "inventoryDate");
-            this.inventoryDate = inventoryDate;
-            return this;
-        }
-
-
-        /**
          * Item type
          */
-        public Builder type(InvoiceItemTypeType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable InvoiceItemTypeType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * Item type
-         */
-        public Builder type(JsonNullable<? extends InvoiceItemTypeType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        public Builder salesDetails(InvoiceItemSalesDetails salesDetails) {
-            Utils.checkNotNull(salesDetails, "salesDetails");
-            this.salesDetails = Optional.ofNullable(salesDetails);
-            return this;
-        }
-
-        public Builder salesDetails(Optional<? extends InvoiceItemSalesDetails> salesDetails) {
-            Utils.checkNotNull(salesDetails, "salesDetails");
+        public Builder salesDetails(@Nullable InvoiceItemSalesDetails salesDetails) {
             this.salesDetails = salesDetails;
             return this;
         }
 
-
-        public Builder purchaseDetails(InvoiceItemPurchaseDetails purchaseDetails) {
-            Utils.checkNotNull(purchaseDetails, "purchaseDetails");
-            this.purchaseDetails = Optional.ofNullable(purchaseDetails);
-            return this;
-        }
-
-        public Builder purchaseDetails(Optional<? extends InvoiceItemPurchaseDetails> purchaseDetails) {
-            Utils.checkNotNull(purchaseDetails, "purchaseDetails");
+        public Builder purchaseDetails(@Nullable InvoiceItemPurchaseDetails purchaseDetails) {
             this.purchaseDetails = purchaseDetails;
             return this;
         }
 
-
-        public Builder quantity(double quantity) {
-            Utils.checkNotNull(quantity, "quantity");
+        public Builder quantity(@Nullable Double quantity) {
             this.quantity = JsonNullable.of(quantity);
             return this;
         }
 
-        public Builder quantity(JsonNullable<Double> quantity) {
-            Utils.checkNotNull(quantity, "quantity");
-            this.quantity = quantity;
-            return this;
-        }
-
-
-        public Builder unitPrice(double unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
+        public Builder unitPrice(@Nullable Double unitPrice) {
             this.unitPrice = JsonNullable.of(unitPrice);
             return this;
         }
 
-        public Builder unitPrice(JsonNullable<Double> unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
-            this.unitPrice = unitPrice;
-            return this;
-        }
-
-
-        public Builder assetAccount(LinkedLedgerAccountInput assetAccount) {
-            Utils.checkNotNull(assetAccount, "assetAccount");
+        public Builder assetAccount(@Nullable LinkedLedgerAccountInput assetAccount) {
             this.assetAccount = JsonNullable.of(assetAccount);
             return this;
         }
 
-        public Builder assetAccount(JsonNullable<? extends LinkedLedgerAccountInput> assetAccount) {
-            Utils.checkNotNull(assetAccount, "assetAccount");
-            this.assetAccount = assetAccount;
-            return this;
-        }
-
-
-        public Builder incomeAccount(LinkedLedgerAccountInput incomeAccount) {
-            Utils.checkNotNull(incomeAccount, "incomeAccount");
+        public Builder incomeAccount(@Nullable LinkedLedgerAccountInput incomeAccount) {
             this.incomeAccount = JsonNullable.of(incomeAccount);
             return this;
         }
 
-        public Builder incomeAccount(JsonNullable<? extends LinkedLedgerAccountInput> incomeAccount) {
-            Utils.checkNotNull(incomeAccount, "incomeAccount");
-            this.incomeAccount = incomeAccount;
-            return this;
-        }
-
-
-        public Builder expenseAccount(LinkedLedgerAccountInput expenseAccount) {
-            Utils.checkNotNull(expenseAccount, "expenseAccount");
+        public Builder expenseAccount(@Nullable LinkedLedgerAccountInput expenseAccount) {
             this.expenseAccount = JsonNullable.of(expenseAccount);
             return this;
         }
-
-        public Builder expenseAccount(JsonNullable<? extends LinkedLedgerAccountInput> expenseAccount) {
-            Utils.checkNotNull(expenseAccount, "expenseAccount");
-            this.expenseAccount = expenseAccount;
-            return this;
-        }
-
 
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder trackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
+        public Builder trackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
             this.trackingCategory = JsonNullable.of(trackingCategory);
             return this;
         }
 
         /**
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder trackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
-            this.trackingCategory = trackingCategory;
-            return this;
-        }
-
-
-        /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
-        /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        public Builder active(boolean active) {
-            Utils.checkNotNull(active, "active");
+        public Builder active(@Nullable Boolean active) {
             this.active = JsonNullable.of(active);
             return this;
         }
 
-        public Builder active(JsonNullable<Boolean> active) {
-            Utils.checkNotNull(active, "active");
-            this.active = active;
-            return this;
-        }
-
-
         /**
          * The ID of the department
          */
-        public Builder departmentId(String departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
+        public Builder departmentId(@Nullable String departmentId) {
             this.departmentId = JsonNullable.of(departmentId);
             return this;
         }
 
         /**
-         * The ID of the department
-         */
-        public Builder departmentId(JsonNullable<String> departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
-            this.departmentId = departmentId;
-            return this;
-        }
-
-
-        /**
          * The ID of the location
          */
-        public Builder locationId(String locationId) {
-            Utils.checkNotNull(locationId, "locationId");
+        public Builder locationId(@Nullable String locationId) {
             this.locationId = JsonNullable.of(locationId);
             return this;
         }
 
         /**
-         * The ID of the location
-         */
-        public Builder locationId(JsonNullable<String> locationId) {
-            Utils.checkNotNull(locationId, "locationId");
-            this.locationId = locationId;
-            return this;
-        }
-
-
-        /**
          * The ID of the subsidiary
          */
-        public Builder subsidiaryId(String subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        public Builder subsidiaryId(@Nullable String subsidiaryId) {
             this.subsidiaryId = JsonNullable.of(subsidiaryId);
             return this;
         }
 
         /**
-         * The ID of the subsidiary
-         */
-        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-            this.subsidiaryId = subsidiaryId;
-            return this;
-        }
-
-
-        /**
          * The ID of the tax schedule
          */
-        public Builder taxScheduleId(String taxScheduleId) {
-            Utils.checkNotNull(taxScheduleId, "taxScheduleId");
+        public Builder taxScheduleId(@Nullable String taxScheduleId) {
             this.taxScheduleId = JsonNullable.of(taxScheduleId);
             return this;
         }
 
         /**
-         * The ID of the tax schedule
-         */
-        public Builder taxScheduleId(JsonNullable<String> taxScheduleId) {
-            Utils.checkNotNull(taxScheduleId, "taxScheduleId");
-            this.taxScheduleId = taxScheduleId;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public InvoiceItemInput build() {
-
             return new InvoiceItemInput(
                 name, description, code,
                 sold, purchased, tracked,

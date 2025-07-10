@@ -11,79 +11,65 @@ import com.apideck.unify.operations.VaultConsumersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultConsumersUpdateRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String consumerId;
-    private UpdateConsumerRequest updateConsumerRequest;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultConsumersUpdateRequest.Builder pojoBuilder;
+    private VaultConsumersUpdateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultConsumersUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultConsumersUpdateRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultConsumersUpdateRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public VaultConsumersUpdateRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersUpdateRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public VaultConsumersUpdateRequestBuilder consumerId(@Nonnull String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersUpdateRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
+    public VaultConsumersUpdateRequestBuilder updateConsumerRequest(@Nonnull UpdateConsumerRequest updateConsumerRequest) {
+        this.pojoBuilder.updateConsumerRequest(updateConsumerRequest);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersUpdateRequestBuilder updateConsumerRequest(UpdateConsumerRequest updateConsumerRequest) {
-        Utils.checkNotNull(updateConsumerRequest, "updateConsumerRequest");
-        this.updateConsumerRequest = updateConsumerRequest;
-        return this;
-    }
-                
     public VaultConsumersUpdateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultConsumersUpdateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultConsumersUpdateRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultConsumersUpdateRequest buildRequest() {
-
-        VaultConsumersUpdateRequest request = new VaultConsumersUpdateRequest(appId,
-            consumerId,
-            updateConsumerRequest);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultConsumersUpdateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
               = new VaultConsumersUpdateOperation(
                 sdkConfiguration,
                 options);
-        VaultConsumersUpdateRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

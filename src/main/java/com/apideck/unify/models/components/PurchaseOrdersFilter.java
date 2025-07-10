@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -16,34 +16,30 @@ import java.util.Optional;
 public class PurchaseOrdersFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
 
     @SpeakeasyMetadata("queryParam:name=supplier_id")
-    private Optional<String> supplierId;
+    private String supplierId;
 
     @JsonCreator
     public PurchaseOrdersFilter(
-            Optional<OffsetDateTime> updatedSince,
-            Optional<String> supplierId) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(supplierId, "supplierId");
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable String supplierId) {
         this.updatedSince = updatedSince;
         this.supplierId = supplierId;
     }
     
     public PurchaseOrdersFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
-    @JsonIgnore
     public Optional<String> supplierId() {
-        return supplierId;
+        return Optional.ofNullable(this.supplierId);
     }
 
     public static Builder builder() {
@@ -51,31 +47,17 @@ public class PurchaseOrdersFilter {
     }
 
 
-    public PurchaseOrdersFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
-
-    public PurchaseOrdersFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public PurchaseOrdersFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    public PurchaseOrdersFilter withSupplierId(String supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
-        this.supplierId = Optional.ofNullable(supplierId);
-        return this;
-    }
 
-
-    public PurchaseOrdersFilter withSupplierId(Optional<String> supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
+    public PurchaseOrdersFilter withSupplierId(@Nullable String supplierId) {
         this.supplierId = supplierId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -107,42 +89,25 @@ public class PurchaseOrdersFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<String> supplierId = Optional.empty();
+        private String supplierId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
-        public Builder supplierId(String supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
-            this.supplierId = Optional.ofNullable(supplierId);
-            return this;
-        }
-
-        public Builder supplierId(Optional<String> supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
+        public Builder supplierId(@Nullable String supplierId) {
             this.supplierId = supplierId;
             return this;
         }
 
         public PurchaseOrdersFilter build() {
-
             return new PurchaseOrdersFilter(
                 updatedSince, supplierId);
         }

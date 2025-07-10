@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -21,48 +20,43 @@ public class ConnectorDoc {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the doc.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Audience for the doc.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("audience")
-    private Optional<? extends Audience> audience;
+    private Audience audience;
 
     /**
      * Format of the doc.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("format")
-    private Optional<? extends Format> format;
+    private Format format;
 
     /**
      * Link to fetch the content of the doc.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
-    private Optional<String> url;
+    private String url;
 
     @JsonCreator
     public ConnectorDoc(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("audience") Optional<? extends Audience> audience,
-            @JsonProperty("format") Optional<? extends Format> format,
-            @JsonProperty("url") Optional<String> url) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(audience, "audience");
-        Utils.checkNotNull(format, "format");
-        Utils.checkNotNull(url, "url");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("audience") @Nullable Audience audience,
+            @JsonProperty("format") @Nullable Format format,
+            @JsonProperty("url") @Nullable String url) {
         this.id = id;
         this.name = name;
         this.audience = audience;
@@ -71,50 +65,43 @@ public class ConnectorDoc {
     }
     
     public ConnectorDoc() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the doc.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Audience for the doc.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Audience> audience() {
-        return (Optional<Audience>) audience;
+        return Optional.ofNullable(this.audience);
     }
 
     /**
      * Format of the doc.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Format> format() {
-        return (Optional<Format>) format;
+        return Optional.ofNullable(this.format);
     }
 
     /**
      * Link to fetch the content of the doc.
      */
-    @JsonIgnore
     public Optional<String> url() {
-        return url;
+        return Optional.ofNullable(this.url);
     }
 
     public static Builder builder() {
@@ -125,97 +112,47 @@ public class ConnectorDoc {
     /**
      * A unique identifier for an object.
      */
-    public ConnectorDoc withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public ConnectorDoc withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ConnectorDoc withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the doc.
-     */
-    public ConnectorDoc withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the doc.
      */
-    public ConnectorDoc withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public ConnectorDoc withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Audience for the doc.
-     */
-    public ConnectorDoc withAudience(Audience audience) {
-        Utils.checkNotNull(audience, "audience");
-        this.audience = Optional.ofNullable(audience);
-        return this;
-    }
-
 
     /**
      * Audience for the doc.
      */
-    public ConnectorDoc withAudience(Optional<? extends Audience> audience) {
-        Utils.checkNotNull(audience, "audience");
+    public ConnectorDoc withAudience(@Nullable Audience audience) {
         this.audience = audience;
         return this;
     }
 
-    /**
-     * Format of the doc.
-     */
-    public ConnectorDoc withFormat(Format format) {
-        Utils.checkNotNull(format, "format");
-        this.format = Optional.ofNullable(format);
-        return this;
-    }
-
 
     /**
      * Format of the doc.
      */
-    public ConnectorDoc withFormat(Optional<? extends Format> format) {
-        Utils.checkNotNull(format, "format");
+    public ConnectorDoc withFormat(@Nullable Format format) {
         this.format = format;
         return this;
     }
 
-    /**
-     * Link to fetch the content of the doc.
-     */
-    public ConnectorDoc withUrl(String url) {
-        Utils.checkNotNull(url, "url");
-        this.url = Optional.ofNullable(url);
-        return this;
-    }
-
 
     /**
      * Link to fetch the content of the doc.
      */
-    public ConnectorDoc withUrl(Optional<String> url) {
-        Utils.checkNotNull(url, "url");
+    public ConnectorDoc withUrl(@Nullable String url) {
         this.url = url;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -254,117 +191,61 @@ public class ConnectorDoc {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends Audience> audience = Optional.empty();
+        private Audience audience;
 
-        private Optional<? extends Format> format = Optional.empty();
+        private Format format;
 
-        private Optional<String> url = Optional.empty();
+        private String url;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the doc.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the doc.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Audience for the doc.
          */
-        public Builder audience(Audience audience) {
-            Utils.checkNotNull(audience, "audience");
-            this.audience = Optional.ofNullable(audience);
-            return this;
-        }
-
-        /**
-         * Audience for the doc.
-         */
-        public Builder audience(Optional<? extends Audience> audience) {
-            Utils.checkNotNull(audience, "audience");
+        public Builder audience(@Nullable Audience audience) {
             this.audience = audience;
             return this;
         }
 
-
         /**
          * Format of the doc.
          */
-        public Builder format(Format format) {
-            Utils.checkNotNull(format, "format");
-            this.format = Optional.ofNullable(format);
-            return this;
-        }
-
-        /**
-         * Format of the doc.
-         */
-        public Builder format(Optional<? extends Format> format) {
-            Utils.checkNotNull(format, "format");
+        public Builder format(@Nullable Format format) {
             this.format = format;
             return this;
         }
 
-
         /**
          * Link to fetch the content of the doc.
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
-            this.url = Optional.ofNullable(url);
-            return this;
-        }
-
-        /**
-         * Link to fetch the content of the doc.
-         */
-        public Builder url(Optional<String> url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = url;
             return this;
         }
 
         public ConnectorDoc build() {
-
             return new ConnectorDoc(
                 id, name, audience,
                 format, url);

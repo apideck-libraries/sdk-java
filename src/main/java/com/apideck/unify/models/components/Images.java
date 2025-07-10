@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -31,32 +32,30 @@ public class Images {
 
     @JsonCreator
     public Images(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("url") JsonNullable<String> url) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(url, "url");
-        this.id = id;
-        this.url = url;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("url") @Nullable JsonNullable<String> url) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.url = Optional.ofNullable(url)
+            .orElse(JsonNullable.undefined());
     }
     
     public Images() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The URL of an image of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> url() {
-        return url;
+        return this.url;
     }
 
     public static Builder builder() {
@@ -67,38 +66,20 @@ public class Images {
     /**
      * A unique identifier for an object.
      */
-    public Images withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Images withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public Images withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The URL of an image of the product.
      */
-    public Images withUrl(String url) {
-        Utils.checkNotNull(url, "url");
+    public Images withUrl(@Nullable String url) {
         this.url = JsonNullable.of(url);
         return this;
     }
 
-    /**
-     * The URL of an image of the product.
-     */
-    public Images withUrl(JsonNullable<String> url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -130,54 +111,31 @@ public class Images {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> url = JsonNullable.undefined();
+        private JsonNullable<String> url;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The URL of an image of the product.
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = JsonNullable.of(url);
             return this;
         }
 
-        /**
-         * The URL of an image of the product.
-         */
-        public Builder url(JsonNullable<String> url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
-            return this;
-        }
-
         public Images build() {
-
             return new Images(
                 id, url);
         }

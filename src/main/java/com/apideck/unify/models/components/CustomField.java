@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -22,7 +21,7 @@ public class CustomField {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("id")
-    private Optional<String> id;
+    private JsonNullable<String> id;
 
     /**
      * Name of the custom field.
@@ -41,57 +40,51 @@ public class CustomField {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private JsonNullable<? extends Value> value;
+    private JsonNullable<Value> value;
 
     @JsonCreator
     public CustomField(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("value") JsonNullable<? extends Value> value) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(value, "value");
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.value = value;
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("value") @Nullable JsonNullable<Value> value) {
+        this.id = JsonNullable.of(id);
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.value = Optional.ofNullable(value)
+            .orElse(JsonNullable.undefined());
     }
     
     public CustomField() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * Unique identifier for the custom field.
      */
-    @JsonIgnore
-    public Optional<String> id() {
-        return id;
+    public JsonNullable<String> id() {
+        return this.id;
     }
 
     /**
      * Name of the custom field.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * More information about the custom field
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Value> value() {
-        return (JsonNullable<Value>) value;
+        return this.value;
     }
 
     public static Builder builder() {
@@ -102,69 +95,35 @@ public class CustomField {
     /**
      * Unique identifier for the custom field.
      */
-    public CustomField withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
+    public CustomField withId(@Nullable String id) {
+        this.id = JsonNullable.of(id);
         return this;
     }
 
-
-    /**
-     * Unique identifier for the custom field.
-     */
-    public CustomField withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Name of the custom field.
      */
-    public CustomField withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public CustomField withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Name of the custom field.
-     */
-    public CustomField withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * More information about the custom field
      */
-    public CustomField withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public CustomField withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * More information about the custom field
-     */
-    public CustomField withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
-    public CustomField withValue(Value value) {
-        Utils.checkNotNull(value, "value");
+    public CustomField withValue(@Nullable Value value) {
         this.value = JsonNullable.of(value);
         return this;
     }
 
-    public CustomField withValue(JsonNullable<? extends Value> value) {
-        Utils.checkNotNull(value, "value");
-        this.value = value;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -201,90 +160,48 @@ public class CustomField {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<? extends Value> value = JsonNullable.undefined();
+        private JsonNullable<Value> value;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier for the custom field.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * Unique identifier for the custom field.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the custom field.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Name of the custom field.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * More information about the custom field
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
-        /**
-         * More information about the custom field
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        public Builder value(Value value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable Value value) {
             this.value = JsonNullable.of(value);
             return this;
         }
 
-        public Builder value(JsonNullable<? extends Value> value) {
-            Utils.checkNotNull(value, "value");
-            this.value = value;
-            return this;
-        }
-
         public CustomField build() {
-
             return new CustomField(
                 id, name, description,
                 value);

@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
@@ -23,7 +23,7 @@ public class PaymentAllocations {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Amount of the payment allocated to the invoice
@@ -41,43 +41,39 @@ public class PaymentAllocations {
 
     @JsonCreator
     public PaymentAllocations(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("allocated_amount") JsonNullable<Double> allocatedAmount,
-            @JsonProperty("date") JsonNullable<OffsetDateTime> date) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(allocatedAmount, "allocatedAmount");
-        Utils.checkNotNull(date, "date");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("allocated_amount") @Nullable JsonNullable<Double> allocatedAmount,
+            @JsonProperty("date") @Nullable JsonNullable<OffsetDateTime> date) {
         this.id = id;
-        this.allocatedAmount = allocatedAmount;
-        this.date = date;
+        this.allocatedAmount = Optional.ofNullable(allocatedAmount)
+            .orElse(JsonNullable.undefined());
+        this.date = Optional.ofNullable(date)
+            .orElse(JsonNullable.undefined());
     }
     
     public PaymentAllocations() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * ID of the payment
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Amount of the payment allocated to the invoice
      */
-    @JsonIgnore
     public JsonNullable<Double> allocatedAmount() {
-        return allocatedAmount;
+        return this.allocatedAmount;
     }
 
     /**
      * Date of the payment
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> date() {
-        return date;
+        return this.date;
     }
 
     public static Builder builder() {
@@ -88,57 +84,29 @@ public class PaymentAllocations {
     /**
      * ID of the payment
      */
-    public PaymentAllocations withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the payment
-     */
-    public PaymentAllocations withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public PaymentAllocations withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * Amount of the payment allocated to the invoice
      */
-    public PaymentAllocations withAllocatedAmount(double allocatedAmount) {
-        Utils.checkNotNull(allocatedAmount, "allocatedAmount");
+    public PaymentAllocations withAllocatedAmount(@Nullable Double allocatedAmount) {
         this.allocatedAmount = JsonNullable.of(allocatedAmount);
         return this;
     }
 
-    /**
-     * Amount of the payment allocated to the invoice
-     */
-    public PaymentAllocations withAllocatedAmount(JsonNullable<Double> allocatedAmount) {
-        Utils.checkNotNull(allocatedAmount, "allocatedAmount");
-        this.allocatedAmount = allocatedAmount;
-        return this;
-    }
 
     /**
      * Date of the payment
      */
-    public PaymentAllocations withDate(OffsetDateTime date) {
-        Utils.checkNotNull(date, "date");
+    public PaymentAllocations withDate(@Nullable OffsetDateTime date) {
         this.date = JsonNullable.of(date);
         return this;
     }
 
-    /**
-     * Date of the payment
-     */
-    public PaymentAllocations withDate(JsonNullable<OffsetDateTime> date) {
-        Utils.checkNotNull(date, "date");
-        this.date = date;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -172,75 +140,41 @@ public class PaymentAllocations {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<Double> allocatedAmount = JsonNullable.undefined();
+        private JsonNullable<Double> allocatedAmount;
 
-        private JsonNullable<OffsetDateTime> date = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> date;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the payment
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the payment
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Amount of the payment allocated to the invoice
          */
-        public Builder allocatedAmount(double allocatedAmount) {
-            Utils.checkNotNull(allocatedAmount, "allocatedAmount");
+        public Builder allocatedAmount(@Nullable Double allocatedAmount) {
             this.allocatedAmount = JsonNullable.of(allocatedAmount);
             return this;
         }
 
         /**
-         * Amount of the payment allocated to the invoice
-         */
-        public Builder allocatedAmount(JsonNullable<Double> allocatedAmount) {
-            Utils.checkNotNull(allocatedAmount, "allocatedAmount");
-            this.allocatedAmount = allocatedAmount;
-            return this;
-        }
-
-
-        /**
          * Date of the payment
          */
-        public Builder date(OffsetDateTime date) {
-            Utils.checkNotNull(date, "date");
+        public Builder date(@Nullable OffsetDateTime date) {
             this.date = JsonNullable.of(date);
             return this;
         }
 
-        /**
-         * Date of the payment
-         */
-        public Builder date(JsonNullable<OffsetDateTime> date) {
-            Utils.checkNotNull(date, "date");
-            this.date = date;
-            return this;
-        }
-
         public PaymentAllocations build() {
-
             return new PaymentAllocations(
                 id, allocatedAmount, date);
         }

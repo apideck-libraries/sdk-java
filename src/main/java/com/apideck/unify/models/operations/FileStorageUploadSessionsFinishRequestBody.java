@@ -49,7 +49,6 @@ public class FileStorageUploadSessionsFinishRequestBody {
         }
 
         public FileStorageUploadSessionsFinishRequestBody build() {
-
             return new FileStorageUploadSessionsFinishRequestBody(
                 );
         }

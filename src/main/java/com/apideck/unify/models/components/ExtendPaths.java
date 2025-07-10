@@ -5,11 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class ExtendPaths {
@@ -27,28 +28,26 @@ public class ExtendPaths {
 
     @JsonCreator
     public ExtendPaths(
-            @JsonProperty("path") String path,
-            @JsonProperty("value") Object value) {
-        Utils.checkNotNull(path, "path");
-        Utils.checkNotNull(value, "value");
-        this.path = path;
-        this.value = value;
+            @JsonProperty("path") @Nonnull String path,
+            @JsonProperty("value") @Nonnull Object value) {
+        this.path = Optional.ofNullable(path)
+            .orElseThrow(() -> new IllegalArgumentException("path cannot be null"));
+        this.value = Optional.ofNullable(value)
+            .orElseThrow(() -> new IllegalArgumentException("value cannot be null"));
     }
 
     /**
      * JSONPath string specifying where to apply the value.
      */
-    @JsonIgnore
     public String path() {
-        return path;
+        return this.path;
     }
 
     /**
      * The value to set at the specified path, can be any type.
      */
-    @JsonIgnore
     public Object value() {
-        return value;
+        return this.value;
     }
 
     public static Builder builder() {
@@ -59,20 +58,20 @@ public class ExtendPaths {
     /**
      * JSONPath string specifying where to apply the value.
      */
-    public ExtendPaths withPath(String path) {
-        Utils.checkNotNull(path, "path");
-        this.path = path;
+    public ExtendPaths withPath(@Nonnull String path) {
+        this.path = Utils.checkNotNull(path, "path");
         return this;
     }
+
 
     /**
      * The value to set at the specified path, can be any type.
      */
-    public ExtendPaths withValue(Object value) {
-        Utils.checkNotNull(value, "value");
-        this.value = value;
+    public ExtendPaths withValue(@Nonnull Object value) {
+        this.value = Utils.checkNotNull(value, "value");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,28 +111,23 @@ public class ExtendPaths {
           // force use of static builder() method
         }
 
-
         /**
          * JSONPath string specifying where to apply the value.
          */
-        public Builder path(String path) {
-            Utils.checkNotNull(path, "path");
-            this.path = path;
+        public Builder path(@Nonnull String path) {
+            this.path = Utils.checkNotNull(path, "path");
             return this;
         }
-
 
         /**
          * The value to set at the specified path, can be any type.
          */
-        public Builder value(Object value) {
-            Utils.checkNotNull(value, "value");
-            this.value = value;
+        public Builder value(@Nonnull Object value) {
+            this.value = Utils.checkNotNull(value, "value");
             return this;
         }
 
         public ExtendPaths build() {
-
             return new ExtendPaths(
                 path, value);
         }

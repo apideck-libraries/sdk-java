@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.AccountingProfitAndLossOneRequestBuil
 import com.apideck.unify.models.operations.AccountingProfitAndLossOneResponse;
 import com.apideck.unify.operations.AccountingProfitAndLossOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class ProfitAndLoss {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingProfitAndLossOneResponse get(AccountingProfitAndLossOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingProfitAndLossOneResponse get(@Nonnull AccountingProfitAndLossOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class ProfitAndLoss {
      * @throws Exception if the API call fails
      */
     public AccountingProfitAndLossOneResponse get(
-            AccountingProfitAndLossOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingProfitAndLossOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
               = new AccountingProfitAndLossOneOperation(
                 sdkConfiguration,

@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class CompaniesFilter {
      * Name of the company to filter on
      */
     @SpeakeasyMetadata("queryParam:name=name")
-    private Optional<String> name;
+    private String name;
 
     @JsonCreator
     public CompaniesFilter(
-            Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+            @Nullable String name) {
         this.name = name;
     }
     
     public CompaniesFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Name of the company to filter on
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class CompaniesFilter {
     /**
      * Name of the company to filter on
      */
-    public CompaniesFilter withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * Name of the company to filter on
-     */
-    public CompaniesFilter withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public CompaniesFilter withName(@Nullable String name) {
         this.name = name;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class CompaniesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of the company to filter on
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the company to filter on
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
         public CompaniesFilter build() {
-
             return new CompaniesFilter(
                 name);
         }

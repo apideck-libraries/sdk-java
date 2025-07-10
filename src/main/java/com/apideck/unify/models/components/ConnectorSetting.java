@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,49 +18,42 @@ public class ConnectorSetting {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends ConnectorSettingType> type;
+    private ConnectorSettingType type;
 
     @JsonCreator
     public ConnectorSetting(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") Optional<String> label,
-            @JsonProperty("type") Optional<? extends ConnectorSettingType> type) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(type, "type");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nullable String label,
+            @JsonProperty("type") @Nullable ConnectorSettingType type) {
         this.id = id;
         this.label = label;
         this.type = type;
     }
     
     public ConnectorSetting() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectorSettingType> type() {
-        return (Optional<ConnectorSettingType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     public static Builder builder() {
@@ -69,44 +61,23 @@ public class ConnectorSetting {
     }
 
 
-    public ConnectorSetting withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public ConnectorSetting withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ConnectorSetting withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public ConnectorSetting withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
 
-
-    public ConnectorSetting withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public ConnectorSetting withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
 
-    public ConnectorSetting withType(ConnectorSettingType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
 
-
-    public ConnectorSetting withType(Optional<? extends ConnectorSettingType> type) {
-        Utils.checkNotNull(type, "type");
+    public ConnectorSetting withType(@Nullable ConnectorSettingType type) {
         this.type = type;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -140,57 +111,32 @@ public class ConnectorSetting {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
-        private Optional<? extends ConnectorSettingType> type = Optional.empty();
+        private ConnectorSettingType type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
-
-        public Builder type(ConnectorSettingType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends ConnectorSettingType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable ConnectorSettingType type) {
             this.type = type;
             return this;
         }
 
         public ConnectorSetting build() {
-
             return new ConnectorSetting(
                 id, label, type);
         }

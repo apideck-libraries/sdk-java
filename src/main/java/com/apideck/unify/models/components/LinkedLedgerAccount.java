@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class LinkedLedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the account.
@@ -46,55 +46,50 @@ public class LinkedLedgerAccount {
 
     @JsonCreator
     public LinkedLedgerAccount(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
-            @JsonProperty("code") JsonNullable<String> code) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        Utils.checkNotNull(code, "code");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("nominal_code") @Nullable JsonNullable<String> nominalCode,
+            @JsonProperty("code") @Nullable JsonNullable<String> code) {
         this.id = id;
-        this.name = name;
-        this.nominalCode = nominalCode;
-        this.code = code;
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.nominalCode = Optional.ofNullable(nominalCode)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedLedgerAccount() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The unique identifier for the account.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The nominal code of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> nominalCode() {
-        return nominalCode;
+        return this.nominalCode;
     }
 
     /**
      * The code assigned to the account.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     public static Builder builder() {
@@ -105,75 +100,38 @@ public class LinkedLedgerAccount {
     /**
      * The unique identifier for the account.
      */
-    public LinkedLedgerAccount withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the account.
-     */
-    public LinkedLedgerAccount withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedLedgerAccount withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The name of the account.
      */
-    public LinkedLedgerAccount withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedLedgerAccount withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the account.
-     */
-    public LinkedLedgerAccount withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The nominal code of the account.
      */
-    public LinkedLedgerAccount withNominalCode(String nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
+    public LinkedLedgerAccount withNominalCode(@Nullable String nominalCode) {
         this.nominalCode = JsonNullable.of(nominalCode);
         return this;
     }
 
-    /**
-     * The nominal code of the account.
-     */
-    public LinkedLedgerAccount withNominalCode(JsonNullable<String> nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        this.nominalCode = nominalCode;
-        return this;
-    }
 
     /**
      * The code assigned to the account.
      */
-    public LinkedLedgerAccount withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public LinkedLedgerAccount withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * The code assigned to the account.
-     */
-    public LinkedLedgerAccount withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -210,96 +168,51 @@ public class LinkedLedgerAccount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> nominalCode = JsonNullable.undefined();
+        private JsonNullable<String> nominalCode;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier for the account.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the account.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the account.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the account.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The nominal code of the account.
          */
-        public Builder nominalCode(String nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
+        public Builder nominalCode(@Nullable String nominalCode) {
             this.nominalCode = JsonNullable.of(nominalCode);
             return this;
         }
 
         /**
-         * The nominal code of the account.
-         */
-        public Builder nominalCode(JsonNullable<String> nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
-            this.nominalCode = nominalCode;
-            return this;
-        }
-
-
-        /**
          * The code assigned to the account.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
-        /**
-         * The code assigned to the account.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
         public LinkedLedgerAccount build() {
-
             return new LinkedLedgerAccount(
                 id, name, nominalCode,
                 code);

@@ -10,87 +10,71 @@ import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultConsumerRequestCountsAllRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String consumerId;
-    private String startDatetime;
-    private String endDatetime;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultConsumerRequestCountsAllRequest.Builder pojoBuilder;
+    private VaultConsumerRequestCountsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultConsumerRequestCountsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultConsumerRequestCountsAllRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultConsumerRequestCountsAllRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public VaultConsumerRequestCountsAllRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumerRequestCountsAllRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public VaultConsumerRequestCountsAllRequestBuilder consumerId(@Nonnull String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumerRequestCountsAllRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
+    public VaultConsumerRequestCountsAllRequestBuilder startDatetime(@Nonnull String startDatetime) {
+        this.pojoBuilder.startDatetime(startDatetime);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumerRequestCountsAllRequestBuilder startDatetime(String startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        this.startDatetime = startDatetime;
+    public VaultConsumerRequestCountsAllRequestBuilder endDatetime(@Nonnull String endDatetime) {
+        this.pojoBuilder.endDatetime(endDatetime);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumerRequestCountsAllRequestBuilder endDatetime(String endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        this.endDatetime = endDatetime;
-        return this;
-    }
-                
     public VaultConsumerRequestCountsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultConsumerRequestCountsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultConsumerRequestCountsAllRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultConsumerRequestCountsAllRequest buildRequest() {
-
-        VaultConsumerRequestCountsAllRequest request = new VaultConsumerRequestCountsAllRequest(appId,
-            consumerId,
-            startDatetime,
-            endDatetime);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultConsumerRequestCountsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
               = new VaultConsumerRequestCountsAllOperation(
                 sdkConfiguration,
                 options);
-        VaultConsumerRequestCountsAllRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

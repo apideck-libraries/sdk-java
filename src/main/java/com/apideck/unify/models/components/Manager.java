@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -56,82 +56,75 @@ public class Manager {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_status")
-    private JsonNullable<? extends EmploymentStatus> employmentStatus;
+    private JsonNullable<EmploymentStatus> employmentStatus;
 
     @JsonCreator
     public Manager(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("employment_status") JsonNullable<? extends EmploymentStatus> employmentStatus) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
-        this.id = id;
-        this.name = name;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.employmentStatus = employmentStatus;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("email") @Nullable JsonNullable<String> email,
+            @JsonProperty("employment_status") @Nullable JsonNullable<EmploymentStatus> employmentStatus) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.email = Optional.ofNullable(email)
+            .orElse(JsonNullable.undefined());
+        this.employmentStatus = Optional.ofNullable(employmentStatus)
+            .orElse(JsonNullable.undefined());
     }
     
     public Manager() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the manager, often a combination of their first and last names.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * The email address of the manager.
      */
-    @JsonIgnore
     public JsonNullable<String> email() {
-        return email;
+        return this.email;
     }
 
     /**
      * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EmploymentStatus> employmentStatus() {
-        return (JsonNullable<EmploymentStatus>) employmentStatus;
+        return this.employmentStatus;
     }
 
     public static Builder builder() {
@@ -142,110 +135,56 @@ public class Manager {
     /**
      * A unique identifier for an object.
      */
-    public Manager withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Manager withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public Manager withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The name of the manager, often a combination of their first and last names.
      */
-    public Manager withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Manager withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the manager, often a combination of their first and last names.
-     */
-    public Manager withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public Manager withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public Manager withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public Manager withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public Manager withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public Manager withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public Manager withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * The email address of the manager.
      */
-    public Manager withEmail(String email) {
-        Utils.checkNotNull(email, "email");
+    public Manager withEmail(@Nullable String email) {
         this.email = JsonNullable.of(email);
         return this;
     }
 
-    /**
-     * The email address of the manager.
-     */
-    public Manager withEmail(JsonNullable<String> email) {
-        Utils.checkNotNull(email, "email");
-        this.email = email;
-        return this;
-    }
 
     /**
      * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
      */
-    public Manager withEmploymentStatus(EmploymentStatus employmentStatus) {
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
+    public Manager withEmploymentStatus(@Nullable EmploymentStatus employmentStatus) {
         this.employmentStatus = JsonNullable.of(employmentStatus);
         return this;
     }
 
-    /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-     */
-    public Manager withEmploymentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
-        this.employmentStatus = employmentStatus;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -286,138 +225,71 @@ public class Manager {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> email = JsonNullable.undefined();
+        private JsonNullable<String> email;
 
-        private JsonNullable<? extends EmploymentStatus> employmentStatus = JsonNullable.undefined();
+        private JsonNullable<EmploymentStatus> employmentStatus;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The name of the manager, often a combination of their first and last names.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the manager, often a combination of their first and last names.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * The email address of the manager.
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = JsonNullable.of(email);
             return this;
         }
 
         /**
-         * The email address of the manager.
-         */
-        public Builder email(JsonNullable<String> email) {
-            Utils.checkNotNull(email, "email");
-            this.email = email;
-            return this;
-        }
-
-
-        /**
          * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
          */
-        public Builder employmentStatus(EmploymentStatus employmentStatus) {
-            Utils.checkNotNull(employmentStatus, "employmentStatus");
+        public Builder employmentStatus(@Nullable EmploymentStatus employmentStatus) {
             this.employmentStatus = JsonNullable.of(employmentStatus);
             return this;
         }
 
-        /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-         */
-        public Builder employmentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
-            Utils.checkNotNull(employmentStatus, "employmentStatus");
-            this.employmentStatus = employmentStatus;
-            return this;
-        }
-
         public Manager build() {
-
             return new Manager(
                 id, name, firstName,
                 lastName, email, employmentStatus);

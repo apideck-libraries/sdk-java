@@ -7,8 +7,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -33,25 +34,25 @@ public class HrisEmployeePayrollsOneRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -61,91 +62,81 @@ public class HrisEmployeePayrollsOneRequest {
 
     @JsonCreator
     public HrisEmployeePayrollsOneRequest(
-            String payrollId,
-            String employeeId,
-            Optional<Boolean> raw,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            JsonNullable<String> fields) {
-        Utils.checkNotNull(payrollId, "payrollId");
-        Utils.checkNotNull(employeeId, "employeeId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(fields, "fields");
-        this.payrollId = payrollId;
-        this.employeeId = employeeId;
-        this.raw = raw;
+            @Nonnull String payrollId,
+            @Nonnull String employeeId,
+            @Nullable Boolean raw,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable JsonNullable<String> fields) {
+        this.payrollId = Optional.ofNullable(payrollId)
+            .orElseThrow(() -> new IllegalArgumentException("payrollId cannot be null"));
+        this.employeeId = Optional.ofNullable(employeeId)
+            .orElseThrow(() -> new IllegalArgumentException("employeeId cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.fields = fields;
+        this.fields = Optional.ofNullable(fields)
+            .orElse(JsonNullable.undefined());
     }
     
     public HrisEmployeePayrollsOneRequest(
-            String payrollId,
-            String employeeId) {
-        this(payrollId, employeeId, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            @Nonnull String payrollId,
+            @Nonnull String employeeId) {
+        this(payrollId, employeeId, null,
+            null, null, null,
+            null);
     }
 
     /**
      * ID of the payroll you are acting upon.
      */
-    @JsonIgnore
     public String payrollId() {
-        return payrollId;
+        return this.payrollId;
     }
 
     /**
      * ID of the employee you are acting upon.
      */
-    @JsonIgnore
     public String employeeId() {
-        return employeeId;
+        return this.employeeId;
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    @JsonIgnore
     public JsonNullable<String> fields() {
-        return fields;
+        return this.fields;
     }
 
     public static Builder builder() {
@@ -156,27 +147,17 @@ public class HrisEmployeePayrollsOneRequest {
     /**
      * ID of the payroll you are acting upon.
      */
-    public HrisEmployeePayrollsOneRequest withPayrollId(String payrollId) {
-        Utils.checkNotNull(payrollId, "payrollId");
-        this.payrollId = payrollId;
+    public HrisEmployeePayrollsOneRequest withPayrollId(@Nonnull String payrollId) {
+        this.payrollId = Utils.checkNotNull(payrollId, "payrollId");
         return this;
     }
+
 
     /**
      * ID of the employee you are acting upon.
      */
-    public HrisEmployeePayrollsOneRequest withEmployeeId(String employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = employeeId;
-        return this;
-    }
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public HrisEmployeePayrollsOneRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
+    public HrisEmployeePayrollsOneRequest withEmployeeId(@Nonnull String employeeId) {
+        this.employeeId = Utils.checkNotNull(employeeId, "employeeId");
         return this;
     }
 
@@ -184,86 +165,47 @@ public class HrisEmployeePayrollsOneRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public HrisEmployeePayrollsOneRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public HrisEmployeePayrollsOneRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public HrisEmployeePayrollsOneRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeePayrollsOneRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public HrisEmployeePayrollsOneRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public HrisEmployeePayrollsOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public HrisEmployeePayrollsOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public HrisEmployeePayrollsOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public HrisEmployeePayrollsOneRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public HrisEmployeePayrollsOneRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public HrisEmployeePayrollsOneRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-     */
-    public HrisEmployeePayrollsOneRequest withFields(String fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = JsonNullable.of(fields);
-        return this;
-    }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    public HrisEmployeePayrollsOneRequest withFields(JsonNullable<String> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = fields;
+    public HrisEmployeePayrollsOneRequest withFields(@Nullable String fields) {
+        this.fields = JsonNullable.of(fields);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -311,140 +253,77 @@ public class HrisEmployeePayrollsOneRequest {
 
         private String employeeId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private JsonNullable<String> fields = JsonNullable.undefined();
+        private JsonNullable<String> fields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the payroll you are acting upon.
          */
-        public Builder payrollId(String payrollId) {
-            Utils.checkNotNull(payrollId, "payrollId");
-            this.payrollId = payrollId;
+        public Builder payrollId(@Nonnull String payrollId) {
+            this.payrollId = Utils.checkNotNull(payrollId, "payrollId");
             return this;
         }
-
 
         /**
          * ID of the employee you are acting upon.
          */
-        public Builder employeeId(String employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = employeeId;
-            return this;
-        }
-
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
+        public Builder employeeId(@Nonnull String employeeId) {
+            this.employeeId = Utils.checkNotNull(employeeId, "employeeId");
             return this;
         }
 
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
-        public Builder fields(String fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable String fields) {
             this.fields = JsonNullable.of(fields);
             return this;
         }
 
-        /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-         */
-        public Builder fields(JsonNullable<String> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = fields;
-            return this;
-        }
-
         public HrisEmployeePayrollsOneRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new HrisEmployeePayrollsOneRequest(
                 payrollId, employeeId, raw,
                 consumerId, appId, serviceId,
@@ -452,10 +331,10 @@ public class HrisEmployeePayrollsOneRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

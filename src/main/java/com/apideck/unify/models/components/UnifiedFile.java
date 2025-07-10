@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class UnifiedFile {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * Optional description of the file
@@ -55,7 +55,7 @@ public class UnifiedFile {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("type")
-    private Optional<? extends FileType> type;
+    private JsonNullable<FileType> type;
 
     /**
      * The full path of the file or folder (includes the file name)
@@ -76,7 +76,7 @@ public class UnifiedFile {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("downloadable")
-    private Optional<Boolean> downloadable;
+    private Boolean downloadable;
 
     /**
      * The size of the file in bytes
@@ -88,49 +88,49 @@ public class UnifiedFile {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
-    private Optional<? extends Owner> owner;
+    private Owner owner;
 
     /**
      * The parent folders of the file, starting from the root
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders")
-    private Optional<? extends List<LinkedFolder>> parentFolders;
+    private List<LinkedFolder> parentFolders;
 
     /**
      * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders_complete")
-    private Optional<Boolean> parentFoldersComplete;
+    private Boolean parentFoldersComplete;
 
     /**
      * Permissions the current user has on this file.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("permissions")
-    private Optional<? extends Permissions> permissions;
+    private Permissions permissions;
 
     /**
      * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("exportable")
-    private Optional<Boolean> exportable;
+    private Boolean exportable;
 
     /**
      * The available file formats when exporting this file.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("export_formats")
-    private JsonNullable<? extends List<String>> exportFormats;
+    private JsonNullable<List<String>> exportFormats;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -162,240 +162,206 @@ public class UnifiedFile {
 
     @JsonCreator
     public UnifiedFile(
-            @JsonProperty("id") String id,
-            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") Optional<? extends FileType> type,
-            @JsonProperty("path") JsonNullable<String> path,
-            @JsonProperty("mime_type") JsonNullable<String> mimeType,
-            @JsonProperty("downloadable") Optional<Boolean> downloadable,
-            @JsonProperty("size") JsonNullable<Long> size,
-            @JsonProperty("owner") Optional<? extends Owner> owner,
-            @JsonProperty("parent_folders") Optional<? extends List<LinkedFolder>> parentFolders,
-            @JsonProperty("parent_folders_complete") Optional<Boolean> parentFoldersComplete,
-            @JsonProperty("permissions") Optional<? extends Permissions> permissions,
-            @JsonProperty("exportable") Optional<Boolean> exportable,
-            @JsonProperty("export_formats") JsonNullable<? extends List<String>> exportFormats,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(path, "path");
-        Utils.checkNotNull(mimeType, "mimeType");
-        Utils.checkNotNull(downloadable, "downloadable");
-        Utils.checkNotNull(size, "size");
-        Utils.checkNotNull(owner, "owner");
-        Utils.checkNotNull(parentFolders, "parentFolders");
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-        Utils.checkNotNull(permissions, "permissions");
-        Utils.checkNotNull(exportable, "exportable");
-        Utils.checkNotNull(exportFormats, "exportFormats");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.id = id;
-        this.downstreamId = downstreamId;
-        this.name = name;
-        this.description = description;
-        this.type = type;
-        this.path = path;
-        this.mimeType = mimeType;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("downstream_id") @Nullable JsonNullable<String> downstreamId,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("type") @Nullable FileType type,
+            @JsonProperty("path") @Nullable JsonNullable<String> path,
+            @JsonProperty("mime_type") @Nullable JsonNullable<String> mimeType,
+            @JsonProperty("downloadable") @Nullable Boolean downloadable,
+            @JsonProperty("size") @Nullable JsonNullable<Long> size,
+            @JsonProperty("owner") @Nullable Owner owner,
+            @JsonProperty("parent_folders") @Nullable List<LinkedFolder> parentFolders,
+            @JsonProperty("parent_folders_complete") @Nullable Boolean parentFoldersComplete,
+            @JsonProperty("permissions") @Nullable Permissions permissions,
+            @JsonProperty("exportable") @Nullable Boolean exportable,
+            @JsonProperty("export_formats") @Nullable JsonNullable<List<String>> exportFormats,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.downstreamId = Optional.ofNullable(downstreamId)
+            .orElse(JsonNullable.undefined());
+        this.name = JsonNullable.of(name);
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.type = JsonNullable.of(type);
+        this.path = Optional.ofNullable(path)
+            .orElse(JsonNullable.undefined());
+        this.mimeType = Optional.ofNullable(mimeType)
+            .orElse(JsonNullable.undefined());
         this.downloadable = downloadable;
-        this.size = size;
+        this.size = Optional.ofNullable(size)
+            .orElse(JsonNullable.undefined());
         this.owner = owner;
         this.parentFolders = parentFolders;
         this.parentFoldersComplete = parentFoldersComplete;
         this.permissions = permissions;
         this.exportable = exportable;
-        this.exportFormats = exportFormats;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.exportFormats = Optional.ofNullable(exportFormats)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public UnifiedFile(
-            String id) {
-        this(id, JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The third-party API ID of original entity
      */
-    @JsonIgnore
     public JsonNullable<String> downstreamId() {
-        return downstreamId;
+        return this.downstreamId;
     }
 
     /**
      * The name of the file
      */
-    @JsonIgnore
-    public Optional<String> name() {
-        return name;
+    public JsonNullable<String> name() {
+        return this.name;
     }
 
     /**
      * Optional description of the file
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The type of resource. Could be file, folder or url
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<FileType> type() {
-        return (Optional<FileType>) type;
+    public JsonNullable<FileType> type() {
+        return this.type;
     }
 
     /**
      * The full path of the file or folder (includes the file name)
      */
-    @JsonIgnore
     public JsonNullable<String> path() {
-        return path;
+        return this.path;
     }
 
     /**
      * The MIME type of the file.
      */
-    @JsonIgnore
     public JsonNullable<String> mimeType() {
-        return mimeType;
+        return this.mimeType;
     }
 
     /**
      * Whether the current user can download this file
      */
-    @JsonIgnore
     public Optional<Boolean> downloadable() {
-        return downloadable;
+        return Optional.ofNullable(this.downloadable);
     }
 
     /**
      * The size of the file in bytes
      */
-    @JsonIgnore
     public JsonNullable<Long> size() {
-        return size;
+        return this.size;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Owner> owner() {
-        return (Optional<Owner>) owner;
+        return Optional.ofNullable(this.owner);
     }
 
     /**
      * The parent folders of the file, starting from the root
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LinkedFolder>> parentFolders() {
-        return (Optional<List<LinkedFolder>>) parentFolders;
+        return Optional.ofNullable(this.parentFolders);
     }
 
     /**
      * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
      */
-    @JsonIgnore
     public Optional<Boolean> parentFoldersComplete() {
-        return parentFoldersComplete;
+        return Optional.ofNullable(this.parentFoldersComplete);
     }
 
     /**
      * Permissions the current user has on this file.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Permissions> permissions() {
-        return (Optional<Permissions>) permissions;
+        return Optional.ofNullable(this.permissions);
     }
 
     /**
      * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
      */
-    @JsonIgnore
     public Optional<Boolean> exportable() {
-        return exportable;
+        return Optional.ofNullable(this.exportable);
     }
 
     /**
      * The available file formats when exporting this file.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> exportFormats() {
-        return (JsonNullable<List<String>>) exportFormats;
+        return this.exportFormats;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -406,355 +372,179 @@ public class UnifiedFile {
     /**
      * A unique identifier for an object.
      */
-    public UnifiedFile withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public UnifiedFile withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The third-party API ID of original entity
      */
-    public UnifiedFile withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public UnifiedFile withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = JsonNullable.of(downstreamId);
         return this;
     }
 
-    /**
-     * The third-party API ID of original entity
-     */
-    public UnifiedFile withDownstreamId(JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = downstreamId;
-        return this;
-    }
 
     /**
      * The name of the file
      */
-    public UnifiedFile withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+    public UnifiedFile withName(@Nullable String name) {
+        this.name = JsonNullable.of(name);
         return this;
     }
 
-
-    /**
-     * The name of the file
-     */
-    public UnifiedFile withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * Optional description of the file
      */
-    public UnifiedFile withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public UnifiedFile withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * Optional description of the file
-     */
-    public UnifiedFile withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The type of resource. Could be file, folder or url
      */
-    public UnifiedFile withType(FileType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+    public UnifiedFile withType(@Nullable FileType type) {
+        this.type = JsonNullable.of(type);
         return this;
     }
 
-
-    /**
-     * The type of resource. Could be file, folder or url
-     */
-    public UnifiedFile withType(Optional<? extends FileType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * The full path of the file or folder (includes the file name)
      */
-    public UnifiedFile withPath(String path) {
-        Utils.checkNotNull(path, "path");
+    public UnifiedFile withPath(@Nullable String path) {
         this.path = JsonNullable.of(path);
         return this;
     }
 
-    /**
-     * The full path of the file or folder (includes the file name)
-     */
-    public UnifiedFile withPath(JsonNullable<String> path) {
-        Utils.checkNotNull(path, "path");
-        this.path = path;
-        return this;
-    }
 
     /**
      * The MIME type of the file.
      */
-    public UnifiedFile withMimeType(String mimeType) {
-        Utils.checkNotNull(mimeType, "mimeType");
+    public UnifiedFile withMimeType(@Nullable String mimeType) {
         this.mimeType = JsonNullable.of(mimeType);
         return this;
     }
 
-    /**
-     * The MIME type of the file.
-     */
-    public UnifiedFile withMimeType(JsonNullable<String> mimeType) {
-        Utils.checkNotNull(mimeType, "mimeType");
-        this.mimeType = mimeType;
-        return this;
-    }
 
     /**
      * Whether the current user can download this file
      */
-    public UnifiedFile withDownloadable(boolean downloadable) {
-        Utils.checkNotNull(downloadable, "downloadable");
-        this.downloadable = Optional.ofNullable(downloadable);
-        return this;
-    }
-
-
-    /**
-     * Whether the current user can download this file
-     */
-    public UnifiedFile withDownloadable(Optional<Boolean> downloadable) {
-        Utils.checkNotNull(downloadable, "downloadable");
+    public UnifiedFile withDownloadable(@Nullable Boolean downloadable) {
         this.downloadable = downloadable;
         return this;
     }
 
+
     /**
      * The size of the file in bytes
      */
-    public UnifiedFile withSize(long size) {
-        Utils.checkNotNull(size, "size");
+    public UnifiedFile withSize(@Nullable Long size) {
         this.size = JsonNullable.of(size);
         return this;
     }
 
-    /**
-     * The size of the file in bytes
-     */
-    public UnifiedFile withSize(JsonNullable<Long> size) {
-        Utils.checkNotNull(size, "size");
-        this.size = size;
-        return this;
-    }
 
-    public UnifiedFile withOwner(Owner owner) {
-        Utils.checkNotNull(owner, "owner");
-        this.owner = Optional.ofNullable(owner);
-        return this;
-    }
-
-
-    public UnifiedFile withOwner(Optional<? extends Owner> owner) {
-        Utils.checkNotNull(owner, "owner");
+    public UnifiedFile withOwner(@Nullable Owner owner) {
         this.owner = owner;
         return this;
     }
 
-    /**
-     * The parent folders of the file, starting from the root
-     */
-    public UnifiedFile withParentFolders(List<LinkedFolder> parentFolders) {
-        Utils.checkNotNull(parentFolders, "parentFolders");
-        this.parentFolders = Optional.ofNullable(parentFolders);
-        return this;
-    }
-
 
     /**
      * The parent folders of the file, starting from the root
      */
-    public UnifiedFile withParentFolders(Optional<? extends List<LinkedFolder>> parentFolders) {
-        Utils.checkNotNull(parentFolders, "parentFolders");
+    public UnifiedFile withParentFolders(@Nullable List<LinkedFolder> parentFolders) {
         this.parentFolders = parentFolders;
         return this;
     }
 
-    /**
-     * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
-     */
-    public UnifiedFile withParentFoldersComplete(boolean parentFoldersComplete) {
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-        this.parentFoldersComplete = Optional.ofNullable(parentFoldersComplete);
-        return this;
-    }
-
 
     /**
      * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
      */
-    public UnifiedFile withParentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
+    public UnifiedFile withParentFoldersComplete(@Nullable Boolean parentFoldersComplete) {
         this.parentFoldersComplete = parentFoldersComplete;
         return this;
     }
 
-    /**
-     * Permissions the current user has on this file.
-     */
-    public UnifiedFile withPermissions(Permissions permissions) {
-        Utils.checkNotNull(permissions, "permissions");
-        this.permissions = Optional.ofNullable(permissions);
-        return this;
-    }
-
 
     /**
      * Permissions the current user has on this file.
      */
-    public UnifiedFile withPermissions(Optional<? extends Permissions> permissions) {
-        Utils.checkNotNull(permissions, "permissions");
+    public UnifiedFile withPermissions(@Nullable Permissions permissions) {
         this.permissions = permissions;
         return this;
     }
 
-    /**
-     * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
-     */
-    public UnifiedFile withExportable(boolean exportable) {
-        Utils.checkNotNull(exportable, "exportable");
-        this.exportable = Optional.ofNullable(exportable);
-        return this;
-    }
-
 
     /**
      * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
      */
-    public UnifiedFile withExportable(Optional<Boolean> exportable) {
-        Utils.checkNotNull(exportable, "exportable");
+    public UnifiedFile withExportable(@Nullable Boolean exportable) {
         this.exportable = exportable;
         return this;
     }
 
+
     /**
      * The available file formats when exporting this file.
      */
-    public UnifiedFile withExportFormats(List<String> exportFormats) {
-        Utils.checkNotNull(exportFormats, "exportFormats");
+    public UnifiedFile withExportFormats(@Nullable List<String> exportFormats) {
         this.exportFormats = JsonNullable.of(exportFormats);
         return this;
     }
 
-    /**
-     * The available file formats when exporting this file.
-     */
-    public UnifiedFile withExportFormats(JsonNullable<? extends List<String>> exportFormats) {
-        Utils.checkNotNull(exportFormats, "exportFormats");
-        this.exportFormats = exportFormats;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public UnifiedFile withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public UnifiedFile withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public UnifiedFile withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public UnifiedFile withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public UnifiedFile withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public UnifiedFile withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public UnifiedFile withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public UnifiedFile withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public UnifiedFile withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public UnifiedFile withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public UnifiedFile withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public UnifiedFile withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public UnifiedFile withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public UnifiedFile withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public UnifiedFile withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -830,415 +620,206 @@ public class UnifiedFile {
 
         private String id;
 
-        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+        private JsonNullable<String> downstreamId;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends FileType> type = Optional.empty();
+        private FileType type;
 
-        private JsonNullable<String> path = JsonNullable.undefined();
+        private JsonNullable<String> path;
 
-        private JsonNullable<String> mimeType = JsonNullable.undefined();
+        private JsonNullable<String> mimeType;
 
-        private Optional<Boolean> downloadable = Optional.empty();
+        private Boolean downloadable;
 
-        private JsonNullable<Long> size = JsonNullable.undefined();
+        private JsonNullable<Long> size;
 
-        private Optional<? extends Owner> owner = Optional.empty();
+        private Owner owner;
 
-        private Optional<? extends List<LinkedFolder>> parentFolders = Optional.empty();
+        private List<LinkedFolder> parentFolders;
 
-        private Optional<Boolean> parentFoldersComplete = Optional.empty();
+        private Boolean parentFoldersComplete;
 
-        private Optional<? extends Permissions> permissions = Optional.empty();
+        private Permissions permissions;
 
-        private Optional<Boolean> exportable = Optional.empty();
+        private Boolean exportable;
 
-        private JsonNullable<? extends List<String>> exportFormats = JsonNullable.undefined();
+        private JsonNullable<List<String>> exportFormats;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The third-party API ID of original entity
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = JsonNullable.of(downstreamId);
             return this;
         }
 
         /**
-         * The third-party API ID of original entity
-         */
-        public Builder downstreamId(JsonNullable<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = downstreamId;
-            return this;
-        }
-
-
-        /**
          * The name of the file
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the file
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Optional description of the file
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * Optional description of the file
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The type of resource. Could be file, folder or url
          */
-        public Builder type(FileType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The type of resource. Could be file, folder or url
-         */
-        public Builder type(Optional<? extends FileType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable FileType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * The full path of the file or folder (includes the file name)
          */
-        public Builder path(String path) {
-            Utils.checkNotNull(path, "path");
+        public Builder path(@Nullable String path) {
             this.path = JsonNullable.of(path);
             return this;
         }
 
         /**
-         * The full path of the file or folder (includes the file name)
-         */
-        public Builder path(JsonNullable<String> path) {
-            Utils.checkNotNull(path, "path");
-            this.path = path;
-            return this;
-        }
-
-
-        /**
          * The MIME type of the file.
          */
-        public Builder mimeType(String mimeType) {
-            Utils.checkNotNull(mimeType, "mimeType");
+        public Builder mimeType(@Nullable String mimeType) {
             this.mimeType = JsonNullable.of(mimeType);
             return this;
         }
 
         /**
-         * The MIME type of the file.
-         */
-        public Builder mimeType(JsonNullable<String> mimeType) {
-            Utils.checkNotNull(mimeType, "mimeType");
-            this.mimeType = mimeType;
-            return this;
-        }
-
-
-        /**
          * Whether the current user can download this file
          */
-        public Builder downloadable(boolean downloadable) {
-            Utils.checkNotNull(downloadable, "downloadable");
-            this.downloadable = Optional.ofNullable(downloadable);
-            return this;
-        }
-
-        /**
-         * Whether the current user can download this file
-         */
-        public Builder downloadable(Optional<Boolean> downloadable) {
-            Utils.checkNotNull(downloadable, "downloadable");
+        public Builder downloadable(@Nullable Boolean downloadable) {
             this.downloadable = downloadable;
             return this;
         }
 
-
         /**
          * The size of the file in bytes
          */
-        public Builder size(long size) {
-            Utils.checkNotNull(size, "size");
+        public Builder size(@Nullable Long size) {
             this.size = JsonNullable.of(size);
             return this;
         }
 
-        /**
-         * The size of the file in bytes
-         */
-        public Builder size(JsonNullable<Long> size) {
-            Utils.checkNotNull(size, "size");
-            this.size = size;
-            return this;
-        }
-
-
-        public Builder owner(Owner owner) {
-            Utils.checkNotNull(owner, "owner");
-            this.owner = Optional.ofNullable(owner);
-            return this;
-        }
-
-        public Builder owner(Optional<? extends Owner> owner) {
-            Utils.checkNotNull(owner, "owner");
+        public Builder owner(@Nullable Owner owner) {
             this.owner = owner;
             return this;
         }
 
-
         /**
          * The parent folders of the file, starting from the root
          */
-        public Builder parentFolders(List<LinkedFolder> parentFolders) {
-            Utils.checkNotNull(parentFolders, "parentFolders");
-            this.parentFolders = Optional.ofNullable(parentFolders);
-            return this;
-        }
-
-        /**
-         * The parent folders of the file, starting from the root
-         */
-        public Builder parentFolders(Optional<? extends List<LinkedFolder>> parentFolders) {
-            Utils.checkNotNull(parentFolders, "parentFolders");
+        public Builder parentFolders(@Nullable List<LinkedFolder> parentFolders) {
             this.parentFolders = parentFolders;
             return this;
         }
 
-
         /**
          * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
          */
-        public Builder parentFoldersComplete(boolean parentFoldersComplete) {
-            Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-            this.parentFoldersComplete = Optional.ofNullable(parentFoldersComplete);
-            return this;
-        }
-
-        /**
-         * Whether the list of parent folders is complete. Some connectors only return the direct parent of a file
-         */
-        public Builder parentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
-            Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
+        public Builder parentFoldersComplete(@Nullable Boolean parentFoldersComplete) {
             this.parentFoldersComplete = parentFoldersComplete;
             return this;
         }
 
-
         /**
          * Permissions the current user has on this file.
          */
-        public Builder permissions(Permissions permissions) {
-            Utils.checkNotNull(permissions, "permissions");
-            this.permissions = Optional.ofNullable(permissions);
-            return this;
-        }
-
-        /**
-         * Permissions the current user has on this file.
-         */
-        public Builder permissions(Optional<? extends Permissions> permissions) {
-            Utils.checkNotNull(permissions, "permissions");
+        public Builder permissions(@Nullable Permissions permissions) {
             this.permissions = permissions;
             return this;
         }
 
-
         /**
          * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
          */
-        public Builder exportable(boolean exportable) {
-            Utils.checkNotNull(exportable, "exportable");
-            this.exportable = Optional.ofNullable(exportable);
-            return this;
-        }
-
-        /**
-         * Whether the current file is exportable to other file formats. This property is relevant for proprietary file formats such as Google Docs or Dropbox Paper.
-         */
-        public Builder exportable(Optional<Boolean> exportable) {
-            Utils.checkNotNull(exportable, "exportable");
+        public Builder exportable(@Nullable Boolean exportable) {
             this.exportable = exportable;
             return this;
         }
 
-
         /**
          * The available file formats when exporting this file.
          */
-        public Builder exportFormats(List<String> exportFormats) {
-            Utils.checkNotNull(exportFormats, "exportFormats");
+        public Builder exportFormats(@Nullable List<String> exportFormats) {
             this.exportFormats = JsonNullable.of(exportFormats);
             return this;
         }
 
         /**
-         * The available file formats when exporting this file.
-         */
-        public Builder exportFormats(JsonNullable<? extends List<String>> exportFormats) {
-            Utils.checkNotNull(exportFormats, "exportFormats");
-            this.exportFormats = exportFormats;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public UnifiedFile build() {
-
             return new UnifiedFile(
                 id, downstreamId, name,
                 description, type, path,

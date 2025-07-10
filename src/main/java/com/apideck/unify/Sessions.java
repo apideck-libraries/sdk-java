@@ -11,6 +11,7 @@ import com.apideck.unify.models.operations.VaultSessionsCreateRequestBuilder;
 import com.apideck.unify.models.operations.VaultSessionsCreateResponse;
 import com.apideck.unify.operations.VaultSessionsCreateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -49,8 +50,8 @@ public class Sessions {
      * @throws Exception if the API call fails
      */
     public VaultSessionsCreateResponse createDirect() throws Exception {
-        return create(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        return create(null, null, null,
+            null);
     }
 
     /**
@@ -69,17 +70,14 @@ public class Sessions {
      * @throws Exception if the API call fails
      */
     public VaultSessionsCreateResponse create(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<? extends Session> session,
-            Optional<Options> options) throws Exception {
-        VaultSessionsCreateRequest request =
-            VaultSessionsCreateRequest
-                .builder()
-                .consumerId(consumerId)
-                .appId(appId)
-                .session(session)
-                .build();
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable Session session,
+            @Nullable Options options) throws Exception {
+        VaultSessionsCreateRequest request = new VaultSessionsCreateRequest(
+            consumerId,
+            appId,
+            session);
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
               = new VaultSessionsCreateOperation(
                 sdkConfiguration,

@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -22,12 +21,12 @@ public class Fields {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -37,19 +36,19 @@ public class Fields {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends CustomObjectSchemaType> type;
+    private CustomObjectSchemaType type;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
-    private Optional<Boolean> required;
+    private Boolean required;
 
     /**
      * Options for select and multiselect types
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private JsonNullable<? extends List<CustomObjectSchemaOptions>> options;
+    private JsonNullable<List<CustomObjectSchemaOptions>> options;
 
     /**
      * Default value for the field
@@ -60,76 +59,63 @@ public class Fields {
 
     @JsonCreator
     public Fields(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") Optional<? extends CustomObjectSchemaType> type,
-            @JsonProperty("required") Optional<Boolean> required,
-            @JsonProperty("options") JsonNullable<? extends List<CustomObjectSchemaOptions>> options,
-            @JsonProperty("default_value") JsonNullable<String> defaultValue) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(required, "required");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(defaultValue, "defaultValue");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("type") @Nullable CustomObjectSchemaType type,
+            @JsonProperty("required") @Nullable Boolean required,
+            @JsonProperty("options") @Nullable JsonNullable<List<CustomObjectSchemaOptions>> options,
+            @JsonProperty("default_value") @Nullable JsonNullable<String> defaultValue) {
         this.id = id;
         this.name = name;
-        this.description = description;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.type = type;
         this.required = required;
-        this.options = options;
-        this.defaultValue = defaultValue;
+        this.options = Optional.ofNullable(options)
+            .orElse(JsonNullable.undefined());
+        this.defaultValue = Optional.ofNullable(defaultValue)
+            .orElse(JsonNullable.undefined());
     }
     
     public Fields() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CustomObjectSchemaType> type() {
-        return (Optional<CustomObjectSchemaType>) type;
+        return Optional.ofNullable(this.type);
     }
 
-    @JsonIgnore
     public Optional<Boolean> required() {
-        return required;
+        return Optional.ofNullable(this.required);
     }
 
     /**
      * Options for select and multiselect types
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<CustomObjectSchemaOptions>> options() {
-        return (JsonNullable<List<CustomObjectSchemaOptions>>) options;
+        return this.options;
     }
 
     /**
      * Default value for the field
      */
-    @JsonIgnore
     public JsonNullable<String> defaultValue() {
-        return defaultValue;
+        return this.defaultValue;
     }
 
     public static Builder builder() {
@@ -137,105 +123,53 @@ public class Fields {
     }
 
 
-    public Fields withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public Fields withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Fields withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public Fields withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
 
-
-    public Fields withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Fields withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    public Fields withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+
+    public Fields withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    public Fields withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
-    public Fields withType(CustomObjectSchemaType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public Fields withType(Optional<? extends CustomObjectSchemaType> type) {
-        Utils.checkNotNull(type, "type");
+    public Fields withType(@Nullable CustomObjectSchemaType type) {
         this.type = type;
         return this;
     }
 
-    public Fields withRequired(boolean required) {
-        Utils.checkNotNull(required, "required");
-        this.required = Optional.ofNullable(required);
-        return this;
-    }
 
-
-    public Fields withRequired(Optional<Boolean> required) {
-        Utils.checkNotNull(required, "required");
+    public Fields withRequired(@Nullable Boolean required) {
         this.required = required;
         return this;
     }
 
+
     /**
      * Options for select and multiselect types
      */
-    public Fields withOptions(List<CustomObjectSchemaOptions> options) {
-        Utils.checkNotNull(options, "options");
+    public Fields withOptions(@Nullable List<CustomObjectSchemaOptions> options) {
         this.options = JsonNullable.of(options);
         return this;
     }
 
-    /**
-     * Options for select and multiselect types
-     */
-    public Fields withOptions(JsonNullable<? extends List<CustomObjectSchemaOptions>> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = options;
-        return this;
-    }
 
     /**
      * Default value for the field
      */
-    public Fields withDefaultValue(String defaultValue) {
-        Utils.checkNotNull(defaultValue, "defaultValue");
+    public Fields withDefaultValue(@Nullable String defaultValue) {
         this.defaultValue = JsonNullable.of(defaultValue);
         return this;
     }
 
-    /**
-     * Default value for the field
-     */
-    public Fields withDefaultValue(JsonNullable<String> defaultValue) {
-        Utils.checkNotNull(defaultValue, "defaultValue");
-        this.defaultValue = defaultValue;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -279,129 +213,66 @@ public class Fields {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends CustomObjectSchemaType> type = Optional.empty();
+        private CustomObjectSchemaType type;
 
-        private Optional<Boolean> required = Optional.empty();
+        private Boolean required;
 
-        private JsonNullable<? extends List<CustomObjectSchemaOptions>> options = JsonNullable.undefined();
+        private JsonNullable<List<CustomObjectSchemaOptions>> options;
 
-        private JsonNullable<String> defaultValue = JsonNullable.undefined();
+        private JsonNullable<String> defaultValue;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        public Builder type(CustomObjectSchemaType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends CustomObjectSchemaType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable CustomObjectSchemaType type) {
             this.type = type;
             return this;
         }
 
-
-        public Builder required(boolean required) {
-            Utils.checkNotNull(required, "required");
-            this.required = Optional.ofNullable(required);
-            return this;
-        }
-
-        public Builder required(Optional<Boolean> required) {
-            Utils.checkNotNull(required, "required");
+        public Builder required(@Nullable Boolean required) {
             this.required = required;
             return this;
         }
 
-
         /**
          * Options for select and multiselect types
          */
-        public Builder options(List<CustomObjectSchemaOptions> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<CustomObjectSchemaOptions> options) {
             this.options = JsonNullable.of(options);
             return this;
         }
 
         /**
-         * Options for select and multiselect types
-         */
-        public Builder options(JsonNullable<? extends List<CustomObjectSchemaOptions>> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = options;
-            return this;
-        }
-
-
-        /**
          * Default value for the field
          */
-        public Builder defaultValue(String defaultValue) {
-            Utils.checkNotNull(defaultValue, "defaultValue");
+        public Builder defaultValue(@Nullable String defaultValue) {
             this.defaultValue = JsonNullable.of(defaultValue);
             return this;
         }
 
-        /**
-         * Default value for the field
-         */
-        public Builder defaultValue(JsonNullable<String> defaultValue) {
-            Utils.checkNotNull(defaultValue, "defaultValue");
-            this.defaultValue = defaultValue;
-            return this;
-        }
-
         public Fields build() {
-
             return new Fields(
                 id, name, description,
                 type, required, options,

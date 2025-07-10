@@ -10,79 +10,65 @@ import com.apideck.unify.operations.ConnectorApiResourceCoverageOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class ConnectorApiResourceCoverageOneRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String id;
-    private String resourceId;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final ConnectorApiResourceCoverageOneRequest.Builder pojoBuilder;
+    private ConnectorApiResourceCoverageOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public ConnectorApiResourceCoverageOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = ConnectorApiResourceCoverageOneRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public ConnectorApiResourceCoverageOneRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public ConnectorApiResourceCoverageOneRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourceCoverageOneRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public ConnectorApiResourceCoverageOneRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourceCoverageOneRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorApiResourceCoverageOneRequestBuilder resourceId(@Nonnull String resourceId) {
+        this.pojoBuilder.resourceId(resourceId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApiResourceCoverageOneRequestBuilder resourceId(String resourceId) {
-        Utils.checkNotNull(resourceId, "resourceId");
-        this.resourceId = resourceId;
-        return this;
-    }
-                
     public ConnectorApiResourceCoverageOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public ConnectorApiResourceCoverageOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private ConnectorApiResourceCoverageOneRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private ConnectorApiResourceCoverageOneRequest buildRequest() {
-
-        ConnectorApiResourceCoverageOneRequest request = new ConnectorApiResourceCoverageOneRequest(appId,
-            id,
-            resourceId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public ConnectorApiResourceCoverageOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
               = new ConnectorApiResourceCoverageOneOperation(
                 sdkConfiguration,
                 options);
-        ConnectorApiResourceCoverageOneRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

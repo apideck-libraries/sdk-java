@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class Owner {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Email of the owner
@@ -39,43 +39,39 @@ public class Owner {
 
     @JsonCreator
     public Owner(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(name, "name");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("email") @Nullable JsonNullable<String> email,
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
         this.id = id;
-        this.email = email;
-        this.name = name;
+        this.email = Optional.ofNullable(email)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public Owner() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * ID of the owner
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Email of the owner
      */
-    @JsonIgnore
     public JsonNullable<String> email() {
-        return email;
+        return this.email;
     }
 
     /**
      * Name of the owner
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -86,57 +82,29 @@ public class Owner {
     /**
      * ID of the owner
      */
-    public Owner withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the owner
-     */
-    public Owner withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Owner withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * Email of the owner
      */
-    public Owner withEmail(String email) {
-        Utils.checkNotNull(email, "email");
+    public Owner withEmail(@Nullable String email) {
         this.email = JsonNullable.of(email);
         return this;
     }
 
-    /**
-     * Email of the owner
-     */
-    public Owner withEmail(JsonNullable<String> email) {
-        Utils.checkNotNull(email, "email");
-        this.email = email;
-        return this;
-    }
 
     /**
      * Name of the owner
      */
-    public Owner withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Owner withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Name of the owner
-     */
-    public Owner withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -170,75 +138,41 @@ public class Owner {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> email = JsonNullable.undefined();
+        private JsonNullable<String> email;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the owner
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the owner
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Email of the owner
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = JsonNullable.of(email);
             return this;
         }
 
         /**
-         * Email of the owner
-         */
-        public Builder email(JsonNullable<String> email) {
-            Utils.checkNotNull(email, "email");
-            this.email = email;
-            return this;
-        }
-
-
-        /**
          * Name of the owner
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * Name of the owner
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public Owner build() {
-
             return new Owner(
                 id, email, name);
         }

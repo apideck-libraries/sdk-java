@@ -5,16 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -27,96 +26,96 @@ public class Connection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The ID of the service this connection belongs to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("service_id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * The name of the connection
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tag_line")
-    private Optional<String> tagLine;
+    private String tagLine;
 
     /**
      * The unified API category where the connection belongs to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_api")
-    private Optional<String> unifiedApi;
+    private String unifiedApi;
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends ConnectionState> state;
+    private ConnectionState state;
 
     /**
      * The current state of the Integration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("integration_state")
-    private Optional<? extends IntegrationState> integrationState;
+    private IntegrationState integrationState;
 
     /**
      * Type of authorization used by the connector
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_type")
-    private Optional<? extends AuthType> authType;
+    private AuthType authType;
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_grant_type")
-    private Optional<? extends OAuthGrantType> oauthGrantType;
+    private OAuthGrantType oauthGrantType;
 
     /**
      * Status of the connection.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ConnectionStatus> status;
+    private ConnectionStatus status;
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
-    private Optional<Boolean> enabled;
+    private Boolean enabled;
 
     /**
      * The website URL of the connection
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website")
-    private Optional<String> website;
+    private String website;
 
     /**
      * A visual icon of the connection, that will be shown in the Vault
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon")
-    private Optional<String> icon;
+    private String icon;
 
     /**
      * The logo of the connection, that will be shown in the Vault
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logo")
-    private Optional<String> logo;
+    private String logo;
 
     /**
      * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
@@ -137,82 +136,82 @@ public class Connection {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private JsonNullable<? extends Map<String, Object>> settings;
+    private JsonNullable<Map<String, Object>> settings;
 
     /**
      * Attach your own consumer specific metadata
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<Map<String, Object>> metadata;
 
     /**
      * The settings that are wanted to create a connection.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("form_fields")
-    private Optional<? extends List<FormField>> formFields;
+    private List<FormField> formFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configuration")
-    private Optional<? extends List<Configuration>> configuration;
+    private List<Configuration> configuration;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configurable_resources")
-    private Optional<? extends List<String>> configurableResources;
+    private List<String> configurableResources;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource_schema_support")
-    private Optional<? extends List<String>> resourceSchemaSupport;
+    private List<String> resourceSchemaSupport;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource_settings_support")
-    private Optional<? extends List<String>> resourceSettingsSupport;
+    private List<String> resourceSettingsSupport;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("validation_support")
-    private Optional<Boolean> validationSupport;
+    private Boolean validationSupport;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schema_support")
-    private Optional<Boolean> schemaSupport;
+    private Boolean schemaSupport;
 
     /**
      * List of settings that are required to be configured on integration before authorization can occur
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings_required_for_authorization")
-    private Optional<? extends List<String>> settingsRequiredForAuthorization;
+    private List<String> settingsRequiredForAuthorization;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subscriptions")
-    private Optional<? extends List<WebhookSubscription>> subscriptions;
+    private List<WebhookSubscription> subscriptions;
 
     /**
      * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("has_guide")
-    private Optional<Boolean> hasGuide;
+    private Boolean hasGuide;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
-    private Optional<Double> createdAt;
+    private Double createdAt;
 
     /**
      * List of custom mappings configured for this connection
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private Optional<? extends List<CustomMapping>> customMappings;
+    private List<CustomMapping> customMappings;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -221,68 +220,37 @@ public class Connection {
 
     @JsonCreator
     public Connection(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("service_id") Optional<String> serviceId,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("tag_line") Optional<String> tagLine,
-            @JsonProperty("unified_api") Optional<String> unifiedApi,
-            @JsonProperty("state") Optional<? extends ConnectionState> state,
-            @JsonProperty("integration_state") Optional<? extends IntegrationState> integrationState,
-            @JsonProperty("auth_type") Optional<? extends AuthType> authType,
-            @JsonProperty("oauth_grant_type") Optional<? extends OAuthGrantType> oauthGrantType,
-            @JsonProperty("status") Optional<? extends ConnectionStatus> status,
-            @JsonProperty("enabled") Optional<Boolean> enabled,
-            @JsonProperty("website") Optional<String> website,
-            @JsonProperty("icon") Optional<String> icon,
-            @JsonProperty("logo") Optional<String> logo,
-            @JsonProperty("authorize_url") JsonNullable<String> authorizeUrl,
-            @JsonProperty("revoke_url") JsonNullable<String> revokeUrl,
-            @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("form_fields") Optional<? extends List<FormField>> formFields,
-            @JsonProperty("configuration") Optional<? extends List<Configuration>> configuration,
-            @JsonProperty("configurable_resources") Optional<? extends List<String>> configurableResources,
-            @JsonProperty("resource_schema_support") Optional<? extends List<String>> resourceSchemaSupport,
-            @JsonProperty("resource_settings_support") Optional<? extends List<String>> resourceSettingsSupport,
-            @JsonProperty("validation_support") Optional<Boolean> validationSupport,
-            @JsonProperty("schema_support") Optional<Boolean> schemaSupport,
-            @JsonProperty("settings_required_for_authorization") Optional<? extends List<String>> settingsRequiredForAuthorization,
-            @JsonProperty("subscriptions") Optional<? extends List<WebhookSubscription>> subscriptions,
-            @JsonProperty("has_guide") Optional<Boolean> hasGuide,
-            @JsonProperty("created_at") Optional<Double> createdAt,
-            @JsonProperty("custom_mappings") Optional<? extends List<CustomMapping>> customMappings,
-            @JsonProperty("updated_at") JsonNullable<Double> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(tagLine, "tagLine");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(state, "state");
-        Utils.checkNotNull(integrationState, "integrationState");
-        Utils.checkNotNull(authType, "authType");
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(enabled, "enabled");
-        Utils.checkNotNull(website, "website");
-        Utils.checkNotNull(icon, "icon");
-        Utils.checkNotNull(logo, "logo");
-        Utils.checkNotNull(authorizeUrl, "authorizeUrl");
-        Utils.checkNotNull(revokeUrl, "revokeUrl");
-        Utils.checkNotNull(settings, "settings");
-        Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(formFields, "formFields");
-        Utils.checkNotNull(configuration, "configuration");
-        Utils.checkNotNull(configurableResources, "configurableResources");
-        Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
-        Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
-        Utils.checkNotNull(validationSupport, "validationSupport");
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
-        Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
-        Utils.checkNotNull(subscriptions, "subscriptions");
-        Utils.checkNotNull(hasGuide, "hasGuide");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedAt, "updatedAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("service_id") @Nullable String serviceId,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("tag_line") @Nullable String tagLine,
+            @JsonProperty("unified_api") @Nullable String unifiedApi,
+            @JsonProperty("state") @Nullable ConnectionState state,
+            @JsonProperty("integration_state") @Nullable IntegrationState integrationState,
+            @JsonProperty("auth_type") @Nullable AuthType authType,
+            @JsonProperty("oauth_grant_type") @Nullable OAuthGrantType oauthGrantType,
+            @JsonProperty("status") @Nullable ConnectionStatus status,
+            @JsonProperty("enabled") @Nullable Boolean enabled,
+            @JsonProperty("website") @Nullable String website,
+            @JsonProperty("icon") @Nullable String icon,
+            @JsonProperty("logo") @Nullable String logo,
+            @JsonProperty("authorize_url") @Nullable JsonNullable<String> authorizeUrl,
+            @JsonProperty("revoke_url") @Nullable JsonNullable<String> revokeUrl,
+            @JsonProperty("settings") @Nullable JsonNullable<Map<String, Object>> settings,
+            @JsonProperty("metadata") @Nullable JsonNullable<Map<String, Object>> metadata,
+            @JsonProperty("form_fields") @Nullable List<FormField> formFields,
+            @JsonProperty("configuration") @Nullable List<Configuration> configuration,
+            @JsonProperty("configurable_resources") @Nullable List<String> configurableResources,
+            @JsonProperty("resource_schema_support") @Nullable List<String> resourceSchemaSupport,
+            @JsonProperty("resource_settings_support") @Nullable List<String> resourceSettingsSupport,
+            @JsonProperty("validation_support") @Nullable Boolean validationSupport,
+            @JsonProperty("schema_support") @Nullable Boolean schemaSupport,
+            @JsonProperty("settings_required_for_authorization") @Nullable List<String> settingsRequiredForAuthorization,
+            @JsonProperty("subscriptions") @Nullable List<WebhookSubscription> subscriptions,
+            @JsonProperty("has_guide") @Nullable Boolean hasGuide,
+            @JsonProperty("created_at") @Nullable Double createdAt,
+            @JsonProperty("custom_mappings") @Nullable List<CustomMapping> customMappings,
+            @JsonProperty("updated_at") @Nullable JsonNullable<Double> updatedAt) {
         this.id = id;
         this.serviceId = serviceId;
         this.name = name;
@@ -297,10 +265,14 @@ public class Connection {
         this.website = website;
         this.icon = icon;
         this.logo = logo;
-        this.authorizeUrl = authorizeUrl;
-        this.revokeUrl = revokeUrl;
-        this.settings = settings;
-        this.metadata = metadata;
+        this.authorizeUrl = Optional.ofNullable(authorizeUrl)
+            .orElse(JsonNullable.undefined());
+        this.revokeUrl = Optional.ofNullable(revokeUrl)
+            .orElse(JsonNullable.undefined());
+        this.settings = Optional.ofNullable(settings)
+            .orElse(JsonNullable.undefined());
+        this.metadata = Optional.ofNullable(metadata)
+            .orElse(JsonNullable.undefined());
         this.formFields = formFields;
         this.configuration = configuration;
         this.configurableResources = configurableResources;
@@ -313,254 +285,209 @@ public class Connection {
         this.hasGuide = hasGuide;
         this.createdAt = createdAt;
         this.customMappings = customMappings;
-        this.updatedAt = updatedAt;
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public Connection() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The unique identifier of the connection.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The ID of the service this connection belongs to.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * The name of the connection
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
-    @JsonIgnore
     public Optional<String> tagLine() {
-        return tagLine;
+        return Optional.ofNullable(this.tagLine);
     }
 
     /**
      * The unified API category where the connection belongs to.
      */
-    @JsonIgnore
     public Optional<String> unifiedApi() {
-        return unifiedApi;
+        return Optional.ofNullable(this.unifiedApi);
     }
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectionState> state() {
-        return (Optional<ConnectionState>) state;
+        return Optional.ofNullable(this.state);
     }
 
     /**
      * The current state of the Integration.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<IntegrationState> integrationState() {
-        return (Optional<IntegrationState>) integrationState;
+        return Optional.ofNullable(this.integrationState);
     }
 
     /**
      * Type of authorization used by the connector
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<AuthType> authType() {
-        return (Optional<AuthType>) authType;
+        return Optional.ofNullable(this.authType);
     }
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<OAuthGrantType> oauthGrantType() {
-        return (Optional<OAuthGrantType>) oauthGrantType;
+        return Optional.ofNullable(this.oauthGrantType);
     }
 
     /**
      * Status of the connection.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectionStatus> status() {
-        return (Optional<ConnectionStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
-    @JsonIgnore
     public Optional<Boolean> enabled() {
-        return enabled;
+        return Optional.ofNullable(this.enabled);
     }
 
     /**
      * The website URL of the connection
      */
-    @JsonIgnore
     public Optional<String> website() {
-        return website;
+        return Optional.ofNullable(this.website);
     }
 
     /**
      * A visual icon of the connection, that will be shown in the Vault
      */
-    @JsonIgnore
     public Optional<String> icon() {
-        return icon;
+        return Optional.ofNullable(this.icon);
     }
 
     /**
      * The logo of the connection, that will be shown in the Vault
      */
-    @JsonIgnore
     public Optional<String> logo() {
-        return logo;
+        return Optional.ofNullable(this.logo);
     }
 
     /**
      * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
      */
-    @JsonIgnore
     public JsonNullable<String> authorizeUrl() {
-        return authorizeUrl;
+        return this.authorizeUrl;
     }
 
     /**
      * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
      */
-    @JsonIgnore
     public JsonNullable<String> revokeUrl() {
-        return revokeUrl;
+        return this.revokeUrl;
     }
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> settings() {
-        return (JsonNullable<Map<String, Object>>) settings;
+        return this.settings;
     }
 
     /**
      * Attach your own consumer specific metadata
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+        return this.metadata;
     }
 
     /**
      * The settings that are wanted to create a connection.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<FormField>> formFields() {
-        return (Optional<List<FormField>>) formFields;
+        return Optional.ofNullable(this.formFields);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Configuration>> configuration() {
-        return (Optional<List<Configuration>>) configuration;
+        return Optional.ofNullable(this.configuration);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> configurableResources() {
-        return (Optional<List<String>>) configurableResources;
+        return Optional.ofNullable(this.configurableResources);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> resourceSchemaSupport() {
-        return (Optional<List<String>>) resourceSchemaSupport;
+        return Optional.ofNullable(this.resourceSchemaSupport);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> resourceSettingsSupport() {
-        return (Optional<List<String>>) resourceSettingsSupport;
+        return Optional.ofNullable(this.resourceSettingsSupport);
     }
 
-    @JsonIgnore
     public Optional<Boolean> validationSupport() {
-        return validationSupport;
+        return Optional.ofNullable(this.validationSupport);
     }
 
-    @JsonIgnore
     public Optional<Boolean> schemaSupport() {
-        return schemaSupport;
+        return Optional.ofNullable(this.schemaSupport);
     }
 
     /**
      * List of settings that are required to be configured on integration before authorization can occur
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> settingsRequiredForAuthorization() {
-        return (Optional<List<String>>) settingsRequiredForAuthorization;
+        return Optional.ofNullable(this.settingsRequiredForAuthorization);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<WebhookSubscription>> subscriptions() {
-        return (Optional<List<WebhookSubscription>>) subscriptions;
+        return Optional.ofNullable(this.subscriptions);
     }
 
     /**
      * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
-    @JsonIgnore
     public Optional<Boolean> hasGuide() {
-        return hasGuide;
+        return Optional.ofNullable(this.hasGuide);
     }
 
-    @JsonIgnore
     public Optional<Double> createdAt() {
-        return createdAt;
+        return Optional.ofNullable(this.createdAt);
     }
 
     /**
      * List of custom mappings configured for this connection
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomMapping>> customMappings() {
-        return (Optional<List<CustomMapping>>) customMappings;
+        return Optional.ofNullable(this.customMappings);
     }
 
-    @JsonIgnore
     public JsonNullable<Double> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -571,526 +498,251 @@ public class Connection {
     /**
      * The unique identifier of the connection.
      */
-    public Connection withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the connection.
-     */
-    public Connection withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Connection withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The ID of the service this connection belongs to.
-     */
-    public Connection withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * The ID of the service this connection belongs to.
      */
-    public Connection withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public Connection withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * The name of the connection
-     */
-    public Connection withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * The name of the connection
      */
-    public Connection withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Connection withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    public Connection withTagLine(String tagLine) {
-        Utils.checkNotNull(tagLine, "tagLine");
-        this.tagLine = Optional.ofNullable(tagLine);
-        return this;
-    }
 
-
-    public Connection withTagLine(Optional<String> tagLine) {
-        Utils.checkNotNull(tagLine, "tagLine");
+    public Connection withTagLine(@Nullable String tagLine) {
         this.tagLine = tagLine;
         return this;
     }
 
-    /**
-     * The unified API category where the connection belongs to.
-     */
-    public Connection withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = Optional.ofNullable(unifiedApi);
-        return this;
-    }
-
 
     /**
      * The unified API category where the connection belongs to.
      */
-    public Connection withUnifiedApi(Optional<String> unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
+    public Connection withUnifiedApi(@Nullable String unifiedApi) {
         this.unifiedApi = unifiedApi;
         return this;
     }
 
-    /**
-     * [Connection state flow](#section/Connection-state)
-     */
-    public Connection withState(ConnectionState state) {
-        Utils.checkNotNull(state, "state");
-        this.state = Optional.ofNullable(state);
-        return this;
-    }
-
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    public Connection withState(Optional<? extends ConnectionState> state) {
-        Utils.checkNotNull(state, "state");
+    public Connection withState(@Nullable ConnectionState state) {
         this.state = state;
         return this;
     }
 
-    /**
-     * The current state of the Integration.
-     */
-    public Connection withIntegrationState(IntegrationState integrationState) {
-        Utils.checkNotNull(integrationState, "integrationState");
-        this.integrationState = Optional.ofNullable(integrationState);
-        return this;
-    }
-
 
     /**
      * The current state of the Integration.
      */
-    public Connection withIntegrationState(Optional<? extends IntegrationState> integrationState) {
-        Utils.checkNotNull(integrationState, "integrationState");
+    public Connection withIntegrationState(@Nullable IntegrationState integrationState) {
         this.integrationState = integrationState;
         return this;
     }
 
-    /**
-     * Type of authorization used by the connector
-     */
-    public Connection withAuthType(AuthType authType) {
-        Utils.checkNotNull(authType, "authType");
-        this.authType = Optional.ofNullable(authType);
-        return this;
-    }
-
 
     /**
      * Type of authorization used by the connector
      */
-    public Connection withAuthType(Optional<? extends AuthType> authType) {
-        Utils.checkNotNull(authType, "authType");
+    public Connection withAuthType(@Nullable AuthType authType) {
         this.authType = authType;
         return this;
     }
 
-    /**
-     * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
-     */
-    public Connection withOauthGrantType(OAuthGrantType oauthGrantType) {
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-        this.oauthGrantType = Optional.ofNullable(oauthGrantType);
-        return this;
-    }
-
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
-    public Connection withOauthGrantType(Optional<? extends OAuthGrantType> oauthGrantType) {
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
+    public Connection withOauthGrantType(@Nullable OAuthGrantType oauthGrantType) {
         this.oauthGrantType = oauthGrantType;
         return this;
     }
 
-    /**
-     * Status of the connection.
-     */
-    public Connection withStatus(ConnectionStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the connection.
      */
-    public Connection withStatus(Optional<? extends ConnectionStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public Connection withStatus(@Nullable ConnectionStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
-     */
-    public Connection withEnabled(boolean enabled) {
-        Utils.checkNotNull(enabled, "enabled");
-        this.enabled = Optional.ofNullable(enabled);
-        return this;
-    }
-
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
-    public Connection withEnabled(Optional<Boolean> enabled) {
-        Utils.checkNotNull(enabled, "enabled");
+    public Connection withEnabled(@Nullable Boolean enabled) {
         this.enabled = enabled;
         return this;
     }
 
-    /**
-     * The website URL of the connection
-     */
-    public Connection withWebsite(String website) {
-        Utils.checkNotNull(website, "website");
-        this.website = Optional.ofNullable(website);
-        return this;
-    }
-
 
     /**
      * The website URL of the connection
      */
-    public Connection withWebsite(Optional<String> website) {
-        Utils.checkNotNull(website, "website");
+    public Connection withWebsite(@Nullable String website) {
         this.website = website;
         return this;
     }
 
-    /**
-     * A visual icon of the connection, that will be shown in the Vault
-     */
-    public Connection withIcon(String icon) {
-        Utils.checkNotNull(icon, "icon");
-        this.icon = Optional.ofNullable(icon);
-        return this;
-    }
-
 
     /**
      * A visual icon of the connection, that will be shown in the Vault
      */
-    public Connection withIcon(Optional<String> icon) {
-        Utils.checkNotNull(icon, "icon");
+    public Connection withIcon(@Nullable String icon) {
         this.icon = icon;
         return this;
     }
 
-    /**
-     * The logo of the connection, that will be shown in the Vault
-     */
-    public Connection withLogo(String logo) {
-        Utils.checkNotNull(logo, "logo");
-        this.logo = Optional.ofNullable(logo);
-        return this;
-    }
-
 
     /**
      * The logo of the connection, that will be shown in the Vault
      */
-    public Connection withLogo(Optional<String> logo) {
-        Utils.checkNotNull(logo, "logo");
+    public Connection withLogo(@Nullable String logo) {
         this.logo = logo;
         return this;
     }
 
+
     /**
      * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
      */
-    public Connection withAuthorizeUrl(String authorizeUrl) {
-        Utils.checkNotNull(authorizeUrl, "authorizeUrl");
+    public Connection withAuthorizeUrl(@Nullable String authorizeUrl) {
         this.authorizeUrl = JsonNullable.of(authorizeUrl);
         return this;
     }
 
-    /**
-     * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-     */
-    public Connection withAuthorizeUrl(JsonNullable<String> authorizeUrl) {
-        Utils.checkNotNull(authorizeUrl, "authorizeUrl");
-        this.authorizeUrl = authorizeUrl;
-        return this;
-    }
 
     /**
      * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
      */
-    public Connection withRevokeUrl(String revokeUrl) {
-        Utils.checkNotNull(revokeUrl, "revokeUrl");
+    public Connection withRevokeUrl(@Nullable String revokeUrl) {
         this.revokeUrl = JsonNullable.of(revokeUrl);
         return this;
     }
 
-    /**
-     * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-     */
-    public Connection withRevokeUrl(JsonNullable<String> revokeUrl) {
-        Utils.checkNotNull(revokeUrl, "revokeUrl");
-        this.revokeUrl = revokeUrl;
-        return this;
-    }
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public Connection withSettings(Map<String, Object> settings) {
-        Utils.checkNotNull(settings, "settings");
+    public Connection withSettings(@Nullable Map<String, Object> settings) {
         this.settings = JsonNullable.of(settings);
         return this;
     }
 
-    /**
-     * Connection settings. Values will persist to `form_fields` with corresponding id
-     */
-    public Connection withSettings(JsonNullable<? extends Map<String, Object>> settings) {
-        Utils.checkNotNull(settings, "settings");
-        this.settings = settings;
-        return this;
-    }
 
     /**
      * Attach your own consumer specific metadata
      */
-    public Connection withMetadata(Map<String, Object> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+    public Connection withMetadata(@Nullable Map<String, Object> metadata) {
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    /**
-     * Attach your own consumer specific metadata
-     */
-    public Connection withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = metadata;
-        return this;
-    }
 
     /**
      * The settings that are wanted to create a connection.
      */
-    public Connection withFormFields(List<FormField> formFields) {
-        Utils.checkNotNull(formFields, "formFields");
-        this.formFields = Optional.ofNullable(formFields);
-        return this;
-    }
-
-
-    /**
-     * The settings that are wanted to create a connection.
-     */
-    public Connection withFormFields(Optional<? extends List<FormField>> formFields) {
-        Utils.checkNotNull(formFields, "formFields");
+    public Connection withFormFields(@Nullable List<FormField> formFields) {
         this.formFields = formFields;
         return this;
     }
 
-    public Connection withConfiguration(List<Configuration> configuration) {
-        Utils.checkNotNull(configuration, "configuration");
-        this.configuration = Optional.ofNullable(configuration);
-        return this;
-    }
 
-
-    public Connection withConfiguration(Optional<? extends List<Configuration>> configuration) {
-        Utils.checkNotNull(configuration, "configuration");
+    public Connection withConfiguration(@Nullable List<Configuration> configuration) {
         this.configuration = configuration;
         return this;
     }
 
-    public Connection withConfigurableResources(List<String> configurableResources) {
-        Utils.checkNotNull(configurableResources, "configurableResources");
-        this.configurableResources = Optional.ofNullable(configurableResources);
-        return this;
-    }
 
-
-    public Connection withConfigurableResources(Optional<? extends List<String>> configurableResources) {
-        Utils.checkNotNull(configurableResources, "configurableResources");
+    public Connection withConfigurableResources(@Nullable List<String> configurableResources) {
         this.configurableResources = configurableResources;
         return this;
     }
 
-    public Connection withResourceSchemaSupport(List<String> resourceSchemaSupport) {
-        Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
-        this.resourceSchemaSupport = Optional.ofNullable(resourceSchemaSupport);
-        return this;
-    }
 
-
-    public Connection withResourceSchemaSupport(Optional<? extends List<String>> resourceSchemaSupport) {
-        Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
+    public Connection withResourceSchemaSupport(@Nullable List<String> resourceSchemaSupport) {
         this.resourceSchemaSupport = resourceSchemaSupport;
         return this;
     }
 
-    public Connection withResourceSettingsSupport(List<String> resourceSettingsSupport) {
-        Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
-        this.resourceSettingsSupport = Optional.ofNullable(resourceSettingsSupport);
-        return this;
-    }
 
-
-    public Connection withResourceSettingsSupport(Optional<? extends List<String>> resourceSettingsSupport) {
-        Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
+    public Connection withResourceSettingsSupport(@Nullable List<String> resourceSettingsSupport) {
         this.resourceSettingsSupport = resourceSettingsSupport;
         return this;
     }
 
-    public Connection withValidationSupport(boolean validationSupport) {
-        Utils.checkNotNull(validationSupport, "validationSupport");
-        this.validationSupport = Optional.ofNullable(validationSupport);
-        return this;
-    }
 
-
-    public Connection withValidationSupport(Optional<Boolean> validationSupport) {
-        Utils.checkNotNull(validationSupport, "validationSupport");
+    public Connection withValidationSupport(@Nullable Boolean validationSupport) {
         this.validationSupport = validationSupport;
         return this;
     }
 
-    public Connection withSchemaSupport(boolean schemaSupport) {
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
-        this.schemaSupport = Optional.ofNullable(schemaSupport);
-        return this;
-    }
 
-
-    public Connection withSchemaSupport(Optional<Boolean> schemaSupport) {
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
+    public Connection withSchemaSupport(@Nullable Boolean schemaSupport) {
         this.schemaSupport = schemaSupport;
         return this;
     }
 
-    /**
-     * List of settings that are required to be configured on integration before authorization can occur
-     */
-    public Connection withSettingsRequiredForAuthorization(List<String> settingsRequiredForAuthorization) {
-        Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
-        this.settingsRequiredForAuthorization = Optional.ofNullable(settingsRequiredForAuthorization);
-        return this;
-    }
-
 
     /**
      * List of settings that are required to be configured on integration before authorization can occur
      */
-    public Connection withSettingsRequiredForAuthorization(Optional<? extends List<String>> settingsRequiredForAuthorization) {
-        Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
+    public Connection withSettingsRequiredForAuthorization(@Nullable List<String> settingsRequiredForAuthorization) {
         this.settingsRequiredForAuthorization = settingsRequiredForAuthorization;
         return this;
     }
 
-    public Connection withSubscriptions(List<WebhookSubscription> subscriptions) {
-        Utils.checkNotNull(subscriptions, "subscriptions");
-        this.subscriptions = Optional.ofNullable(subscriptions);
-        return this;
-    }
 
-
-    public Connection withSubscriptions(Optional<? extends List<WebhookSubscription>> subscriptions) {
-        Utils.checkNotNull(subscriptions, "subscriptions");
+    public Connection withSubscriptions(@Nullable List<WebhookSubscription> subscriptions) {
         this.subscriptions = subscriptions;
         return this;
     }
 
-    /**
-     * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
-     */
-    public Connection withHasGuide(boolean hasGuide) {
-        Utils.checkNotNull(hasGuide, "hasGuide");
-        this.hasGuide = Optional.ofNullable(hasGuide);
-        return this;
-    }
-
 
     /**
      * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
      */
-    public Connection withHasGuide(Optional<Boolean> hasGuide) {
-        Utils.checkNotNull(hasGuide, "hasGuide");
+    public Connection withHasGuide(@Nullable Boolean hasGuide) {
         this.hasGuide = hasGuide;
         return this;
     }
 
-    public Connection withCreatedAt(double createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
 
-
-    public Connection withCreatedAt(Optional<Double> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Connection withCreatedAt(@Nullable Double createdAt) {
         this.createdAt = createdAt;
         return this;
     }
 
-    /**
-     * List of custom mappings configured for this connection
-     */
-    public Connection withCustomMappings(List<CustomMapping> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = Optional.ofNullable(customMappings);
-        return this;
-    }
-
 
     /**
      * List of custom mappings configured for this connection
      */
-    public Connection withCustomMappings(Optional<? extends List<CustomMapping>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Connection withCustomMappings(@Nullable List<CustomMapping> customMappings) {
         this.customMappings = customMappings;
         return this;
     }
 
-    public Connection withUpdatedAt(double updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+
+    public Connection withUpdatedAt(@Nullable Double updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    public Connection withUpdatedAt(JsonNullable<Double> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1190,603 +842,291 @@ public class Connection {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> tagLine = Optional.empty();
+        private String tagLine;
 
-        private Optional<String> unifiedApi = Optional.empty();
+        private String unifiedApi;
 
-        private Optional<? extends ConnectionState> state = Optional.empty();
+        private ConnectionState state;
 
-        private Optional<? extends IntegrationState> integrationState = Optional.empty();
+        private IntegrationState integrationState;
 
-        private Optional<? extends AuthType> authType = Optional.empty();
+        private AuthType authType;
 
-        private Optional<? extends OAuthGrantType> oauthGrantType = Optional.empty();
+        private OAuthGrantType oauthGrantType;
 
-        private Optional<? extends ConnectionStatus> status = Optional.empty();
+        private ConnectionStatus status;
 
-        private Optional<Boolean> enabled = Optional.empty();
+        private Boolean enabled;
 
-        private Optional<String> website = Optional.empty();
+        private String website;
 
-        private Optional<String> icon = Optional.empty();
+        private String icon;
 
-        private Optional<String> logo = Optional.empty();
+        private String logo;
 
-        private JsonNullable<String> authorizeUrl = JsonNullable.undefined();
+        private JsonNullable<String> authorizeUrl;
 
-        private JsonNullable<String> revokeUrl = JsonNullable.undefined();
+        private JsonNullable<String> revokeUrl;
 
-        private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> settings;
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> metadata;
 
-        private Optional<? extends List<FormField>> formFields = Optional.empty();
+        private List<FormField> formFields;
 
-        private Optional<? extends List<Configuration>> configuration = Optional.empty();
+        private List<Configuration> configuration;
 
-        private Optional<? extends List<String>> configurableResources = Optional.empty();
+        private List<String> configurableResources;
 
-        private Optional<? extends List<String>> resourceSchemaSupport = Optional.empty();
+        private List<String> resourceSchemaSupport;
 
-        private Optional<? extends List<String>> resourceSettingsSupport = Optional.empty();
+        private List<String> resourceSettingsSupport;
 
-        private Optional<Boolean> validationSupport = Optional.empty();
+        private Boolean validationSupport;
 
-        private Optional<Boolean> schemaSupport = Optional.empty();
+        private Boolean schemaSupport;
 
-        private Optional<? extends List<String>> settingsRequiredForAuthorization = Optional.empty();
+        private List<String> settingsRequiredForAuthorization;
 
-        private Optional<? extends List<WebhookSubscription>> subscriptions = Optional.empty();
+        private List<WebhookSubscription> subscriptions;
 
-        private Optional<Boolean> hasGuide = Optional.empty();
+        private Boolean hasGuide;
 
-        private Optional<Double> createdAt = Optional.empty();
+        private Double createdAt;
 
-        private Optional<? extends List<CustomMapping>> customMappings = Optional.empty();
+        private List<CustomMapping> customMappings;
 
-        private JsonNullable<Double> updatedAt = JsonNullable.undefined();
+        private JsonNullable<Double> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the connection.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the connection.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The ID of the service this connection belongs to.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * The ID of the service this connection belongs to.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * The name of the connection
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the connection
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
-        public Builder tagLine(String tagLine) {
-            Utils.checkNotNull(tagLine, "tagLine");
-            this.tagLine = Optional.ofNullable(tagLine);
-            return this;
-        }
-
-        public Builder tagLine(Optional<String> tagLine) {
-            Utils.checkNotNull(tagLine, "tagLine");
+        public Builder tagLine(@Nullable String tagLine) {
             this.tagLine = tagLine;
             return this;
         }
 
-
         /**
          * The unified API category where the connection belongs to.
          */
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = Optional.ofNullable(unifiedApi);
-            return this;
-        }
-
-        /**
-         * The unified API category where the connection belongs to.
-         */
-        public Builder unifiedApi(Optional<String> unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
+        public Builder unifiedApi(@Nullable String unifiedApi) {
             this.unifiedApi = unifiedApi;
             return this;
         }
 
-
         /**
          * [Connection state flow](#section/Connection-state)
          */
-        public Builder state(ConnectionState state) {
-            Utils.checkNotNull(state, "state");
-            this.state = Optional.ofNullable(state);
-            return this;
-        }
-
-        /**
-         * [Connection state flow](#section/Connection-state)
-         */
-        public Builder state(Optional<? extends ConnectionState> state) {
-            Utils.checkNotNull(state, "state");
+        public Builder state(@Nullable ConnectionState state) {
             this.state = state;
             return this;
         }
 
-
         /**
          * The current state of the Integration.
          */
-        public Builder integrationState(IntegrationState integrationState) {
-            Utils.checkNotNull(integrationState, "integrationState");
-            this.integrationState = Optional.ofNullable(integrationState);
-            return this;
-        }
-
-        /**
-         * The current state of the Integration.
-         */
-        public Builder integrationState(Optional<? extends IntegrationState> integrationState) {
-            Utils.checkNotNull(integrationState, "integrationState");
+        public Builder integrationState(@Nullable IntegrationState integrationState) {
             this.integrationState = integrationState;
             return this;
         }
 
-
         /**
          * Type of authorization used by the connector
          */
-        public Builder authType(AuthType authType) {
-            Utils.checkNotNull(authType, "authType");
-            this.authType = Optional.ofNullable(authType);
-            return this;
-        }
-
-        /**
-         * Type of authorization used by the connector
-         */
-        public Builder authType(Optional<? extends AuthType> authType) {
-            Utils.checkNotNull(authType, "authType");
+        public Builder authType(@Nullable AuthType authType) {
             this.authType = authType;
             return this;
         }
 
-
         /**
          * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
          */
-        public Builder oauthGrantType(OAuthGrantType oauthGrantType) {
-            Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-            this.oauthGrantType = Optional.ofNullable(oauthGrantType);
-            return this;
-        }
-
-        /**
-         * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
-         */
-        public Builder oauthGrantType(Optional<? extends OAuthGrantType> oauthGrantType) {
-            Utils.checkNotNull(oauthGrantType, "oauthGrantType");
+        public Builder oauthGrantType(@Nullable OAuthGrantType oauthGrantType) {
             this.oauthGrantType = oauthGrantType;
             return this;
         }
 
-
         /**
          * Status of the connection.
          */
-        public Builder status(ConnectionStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the connection.
-         */
-        public Builder status(Optional<? extends ConnectionStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ConnectionStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
          */
-        public Builder enabled(boolean enabled) {
-            Utils.checkNotNull(enabled, "enabled");
-            this.enabled = Optional.ofNullable(enabled);
-            return this;
-        }
-
-        /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
-         */
-        public Builder enabled(Optional<Boolean> enabled) {
-            Utils.checkNotNull(enabled, "enabled");
+        public Builder enabled(@Nullable Boolean enabled) {
             this.enabled = enabled;
             return this;
         }
 
-
         /**
          * The website URL of the connection
          */
-        public Builder website(String website) {
-            Utils.checkNotNull(website, "website");
-            this.website = Optional.ofNullable(website);
-            return this;
-        }
-
-        /**
-         * The website URL of the connection
-         */
-        public Builder website(Optional<String> website) {
-            Utils.checkNotNull(website, "website");
+        public Builder website(@Nullable String website) {
             this.website = website;
             return this;
         }
 
-
         /**
          * A visual icon of the connection, that will be shown in the Vault
          */
-        public Builder icon(String icon) {
-            Utils.checkNotNull(icon, "icon");
-            this.icon = Optional.ofNullable(icon);
-            return this;
-        }
-
-        /**
-         * A visual icon of the connection, that will be shown in the Vault
-         */
-        public Builder icon(Optional<String> icon) {
-            Utils.checkNotNull(icon, "icon");
+        public Builder icon(@Nullable String icon) {
             this.icon = icon;
             return this;
         }
 
-
         /**
          * The logo of the connection, that will be shown in the Vault
          */
-        public Builder logo(String logo) {
-            Utils.checkNotNull(logo, "logo");
-            this.logo = Optional.ofNullable(logo);
-            return this;
-        }
-
-        /**
-         * The logo of the connection, that will be shown in the Vault
-         */
-        public Builder logo(Optional<String> logo) {
-            Utils.checkNotNull(logo, "logo");
+        public Builder logo(@Nullable String logo) {
             this.logo = logo;
             return this;
         }
 
-
         /**
          * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
          */
-        public Builder authorizeUrl(String authorizeUrl) {
-            Utils.checkNotNull(authorizeUrl, "authorizeUrl");
+        public Builder authorizeUrl(@Nullable String authorizeUrl) {
             this.authorizeUrl = JsonNullable.of(authorizeUrl);
             return this;
         }
 
         /**
-         * The OAuth redirect URI. Redirect your users to this URI to let them authorize your app in the connector's UI. Before you can use this URI, you must add `redirect_uri` as a query parameter to the `authorize_url`. Be sure to URL encode the `redirect_uri` part. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-         */
-        public Builder authorizeUrl(JsonNullable<String> authorizeUrl) {
-            Utils.checkNotNull(authorizeUrl, "authorizeUrl");
-            this.authorizeUrl = authorizeUrl;
-            return this;
-        }
-
-
-        /**
          * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
          */
-        public Builder revokeUrl(String revokeUrl) {
-            Utils.checkNotNull(revokeUrl, "revokeUrl");
+        public Builder revokeUrl(@Nullable String revokeUrl) {
             this.revokeUrl = JsonNullable.of(revokeUrl);
             return this;
         }
 
         /**
-         * The OAuth revoke URI. Redirect your users to this URI to revoke this connection. Before you can use this URI, you must add `redirect_uri` as a query parameter. Your users will be redirected to this `redirect_uri` after they granted access to your app in the connector's UI.
-         */
-        public Builder revokeUrl(JsonNullable<String> revokeUrl) {
-            Utils.checkNotNull(revokeUrl, "revokeUrl");
-            this.revokeUrl = revokeUrl;
-            return this;
-        }
-
-
-        /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(Map<String, Object> settings) {
-            Utils.checkNotNull(settings, "settings");
+        public Builder settings(@Nullable Map<String, Object> settings) {
             this.settings = JsonNullable.of(settings);
             return this;
         }
 
         /**
-         * Connection settings. Values will persist to `form_fields` with corresponding id
-         */
-        public Builder settings(JsonNullable<? extends Map<String, Object>> settings) {
-            Utils.checkNotNull(settings, "settings");
-            this.settings = settings;
-            return this;
-        }
-
-
-        /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
+        public Builder metadata(@Nullable Map<String, Object> metadata) {
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
         /**
-         * Attach your own consumer specific metadata
-         */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = metadata;
-            return this;
-        }
-
-
-        /**
          * The settings that are wanted to create a connection.
          */
-        public Builder formFields(List<FormField> formFields) {
-            Utils.checkNotNull(formFields, "formFields");
-            this.formFields = Optional.ofNullable(formFields);
-            return this;
-        }
-
-        /**
-         * The settings that are wanted to create a connection.
-         */
-        public Builder formFields(Optional<? extends List<FormField>> formFields) {
-            Utils.checkNotNull(formFields, "formFields");
+        public Builder formFields(@Nullable List<FormField> formFields) {
             this.formFields = formFields;
             return this;
         }
 
-
-        public Builder configuration(List<Configuration> configuration) {
-            Utils.checkNotNull(configuration, "configuration");
-            this.configuration = Optional.ofNullable(configuration);
-            return this;
-        }
-
-        public Builder configuration(Optional<? extends List<Configuration>> configuration) {
-            Utils.checkNotNull(configuration, "configuration");
+        public Builder configuration(@Nullable List<Configuration> configuration) {
             this.configuration = configuration;
             return this;
         }
 
-
-        public Builder configurableResources(List<String> configurableResources) {
-            Utils.checkNotNull(configurableResources, "configurableResources");
-            this.configurableResources = Optional.ofNullable(configurableResources);
-            return this;
-        }
-
-        public Builder configurableResources(Optional<? extends List<String>> configurableResources) {
-            Utils.checkNotNull(configurableResources, "configurableResources");
+        public Builder configurableResources(@Nullable List<String> configurableResources) {
             this.configurableResources = configurableResources;
             return this;
         }
 
-
-        public Builder resourceSchemaSupport(List<String> resourceSchemaSupport) {
-            Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
-            this.resourceSchemaSupport = Optional.ofNullable(resourceSchemaSupport);
-            return this;
-        }
-
-        public Builder resourceSchemaSupport(Optional<? extends List<String>> resourceSchemaSupport) {
-            Utils.checkNotNull(resourceSchemaSupport, "resourceSchemaSupport");
+        public Builder resourceSchemaSupport(@Nullable List<String> resourceSchemaSupport) {
             this.resourceSchemaSupport = resourceSchemaSupport;
             return this;
         }
 
-
-        public Builder resourceSettingsSupport(List<String> resourceSettingsSupport) {
-            Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
-            this.resourceSettingsSupport = Optional.ofNullable(resourceSettingsSupport);
-            return this;
-        }
-
-        public Builder resourceSettingsSupport(Optional<? extends List<String>> resourceSettingsSupport) {
-            Utils.checkNotNull(resourceSettingsSupport, "resourceSettingsSupport");
+        public Builder resourceSettingsSupport(@Nullable List<String> resourceSettingsSupport) {
             this.resourceSettingsSupport = resourceSettingsSupport;
             return this;
         }
 
-
-        public Builder validationSupport(boolean validationSupport) {
-            Utils.checkNotNull(validationSupport, "validationSupport");
-            this.validationSupport = Optional.ofNullable(validationSupport);
-            return this;
-        }
-
-        public Builder validationSupport(Optional<Boolean> validationSupport) {
-            Utils.checkNotNull(validationSupport, "validationSupport");
+        public Builder validationSupport(@Nullable Boolean validationSupport) {
             this.validationSupport = validationSupport;
             return this;
         }
 
-
-        public Builder schemaSupport(boolean schemaSupport) {
-            Utils.checkNotNull(schemaSupport, "schemaSupport");
-            this.schemaSupport = Optional.ofNullable(schemaSupport);
-            return this;
-        }
-
-        public Builder schemaSupport(Optional<Boolean> schemaSupport) {
-            Utils.checkNotNull(schemaSupport, "schemaSupport");
+        public Builder schemaSupport(@Nullable Boolean schemaSupport) {
             this.schemaSupport = schemaSupport;
             return this;
         }
 
-
         /**
          * List of settings that are required to be configured on integration before authorization can occur
          */
-        public Builder settingsRequiredForAuthorization(List<String> settingsRequiredForAuthorization) {
-            Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
-            this.settingsRequiredForAuthorization = Optional.ofNullable(settingsRequiredForAuthorization);
-            return this;
-        }
-
-        /**
-         * List of settings that are required to be configured on integration before authorization can occur
-         */
-        public Builder settingsRequiredForAuthorization(Optional<? extends List<String>> settingsRequiredForAuthorization) {
-            Utils.checkNotNull(settingsRequiredForAuthorization, "settingsRequiredForAuthorization");
+        public Builder settingsRequiredForAuthorization(@Nullable List<String> settingsRequiredForAuthorization) {
             this.settingsRequiredForAuthorization = settingsRequiredForAuthorization;
             return this;
         }
 
-
-        public Builder subscriptions(List<WebhookSubscription> subscriptions) {
-            Utils.checkNotNull(subscriptions, "subscriptions");
-            this.subscriptions = Optional.ofNullable(subscriptions);
-            return this;
-        }
-
-        public Builder subscriptions(Optional<? extends List<WebhookSubscription>> subscriptions) {
-            Utils.checkNotNull(subscriptions, "subscriptions");
+        public Builder subscriptions(@Nullable List<WebhookSubscription> subscriptions) {
             this.subscriptions = subscriptions;
             return this;
         }
 
-
         /**
          * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
          */
-        public Builder hasGuide(boolean hasGuide) {
-            Utils.checkNotNull(hasGuide, "hasGuide");
-            this.hasGuide = Optional.ofNullable(hasGuide);
-            return this;
-        }
-
-        /**
-         * Whether the connector has a guide available in the developer docs or not (https://docs.apideck.com/connectors/{service_id}/docs/consumer+connection).
-         */
-        public Builder hasGuide(Optional<Boolean> hasGuide) {
-            Utils.checkNotNull(hasGuide, "hasGuide");
+        public Builder hasGuide(@Nullable Boolean hasGuide) {
             this.hasGuide = hasGuide;
             return this;
         }
 
-
-        public Builder createdAt(double createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        public Builder createdAt(Optional<Double> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable Double createdAt) {
             this.createdAt = createdAt;
             return this;
         }
 
-
         /**
          * List of custom mappings configured for this connection
          */
-        public Builder customMappings(List<CustomMapping> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = Optional.ofNullable(customMappings);
-            return this;
-        }
-
-        /**
-         * List of custom mappings configured for this connection
-         */
-        public Builder customMappings(Optional<? extends List<CustomMapping>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable List<CustomMapping> customMappings) {
             this.customMappings = customMappings;
             return this;
         }
 
-
-        public Builder updatedAt(double updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable Double updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        public Builder updatedAt(JsonNullable<Double> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public Connection build() {
-
             return new Connection(
                 id, serviceId, name,
                 tagLine, unifiedApi, state,

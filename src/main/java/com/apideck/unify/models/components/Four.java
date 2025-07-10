@@ -49,7 +49,6 @@ public class Four {
         }
 
         public Four build() {
-
             return new Four(
                 );
         }

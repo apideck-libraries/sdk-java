@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class VaultConsumerRequestCountsAllResponse implements Response {
     /**
      * Consumers Request Counts within Date Range
      */
-    private Optional<? extends ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse;
+    private ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public VaultConsumerRequestCountsAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(consumerRequestCountsInDateRangeResponse, "consumerRequestCountsInDateRangeResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.consumerRequestCountsInDateRangeResponse = consumerRequestCountsInDateRangeResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public VaultConsumerRequestCountsAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Consumers Request Counts within Date Range
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse() {
-        return (Optional<ConsumerRequestCountsInDateRangeResponse>) consumerRequestCountsInDateRangeResponse;
+        return Optional.ofNullable(this.consumerRequestCountsInDateRangeResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class VaultConsumerRequestCountsAllResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public VaultConsumerRequestCountsAllResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public VaultConsumerRequestCountsAllResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public VaultConsumerRequestCountsAllResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public VaultConsumerRequestCountsAllResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Consumers Request Counts within Date Range
-     */
-    public VaultConsumerRequestCountsAllResponse withConsumerRequestCountsInDateRangeResponse(ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse) {
-        Utils.checkNotNull(consumerRequestCountsInDateRangeResponse, "consumerRequestCountsInDateRangeResponse");
-        this.consumerRequestCountsInDateRangeResponse = Optional.ofNullable(consumerRequestCountsInDateRangeResponse);
+    public VaultConsumerRequestCountsAllResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class VaultConsumerRequestCountsAllResponse implements Response {
     /**
      * Consumers Request Counts within Date Range
      */
-    public VaultConsumerRequestCountsAllResponse withConsumerRequestCountsInDateRangeResponse(Optional<? extends ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse) {
-        Utils.checkNotNull(consumerRequestCountsInDateRangeResponse, "consumerRequestCountsInDateRangeResponse");
+    public VaultConsumerRequestCountsAllResponse withConsumerRequestCountsInDateRangeResponse(@Nullable ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse) {
         this.consumerRequestCountsInDateRangeResponse = consumerRequestCountsInDateRangeResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public VaultConsumerRequestCountsAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public VaultConsumerRequestCountsAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public VaultConsumerRequestCountsAllResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class VaultConsumerRequestCountsAllResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse = Optional.empty();
+        private ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Consumers Request Counts within Date Range
-         */
-        public Builder consumerRequestCountsInDateRangeResponse(ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse) {
-            Utils.checkNotNull(consumerRequestCountsInDateRangeResponse, "consumerRequestCountsInDateRangeResponse");
-            this.consumerRequestCountsInDateRangeResponse = Optional.ofNullable(consumerRequestCountsInDateRangeResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Consumers Request Counts within Date Range
          */
-        public Builder consumerRequestCountsInDateRangeResponse(Optional<? extends ConsumerRequestCountsInDateRangeResponse> consumerRequestCountsInDateRangeResponse) {
-            Utils.checkNotNull(consumerRequestCountsInDateRangeResponse, "consumerRequestCountsInDateRangeResponse");
+        public Builder consumerRequestCountsInDateRangeResponse(@Nullable ConsumerRequestCountsInDateRangeResponse consumerRequestCountsInDateRangeResponse) {
             this.consumerRequestCountsInDateRangeResponse = consumerRequestCountsInDateRangeResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public VaultConsumerRequestCountsAllResponse build() {
-
             return new VaultConsumerRequestCountsAllResponse(
                 contentType, statusCode, rawResponse,
                 consumerRequestCountsInDateRangeResponse, unexpectedErrorResponse);

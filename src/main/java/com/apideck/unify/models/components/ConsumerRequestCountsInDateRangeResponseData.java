@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -20,47 +19,41 @@ public class ConsumerRequestCountsInDateRangeResponseData {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_id")
-    private Optional<String> applicationId;
+    private String applicationId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("consumer_id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_datetime")
-    private Optional<String> startDatetime;
+    private String startDatetime;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_datetime")
-    private Optional<String> endDatetime;
+    private String endDatetime;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregated_request_count")
-    private Optional<Double> aggregatedRequestCount;
+    private Double aggregatedRequestCount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_counts")
-    private Optional<? extends RequestCountAllocation> requestCounts;
+    private RequestCountAllocation requestCounts;
 
     @JsonCreator
     public ConsumerRequestCountsInDateRangeResponseData(
-            @JsonProperty("application_id") Optional<String> applicationId,
-            @JsonProperty("consumer_id") Optional<String> consumerId,
-            @JsonProperty("start_datetime") Optional<String> startDatetime,
-            @JsonProperty("end_datetime") Optional<String> endDatetime,
-            @JsonProperty("aggregated_request_count") Optional<Double> aggregatedRequestCount,
-            @JsonProperty("request_counts") Optional<? extends RequestCountAllocation> requestCounts) {
-        Utils.checkNotNull(applicationId, "applicationId");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-        Utils.checkNotNull(requestCounts, "requestCounts");
+            @JsonProperty("application_id") @Nullable String applicationId,
+            @JsonProperty("consumer_id") @Nullable String consumerId,
+            @JsonProperty("start_datetime") @Nullable String startDatetime,
+            @JsonProperty("end_datetime") @Nullable String endDatetime,
+            @JsonProperty("aggregated_request_count") @Nullable Double aggregatedRequestCount,
+            @JsonProperty("request_counts") @Nullable RequestCountAllocation requestCounts) {
         this.applicationId = applicationId;
         this.consumerId = consumerId;
         this.startDatetime = startDatetime;
@@ -70,39 +63,32 @@ public class ConsumerRequestCountsInDateRangeResponseData {
     }
     
     public ConsumerRequestCountsInDateRangeResponseData() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null);
     }
 
-    @JsonIgnore
     public Optional<String> applicationId() {
-        return applicationId;
+        return Optional.ofNullable(this.applicationId);
     }
 
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
-    @JsonIgnore
     public Optional<String> startDatetime() {
-        return startDatetime;
+        return Optional.ofNullable(this.startDatetime);
     }
 
-    @JsonIgnore
     public Optional<String> endDatetime() {
-        return endDatetime;
+        return Optional.ofNullable(this.endDatetime);
     }
 
-    @JsonIgnore
     public Optional<Double> aggregatedRequestCount() {
-        return aggregatedRequestCount;
+        return Optional.ofNullable(this.aggregatedRequestCount);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<RequestCountAllocation> requestCounts() {
-        return (Optional<RequestCountAllocation>) requestCounts;
+        return Optional.ofNullable(this.requestCounts);
     }
 
     public static Builder builder() {
@@ -110,83 +96,41 @@ public class ConsumerRequestCountsInDateRangeResponseData {
     }
 
 
-    public ConsumerRequestCountsInDateRangeResponseData withApplicationId(String applicationId) {
-        Utils.checkNotNull(applicationId, "applicationId");
-        this.applicationId = Optional.ofNullable(applicationId);
-        return this;
-    }
-
-
-    public ConsumerRequestCountsInDateRangeResponseData withApplicationId(Optional<String> applicationId) {
-        Utils.checkNotNull(applicationId, "applicationId");
+    public ConsumerRequestCountsInDateRangeResponseData withApplicationId(@Nullable String applicationId) {
         this.applicationId = applicationId;
         return this;
     }
 
-    public ConsumerRequestCountsInDateRangeResponseData withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
 
-
-    public ConsumerRequestCountsInDateRangeResponseData withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public ConsumerRequestCountsInDateRangeResponseData withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    public ConsumerRequestCountsInDateRangeResponseData withStartDatetime(String startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        this.startDatetime = Optional.ofNullable(startDatetime);
-        return this;
-    }
 
-
-    public ConsumerRequestCountsInDateRangeResponseData withStartDatetime(Optional<String> startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
+    public ConsumerRequestCountsInDateRangeResponseData withStartDatetime(@Nullable String startDatetime) {
         this.startDatetime = startDatetime;
         return this;
     }
 
-    public ConsumerRequestCountsInDateRangeResponseData withEndDatetime(String endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        this.endDatetime = Optional.ofNullable(endDatetime);
-        return this;
-    }
 
-
-    public ConsumerRequestCountsInDateRangeResponseData withEndDatetime(Optional<String> endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
+    public ConsumerRequestCountsInDateRangeResponseData withEndDatetime(@Nullable String endDatetime) {
         this.endDatetime = endDatetime;
         return this;
     }
 
-    public ConsumerRequestCountsInDateRangeResponseData withAggregatedRequestCount(double aggregatedRequestCount) {
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-        this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
-        return this;
-    }
 
-
-    public ConsumerRequestCountsInDateRangeResponseData withAggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
+    public ConsumerRequestCountsInDateRangeResponseData withAggregatedRequestCount(@Nullable Double aggregatedRequestCount) {
         this.aggregatedRequestCount = aggregatedRequestCount;
         return this;
     }
 
-    public ConsumerRequestCountsInDateRangeResponseData withRequestCounts(RequestCountAllocation requestCounts) {
-        Utils.checkNotNull(requestCounts, "requestCounts");
-        this.requestCounts = Optional.ofNullable(requestCounts);
-        return this;
-    }
 
-
-    public ConsumerRequestCountsInDateRangeResponseData withRequestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
-        Utils.checkNotNull(requestCounts, "requestCounts");
+    public ConsumerRequestCountsInDateRangeResponseData withRequestCounts(@Nullable RequestCountAllocation requestCounts) {
         this.requestCounts = requestCounts;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -227,102 +171,53 @@ public class ConsumerRequestCountsInDateRangeResponseData {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> applicationId = Optional.empty();
+        private String applicationId;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> startDatetime = Optional.empty();
+        private String startDatetime;
 
-        private Optional<String> endDatetime = Optional.empty();
+        private String endDatetime;
 
-        private Optional<Double> aggregatedRequestCount = Optional.empty();
+        private Double aggregatedRequestCount;
 
-        private Optional<? extends RequestCountAllocation> requestCounts = Optional.empty();
+        private RequestCountAllocation requestCounts;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder applicationId(String applicationId) {
-            Utils.checkNotNull(applicationId, "applicationId");
-            this.applicationId = Optional.ofNullable(applicationId);
-            return this;
-        }
-
-        public Builder applicationId(Optional<String> applicationId) {
-            Utils.checkNotNull(applicationId, "applicationId");
+        public Builder applicationId(@Nullable String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
-        public Builder startDatetime(String startDatetime) {
-            Utils.checkNotNull(startDatetime, "startDatetime");
-            this.startDatetime = Optional.ofNullable(startDatetime);
-            return this;
-        }
-
-        public Builder startDatetime(Optional<String> startDatetime) {
-            Utils.checkNotNull(startDatetime, "startDatetime");
+        public Builder startDatetime(@Nullable String startDatetime) {
             this.startDatetime = startDatetime;
             return this;
         }
 
-
-        public Builder endDatetime(String endDatetime) {
-            Utils.checkNotNull(endDatetime, "endDatetime");
-            this.endDatetime = Optional.ofNullable(endDatetime);
-            return this;
-        }
-
-        public Builder endDatetime(Optional<String> endDatetime) {
-            Utils.checkNotNull(endDatetime, "endDatetime");
+        public Builder endDatetime(@Nullable String endDatetime) {
             this.endDatetime = endDatetime;
             return this;
         }
 
-
-        public Builder aggregatedRequestCount(double aggregatedRequestCount) {
-            Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-            this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
-            return this;
-        }
-
-        public Builder aggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
-            Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
+        public Builder aggregatedRequestCount(@Nullable Double aggregatedRequestCount) {
             this.aggregatedRequestCount = aggregatedRequestCount;
             return this;
         }
 
-
-        public Builder requestCounts(RequestCountAllocation requestCounts) {
-            Utils.checkNotNull(requestCounts, "requestCounts");
-            this.requestCounts = Optional.ofNullable(requestCounts);
-            return this;
-        }
-
-        public Builder requestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
-            Utils.checkNotNull(requestCounts, "requestCounts");
+        public Builder requestCounts(@Nullable RequestCountAllocation requestCounts) {
             this.requestCounts = requestCounts;
             return this;
         }
 
         public ConsumerRequestCountsInDateRangeResponseData build() {
-
             return new ConsumerRequestCountsInDateRangeResponseData(
                 applicationId, consumerId, startDatetime,
                 endDatetime, aggregatedRequestCount, requestCounts);

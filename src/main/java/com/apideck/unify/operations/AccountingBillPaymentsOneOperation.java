@@ -29,6 +29,8 @@ import com.apideck.unify.utils.Retries;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.String;
@@ -43,18 +45,18 @@ import java.util.concurrent.TimeUnit;
 public class AccountingBillPaymentsOneOperation implements RequestOperation<AccountingBillPaymentsOneRequest, AccountingBillPaymentsOneResponse> {
     
     private final SDKConfiguration sdkConfiguration;
-    private final Optional<Options> options;
+    private final Options options;
 
     public AccountingBillPaymentsOneOperation(
-            SDKConfiguration sdkConfiguration,
-            Optional<Options> options) {
+            @Nonnull SDKConfiguration sdkConfiguration,
+            @Nullable Options options) {
         this.sdkConfiguration = sdkConfiguration;
         this.options = options;
     }
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingBillPaymentsOneRequest request) throws Exception {
-        options
+        Optional.ofNullable(options)
                 .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
         String baseUrl = this.sdkConfiguration.serverUrl();
         String url = Utils.generateURL(
@@ -79,7 +81,7 @@ public class AccountingBillPaymentsOneOperation implements RequestOperation<Acco
                 this.sdkConfiguration.securitySource().getSecurity());
         HTTPClient client = this.sdkConfiguration.client();
         HTTPRequest finalReq = req;
-        RetryConfig retryConfig = options
+        RetryConfig retryConfig = Optional.ofNullable(options)
                 .flatMap(Options::retryConfig)
                 .or(this.sdkConfiguration::retryConfig)
                 .orElse(RetryConfig.builder()

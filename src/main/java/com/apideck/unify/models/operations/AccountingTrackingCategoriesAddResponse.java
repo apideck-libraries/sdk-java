@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingTrackingCategoriesAddResponse implements Response {
     /**
      * Tracking category created
      */
-    private Optional<? extends CreateTrackingCategoryResponse> createTrackingCategoryResponse;
+    private CreateTrackingCategoryResponse createTrackingCategoryResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingTrackingCategoriesAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateTrackingCategoryResponse> createTrackingCategoryResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(createTrackingCategoryResponse, "createTrackingCategoryResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable CreateTrackingCategoryResponse createTrackingCategoryResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.createTrackingCategoryResponse = createTrackingCategoryResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingTrackingCategoriesAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Tracking category created
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CreateTrackingCategoryResponse> createTrackingCategoryResponse() {
-        return (Optional<CreateTrackingCategoryResponse>) createTrackingCategoryResponse;
+        return Optional.ofNullable(this.createTrackingCategoryResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingTrackingCategoriesAddResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingTrackingCategoriesAddResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingTrackingCategoriesAddResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingTrackingCategoriesAddResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingTrackingCategoriesAddResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Tracking category created
-     */
-    public AccountingTrackingCategoriesAddResponse withCreateTrackingCategoryResponse(CreateTrackingCategoryResponse createTrackingCategoryResponse) {
-        Utils.checkNotNull(createTrackingCategoryResponse, "createTrackingCategoryResponse");
-        this.createTrackingCategoryResponse = Optional.ofNullable(createTrackingCategoryResponse);
+    public AccountingTrackingCategoriesAddResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingTrackingCategoriesAddResponse implements Response {
     /**
      * Tracking category created
      */
-    public AccountingTrackingCategoriesAddResponse withCreateTrackingCategoryResponse(Optional<? extends CreateTrackingCategoryResponse> createTrackingCategoryResponse) {
-        Utils.checkNotNull(createTrackingCategoryResponse, "createTrackingCategoryResponse");
+    public AccountingTrackingCategoriesAddResponse withCreateTrackingCategoryResponse(@Nullable CreateTrackingCategoryResponse createTrackingCategoryResponse) {
         this.createTrackingCategoryResponse = createTrackingCategoryResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingTrackingCategoriesAddResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingTrackingCategoriesAddResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingTrackingCategoriesAddResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingTrackingCategoriesAddResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateTrackingCategoryResponse> createTrackingCategoryResponse = Optional.empty();
+        private CreateTrackingCategoryResponse createTrackingCategoryResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Tracking category created
-         */
-        public Builder createTrackingCategoryResponse(CreateTrackingCategoryResponse createTrackingCategoryResponse) {
-            Utils.checkNotNull(createTrackingCategoryResponse, "createTrackingCategoryResponse");
-            this.createTrackingCategoryResponse = Optional.ofNullable(createTrackingCategoryResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Tracking category created
          */
-        public Builder createTrackingCategoryResponse(Optional<? extends CreateTrackingCategoryResponse> createTrackingCategoryResponse) {
-            Utils.checkNotNull(createTrackingCategoryResponse, "createTrackingCategoryResponse");
+        public Builder createTrackingCategoryResponse(@Nullable CreateTrackingCategoryResponse createTrackingCategoryResponse) {
             this.createTrackingCategoryResponse = createTrackingCategoryResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingTrackingCategoriesAddResponse build() {
-
             return new AccountingTrackingCategoriesAddResponse(
                 contentType, statusCode, rawResponse,
                 createTrackingCategoryResponse, unexpectedErrorResponse);

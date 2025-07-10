@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -59,94 +59,85 @@ public class LinkedEcommerceCustomer {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private JsonNullable<? extends List<PhoneNumber>> phoneNumbers;
+    private JsonNullable<List<PhoneNumber>> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private JsonNullable<? extends List<Email>> emails;
+    private JsonNullable<List<Email>> emails;
 
     @JsonCreator
     public LinkedEcommerceCustomer(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("phone_numbers") JsonNullable<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") JsonNullable<? extends List<Email>> emails) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        this.id = id;
-        this.name = name;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.companyName = companyName;
-        this.phoneNumbers = phoneNumbers;
-        this.emails = emails;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("phone_numbers") @Nullable JsonNullable<List<PhoneNumber>> phoneNumbers,
+            @JsonProperty("emails") @Nullable JsonNullable<List<Email>> emails) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.phoneNumbers = Optional.ofNullable(phoneNumbers)
+            .orElse(JsonNullable.undefined());
+        this.emails = Optional.ofNullable(emails)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedEcommerceCustomer() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The ID of the customer this entity is linked to.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Full name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * First name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * Last name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Company name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<PhoneNumber>> phoneNumbers() {
-        return (JsonNullable<List<PhoneNumber>>) phoneNumbers;
+        return this.phoneNumbers;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<Email>> emails() {
-        return (JsonNullable<List<Email>>) emails;
+        return this.emails;
     }
 
     public static Builder builder() {
@@ -157,116 +148,59 @@ public class LinkedEcommerceCustomer {
     /**
      * The ID of the customer this entity is linked to.
      */
-    public LinkedEcommerceCustomer withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedEcommerceCustomer withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * The ID of the customer this entity is linked to.
-     */
-    public LinkedEcommerceCustomer withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Full name of the customer
      */
-    public LinkedEcommerceCustomer withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedEcommerceCustomer withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Full name of the customer
-     */
-    public LinkedEcommerceCustomer withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * First name of the customer
      */
-    public LinkedEcommerceCustomer withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public LinkedEcommerceCustomer withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * First name of the customer
-     */
-    public LinkedEcommerceCustomer withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * Last name of the customer
      */
-    public LinkedEcommerceCustomer withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public LinkedEcommerceCustomer withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * Last name of the customer
-     */
-    public LinkedEcommerceCustomer withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Company name of the customer
      */
-    public LinkedEcommerceCustomer withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public LinkedEcommerceCustomer withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * Company name of the customer
-     */
-    public LinkedEcommerceCustomer withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
-    public LinkedEcommerceCustomer withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public LinkedEcommerceCustomer withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = JsonNullable.of(phoneNumbers);
         return this;
     }
 
-    public LinkedEcommerceCustomer withPhoneNumbers(JsonNullable<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = phoneNumbers;
-        return this;
-    }
 
-    public LinkedEcommerceCustomer withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public LinkedEcommerceCustomer withEmails(@Nullable List<Email> emails) {
         this.emails = JsonNullable.of(emails);
         return this;
     }
 
-    public LinkedEcommerceCustomer withEmails(JsonNullable<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = emails;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -310,147 +244,75 @@ public class LinkedEcommerceCustomer {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<? extends List<PhoneNumber>> phoneNumbers = JsonNullable.undefined();
+        private JsonNullable<List<PhoneNumber>> phoneNumbers;
 
-        private JsonNullable<? extends List<Email>> emails = JsonNullable.undefined();
+        private JsonNullable<List<Email>> emails;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the customer this entity is linked to.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * The ID of the customer this entity is linked to.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * Full name of the customer
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Full name of the customer
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * First name of the customer
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * First name of the customer
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * Last name of the customer
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * Last name of the customer
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Company name of the customer
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
-        /**
-         * Company name of the customer
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = JsonNullable.of(phoneNumbers);
             return this;
         }
 
-        public Builder phoneNumbers(JsonNullable<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = phoneNumbers;
-            return this;
-        }
-
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = JsonNullable.of(emails);
             return this;
         }
 
-        public Builder emails(JsonNullable<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = emails;
-            return this;
-        }
-
         public LinkedEcommerceCustomer build() {
-
             return new LinkedEcommerceCustomer(
                 id, name, firstName,
                 lastName, companyName, phoneNumbers,

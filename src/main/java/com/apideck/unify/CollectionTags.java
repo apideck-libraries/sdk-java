@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRequest
 import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllResponse;
 import com.apideck.unify.operations.IssueTrackingCollectionTagsAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class CollectionTags {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTagsAllResponse list(IssueTrackingCollectionTagsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public IssueTrackingCollectionTagsAllResponse list(@Nonnull IssueTrackingCollectionTagsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class CollectionTags {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionTagsAllResponse list(
-            IssueTrackingCollectionTagsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionTagsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation
               = new IssueTrackingCollectionTagsAllOperation(
                 sdkConfiguration,

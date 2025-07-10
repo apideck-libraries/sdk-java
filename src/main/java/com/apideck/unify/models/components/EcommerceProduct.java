@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class EcommerceProduct {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends ProductStatus> status;
+    private JsonNullable<ProductStatus> status;
 
     /**
      * The price of the product.
@@ -74,7 +74,7 @@ public class EcommerceProduct {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("images")
-    private JsonNullable<? extends List<Images>> images;
+    private JsonNullable<List<Images>> images;
 
     /**
      * The weight of the product.
@@ -95,33 +95,33 @@ public class EcommerceProduct {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private Optional<? extends List<EcommerceProductOptions>> options;
+    private List<EcommerceProductOptions> options;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("variants")
-    private Optional<? extends List<Variants>> variants;
+    private List<Variants> variants;
 
     /**
      * An array of tags for the product, used for organization and searching.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private Optional<? extends List<String>> tags;
+    private List<String> tags;
 
     /**
      * An array of categories for the product, used for organization and searching.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
-    private Optional<? extends List<EcommerceProductCategories>> categories;
+    private List<EcommerceProductCategories> categories;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The date and time when the object was created.
@@ -139,207 +139,179 @@ public class EcommerceProduct {
 
     @JsonCreator
     public EcommerceProduct(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("status") JsonNullable<? extends ProductStatus> status,
-            @JsonProperty("price") JsonNullable<String> price,
-            @JsonProperty("sku") JsonNullable<String> sku,
-            @JsonProperty("inventory_quantity") JsonNullable<String> inventoryQuantity,
-            @JsonProperty("images") JsonNullable<? extends List<Images>> images,
-            @JsonProperty("weight") JsonNullable<String> weight,
-            @JsonProperty("weight_unit") JsonNullable<String> weightUnit,
-            @JsonProperty("options") Optional<? extends List<EcommerceProductOptions>> options,
-            @JsonProperty("variants") Optional<? extends List<Variants>> variants,
-            @JsonProperty("tags") Optional<? extends List<String>> tags,
-            @JsonProperty("categories") Optional<? extends List<EcommerceProductCategories>> categories,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(price, "price");
-        Utils.checkNotNull(sku, "sku");
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-        Utils.checkNotNull(images, "images");
-        Utils.checkNotNull(weight, "weight");
-        Utils.checkNotNull(weightUnit, "weightUnit");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(variants, "variants");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(categories, "categories");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.status = status;
-        this.price = price;
-        this.sku = sku;
-        this.inventoryQuantity = inventoryQuantity;
-        this.images = images;
-        this.weight = weight;
-        this.weightUnit = weightUnit;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("status") @Nullable JsonNullable<ProductStatus> status,
+            @JsonProperty("price") @Nullable JsonNullable<String> price,
+            @JsonProperty("sku") @Nullable JsonNullable<String> sku,
+            @JsonProperty("inventory_quantity") @Nullable JsonNullable<String> inventoryQuantity,
+            @JsonProperty("images") @Nullable JsonNullable<List<Images>> images,
+            @JsonProperty("weight") @Nullable JsonNullable<String> weight,
+            @JsonProperty("weight_unit") @Nullable JsonNullable<String> weightUnit,
+            @JsonProperty("options") @Nullable List<EcommerceProductOptions> options,
+            @JsonProperty("variants") @Nullable List<Variants> variants,
+            @JsonProperty("tags") @Nullable List<String> tags,
+            @JsonProperty("categories") @Nullable List<EcommerceProductCategories> categories,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.price = Optional.ofNullable(price)
+            .orElse(JsonNullable.undefined());
+        this.sku = Optional.ofNullable(sku)
+            .orElse(JsonNullable.undefined());
+        this.inventoryQuantity = Optional.ofNullable(inventoryQuantity)
+            .orElse(JsonNullable.undefined());
+        this.images = Optional.ofNullable(images)
+            .orElse(JsonNullable.undefined());
+        this.weight = Optional.ofNullable(weight)
+            .orElse(JsonNullable.undefined());
+        this.weightUnit = Optional.ofNullable(weightUnit)
+            .orElse(JsonNullable.undefined());
         this.options = options;
         this.variants = variants;
         this.tags = tags;
         this.categories = categories;
-        this.customMappings = customMappings;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceProduct(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the product as it should be displayed to customers.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * A detailed description of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The current status of the product (active or archived).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ProductStatus> status() {
-        return (JsonNullable<ProductStatus>) status;
+        return this.status;
     }
 
     /**
      * The price of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> price() {
-        return price;
+        return this.price;
     }
 
     /**
      * The stock keeping unit of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> sku() {
-        return sku;
+        return this.sku;
     }
 
     /**
      * The quantity of the product in stock.
      */
-    @JsonIgnore
     public JsonNullable<String> inventoryQuantity() {
-        return inventoryQuantity;
+        return this.inventoryQuantity;
     }
 
     /**
      * An array of image URLs for the product.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<Images>> images() {
-        return (JsonNullable<List<Images>>) images;
+        return this.images;
     }
 
     /**
      * The weight of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> weight() {
-        return weight;
+        return this.weight;
     }
 
     /**
      * The unit of measurement for the weight of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> weightUnit() {
-        return weightUnit;
+        return this.weightUnit;
     }
 
     /**
      * An array of options for the product.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceProductOptions>> options() {
-        return (Optional<List<EcommerceProductOptions>>) options;
+        return Optional.ofNullable(this.options);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Variants>> variants() {
-        return (Optional<List<Variants>>) variants;
+        return Optional.ofNullable(this.variants);
     }
 
     /**
      * An array of tags for the product, used for organization and searching.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> tags() {
-        return (Optional<List<String>>) tags;
+        return Optional.ofNullable(this.tags);
     }
 
     /**
      * An array of categories for the product, used for organization and searching.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceProductCategories>> categories() {
-        return (Optional<List<EcommerceProductCategories>>) categories;
+        return Optional.ofNullable(this.categories);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -350,297 +322,152 @@ public class EcommerceProduct {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceProduct withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public EcommerceProduct withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The name of the product as it should be displayed to customers.
      */
-    public EcommerceProduct withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public EcommerceProduct withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the product as it should be displayed to customers.
-     */
-    public EcommerceProduct withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * A detailed description of the product.
      */
-    public EcommerceProduct withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public EcommerceProduct withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A detailed description of the product.
-     */
-    public EcommerceProduct withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The current status of the product (active or archived).
      */
-    public EcommerceProduct withStatus(ProductStatus status) {
-        Utils.checkNotNull(status, "status");
+    public EcommerceProduct withStatus(@Nullable ProductStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The current status of the product (active or archived).
-     */
-    public EcommerceProduct withStatus(JsonNullable<? extends ProductStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * The price of the product.
      */
-    public EcommerceProduct withPrice(String price) {
-        Utils.checkNotNull(price, "price");
+    public EcommerceProduct withPrice(@Nullable String price) {
         this.price = JsonNullable.of(price);
         return this;
     }
 
-    /**
-     * The price of the product.
-     */
-    public EcommerceProduct withPrice(JsonNullable<String> price) {
-        Utils.checkNotNull(price, "price");
-        this.price = price;
-        return this;
-    }
 
     /**
      * The stock keeping unit of the product.
      */
-    public EcommerceProduct withSku(String sku) {
-        Utils.checkNotNull(sku, "sku");
+    public EcommerceProduct withSku(@Nullable String sku) {
         this.sku = JsonNullable.of(sku);
         return this;
     }
 
-    /**
-     * The stock keeping unit of the product.
-     */
-    public EcommerceProduct withSku(JsonNullable<String> sku) {
-        Utils.checkNotNull(sku, "sku");
-        this.sku = sku;
-        return this;
-    }
 
     /**
      * The quantity of the product in stock.
      */
-    public EcommerceProduct withInventoryQuantity(String inventoryQuantity) {
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
+    public EcommerceProduct withInventoryQuantity(@Nullable String inventoryQuantity) {
         this.inventoryQuantity = JsonNullable.of(inventoryQuantity);
         return this;
     }
 
-    /**
-     * The quantity of the product in stock.
-     */
-    public EcommerceProduct withInventoryQuantity(JsonNullable<String> inventoryQuantity) {
-        Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-        this.inventoryQuantity = inventoryQuantity;
-        return this;
-    }
 
     /**
      * An array of image URLs for the product.
      */
-    public EcommerceProduct withImages(List<Images> images) {
-        Utils.checkNotNull(images, "images");
+    public EcommerceProduct withImages(@Nullable List<Images> images) {
         this.images = JsonNullable.of(images);
         return this;
     }
 
-    /**
-     * An array of image URLs for the product.
-     */
-    public EcommerceProduct withImages(JsonNullable<? extends List<Images>> images) {
-        Utils.checkNotNull(images, "images");
-        this.images = images;
-        return this;
-    }
 
     /**
      * The weight of the product.
      */
-    public EcommerceProduct withWeight(String weight) {
-        Utils.checkNotNull(weight, "weight");
+    public EcommerceProduct withWeight(@Nullable String weight) {
         this.weight = JsonNullable.of(weight);
         return this;
     }
 
-    /**
-     * The weight of the product.
-     */
-    public EcommerceProduct withWeight(JsonNullable<String> weight) {
-        Utils.checkNotNull(weight, "weight");
-        this.weight = weight;
-        return this;
-    }
 
     /**
      * The unit of measurement for the weight of the product.
      */
-    public EcommerceProduct withWeightUnit(String weightUnit) {
-        Utils.checkNotNull(weightUnit, "weightUnit");
+    public EcommerceProduct withWeightUnit(@Nullable String weightUnit) {
         this.weightUnit = JsonNullable.of(weightUnit);
         return this;
     }
 
-    /**
-     * The unit of measurement for the weight of the product.
-     */
-    public EcommerceProduct withWeightUnit(JsonNullable<String> weightUnit) {
-        Utils.checkNotNull(weightUnit, "weightUnit");
-        this.weightUnit = weightUnit;
-        return this;
-    }
 
     /**
      * An array of options for the product.
      */
-    public EcommerceProduct withOptions(List<EcommerceProductOptions> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = Optional.ofNullable(options);
-        return this;
-    }
-
-
-    /**
-     * An array of options for the product.
-     */
-    public EcommerceProduct withOptions(Optional<? extends List<EcommerceProductOptions>> options) {
-        Utils.checkNotNull(options, "options");
+    public EcommerceProduct withOptions(@Nullable List<EcommerceProductOptions> options) {
         this.options = options;
         return this;
     }
 
-    public EcommerceProduct withVariants(List<Variants> variants) {
-        Utils.checkNotNull(variants, "variants");
-        this.variants = Optional.ofNullable(variants);
-        return this;
-    }
 
-
-    public EcommerceProduct withVariants(Optional<? extends List<Variants>> variants) {
-        Utils.checkNotNull(variants, "variants");
+    public EcommerceProduct withVariants(@Nullable List<Variants> variants) {
         this.variants = variants;
         return this;
     }
 
-    /**
-     * An array of tags for the product, used for organization and searching.
-     */
-    public EcommerceProduct withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = Optional.ofNullable(tags);
-        return this;
-    }
-
 
     /**
      * An array of tags for the product, used for organization and searching.
      */
-    public EcommerceProduct withTags(Optional<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
+    public EcommerceProduct withTags(@Nullable List<String> tags) {
         this.tags = tags;
         return this;
     }
 
-    /**
-     * An array of categories for the product, used for organization and searching.
-     */
-    public EcommerceProduct withCategories(List<EcommerceProductCategories> categories) {
-        Utils.checkNotNull(categories, "categories");
-        this.categories = Optional.ofNullable(categories);
-        return this;
-    }
-
 
     /**
      * An array of categories for the product, used for organization and searching.
      */
-    public EcommerceProduct withCategories(Optional<? extends List<EcommerceProductCategories>> categories) {
-        Utils.checkNotNull(categories, "categories");
+    public EcommerceProduct withCategories(@Nullable List<EcommerceProductCategories> categories) {
         this.categories = categories;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public EcommerceProduct withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public EcommerceProduct withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public EcommerceProduct withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public EcommerceProduct withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public EcommerceProduct withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public EcommerceProduct withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public EcommerceProduct withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public EcommerceProduct withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public EcommerceProduct withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -709,352 +536,176 @@ public class EcommerceProduct {
 
         private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<? extends ProductStatus> status = JsonNullable.undefined();
+        private JsonNullable<ProductStatus> status;
 
-        private JsonNullable<String> price = JsonNullable.undefined();
+        private JsonNullable<String> price;
 
-        private JsonNullable<String> sku = JsonNullable.undefined();
+        private JsonNullable<String> sku;
 
-        private JsonNullable<String> inventoryQuantity = JsonNullable.undefined();
+        private JsonNullable<String> inventoryQuantity;
 
-        private JsonNullable<? extends List<Images>> images = JsonNullable.undefined();
+        private JsonNullable<List<Images>> images;
 
-        private JsonNullable<String> weight = JsonNullable.undefined();
+        private JsonNullable<String> weight;
 
-        private JsonNullable<String> weightUnit = JsonNullable.undefined();
+        private JsonNullable<String> weightUnit;
 
-        private Optional<? extends List<EcommerceProductOptions>> options = Optional.empty();
+        private List<EcommerceProductOptions> options;
 
-        private Optional<? extends List<Variants>> variants = Optional.empty();
+        private List<Variants> variants;
 
-        private Optional<? extends List<String>> tags = Optional.empty();
+        private List<String> tags;
 
-        private Optional<? extends List<EcommerceProductCategories>> categories = Optional.empty();
+        private List<EcommerceProductCategories> categories;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The name of the product as it should be displayed to customers.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the product as it should be displayed to customers.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * A detailed description of the product.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A detailed description of the product.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The current status of the product (active or archived).
          */
-        public Builder status(ProductStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ProductStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The current status of the product (active or archived).
-         */
-        public Builder status(JsonNullable<? extends ProductStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * The price of the product.
          */
-        public Builder price(String price) {
-            Utils.checkNotNull(price, "price");
+        public Builder price(@Nullable String price) {
             this.price = JsonNullable.of(price);
             return this;
         }
 
         /**
-         * The price of the product.
-         */
-        public Builder price(JsonNullable<String> price) {
-            Utils.checkNotNull(price, "price");
-            this.price = price;
-            return this;
-        }
-
-
-        /**
          * The stock keeping unit of the product.
          */
-        public Builder sku(String sku) {
-            Utils.checkNotNull(sku, "sku");
+        public Builder sku(@Nullable String sku) {
             this.sku = JsonNullable.of(sku);
             return this;
         }
 
         /**
-         * The stock keeping unit of the product.
-         */
-        public Builder sku(JsonNullable<String> sku) {
-            Utils.checkNotNull(sku, "sku");
-            this.sku = sku;
-            return this;
-        }
-
-
-        /**
          * The quantity of the product in stock.
          */
-        public Builder inventoryQuantity(String inventoryQuantity) {
-            Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
+        public Builder inventoryQuantity(@Nullable String inventoryQuantity) {
             this.inventoryQuantity = JsonNullable.of(inventoryQuantity);
             return this;
         }
 
         /**
-         * The quantity of the product in stock.
-         */
-        public Builder inventoryQuantity(JsonNullable<String> inventoryQuantity) {
-            Utils.checkNotNull(inventoryQuantity, "inventoryQuantity");
-            this.inventoryQuantity = inventoryQuantity;
-            return this;
-        }
-
-
-        /**
          * An array of image URLs for the product.
          */
-        public Builder images(List<Images> images) {
-            Utils.checkNotNull(images, "images");
+        public Builder images(@Nullable List<Images> images) {
             this.images = JsonNullable.of(images);
             return this;
         }
 
         /**
-         * An array of image URLs for the product.
-         */
-        public Builder images(JsonNullable<? extends List<Images>> images) {
-            Utils.checkNotNull(images, "images");
-            this.images = images;
-            return this;
-        }
-
-
-        /**
          * The weight of the product.
          */
-        public Builder weight(String weight) {
-            Utils.checkNotNull(weight, "weight");
+        public Builder weight(@Nullable String weight) {
             this.weight = JsonNullable.of(weight);
             return this;
         }
 
         /**
-         * The weight of the product.
-         */
-        public Builder weight(JsonNullable<String> weight) {
-            Utils.checkNotNull(weight, "weight");
-            this.weight = weight;
-            return this;
-        }
-
-
-        /**
          * The unit of measurement for the weight of the product.
          */
-        public Builder weightUnit(String weightUnit) {
-            Utils.checkNotNull(weightUnit, "weightUnit");
+        public Builder weightUnit(@Nullable String weightUnit) {
             this.weightUnit = JsonNullable.of(weightUnit);
             return this;
         }
 
         /**
-         * The unit of measurement for the weight of the product.
-         */
-        public Builder weightUnit(JsonNullable<String> weightUnit) {
-            Utils.checkNotNull(weightUnit, "weightUnit");
-            this.weightUnit = weightUnit;
-            return this;
-        }
-
-
-        /**
          * An array of options for the product.
          */
-        public Builder options(List<EcommerceProductOptions> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = Optional.ofNullable(options);
-            return this;
-        }
-
-        /**
-         * An array of options for the product.
-         */
-        public Builder options(Optional<? extends List<EcommerceProductOptions>> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<EcommerceProductOptions> options) {
             this.options = options;
             return this;
         }
 
-
-        public Builder variants(List<Variants> variants) {
-            Utils.checkNotNull(variants, "variants");
-            this.variants = Optional.ofNullable(variants);
-            return this;
-        }
-
-        public Builder variants(Optional<? extends List<Variants>> variants) {
-            Utils.checkNotNull(variants, "variants");
+        public Builder variants(@Nullable List<Variants> variants) {
             this.variants = variants;
             return this;
         }
 
-
         /**
          * An array of tags for the product, used for organization and searching.
          */
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = Optional.ofNullable(tags);
-            return this;
-        }
-
-        /**
-         * An array of tags for the product, used for organization and searching.
-         */
-        public Builder tags(Optional<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = tags;
             return this;
         }
 
-
         /**
          * An array of categories for the product, used for organization and searching.
          */
-        public Builder categories(List<EcommerceProductCategories> categories) {
-            Utils.checkNotNull(categories, "categories");
-            this.categories = Optional.ofNullable(categories);
-            return this;
-        }
-
-        /**
-         * An array of categories for the product, used for organization and searching.
-         */
-        public Builder categories(Optional<? extends List<EcommerceProductCategories>> categories) {
-            Utils.checkNotNull(categories, "categories");
+        public Builder categories(@Nullable List<EcommerceProductCategories> categories) {
             this.categories = categories;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public EcommerceProduct build() {
-
             return new EcommerceProduct(
                 id, name, description,
                 status, price, sku,

@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
@@ -19,48 +19,42 @@ public class RequestCountAllocation {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unify")
-    private Optional<Double> unify;
+    private Double unify;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("proxy")
-    private Optional<Double> proxy;
+    private Double proxy;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("vault")
-    private Optional<Double> vault;
+    private Double vault;
 
     @JsonCreator
     public RequestCountAllocation(
-            @JsonProperty("unify") Optional<Double> unify,
-            @JsonProperty("proxy") Optional<Double> proxy,
-            @JsonProperty("vault") Optional<Double> vault) {
-        Utils.checkNotNull(unify, "unify");
-        Utils.checkNotNull(proxy, "proxy");
-        Utils.checkNotNull(vault, "vault");
+            @JsonProperty("unify") @Nullable Double unify,
+            @JsonProperty("proxy") @Nullable Double proxy,
+            @JsonProperty("vault") @Nullable Double vault) {
         this.unify = unify;
         this.proxy = proxy;
         this.vault = vault;
     }
     
     public RequestCountAllocation() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
-    @JsonIgnore
     public Optional<Double> unify() {
-        return unify;
+        return Optional.ofNullable(this.unify);
     }
 
-    @JsonIgnore
     public Optional<Double> proxy() {
-        return proxy;
+        return Optional.ofNullable(this.proxy);
     }
 
-    @JsonIgnore
     public Optional<Double> vault() {
-        return vault;
+        return Optional.ofNullable(this.vault);
     }
 
     public static Builder builder() {
@@ -68,44 +62,23 @@ public class RequestCountAllocation {
     }
 
 
-    public RequestCountAllocation withUnify(double unify) {
-        Utils.checkNotNull(unify, "unify");
-        this.unify = Optional.ofNullable(unify);
-        return this;
-    }
-
-
-    public RequestCountAllocation withUnify(Optional<Double> unify) {
-        Utils.checkNotNull(unify, "unify");
+    public RequestCountAllocation withUnify(@Nullable Double unify) {
         this.unify = unify;
         return this;
     }
 
-    public RequestCountAllocation withProxy(double proxy) {
-        Utils.checkNotNull(proxy, "proxy");
-        this.proxy = Optional.ofNullable(proxy);
-        return this;
-    }
 
-
-    public RequestCountAllocation withProxy(Optional<Double> proxy) {
-        Utils.checkNotNull(proxy, "proxy");
+    public RequestCountAllocation withProxy(@Nullable Double proxy) {
         this.proxy = proxy;
         return this;
     }
 
-    public RequestCountAllocation withVault(double vault) {
-        Utils.checkNotNull(vault, "vault");
-        this.vault = Optional.ofNullable(vault);
-        return this;
-    }
 
-
-    public RequestCountAllocation withVault(Optional<Double> vault) {
-        Utils.checkNotNull(vault, "vault");
+    public RequestCountAllocation withVault(@Nullable Double vault) {
         this.vault = vault;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -139,57 +112,32 @@ public class RequestCountAllocation {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Double> unify = Optional.empty();
+        private Double unify;
 
-        private Optional<Double> proxy = Optional.empty();
+        private Double proxy;
 
-        private Optional<Double> vault = Optional.empty();
+        private Double vault;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder unify(double unify) {
-            Utils.checkNotNull(unify, "unify");
-            this.unify = Optional.ofNullable(unify);
-            return this;
-        }
-
-        public Builder unify(Optional<Double> unify) {
-            Utils.checkNotNull(unify, "unify");
+        public Builder unify(@Nullable Double unify) {
             this.unify = unify;
             return this;
         }
 
-
-        public Builder proxy(double proxy) {
-            Utils.checkNotNull(proxy, "proxy");
-            this.proxy = Optional.ofNullable(proxy);
-            return this;
-        }
-
-        public Builder proxy(Optional<Double> proxy) {
-            Utils.checkNotNull(proxy, "proxy");
+        public Builder proxy(@Nullable Double proxy) {
             this.proxy = proxy;
             return this;
         }
 
-
-        public Builder vault(double vault) {
-            Utils.checkNotNull(vault, "vault");
-            this.vault = Optional.ofNullable(vault);
-            return this;
-        }
-
-        public Builder vault(Optional<Double> vault) {
-            Utils.checkNotNull(vault, "vault");
+        public Builder vault(@Nullable Double vault) {
             this.vault = vault;
             return this;
         }
 
         public RequestCountAllocation build() {
-
             return new RequestCountAllocation(
                 unify, proxy, vault);
         }

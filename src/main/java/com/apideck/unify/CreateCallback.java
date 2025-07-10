@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultCreateCallbackStateRequestBuilde
 import com.apideck.unify.models.operations.VaultCreateCallbackStateResponse;
 import com.apideck.unify.operations.VaultCreateCallbackStateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class CreateCallback {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultCreateCallbackStateResponse state(VaultCreateCallbackStateRequest request) throws Exception {
-        return state(request, Optional.empty());
+    public VaultCreateCallbackStateResponse state(@Nonnull VaultCreateCallbackStateRequest request) throws Exception {
+        return state(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class CreateCallback {
      * @throws Exception if the API call fails
      */
     public VaultCreateCallbackStateResponse state(
-            VaultCreateCallbackStateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultCreateCallbackStateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultCreateCallbackStateRequest, VaultCreateCallbackStateResponse> operation
               = new VaultCreateCallbackStateOperation(
                 sdkConfiguration,

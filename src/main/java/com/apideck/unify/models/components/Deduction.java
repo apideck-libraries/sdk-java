@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -32,32 +33,30 @@ public class Deduction {
 
     @JsonCreator
     public Deduction(
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("amount") JsonNullable<Double> amount) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(amount, "amount");
-        this.name = name;
-        this.amount = amount;
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("amount") @Nullable JsonNullable<Double> amount) {
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.amount = Optional.ofNullable(amount)
+            .orElse(JsonNullable.undefined());
     }
     
     public Deduction() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null);
     }
 
     /**
      * The name of the deduction.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The amount deducted.
      */
-    @JsonIgnore
     public JsonNullable<Double> amount() {
-        return amount;
+        return this.amount;
     }
 
     public static Builder builder() {
@@ -68,38 +67,20 @@ public class Deduction {
     /**
      * The name of the deduction.
      */
-    public Deduction withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Deduction withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the deduction.
-     */
-    public Deduction withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The amount deducted.
      */
-    public Deduction withAmount(double amount) {
-        Utils.checkNotNull(amount, "amount");
+    public Deduction withAmount(@Nullable Double amount) {
         this.amount = JsonNullable.of(amount);
         return this;
     }
 
-    /**
-     * The amount deducted.
-     */
-    public Deduction withAmount(JsonNullable<Double> amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = amount;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,54 +112,31 @@ public class Deduction {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<Double> amount = JsonNullable.undefined();
+        private JsonNullable<Double> amount;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the deduction.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the deduction.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The amount deducted.
          */
-        public Builder amount(double amount) {
-            Utils.checkNotNull(amount, "amount");
+        public Builder amount(@Nullable Double amount) {
             this.amount = JsonNullable.of(amount);
             return this;
         }
 
-        /**
-         * The amount deducted.
-         */
-        public Builder amount(JsonNullable<Double> amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = amount;
-            return this;
-        }
-
         public Deduction build() {
-
             return new Deduction(
                 name, amount);
         }

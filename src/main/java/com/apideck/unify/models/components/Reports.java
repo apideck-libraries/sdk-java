@@ -5,15 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Optional;
@@ -26,21 +26,21 @@ public class Reports {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the report
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("report_name")
-    private Optional<String> reportName;
+    private String reportName;
 
     /**
      * The start date of the report
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * The start date of the report
@@ -53,7 +53,7 @@ public class Reports {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * A balance sheet assets account represents the financial position of a company at a specific point in time.
@@ -78,14 +78,14 @@ public class Reports {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("net_assets")
-    private Optional<Double> netAssets;
+    private Double netAssets;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -120,190 +120,167 @@ public class Reports {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("uncategorized_items")
-    private Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems;
+    private BalanceSheetUncategorizedItemsAccount uncategorizedItems;
 
     @JsonCreator
     public Reports(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("report_name") Optional<String> reportName,
-            @JsonProperty("start_date") Optional<String> startDate,
-            @JsonProperty("end_date") String endDate,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("assets") BalanceSheetAssetsAccount assets,
-            @JsonProperty("liabilities") BalanceSheetLiabilitiesAccount liabilities,
-            @JsonProperty("equity") BalanceSheetEquityAccount equity,
-            @JsonProperty("net_assets") Optional<Double> netAssets,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("uncategorized_items") Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(reportName, "reportName");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(assets, "assets");
-        Utils.checkNotNull(liabilities, "liabilities");
-        Utils.checkNotNull(equity, "equity");
-        Utils.checkNotNull(netAssets, "netAssets");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("report_name") @Nullable String reportName,
+            @JsonProperty("start_date") @Nullable String startDate,
+            @JsonProperty("end_date") @Nonnull String endDate,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("assets") @Nonnull BalanceSheetAssetsAccount assets,
+            @JsonProperty("liabilities") @Nonnull BalanceSheetLiabilitiesAccount liabilities,
+            @JsonProperty("equity") @Nonnull BalanceSheetEquityAccount equity,
+            @JsonProperty("net_assets") @Nullable Double netAssets,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("uncategorized_items") @Nullable BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
         this.id = id;
         this.reportName = reportName;
         this.startDate = startDate;
-        this.endDate = endDate;
-        this.currency = currency;
-        this.assets = assets;
-        this.liabilities = liabilities;
-        this.equity = equity;
+        this.endDate = Optional.ofNullable(endDate)
+            .orElseThrow(() -> new IllegalArgumentException("endDate cannot be null"));
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.assets = Optional.ofNullable(assets)
+            .orElseThrow(() -> new IllegalArgumentException("assets cannot be null"));
+        this.liabilities = Optional.ofNullable(liabilities)
+            .orElseThrow(() -> new IllegalArgumentException("liabilities cannot be null"));
+        this.equity = Optional.ofNullable(equity)
+            .orElseThrow(() -> new IllegalArgumentException("equity cannot be null"));
         this.netAssets = netAssets;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.uncategorizedItems = uncategorizedItems;
     }
     
     public Reports(
-            String endDate,
-            BalanceSheetAssetsAccount assets,
-            BalanceSheetLiabilitiesAccount liabilities,
-            BalanceSheetEquityAccount equity) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            endDate, JsonNullable.undefined(), assets,
-            liabilities, equity, Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            @Nonnull String endDate,
+            @Nonnull BalanceSheetAssetsAccount assets,
+            @Nonnull BalanceSheetLiabilitiesAccount liabilities,
+            @Nonnull BalanceSheetEquityAccount equity) {
+        this(null, null, null,
+            endDate, null, assets,
+            liabilities, equity, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the report
      */
-    @JsonIgnore
     public Optional<String> reportName() {
-        return reportName;
+        return Optional.ofNullable(this.reportName);
     }
 
     /**
      * The start date of the report
      */
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * The start date of the report
      */
-    @JsonIgnore
     public String endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * A balance sheet assets account represents the financial position of a company at a specific point in time.
      */
-    @JsonIgnore
     public BalanceSheetAssetsAccount assets() {
-        return assets;
+        return this.assets;
     }
 
     /**
      * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
      */
-    @JsonIgnore
     public BalanceSheetLiabilitiesAccount liabilities() {
-        return liabilities;
+        return this.liabilities;
     }
 
     /**
      * A balance sheet equity account represents the financial position of a company at a specific point in time.
      */
-    @JsonIgnore
     public BalanceSheetEquityAccount equity() {
-        return equity;
+        return this.equity;
     }
 
     /**
      * The net assets of the balance sheet
      */
-    @JsonIgnore
     public Optional<Double> netAssets() {
-        return netAssets;
+        return Optional.ofNullable(this.netAssets);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BalanceSheetUncategorizedItemsAccount> uncategorizedItems() {
-        return (Optional<BalanceSheetUncategorizedItemsAccount>) uncategorizedItems;
+        return Optional.ofNullable(this.uncategorizedItems);
     }
 
     public static Builder builder() {
@@ -314,120 +291,71 @@ public class Reports {
     /**
      * A unique identifier for an object.
      */
-    public Reports withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Reports withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Reports withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The name of the report
-     */
-    public Reports withReportName(String reportName) {
-        Utils.checkNotNull(reportName, "reportName");
-        this.reportName = Optional.ofNullable(reportName);
-        return this;
-    }
-
 
     /**
      * The name of the report
      */
-    public Reports withReportName(Optional<String> reportName) {
-        Utils.checkNotNull(reportName, "reportName");
+    public Reports withReportName(@Nullable String reportName) {
         this.reportName = reportName;
         return this;
     }
 
-    /**
-     * The start date of the report
-     */
-    public Reports withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
 
     /**
      * The start date of the report
      */
-    public Reports withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public Reports withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
+
     /**
      * The start date of the report
      */
-    public Reports withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
+    public Reports withEndDate(@Nonnull String endDate) {
+        this.endDate = Utils.checkNotNull(endDate, "endDate");
         return this;
     }
+
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public Reports withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public Reports withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public Reports withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * A balance sheet assets account represents the financial position of a company at a specific point in time.
      */
-    public Reports withAssets(BalanceSheetAssetsAccount assets) {
-        Utils.checkNotNull(assets, "assets");
-        this.assets = assets;
+    public Reports withAssets(@Nonnull BalanceSheetAssetsAccount assets) {
+        this.assets = Utils.checkNotNull(assets, "assets");
         return this;
     }
+
 
     /**
      * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
      */
-    public Reports withLiabilities(BalanceSheetLiabilitiesAccount liabilities) {
-        Utils.checkNotNull(liabilities, "liabilities");
-        this.liabilities = liabilities;
+    public Reports withLiabilities(@Nonnull BalanceSheetLiabilitiesAccount liabilities) {
+        this.liabilities = Utils.checkNotNull(liabilities, "liabilities");
         return this;
     }
+
 
     /**
      * A balance sheet equity account represents the financial position of a company at a specific point in time.
      */
-    public Reports withEquity(BalanceSheetEquityAccount equity) {
-        Utils.checkNotNull(equity, "equity");
-        this.equity = equity;
-        return this;
-    }
-
-    /**
-     * The net assets of the balance sheet
-     */
-    public Reports withNetAssets(double netAssets) {
-        Utils.checkNotNull(netAssets, "netAssets");
-        this.netAssets = Optional.ofNullable(netAssets);
+    public Reports withEquity(@Nonnull BalanceSheetEquityAccount equity) {
+        this.equity = Utils.checkNotNull(equity, "equity");
         return this;
     }
 
@@ -435,120 +363,65 @@ public class Reports {
     /**
      * The net assets of the balance sheet
      */
-    public Reports withNetAssets(Optional<Double> netAssets) {
-        Utils.checkNotNull(netAssets, "netAssets");
+    public Reports withNetAssets(@Nullable Double netAssets) {
         this.netAssets = netAssets;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Reports withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Reports withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Reports withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public Reports withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Reports withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Reports withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Reports withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Reports withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Reports withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Reports withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Reports withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Reports withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Reports withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Reports withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Reports withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
      */
-    public Reports withUncategorizedItems(BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
-        Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
-        this.uncategorizedItems = Optional.ofNullable(uncategorizedItems);
-        return this;
-    }
-
-
-    /**
-     * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
-     */
-    public Reports withUncategorizedItems(Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems) {
-        Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
+    public Reports withUncategorizedItems(@Nullable BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
         this.uncategorizedItems = uncategorizedItems;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -610,15 +483,15 @@ public class Reports {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> reportName = Optional.empty();
+        private String reportName;
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
         private String endDate;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
         private BalanceSheetAssetsAccount assets;
 
@@ -626,275 +499,145 @@ public class Reports {
 
         private BalanceSheetEquityAccount equity;
 
-        private Optional<Double> netAssets = Optional.empty();
+        private Double netAssets;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems = Optional.empty();
+        private BalanceSheetUncategorizedItemsAccount uncategorizedItems;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the report
          */
-        public Builder reportName(String reportName) {
-            Utils.checkNotNull(reportName, "reportName");
-            this.reportName = Optional.ofNullable(reportName);
-            return this;
-        }
-
-        /**
-         * The name of the report
-         */
-        public Builder reportName(Optional<String> reportName) {
-            Utils.checkNotNull(reportName, "reportName");
+        public Builder reportName(@Nullable String reportName) {
             this.reportName = reportName;
             return this;
         }
 
-
         /**
          * The start date of the report
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * The start date of the report
-         */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * The start date of the report
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
+        public Builder endDate(@Nonnull String endDate) {
+            this.endDate = Utils.checkNotNull(endDate, "endDate");
             return this;
         }
-
 
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * A balance sheet assets account represents the financial position of a company at a specific point in time.
          */
-        public Builder assets(BalanceSheetAssetsAccount assets) {
-            Utils.checkNotNull(assets, "assets");
-            this.assets = assets;
+        public Builder assets(@Nonnull BalanceSheetAssetsAccount assets) {
+            this.assets = Utils.checkNotNull(assets, "assets");
             return this;
         }
-
 
         /**
          * A balance sheet liabilities account represents the financial position of a company at a specific point in time.
          */
-        public Builder liabilities(BalanceSheetLiabilitiesAccount liabilities) {
-            Utils.checkNotNull(liabilities, "liabilities");
-            this.liabilities = liabilities;
+        public Builder liabilities(@Nonnull BalanceSheetLiabilitiesAccount liabilities) {
+            this.liabilities = Utils.checkNotNull(liabilities, "liabilities");
             return this;
         }
-
 
         /**
          * A balance sheet equity account represents the financial position of a company at a specific point in time.
          */
-        public Builder equity(BalanceSheetEquityAccount equity) {
-            Utils.checkNotNull(equity, "equity");
-            this.equity = equity;
-            return this;
-        }
-
-
-        /**
-         * The net assets of the balance sheet
-         */
-        public Builder netAssets(double netAssets) {
-            Utils.checkNotNull(netAssets, "netAssets");
-            this.netAssets = Optional.ofNullable(netAssets);
+        public Builder equity(@Nonnull BalanceSheetEquityAccount equity) {
+            this.equity = Utils.checkNotNull(equity, "equity");
             return this;
         }
 
         /**
          * The net assets of the balance sheet
          */
-        public Builder netAssets(Optional<Double> netAssets) {
-            Utils.checkNotNull(netAssets, "netAssets");
+        public Builder netAssets(@Nullable Double netAssets) {
             this.netAssets = netAssets;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
          */
-        public Builder uncategorizedItems(BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
-            Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
-            this.uncategorizedItems = Optional.ofNullable(uncategorizedItems);
-            return this;
-        }
-
-        /**
-         * A balance sheet uncategorized items account represents the financial position of a company at a specific point in time.
-         */
-        public Builder uncategorizedItems(Optional<? extends BalanceSheetUncategorizedItemsAccount> uncategorizedItems) {
-            Utils.checkNotNull(uncategorizedItems, "uncategorizedItems");
+        public Builder uncategorizedItems(@Nullable BalanceSheetUncategorizedItemsAccount uncategorizedItems) {
             this.uncategorizedItems = uncategorizedItems;
             return this;
         }
 
         public Reports build() {
-
             return new Reports(
                 id, reportName, startDate,
                 endDate, currency, assets,

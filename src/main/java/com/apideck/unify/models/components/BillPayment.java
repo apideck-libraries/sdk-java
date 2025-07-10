@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class BillPayment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
@@ -55,7 +55,7 @@ public class BillPayment {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("total_amount")
-    private Optional<Double> totalAmount;
+    private JsonNullable<Double> totalAmount;
 
     /**
      * Optional transaction reference message ie: Debit remittance detail.
@@ -88,21 +88,21 @@ public class BillPayment {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account")
-    private JsonNullable<? extends LinkedLedgerAccount> account;
+    private JsonNullable<LinkedLedgerAccount> account;
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("transaction_date")
-    private Optional<OffsetDateTime> transactionDate;
+    private JsonNullable<OffsetDateTime> transactionDate;
 
     /**
      * The supplier this entity is linked to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier")
-    private JsonNullable<? extends LinkedSupplier> supplier;
+    private JsonNullable<LinkedSupplier> supplier;
 
     /**
      * The company or subsidiary id the transaction belongs to
@@ -123,19 +123,19 @@ public class BillPayment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends PaymentStatus> status;
+    private PaymentStatus status;
 
     /**
      * Type of payment
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends BillPaymentType> type;
+    private BillPaymentType type;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allocations")
-    private Optional<? extends List<Allocations>> allocations;
+    private List<Allocations> allocations;
 
     /**
      * Note associated with the transaction
@@ -156,12 +156,12 @@ public class BillPayment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -182,7 +182,7 @@ public class BillPayment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -217,344 +217,298 @@ public class BillPayment {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public BillPayment(
-            @JsonProperty("id") String id,
-            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
-            @JsonProperty("total_amount") Optional<Double> totalAmount,
-            @JsonProperty("reference") JsonNullable<String> reference,
-            @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
-            @JsonProperty("payment_method_reference") JsonNullable<String> paymentMethodReference,
-            @JsonProperty("payment_method_id") JsonNullable<String> paymentMethodId,
-            @JsonProperty("account") JsonNullable<? extends LinkedLedgerAccount> account,
-            @JsonProperty("transaction_date") Optional<OffsetDateTime> transactionDate,
-            @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("reconciled") JsonNullable<Boolean> reconciled,
-            @JsonProperty("status") Optional<? extends PaymentStatus> status,
-            @JsonProperty("type") Optional<? extends BillPaymentType> type,
-            @JsonProperty("allocations") Optional<? extends List<Allocations>> allocations,
-            @JsonProperty("note") JsonNullable<String> note,
-            @JsonProperty("number") JsonNullable<String> number,
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("display_id") JsonNullable<String> displayId,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(currencyRate, "currencyRate");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(reference, "reference");
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        Utils.checkNotNull(paymentMethodReference, "paymentMethodReference");
-        Utils.checkNotNull(paymentMethodId, "paymentMethodId");
-        Utils.checkNotNull(account, "account");
-        Utils.checkNotNull(transactionDate, "transactionDate");
-        Utils.checkNotNull(supplier, "supplier");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(reconciled, "reconciled");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(allocations, "allocations");
-        Utils.checkNotNull(note, "note");
-        Utils.checkNotNull(number, "number");
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(displayId, "displayId");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.id = id;
-        this.downstreamId = downstreamId;
-        this.currency = currency;
-        this.currencyRate = currencyRate;
-        this.totalAmount = totalAmount;
-        this.reference = reference;
-        this.paymentMethod = paymentMethod;
-        this.paymentMethodReference = paymentMethodReference;
-        this.paymentMethodId = paymentMethodId;
-        this.account = account;
-        this.transactionDate = transactionDate;
-        this.supplier = supplier;
-        this.companyId = companyId;
-        this.reconciled = reconciled;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("downstream_id") @Nullable JsonNullable<String> downstreamId,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("currency_rate") @Nullable JsonNullable<Double> currencyRate,
+            @JsonProperty("total_amount") @Nullable Double totalAmount,
+            @JsonProperty("reference") @Nullable JsonNullable<String> reference,
+            @JsonProperty("payment_method") @Nullable JsonNullable<String> paymentMethod,
+            @JsonProperty("payment_method_reference") @Nullable JsonNullable<String> paymentMethodReference,
+            @JsonProperty("payment_method_id") @Nullable JsonNullable<String> paymentMethodId,
+            @JsonProperty("account") @Nullable JsonNullable<LinkedLedgerAccount> account,
+            @JsonProperty("transaction_date") @Nullable OffsetDateTime transactionDate,
+            @JsonProperty("supplier") @Nullable JsonNullable<LinkedSupplier> supplier,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("reconciled") @Nullable JsonNullable<Boolean> reconciled,
+            @JsonProperty("status") @Nullable PaymentStatus status,
+            @JsonProperty("type") @Nullable BillPaymentType type,
+            @JsonProperty("allocations") @Nullable List<Allocations> allocations,
+            @JsonProperty("note") @Nullable JsonNullable<String> note,
+            @JsonProperty("number") @Nullable JsonNullable<String> number,
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("display_id") @Nullable JsonNullable<String> displayId,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.downstreamId = Optional.ofNullable(downstreamId)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.currencyRate = Optional.ofNullable(currencyRate)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = JsonNullable.of(totalAmount);
+        this.reference = Optional.ofNullable(reference)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethod = Optional.ofNullable(paymentMethod)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethodReference = Optional.ofNullable(paymentMethodReference)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethodId = Optional.ofNullable(paymentMethodId)
+            .orElse(JsonNullable.undefined());
+        this.account = Optional.ofNullable(account)
+            .orElse(JsonNullable.undefined());
+        this.transactionDate = JsonNullable.of(transactionDate);
+        this.supplier = Optional.ofNullable(supplier)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.reconciled = Optional.ofNullable(reconciled)
+            .orElse(JsonNullable.undefined());
         this.status = status;
         this.type = type;
         this.allocations = allocations;
-        this.note = note;
-        this.number = number;
-        this.trackingCategories = trackingCategories;
+        this.note = Optional.ofNullable(note)
+            .orElse(JsonNullable.undefined());
+        this.number = Optional.ofNullable(number)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
-        this.rowVersion = rowVersion;
-        this.displayId = displayId;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.displayId = Optional.ofNullable(displayId)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public BillPayment(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The third-party API ID of original entity
      */
-    @JsonIgnore
     public JsonNullable<String> downstreamId() {
-        return downstreamId;
+        return this.downstreamId;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
      */
-    @JsonIgnore
     public JsonNullable<Double> currencyRate() {
-        return currencyRate;
+        return this.currencyRate;
     }
 
     /**
      * The total amount of the transaction or record
      */
-    @JsonIgnore
-    public Optional<Double> totalAmount() {
-        return totalAmount;
+    public JsonNullable<Double> totalAmount() {
+        return this.totalAmount;
     }
 
     /**
      * Optional transaction reference message ie: Debit remittance detail.
      */
-    @JsonIgnore
     public JsonNullable<String> reference() {
-        return reference;
+        return this.reference;
     }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     /**
      * Optional reference message returned by payment method on processing
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethodReference() {
-        return paymentMethodReference;
+        return this.paymentMethodReference;
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethodId() {
-        return paymentMethodId;
+        return this.paymentMethodId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccount> account() {
-        return (JsonNullable<LinkedLedgerAccount>) account;
+        return this.account;
     }
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    @JsonIgnore
-    public Optional<OffsetDateTime> transactionDate() {
-        return transactionDate;
+    public JsonNullable<OffsetDateTime> transactionDate() {
+        return this.transactionDate;
     }
 
     /**
      * The supplier this entity is linked to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedSupplier> supplier() {
-        return (JsonNullable<LinkedSupplier>) supplier;
+        return this.supplier;
     }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * Indicates if the transaction has been reconciled.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> reconciled() {
-        return reconciled;
+        return this.reconciled;
     }
 
     /**
      * Status of payment
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<PaymentStatus> status() {
-        return (Optional<PaymentStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Type of payment
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BillPaymentType> type() {
-        return (Optional<BillPaymentType>) type;
+        return Optional.ofNullable(this.type);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Allocations>> allocations() {
-        return (Optional<List<Allocations>>) allocations;
+        return Optional.ofNullable(this.allocations);
     }
 
     /**
      * Note associated with the transaction
      */
-    @JsonIgnore
     public JsonNullable<String> note() {
-        return note;
+        return this.note;
     }
 
     /**
      * Number associated with the transaction
      */
-    @JsonIgnore
     public JsonNullable<String> number() {
-        return number;
+        return this.number;
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * Id to be displayed.
      */
-    @JsonIgnore
     public JsonNullable<String> displayId() {
-        return displayId;
+        return this.displayId;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -565,504 +519,254 @@ public class BillPayment {
     /**
      * A unique identifier for an object.
      */
-    public BillPayment withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public BillPayment withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The third-party API ID of original entity
      */
-    public BillPayment withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public BillPayment withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = JsonNullable.of(downstreamId);
         return this;
     }
 
-    /**
-     * The third-party API ID of original entity
-     */
-    public BillPayment withDownstreamId(JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = downstreamId;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public BillPayment withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public BillPayment withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public BillPayment withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
      */
-    public BillPayment withCurrencyRate(double currencyRate) {
-        Utils.checkNotNull(currencyRate, "currencyRate");
+    public BillPayment withCurrencyRate(@Nullable Double currencyRate) {
         this.currencyRate = JsonNullable.of(currencyRate);
         return this;
     }
 
-    /**
-     * Currency Exchange Rate at the time entity was recorded/generated.
-     */
-    public BillPayment withCurrencyRate(JsonNullable<Double> currencyRate) {
-        Utils.checkNotNull(currencyRate, "currencyRate");
-        this.currencyRate = currencyRate;
-        return this;
-    }
 
     /**
      * The total amount of the transaction or record
      */
-    public BillPayment withTotalAmount(double totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
+    public BillPayment withTotalAmount(@Nullable Double totalAmount) {
+        this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
-
-    /**
-     * The total amount of the transaction or record
-     */
-    public BillPayment withTotalAmount(Optional<Double> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
 
     /**
      * Optional transaction reference message ie: Debit remittance detail.
      */
-    public BillPayment withReference(String reference) {
-        Utils.checkNotNull(reference, "reference");
+    public BillPayment withReference(@Nullable String reference) {
         this.reference = JsonNullable.of(reference);
         return this;
     }
 
-    /**
-     * Optional transaction reference message ie: Debit remittance detail.
-     */
-    public BillPayment withReference(JsonNullable<String> reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = reference;
-        return this;
-    }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    public BillPayment withPaymentMethod(String paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
+    public BillPayment withPaymentMethod(@Nullable String paymentMethod) {
         this.paymentMethod = JsonNullable.of(paymentMethod);
         return this;
     }
 
-    /**
-     * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-     */
-    public BillPayment withPaymentMethod(JsonNullable<String> paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        this.paymentMethod = paymentMethod;
-        return this;
-    }
 
     /**
      * Optional reference message returned by payment method on processing
      */
-    public BillPayment withPaymentMethodReference(String paymentMethodReference) {
-        Utils.checkNotNull(paymentMethodReference, "paymentMethodReference");
+    public BillPayment withPaymentMethodReference(@Nullable String paymentMethodReference) {
         this.paymentMethodReference = JsonNullable.of(paymentMethodReference);
         return this;
     }
 
-    /**
-     * Optional reference message returned by payment method on processing
-     */
-    public BillPayment withPaymentMethodReference(JsonNullable<String> paymentMethodReference) {
-        Utils.checkNotNull(paymentMethodReference, "paymentMethodReference");
-        this.paymentMethodReference = paymentMethodReference;
-        return this;
-    }
 
     /**
      * A unique identifier for an object.
      */
-    public BillPayment withPaymentMethodId(String paymentMethodId) {
-        Utils.checkNotNull(paymentMethodId, "paymentMethodId");
+    public BillPayment withPaymentMethodId(@Nullable String paymentMethodId) {
         this.paymentMethodId = JsonNullable.of(paymentMethodId);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public BillPayment withPaymentMethodId(JsonNullable<String> paymentMethodId) {
-        Utils.checkNotNull(paymentMethodId, "paymentMethodId");
-        this.paymentMethodId = paymentMethodId;
-        return this;
-    }
 
-    public BillPayment withAccount(LinkedLedgerAccount account) {
-        Utils.checkNotNull(account, "account");
+    public BillPayment withAccount(@Nullable LinkedLedgerAccount account) {
         this.account = JsonNullable.of(account);
         return this;
     }
 
-    public BillPayment withAccount(JsonNullable<? extends LinkedLedgerAccount> account) {
-        Utils.checkNotNull(account, "account");
-        this.account = account;
-        return this;
-    }
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    public BillPayment withTransactionDate(OffsetDateTime transactionDate) {
-        Utils.checkNotNull(transactionDate, "transactionDate");
-        this.transactionDate = Optional.ofNullable(transactionDate);
+    public BillPayment withTransactionDate(@Nullable OffsetDateTime transactionDate) {
+        this.transactionDate = JsonNullable.of(transactionDate);
         return this;
     }
 
-
-    /**
-     * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-     */
-    public BillPayment withTransactionDate(Optional<OffsetDateTime> transactionDate) {
-        Utils.checkNotNull(transactionDate, "transactionDate");
-        this.transactionDate = transactionDate;
-        return this;
-    }
 
     /**
      * The supplier this entity is linked to.
      */
-    public BillPayment withSupplier(LinkedSupplier supplier) {
-        Utils.checkNotNull(supplier, "supplier");
+    public BillPayment withSupplier(@Nullable LinkedSupplier supplier) {
         this.supplier = JsonNullable.of(supplier);
         return this;
     }
 
-    /**
-     * The supplier this entity is linked to.
-     */
-    public BillPayment withSupplier(JsonNullable<? extends LinkedSupplier> supplier) {
-        Utils.checkNotNull(supplier, "supplier");
-        this.supplier = supplier;
-        return this;
-    }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    public BillPayment withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public BillPayment withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company or subsidiary id the transaction belongs to
-     */
-    public BillPayment withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * Indicates if the transaction has been reconciled.
      */
-    public BillPayment withReconciled(boolean reconciled) {
-        Utils.checkNotNull(reconciled, "reconciled");
+    public BillPayment withReconciled(@Nullable Boolean reconciled) {
         this.reconciled = JsonNullable.of(reconciled);
         return this;
     }
 
-    /**
-     * Indicates if the transaction has been reconciled.
-     */
-    public BillPayment withReconciled(JsonNullable<Boolean> reconciled) {
-        Utils.checkNotNull(reconciled, "reconciled");
-        this.reconciled = reconciled;
-        return this;
-    }
 
     /**
      * Status of payment
      */
-    public BillPayment withStatus(PaymentStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Status of payment
-     */
-    public BillPayment withStatus(Optional<? extends PaymentStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public BillPayment withStatus(@Nullable PaymentStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Type of payment
-     */
-    public BillPayment withType(BillPaymentType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
 
     /**
      * Type of payment
      */
-    public BillPayment withType(Optional<? extends BillPaymentType> type) {
-        Utils.checkNotNull(type, "type");
+    public BillPayment withType(@Nullable BillPaymentType type) {
         this.type = type;
         return this;
     }
 
-    public BillPayment withAllocations(List<Allocations> allocations) {
-        Utils.checkNotNull(allocations, "allocations");
-        this.allocations = Optional.ofNullable(allocations);
-        return this;
-    }
 
-
-    public BillPayment withAllocations(Optional<? extends List<Allocations>> allocations) {
-        Utils.checkNotNull(allocations, "allocations");
+    public BillPayment withAllocations(@Nullable List<Allocations> allocations) {
         this.allocations = allocations;
         return this;
     }
 
+
     /**
      * Note associated with the transaction
      */
-    public BillPayment withNote(String note) {
-        Utils.checkNotNull(note, "note");
+    public BillPayment withNote(@Nullable String note) {
         this.note = JsonNullable.of(note);
         return this;
     }
 
-    /**
-     * Note associated with the transaction
-     */
-    public BillPayment withNote(JsonNullable<String> note) {
-        Utils.checkNotNull(note, "note");
-        this.note = note;
-        return this;
-    }
 
     /**
      * Number associated with the transaction
      */
-    public BillPayment withNumber(String number) {
-        Utils.checkNotNull(number, "number");
+    public BillPayment withNumber(@Nullable String number) {
         this.number = JsonNullable.of(number);
         return this;
     }
 
-    /**
-     * Number associated with the transaction
-     */
-    public BillPayment withNumber(JsonNullable<String> number) {
-        Utils.checkNotNull(number, "number");
-        this.number = number;
-        return this;
-    }
 
     /**
      * A list of linked tracking categories.
      */
-    public BillPayment withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public BillPayment withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public BillPayment withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
-        return this;
-    }
 
-    public BillPayment withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public BillPayment withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public BillPayment withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public BillPayment withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public BillPayment withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public BillPayment withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * Id to be displayed.
      */
-    public BillPayment withDisplayId(String displayId) {
-        Utils.checkNotNull(displayId, "displayId");
+    public BillPayment withDisplayId(@Nullable String displayId) {
         this.displayId = JsonNullable.of(displayId);
         return this;
     }
 
-    /**
-     * Id to be displayed.
-     */
-    public BillPayment withDisplayId(JsonNullable<String> displayId) {
-        Utils.checkNotNull(displayId, "displayId");
-        this.displayId = displayId;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public BillPayment withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public BillPayment withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public BillPayment withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public BillPayment withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public BillPayment withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public BillPayment withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public BillPayment withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public BillPayment withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public BillPayment withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public BillPayment withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public BillPayment withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public BillPayment withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public BillPayment withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public BillPayment withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public BillPayment withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public BillPayment withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public BillPayment withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public BillPayment withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1159,592 +863,290 @@ public class BillPayment {
 
         private String id;
 
-        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+        private JsonNullable<String> downstreamId;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<Double> currencyRate = JsonNullable.undefined();
+        private JsonNullable<Double> currencyRate;
 
-        private Optional<Double> totalAmount = Optional.empty();
+        private Double totalAmount;
 
-        private JsonNullable<String> reference = JsonNullable.undefined();
+        private JsonNullable<String> reference;
 
-        private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethod;
 
-        private JsonNullable<String> paymentMethodReference = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethodReference;
 
-        private JsonNullable<String> paymentMethodId = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethodId;
 
-        private JsonNullable<? extends LinkedLedgerAccount> account = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccount> account;
 
-        private Optional<OffsetDateTime> transactionDate = Optional.empty();
+        private OffsetDateTime transactionDate;
 
-        private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
+        private JsonNullable<LinkedSupplier> supplier;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<Boolean> reconciled = JsonNullable.undefined();
+        private JsonNullable<Boolean> reconciled;
 
-        private Optional<? extends PaymentStatus> status = Optional.empty();
+        private PaymentStatus status;
 
-        private Optional<? extends BillPaymentType> type = Optional.empty();
+        private BillPaymentType type;
 
-        private Optional<? extends List<Allocations>> allocations = Optional.empty();
+        private List<Allocations> allocations;
 
-        private JsonNullable<String> note = JsonNullable.undefined();
+        private JsonNullable<String> note;
 
-        private JsonNullable<String> number = JsonNullable.undefined();
+        private JsonNullable<String> number;
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<String> displayId = JsonNullable.undefined();
+        private JsonNullable<String> displayId;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The third-party API ID of original entity
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = JsonNullable.of(downstreamId);
             return this;
         }
 
         /**
-         * The third-party API ID of original entity
-         */
-        public Builder downstreamId(JsonNullable<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = downstreamId;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * Currency Exchange Rate at the time entity was recorded/generated.
          */
-        public Builder currencyRate(double currencyRate) {
-            Utils.checkNotNull(currencyRate, "currencyRate");
+        public Builder currencyRate(@Nullable Double currencyRate) {
             this.currencyRate = JsonNullable.of(currencyRate);
             return this;
         }
 
         /**
-         * Currency Exchange Rate at the time entity was recorded/generated.
-         */
-        public Builder currencyRate(JsonNullable<Double> currencyRate) {
-            Utils.checkNotNull(currencyRate, "currencyRate");
-            this.currencyRate = currencyRate;
-            return this;
-        }
-
-
-        /**
          * The total amount of the transaction or record
          */
-        public Builder totalAmount(double totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
-            return this;
-        }
-
-        /**
-         * The total amount of the transaction or record
-         */
-        public Builder totalAmount(Optional<Double> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable Double totalAmount) {
             this.totalAmount = totalAmount;
             return this;
         }
 
-
         /**
          * Optional transaction reference message ie: Debit remittance detail.
          */
-        public Builder reference(String reference) {
-            Utils.checkNotNull(reference, "reference");
+        public Builder reference(@Nullable String reference) {
             this.reference = JsonNullable.of(reference);
             return this;
         }
 
         /**
-         * Optional transaction reference message ie: Debit remittance detail.
-         */
-        public Builder reference(JsonNullable<String> reference) {
-            Utils.checkNotNull(reference, "reference");
-            this.reference = reference;
-            return this;
-        }
-
-
-        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
-        public Builder paymentMethod(String paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
+        public Builder paymentMethod(@Nullable String paymentMethod) {
             this.paymentMethod = JsonNullable.of(paymentMethod);
             return this;
         }
 
         /**
-         * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-         */
-        public Builder paymentMethod(JsonNullable<String> paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
-            this.paymentMethod = paymentMethod;
-            return this;
-        }
-
-
-        /**
          * Optional reference message returned by payment method on processing
          */
-        public Builder paymentMethodReference(String paymentMethodReference) {
-            Utils.checkNotNull(paymentMethodReference, "paymentMethodReference");
+        public Builder paymentMethodReference(@Nullable String paymentMethodReference) {
             this.paymentMethodReference = JsonNullable.of(paymentMethodReference);
             return this;
         }
 
         /**
-         * Optional reference message returned by payment method on processing
-         */
-        public Builder paymentMethodReference(JsonNullable<String> paymentMethodReference) {
-            Utils.checkNotNull(paymentMethodReference, "paymentMethodReference");
-            this.paymentMethodReference = paymentMethodReference;
-            return this;
-        }
-
-
-        /**
          * A unique identifier for an object.
          */
-        public Builder paymentMethodId(String paymentMethodId) {
-            Utils.checkNotNull(paymentMethodId, "paymentMethodId");
+        public Builder paymentMethodId(@Nullable String paymentMethodId) {
             this.paymentMethodId = JsonNullable.of(paymentMethodId);
             return this;
         }
 
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder paymentMethodId(JsonNullable<String> paymentMethodId) {
-            Utils.checkNotNull(paymentMethodId, "paymentMethodId");
-            this.paymentMethodId = paymentMethodId;
-            return this;
-        }
-
-
-        public Builder account(LinkedLedgerAccount account) {
-            Utils.checkNotNull(account, "account");
+        public Builder account(@Nullable LinkedLedgerAccount account) {
             this.account = JsonNullable.of(account);
             return this;
         }
 
-        public Builder account(JsonNullable<? extends LinkedLedgerAccount> account) {
-            Utils.checkNotNull(account, "account");
-            this.account = account;
-            return this;
-        }
-
-
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
          */
-        public Builder transactionDate(OffsetDateTime transactionDate) {
-            Utils.checkNotNull(transactionDate, "transactionDate");
-            this.transactionDate = Optional.ofNullable(transactionDate);
-            return this;
-        }
-
-        /**
-         * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
-         */
-        public Builder transactionDate(Optional<OffsetDateTime> transactionDate) {
-            Utils.checkNotNull(transactionDate, "transactionDate");
+        public Builder transactionDate(@Nullable OffsetDateTime transactionDate) {
             this.transactionDate = transactionDate;
             return this;
         }
 
-
         /**
          * The supplier this entity is linked to.
          */
-        public Builder supplier(LinkedSupplier supplier) {
-            Utils.checkNotNull(supplier, "supplier");
+        public Builder supplier(@Nullable LinkedSupplier supplier) {
             this.supplier = JsonNullable.of(supplier);
             return this;
         }
 
         /**
-         * The supplier this entity is linked to.
-         */
-        public Builder supplier(JsonNullable<? extends LinkedSupplier> supplier) {
-            Utils.checkNotNull(supplier, "supplier");
-            this.supplier = supplier;
-            return this;
-        }
-
-
-        /**
          * The company or subsidiary id the transaction belongs to
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * Indicates if the transaction has been reconciled.
          */
-        public Builder reconciled(boolean reconciled) {
-            Utils.checkNotNull(reconciled, "reconciled");
+        public Builder reconciled(@Nullable Boolean reconciled) {
             this.reconciled = JsonNullable.of(reconciled);
             return this;
         }
 
         /**
-         * Indicates if the transaction has been reconciled.
-         */
-        public Builder reconciled(JsonNullable<Boolean> reconciled) {
-            Utils.checkNotNull(reconciled, "reconciled");
-            this.reconciled = reconciled;
-            return this;
-        }
-
-
-        /**
          * Status of payment
          */
-        public Builder status(PaymentStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of payment
-         */
-        public Builder status(Optional<? extends PaymentStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable PaymentStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Type of payment
          */
-        public Builder type(BillPaymentType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * Type of payment
-         */
-        public Builder type(Optional<? extends BillPaymentType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable BillPaymentType type) {
             this.type = type;
             return this;
         }
 
-
-        public Builder allocations(List<Allocations> allocations) {
-            Utils.checkNotNull(allocations, "allocations");
-            this.allocations = Optional.ofNullable(allocations);
-            return this;
-        }
-
-        public Builder allocations(Optional<? extends List<Allocations>> allocations) {
-            Utils.checkNotNull(allocations, "allocations");
+        public Builder allocations(@Nullable List<Allocations> allocations) {
             this.allocations = allocations;
             return this;
         }
 
-
         /**
          * Note associated with the transaction
          */
-        public Builder note(String note) {
-            Utils.checkNotNull(note, "note");
+        public Builder note(@Nullable String note) {
             this.note = JsonNullable.of(note);
             return this;
         }
 
         /**
-         * Note associated with the transaction
-         */
-        public Builder note(JsonNullable<String> note) {
-            Utils.checkNotNull(note, "note");
-            this.note = note;
-            return this;
-        }
-
-
-        /**
          * Number associated with the transaction
          */
-        public Builder number(String number) {
-            Utils.checkNotNull(number, "number");
+        public Builder number(@Nullable String number) {
             this.number = JsonNullable.of(number);
             return this;
         }
 
         /**
-         * Number associated with the transaction
-         */
-        public Builder number(JsonNullable<String> number) {
-            Utils.checkNotNull(number, "number");
-            this.number = number;
-            return this;
-        }
-
-
-        /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
-        /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * Id to be displayed.
          */
-        public Builder displayId(String displayId) {
-            Utils.checkNotNull(displayId, "displayId");
+        public Builder displayId(@Nullable String displayId) {
             this.displayId = JsonNullable.of(displayId);
             return this;
         }
 
         /**
-         * Id to be displayed.
-         */
-        public Builder displayId(JsonNullable<String> displayId) {
-            Utils.checkNotNull(displayId, "displayId");
-            this.displayId = displayId;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public BillPayment build() {
-
             return new BillPayment(
                 id, downstreamId, currency,
                 currencyRate, totalAmount, reference,

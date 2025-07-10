@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class VaultConsumerRequestCountsAllRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the consumer to return
@@ -39,58 +40,53 @@ public class VaultConsumerRequestCountsAllRequest {
 
     @JsonCreator
     public VaultConsumerRequestCountsAllRequest(
-            Optional<String> appId,
-            String consumerId,
-            String startDatetime,
-            String endDatetime) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        Utils.checkNotNull(endDatetime, "endDatetime");
+            @Nullable String appId,
+            @Nonnull String consumerId,
+            @Nonnull String startDatetime,
+            @Nonnull String endDatetime) {
         this.appId = appId;
-        this.consumerId = consumerId;
-        this.startDatetime = startDatetime;
-        this.endDatetime = endDatetime;
+        this.consumerId = Optional.ofNullable(consumerId)
+            .orElseThrow(() -> new IllegalArgumentException("consumerId cannot be null"));
+        this.startDatetime = Optional.ofNullable(startDatetime)
+            .orElseThrow(() -> new IllegalArgumentException("startDatetime cannot be null"));
+        this.endDatetime = Optional.ofNullable(endDatetime)
+            .orElseThrow(() -> new IllegalArgumentException("endDatetime cannot be null"));
     }
     
     public VaultConsumerRequestCountsAllRequest(
-            String consumerId,
-            String startDatetime,
-            String endDatetime) {
-        this(Optional.empty(), consumerId, startDatetime,
+            @Nonnull String consumerId,
+            @Nonnull String startDatetime,
+            @Nonnull String endDatetime) {
+        this(null, consumerId, startDatetime,
             endDatetime);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the consumer to return
      */
-    @JsonIgnore
     public String consumerId() {
-        return consumerId;
+        return this.consumerId;
     }
 
     /**
      * Scopes results to requests that happened after datetime
      */
-    @JsonIgnore
     public String startDatetime() {
-        return startDatetime;
+        return this.startDatetime;
     }
 
     /**
      * Scopes results to requests that happened before datetime
      */
-    @JsonIgnore
     public String endDatetime() {
-        return endDatetime;
+        return this.endDatetime;
     }
 
     public static Builder builder() {
@@ -101,48 +97,38 @@ public class VaultConsumerRequestCountsAllRequest {
     /**
      * The ID of your Unify application
      */
-    public VaultConsumerRequestCountsAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConsumerRequestCountsAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConsumerRequestCountsAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the consumer to return
      */
-    public VaultConsumerRequestCountsAllRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
+    public VaultConsumerRequestCountsAllRequest withConsumerId(@Nonnull String consumerId) {
+        this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
         return this;
     }
+
 
     /**
      * Scopes results to requests that happened after datetime
      */
-    public VaultConsumerRequestCountsAllRequest withStartDatetime(String startDatetime) {
-        Utils.checkNotNull(startDatetime, "startDatetime");
-        this.startDatetime = startDatetime;
+    public VaultConsumerRequestCountsAllRequest withStartDatetime(@Nonnull String startDatetime) {
+        this.startDatetime = Utils.checkNotNull(startDatetime, "startDatetime");
         return this;
     }
+
 
     /**
      * Scopes results to requests that happened before datetime
      */
-    public VaultConsumerRequestCountsAllRequest withEndDatetime(String endDatetime) {
-        Utils.checkNotNull(endDatetime, "endDatetime");
-        this.endDatetime = endDatetime;
+    public VaultConsumerRequestCountsAllRequest withEndDatetime(@Nonnull String endDatetime) {
+        this.endDatetime = Utils.checkNotNull(endDatetime, "endDatetime");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -179,7 +165,7 @@ public class VaultConsumerRequestCountsAllRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String consumerId;
 
@@ -191,57 +177,39 @@ public class VaultConsumerRequestCountsAllRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the consumer to return
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = consumerId;
+        public Builder consumerId(@Nonnull String consumerId) {
+            this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
             return this;
         }
-
 
         /**
          * Scopes results to requests that happened after datetime
          */
-        public Builder startDatetime(String startDatetime) {
-            Utils.checkNotNull(startDatetime, "startDatetime");
-            this.startDatetime = startDatetime;
+        public Builder startDatetime(@Nonnull String startDatetime) {
+            this.startDatetime = Utils.checkNotNull(startDatetime, "startDatetime");
             return this;
         }
-
 
         /**
          * Scopes results to requests that happened before datetime
          */
-        public Builder endDatetime(String endDatetime) {
-            Utils.checkNotNull(endDatetime, "endDatetime");
-            this.endDatetime = endDatetime;
+        public Builder endDatetime(@Nonnull String endDatetime) {
+            this.endDatetime = Utils.checkNotNull(endDatetime, "endDatetime");
             return this;
         }
 
         public VaultConsumerRequestCountsAllRequest build() {
-
             return new VaultConsumerRequestCountsAllRequest(
                 appId, consumerId, startDatetime,
                 endDatetime);

@@ -109,7 +109,6 @@ import com.apideck.unify.models.operations.AccountingCustomersAddResponse;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -243,19 +242,19 @@ public class Application {
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(JsonNullable.of(null))
+                            .value(null)
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(JsonNullable.of(null))
+                            .value(null)
                             .build(),
                         CustomField.builder()
                             .id("2389328923893298")
                             .name("employee_level")
                             .description("Employee Level")
-                            .value(JsonNullable.of(null))
+                            .value(null)
                             .build()))
                     .rowVersion("1-12345")
                     .passThrough(List.of(

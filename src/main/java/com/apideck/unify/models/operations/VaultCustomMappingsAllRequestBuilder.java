@@ -10,93 +10,71 @@ import com.apideck.unify.operations.VaultCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultCustomMappingsAllRequestBuilder {
-
-    private Optional<String> consumerId = Optional.empty();
-    private Optional<String> appId = Optional.empty();
-    private String unifiedApi;
-    private String serviceId;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultCustomMappingsAllRequest.Builder pojoBuilder;
+    private VaultCustomMappingsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultCustomMappingsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultCustomMappingsAllRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultCustomMappingsAllRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.of(consumerId);
+
+    public VaultCustomMappingsAllRequestBuilder consumerId(@Nullable String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder consumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-                
-    public VaultCustomMappingsAllRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public VaultCustomMappingsAllRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public VaultCustomMappingsAllRequestBuilder unifiedApi(@Nonnull String unifiedApi) {
+        this.pojoBuilder.unifiedApi(unifiedApi);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder unifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public VaultCustomMappingsAllRequestBuilder serviceId(@Nonnull String serviceId) {
+        this.pojoBuilder.serviceId(serviceId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder serviceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
-        return this;
-    }
-                
     public VaultCustomMappingsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultCustomMappingsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultCustomMappingsAllRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultCustomMappingsAllRequest buildRequest() {
-
-        VaultCustomMappingsAllRequest request = new VaultCustomMappingsAllRequest(consumerId,
-            appId,
-            unifiedApi,
-            serviceId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultCustomMappingsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
               = new VaultCustomMappingsAllOperation(
                 sdkConfiguration,
                 options);
-        VaultCustomMappingsAllRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class ApplicantsFilter {
      * Id of the job to filter on
      */
     @SpeakeasyMetadata("queryParam:name=job_id")
-    private Optional<String> jobId;
+    private String jobId;
 
     @JsonCreator
     public ApplicantsFilter(
-            Optional<String> jobId) {
-        Utils.checkNotNull(jobId, "jobId");
+            @Nullable String jobId) {
         this.jobId = jobId;
     }
     
     public ApplicantsFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Id of the job to filter on
      */
-    @JsonIgnore
     public Optional<String> jobId() {
-        return jobId;
+        return Optional.ofNullable(this.jobId);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class ApplicantsFilter {
     /**
      * Id of the job to filter on
      */
-    public ApplicantsFilter withJobId(String jobId) {
-        Utils.checkNotNull(jobId, "jobId");
-        this.jobId = Optional.ofNullable(jobId);
-        return this;
-    }
-
-
-    /**
-     * Id of the job to filter on
-     */
-    public ApplicantsFilter withJobId(Optional<String> jobId) {
-        Utils.checkNotNull(jobId, "jobId");
+    public ApplicantsFilter withJobId(@Nullable String jobId) {
         this.jobId = jobId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class ApplicantsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> jobId = Optional.empty();
+        private String jobId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Id of the job to filter on
          */
-        public Builder jobId(String jobId) {
-            Utils.checkNotNull(jobId, "jobId");
-            this.jobId = Optional.ofNullable(jobId);
-            return this;
-        }
-
-        /**
-         * Id of the job to filter on
-         */
-        public Builder jobId(Optional<String> jobId) {
-            Utils.checkNotNull(jobId, "jobId");
+        public Builder jobId(@Nullable String jobId) {
             this.jobId = jobId;
             return this;
         }
 
         public ApplicantsFilter build() {
-
             return new ApplicantsFilter(
                 jobId);
         }

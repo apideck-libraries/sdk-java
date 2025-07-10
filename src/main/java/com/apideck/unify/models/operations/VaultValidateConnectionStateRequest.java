@@ -6,10 +6,10 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -18,13 +18,13 @@ public class VaultValidateConnectionStateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Service ID of the resource to return
@@ -40,70 +40,61 @@ public class VaultValidateConnectionStateRequest {
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
-    private Optional<? extends VaultValidateConnectionStateRequestBody> requestBody;
+    private VaultValidateConnectionStateRequestBody requestBody;
 
     @JsonCreator
     public VaultValidateConnectionStateRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String serviceId,
-            String unifiedApi,
-            Optional<? extends VaultValidateConnectionStateRequestBody> requestBody) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(requestBody, "requestBody");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi,
+            @Nullable VaultValidateConnectionStateRequestBody requestBody) {
         this.consumerId = consumerId;
         this.appId = appId;
-        this.serviceId = serviceId;
-        this.unifiedApi = unifiedApi;
+        this.serviceId = Optional.ofNullable(serviceId)
+            .orElseThrow(() -> new IllegalArgumentException("serviceId cannot be null"));
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
         this.requestBody = requestBody;
     }
     
     public VaultValidateConnectionStateRequest(
-            String serviceId,
-            String unifiedApi) {
-        this(Optional.empty(), Optional.empty(), serviceId,
-            unifiedApi, Optional.empty());
+            @Nonnull String serviceId,
+            @Nonnull String unifiedApi) {
+        this(null, null, serviceId,
+            unifiedApi, null);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Service ID of the resource to return
      */
-    @JsonIgnore
     public String serviceId() {
-        return serviceId;
+        return this.serviceId;
     }
 
     /**
      * Unified API
      */
-    @JsonIgnore
     public String unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<VaultValidateConnectionStateRequestBody> requestBody() {
-        return (Optional<VaultValidateConnectionStateRequestBody>) requestBody;
+        return Optional.ofNullable(this.requestBody);
     }
 
     public static Builder builder() {
@@ -114,71 +105,44 @@ public class VaultValidateConnectionStateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultValidateConnectionStateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultValidateConnectionStateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultValidateConnectionStateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultValidateConnectionStateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultValidateConnectionStateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultValidateConnectionStateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * Service ID of the resource to return
      */
-    public VaultValidateConnectionStateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = serviceId;
+    public VaultValidateConnectionStateRequest withServiceId(@Nonnull String serviceId) {
+        this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
         return this;
     }
+
 
     /**
      * Unified API
      */
-    public VaultValidateConnectionStateRequest withUnifiedApi(String unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
-        return this;
-    }
-
-    public VaultValidateConnectionStateRequest withRequestBody(VaultValidateConnectionStateRequestBody requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = Optional.ofNullable(requestBody);
+    public VaultValidateConnectionStateRequest withUnifiedApi(@Nonnull String unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
 
 
-    public VaultValidateConnectionStateRequest withRequestBody(Optional<? extends VaultValidateConnectionStateRequestBody> requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
+    public VaultValidateConnectionStateRequest withRequestBody(@Nullable VaultValidateConnectionStateRequestBody requestBody) {
         this.requestBody = requestBody;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -217,93 +181,58 @@ public class VaultValidateConnectionStateRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String serviceId;
 
         private String unifiedApi;
 
-        private Optional<? extends VaultValidateConnectionStateRequestBody> requestBody = Optional.empty();
+        private VaultValidateConnectionStateRequestBody requestBody;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Service ID of the resource to return
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = serviceId;
+        public Builder serviceId(@Nonnull String serviceId) {
+            this.serviceId = Utils.checkNotNull(serviceId, "serviceId");
             return this;
         }
-
 
         /**
          * Unified API
          */
-        public Builder unifiedApi(String unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull String unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
 
-
-        public Builder requestBody(VaultValidateConnectionStateRequestBody requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = Optional.ofNullable(requestBody);
-            return this;
-        }
-
-        public Builder requestBody(Optional<? extends VaultValidateConnectionStateRequestBody> requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
+        public Builder requestBody(@Nullable VaultValidateConnectionStateRequestBody requestBody) {
             this.requestBody = requestBody;
             return this;
         }
 
         public VaultValidateConnectionStateRequest build() {
-
             return new VaultValidateConnectionStateRequest(
                 consumerId, appId, serviceId,
                 unifiedApi, requestBody);

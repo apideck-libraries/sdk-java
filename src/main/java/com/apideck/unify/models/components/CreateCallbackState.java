@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -20,25 +20,23 @@ public class CreateCallbackState {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("redirect_uri")
-    private Optional<String> redirectUri;
+    private String redirectUri;
 
     @JsonCreator
     public CreateCallbackState(
-            @JsonProperty("redirect_uri") Optional<String> redirectUri) {
-        Utils.checkNotNull(redirectUri, "redirectUri");
+            @JsonProperty("redirect_uri") @Nullable String redirectUri) {
         this.redirectUri = redirectUri;
     }
     
     public CreateCallbackState() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * The redirect URI to be used after the connection is created.
      */
-    @JsonIgnore
     public Optional<String> redirectUri() {
-        return redirectUri;
+        return Optional.ofNullable(this.redirectUri);
     }
 
     public static Builder builder() {
@@ -49,21 +47,11 @@ public class CreateCallbackState {
     /**
      * The redirect URI to be used after the connection is created.
      */
-    public CreateCallbackState withRedirectUri(String redirectUri) {
-        Utils.checkNotNull(redirectUri, "redirectUri");
-        this.redirectUri = Optional.ofNullable(redirectUri);
-        return this;
-    }
-
-
-    /**
-     * The redirect URI to be used after the connection is created.
-     */
-    public CreateCallbackState withRedirectUri(Optional<String> redirectUri) {
-        Utils.checkNotNull(redirectUri, "redirectUri");
+    public CreateCallbackState withRedirectUri(@Nullable String redirectUri) {
         this.redirectUri = redirectUri;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -93,33 +81,21 @@ public class CreateCallbackState {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> redirectUri = Optional.empty();
+        private String redirectUri;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The redirect URI to be used after the connection is created.
          */
-        public Builder redirectUri(String redirectUri) {
-            Utils.checkNotNull(redirectUri, "redirectUri");
-            this.redirectUri = Optional.ofNullable(redirectUri);
-            return this;
-        }
-
-        /**
-         * The redirect URI to be used after the connection is created.
-         */
-        public Builder redirectUri(Optional<String> redirectUri) {
-            Utils.checkNotNull(redirectUri, "redirectUri");
+        public Builder redirectUri(@Nullable String redirectUri) {
             this.redirectUri = redirectUri;
             return this;
         }
 
         public CreateCallbackState build() {
-
             return new CreateCallbackState(
                 redirectUri);
         }

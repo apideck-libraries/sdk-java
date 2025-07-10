@@ -6,10 +6,11 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -28,34 +29,31 @@ public class LogsFilter {
 
     @JsonCreator
     public LogsFilter(
-            JsonNullable<String> connectorId,
-            JsonNullable<Double> statusCode,
-            JsonNullable<String> excludeUnifiedApis) {
-        Utils.checkNotNull(connectorId, "connectorId");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
-        this.connectorId = connectorId;
-        this.statusCode = statusCode;
-        this.excludeUnifiedApis = excludeUnifiedApis;
+            @Nullable JsonNullable<String> connectorId,
+            @Nullable JsonNullable<Double> statusCode,
+            @Nullable JsonNullable<String> excludeUnifiedApis) {
+        this.connectorId = Optional.ofNullable(connectorId)
+            .orElse(JsonNullable.undefined());
+        this.statusCode = Optional.ofNullable(statusCode)
+            .orElse(JsonNullable.undefined());
+        this.excludeUnifiedApis = Optional.ofNullable(excludeUnifiedApis)
+            .orElse(JsonNullable.undefined());
     }
     
     public LogsFilter() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
-    @JsonIgnore
     public JsonNullable<String> connectorId() {
-        return connectorId;
+        return this.connectorId;
     }
 
-    @JsonIgnore
     public JsonNullable<Double> statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
-    @JsonIgnore
     public JsonNullable<String> excludeUnifiedApis() {
-        return excludeUnifiedApis;
+        return this.excludeUnifiedApis;
     }
 
     public static Builder builder() {
@@ -63,41 +61,23 @@ public class LogsFilter {
     }
 
 
-    public LogsFilter withConnectorId(String connectorId) {
-        Utils.checkNotNull(connectorId, "connectorId");
+    public LogsFilter withConnectorId(@Nullable String connectorId) {
         this.connectorId = JsonNullable.of(connectorId);
         return this;
     }
 
-    public LogsFilter withConnectorId(JsonNullable<String> connectorId) {
-        Utils.checkNotNull(connectorId, "connectorId");
-        this.connectorId = connectorId;
-        return this;
-    }
 
-    public LogsFilter withStatusCode(double statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
+    public LogsFilter withStatusCode(@Nullable Double statusCode) {
         this.statusCode = JsonNullable.of(statusCode);
         return this;
     }
 
-    public LogsFilter withStatusCode(JsonNullable<Double> statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
-        this.statusCode = statusCode;
-        return this;
-    }
 
-    public LogsFilter withExcludeUnifiedApis(String excludeUnifiedApis) {
-        Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
+    public LogsFilter withExcludeUnifiedApis(@Nullable String excludeUnifiedApis) {
         this.excludeUnifiedApis = JsonNullable.of(excludeUnifiedApis);
         return this;
     }
 
-    public LogsFilter withExcludeUnifiedApis(JsonNullable<String> excludeUnifiedApis) {
-        Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
-        this.excludeUnifiedApis = excludeUnifiedApis;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,57 +111,32 @@ public class LogsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> connectorId = JsonNullable.undefined();
+        private JsonNullable<String> connectorId;
 
-        private JsonNullable<Double> statusCode = JsonNullable.undefined();
+        private JsonNullable<Double> statusCode;
 
-        private JsonNullable<String> excludeUnifiedApis = JsonNullable.undefined();
+        private JsonNullable<String> excludeUnifiedApis;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder connectorId(String connectorId) {
-            Utils.checkNotNull(connectorId, "connectorId");
+        public Builder connectorId(@Nullable String connectorId) {
             this.connectorId = JsonNullable.of(connectorId);
             return this;
         }
 
-        public Builder connectorId(JsonNullable<String> connectorId) {
-            Utils.checkNotNull(connectorId, "connectorId");
-            this.connectorId = connectorId;
-            return this;
-        }
-
-
-        public Builder statusCode(double statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
+        public Builder statusCode(@Nullable Double statusCode) {
             this.statusCode = JsonNullable.of(statusCode);
             return this;
         }
 
-        public Builder statusCode(JsonNullable<Double> statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
-            this.statusCode = statusCode;
-            return this;
-        }
-
-
-        public Builder excludeUnifiedApis(String excludeUnifiedApis) {
-            Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
+        public Builder excludeUnifiedApis(@Nullable String excludeUnifiedApis) {
             this.excludeUnifiedApis = JsonNullable.of(excludeUnifiedApis);
             return this;
         }
 
-        public Builder excludeUnifiedApis(JsonNullable<String> excludeUnifiedApis) {
-            Utils.checkNotNull(excludeUnifiedApis, "excludeUnifiedApis");
-            this.excludeUnifiedApis = excludeUnifiedApis;
-            return this;
-        }
-
         public LogsFilter build() {
-
             return new LogsFilter(
                 connectorId, statusCode, excludeUnifiedApis);
         }

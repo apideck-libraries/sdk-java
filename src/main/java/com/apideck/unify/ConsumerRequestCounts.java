@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllRequestB
 import com.apideck.unify.models.operations.VaultConsumerRequestCountsAllResponse;
 import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -45,11 +47,11 @@ public class ConsumerRequestCounts {
      * @throws Exception if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
-            String consumerId,
-            String startDatetime,
-            String endDatetime) throws Exception {
-        return list(Optional.empty(), consumerId, startDatetime,
-            endDatetime, Optional.empty());
+            @Nonnull String consumerId,
+            @Nonnull String startDatetime,
+            @Nonnull String endDatetime) throws Exception {
+        return list(null, consumerId, startDatetime,
+            endDatetime, null);
     }
 
     /**
@@ -66,19 +68,16 @@ public class ConsumerRequestCounts {
      * @throws Exception if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
-            Optional<String> appId,
-            String consumerId,
-            String startDatetime,
-            String endDatetime,
-            Optional<Options> options) throws Exception {
-        VaultConsumerRequestCountsAllRequest request =
-            VaultConsumerRequestCountsAllRequest
-                .builder()
-                .appId(appId)
-                .consumerId(consumerId)
-                .startDatetime(startDatetime)
-                .endDatetime(endDatetime)
-                .build();
+            @Nullable String appId,
+            @Nonnull String consumerId,
+            @Nonnull String startDatetime,
+            @Nonnull String endDatetime,
+            @Nullable Options options) throws Exception {
+        VaultConsumerRequestCountsAllRequest request = new VaultConsumerRequestCountsAllRequest(
+            appId,
+            consumerId,
+            startDatetime,
+            endDatetime);
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
               = new VaultConsumerRequestCountsAllOperation(
                 sdkConfiguration,

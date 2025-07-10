@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,97 +25,85 @@ public class ConnectionInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("enabled")
-    private Optional<Boolean> enabled;
+    private Boolean enabled;
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private JsonNullable<? extends Map<String, Object>> settings;
+    private JsonNullable<Map<String, Object>> settings;
 
     /**
      * Attach your own consumer specific metadata
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private JsonNullable<? extends Map<String, Object>> metadata;
+    private JsonNullable<Map<String, Object>> metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configuration")
-    private Optional<? extends List<ConnectionConfiguration>> configuration;
+    private List<ConnectionConfiguration> configuration;
 
     /**
      * List of custom mappings configured for this connection
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private Optional<? extends List<CustomMappingInput>> customMappings;
+    private List<CustomMappingInput> customMappings;
 
     @JsonCreator
     public ConnectionInput(
-            @JsonProperty("enabled") Optional<Boolean> enabled,
-            @JsonProperty("settings") JsonNullable<? extends Map<String, Object>> settings,
-            @JsonProperty("metadata") JsonNullable<? extends Map<String, Object>> metadata,
-            @JsonProperty("configuration") Optional<? extends List<ConnectionConfiguration>> configuration,
-            @JsonProperty("custom_mappings") Optional<? extends List<CustomMappingInput>> customMappings) {
-        Utils.checkNotNull(enabled, "enabled");
-        Utils.checkNotNull(settings, "settings");
-        Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(configuration, "configuration");
-        Utils.checkNotNull(customMappings, "customMappings");
+            @JsonProperty("enabled") @Nullable Boolean enabled,
+            @JsonProperty("settings") @Nullable JsonNullable<Map<String, Object>> settings,
+            @JsonProperty("metadata") @Nullable JsonNullable<Map<String, Object>> metadata,
+            @JsonProperty("configuration") @Nullable List<ConnectionConfiguration> configuration,
+            @JsonProperty("custom_mappings") @Nullable List<CustomMappingInput> customMappings) {
         this.enabled = enabled;
-        this.settings = settings;
-        this.metadata = metadata;
+        this.settings = Optional.ofNullable(settings)
+            .orElse(JsonNullable.undefined());
+        this.metadata = Optional.ofNullable(metadata)
+            .orElse(JsonNullable.undefined());
         this.configuration = configuration;
         this.customMappings = customMappings;
     }
     
     public ConnectionInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
-    @JsonIgnore
     public Optional<Boolean> enabled() {
-        return enabled;
+        return Optional.ofNullable(this.enabled);
     }
 
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> settings() {
-        return (JsonNullable<Map<String, Object>>) settings;
+        return this.settings;
     }
 
     /**
      * Attach your own consumer specific metadata
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> metadata() {
-        return (JsonNullable<Map<String, Object>>) metadata;
+        return this.metadata;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectionConfiguration>> configuration() {
-        return (Optional<List<ConnectionConfiguration>>) configuration;
+        return Optional.ofNullable(this.configuration);
     }
 
     /**
      * List of custom mappings configured for this connection
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomMappingInput>> customMappings() {
-        return (Optional<List<CustomMappingInput>>) customMappings;
+        return Optional.ofNullable(this.customMappings);
     }
 
     public static Builder builder() {
@@ -127,89 +114,44 @@ public class ConnectionInput {
     /**
      * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
      */
-    public ConnectionInput withEnabled(boolean enabled) {
-        Utils.checkNotNull(enabled, "enabled");
-        this.enabled = Optional.ofNullable(enabled);
-        return this;
-    }
-
-
-    /**
-     * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
-     */
-    public ConnectionInput withEnabled(Optional<Boolean> enabled) {
-        Utils.checkNotNull(enabled, "enabled");
+    public ConnectionInput withEnabled(@Nullable Boolean enabled) {
         this.enabled = enabled;
         return this;
     }
 
+
     /**
      * Connection settings. Values will persist to `form_fields` with corresponding id
      */
-    public ConnectionInput withSettings(Map<String, Object> settings) {
-        Utils.checkNotNull(settings, "settings");
+    public ConnectionInput withSettings(@Nullable Map<String, Object> settings) {
         this.settings = JsonNullable.of(settings);
         return this;
     }
 
-    /**
-     * Connection settings. Values will persist to `form_fields` with corresponding id
-     */
-    public ConnectionInput withSettings(JsonNullable<? extends Map<String, Object>> settings) {
-        Utils.checkNotNull(settings, "settings");
-        this.settings = settings;
-        return this;
-    }
 
     /**
      * Attach your own consumer specific metadata
      */
-    public ConnectionInput withMetadata(Map<String, Object> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+    public ConnectionInput withMetadata(@Nullable Map<String, Object> metadata) {
         this.metadata = JsonNullable.of(metadata);
         return this;
     }
 
-    /**
-     * Attach your own consumer specific metadata
-     */
-    public ConnectionInput withMetadata(JsonNullable<? extends Map<String, Object>> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = metadata;
-        return this;
-    }
 
-    public ConnectionInput withConfiguration(List<ConnectionConfiguration> configuration) {
-        Utils.checkNotNull(configuration, "configuration");
-        this.configuration = Optional.ofNullable(configuration);
-        return this;
-    }
-
-
-    public ConnectionInput withConfiguration(Optional<? extends List<ConnectionConfiguration>> configuration) {
-        Utils.checkNotNull(configuration, "configuration");
+    public ConnectionInput withConfiguration(@Nullable List<ConnectionConfiguration> configuration) {
         this.configuration = configuration;
         return this;
     }
 
-    /**
-     * List of custom mappings configured for this connection
-     */
-    public ConnectionInput withCustomMappings(List<CustomMappingInput> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = Optional.ofNullable(customMappings);
-        return this;
-    }
-
 
     /**
      * List of custom mappings configured for this connection
      */
-    public ConnectionInput withCustomMappings(Optional<? extends List<CustomMappingInput>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public ConnectionInput withCustomMappings(@Nullable List<CustomMappingInput> customMappings) {
         this.customMappings = customMappings;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -248,111 +190,58 @@ public class ConnectionInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> enabled = Optional.empty();
+        private Boolean enabled;
 
-        private JsonNullable<? extends Map<String, Object>> settings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> settings;
 
-        private JsonNullable<? extends Map<String, Object>> metadata = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> metadata;
 
-        private Optional<? extends List<ConnectionConfiguration>> configuration = Optional.empty();
+        private List<ConnectionConfiguration> configuration;
 
-        private Optional<? extends List<CustomMappingInput>> customMappings = Optional.empty();
+        private List<CustomMappingInput> customMappings;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
          */
-        public Builder enabled(boolean enabled) {
-            Utils.checkNotNull(enabled, "enabled");
-            this.enabled = Optional.ofNullable(enabled);
-            return this;
-        }
-
-        /**
-         * Whether the connection is enabled or not. You can enable or disable a connection using the Update Connection API.
-         */
-        public Builder enabled(Optional<Boolean> enabled) {
-            Utils.checkNotNull(enabled, "enabled");
+        public Builder enabled(@Nullable Boolean enabled) {
             this.enabled = enabled;
             return this;
         }
 
-
         /**
          * Connection settings. Values will persist to `form_fields` with corresponding id
          */
-        public Builder settings(Map<String, Object> settings) {
-            Utils.checkNotNull(settings, "settings");
+        public Builder settings(@Nullable Map<String, Object> settings) {
             this.settings = JsonNullable.of(settings);
             return this;
         }
 
         /**
-         * Connection settings. Values will persist to `form_fields` with corresponding id
-         */
-        public Builder settings(JsonNullable<? extends Map<String, Object>> settings) {
-            Utils.checkNotNull(settings, "settings");
-            this.settings = settings;
-            return this;
-        }
-
-
-        /**
          * Attach your own consumer specific metadata
          */
-        public Builder metadata(Map<String, Object> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
+        public Builder metadata(@Nullable Map<String, Object> metadata) {
             this.metadata = JsonNullable.of(metadata);
             return this;
         }
 
-        /**
-         * Attach your own consumer specific metadata
-         */
-        public Builder metadata(JsonNullable<? extends Map<String, Object>> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = metadata;
-            return this;
-        }
-
-
-        public Builder configuration(List<ConnectionConfiguration> configuration) {
-            Utils.checkNotNull(configuration, "configuration");
-            this.configuration = Optional.ofNullable(configuration);
-            return this;
-        }
-
-        public Builder configuration(Optional<? extends List<ConnectionConfiguration>> configuration) {
-            Utils.checkNotNull(configuration, "configuration");
+        public Builder configuration(@Nullable List<ConnectionConfiguration> configuration) {
             this.configuration = configuration;
             return this;
         }
 
-
         /**
          * List of custom mappings configured for this connection
          */
-        public Builder customMappings(List<CustomMappingInput> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = Optional.ofNullable(customMappings);
-            return this;
-        }
-
-        /**
-         * List of custom mappings configured for this connection
-         */
-        public Builder customMappings(Optional<? extends List<CustomMappingInput>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable List<CustomMappingInput> customMappings) {
             this.customMappings = customMappings;
             return this;
         }
 
         public ConnectionInput build() {
-
             return new ConnectionInput(
                 enabled, settings, metadata,
                 configuration, customMappings);

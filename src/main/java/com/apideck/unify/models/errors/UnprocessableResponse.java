@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.RuntimeException;
@@ -28,58 +29,52 @@ public class UnprocessableResponse extends RuntimeException {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status_code")
-    private Optional<Double> statusCode;
+    private Double statusCode;
 
     /**
      * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("error")
-    private Optional<String> error;
+    private String error;
 
     /**
      * The type of error returned
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type_name")
-    private Optional<String> typeName;
+    private String typeName;
 
     /**
      * A human-readable message providing more details about the error.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("message")
-    private Optional<String> message;
+    private String message;
 
     /**
      * Contains parameter or domain specific information related to the error and why it occurred.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("detail")
-    private Optional<? extends UnprocessableResponseDetail> detail;
+    private UnprocessableResponseDetail detail;
 
     /**
      * Link to documentation of error type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ref")
-    private Optional<String> ref;
+    private String ref;
 
     @JsonCreator
     public UnprocessableResponse(
-            @JsonProperty("status_code") Optional<Double> statusCode,
-            @JsonProperty("error") Optional<String> error,
-            @JsonProperty("type_name") Optional<String> typeName,
-            @JsonProperty("message") Optional<String> message,
-            @JsonProperty("detail") Optional<? extends UnprocessableResponseDetail> detail,
-            @JsonProperty("ref") Optional<String> ref) {
+            @JsonProperty("status_code") @Nullable Double statusCode,
+            @JsonProperty("error") @Nullable String error,
+            @JsonProperty("type_name") @Nullable String typeName,
+            @JsonProperty("message") @Nullable String message,
+            @JsonProperty("detail") @Nullable UnprocessableResponseDetail detail,
+            @JsonProperty("ref") @Nullable String ref) {
         super(Utils.valueOrElse(message, "API error occurred"));
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(error, "error");
-        Utils.checkNotNull(typeName, "typeName");
-        Utils.checkNotNull(message, "message");
-        Utils.checkNotNull(detail, "detail");
-        Utils.checkNotNull(ref, "ref");
         this.statusCode = statusCode;
         this.error = error;
         this.typeName = typeName;
@@ -89,40 +84,36 @@ public class UnprocessableResponse extends RuntimeException {
     }
     
     public UnprocessableResponse() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null);
     }
 
     /**
      * HTTP status code
      */
-    @JsonIgnore
     public Optional<Double> statusCode() {
-        return statusCode;
+        return Optional.ofNullable(this.statusCode);
     }
 
     /**
      * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
      */
-    @JsonIgnore
     public Optional<String> error() {
-        return error;
+        return Optional.ofNullable(this.error);
     }
 
     /**
      * The type of error returned
      */
-    @JsonIgnore
     public Optional<String> typeName() {
-        return typeName;
+        return Optional.ofNullable(this.typeName);
     }
 
     /**
      * A human-readable message providing more details about the error.
      */
-    @JsonIgnore
     public Optional<String> message() {
-        return message;
+        return Optional.ofNullable(this.message);
     }
 
     @JsonIgnore
@@ -134,18 +125,15 @@ public class UnprocessableResponse extends RuntimeException {
     /**
      * Contains parameter or domain specific information related to the error and why it occurred.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnprocessableResponseDetail> detail() {
-        return (Optional<UnprocessableResponseDetail>) detail;
+        return Optional.ofNullable(this.detail);
     }
 
     /**
      * Link to documentation of error type
      */
-    @JsonIgnore
     public Optional<String> ref() {
-        return ref;
+        return Optional.ofNullable(this.ref);
     }
 
     public static Builder builder() {
@@ -156,116 +144,56 @@ public class UnprocessableResponse extends RuntimeException {
     /**
      * HTTP status code
      */
-    public UnprocessableResponse withStatusCode(double statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
-        this.statusCode = Optional.ofNullable(statusCode);
-        return this;
-    }
-
-
-    /**
-     * HTTP status code
-     */
-    public UnprocessableResponse withStatusCode(Optional<Double> statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
+    public UnprocessableResponse withStatusCode(@Nullable Double statusCode) {
         this.statusCode = statusCode;
         return this;
     }
 
-    /**
-     * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-     */
-    public UnprocessableResponse withError(String error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
 
     /**
      * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
      */
-    public UnprocessableResponse withError(Optional<String> error) {
-        Utils.checkNotNull(error, "error");
+    public UnprocessableResponse withError(@Nullable String error) {
         this.error = error;
         return this;
     }
 
-    /**
-     * The type of error returned
-     */
-    public UnprocessableResponse withTypeName(String typeName) {
-        Utils.checkNotNull(typeName, "typeName");
-        this.typeName = Optional.ofNullable(typeName);
-        return this;
-    }
-
 
     /**
      * The type of error returned
      */
-    public UnprocessableResponse withTypeName(Optional<String> typeName) {
-        Utils.checkNotNull(typeName, "typeName");
+    public UnprocessableResponse withTypeName(@Nullable String typeName) {
         this.typeName = typeName;
         return this;
     }
 
-    /**
-     * A human-readable message providing more details about the error.
-     */
-    public UnprocessableResponse withMessage(String message) {
-        Utils.checkNotNull(message, "message");
-        this.message = Optional.ofNullable(message);
-        return this;
-    }
-
 
     /**
      * A human-readable message providing more details about the error.
      */
-    public UnprocessableResponse withMessage(Optional<String> message) {
-        Utils.checkNotNull(message, "message");
+    public UnprocessableResponse withMessage(@Nullable String message) {
         this.message = message;
         return this;
     }
 
-    /**
-     * Contains parameter or domain specific information related to the error and why it occurred.
-     */
-    public UnprocessableResponse withDetail(UnprocessableResponseDetail detail) {
-        Utils.checkNotNull(detail, "detail");
-        this.detail = Optional.ofNullable(detail);
-        return this;
-    }
-
 
     /**
      * Contains parameter or domain specific information related to the error and why it occurred.
      */
-    public UnprocessableResponse withDetail(Optional<? extends UnprocessableResponseDetail> detail) {
-        Utils.checkNotNull(detail, "detail");
+    public UnprocessableResponse withDetail(@Nullable UnprocessableResponseDetail detail) {
         this.detail = detail;
         return this;
     }
 
-    /**
-     * Link to documentation of error type
-     */
-    public UnprocessableResponse withRef(String ref) {
-        Utils.checkNotNull(ref, "ref");
-        this.ref = Optional.ofNullable(ref);
-        return this;
-    }
-
 
     /**
      * Link to documentation of error type
      */
-    public UnprocessableResponse withRef(Optional<String> ref) {
-        Utils.checkNotNull(ref, "ref");
+    public UnprocessableResponse withRef(@Nullable String ref) {
         this.ref = ref;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -306,138 +234,71 @@ public class UnprocessableResponse extends RuntimeException {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Double> statusCode = Optional.empty();
+        private Double statusCode;
 
-        private Optional<String> error = Optional.empty();
+        private String error;
 
-        private Optional<String> typeName = Optional.empty();
+        private String typeName;
 
-        private Optional<String> message = Optional.empty();
+        private String message;
 
-        private Optional<? extends UnprocessableResponseDetail> detail = Optional.empty();
+        private UnprocessableResponseDetail detail;
 
-        private Optional<String> ref = Optional.empty();
+        private String ref;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP status code
          */
-        public Builder statusCode(double statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
-            this.statusCode = Optional.ofNullable(statusCode);
-            return this;
-        }
-
-        /**
-         * HTTP status code
-         */
-        public Builder statusCode(Optional<Double> statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
+        public Builder statusCode(@Nullable Double statusCode) {
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
          */
-        public Builder error(String error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Contains an explanation of the status_code as defined in HTTP/1.1 standard (RFC 7231)
-         */
-        public Builder error(Optional<String> error) {
-            Utils.checkNotNull(error, "error");
+        public Builder error(@Nullable String error) {
             this.error = error;
             return this;
         }
 
-
         /**
          * The type of error returned
          */
-        public Builder typeName(String typeName) {
-            Utils.checkNotNull(typeName, "typeName");
-            this.typeName = Optional.ofNullable(typeName);
-            return this;
-        }
-
-        /**
-         * The type of error returned
-         */
-        public Builder typeName(Optional<String> typeName) {
-            Utils.checkNotNull(typeName, "typeName");
+        public Builder typeName(@Nullable String typeName) {
             this.typeName = typeName;
             return this;
         }
 
-
         /**
          * A human-readable message providing more details about the error.
          */
-        public Builder message(String message) {
-            Utils.checkNotNull(message, "message");
-            this.message = Optional.ofNullable(message);
-            return this;
-        }
-
-        /**
-         * A human-readable message providing more details about the error.
-         */
-        public Builder message(Optional<String> message) {
-            Utils.checkNotNull(message, "message");
+        public Builder message(@Nullable String message) {
             this.message = message;
             return this;
         }
 
-
         /**
          * Contains parameter or domain specific information related to the error and why it occurred.
          */
-        public Builder detail(UnprocessableResponseDetail detail) {
-            Utils.checkNotNull(detail, "detail");
-            this.detail = Optional.ofNullable(detail);
-            return this;
-        }
-
-        /**
-         * Contains parameter or domain specific information related to the error and why it occurred.
-         */
-        public Builder detail(Optional<? extends UnprocessableResponseDetail> detail) {
-            Utils.checkNotNull(detail, "detail");
+        public Builder detail(@Nullable UnprocessableResponseDetail detail) {
             this.detail = detail;
             return this;
         }
 
-
         /**
          * Link to documentation of error type
          */
-        public Builder ref(String ref) {
-            Utils.checkNotNull(ref, "ref");
-            this.ref = Optional.ofNullable(ref);
-            return this;
-        }
-
-        /**
-         * Link to documentation of error type
-         */
-        public Builder ref(Optional<String> ref) {
-            Utils.checkNotNull(ref, "ref");
+        public Builder ref(@Nullable String ref) {
             this.ref = ref;
             return this;
         }
 
         public UnprocessableResponse build() {
-
             return new UnprocessableResponse(
                 statusCode, error, typeName,
                 message, detail, ref);

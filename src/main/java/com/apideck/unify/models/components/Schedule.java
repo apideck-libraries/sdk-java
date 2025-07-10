@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class Schedule {
@@ -36,47 +37,43 @@ public class Schedule {
 
     @JsonCreator
     public Schedule(
-            @JsonProperty("id") String id,
-            @JsonProperty("start_date") String startDate,
-            @JsonProperty("end_date") String endDate,
-            @JsonProperty("work_pattern") WorkPattern workPattern) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(workPattern, "workPattern");
-        this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.workPattern = workPattern;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("start_date") @Nonnull String startDate,
+            @JsonProperty("end_date") @Nonnull String endDate,
+            @JsonProperty("work_pattern") @Nonnull WorkPattern workPattern) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.startDate = Optional.ofNullable(startDate)
+            .orElseThrow(() -> new IllegalArgumentException("startDate cannot be null"));
+        this.endDate = Optional.ofNullable(endDate)
+            .orElseThrow(() -> new IllegalArgumentException("endDate cannot be null"));
+        this.workPattern = Optional.ofNullable(workPattern)
+            .orElseThrow(() -> new IllegalArgumentException("workPattern cannot be null"));
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The start date, inclusive, of the schedule period.
      */
-    @JsonIgnore
     public String startDate() {
-        return startDate;
+        return this.startDate;
     }
 
     /**
      * The end date, inclusive, of the schedule period.
      */
-    @JsonIgnore
     public String endDate() {
-        return endDate;
+        return this.endDate;
     }
 
-    @JsonIgnore
     public WorkPattern workPattern() {
-        return workPattern;
+        return this.workPattern;
     }
 
     public static Builder builder() {
@@ -87,35 +84,35 @@ public class Schedule {
     /**
      * A unique identifier for an object.
      */
-    public Schedule withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Schedule withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The start date, inclusive, of the schedule period.
      */
-    public Schedule withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
+    public Schedule withStartDate(@Nonnull String startDate) {
+        this.startDate = Utils.checkNotNull(startDate, "startDate");
         return this;
     }
+
 
     /**
      * The end date, inclusive, of the schedule period.
      */
-    public Schedule withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
+    public Schedule withEndDate(@Nonnull String endDate) {
+        this.endDate = Utils.checkNotNull(endDate, "endDate");
         return this;
     }
 
-    public Schedule withWorkPattern(WorkPattern workPattern) {
-        Utils.checkNotNull(workPattern, "workPattern");
-        this.workPattern = workPattern;
+
+    public Schedule withWorkPattern(@Nonnull WorkPattern workPattern) {
+        this.workPattern = Utils.checkNotNull(workPattern, "workPattern");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -164,45 +161,36 @@ public class Schedule {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The start date, inclusive, of the schedule period.
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = startDate;
+        public Builder startDate(@Nonnull String startDate) {
+            this.startDate = Utils.checkNotNull(startDate, "startDate");
             return this;
         }
-
 
         /**
          * The end date, inclusive, of the schedule period.
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
+        public Builder endDate(@Nonnull String endDate) {
+            this.endDate = Utils.checkNotNull(endDate, "endDate");
             return this;
         }
 
-
-        public Builder workPattern(WorkPattern workPattern) {
-            Utils.checkNotNull(workPattern, "workPattern");
-            this.workPattern = workPattern;
+        public Builder workPattern(@Nonnull WorkPattern workPattern) {
+            this.workPattern = Utils.checkNotNull(workPattern, "workPattern");
             return this;
         }
 
         public Schedule build() {
-
             return new Schedule(
                 id, startDate, endDate,
                 workPattern);

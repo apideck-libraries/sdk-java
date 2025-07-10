@@ -5,17 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -30,14 +29,14 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The human readable display ID used when displaying the account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("display_id")
-    private Optional<String> displayId;
+    private String displayId;
 
     /**
      * The nominal code of the ledger account.
@@ -61,14 +60,14 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("classification")
-    private JsonNullable<? extends LedgerAccountClassification> classification;
+    private JsonNullable<LedgerAccountClassification> classification;
 
     /**
      * The type of account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends LedgerAccountType> type;
+    private LedgerAccountType type;
 
     /**
      * The sub type of account.
@@ -117,7 +116,7 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The tax type of the account.
@@ -129,7 +128,7 @@ public class LedgerAccount {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRate> taxRate;
+    private LinkedTaxRate taxRate;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -148,7 +147,7 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends AccountStatus> status;
+    private JsonNullable<AccountStatus> status;
 
     /**
      * Whether the account is a header or not.
@@ -160,19 +159,19 @@ public class LedgerAccount {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account")
-    private Optional<? extends BankAccount> bankAccount;
+    private BankAccount bankAccount;
 
     /**
      * The categories of the account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("categories")
-    private Optional<? extends List<Categories>> categories;
+    private List<Categories> categories;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_account")
-    private Optional<? extends ParentAccount> parentAccount;
+    private ParentAccount parentAccount;
 
     /**
      * Whether the account is a sub account or not.
@@ -186,7 +185,7 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sub_accounts")
-    private Optional<? extends List<SubAccounts>> subAccounts;
+    private List<SubAccounts> subAccounts;
 
     /**
      * Reconciliation Date means the last calendar day of each Reconciliation Period.
@@ -200,19 +199,19 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
-    private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries;
+    private List<LedgerAccountSubsidiaries> subsidiaries;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -254,143 +253,130 @@ public class LedgerAccount {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public LedgerAccount(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("display_id") Optional<String> displayId,
-            @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("classification") JsonNullable<? extends LedgerAccountClassification> classification,
-            @JsonProperty("type") Optional<? extends LedgerAccountType> type,
-            @JsonProperty("sub_type") JsonNullable<String> subType,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("fully_qualified_name") JsonNullable<String> fullyQualifiedName,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("opening_balance") JsonNullable<Double> openingBalance,
-            @JsonProperty("current_balance") JsonNullable<Double> currentBalance,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("tax_type") JsonNullable<String> taxType,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
-            @JsonProperty("level") JsonNullable<Double> level,
-            @JsonProperty("active") JsonNullable<Boolean> active,
-            @JsonProperty("status") JsonNullable<? extends AccountStatus> status,
-            @JsonProperty("header") JsonNullable<Boolean> header,
-            @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
-            @JsonProperty("categories") Optional<? extends List<Categories>> categories,
-            @JsonProperty("parent_account") Optional<? extends ParentAccount> parentAccount,
-            @JsonProperty("sub_account") JsonNullable<Boolean> subAccount,
-            @JsonProperty("sub_accounts") Optional<? extends List<SubAccounts>> subAccounts,
-            @JsonProperty("last_reconciliation_date") JsonNullable<LocalDate> lastReconciliationDate,
-            @JsonProperty("subsidiaries") Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(displayId, "displayId");
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(classification, "classification");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(subType, "subType");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(fullyQualifiedName, "fullyQualifiedName");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(openingBalance, "openingBalance");
-        Utils.checkNotNull(currentBalance, "currentBalance");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(taxType, "taxType");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(level, "level");
-        Utils.checkNotNull(active, "active");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(header, "header");
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        Utils.checkNotNull(categories, "categories");
-        Utils.checkNotNull(parentAccount, "parentAccount");
-        Utils.checkNotNull(subAccount, "subAccount");
-        Utils.checkNotNull(subAccounts, "subAccounts");
-        Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("display_id") @Nullable String displayId,
+            @JsonProperty("nominal_code") @Nullable JsonNullable<String> nominalCode,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("classification") @Nullable JsonNullable<LedgerAccountClassification> classification,
+            @JsonProperty("type") @Nullable LedgerAccountType type,
+            @JsonProperty("sub_type") @Nullable JsonNullable<String> subType,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("fully_qualified_name") @Nullable JsonNullable<String> fullyQualifiedName,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("opening_balance") @Nullable JsonNullable<Double> openingBalance,
+            @JsonProperty("current_balance") @Nullable JsonNullable<Double> currentBalance,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("tax_type") @Nullable JsonNullable<String> taxType,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRate taxRate,
+            @JsonProperty("level") @Nullable JsonNullable<Double> level,
+            @JsonProperty("active") @Nullable JsonNullable<Boolean> active,
+            @JsonProperty("status") @Nullable JsonNullable<AccountStatus> status,
+            @JsonProperty("header") @Nullable JsonNullable<Boolean> header,
+            @JsonProperty("bank_account") @Nullable BankAccount bankAccount,
+            @JsonProperty("categories") @Nullable List<Categories> categories,
+            @JsonProperty("parent_account") @Nullable ParentAccount parentAccount,
+            @JsonProperty("sub_account") @Nullable JsonNullable<Boolean> subAccount,
+            @JsonProperty("sub_accounts") @Nullable List<SubAccounts> subAccounts,
+            @JsonProperty("last_reconciliation_date") @Nullable JsonNullable<LocalDate> lastReconciliationDate,
+            @JsonProperty("subsidiaries") @Nullable List<LedgerAccountSubsidiaries> subsidiaries,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
         this.displayId = displayId;
-        this.nominalCode = nominalCode;
-        this.code = code;
-        this.classification = classification;
+        this.nominalCode = Optional.ofNullable(nominalCode)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.classification = Optional.ofNullable(classification)
+            .orElse(JsonNullable.undefined());
         this.type = type;
-        this.subType = subType;
-        this.name = name;
-        this.fullyQualifiedName = fullyQualifiedName;
-        this.description = description;
-        this.openingBalance = openingBalance;
-        this.currentBalance = currentBalance;
-        this.currency = currency;
-        this.taxType = taxType;
+        this.subType = Optional.ofNullable(subType)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.fullyQualifiedName = Optional.ofNullable(fullyQualifiedName)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.openingBalance = Optional.ofNullable(openingBalance)
+            .orElse(JsonNullable.undefined());
+        this.currentBalance = Optional.ofNullable(currentBalance)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.taxType = Optional.ofNullable(taxType)
+            .orElse(JsonNullable.undefined());
         this.taxRate = taxRate;
-        this.level = level;
-        this.active = active;
-        this.status = status;
-        this.header = header;
+        this.level = Optional.ofNullable(level)
+            .orElse(JsonNullable.undefined());
+        this.active = Optional.ofNullable(active)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.header = Optional.ofNullable(header)
+            .orElse(JsonNullable.undefined());
         this.bankAccount = bankAccount;
         this.categories = categories;
         this.parentAccount = parentAccount;
-        this.subAccount = subAccount;
+        this.subAccount = Optional.ofNullable(subAccount)
+            .orElse(JsonNullable.undefined());
         this.subAccounts = subAccounts;
-        this.lastReconciliationDate = lastReconciliationDate;
+        this.lastReconciliationDate = Optional.ofNullable(lastReconciliationDate)
+            .orElse(JsonNullable.undefined());
         this.subsidiaries = subsidiaries;
-        this.customMappings = customMappings;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
-        this.rowVersion = rowVersion;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public LedgerAccount() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The human readable display ID used when displaying the account
      */
-    @JsonIgnore
     public Optional<String> displayId() {
-        return displayId;
+        return Optional.ofNullable(this.displayId);
     }
 
     /**
@@ -399,255 +385,210 @@ public class LedgerAccount {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> nominalCode() {
-        return nominalCode;
+        return this.nominalCode;
     }
 
     /**
      * The code assigned to the account.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * The classification of account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LedgerAccountClassification> classification() {
-        return (JsonNullable<LedgerAccountClassification>) classification;
+        return this.classification;
     }
 
     /**
      * The type of account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LedgerAccountType> type() {
-        return (Optional<LedgerAccountType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * The sub type of account.
      */
-    @JsonIgnore
     public JsonNullable<String> subType() {
-        return subType;
+        return this.subType;
     }
 
     /**
      * The name of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The fully qualified name of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> fullyQualifiedName() {
-        return fullyQualifiedName;
+        return this.fullyQualifiedName;
     }
 
     /**
      * The description of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The opening balance of the account.
      */
-    @JsonIgnore
     public JsonNullable<Double> openingBalance() {
-        return openingBalance;
+        return this.openingBalance;
     }
 
     /**
      * The current balance of the account.
      */
-    @JsonIgnore
     public JsonNullable<Double> currentBalance() {
-        return currentBalance;
+        return this.currentBalance;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The tax type of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> taxType() {
-        return taxType;
+        return this.taxType;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
-        return (Optional<LinkedTaxRate>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
-    @JsonIgnore
     public JsonNullable<Double> level() {
-        return level;
+        return this.level;
     }
 
     /**
      * Whether the account is active or not.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> active() {
-        return active;
+        return this.active;
     }
 
     /**
      * The status of the account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<AccountStatus> status() {
-        return (JsonNullable<AccountStatus>) status;
+        return this.status;
     }
 
     /**
      * Whether the account is a header or not.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> header() {
-        return header;
+        return this.header;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BankAccount> bankAccount() {
-        return (Optional<BankAccount>) bankAccount;
+        return Optional.ofNullable(this.bankAccount);
     }
 
     /**
      * The categories of the account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Categories>> categories() {
-        return (Optional<List<Categories>>) categories;
+        return Optional.ofNullable(this.categories);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ParentAccount> parentAccount() {
-        return (Optional<ParentAccount>) parentAccount;
+        return Optional.ofNullable(this.parentAccount);
     }
 
     /**
      * Whether the account is a sub account or not.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> subAccount() {
-        return subAccount;
+        return this.subAccount;
     }
 
     /**
      * The sub accounts of the account.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SubAccounts>> subAccounts() {
-        return (Optional<List<SubAccounts>>) subAccounts;
+        return Optional.ofNullable(this.subAccounts);
     }
 
     /**
      * Reconciliation Date means the last calendar day of each Reconciliation Period.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> lastReconciliationDate() {
-        return lastReconciliationDate;
+        return this.lastReconciliationDate;
     }
 
     /**
      * The subsidiaries the account belongs to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LedgerAccountSubsidiaries>> subsidiaries() {
-        return (Optional<List<LedgerAccountSubsidiaries>>) subsidiaries;
+        return Optional.ofNullable(this.subsidiaries);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -658,601 +599,296 @@ public class LedgerAccount {
     /**
      * A unique identifier for an object.
      */
-    public LedgerAccount withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public LedgerAccount withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LedgerAccount withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The human readable display ID used when displaying the account
-     */
-    public LedgerAccount withDisplayId(String displayId) {
-        Utils.checkNotNull(displayId, "displayId");
-        this.displayId = Optional.ofNullable(displayId);
-        return this;
-    }
-
 
     /**
      * The human readable display ID used when displaying the account
      */
-    public LedgerAccount withDisplayId(Optional<String> displayId) {
-        Utils.checkNotNull(displayId, "displayId");
+    public LedgerAccount withDisplayId(@Nullable String displayId) {
         this.displayId = displayId;
         return this;
     }
 
+
     /**
      * The nominal code of the ledger account.
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public LedgerAccount withNominalCode(String nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
+    public LedgerAccount withNominalCode(@Nullable String nominalCode) {
         this.nominalCode = JsonNullable.of(nominalCode);
         return this;
     }
 
-    /**
-     * The nominal code of the ledger account.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public LedgerAccount withNominalCode(JsonNullable<String> nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        this.nominalCode = nominalCode;
-        return this;
-    }
 
     /**
      * The code assigned to the account.
      */
-    public LedgerAccount withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public LedgerAccount withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * The code assigned to the account.
-     */
-    public LedgerAccount withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * The classification of account.
      */
-    public LedgerAccount withClassification(LedgerAccountClassification classification) {
-        Utils.checkNotNull(classification, "classification");
+    public LedgerAccount withClassification(@Nullable LedgerAccountClassification classification) {
         this.classification = JsonNullable.of(classification);
         return this;
     }
 
-    /**
-     * The classification of account.
-     */
-    public LedgerAccount withClassification(JsonNullable<? extends LedgerAccountClassification> classification) {
-        Utils.checkNotNull(classification, "classification");
-        this.classification = classification;
-        return this;
-    }
 
     /**
      * The type of account.
      */
-    public LedgerAccount withType(LedgerAccountType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    /**
-     * The type of account.
-     */
-    public LedgerAccount withType(Optional<? extends LedgerAccountType> type) {
-        Utils.checkNotNull(type, "type");
+    public LedgerAccount withType(@Nullable LedgerAccountType type) {
         this.type = type;
         return this;
     }
 
+
     /**
      * The sub type of account.
      */
-    public LedgerAccount withSubType(String subType) {
-        Utils.checkNotNull(subType, "subType");
+    public LedgerAccount withSubType(@Nullable String subType) {
         this.subType = JsonNullable.of(subType);
         return this;
     }
 
-    /**
-     * The sub type of account.
-     */
-    public LedgerAccount withSubType(JsonNullable<String> subType) {
-        Utils.checkNotNull(subType, "subType");
-        this.subType = subType;
-        return this;
-    }
 
     /**
      * The name of the account.
      */
-    public LedgerAccount withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LedgerAccount withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the account.
-     */
-    public LedgerAccount withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The fully qualified name of the account.
      */
-    public LedgerAccount withFullyQualifiedName(String fullyQualifiedName) {
-        Utils.checkNotNull(fullyQualifiedName, "fullyQualifiedName");
+    public LedgerAccount withFullyQualifiedName(@Nullable String fullyQualifiedName) {
         this.fullyQualifiedName = JsonNullable.of(fullyQualifiedName);
         return this;
     }
 
-    /**
-     * The fully qualified name of the account.
-     */
-    public LedgerAccount withFullyQualifiedName(JsonNullable<String> fullyQualifiedName) {
-        Utils.checkNotNull(fullyQualifiedName, "fullyQualifiedName");
-        this.fullyQualifiedName = fullyQualifiedName;
-        return this;
-    }
 
     /**
      * The description of the account.
      */
-    public LedgerAccount withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public LedgerAccount withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The description of the account.
-     */
-    public LedgerAccount withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The opening balance of the account.
      */
-    public LedgerAccount withOpeningBalance(double openingBalance) {
-        Utils.checkNotNull(openingBalance, "openingBalance");
+    public LedgerAccount withOpeningBalance(@Nullable Double openingBalance) {
         this.openingBalance = JsonNullable.of(openingBalance);
         return this;
     }
 
-    /**
-     * The opening balance of the account.
-     */
-    public LedgerAccount withOpeningBalance(JsonNullable<Double> openingBalance) {
-        Utils.checkNotNull(openingBalance, "openingBalance");
-        this.openingBalance = openingBalance;
-        return this;
-    }
 
     /**
      * The current balance of the account.
      */
-    public LedgerAccount withCurrentBalance(double currentBalance) {
-        Utils.checkNotNull(currentBalance, "currentBalance");
+    public LedgerAccount withCurrentBalance(@Nullable Double currentBalance) {
         this.currentBalance = JsonNullable.of(currentBalance);
         return this;
     }
 
-    /**
-     * The current balance of the account.
-     */
-    public LedgerAccount withCurrentBalance(JsonNullable<Double> currentBalance) {
-        Utils.checkNotNull(currentBalance, "currentBalance");
-        this.currentBalance = currentBalance;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public LedgerAccount withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public LedgerAccount withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public LedgerAccount withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The tax type of the account.
      */
-    public LedgerAccount withTaxType(String taxType) {
-        Utils.checkNotNull(taxType, "taxType");
+    public LedgerAccount withTaxType(@Nullable String taxType) {
         this.taxType = JsonNullable.of(taxType);
         return this;
     }
 
-    /**
-     * The tax type of the account.
-     */
-    public LedgerAccount withTaxType(JsonNullable<String> taxType) {
-        Utils.checkNotNull(taxType, "taxType");
-        this.taxType = taxType;
-        return this;
-    }
 
-    public LedgerAccount withTaxRate(LinkedTaxRate taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
-        return this;
-    }
-
-
-    public LedgerAccount withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public LedgerAccount withTaxRate(@Nullable LinkedTaxRate taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
-    public LedgerAccount withLevel(double level) {
-        Utils.checkNotNull(level, "level");
+
+    public LedgerAccount withLevel(@Nullable Double level) {
         this.level = JsonNullable.of(level);
         return this;
     }
 
-    public LedgerAccount withLevel(JsonNullable<Double> level) {
-        Utils.checkNotNull(level, "level");
-        this.level = level;
-        return this;
-    }
 
     /**
      * Whether the account is active or not.
      */
-    public LedgerAccount withActive(boolean active) {
-        Utils.checkNotNull(active, "active");
+    public LedgerAccount withActive(@Nullable Boolean active) {
         this.active = JsonNullable.of(active);
         return this;
     }
 
-    /**
-     * Whether the account is active or not.
-     */
-    public LedgerAccount withActive(JsonNullable<Boolean> active) {
-        Utils.checkNotNull(active, "active");
-        this.active = active;
-        return this;
-    }
 
     /**
      * The status of the account.
      */
-    public LedgerAccount withStatus(AccountStatus status) {
-        Utils.checkNotNull(status, "status");
+    public LedgerAccount withStatus(@Nullable AccountStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The status of the account.
-     */
-    public LedgerAccount withStatus(JsonNullable<? extends AccountStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Whether the account is a header or not.
      */
-    public LedgerAccount withHeader(boolean header) {
-        Utils.checkNotNull(header, "header");
+    public LedgerAccount withHeader(@Nullable Boolean header) {
         this.header = JsonNullable.of(header);
         return this;
     }
 
-    /**
-     * Whether the account is a header or not.
-     */
-    public LedgerAccount withHeader(JsonNullable<Boolean> header) {
-        Utils.checkNotNull(header, "header");
-        this.header = header;
-        return this;
-    }
 
-    public LedgerAccount withBankAccount(BankAccount bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = Optional.ofNullable(bankAccount);
-        return this;
-    }
-
-
-    public LedgerAccount withBankAccount(Optional<? extends BankAccount> bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
+    public LedgerAccount withBankAccount(@Nullable BankAccount bankAccount) {
         this.bankAccount = bankAccount;
         return this;
     }
 
-    /**
-     * The categories of the account.
-     */
-    public LedgerAccount withCategories(List<Categories> categories) {
-        Utils.checkNotNull(categories, "categories");
-        this.categories = Optional.ofNullable(categories);
-        return this;
-    }
-
 
     /**
      * The categories of the account.
      */
-    public LedgerAccount withCategories(Optional<? extends List<Categories>> categories) {
-        Utils.checkNotNull(categories, "categories");
+    public LedgerAccount withCategories(@Nullable List<Categories> categories) {
         this.categories = categories;
         return this;
     }
 
-    public LedgerAccount withParentAccount(ParentAccount parentAccount) {
-        Utils.checkNotNull(parentAccount, "parentAccount");
-        this.parentAccount = Optional.ofNullable(parentAccount);
-        return this;
-    }
 
-
-    public LedgerAccount withParentAccount(Optional<? extends ParentAccount> parentAccount) {
-        Utils.checkNotNull(parentAccount, "parentAccount");
+    public LedgerAccount withParentAccount(@Nullable ParentAccount parentAccount) {
         this.parentAccount = parentAccount;
         return this;
     }
 
+
     /**
      * Whether the account is a sub account or not.
      */
-    public LedgerAccount withSubAccount(boolean subAccount) {
-        Utils.checkNotNull(subAccount, "subAccount");
+    public LedgerAccount withSubAccount(@Nullable Boolean subAccount) {
         this.subAccount = JsonNullable.of(subAccount);
         return this;
     }
 
-    /**
-     * Whether the account is a sub account or not.
-     */
-    public LedgerAccount withSubAccount(JsonNullable<Boolean> subAccount) {
-        Utils.checkNotNull(subAccount, "subAccount");
-        this.subAccount = subAccount;
-        return this;
-    }
 
     /**
      * The sub accounts of the account.
      */
-    public LedgerAccount withSubAccounts(List<SubAccounts> subAccounts) {
-        Utils.checkNotNull(subAccounts, "subAccounts");
-        this.subAccounts = Optional.ofNullable(subAccounts);
-        return this;
-    }
-
-
-    /**
-     * The sub accounts of the account.
-     */
-    public LedgerAccount withSubAccounts(Optional<? extends List<SubAccounts>> subAccounts) {
-        Utils.checkNotNull(subAccounts, "subAccounts");
+    public LedgerAccount withSubAccounts(@Nullable List<SubAccounts> subAccounts) {
         this.subAccounts = subAccounts;
         return this;
     }
 
+
     /**
      * Reconciliation Date means the last calendar day of each Reconciliation Period.
      */
-    public LedgerAccount withLastReconciliationDate(LocalDate lastReconciliationDate) {
-        Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
+    public LedgerAccount withLastReconciliationDate(@Nullable LocalDate lastReconciliationDate) {
         this.lastReconciliationDate = JsonNullable.of(lastReconciliationDate);
         return this;
     }
 
-    /**
-     * Reconciliation Date means the last calendar day of each Reconciliation Period.
-     */
-    public LedgerAccount withLastReconciliationDate(JsonNullable<LocalDate> lastReconciliationDate) {
-        Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
-        this.lastReconciliationDate = lastReconciliationDate;
-        return this;
-    }
 
     /**
      * The subsidiaries the account belongs to.
      */
-    public LedgerAccount withSubsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
-        this.subsidiaries = Optional.ofNullable(subsidiaries);
-        return this;
-    }
-
-
-    /**
-     * The subsidiaries the account belongs to.
-     */
-    public LedgerAccount withSubsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
+    public LedgerAccount withSubsidiaries(@Nullable List<LedgerAccountSubsidiaries> subsidiaries) {
         this.subsidiaries = subsidiaries;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public LedgerAccount withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public LedgerAccount withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public LedgerAccount withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
-    public LedgerAccount withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public LedgerAccount withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public LedgerAccount withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public LedgerAccount withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public LedgerAccount withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public LedgerAccount withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public LedgerAccount withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public LedgerAccount withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public LedgerAccount withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public LedgerAccount withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public LedgerAccount withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public LedgerAccount withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public LedgerAccount withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public LedgerAccount withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public LedgerAccount withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public LedgerAccount withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public LedgerAccount withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public LedgerAccount withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public LedgerAccount withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public LedgerAccount withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public LedgerAccount withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1359,117 +995,94 @@ public class LedgerAccount {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> displayId = Optional.empty();
+        private String displayId;
 
         @Deprecated
-        private JsonNullable<String> nominalCode = JsonNullable.undefined();
+        private JsonNullable<String> nominalCode;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<? extends LedgerAccountClassification> classification = JsonNullable.undefined();
+        private JsonNullable<LedgerAccountClassification> classification;
 
-        private Optional<? extends LedgerAccountType> type = Optional.empty();
+        private LedgerAccountType type;
 
-        private JsonNullable<String> subType = JsonNullable.undefined();
+        private JsonNullable<String> subType;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> fullyQualifiedName = JsonNullable.undefined();
+        private JsonNullable<String> fullyQualifiedName;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<Double> openingBalance = JsonNullable.undefined();
+        private JsonNullable<Double> openingBalance;
 
-        private JsonNullable<Double> currentBalance = JsonNullable.undefined();
+        private JsonNullable<Double> currentBalance;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<String> taxType = JsonNullable.undefined();
+        private JsonNullable<String> taxType;
 
-        private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+        private LinkedTaxRate taxRate;
 
-        private JsonNullable<Double> level = JsonNullable.undefined();
+        private JsonNullable<Double> level;
 
-        private JsonNullable<Boolean> active = JsonNullable.undefined();
+        private JsonNullable<Boolean> active;
 
-        private JsonNullable<? extends AccountStatus> status = JsonNullable.undefined();
+        private JsonNullable<AccountStatus> status;
 
-        private JsonNullable<Boolean> header = JsonNullable.undefined();
+        private JsonNullable<Boolean> header;
 
-        private Optional<? extends BankAccount> bankAccount = Optional.empty();
+        private BankAccount bankAccount;
 
-        private Optional<? extends List<Categories>> categories = Optional.empty();
+        private List<Categories> categories;
 
-        private Optional<? extends ParentAccount> parentAccount = Optional.empty();
+        private ParentAccount parentAccount;
 
-        private JsonNullable<Boolean> subAccount = JsonNullable.undefined();
+        private JsonNullable<Boolean> subAccount;
 
-        private Optional<? extends List<SubAccounts>> subAccounts = Optional.empty();
+        private List<SubAccounts> subAccounts;
 
-        private JsonNullable<LocalDate> lastReconciliationDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> lastReconciliationDate;
 
-        private Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries = Optional.empty();
+        private List<LedgerAccountSubsidiaries> subsidiaries;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The human readable display ID used when displaying the account
          */
-        public Builder displayId(String displayId) {
-            Utils.checkNotNull(displayId, "displayId");
-            this.displayId = Optional.ofNullable(displayId);
-            return this;
-        }
-
-        /**
-         * The human readable display ID used when displaying the account
-         */
-        public Builder displayId(Optional<String> displayId) {
-            Utils.checkNotNull(displayId, "displayId");
+        public Builder displayId(@Nullable String displayId) {
             this.displayId = displayId;
             return this;
         }
-
 
         /**
          * The nominal code of the ledger account.
@@ -1477,585 +1090,245 @@ public class LedgerAccount {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder nominalCode(String nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
+        public Builder nominalCode(@Nullable String nominalCode) {
             this.nominalCode = JsonNullable.of(nominalCode);
             return this;
         }
 
         /**
-         * The nominal code of the ledger account.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder nominalCode(JsonNullable<String> nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
-            this.nominalCode = nominalCode;
-            return this;
-        }
-
-
-        /**
          * The code assigned to the account.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * The code assigned to the account.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * The classification of account.
          */
-        public Builder classification(LedgerAccountClassification classification) {
-            Utils.checkNotNull(classification, "classification");
+        public Builder classification(@Nullable LedgerAccountClassification classification) {
             this.classification = JsonNullable.of(classification);
             return this;
         }
 
         /**
-         * The classification of account.
-         */
-        public Builder classification(JsonNullable<? extends LedgerAccountClassification> classification) {
-            Utils.checkNotNull(classification, "classification");
-            this.classification = classification;
-            return this;
-        }
-
-
-        /**
          * The type of account.
          */
-        public Builder type(LedgerAccountType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * The type of account.
-         */
-        public Builder type(Optional<? extends LedgerAccountType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable LedgerAccountType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * The sub type of account.
          */
-        public Builder subType(String subType) {
-            Utils.checkNotNull(subType, "subType");
+        public Builder subType(@Nullable String subType) {
             this.subType = JsonNullable.of(subType);
             return this;
         }
 
         /**
-         * The sub type of account.
-         */
-        public Builder subType(JsonNullable<String> subType) {
-            Utils.checkNotNull(subType, "subType");
-            this.subType = subType;
-            return this;
-        }
-
-
-        /**
          * The name of the account.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the account.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The fully qualified name of the account.
          */
-        public Builder fullyQualifiedName(String fullyQualifiedName) {
-            Utils.checkNotNull(fullyQualifiedName, "fullyQualifiedName");
+        public Builder fullyQualifiedName(@Nullable String fullyQualifiedName) {
             this.fullyQualifiedName = JsonNullable.of(fullyQualifiedName);
             return this;
         }
 
         /**
-         * The fully qualified name of the account.
-         */
-        public Builder fullyQualifiedName(JsonNullable<String> fullyQualifiedName) {
-            Utils.checkNotNull(fullyQualifiedName, "fullyQualifiedName");
-            this.fullyQualifiedName = fullyQualifiedName;
-            return this;
-        }
-
-
-        /**
          * The description of the account.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * The description of the account.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The opening balance of the account.
          */
-        public Builder openingBalance(double openingBalance) {
-            Utils.checkNotNull(openingBalance, "openingBalance");
+        public Builder openingBalance(@Nullable Double openingBalance) {
             this.openingBalance = JsonNullable.of(openingBalance);
             return this;
         }
 
         /**
-         * The opening balance of the account.
-         */
-        public Builder openingBalance(JsonNullable<Double> openingBalance) {
-            Utils.checkNotNull(openingBalance, "openingBalance");
-            this.openingBalance = openingBalance;
-            return this;
-        }
-
-
-        /**
          * The current balance of the account.
          */
-        public Builder currentBalance(double currentBalance) {
-            Utils.checkNotNull(currentBalance, "currentBalance");
+        public Builder currentBalance(@Nullable Double currentBalance) {
             this.currentBalance = JsonNullable.of(currentBalance);
             return this;
         }
 
         /**
-         * The current balance of the account.
-         */
-        public Builder currentBalance(JsonNullable<Double> currentBalance) {
-            Utils.checkNotNull(currentBalance, "currentBalance");
-            this.currentBalance = currentBalance;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The tax type of the account.
          */
-        public Builder taxType(String taxType) {
-            Utils.checkNotNull(taxType, "taxType");
+        public Builder taxType(@Nullable String taxType) {
             this.taxType = JsonNullable.of(taxType);
             return this;
         }
 
-        /**
-         * The tax type of the account.
-         */
-        public Builder taxType(JsonNullable<String> taxType) {
-            Utils.checkNotNull(taxType, "taxType");
-            this.taxType = taxType;
-            return this;
-        }
-
-
-        public Builder taxRate(LinkedTaxRate taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRate taxRate) {
             this.taxRate = taxRate;
             return this;
         }
 
-
-        public Builder level(double level) {
-            Utils.checkNotNull(level, "level");
+        public Builder level(@Nullable Double level) {
             this.level = JsonNullable.of(level);
             return this;
         }
 
-        public Builder level(JsonNullable<Double> level) {
-            Utils.checkNotNull(level, "level");
-            this.level = level;
-            return this;
-        }
-
-
         /**
          * Whether the account is active or not.
          */
-        public Builder active(boolean active) {
-            Utils.checkNotNull(active, "active");
+        public Builder active(@Nullable Boolean active) {
             this.active = JsonNullable.of(active);
             return this;
         }
 
         /**
-         * Whether the account is active or not.
-         */
-        public Builder active(JsonNullable<Boolean> active) {
-            Utils.checkNotNull(active, "active");
-            this.active = active;
-            return this;
-        }
-
-
-        /**
          * The status of the account.
          */
-        public Builder status(AccountStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable AccountStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The status of the account.
-         */
-        public Builder status(JsonNullable<? extends AccountStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Whether the account is a header or not.
          */
-        public Builder header(boolean header) {
-            Utils.checkNotNull(header, "header");
+        public Builder header(@Nullable Boolean header) {
             this.header = JsonNullable.of(header);
             return this;
         }
 
-        /**
-         * Whether the account is a header or not.
-         */
-        public Builder header(JsonNullable<Boolean> header) {
-            Utils.checkNotNull(header, "header");
-            this.header = header;
-            return this;
-        }
-
-
-        public Builder bankAccount(BankAccount bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
-            this.bankAccount = Optional.ofNullable(bankAccount);
-            return this;
-        }
-
-        public Builder bankAccount(Optional<? extends BankAccount> bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
+        public Builder bankAccount(@Nullable BankAccount bankAccount) {
             this.bankAccount = bankAccount;
             return this;
         }
 
-
         /**
          * The categories of the account.
          */
-        public Builder categories(List<Categories> categories) {
-            Utils.checkNotNull(categories, "categories");
-            this.categories = Optional.ofNullable(categories);
-            return this;
-        }
-
-        /**
-         * The categories of the account.
-         */
-        public Builder categories(Optional<? extends List<Categories>> categories) {
-            Utils.checkNotNull(categories, "categories");
+        public Builder categories(@Nullable List<Categories> categories) {
             this.categories = categories;
             return this;
         }
 
-
-        public Builder parentAccount(ParentAccount parentAccount) {
-            Utils.checkNotNull(parentAccount, "parentAccount");
-            this.parentAccount = Optional.ofNullable(parentAccount);
-            return this;
-        }
-
-        public Builder parentAccount(Optional<? extends ParentAccount> parentAccount) {
-            Utils.checkNotNull(parentAccount, "parentAccount");
+        public Builder parentAccount(@Nullable ParentAccount parentAccount) {
             this.parentAccount = parentAccount;
             return this;
         }
 
-
         /**
          * Whether the account is a sub account or not.
          */
-        public Builder subAccount(boolean subAccount) {
-            Utils.checkNotNull(subAccount, "subAccount");
+        public Builder subAccount(@Nullable Boolean subAccount) {
             this.subAccount = JsonNullable.of(subAccount);
             return this;
         }
 
         /**
-         * Whether the account is a sub account or not.
-         */
-        public Builder subAccount(JsonNullable<Boolean> subAccount) {
-            Utils.checkNotNull(subAccount, "subAccount");
-            this.subAccount = subAccount;
-            return this;
-        }
-
-
-        /**
          * The sub accounts of the account.
          */
-        public Builder subAccounts(List<SubAccounts> subAccounts) {
-            Utils.checkNotNull(subAccounts, "subAccounts");
-            this.subAccounts = Optional.ofNullable(subAccounts);
-            return this;
-        }
-
-        /**
-         * The sub accounts of the account.
-         */
-        public Builder subAccounts(Optional<? extends List<SubAccounts>> subAccounts) {
-            Utils.checkNotNull(subAccounts, "subAccounts");
+        public Builder subAccounts(@Nullable List<SubAccounts> subAccounts) {
             this.subAccounts = subAccounts;
             return this;
         }
 
-
         /**
          * Reconciliation Date means the last calendar day of each Reconciliation Period.
          */
-        public Builder lastReconciliationDate(LocalDate lastReconciliationDate) {
-            Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
+        public Builder lastReconciliationDate(@Nullable LocalDate lastReconciliationDate) {
             this.lastReconciliationDate = JsonNullable.of(lastReconciliationDate);
             return this;
         }
 
         /**
-         * Reconciliation Date means the last calendar day of each Reconciliation Period.
-         */
-        public Builder lastReconciliationDate(JsonNullable<LocalDate> lastReconciliationDate) {
-            Utils.checkNotNull(lastReconciliationDate, "lastReconciliationDate");
-            this.lastReconciliationDate = lastReconciliationDate;
-            return this;
-        }
-
-
-        /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(List<LedgerAccountSubsidiaries> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
-            this.subsidiaries = Optional.ofNullable(subsidiaries);
-            return this;
-        }
-
-        /**
-         * The subsidiaries the account belongs to.
-         */
-        public Builder subsidiaries(Optional<? extends List<LedgerAccountSubsidiaries>> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
+        public Builder subsidiaries(@Nullable List<LedgerAccountSubsidiaries> subsidiaries) {
             this.subsidiaries = subsidiaries;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
-        /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public LedgerAccount build() {
-
             return new LedgerAccount(
                 id, displayId, nominalCode,
                 code, classification, type,

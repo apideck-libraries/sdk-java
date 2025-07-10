@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.AtsJobsOneResponse;
 import com.apideck.unify.operations.AtsJobsAllOperation;
 import com.apideck.unify.operations.AtsJobsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class Jobs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsJobsAllResponse list(AtsJobsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AtsJobsAllResponse list(@Nonnull AtsJobsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class Jobs {
      * @throws Exception if the API call fails
      */
     public AtsJobsAllResponse list(
-            AtsJobsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsJobsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
               = new AtsJobsAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class Jobs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsJobsOneResponse get(AtsJobsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AtsJobsOneResponse get(@Nonnull AtsJobsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class Jobs {
      * @throws Exception if the API call fails
      */
     public AtsJobsOneResponse get(
-            AtsJobsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AtsJobsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
               = new AtsJobsOneOperation(
                 sdkConfiguration,

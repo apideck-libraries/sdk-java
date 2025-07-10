@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class Folder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the folder
@@ -60,7 +60,7 @@ public class Folder {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner")
-    private Optional<? extends Owner> owner;
+    private Owner owner;
 
     /**
      * The parent folders of the file, starting from the root
@@ -73,14 +73,14 @@ public class Folder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("parent_folders_complete")
-    private Optional<Boolean> parentFoldersComplete;
+    private Boolean parentFoldersComplete;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -112,158 +112,140 @@ public class Folder {
 
     @JsonCreator
     public Folder(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") String name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("path") JsonNullable<String> path,
-            @JsonProperty("size") JsonNullable<Long> size,
-            @JsonProperty("owner") Optional<? extends Owner> owner,
-            @JsonProperty("parent_folders") List<LinkedFolder> parentFolders,
-            @JsonProperty("parent_folders_complete") Optional<Boolean> parentFoldersComplete,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(path, "path");
-        Utils.checkNotNull(size, "size");
-        Utils.checkNotNull(owner, "owner");
-        Utils.checkNotNull(parentFolders, "parentFolders");
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nonnull String name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("path") @Nullable JsonNullable<String> path,
+            @JsonProperty("size") @Nullable JsonNullable<Long> size,
+            @JsonProperty("owner") @Nullable Owner owner,
+            @JsonProperty("parent_folders") @Nonnull List<LinkedFolder> parentFolders,
+            @JsonProperty("parent_folders_complete") @Nullable Boolean parentFoldersComplete,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.path = path;
-        this.size = size;
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.path = Optional.ofNullable(path)
+            .orElse(JsonNullable.undefined());
+        this.size = Optional.ofNullable(size)
+            .orElse(JsonNullable.undefined());
         this.owner = owner;
-        this.parentFolders = parentFolders;
+        this.parentFolders = Optional.ofNullable(parentFolders)
+            .orElseThrow(() -> new IllegalArgumentException("parentFolders cannot be null"));
         this.parentFoldersComplete = parentFoldersComplete;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public Folder(
-            String name,
-            List<LinkedFolder> parentFolders) {
-        this(Optional.empty(), name, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            parentFolders, Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            @Nonnull String name,
+            @Nonnull List<LinkedFolder> parentFolders) {
+        this(null, name, null,
+            null, null, null,
+            parentFolders, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the folder
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     /**
      * Optional description of the folder
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The full path of the folder (includes the folder name)
      */
-    @JsonIgnore
     public JsonNullable<String> path() {
-        return path;
+        return this.path;
     }
 
     /**
      * The size of the folder in bytes
      */
-    @JsonIgnore
     public JsonNullable<Long> size() {
-        return size;
+        return this.size;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Owner> owner() {
-        return (Optional<Owner>) owner;
+        return Optional.ofNullable(this.owner);
     }
 
     /**
      * The parent folders of the file, starting from the root
      */
-    @JsonIgnore
     public List<LinkedFolder> parentFolders() {
-        return parentFolders;
+        return this.parentFolders;
     }
 
     /**
      * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
      */
-    @JsonIgnore
     public Optional<Boolean> parentFoldersComplete() {
-        return parentFoldersComplete;
+        return Optional.ofNullable(this.parentFoldersComplete);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -274,113 +256,59 @@ public class Folder {
     /**
      * A unique identifier for an object.
      */
-    public Folder withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Folder withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Folder withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The name of the folder
      */
-    public Folder withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public Folder withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
+
 
     /**
      * Optional description of the folder
      */
-    public Folder withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Folder withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * Optional description of the folder
-     */
-    public Folder withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The full path of the folder (includes the folder name)
      */
-    public Folder withPath(String path) {
-        Utils.checkNotNull(path, "path");
+    public Folder withPath(@Nullable String path) {
         this.path = JsonNullable.of(path);
         return this;
     }
 
-    /**
-     * The full path of the folder (includes the folder name)
-     */
-    public Folder withPath(JsonNullable<String> path) {
-        Utils.checkNotNull(path, "path");
-        this.path = path;
-        return this;
-    }
 
     /**
      * The size of the folder in bytes
      */
-    public Folder withSize(long size) {
-        Utils.checkNotNull(size, "size");
+    public Folder withSize(@Nullable Long size) {
         this.size = JsonNullable.of(size);
         return this;
     }
 
-    /**
-     * The size of the folder in bytes
-     */
-    public Folder withSize(JsonNullable<Long> size) {
-        Utils.checkNotNull(size, "size");
-        this.size = size;
-        return this;
-    }
 
-    public Folder withOwner(Owner owner) {
-        Utils.checkNotNull(owner, "owner");
-        this.owner = Optional.ofNullable(owner);
-        return this;
-    }
-
-
-    public Folder withOwner(Optional<? extends Owner> owner) {
-        Utils.checkNotNull(owner, "owner");
+    public Folder withOwner(@Nullable Owner owner) {
         this.owner = owner;
         return this;
     }
 
+
     /**
      * The parent folders of the file, starting from the root
      */
-    public Folder withParentFolders(List<LinkedFolder> parentFolders) {
-        Utils.checkNotNull(parentFolders, "parentFolders");
-        this.parentFolders = parentFolders;
-        return this;
-    }
-
-    /**
-     * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
-     */
-    public Folder withParentFoldersComplete(boolean parentFoldersComplete) {
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-        this.parentFoldersComplete = Optional.ofNullable(parentFoldersComplete);
+    public Folder withParentFolders(@Nonnull List<LinkedFolder> parentFolders) {
+        this.parentFolders = Utils.checkNotNull(parentFolders, "parentFolders");
         return this;
     }
 
@@ -388,101 +316,56 @@ public class Folder {
     /**
      * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
      */
-    public Folder withParentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
-        Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
+    public Folder withParentFoldersComplete(@Nullable Boolean parentFoldersComplete) {
         this.parentFoldersComplete = parentFoldersComplete;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Folder withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Folder withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Folder withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public Folder withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Folder withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Folder withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Folder withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Folder withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Folder withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Folder withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Folder withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Folder withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Folder withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Folder withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Folder withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -540,261 +423,138 @@ public class Folder {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private String name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> path = JsonNullable.undefined();
+        private JsonNullable<String> path;
 
-        private JsonNullable<Long> size = JsonNullable.undefined();
+        private JsonNullable<Long> size;
 
-        private Optional<? extends Owner> owner = Optional.empty();
+        private Owner owner;
 
         private List<LinkedFolder> parentFolders;
 
-        private Optional<Boolean> parentFoldersComplete = Optional.empty();
+        private Boolean parentFoldersComplete;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the folder
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
-
 
         /**
          * Optional description of the folder
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * Optional description of the folder
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The full path of the folder (includes the folder name)
          */
-        public Builder path(String path) {
-            Utils.checkNotNull(path, "path");
+        public Builder path(@Nullable String path) {
             this.path = JsonNullable.of(path);
             return this;
         }
 
         /**
-         * The full path of the folder (includes the folder name)
-         */
-        public Builder path(JsonNullable<String> path) {
-            Utils.checkNotNull(path, "path");
-            this.path = path;
-            return this;
-        }
-
-
-        /**
          * The size of the folder in bytes
          */
-        public Builder size(long size) {
-            Utils.checkNotNull(size, "size");
+        public Builder size(@Nullable Long size) {
             this.size = JsonNullable.of(size);
             return this;
         }
 
-        /**
-         * The size of the folder in bytes
-         */
-        public Builder size(JsonNullable<Long> size) {
-            Utils.checkNotNull(size, "size");
-            this.size = size;
-            return this;
-        }
-
-
-        public Builder owner(Owner owner) {
-            Utils.checkNotNull(owner, "owner");
-            this.owner = Optional.ofNullable(owner);
-            return this;
-        }
-
-        public Builder owner(Optional<? extends Owner> owner) {
-            Utils.checkNotNull(owner, "owner");
+        public Builder owner(@Nullable Owner owner) {
             this.owner = owner;
             return this;
         }
 
-
         /**
          * The parent folders of the file, starting from the root
          */
-        public Builder parentFolders(List<LinkedFolder> parentFolders) {
-            Utils.checkNotNull(parentFolders, "parentFolders");
-            this.parentFolders = parentFolders;
-            return this;
-        }
-
-
-        /**
-         * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
-         */
-        public Builder parentFoldersComplete(boolean parentFoldersComplete) {
-            Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
-            this.parentFoldersComplete = Optional.ofNullable(parentFoldersComplete);
+        public Builder parentFolders(@Nonnull List<LinkedFolder> parentFolders) {
+            this.parentFolders = Utils.checkNotNull(parentFolders, "parentFolders");
             return this;
         }
 
         /**
          * Whether the list of parent folder is complete. Some connectors only return the direct parent of a folder
          */
-        public Builder parentFoldersComplete(Optional<Boolean> parentFoldersComplete) {
-            Utils.checkNotNull(parentFoldersComplete, "parentFoldersComplete");
+        public Builder parentFoldersComplete(@Nullable Boolean parentFoldersComplete) {
             this.parentFoldersComplete = parentFoldersComplete;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public Folder build() {
-
             return new Folder(
                 id, name, description,
                 path, size, owner,

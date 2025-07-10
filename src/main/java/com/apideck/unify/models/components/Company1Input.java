@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +24,7 @@ public class Company1Input {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * Owner ID
@@ -60,7 +59,7 @@ public class Company1Input {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The status of the company
@@ -156,47 +155,47 @@ public class Company1Input {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
-    private Optional<? extends List<BankAccount1>> bankAccounts;
+    private List<BankAccount1> bankAccounts;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
-    private Optional<? extends List<Website>> websites;
+    private List<Website> websites;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
-    private Optional<? extends List<SocialLink>> socialLinks;
+    private List<SocialLink> socialLinks;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_type")
-    private Optional<? extends CompanyRowType> rowType;
+    private CompanyRowType rowType;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
     /**
      * Whether the company is read-only or not
@@ -224,93 +223,79 @@ public class Company1Input {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Company1Input(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("image") JsonNullable<String> image,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("vat_number") JsonNullable<String> vatNumber,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("fax") JsonNullable<String> fax,
-            @JsonProperty("annual_revenue") JsonNullable<String> annualRevenue,
-            @JsonProperty("number_of_employees") JsonNullable<String> numberOfEmployees,
-            @JsonProperty("industry") JsonNullable<String> industry,
-            @JsonProperty("ownership") JsonNullable<String> ownership,
-            @JsonProperty("sales_tax_number") JsonNullable<String> salesTaxNumber,
-            @JsonProperty("payee_number") JsonNullable<String> payeeNumber,
-            @JsonProperty("abn_or_tfn") JsonNullable<String> abnOrTfn,
-            @JsonProperty("abn_branch") JsonNullable<String> abnBranch,
-            @JsonProperty("acn") JsonNullable<String> acn,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("bank_accounts") Optional<? extends List<BankAccount1>> bankAccounts,
-            @JsonProperty("websites") Optional<? extends List<Website>> websites,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("social_links") Optional<? extends List<SocialLink>> socialLinks,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("row_type") Optional<? extends CompanyRowType> rowType,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("read_only") JsonNullable<Boolean> readOnly,
-            @JsonProperty("salutation") JsonNullable<String> salutation,
-            @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(image, "image");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(vatNumber, "vatNumber");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(fax, "fax");
-        Utils.checkNotNull(annualRevenue, "annualRevenue");
-        Utils.checkNotNull(numberOfEmployees, "numberOfEmployees");
-        Utils.checkNotNull(industry, "industry");
-        Utils.checkNotNull(ownership, "ownership");
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-        Utils.checkNotNull(payeeNumber, "payeeNumber");
-        Utils.checkNotNull(abnOrTfn, "abnOrTfn");
-        Utils.checkNotNull(abnBranch, "abnBranch");
-        Utils.checkNotNull(acn, "acn");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        Utils.checkNotNull(websites, "websites");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(rowType, "rowType");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(readOnly, "readOnly");
-        Utils.checkNotNull(salutation, "salutation");
-        Utils.checkNotNull(birthday, "birthday");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.name = name;
-        this.ownerId = ownerId;
-        this.image = image;
-        this.description = description;
-        this.vatNumber = vatNumber;
-        this.currency = currency;
-        this.status = status;
-        this.fax = fax;
-        this.annualRevenue = annualRevenue;
-        this.numberOfEmployees = numberOfEmployees;
-        this.industry = industry;
-        this.ownership = ownership;
-        this.salesTaxNumber = salesTaxNumber;
-        this.payeeNumber = payeeNumber;
-        this.abnOrTfn = abnOrTfn;
-        this.abnBranch = abnBranch;
-        this.acn = acn;
-        this.firstName = firstName;
-        this.lastName = lastName;
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("image") @Nullable JsonNullable<String> image,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("vat_number") @Nullable JsonNullable<String> vatNumber,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("status") @Nullable JsonNullable<String> status,
+            @JsonProperty("fax") @Nullable JsonNullable<String> fax,
+            @JsonProperty("annual_revenue") @Nullable JsonNullable<String> annualRevenue,
+            @JsonProperty("number_of_employees") @Nullable JsonNullable<String> numberOfEmployees,
+            @JsonProperty("industry") @Nullable JsonNullable<String> industry,
+            @JsonProperty("ownership") @Nullable JsonNullable<String> ownership,
+            @JsonProperty("sales_tax_number") @Nullable JsonNullable<String> salesTaxNumber,
+            @JsonProperty("payee_number") @Nullable JsonNullable<String> payeeNumber,
+            @JsonProperty("abn_or_tfn") @Nullable JsonNullable<String> abnOrTfn,
+            @JsonProperty("abn_branch") @Nullable JsonNullable<String> abnBranch,
+            @JsonProperty("acn") @Nullable JsonNullable<String> acn,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("bank_accounts") @Nullable List<BankAccount1> bankAccounts,
+            @JsonProperty("websites") @Nullable List<Website> websites,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("social_links") @Nullable List<SocialLink> socialLinks,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("row_type") @Nullable CompanyRowType rowType,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("read_only") @Nullable JsonNullable<Boolean> readOnly,
+            @JsonProperty("salutation") @Nullable JsonNullable<String> salutation,
+            @JsonProperty("birthday") @Nullable JsonNullable<LocalDate> birthday,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.name = JsonNullable.of(name);
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.image = Optional.ofNullable(image)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.vatNumber = Optional.ofNullable(vatNumber)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.fax = Optional.ofNullable(fax)
+            .orElse(JsonNullable.undefined());
+        this.annualRevenue = Optional.ofNullable(annualRevenue)
+            .orElse(JsonNullable.undefined());
+        this.numberOfEmployees = Optional.ofNullable(numberOfEmployees)
+            .orElse(JsonNullable.undefined());
+        this.industry = Optional.ofNullable(industry)
+            .orElse(JsonNullable.undefined());
+        this.ownership = Optional.ofNullable(ownership)
+            .orElse(JsonNullable.undefined());
+        this.salesTaxNumber = Optional.ofNullable(salesTaxNumber)
+            .orElse(JsonNullable.undefined());
+        this.payeeNumber = Optional.ofNullable(payeeNumber)
+            .orElse(JsonNullable.undefined());
+        this.abnOrTfn = Optional.ofNullable(abnOrTfn)
+            .orElse(JsonNullable.undefined());
+        this.abnBranch = Optional.ofNullable(abnBranch)
+            .orElse(JsonNullable.undefined());
+        this.acn = Optional.ofNullable(acn)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
         this.bankAccounts = bankAccounts;
         this.websites = websites;
         this.addresses = addresses;
@@ -319,265 +304,226 @@ public class Company1Input {
         this.emails = emails;
         this.rowType = rowType;
         this.customFields = customFields;
-        this.tags = tags;
-        this.readOnly = readOnly;
-        this.salutation = salutation;
-        this.birthday = birthday;
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
+        this.readOnly = Optional.ofNullable(readOnly)
+            .orElse(JsonNullable.undefined());
+        this.salutation = Optional.ofNullable(salutation)
+            .orElse(JsonNullable.undefined());
+        this.birthday = Optional.ofNullable(birthday)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Company1Input() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * Name of the company
      */
-    @JsonIgnore
-    public Optional<String> name() {
-        return name;
+    public JsonNullable<String> name() {
+        return this.name;
     }
 
     /**
      * Owner ID
      */
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     /**
      * The Image URL of the company
      */
-    @JsonIgnore
     public JsonNullable<String> image() {
-        return image;
+        return this.image;
     }
 
     /**
      * A description of the company
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The VAT number of the company
      */
-    @JsonIgnore
     public JsonNullable<String> vatNumber() {
-        return vatNumber;
+        return this.vatNumber;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The status of the company
      */
-    @JsonIgnore
     public JsonNullable<String> status() {
-        return status;
+        return this.status;
     }
 
     /**
      * The fax number of the company
      */
-    @JsonIgnore
     public JsonNullable<String> fax() {
-        return fax;
+        return this.fax;
     }
 
     /**
      * The annual revenue of the company
      */
-    @JsonIgnore
     public JsonNullable<String> annualRevenue() {
-        return annualRevenue;
+        return this.annualRevenue;
     }
 
     /**
      * Number of employees
      */
-    @JsonIgnore
     public JsonNullable<String> numberOfEmployees() {
-        return numberOfEmployees;
+        return this.numberOfEmployees;
     }
 
     /**
      * The industry represents the type of business the company is in.
      */
-    @JsonIgnore
     public JsonNullable<String> industry() {
-        return industry;
+        return this.industry;
     }
 
     /**
      * The ownership indicates the type of ownership of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> ownership() {
-        return ownership;
+        return this.ownership;
     }
 
     /**
      * A sales tax number is a unique number that identifies a company for tax purposes.
      */
-    @JsonIgnore
     public JsonNullable<String> salesTaxNumber() {
-        return salesTaxNumber;
+        return this.salesTaxNumber;
     }
 
     /**
      * A payee number is a unique number that identifies a payee for tax purposes.
      */
-    @JsonIgnore
     public JsonNullable<String> payeeNumber() {
-        return payeeNumber;
+        return this.payeeNumber;
     }
 
     /**
      * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
      */
-    @JsonIgnore
     public JsonNullable<String> abnOrTfn() {
-        return abnOrTfn;
+        return this.abnOrTfn;
     }
 
     /**
      * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
      */
-    @JsonIgnore
     public JsonNullable<String> abnBranch() {
-        return abnBranch;
+        return this.abnBranch;
     }
 
     /**
      * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
      */
-    @JsonIgnore
     public JsonNullable<String> acn() {
-        return acn;
+        return this.acn;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<BankAccount1>> bankAccounts() {
-        return (Optional<List<BankAccount1>>) bankAccounts;
+        return Optional.ofNullable(this.bankAccounts);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Website>> websites() {
-        return (Optional<List<Website>>) websites;
+        return Optional.ofNullable(this.websites);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SocialLink>> socialLinks() {
-        return (Optional<List<SocialLink>>) socialLinks;
+        return Optional.ofNullable(this.socialLinks);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CompanyRowType> rowType() {
-        return (Optional<CompanyRowType>) rowType;
+        return Optional.ofNullable(this.rowType);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
     /**
      * Whether the company is read-only or not
      */
-    @JsonIgnore
     public JsonNullable<Boolean> readOnly() {
-        return readOnly;
+        return this.readOnly;
     }
 
     /**
      * A formal salutation for the person. For example, 'Mr', 'Mrs'
      */
-    @JsonIgnore
     public JsonNullable<String> salutation() {
-        return salutation;
+        return this.salutation;
     }
 
     /**
      * The date of birth of the person.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
-        return birthday;
+        return this.birthday;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -588,534 +534,263 @@ public class Company1Input {
     /**
      * Name of the company
      */
-    public Company1Input withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+    public Company1Input withName(@Nullable String name) {
+        this.name = JsonNullable.of(name);
         return this;
     }
 
-
-    /**
-     * Name of the company
-     */
-    public Company1Input withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * Owner ID
      */
-    public Company1Input withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public Company1Input withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    /**
-     * Owner ID
-     */
-    public Company1Input withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
     /**
      * The Image URL of the company
      */
-    public Company1Input withImage(String image) {
-        Utils.checkNotNull(image, "image");
+    public Company1Input withImage(@Nullable String image) {
         this.image = JsonNullable.of(image);
         return this;
     }
 
-    /**
-     * The Image URL of the company
-     */
-    public Company1Input withImage(JsonNullable<String> image) {
-        Utils.checkNotNull(image, "image");
-        this.image = image;
-        return this;
-    }
 
     /**
      * A description of the company
      */
-    public Company1Input withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Company1Input withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the company
-     */
-    public Company1Input withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The VAT number of the company
      */
-    public Company1Input withVatNumber(String vatNumber) {
-        Utils.checkNotNull(vatNumber, "vatNumber");
+    public Company1Input withVatNumber(@Nullable String vatNumber) {
         this.vatNumber = JsonNullable.of(vatNumber);
         return this;
     }
 
-    /**
-     * The VAT number of the company
-     */
-    public Company1Input withVatNumber(JsonNullable<String> vatNumber) {
-        Utils.checkNotNull(vatNumber, "vatNumber");
-        this.vatNumber = vatNumber;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public Company1Input withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public Company1Input withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public Company1Input withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The status of the company
      */
-    public Company1Input withStatus(String status) {
-        Utils.checkNotNull(status, "status");
+    public Company1Input withStatus(@Nullable String status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The status of the company
-     */
-    public Company1Input withStatus(JsonNullable<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * The fax number of the company
      */
-    public Company1Input withFax(String fax) {
-        Utils.checkNotNull(fax, "fax");
+    public Company1Input withFax(@Nullable String fax) {
         this.fax = JsonNullable.of(fax);
         return this;
     }
 
-    /**
-     * The fax number of the company
-     */
-    public Company1Input withFax(JsonNullable<String> fax) {
-        Utils.checkNotNull(fax, "fax");
-        this.fax = fax;
-        return this;
-    }
 
     /**
      * The annual revenue of the company
      */
-    public Company1Input withAnnualRevenue(String annualRevenue) {
-        Utils.checkNotNull(annualRevenue, "annualRevenue");
+    public Company1Input withAnnualRevenue(@Nullable String annualRevenue) {
         this.annualRevenue = JsonNullable.of(annualRevenue);
         return this;
     }
 
-    /**
-     * The annual revenue of the company
-     */
-    public Company1Input withAnnualRevenue(JsonNullable<String> annualRevenue) {
-        Utils.checkNotNull(annualRevenue, "annualRevenue");
-        this.annualRevenue = annualRevenue;
-        return this;
-    }
 
     /**
      * Number of employees
      */
-    public Company1Input withNumberOfEmployees(String numberOfEmployees) {
-        Utils.checkNotNull(numberOfEmployees, "numberOfEmployees");
+    public Company1Input withNumberOfEmployees(@Nullable String numberOfEmployees) {
         this.numberOfEmployees = JsonNullable.of(numberOfEmployees);
         return this;
     }
 
-    /**
-     * Number of employees
-     */
-    public Company1Input withNumberOfEmployees(JsonNullable<String> numberOfEmployees) {
-        Utils.checkNotNull(numberOfEmployees, "numberOfEmployees");
-        this.numberOfEmployees = numberOfEmployees;
-        return this;
-    }
 
     /**
      * The industry represents the type of business the company is in.
      */
-    public Company1Input withIndustry(String industry) {
-        Utils.checkNotNull(industry, "industry");
+    public Company1Input withIndustry(@Nullable String industry) {
         this.industry = JsonNullable.of(industry);
         return this;
     }
 
-    /**
-     * The industry represents the type of business the company is in.
-     */
-    public Company1Input withIndustry(JsonNullable<String> industry) {
-        Utils.checkNotNull(industry, "industry");
-        this.industry = industry;
-        return this;
-    }
 
     /**
      * The ownership indicates the type of ownership of the company.
      */
-    public Company1Input withOwnership(String ownership) {
-        Utils.checkNotNull(ownership, "ownership");
+    public Company1Input withOwnership(@Nullable String ownership) {
         this.ownership = JsonNullable.of(ownership);
         return this;
     }
 
-    /**
-     * The ownership indicates the type of ownership of the company.
-     */
-    public Company1Input withOwnership(JsonNullable<String> ownership) {
-        Utils.checkNotNull(ownership, "ownership");
-        this.ownership = ownership;
-        return this;
-    }
 
     /**
      * A sales tax number is a unique number that identifies a company for tax purposes.
      */
-    public Company1Input withSalesTaxNumber(String salesTaxNumber) {
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
+    public Company1Input withSalesTaxNumber(@Nullable String salesTaxNumber) {
         this.salesTaxNumber = JsonNullable.of(salesTaxNumber);
         return this;
     }
 
-    /**
-     * A sales tax number is a unique number that identifies a company for tax purposes.
-     */
-    public Company1Input withSalesTaxNumber(JsonNullable<String> salesTaxNumber) {
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-        this.salesTaxNumber = salesTaxNumber;
-        return this;
-    }
 
     /**
      * A payee number is a unique number that identifies a payee for tax purposes.
      */
-    public Company1Input withPayeeNumber(String payeeNumber) {
-        Utils.checkNotNull(payeeNumber, "payeeNumber");
+    public Company1Input withPayeeNumber(@Nullable String payeeNumber) {
         this.payeeNumber = JsonNullable.of(payeeNumber);
         return this;
     }
 
-    /**
-     * A payee number is a unique number that identifies a payee for tax purposes.
-     */
-    public Company1Input withPayeeNumber(JsonNullable<String> payeeNumber) {
-        Utils.checkNotNull(payeeNumber, "payeeNumber");
-        this.payeeNumber = payeeNumber;
-        return this;
-    }
 
     /**
      * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
      */
-    public Company1Input withAbnOrTfn(String abnOrTfn) {
-        Utils.checkNotNull(abnOrTfn, "abnOrTfn");
+    public Company1Input withAbnOrTfn(@Nullable String abnOrTfn) {
         this.abnOrTfn = JsonNullable.of(abnOrTfn);
         return this;
     }
 
-    /**
-     * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
-     */
-    public Company1Input withAbnOrTfn(JsonNullable<String> abnOrTfn) {
-        Utils.checkNotNull(abnOrTfn, "abnOrTfn");
-        this.abnOrTfn = abnOrTfn;
-        return this;
-    }
 
     /**
      * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
      */
-    public Company1Input withAbnBranch(String abnBranch) {
-        Utils.checkNotNull(abnBranch, "abnBranch");
+    public Company1Input withAbnBranch(@Nullable String abnBranch) {
         this.abnBranch = JsonNullable.of(abnBranch);
         return this;
     }
 
-    /**
-     * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
-     */
-    public Company1Input withAbnBranch(JsonNullable<String> abnBranch) {
-        Utils.checkNotNull(abnBranch, "abnBranch");
-        this.abnBranch = abnBranch;
-        return this;
-    }
 
     /**
      * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
      */
-    public Company1Input withAcn(String acn) {
-        Utils.checkNotNull(acn, "acn");
+    public Company1Input withAcn(@Nullable String acn) {
         this.acn = JsonNullable.of(acn);
         return this;
     }
 
-    /**
-     * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
-     */
-    public Company1Input withAcn(JsonNullable<String> acn) {
-        Utils.checkNotNull(acn, "acn");
-        this.acn = acn;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public Company1Input withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public Company1Input withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public Company1Input withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public Company1Input withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public Company1Input withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public Company1Input withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
-    public Company1Input withBankAccounts(List<BankAccount1> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        this.bankAccounts = Optional.ofNullable(bankAccounts);
-        return this;
-    }
-
-
-    public Company1Input withBankAccounts(Optional<? extends List<BankAccount1>> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
+    public Company1Input withBankAccounts(@Nullable List<BankAccount1> bankAccounts) {
         this.bankAccounts = bankAccounts;
         return this;
     }
 
-    public Company1Input withWebsites(List<Website> websites) {
-        Utils.checkNotNull(websites, "websites");
-        this.websites = Optional.ofNullable(websites);
-        return this;
-    }
 
-
-    public Company1Input withWebsites(Optional<? extends List<Website>> websites) {
-        Utils.checkNotNull(websites, "websites");
+    public Company1Input withWebsites(@Nullable List<Website> websites) {
         this.websites = websites;
         return this;
     }
 
-    public Company1Input withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
 
-
-    public Company1Input withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public Company1Input withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public Company1Input withSocialLinks(List<SocialLink> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        this.socialLinks = Optional.ofNullable(socialLinks);
-        return this;
-    }
 
-
-    public Company1Input withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
+    public Company1Input withSocialLinks(@Nullable List<SocialLink> socialLinks) {
         this.socialLinks = socialLinks;
         return this;
     }
 
-    public Company1Input withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public Company1Input withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public Company1Input withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public Company1Input withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public Company1Input withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public Company1Input withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public Company1Input withRowType(CompanyRowType rowType) {
-        Utils.checkNotNull(rowType, "rowType");
-        this.rowType = Optional.ofNullable(rowType);
-        return this;
-    }
 
-
-    public Company1Input withRowType(Optional<? extends CompanyRowType> rowType) {
-        Utils.checkNotNull(rowType, "rowType");
+    public Company1Input withRowType(@Nullable CompanyRowType rowType) {
         this.rowType = rowType;
         return this;
     }
 
-    public Company1Input withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
 
-
-    public Company1Input withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public Company1Input withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
-    public Company1Input withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+
+    public Company1Input withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public Company1Input withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
     /**
      * Whether the company is read-only or not
      */
-    public Company1Input withReadOnly(boolean readOnly) {
-        Utils.checkNotNull(readOnly, "readOnly");
+    public Company1Input withReadOnly(@Nullable Boolean readOnly) {
         this.readOnly = JsonNullable.of(readOnly);
         return this;
     }
 
-    /**
-     * Whether the company is read-only or not
-     */
-    public Company1Input withReadOnly(JsonNullable<Boolean> readOnly) {
-        Utils.checkNotNull(readOnly, "readOnly");
-        this.readOnly = readOnly;
-        return this;
-    }
 
     /**
      * A formal salutation for the person. For example, 'Mr', 'Mrs'
      */
-    public Company1Input withSalutation(String salutation) {
-        Utils.checkNotNull(salutation, "salutation");
+    public Company1Input withSalutation(@Nullable String salutation) {
         this.salutation = JsonNullable.of(salutation);
         return this;
     }
 
-    /**
-     * A formal salutation for the person. For example, 'Mr', 'Mrs'
-     */
-    public Company1Input withSalutation(JsonNullable<String> salutation) {
-        Utils.checkNotNull(salutation, "salutation");
-        this.salutation = salutation;
-        return this;
-    }
 
     /**
      * The date of birth of the person.
      */
-    public Company1Input withBirthday(LocalDate birthday) {
-        Utils.checkNotNull(birthday, "birthday");
+    public Company1Input withBirthday(@Nullable LocalDate birthday) {
         this.birthday = JsonNullable.of(birthday);
         return this;
     }
 
-    /**
-     * The date of birth of the person.
-     */
-    public Company1Input withBirthday(JsonNullable<LocalDate> birthday) {
-        Utils.checkNotNull(birthday, "birthday");
-        this.birthday = birthday;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Company1Input withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Company1Input withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Company1Input withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1217,630 +892,304 @@ public class Company1Input {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> image = JsonNullable.undefined();
+        private JsonNullable<String> image;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> vatNumber = JsonNullable.undefined();
+        private JsonNullable<String> vatNumber;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private JsonNullable<String> status;
 
-        private JsonNullable<String> fax = JsonNullable.undefined();
+        private JsonNullable<String> fax;
 
-        private JsonNullable<String> annualRevenue = JsonNullable.undefined();
+        private JsonNullable<String> annualRevenue;
 
-        private JsonNullable<String> numberOfEmployees = JsonNullable.undefined();
+        private JsonNullable<String> numberOfEmployees;
 
-        private JsonNullable<String> industry = JsonNullable.undefined();
+        private JsonNullable<String> industry;
 
-        private JsonNullable<String> ownership = JsonNullable.undefined();
+        private JsonNullable<String> ownership;
 
-        private JsonNullable<String> salesTaxNumber = JsonNullable.undefined();
+        private JsonNullable<String> salesTaxNumber;
 
-        private JsonNullable<String> payeeNumber = JsonNullable.undefined();
+        private JsonNullable<String> payeeNumber;
 
-        private JsonNullable<String> abnOrTfn = JsonNullable.undefined();
+        private JsonNullable<String> abnOrTfn;
 
-        private JsonNullable<String> abnBranch = JsonNullable.undefined();
+        private JsonNullable<String> abnBranch;
 
-        private JsonNullable<String> acn = JsonNullable.undefined();
+        private JsonNullable<String> acn;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private Optional<? extends List<BankAccount1>> bankAccounts = Optional.empty();
+        private List<BankAccount1> bankAccounts;
 
-        private Optional<? extends List<Website>> websites = Optional.empty();
+        private List<Website> websites;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
+        private List<SocialLink> socialLinks;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private Optional<? extends CompanyRowType> rowType = Optional.empty();
+        private CompanyRowType rowType;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private JsonNullable<List<String>> tags;
 
-        private JsonNullable<Boolean> readOnly = JsonNullable.undefined();
+        private JsonNullable<Boolean> readOnly;
 
-        private JsonNullable<String> salutation = JsonNullable.undefined();
+        private JsonNullable<String> salutation;
 
-        private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+        private JsonNullable<LocalDate> birthday;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of the company
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the company
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Owner ID
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
         /**
-         * Owner ID
-         */
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        /**
          * The Image URL of the company
          */
-        public Builder image(String image) {
-            Utils.checkNotNull(image, "image");
+        public Builder image(@Nullable String image) {
             this.image = JsonNullable.of(image);
             return this;
         }
 
         /**
-         * The Image URL of the company
-         */
-        public Builder image(JsonNullable<String> image) {
-            Utils.checkNotNull(image, "image");
-            this.image = image;
-            return this;
-        }
-
-
-        /**
          * A description of the company
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the company
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The VAT number of the company
          */
-        public Builder vatNumber(String vatNumber) {
-            Utils.checkNotNull(vatNumber, "vatNumber");
+        public Builder vatNumber(@Nullable String vatNumber) {
             this.vatNumber = JsonNullable.of(vatNumber);
             return this;
         }
 
         /**
-         * The VAT number of the company
-         */
-        public Builder vatNumber(JsonNullable<String> vatNumber) {
-            Utils.checkNotNull(vatNumber, "vatNumber");
-            this.vatNumber = vatNumber;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The status of the company
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The status of the company
-         */
-        public Builder status(JsonNullable<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * The fax number of the company
          */
-        public Builder fax(String fax) {
-            Utils.checkNotNull(fax, "fax");
+        public Builder fax(@Nullable String fax) {
             this.fax = JsonNullable.of(fax);
             return this;
         }
 
         /**
-         * The fax number of the company
-         */
-        public Builder fax(JsonNullable<String> fax) {
-            Utils.checkNotNull(fax, "fax");
-            this.fax = fax;
-            return this;
-        }
-
-
-        /**
          * The annual revenue of the company
          */
-        public Builder annualRevenue(String annualRevenue) {
-            Utils.checkNotNull(annualRevenue, "annualRevenue");
+        public Builder annualRevenue(@Nullable String annualRevenue) {
             this.annualRevenue = JsonNullable.of(annualRevenue);
             return this;
         }
 
         /**
-         * The annual revenue of the company
-         */
-        public Builder annualRevenue(JsonNullable<String> annualRevenue) {
-            Utils.checkNotNull(annualRevenue, "annualRevenue");
-            this.annualRevenue = annualRevenue;
-            return this;
-        }
-
-
-        /**
          * Number of employees
          */
-        public Builder numberOfEmployees(String numberOfEmployees) {
-            Utils.checkNotNull(numberOfEmployees, "numberOfEmployees");
+        public Builder numberOfEmployees(@Nullable String numberOfEmployees) {
             this.numberOfEmployees = JsonNullable.of(numberOfEmployees);
             return this;
         }
 
         /**
-         * Number of employees
-         */
-        public Builder numberOfEmployees(JsonNullable<String> numberOfEmployees) {
-            Utils.checkNotNull(numberOfEmployees, "numberOfEmployees");
-            this.numberOfEmployees = numberOfEmployees;
-            return this;
-        }
-
-
-        /**
          * The industry represents the type of business the company is in.
          */
-        public Builder industry(String industry) {
-            Utils.checkNotNull(industry, "industry");
+        public Builder industry(@Nullable String industry) {
             this.industry = JsonNullable.of(industry);
             return this;
         }
 
         /**
-         * The industry represents the type of business the company is in.
-         */
-        public Builder industry(JsonNullable<String> industry) {
-            Utils.checkNotNull(industry, "industry");
-            this.industry = industry;
-            return this;
-        }
-
-
-        /**
          * The ownership indicates the type of ownership of the company.
          */
-        public Builder ownership(String ownership) {
-            Utils.checkNotNull(ownership, "ownership");
+        public Builder ownership(@Nullable String ownership) {
             this.ownership = JsonNullable.of(ownership);
             return this;
         }
 
         /**
-         * The ownership indicates the type of ownership of the company.
-         */
-        public Builder ownership(JsonNullable<String> ownership) {
-            Utils.checkNotNull(ownership, "ownership");
-            this.ownership = ownership;
-            return this;
-        }
-
-
-        /**
          * A sales tax number is a unique number that identifies a company for tax purposes.
          */
-        public Builder salesTaxNumber(String salesTaxNumber) {
-            Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
+        public Builder salesTaxNumber(@Nullable String salesTaxNumber) {
             this.salesTaxNumber = JsonNullable.of(salesTaxNumber);
             return this;
         }
 
         /**
-         * A sales tax number is a unique number that identifies a company for tax purposes.
-         */
-        public Builder salesTaxNumber(JsonNullable<String> salesTaxNumber) {
-            Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-            this.salesTaxNumber = salesTaxNumber;
-            return this;
-        }
-
-
-        /**
          * A payee number is a unique number that identifies a payee for tax purposes.
          */
-        public Builder payeeNumber(String payeeNumber) {
-            Utils.checkNotNull(payeeNumber, "payeeNumber");
+        public Builder payeeNumber(@Nullable String payeeNumber) {
             this.payeeNumber = JsonNullable.of(payeeNumber);
             return this;
         }
 
         /**
-         * A payee number is a unique number that identifies a payee for tax purposes.
-         */
-        public Builder payeeNumber(JsonNullable<String> payeeNumber) {
-            Utils.checkNotNull(payeeNumber, "payeeNumber");
-            this.payeeNumber = payeeNumber;
-            return this;
-        }
-
-
-        /**
          * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
          */
-        public Builder abnOrTfn(String abnOrTfn) {
-            Utils.checkNotNull(abnOrTfn, "abnOrTfn");
+        public Builder abnOrTfn(@Nullable String abnOrTfn) {
             this.abnOrTfn = JsonNullable.of(abnOrTfn);
             return this;
         }
 
         /**
-         * An ABN is necessary for operating a business, while a TFN (Tax File Number) is required for any person working in Australia.
-         */
-        public Builder abnOrTfn(JsonNullable<String> abnOrTfn) {
-            Utils.checkNotNull(abnOrTfn, "abnOrTfn");
-            this.abnOrTfn = abnOrTfn;
-            return this;
-        }
-
-
-        /**
          * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
          */
-        public Builder abnBranch(String abnBranch) {
-            Utils.checkNotNull(abnBranch, "abnBranch");
+        public Builder abnBranch(@Nullable String abnBranch) {
             this.abnBranch = JsonNullable.of(abnBranch);
             return this;
         }
 
         /**
-         * An ABN Branch (also known as a GST Branch) is used if part of your business needs to account for GST separately from its parent entity.
-         */
-        public Builder abnBranch(JsonNullable<String> abnBranch) {
-            Utils.checkNotNull(abnBranch, "abnBranch");
-            this.abnBranch = abnBranch;
-            return this;
-        }
-
-
-        /**
          * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
          */
-        public Builder acn(String acn) {
-            Utils.checkNotNull(acn, "acn");
+        public Builder acn(@Nullable String acn) {
             this.acn = JsonNullable.of(acn);
             return this;
         }
 
         /**
-         * The Australian Company Number (ACN) is a nine digit number with the last digit being a check digit calculated using a modified modulus 10 calculation. ASIC has adopted a convention of always printing and displaying the ACN in the format XXX XXX XXX; three blocks of three characters, each block separated by a blank.
-         */
-        public Builder acn(JsonNullable<String> acn) {
-            Utils.checkNotNull(acn, "acn");
-            this.acn = acn;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
-        /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        public Builder bankAccounts(List<BankAccount1> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
-            this.bankAccounts = Optional.ofNullable(bankAccounts);
-            return this;
-        }
-
-        public Builder bankAccounts(Optional<? extends List<BankAccount1>> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
+        public Builder bankAccounts(@Nullable List<BankAccount1> bankAccounts) {
             this.bankAccounts = bankAccounts;
             return this;
         }
 
-
-        public Builder websites(List<Website> websites) {
-            Utils.checkNotNull(websites, "websites");
-            this.websites = Optional.ofNullable(websites);
-            return this;
-        }
-
-        public Builder websites(Optional<? extends List<Website>> websites) {
-            Utils.checkNotNull(websites, "websites");
+        public Builder websites(@Nullable List<Website> websites) {
             this.websites = websites;
             return this;
         }
 
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder socialLinks(List<SocialLink> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
-            this.socialLinks = Optional.ofNullable(socialLinks);
-            return this;
-        }
-
-        public Builder socialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
+        public Builder socialLinks(@Nullable List<SocialLink> socialLinks) {
             this.socialLinks = socialLinks;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder rowType(CompanyRowType rowType) {
-            Utils.checkNotNull(rowType, "rowType");
-            this.rowType = Optional.ofNullable(rowType);
-            return this;
-        }
-
-        public Builder rowType(Optional<? extends CompanyRowType> rowType) {
-            Utils.checkNotNull(rowType, "rowType");
+        public Builder rowType(@Nullable CompanyRowType rowType) {
             this.rowType = rowType;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
         /**
          * Whether the company is read-only or not
          */
-        public Builder readOnly(boolean readOnly) {
-            Utils.checkNotNull(readOnly, "readOnly");
+        public Builder readOnly(@Nullable Boolean readOnly) {
             this.readOnly = JsonNullable.of(readOnly);
             return this;
         }
 
         /**
-         * Whether the company is read-only or not
-         */
-        public Builder readOnly(JsonNullable<Boolean> readOnly) {
-            Utils.checkNotNull(readOnly, "readOnly");
-            this.readOnly = readOnly;
-            return this;
-        }
-
-
-        /**
          * A formal salutation for the person. For example, 'Mr', 'Mrs'
          */
-        public Builder salutation(String salutation) {
-            Utils.checkNotNull(salutation, "salutation");
+        public Builder salutation(@Nullable String salutation) {
             this.salutation = JsonNullable.of(salutation);
             return this;
         }
 
         /**
-         * A formal salutation for the person. For example, 'Mr', 'Mrs'
-         */
-        public Builder salutation(JsonNullable<String> salutation) {
-            Utils.checkNotNull(salutation, "salutation");
-            this.salutation = salutation;
-            return this;
-        }
-
-
-        /**
          * The date of birth of the person.
          */
-        public Builder birthday(LocalDate birthday) {
-            Utils.checkNotNull(birthday, "birthday");
+        public Builder birthday(@Nullable LocalDate birthday) {
             this.birthday = JsonNullable.of(birthday);
             return this;
         }
 
         /**
-         * The date of birth of the person.
-         */
-        public Builder birthday(JsonNullable<LocalDate> birthday) {
-            Utils.checkNotNull(birthday, "birthday");
-            this.birthday = birthday;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Company1Input build() {
-
             return new Company1Input(
                 name, ownerId, image,
                 description, vatNumber, currency,

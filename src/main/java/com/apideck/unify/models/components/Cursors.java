@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -42,43 +43,40 @@ public class Cursors {
 
     @JsonCreator
     public Cursors(
-            @JsonProperty("previous") JsonNullable<String> previous,
-            @JsonProperty("current") JsonNullable<String> current,
-            @JsonProperty("next") JsonNullable<String> next) {
-        Utils.checkNotNull(previous, "previous");
-        Utils.checkNotNull(current, "current");
-        Utils.checkNotNull(next, "next");
-        this.previous = previous;
-        this.current = current;
-        this.next = next;
+            @JsonProperty("previous") @Nullable JsonNullable<String> previous,
+            @JsonProperty("current") @Nullable JsonNullable<String> current,
+            @JsonProperty("next") @Nullable JsonNullable<String> next) {
+        this.previous = Optional.ofNullable(previous)
+            .orElse(JsonNullable.undefined());
+        this.current = Optional.ofNullable(current)
+            .orElse(JsonNullable.undefined());
+        this.next = Optional.ofNullable(next)
+            .orElse(JsonNullable.undefined());
     }
     
     public Cursors() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * Cursor to navigate to the previous page of results through the API
      */
-    @JsonIgnore
     public JsonNullable<String> previous() {
-        return previous;
+        return this.previous;
     }
 
     /**
      * Cursor to navigate to the current page of results through the API
      */
-    @JsonIgnore
     public JsonNullable<String> current() {
-        return current;
+        return this.current;
     }
 
     /**
      * Cursor to navigate to the next page of results through the API
      */
-    @JsonIgnore
     public JsonNullable<String> next() {
-        return next;
+        return this.next;
     }
 
     public static Builder builder() {
@@ -89,56 +87,29 @@ public class Cursors {
     /**
      * Cursor to navigate to the previous page of results through the API
      */
-    public Cursors withPrevious(String previous) {
-        Utils.checkNotNull(previous, "previous");
+    public Cursors withPrevious(@Nullable String previous) {
         this.previous = JsonNullable.of(previous);
         return this;
     }
 
-    /**
-     * Cursor to navigate to the previous page of results through the API
-     */
-    public Cursors withPrevious(JsonNullable<String> previous) {
-        Utils.checkNotNull(previous, "previous");
-        this.previous = previous;
-        return this;
-    }
 
     /**
      * Cursor to navigate to the current page of results through the API
      */
-    public Cursors withCurrent(String current) {
-        Utils.checkNotNull(current, "current");
+    public Cursors withCurrent(@Nullable String current) {
         this.current = JsonNullable.of(current);
         return this;
     }
 
-    /**
-     * Cursor to navigate to the current page of results through the API
-     */
-    public Cursors withCurrent(JsonNullable<String> current) {
-        Utils.checkNotNull(current, "current");
-        this.current = current;
-        return this;
-    }
 
     /**
      * Cursor to navigate to the next page of results through the API
      */
-    public Cursors withNext(String next) {
-        Utils.checkNotNull(next, "next");
+    public Cursors withNext(@Nullable String next) {
         this.next = JsonNullable.of(next);
         return this;
     }
 
-    /**
-     * Cursor to navigate to the next page of results through the API
-     */
-    public Cursors withNext(JsonNullable<String> next) {
-        Utils.checkNotNull(next, "next");
-        this.next = next;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -172,75 +143,41 @@ public class Cursors {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> previous = JsonNullable.undefined();
+        private JsonNullable<String> previous;
 
-        private JsonNullable<String> current = JsonNullable.undefined();
+        private JsonNullable<String> current;
 
-        private JsonNullable<String> next = JsonNullable.undefined();
+        private JsonNullable<String> next;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Cursor to navigate to the previous page of results through the API
          */
-        public Builder previous(String previous) {
-            Utils.checkNotNull(previous, "previous");
+        public Builder previous(@Nullable String previous) {
             this.previous = JsonNullable.of(previous);
             return this;
         }
 
         /**
-         * Cursor to navigate to the previous page of results through the API
-         */
-        public Builder previous(JsonNullable<String> previous) {
-            Utils.checkNotNull(previous, "previous");
-            this.previous = previous;
-            return this;
-        }
-
-
-        /**
          * Cursor to navigate to the current page of results through the API
          */
-        public Builder current(String current) {
-            Utils.checkNotNull(current, "current");
+        public Builder current(@Nullable String current) {
             this.current = JsonNullable.of(current);
             return this;
         }
 
         /**
-         * Cursor to navigate to the current page of results through the API
-         */
-        public Builder current(JsonNullable<String> current) {
-            Utils.checkNotNull(current, "current");
-            this.current = current;
-            return this;
-        }
-
-
-        /**
          * Cursor to navigate to the next page of results through the API
          */
-        public Builder next(String next) {
-            Utils.checkNotNull(next, "next");
+        public Builder next(@Nullable String next) {
             this.next = JsonNullable.of(next);
             return this;
         }
 
-        /**
-         * Cursor to navigate to the next page of results through the API
-         */
-        public Builder next(JsonNullable<String> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
-
         public Cursors build() {
-
             return new Cursors(
                 previous, current, next);
         }

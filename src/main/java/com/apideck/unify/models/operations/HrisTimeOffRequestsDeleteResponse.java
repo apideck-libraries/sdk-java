@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class HrisTimeOffRequestsDeleteResponse implements Response {
     /**
      * TimeOffRequests
      */
-    private Optional<? extends DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse;
+    private DeleteTimeOffRequestResponse deleteTimeOffRequestResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public HrisTimeOffRequestsDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(deleteTimeOffRequestResponse, "deleteTimeOffRequestResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable DeleteTimeOffRequestResponse deleteTimeOffRequestResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.deleteTimeOffRequestResponse = deleteTimeOffRequestResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public HrisTimeOffRequestsDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * TimeOffRequests
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse() {
-        return (Optional<DeleteTimeOffRequestResponse>) deleteTimeOffRequestResponse;
+        return Optional.ofNullable(this.deleteTimeOffRequestResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class HrisTimeOffRequestsDeleteResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public HrisTimeOffRequestsDeleteResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public HrisTimeOffRequestsDeleteResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public HrisTimeOffRequestsDeleteResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public HrisTimeOffRequestsDeleteResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * TimeOffRequests
-     */
-    public HrisTimeOffRequestsDeleteResponse withDeleteTimeOffRequestResponse(DeleteTimeOffRequestResponse deleteTimeOffRequestResponse) {
-        Utils.checkNotNull(deleteTimeOffRequestResponse, "deleteTimeOffRequestResponse");
-        this.deleteTimeOffRequestResponse = Optional.ofNullable(deleteTimeOffRequestResponse);
+    public HrisTimeOffRequestsDeleteResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class HrisTimeOffRequestsDeleteResponse implements Response {
     /**
      * TimeOffRequests
      */
-    public HrisTimeOffRequestsDeleteResponse withDeleteTimeOffRequestResponse(Optional<? extends DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse) {
-        Utils.checkNotNull(deleteTimeOffRequestResponse, "deleteTimeOffRequestResponse");
+    public HrisTimeOffRequestsDeleteResponse withDeleteTimeOffRequestResponse(@Nullable DeleteTimeOffRequestResponse deleteTimeOffRequestResponse) {
         this.deleteTimeOffRequestResponse = deleteTimeOffRequestResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public HrisTimeOffRequestsDeleteResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public HrisTimeOffRequestsDeleteResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public HrisTimeOffRequestsDeleteResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class HrisTimeOffRequestsDeleteResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse = Optional.empty();
+        private DeleteTimeOffRequestResponse deleteTimeOffRequestResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * TimeOffRequests
-         */
-        public Builder deleteTimeOffRequestResponse(DeleteTimeOffRequestResponse deleteTimeOffRequestResponse) {
-            Utils.checkNotNull(deleteTimeOffRequestResponse, "deleteTimeOffRequestResponse");
-            this.deleteTimeOffRequestResponse = Optional.ofNullable(deleteTimeOffRequestResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * TimeOffRequests
          */
-        public Builder deleteTimeOffRequestResponse(Optional<? extends DeleteTimeOffRequestResponse> deleteTimeOffRequestResponse) {
-            Utils.checkNotNull(deleteTimeOffRequestResponse, "deleteTimeOffRequestResponse");
+        public Builder deleteTimeOffRequestResponse(@Nullable DeleteTimeOffRequestResponse deleteTimeOffRequestResponse) {
             this.deleteTimeOffRequestResponse = deleteTimeOffRequestResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public HrisTimeOffRequestsDeleteResponse build() {
-
             return new HrisTimeOffRequestsDeleteResponse(
                 contentType, statusCode, rawResponse,
                 deleteTimeOffRequestResponse, unexpectedErrorResponse);

@@ -8,12 +8,11 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,19 +22,19 @@ public class VaultLogsAllRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * Filter results
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
-    private Optional<? extends LogsFilter> filter;
+    private LogsFilter filter;
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
@@ -47,71 +46,62 @@ public class VaultLogsAllRequest {
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
-    private Optional<Long> limit;
+    private Long limit;
 
     @JsonCreator
     public VaultLogsAllRequest(
-            Optional<String> appId,
-            Optional<String> consumerId,
-            Optional<? extends LogsFilter> filter,
-            JsonNullable<String> cursor,
-            Optional<Long> limit) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(filter, "filter");
-        Utils.checkNotNull(cursor, "cursor");
-        Utils.checkNotNull(limit, "limit");
+            @Nullable String appId,
+            @Nullable String consumerId,
+            @Nullable LogsFilter filter,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit) {
         this.appId = appId;
         this.consumerId = consumerId;
         this.filter = filter;
-        this.cursor = cursor;
-        this.limit = limit;
+        this.cursor = Optional.ofNullable(cursor)
+            .orElse(JsonNullable.undefined());
+        this.limit = Optional.ofNullable(limit)
+            .orElse(Builder._SINGLETON_VALUE_Limit.value());
     }
     
     public VaultLogsAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * Filter results
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LogsFilter> filter() {
-        return (Optional<LogsFilter>) filter;
+        return Optional.ofNullable(this.filter);
     }
 
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    @JsonIgnore
     public JsonNullable<String> cursor() {
-        return cursor;
+        return this.cursor;
     }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    @JsonIgnore
     public Optional<Long> limit() {
-        return limit;
+        return Optional.ofNullable(this.limit);
     }
 
     public static Builder builder() {
@@ -122,96 +112,47 @@ public class VaultLogsAllRequest {
     /**
      * The ID of your Unify application
      */
-    public VaultLogsAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public VaultLogsAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultLogsAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultLogsAllRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultLogsAllRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultLogsAllRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * Filter results
-     */
-    public VaultLogsAllRequest withFilter(LogsFilter filter) {
-        Utils.checkNotNull(filter, "filter");
-        this.filter = Optional.ofNullable(filter);
-        return this;
-    }
-
 
     /**
      * Filter results
      */
-    public VaultLogsAllRequest withFilter(Optional<? extends LogsFilter> filter) {
-        Utils.checkNotNull(filter, "filter");
+    public VaultLogsAllRequest withFilter(@Nullable LogsFilter filter) {
         this.filter = filter;
         return this;
     }
 
+
     /**
      * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
      */
-    public VaultLogsAllRequest withCursor(String cursor) {
-        Utils.checkNotNull(cursor, "cursor");
+    public VaultLogsAllRequest withCursor(@Nullable String cursor) {
         this.cursor = JsonNullable.of(cursor);
         return this;
     }
 
-    /**
-     * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-     */
-    public VaultLogsAllRequest withCursor(JsonNullable<String> cursor) {
-        Utils.checkNotNull(cursor, "cursor");
-        this.cursor = cursor;
-        return this;
-    }
 
     /**
      * Number of results to return. Minimum 1, Maximum 200, Default 20
      */
-    public VaultLogsAllRequest withLimit(long limit) {
-        Utils.checkNotNull(limit, "limit");
-        this.limit = Optional.ofNullable(limit);
-        return this;
-    }
-
-
-    /**
-     * Number of results to return. Minimum 1, Maximum 200, Default 20
-     */
-    public VaultLogsAllRequest withLimit(Optional<Long> limit) {
-        Utils.checkNotNull(limit, "limit");
+    public VaultLogsAllRequest withLimit(@Nullable Long limit) {
         this.limit = limit;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -250,130 +191,71 @@ public class VaultLogsAllRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<? extends LogsFilter> filter = Optional.empty();
+        private LogsFilter filter;
 
-        private JsonNullable<String> cursor = JsonNullable.undefined();
+        private JsonNullable<String> cursor;
 
-        private Optional<Long> limit;
+        private Long limit;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * Filter results
          */
-        public Builder filter(LogsFilter filter) {
-            Utils.checkNotNull(filter, "filter");
-            this.filter = Optional.ofNullable(filter);
-            return this;
-        }
-
-        /**
-         * Filter results
-         */
-        public Builder filter(Optional<? extends LogsFilter> filter) {
-            Utils.checkNotNull(filter, "filter");
+        public Builder filter(@Nullable LogsFilter filter) {
             this.filter = filter;
             return this;
         }
 
-
         /**
          * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
          */
-        public Builder cursor(String cursor) {
-            Utils.checkNotNull(cursor, "cursor");
+        public Builder cursor(@Nullable String cursor) {
             this.cursor = JsonNullable.of(cursor);
             return this;
         }
 
         /**
-         * Cursor to start from. You can find cursors for next/previous pages in the meta.cursors property of the response.
-         */
-        public Builder cursor(JsonNullable<String> cursor) {
-            Utils.checkNotNull(cursor, "cursor");
-            this.cursor = cursor;
-            return this;
-        }
-
-
-        /**
          * Number of results to return. Minimum 1, Maximum 200, Default 20
          */
-        public Builder limit(long limit) {
-            Utils.checkNotNull(limit, "limit");
-            this.limit = Optional.ofNullable(limit);
-            return this;
-        }
-
-        /**
-         * Number of results to return. Minimum 1, Maximum 200, Default 20
-         */
-        public Builder limit(Optional<Long> limit) {
-            Utils.checkNotNull(limit, "limit");
+        public Builder limit(@Nullable Long limit) {
             this.limit = limit;
             return this;
         }
 
         public VaultLogsAllRequest build() {
-            if (limit == null) {
-                limit = _SINGLETON_VALUE_Limit.value();
-            }
-
             return new VaultLogsAllRequest(
                 appId, consumerId, filter,
                 cursor, limit);
         }
 
 
-        private static final LazySingletonValue<Optional<Long>> _SINGLETON_VALUE_Limit =
+        private static final LazySingletonValue<Long> _SINGLETON_VALUE_Limit =
                 new LazySingletonValue<>(
                         "limit",
                         "20",
-                        new TypeReference<Optional<Long>>() {});
+                        new TypeReference<Long>() {});
     }
 }

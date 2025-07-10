@@ -7,7 +7,8 @@ import com.apideck.unify.models.components.ConsumerInput;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class VaultConsumersAddRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -26,30 +27,27 @@ public class VaultConsumersAddRequest {
 
     @JsonCreator
     public VaultConsumersAddRequest(
-            Optional<String> appId,
-            ConsumerInput consumer) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(consumer, "consumer");
+            @Nullable String appId,
+            @Nonnull ConsumerInput consumer) {
         this.appId = appId;
-        this.consumer = consumer;
+        this.consumer = Optional.ofNullable(consumer)
+            .orElseThrow(() -> new IllegalArgumentException("consumer cannot be null"));
     }
     
     public VaultConsumersAddRequest(
-            ConsumerInput consumer) {
-        this(Optional.empty(), consumer);
+            @Nonnull ConsumerInput consumer) {
+        this(null, consumer);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
-    @JsonIgnore
     public ConsumerInput consumer() {
-        return consumer;
+        return this.consumer;
     }
 
     public static Builder builder() {
@@ -60,27 +58,17 @@ public class VaultConsumersAddRequest {
     /**
      * The ID of your Unify application
      */
-    public VaultConsumersAddRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConsumersAddRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConsumersAddRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    public VaultConsumersAddRequest withConsumer(ConsumerInput consumer) {
-        Utils.checkNotNull(consumer, "consumer");
-        this.consumer = consumer;
+
+    public VaultConsumersAddRequest withConsumer(@Nonnull ConsumerInput consumer) {
+        this.consumer = Utils.checkNotNull(consumer, "consumer");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,7 +100,7 @@ public class VaultConsumersAddRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private ConsumerInput consumer;
 
@@ -120,34 +108,20 @@ public class VaultConsumersAddRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
-        public Builder consumer(ConsumerInput consumer) {
-            Utils.checkNotNull(consumer, "consumer");
-            this.consumer = consumer;
+        public Builder consumer(@Nonnull ConsumerInput consumer) {
+            this.consumer = Utils.checkNotNull(consumer, "consumer");
             return this;
         }
 
         public VaultConsumersAddRequest build() {
-
             return new VaultConsumersAddRequest(
                 appId, consumer);
         }

@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Double;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -29,7 +28,7 @@ public class Transactions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     /**
      * The amount of the transaction.
@@ -54,123 +53,109 @@ public class Transactions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("counterparty")
-    private Optional<String> counterparty;
+    private String counterparty;
 
     /**
      * The reference of the transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<String> reference;
+    private String reference;
 
     /**
      * Type of transaction.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transaction_type")
-    private Optional<? extends BankFeedStatementTransactionType> transactionType;
+    private BankFeedStatementTransactionType transactionType;
 
     @JsonCreator
     public Transactions(
-            @JsonProperty("posted_date") OffsetDateTime postedDate,
-            @JsonProperty("description") Optional<String> description,
+            @JsonProperty("posted_date") @Nonnull OffsetDateTime postedDate,
+            @JsonProperty("description") @Nullable String description,
             @JsonProperty("amount") double amount,
-            @JsonProperty("credit_or_debit") CreditOrDebit creditOrDebit,
-            @JsonProperty("source_transaction_id") String sourceTransactionId,
-            @JsonProperty("counterparty") Optional<String> counterparty,
-            @JsonProperty("reference") Optional<String> reference,
-            @JsonProperty("transaction_type") Optional<? extends BankFeedStatementTransactionType> transactionType) {
-        Utils.checkNotNull(postedDate, "postedDate");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(creditOrDebit, "creditOrDebit");
-        Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
-        Utils.checkNotNull(counterparty, "counterparty");
-        Utils.checkNotNull(reference, "reference");
-        Utils.checkNotNull(transactionType, "transactionType");
-        this.postedDate = postedDate;
+            @JsonProperty("credit_or_debit") @Nonnull CreditOrDebit creditOrDebit,
+            @JsonProperty("source_transaction_id") @Nonnull String sourceTransactionId,
+            @JsonProperty("counterparty") @Nullable String counterparty,
+            @JsonProperty("reference") @Nullable String reference,
+            @JsonProperty("transaction_type") @Nullable BankFeedStatementTransactionType transactionType) {
+        this.postedDate = Optional.ofNullable(postedDate)
+            .orElseThrow(() -> new IllegalArgumentException("postedDate cannot be null"));
         this.description = description;
         this.amount = amount;
-        this.creditOrDebit = creditOrDebit;
-        this.sourceTransactionId = sourceTransactionId;
+        this.creditOrDebit = Optional.ofNullable(creditOrDebit)
+            .orElseThrow(() -> new IllegalArgumentException("creditOrDebit cannot be null"));
+        this.sourceTransactionId = Optional.ofNullable(sourceTransactionId)
+            .orElseThrow(() -> new IllegalArgumentException("sourceTransactionId cannot be null"));
         this.counterparty = counterparty;
         this.reference = reference;
         this.transactionType = transactionType;
     }
     
     public Transactions(
-            OffsetDateTime postedDate,
+            @Nonnull OffsetDateTime postedDate,
             double amount,
-            CreditOrDebit creditOrDebit,
-            String sourceTransactionId) {
-        this(postedDate, Optional.empty(), amount,
-            creditOrDebit, sourceTransactionId, Optional.empty(),
-            Optional.empty(), Optional.empty());
+            @Nonnull CreditOrDebit creditOrDebit,
+            @Nonnull String sourceTransactionId) {
+        this(postedDate, null, amount,
+            creditOrDebit, sourceTransactionId, null,
+            null, null);
     }
 
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    @JsonIgnore
     public OffsetDateTime postedDate() {
-        return postedDate;
+        return this.postedDate;
     }
 
     /**
      * A description of the transaction.
      */
-    @JsonIgnore
     public Optional<String> description() {
-        return description;
+        return Optional.ofNullable(this.description);
     }
 
     /**
      * The amount of the transaction.
      */
-    @JsonIgnore
     public double amount() {
-        return amount;
+        return this.amount;
     }
 
     /**
      * Whether the amount is a credit or debit.
      */
-    @JsonIgnore
     public CreditOrDebit creditOrDebit() {
-        return creditOrDebit;
+        return this.creditOrDebit;
     }
 
     /**
      * The ID of the source transaction.
      */
-    @JsonIgnore
     public String sourceTransactionId() {
-        return sourceTransactionId;
+        return this.sourceTransactionId;
     }
 
     /**
      * The counterparty of the transaction.
      */
-    @JsonIgnore
     public Optional<String> counterparty() {
-        return counterparty;
+        return Optional.ofNullable(this.counterparty);
     }
 
     /**
      * The reference of the transaction.
      */
-    @JsonIgnore
     public Optional<String> reference() {
-        return reference;
+        return Optional.ofNullable(this.reference);
     }
 
     /**
      * Type of transaction.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BankFeedStatementTransactionType> transactionType() {
-        return (Optional<BankFeedStatementTransactionType>) transactionType;
+        return Optional.ofNullable(this.transactionType);
     }
 
     public static Builder builder() {
@@ -181,18 +166,8 @@ public class Transactions {
     /**
      * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
      */
-    public Transactions withPostedDate(OffsetDateTime postedDate) {
-        Utils.checkNotNull(postedDate, "postedDate");
-        this.postedDate = postedDate;
-        return this;
-    }
-
-    /**
-     * A description of the transaction.
-     */
-    public Transactions withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
+    public Transactions withPostedDate(@Nonnull OffsetDateTime postedDate) {
+        this.postedDate = Utils.checkNotNull(postedDate, "postedDate");
         return this;
     }
 
@@ -200,45 +175,35 @@ public class Transactions {
     /**
      * A description of the transaction.
      */
-    public Transactions withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
+    public Transactions withDescription(@Nullable String description) {
         this.description = description;
         return this;
     }
+
 
     /**
      * The amount of the transaction.
      */
     public Transactions withAmount(double amount) {
-        Utils.checkNotNull(amount, "amount");
         this.amount = amount;
         return this;
     }
 
+
     /**
      * Whether the amount is a credit or debit.
      */
-    public Transactions withCreditOrDebit(CreditOrDebit creditOrDebit) {
-        Utils.checkNotNull(creditOrDebit, "creditOrDebit");
-        this.creditOrDebit = creditOrDebit;
+    public Transactions withCreditOrDebit(@Nonnull CreditOrDebit creditOrDebit) {
+        this.creditOrDebit = Utils.checkNotNull(creditOrDebit, "creditOrDebit");
         return this;
     }
+
 
     /**
      * The ID of the source transaction.
      */
-    public Transactions withSourceTransactionId(String sourceTransactionId) {
-        Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
-        this.sourceTransactionId = sourceTransactionId;
-        return this;
-    }
-
-    /**
-     * The counterparty of the transaction.
-     */
-    public Transactions withCounterparty(String counterparty) {
-        Utils.checkNotNull(counterparty, "counterparty");
-        this.counterparty = Optional.ofNullable(counterparty);
+    public Transactions withSourceTransactionId(@Nonnull String sourceTransactionId) {
+        this.sourceTransactionId = Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
         return this;
     }
 
@@ -246,49 +211,29 @@ public class Transactions {
     /**
      * The counterparty of the transaction.
      */
-    public Transactions withCounterparty(Optional<String> counterparty) {
-        Utils.checkNotNull(counterparty, "counterparty");
+    public Transactions withCounterparty(@Nullable String counterparty) {
         this.counterparty = counterparty;
         return this;
     }
 
-    /**
-     * The reference of the transaction.
-     */
-    public Transactions withReference(String reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = Optional.ofNullable(reference);
-        return this;
-    }
-
 
     /**
      * The reference of the transaction.
      */
-    public Transactions withReference(Optional<String> reference) {
-        Utils.checkNotNull(reference, "reference");
+    public Transactions withReference(@Nullable String reference) {
         this.reference = reference;
         return this;
     }
 
-    /**
-     * Type of transaction.
-     */
-    public Transactions withTransactionType(BankFeedStatementTransactionType transactionType) {
-        Utils.checkNotNull(transactionType, "transactionType");
-        this.transactionType = Optional.ofNullable(transactionType);
-        return this;
-    }
-
 
     /**
      * Type of transaction.
      */
-    public Transactions withTransactionType(Optional<? extends BankFeedStatementTransactionType> transactionType) {
-        Utils.checkNotNull(transactionType, "transactionType");
+    public Transactions withTransactionType(@Nullable BankFeedStatementTransactionType transactionType) {
         this.transactionType = transactionType;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -336,142 +281,89 @@ public class Transactions {
 
         private OffsetDateTime postedDate;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
-        private Double amount;
+        private double amount;
 
         private CreditOrDebit creditOrDebit;
 
         private String sourceTransactionId;
 
-        private Optional<String> counterparty = Optional.empty();
+        private String counterparty;
 
-        private Optional<String> reference = Optional.empty();
+        private String reference;
 
-        private Optional<? extends BankFeedStatementTransactionType> transactionType = Optional.empty();
+        private BankFeedStatementTransactionType transactionType;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The date of the transaction - YYYY:MM::DDThh:mm:ss.sTZD
          */
-        public Builder postedDate(OffsetDateTime postedDate) {
-            Utils.checkNotNull(postedDate, "postedDate");
-            this.postedDate = postedDate;
-            return this;
-        }
-
-
-        /**
-         * A description of the transaction.
-         */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
+        public Builder postedDate(@Nonnull OffsetDateTime postedDate) {
+            this.postedDate = Utils.checkNotNull(postedDate, "postedDate");
             return this;
         }
 
         /**
          * A description of the transaction.
          */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
-
 
         /**
          * The amount of the transaction.
          */
         public Builder amount(double amount) {
-            Utils.checkNotNull(amount, "amount");
             this.amount = amount;
             return this;
         }
 
-
         /**
          * Whether the amount is a credit or debit.
          */
-        public Builder creditOrDebit(CreditOrDebit creditOrDebit) {
-            Utils.checkNotNull(creditOrDebit, "creditOrDebit");
-            this.creditOrDebit = creditOrDebit;
+        public Builder creditOrDebit(@Nonnull CreditOrDebit creditOrDebit) {
+            this.creditOrDebit = Utils.checkNotNull(creditOrDebit, "creditOrDebit");
             return this;
         }
-
 
         /**
          * The ID of the source transaction.
          */
-        public Builder sourceTransactionId(String sourceTransactionId) {
-            Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
-            this.sourceTransactionId = sourceTransactionId;
-            return this;
-        }
-
-
-        /**
-         * The counterparty of the transaction.
-         */
-        public Builder counterparty(String counterparty) {
-            Utils.checkNotNull(counterparty, "counterparty");
-            this.counterparty = Optional.ofNullable(counterparty);
+        public Builder sourceTransactionId(@Nonnull String sourceTransactionId) {
+            this.sourceTransactionId = Utils.checkNotNull(sourceTransactionId, "sourceTransactionId");
             return this;
         }
 
         /**
          * The counterparty of the transaction.
          */
-        public Builder counterparty(Optional<String> counterparty) {
-            Utils.checkNotNull(counterparty, "counterparty");
+        public Builder counterparty(@Nullable String counterparty) {
             this.counterparty = counterparty;
             return this;
         }
 
-
         /**
          * The reference of the transaction.
          */
-        public Builder reference(String reference) {
-            Utils.checkNotNull(reference, "reference");
-            this.reference = Optional.ofNullable(reference);
-            return this;
-        }
-
-        /**
-         * The reference of the transaction.
-         */
-        public Builder reference(Optional<String> reference) {
-            Utils.checkNotNull(reference, "reference");
+        public Builder reference(@Nullable String reference) {
             this.reference = reference;
             return this;
         }
 
-
         /**
          * Type of transaction.
          */
-        public Builder transactionType(BankFeedStatementTransactionType transactionType) {
-            Utils.checkNotNull(transactionType, "transactionType");
-            this.transactionType = Optional.ofNullable(transactionType);
-            return this;
-        }
-
-        /**
-         * Type of transaction.
-         */
-        public Builder transactionType(Optional<? extends BankFeedStatementTransactionType> transactionType) {
-            Utils.checkNotNull(transactionType, "transactionType");
+        public Builder transactionType(@Nullable BankFeedStatementTransactionType transactionType) {
             this.transactionType = transactionType;
             return this;
         }
 
         public Transactions build() {
-
             return new Transactions(
                 postedDate, description, amount,
                 creditOrDebit, sourceTransactionId, counterparty,

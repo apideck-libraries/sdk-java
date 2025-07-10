@@ -26,6 +26,8 @@ import com.apideck.unify.operations.FileStorageSharedLinksDeleteOperation;
 import com.apideck.unify.operations.FileStorageSharedLinksOneOperation;
 import com.apideck.unify.operations.FileStorageSharedLinksUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public FileStorageSharedLinksAllResponse list(@Nonnull FileStorageSharedLinksAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class SharedLinks {
      * @throws Exception if the API call fails
      */
     public FileStorageSharedLinksAllResponse list(
-            FileStorageSharedLinksAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageSharedLinksAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
               = new FileStorageSharedLinksAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public FileStorageSharedLinksAddResponse create(@Nonnull FileStorageSharedLinksAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class SharedLinks {
      * @throws Exception if the API call fails
      */
     public FileStorageSharedLinksAddResponse create(
-            FileStorageSharedLinksAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageSharedLinksAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
               = new FileStorageSharedLinksAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public FileStorageSharedLinksOneResponse get(@Nonnull FileStorageSharedLinksOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class SharedLinks {
      * @throws Exception if the API call fails
      */
     public FileStorageSharedLinksOneResponse get(
-            FileStorageSharedLinksOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageSharedLinksOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
               = new FileStorageSharedLinksOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public FileStorageSharedLinksUpdateResponse update(@Nonnull FileStorageSharedLinksUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class SharedLinks {
      * @throws Exception if the API call fails
      */
     public FileStorageSharedLinksUpdateResponse update(
-            FileStorageSharedLinksUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageSharedLinksUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
               = new FileStorageSharedLinksUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageSharedLinksDeleteResponse delete(@Nonnull FileStorageSharedLinksDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class SharedLinks {
      * @throws Exception if the API call fails
      */
     public FileStorageSharedLinksDeleteResponse delete(
-            FileStorageSharedLinksDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageSharedLinksDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
               = new FileStorageSharedLinksDeleteOperation(
                 sdkConfiguration,

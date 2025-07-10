@@ -10,47 +10,46 @@ import com.apideck.unify.operations.CrmContactsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class CrmContactsUpdateRequestBuilder {
-
-    private CrmContactsUpdateRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private CrmContactsUpdateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public CrmContactsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public CrmContactsUpdateRequestBuilder request(CrmContactsUpdateRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public CrmContactsUpdateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public CrmContactsUpdateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public CrmContactsUpdateRequestBuilder request(@Nonnull CrmContactsUpdateRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private CrmContactsUpdateRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public CrmContactsUpdateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
               = new CrmContactsUpdateOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

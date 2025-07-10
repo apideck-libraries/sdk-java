@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -22,39 +21,35 @@ public class Resources {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the resource (plural)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ResourceStatus> status;
+    private ResourceStatus status;
 
     /**
      * Exclude from mapping coverage
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("excluded_from_coverage")
-    private Optional<Boolean> excludedFromCoverage;
+    private Boolean excludedFromCoverage;
 
     @JsonCreator
     public Resources(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ResourceStatus> status,
-            @JsonProperty("excluded_from_coverage") Optional<Boolean> excludedFromCoverage) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("status") @Nullable ResourceStatus status,
+            @JsonProperty("excluded_from_coverage") @Nullable Boolean excludedFromCoverage) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -62,41 +57,36 @@ public class Resources {
     }
     
     public Resources() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * ID of the resource, typically a lowercased version of its name.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the resource (plural)
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ResourceStatus> status() {
-        return (Optional<ResourceStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Exclude from mapping coverage
      */
-    @JsonIgnore
     public Optional<Boolean> excludedFromCoverage() {
-        return excludedFromCoverage;
+        return Optional.ofNullable(this.excludedFromCoverage);
     }
 
     public static Builder builder() {
@@ -107,78 +97,38 @@ public class Resources {
     /**
      * ID of the resource, typically a lowercased version of its name.
      */
-    public Resources withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the resource, typically a lowercased version of its name.
-     */
-    public Resources withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Resources withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the resource (plural)
-     */
-    public Resources withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the resource (plural)
      */
-    public Resources withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Resources withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Status of the resource. Resources with status live or beta are callable.
-     */
-    public Resources withStatus(ResourceStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the resource. Resources with status live or beta are callable.
      */
-    public Resources withStatus(Optional<? extends ResourceStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public Resources withStatus(@Nullable ResourceStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Exclude from mapping coverage
-     */
-    public Resources withExcludedFromCoverage(boolean excludedFromCoverage) {
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-        this.excludedFromCoverage = Optional.ofNullable(excludedFromCoverage);
-        return this;
-    }
-
 
     /**
      * Exclude from mapping coverage
      */
-    public Resources withExcludedFromCoverage(Optional<Boolean> excludedFromCoverage) {
-        Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
+    public Resources withExcludedFromCoverage(@Nullable Boolean excludedFromCoverage) {
         this.excludedFromCoverage = excludedFromCoverage;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -215,96 +165,51 @@ public class Resources {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends ResourceStatus> status = Optional.empty();
+        private ResourceStatus status;
 
-        private Optional<Boolean> excludedFromCoverage = Optional.empty();
+        private Boolean excludedFromCoverage;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the resource, typically a lowercased version of its name.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the resource, typically a lowercased version of its name.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the resource (plural)
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the resource (plural)
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Status of the resource. Resources with status live or beta are callable.
          */
-        public Builder status(ResourceStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the resource. Resources with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ResourceStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ResourceStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Exclude from mapping coverage
          */
-        public Builder excludedFromCoverage(boolean excludedFromCoverage) {
-            Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
-            this.excludedFromCoverage = Optional.ofNullable(excludedFromCoverage);
-            return this;
-        }
-
-        /**
-         * Exclude from mapping coverage
-         */
-        public Builder excludedFromCoverage(Optional<Boolean> excludedFromCoverage) {
-            Utils.checkNotNull(excludedFromCoverage, "excludedFromCoverage");
+        public Builder excludedFromCoverage(@Nullable Boolean excludedFromCoverage) {
             this.excludedFromCoverage = excludedFromCoverage;
             return this;
         }
 
         public Resources build() {
-
             return new Resources(
                 id, name, status,
                 excludedFromCoverage);

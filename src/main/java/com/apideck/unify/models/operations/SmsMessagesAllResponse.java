@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class SmsMessagesAllResponse implements Response {
     /**
      * Messages
      */
-    private Optional<? extends GetMessagesResponse> getMessagesResponse;
+    private GetMessagesResponse getMessagesResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public SmsMessagesAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetMessagesResponse> getMessagesResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getMessagesResponse, "getMessagesResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable GetMessagesResponse getMessagesResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.getMessagesResponse = getMessagesResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public SmsMessagesAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Messages
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<GetMessagesResponse> getMessagesResponse() {
-        return (Optional<GetMessagesResponse>) getMessagesResponse;
+        return Optional.ofNullable(this.getMessagesResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class SmsMessagesAllResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public SmsMessagesAllResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public SmsMessagesAllResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public SmsMessagesAllResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public SmsMessagesAllResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Messages
-     */
-    public SmsMessagesAllResponse withGetMessagesResponse(GetMessagesResponse getMessagesResponse) {
-        Utils.checkNotNull(getMessagesResponse, "getMessagesResponse");
-        this.getMessagesResponse = Optional.ofNullable(getMessagesResponse);
+    public SmsMessagesAllResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class SmsMessagesAllResponse implements Response {
     /**
      * Messages
      */
-    public SmsMessagesAllResponse withGetMessagesResponse(Optional<? extends GetMessagesResponse> getMessagesResponse) {
-        Utils.checkNotNull(getMessagesResponse, "getMessagesResponse");
+    public SmsMessagesAllResponse withGetMessagesResponse(@Nullable GetMessagesResponse getMessagesResponse) {
         this.getMessagesResponse = getMessagesResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public SmsMessagesAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public SmsMessagesAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public SmsMessagesAllResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class SmsMessagesAllResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetMessagesResponse> getMessagesResponse = Optional.empty();
+        private GetMessagesResponse getMessagesResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Messages
-         */
-        public Builder getMessagesResponse(GetMessagesResponse getMessagesResponse) {
-            Utils.checkNotNull(getMessagesResponse, "getMessagesResponse");
-            this.getMessagesResponse = Optional.ofNullable(getMessagesResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Messages
          */
-        public Builder getMessagesResponse(Optional<? extends GetMessagesResponse> getMessagesResponse) {
-            Utils.checkNotNull(getMessagesResponse, "getMessagesResponse");
+        public Builder getMessagesResponse(@Nullable GetMessagesResponse getMessagesResponse) {
             this.getMessagesResponse = getMessagesResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public SmsMessagesAllResponse build() {
-
             return new SmsMessagesAllResponse(
                 contentType, statusCode, rawResponse,
                 getMessagesResponse, unexpectedErrorResponse);

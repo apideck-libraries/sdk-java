@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,42 +17,38 @@ public class PayrollsFilter {
      * Return payrolls whose pay period is after the start date
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * Return payrolls whose pay period is before the end date
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
-    private Optional<String> endDate;
+    private String endDate;
 
     @JsonCreator
     public PayrollsFilter(
-            Optional<String> startDate,
-            Optional<String> endDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
+            @Nullable String startDate,
+            @Nullable String endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
     }
     
     public PayrollsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Return payrolls whose pay period is after the start date
      */
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * Return payrolls whose pay period is before the end date
      */
-    @JsonIgnore
     public Optional<String> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
     }
 
     public static Builder builder() {
@@ -63,40 +59,20 @@ public class PayrollsFilter {
     /**
      * Return payrolls whose pay period is after the start date
      */
-    public PayrollsFilter withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
-
-    /**
-     * Return payrolls whose pay period is after the start date
-     */
-    public PayrollsFilter withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public PayrollsFilter withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * Return payrolls whose pay period is before the end date
-     */
-    public PayrollsFilter withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * Return payrolls whose pay period is before the end date
      */
-    public PayrollsFilter withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public PayrollsFilter withEndDate(@Nullable String endDate) {
         this.endDate = endDate;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -128,54 +104,31 @@ public class PayrollsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Return payrolls whose pay period is after the start date
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * Return payrolls whose pay period is after the start date
-         */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * Return payrolls whose pay period is before the end date
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * Return payrolls whose pay period is before the end date
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
         public PayrollsFilter build() {
-
             return new PayrollsFilter(
                 startDate, endDate);
         }

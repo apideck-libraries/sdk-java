@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class ConnectorConnectorsOneRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the record you are acting upon.
@@ -27,33 +28,30 @@ public class ConnectorConnectorsOneRequest {
 
     @JsonCreator
     public ConnectorConnectorsOneRequest(
-            Optional<String> appId,
-            String id) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(id, "id");
+            @Nullable String appId,
+            @Nonnull String id) {
         this.appId = appId;
-        this.id = id;
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
     }
     
     public ConnectorConnectorsOneRequest(
-            String id) {
-        this(Optional.empty(), id);
+            @Nonnull String id) {
+        this(null, id);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     public static Builder builder() {
@@ -64,30 +62,20 @@ public class ConnectorConnectorsOneRequest {
     /**
      * The ID of your Unify application
      */
-    public ConnectorConnectorsOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public ConnectorConnectorsOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public ConnectorConnectorsOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the record you are acting upon.
      */
-    public ConnectorConnectorsOneRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorConnectorsOneRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -119,7 +107,7 @@ public class ConnectorConnectorsOneRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String id;
 
@@ -127,37 +115,23 @@ public class ConnectorConnectorsOneRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         public ConnectorConnectorsOneRequest build() {
-
             return new ConnectorConnectorsOneRequest(
                 appId, id);
         }

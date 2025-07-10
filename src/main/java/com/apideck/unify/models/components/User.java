@@ -5,15 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -26,7 +26,7 @@ public class User {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The parent user id
@@ -125,12 +125,12 @@ public class User {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonProperty("emails")
@@ -141,7 +141,7 @@ public class User {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The date and time when the user was last updated.
@@ -162,140 +162,129 @@ public class User {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public User(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("parent_id") JsonNullable<String> parentId,
-            @JsonProperty("username") JsonNullable<String> username,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("division") JsonNullable<String> division,
-            @JsonProperty("department") JsonNullable<String> department,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("employee_number") JsonNullable<String> employeeNumber,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("image") JsonNullable<String> image,
-            @JsonProperty("language") JsonNullable<String> language,
-            @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") List<Email> emails,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("created_at") JsonNullable<String> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(parentId, "parentId");
-        Utils.checkNotNull(username, "username");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(division, "division");
-        Utils.checkNotNull(department, "department");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(image, "image");
-        Utils.checkNotNull(language, "language");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("parent_id") @Nullable JsonNullable<String> parentId,
+            @JsonProperty("username") @Nullable JsonNullable<String> username,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("division") @Nullable JsonNullable<String> division,
+            @JsonProperty("department") @Nullable JsonNullable<String> department,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("employee_number") @Nullable JsonNullable<String> employeeNumber,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("image") @Nullable JsonNullable<String> image,
+            @JsonProperty("language") @Nullable JsonNullable<String> language,
+            @JsonProperty("status") @Nullable JsonNullable<String> status,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nonnull List<Email> emails,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_at") @Nullable JsonNullable<String> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<String> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.parentId = parentId;
-        this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.title = title;
-        this.division = division;
-        this.department = department;
-        this.companyName = companyName;
-        this.employeeNumber = employeeNumber;
-        this.description = description;
-        this.image = image;
-        this.language = language;
-        this.status = status;
+        this.parentId = Optional.ofNullable(parentId)
+            .orElse(JsonNullable.undefined());
+        this.username = Optional.ofNullable(username)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.division = Optional.ofNullable(division)
+            .orElse(JsonNullable.undefined());
+        this.department = Optional.ofNullable(department)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.employeeNumber = Optional.ofNullable(employeeNumber)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.image = Optional.ofNullable(image)
+            .orElse(JsonNullable.undefined());
+        this.language = Optional.ofNullable(language)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
-        this.emails = emails;
-        this.customMappings = customMappings;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.emails = Optional.ofNullable(emails)
+            .orElseThrow(() -> new IllegalArgumentException("emails cannot be null"));
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public User(
-            List<Email> emails) {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), emails, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            @Nonnull List<Email> emails) {
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, emails, null,
+            null, null, null);
     }
 
     /**
      * The unique identifier for the user
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The parent user id
      */
-    @JsonIgnore
     public JsonNullable<String> parentId() {
-        return parentId;
+        return this.parentId;
     }
 
     /**
      * The username of the user
      */
-    @JsonIgnore
     public JsonNullable<String> username() {
-        return username;
+        return this.username;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The division the person is currently in. Usually a collection of departments or teams or regions.
      */
-    @JsonIgnore
     public JsonNullable<String> division() {
-        return division;
+        return this.division;
     }
 
     /**
@@ -304,108 +293,90 @@ public class User {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> department() {
-        return department;
+        return this.department;
     }
 
     /**
      * The name of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
      */
-    @JsonIgnore
     public JsonNullable<String> employeeNumber() {
-        return employeeNumber;
+        return this.employeeNumber;
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The URL of the user's avatar
      */
-    @JsonIgnore
     public JsonNullable<String> image() {
-        return image;
+        return this.image;
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> language() {
-        return language;
+        return this.language;
     }
 
     /**
      * The status of the user
      */
-    @JsonIgnore
     public JsonNullable<String> status() {
-        return status;
+        return this.status;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @JsonIgnore
     public List<Email> emails() {
-        return emails;
+        return this.emails;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The date and time when the user was last updated.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the user was created.
      */
-    @JsonIgnore
     public JsonNullable<String> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -416,129 +387,65 @@ public class User {
     /**
      * The unique identifier for the user
      */
-    public User withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the user
-     */
-    public User withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public User withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The parent user id
      */
-    public User withParentId(String parentId) {
-        Utils.checkNotNull(parentId, "parentId");
+    public User withParentId(@Nullable String parentId) {
         this.parentId = JsonNullable.of(parentId);
         return this;
     }
 
-    /**
-     * The parent user id
-     */
-    public User withParentId(JsonNullable<String> parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = parentId;
-        return this;
-    }
 
     /**
      * The username of the user
      */
-    public User withUsername(String username) {
-        Utils.checkNotNull(username, "username");
+    public User withUsername(@Nullable String username) {
         this.username = JsonNullable.of(username);
         return this;
     }
 
-    /**
-     * The username of the user
-     */
-    public User withUsername(JsonNullable<String> username) {
-        Utils.checkNotNull(username, "username");
-        this.username = username;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public User withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public User withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public User withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public User withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public User withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public User withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * The job title of the person.
      */
-    public User withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public User withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public User withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * The division the person is currently in. Usually a collection of departments or teams or regions.
      */
-    public User withDivision(String division) {
-        Utils.checkNotNull(division, "division");
+    public User withDivision(@Nullable String division) {
         this.division = JsonNullable.of(division);
         return this;
     }
 
-    /**
-     * The division the person is currently in. Usually a collection of departments or teams or regions.
-     */
-    public User withDivision(JsonNullable<String> division) {
-        Utils.checkNotNull(division, "division");
-        this.division = division;
-        return this;
-    }
 
     /**
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
@@ -546,236 +453,119 @@ public class User {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public User withDepartment(String department) {
-        Utils.checkNotNull(department, "department");
+    public User withDepartment(@Nullable String department) {
         this.department = JsonNullable.of(department);
         return this;
     }
 
-    /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public User withDepartment(JsonNullable<String> department) {
-        Utils.checkNotNull(department, "department");
-        this.department = department;
-        return this;
-    }
 
     /**
      * The name of the company.
      */
-    public User withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public User withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company.
-     */
-    public User withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
      */
-    public User withEmployeeNumber(String employeeNumber) {
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
+    public User withEmployeeNumber(@Nullable String employeeNumber) {
         this.employeeNumber = JsonNullable.of(employeeNumber);
         return this;
     }
 
-    /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-     */
-    public User withEmployeeNumber(JsonNullable<String> employeeNumber) {
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
-        this.employeeNumber = employeeNumber;
-        return this;
-    }
 
     /**
      * A description of the object.
      */
-    public User withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public User withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public User withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The URL of the user's avatar
      */
-    public User withImage(String image) {
-        Utils.checkNotNull(image, "image");
+    public User withImage(@Nullable String image) {
         this.image = JsonNullable.of(image);
         return this;
     }
 
-    /**
-     * The URL of the user's avatar
-     */
-    public User withImage(JsonNullable<String> image) {
-        Utils.checkNotNull(image, "image");
-        this.image = image;
-        return this;
-    }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public User withLanguage(String language) {
-        Utils.checkNotNull(language, "language");
+    public User withLanguage(@Nullable String language) {
         this.language = JsonNullable.of(language);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public User withLanguage(JsonNullable<String> language) {
-        Utils.checkNotNull(language, "language");
-        this.language = language;
-        return this;
-    }
 
     /**
      * The status of the user
      */
-    public User withStatus(String status) {
-        Utils.checkNotNull(status, "status");
+    public User withStatus(@Nullable String status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The status of the user
-     */
-    public User withStatus(JsonNullable<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
-    public User withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public User withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public User withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public User withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public User withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public User withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public User withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = emails;
+
+    public User withEmails(@Nonnull List<Email> emails) {
+        this.emails = Utils.checkNotNull(emails, "emails");
         return this;
     }
+
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public User withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public User withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public User withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The date and time when the user was last updated.
      */
-    public User withUpdatedAt(String updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public User withUpdatedAt(@Nullable String updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the user was last updated.
-     */
-    public User withUpdatedAt(JsonNullable<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the user was created.
      */
-    public User withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public User withCreatedAt(@Nullable String createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the user was created.
-     */
-    public User withCreatedAt(JsonNullable<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public User withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public User withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public User withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -851,436 +641,216 @@ public class User {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> parentId = JsonNullable.undefined();
+        private JsonNullable<String> parentId;
 
-        private JsonNullable<String> username = JsonNullable.undefined();
+        private JsonNullable<String> username;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> division = JsonNullable.undefined();
+        private JsonNullable<String> division;
 
         @Deprecated
-        private JsonNullable<String> department = JsonNullable.undefined();
+        private JsonNullable<String> department;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> employeeNumber = JsonNullable.undefined();
+        private JsonNullable<String> employeeNumber;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> image = JsonNullable.undefined();
+        private JsonNullable<String> image;
 
-        private JsonNullable<String> language = JsonNullable.undefined();
+        private JsonNullable<String> language;
 
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private JsonNullable<String> status;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
         private List<Email> emails;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> updatedAt;
 
-        private JsonNullable<String> createdAt = JsonNullable.undefined();
+        private JsonNullable<String> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier for the user
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the user
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The parent user id
          */
-        public Builder parentId(String parentId) {
-            Utils.checkNotNull(parentId, "parentId");
+        public Builder parentId(@Nullable String parentId) {
             this.parentId = JsonNullable.of(parentId);
             return this;
         }
 
         /**
-         * The parent user id
-         */
-        public Builder parentId(JsonNullable<String> parentId) {
-            Utils.checkNotNull(parentId, "parentId");
-            this.parentId = parentId;
-            return this;
-        }
-
-
-        /**
          * The username of the user
          */
-        public Builder username(String username) {
-            Utils.checkNotNull(username, "username");
+        public Builder username(@Nullable String username) {
             this.username = JsonNullable.of(username);
             return this;
         }
 
         /**
-         * The username of the user
-         */
-        public Builder username(JsonNullable<String> username) {
-            Utils.checkNotNull(username, "username");
-            this.username = username;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * The division the person is currently in. Usually a collection of departments or teams or regions.
          */
-        public Builder division(String division) {
-            Utils.checkNotNull(division, "division");
+        public Builder division(@Nullable String division) {
             this.division = JsonNullable.of(division);
             return this;
         }
 
         /**
-         * The division the person is currently in. Usually a collection of departments or teams or regions.
-         */
-        public Builder division(JsonNullable<String> division) {
-            Utils.checkNotNull(division, "division");
-            this.division = division;
-            return this;
-        }
-
-
-        /**
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder department(String department) {
-            Utils.checkNotNull(department, "department");
+        public Builder department(@Nullable String department) {
             this.department = JsonNullable.of(department);
             return this;
         }
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder department(JsonNullable<String> department) {
-            Utils.checkNotNull(department, "department");
-            this.department = department;
-            return this;
-        }
-
-
-        /**
          * The name of the company.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
          */
-        public Builder employeeNumber(String employeeNumber) {
-            Utils.checkNotNull(employeeNumber, "employeeNumber");
+        public Builder employeeNumber(@Nullable String employeeNumber) {
             this.employeeNumber = JsonNullable.of(employeeNumber);
             return this;
         }
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-         */
-        public Builder employeeNumber(JsonNullable<String> employeeNumber) {
-            Utils.checkNotNull(employeeNumber, "employeeNumber");
-            this.employeeNumber = employeeNumber;
-            return this;
-        }
-
-
-        /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The URL of the user's avatar
          */
-        public Builder image(String image) {
-            Utils.checkNotNull(image, "image");
+        public Builder image(@Nullable String image) {
             this.image = JsonNullable.of(image);
             return this;
         }
 
         /**
-         * The URL of the user's avatar
-         */
-        public Builder image(JsonNullable<String> image) {
-            Utils.checkNotNull(image, "image");
-            this.image = image;
-            return this;
-        }
-
-
-        /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder language(String language) {
-            Utils.checkNotNull(language, "language");
+        public Builder language(@Nullable String language) {
             this.language = JsonNullable.of(language);
             return this;
         }
 
         /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder language(JsonNullable<String> language) {
-            Utils.checkNotNull(language, "language");
-            this.language = language;
-            return this;
-        }
-
-
-        /**
          * The status of the user
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        /**
-         * The status of the user
-         */
-        public Builder status(JsonNullable<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = emails;
+        public Builder emails(@Nonnull List<Email> emails) {
+            this.emails = Utils.checkNotNull(emails, "emails");
             return this;
         }
-
 
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The date and time when the user was last updated.
          */
-        public Builder updatedAt(String updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable String updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the user was last updated.
-         */
-        public Builder updatedAt(JsonNullable<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the user was created.
          */
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable String createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the user was created.
-         */
-        public Builder createdAt(JsonNullable<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public User build() {
-
             return new User(
                 id, parentId, username,
                 firstName, lastName, title,

@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Long;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -45,98 +44,86 @@ public class GetApiResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_raw")
-    private JsonNullable<? extends Map<String, Object>> raw;
+    private JsonNullable<Map<String, Object>> raw;
 
     /**
      * Response metadata
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("meta")
-    private Optional<? extends Meta> meta;
+    private Meta meta;
 
     /**
      * Links to navigate to previous or next pages through the API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("links")
-    private Optional<? extends Links> links;
+    private Links links;
 
     @JsonCreator
     public GetApiResponse(
             @JsonProperty("status_code") long statusCode,
-            @JsonProperty("status") String status,
-            @JsonProperty("data") Api data,
-            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw,
-            @JsonProperty("meta") Optional<? extends Meta> meta,
-            @JsonProperty("links") Optional<? extends Links> links) {
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(data, "data");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(meta, "meta");
-        Utils.checkNotNull(links, "links");
+            @JsonProperty("status") @Nonnull String status,
+            @JsonProperty("data") @Nonnull Api data,
+            @JsonProperty("_raw") @Nullable JsonNullable<Map<String, Object>> raw,
+            @JsonProperty("meta") @Nullable Meta meta,
+            @JsonProperty("links") @Nullable Links links) {
         this.statusCode = statusCode;
-        this.status = status;
-        this.data = data;
-        this.raw = raw;
+        this.status = Optional.ofNullable(status)
+            .orElseThrow(() -> new IllegalArgumentException("status cannot be null"));
+        this.data = Optional.ofNullable(data)
+            .orElseThrow(() -> new IllegalArgumentException("data cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(JsonNullable.undefined());
         this.meta = meta;
         this.links = links;
     }
     
     public GetApiResponse(
             long statusCode,
-            String status,
-            Api data) {
+            @Nonnull String status,
+            @Nonnull Api data) {
         this(statusCode, status, data,
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+            null, null, null);
     }
 
     /**
      * HTTP Response Status Code
      */
-    @JsonIgnore
     public long statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * HTTP Response Status
      */
-    @JsonIgnore
     public String status() {
-        return status;
+        return this.status;
     }
 
-    @JsonIgnore
     public Api data() {
-        return data;
+        return this.data;
     }
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> raw() {
-        return (JsonNullable<Map<String, Object>>) raw;
+        return this.raw;
     }
 
     /**
      * Response metadata
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Meta> meta() {
-        return (Optional<Meta>) meta;
+        return Optional.ofNullable(this.meta);
     }
 
     /**
      * Links to navigate to previous or next pages through the API
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Links> links() {
-        return (Optional<Links>) links;
+        return Optional.ofNullable(this.links);
     }
 
     public static Builder builder() {
@@ -148,81 +135,52 @@ public class GetApiResponse {
      * HTTP Response Status Code
      */
     public GetApiResponse withStatusCode(long statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * HTTP Response Status
      */
-    public GetApiResponse withStatus(String status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public GetApiResponse withStatus(@Nonnull String status) {
+        this.status = Utils.checkNotNull(status, "status");
         return this;
     }
 
-    public GetApiResponse withData(Api data) {
-        Utils.checkNotNull(data, "data");
-        this.data = data;
+
+    public GetApiResponse withData(@Nonnull Api data) {
+        this.data = Utils.checkNotNull(data, "data");
         return this;
     }
+
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    public GetApiResponse withRaw(Map<String, Object> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public GetApiResponse withRaw(@Nullable Map<String, Object> raw) {
         this.raw = JsonNullable.of(raw);
         return this;
     }
 
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    public GetApiResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = raw;
-        return this;
-    }
 
     /**
      * Response metadata
      */
-    public GetApiResponse withMeta(Meta meta) {
-        Utils.checkNotNull(meta, "meta");
-        this.meta = Optional.ofNullable(meta);
-        return this;
-    }
-
-
-    /**
-     * Response metadata
-     */
-    public GetApiResponse withMeta(Optional<? extends Meta> meta) {
-        Utils.checkNotNull(meta, "meta");
+    public GetApiResponse withMeta(@Nullable Meta meta) {
         this.meta = meta;
         return this;
     }
 
-    /**
-     * Links to navigate to previous or next pages through the API
-     */
-    public GetApiResponse withLinks(Links links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
 
     /**
      * Links to navigate to previous or next pages through the API
      */
-    public GetApiResponse withLinks(Optional<? extends Links> links) {
-        Utils.checkNotNull(links, "links");
+    public GetApiResponse withLinks(@Nullable Links links) {
         this.links = links;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -263,108 +221,68 @@ public class GetApiResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Long statusCode;
+        private long statusCode;
 
         private String status;
 
         private Api data;
 
-        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> raw;
 
-        private Optional<? extends Meta> meta = Optional.empty();
+        private Meta meta;
 
-        private Optional<? extends Links> links = Optional.empty();
+        private Links links;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP Response Status Code
          */
         public Builder statusCode(long statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * HTTP Response Status
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
+        public Builder status(@Nonnull String status) {
+            this.status = Utils.checkNotNull(status, "status");
             return this;
         }
 
-
-        public Builder data(Api data) {
-            Utils.checkNotNull(data, "data");
-            this.data = data;
+        public Builder data(@Nonnull Api data) {
+            this.data = Utils.checkNotNull(data, "data");
             return this;
         }
-
 
         /**
          * Raw response from the integration when raw=true query param is provided
          */
-        public Builder raw(Map<String, Object> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Map<String, Object> raw) {
             this.raw = JsonNullable.of(raw);
             return this;
         }
 
         /**
-         * Raw response from the integration when raw=true query param is provided
-         */
-        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = raw;
-            return this;
-        }
-
-
-        /**
          * Response metadata
          */
-        public Builder meta(Meta meta) {
-            Utils.checkNotNull(meta, "meta");
-            this.meta = Optional.ofNullable(meta);
-            return this;
-        }
-
-        /**
-         * Response metadata
-         */
-        public Builder meta(Optional<? extends Meta> meta) {
-            Utils.checkNotNull(meta, "meta");
+        public Builder meta(@Nullable Meta meta) {
             this.meta = meta;
             return this;
         }
 
-
         /**
          * Links to navigate to previous or next pages through the API
          */
-        public Builder links(Links links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        /**
-         * Links to navigate to previous or next pages through the API
-         */
-        public Builder links(Optional<? extends Links> links) {
-            Utils.checkNotNull(links, "links");
+        public Builder links(@Nullable Links links) {
             this.links = links;
             return this;
         }
 
         public GetApiResponse build() {
-
             return new GetApiResponse(
                 statusCode, status, data,
                 raw, meta, links);

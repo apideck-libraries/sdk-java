@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,41 +18,36 @@ public class AttachmentReference {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends AttachmentReferenceType> type;
+    private AttachmentReferenceType type;
 
     /**
      * A unique identifier for an object.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     @JsonCreator
     public AttachmentReference(
-            @JsonProperty("type") Optional<? extends AttachmentReferenceType> type,
-            @JsonProperty("id") Optional<String> id) {
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(id, "id");
+            @JsonProperty("type") @Nullable AttachmentReferenceType type,
+            @JsonProperty("id") @Nullable String id) {
         this.type = type;
         this.id = id;
     }
     
     public AttachmentReference() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<AttachmentReferenceType> type() {
-        return (Optional<AttachmentReferenceType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     public static Builder builder() {
@@ -61,37 +55,20 @@ public class AttachmentReference {
     }
 
 
-    public AttachmentReference withType(AttachmentReferenceType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public AttachmentReference withType(Optional<? extends AttachmentReferenceType> type) {
-        Utils.checkNotNull(type, "type");
+    public AttachmentReference withType(@Nullable AttachmentReferenceType type) {
         this.type = type;
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public AttachmentReference withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
 
     /**
      * A unique identifier for an object.
      */
-    public AttachmentReference withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public AttachmentReference withId(@Nullable String id) {
         this.id = id;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -123,48 +100,28 @@ public class AttachmentReference {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends AttachmentReferenceType> type = Optional.empty();
+        private AttachmentReferenceType type;
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder type(AttachmentReferenceType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends AttachmentReferenceType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable AttachmentReferenceType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
         public AttachmentReference build() {
-
             return new AttachmentReference(
                 type, id);
         }

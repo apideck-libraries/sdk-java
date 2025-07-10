@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -29,55 +28,50 @@ public class Email {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("email")
-    private Optional<String> email;
+    private JsonNullable<String> email;
 
     /**
      * Email type
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends EmailType> type;
+    private JsonNullable<EmailType> type;
 
     @JsonCreator
     public Email(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("email") Optional<String> email,
-            @JsonProperty("type") JsonNullable<? extends EmailType> type) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(type, "type");
-        this.id = id;
-        this.email = email;
-        this.type = type;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("email") @Nullable String email,
+            @JsonProperty("type") @Nullable JsonNullable<EmailType> type) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.email = JsonNullable.of(email);
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
     }
     
     public Email() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * Unique identifier for the email address
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Email address
      */
-    @JsonIgnore
-    public Optional<String> email() {
-        return email;
+    public JsonNullable<String> email() {
+        return this.email;
     }
 
     /**
      * Email type
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EmailType> type() {
-        return (JsonNullable<EmailType>) type;
+        return this.type;
     }
 
     public static Builder builder() {
@@ -88,57 +82,29 @@ public class Email {
     /**
      * Unique identifier for the email address
      */
-    public Email withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Email withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * Unique identifier for the email address
-     */
-    public Email withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Email address
      */
-    public Email withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
+    public Email withEmail(@Nullable String email) {
+        this.email = JsonNullable.of(email);
         return this;
     }
 
-
-    /**
-     * Email address
-     */
-    public Email withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
-        this.email = email;
-        return this;
-    }
 
     /**
      * Email type
      */
-    public Email withType(EmailType type) {
-        Utils.checkNotNull(type, "type");
+    public Email withType(@Nullable EmailType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Email type
-     */
-    public Email withType(JsonNullable<? extends EmailType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -172,75 +138,41 @@ public class Email {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private JsonNullable<? extends EmailType> type = JsonNullable.undefined();
+        private JsonNullable<EmailType> type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier for the email address
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * Unique identifier for the email address
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * Email address
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * Email address
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * Email type
          */
-        public Builder type(EmailType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable EmailType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * Email type
-         */
-        public Builder type(JsonNullable<? extends EmailType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
         public Email build() {
-
             return new Email(
                 id, email, type);
         }

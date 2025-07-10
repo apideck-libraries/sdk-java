@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -70,89 +71,82 @@ public class EcommerceAddress {
 
     @JsonCreator
     public EcommerceAddress(
-            @JsonProperty("line1") JsonNullable<String> line1,
-            @JsonProperty("line2") JsonNullable<String> line2,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("city") JsonNullable<String> city,
-            @JsonProperty("state") JsonNullable<String> state,
-            @JsonProperty("postal_code") JsonNullable<String> postalCode,
-            @JsonProperty("country") JsonNullable<String> country) {
-        Utils.checkNotNull(line1, "line1");
-        Utils.checkNotNull(line2, "line2");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(city, "city");
-        Utils.checkNotNull(state, "state");
-        Utils.checkNotNull(postalCode, "postalCode");
-        Utils.checkNotNull(country, "country");
-        this.line1 = line1;
-        this.line2 = line2;
-        this.companyName = companyName;
-        this.city = city;
-        this.state = state;
-        this.postalCode = postalCode;
-        this.country = country;
+            @JsonProperty("line1") @Nullable JsonNullable<String> line1,
+            @JsonProperty("line2") @Nullable JsonNullable<String> line2,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("city") @Nullable JsonNullable<String> city,
+            @JsonProperty("state") @Nullable JsonNullable<String> state,
+            @JsonProperty("postal_code") @Nullable JsonNullable<String> postalCode,
+            @JsonProperty("country") @Nullable JsonNullable<String> country) {
+        this.line1 = Optional.ofNullable(line1)
+            .orElse(JsonNullable.undefined());
+        this.line2 = Optional.ofNullable(line2)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.city = Optional.ofNullable(city)
+            .orElse(JsonNullable.undefined());
+        this.state = Optional.ofNullable(state)
+            .orElse(JsonNullable.undefined());
+        this.postalCode = Optional.ofNullable(postalCode)
+            .orElse(JsonNullable.undefined());
+        this.country = Optional.ofNullable(country)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceAddress() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Address line 1 of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> line1() {
-        return line1;
+        return this.line1;
     }
 
     /**
      * Address line 2 of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> line2() {
-        return line2;
+        return this.line2;
     }
 
     /**
      * Company name of the customer
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * City of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> city() {
-        return city;
+        return this.city;
     }
 
     /**
      * State/province of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> state() {
-        return state;
+        return this.state;
     }
 
     /**
      * Postal/ZIP code of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> postalCode() {
-        return postalCode;
+        return this.postalCode;
     }
 
     /**
      * Country of the billing address.
      */
-    @JsonIgnore
     public JsonNullable<String> country() {
-        return country;
+        return this.country;
     }
 
     public static Builder builder() {
@@ -163,128 +157,65 @@ public class EcommerceAddress {
     /**
      * Address line 1 of the billing address.
      */
-    public EcommerceAddress withLine1(String line1) {
-        Utils.checkNotNull(line1, "line1");
+    public EcommerceAddress withLine1(@Nullable String line1) {
         this.line1 = JsonNullable.of(line1);
         return this;
     }
 
-    /**
-     * Address line 1 of the billing address.
-     */
-    public EcommerceAddress withLine1(JsonNullable<String> line1) {
-        Utils.checkNotNull(line1, "line1");
-        this.line1 = line1;
-        return this;
-    }
 
     /**
      * Address line 2 of the billing address.
      */
-    public EcommerceAddress withLine2(String line2) {
-        Utils.checkNotNull(line2, "line2");
+    public EcommerceAddress withLine2(@Nullable String line2) {
         this.line2 = JsonNullable.of(line2);
         return this;
     }
 
-    /**
-     * Address line 2 of the billing address.
-     */
-    public EcommerceAddress withLine2(JsonNullable<String> line2) {
-        Utils.checkNotNull(line2, "line2");
-        this.line2 = line2;
-        return this;
-    }
 
     /**
      * Company name of the customer
      */
-    public EcommerceAddress withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public EcommerceAddress withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * Company name of the customer
-     */
-    public EcommerceAddress withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * City of the billing address.
      */
-    public EcommerceAddress withCity(String city) {
-        Utils.checkNotNull(city, "city");
+    public EcommerceAddress withCity(@Nullable String city) {
         this.city = JsonNullable.of(city);
         return this;
     }
 
-    /**
-     * City of the billing address.
-     */
-    public EcommerceAddress withCity(JsonNullable<String> city) {
-        Utils.checkNotNull(city, "city");
-        this.city = city;
-        return this;
-    }
 
     /**
      * State/province of the billing address.
      */
-    public EcommerceAddress withState(String state) {
-        Utils.checkNotNull(state, "state");
+    public EcommerceAddress withState(@Nullable String state) {
         this.state = JsonNullable.of(state);
         return this;
     }
 
-    /**
-     * State/province of the billing address.
-     */
-    public EcommerceAddress withState(JsonNullable<String> state) {
-        Utils.checkNotNull(state, "state");
-        this.state = state;
-        return this;
-    }
 
     /**
      * Postal/ZIP code of the billing address.
      */
-    public EcommerceAddress withPostalCode(String postalCode) {
-        Utils.checkNotNull(postalCode, "postalCode");
+    public EcommerceAddress withPostalCode(@Nullable String postalCode) {
         this.postalCode = JsonNullable.of(postalCode);
         return this;
     }
 
-    /**
-     * Postal/ZIP code of the billing address.
-     */
-    public EcommerceAddress withPostalCode(JsonNullable<String> postalCode) {
-        Utils.checkNotNull(postalCode, "postalCode");
-        this.postalCode = postalCode;
-        return this;
-    }
 
     /**
      * Country of the billing address.
      */
-    public EcommerceAddress withCountry(String country) {
-        Utils.checkNotNull(country, "country");
+    public EcommerceAddress withCountry(@Nullable String country) {
         this.country = JsonNullable.of(country);
         return this;
     }
 
-    /**
-     * Country of the billing address.
-     */
-    public EcommerceAddress withCountry(JsonNullable<String> country) {
-        Utils.checkNotNull(country, "country");
-        this.country = country;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -328,159 +259,81 @@ public class EcommerceAddress {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> line1 = JsonNullable.undefined();
+        private JsonNullable<String> line1;
 
-        private JsonNullable<String> line2 = JsonNullable.undefined();
+        private JsonNullable<String> line2;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> city = JsonNullable.undefined();
+        private JsonNullable<String> city;
 
-        private JsonNullable<String> state = JsonNullable.undefined();
+        private JsonNullable<String> state;
 
-        private JsonNullable<String> postalCode = JsonNullable.undefined();
+        private JsonNullable<String> postalCode;
 
-        private JsonNullable<String> country = JsonNullable.undefined();
+        private JsonNullable<String> country;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Address line 1 of the billing address.
          */
-        public Builder line1(String line1) {
-            Utils.checkNotNull(line1, "line1");
+        public Builder line1(@Nullable String line1) {
             this.line1 = JsonNullable.of(line1);
             return this;
         }
 
         /**
-         * Address line 1 of the billing address.
-         */
-        public Builder line1(JsonNullable<String> line1) {
-            Utils.checkNotNull(line1, "line1");
-            this.line1 = line1;
-            return this;
-        }
-
-
-        /**
          * Address line 2 of the billing address.
          */
-        public Builder line2(String line2) {
-            Utils.checkNotNull(line2, "line2");
+        public Builder line2(@Nullable String line2) {
             this.line2 = JsonNullable.of(line2);
             return this;
         }
 
         /**
-         * Address line 2 of the billing address.
-         */
-        public Builder line2(JsonNullable<String> line2) {
-            Utils.checkNotNull(line2, "line2");
-            this.line2 = line2;
-            return this;
-        }
-
-
-        /**
          * Company name of the customer
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * Company name of the customer
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * City of the billing address.
          */
-        public Builder city(String city) {
-            Utils.checkNotNull(city, "city");
+        public Builder city(@Nullable String city) {
             this.city = JsonNullable.of(city);
             return this;
         }
 
         /**
-         * City of the billing address.
-         */
-        public Builder city(JsonNullable<String> city) {
-            Utils.checkNotNull(city, "city");
-            this.city = city;
-            return this;
-        }
-
-
-        /**
          * State/province of the billing address.
          */
-        public Builder state(String state) {
-            Utils.checkNotNull(state, "state");
+        public Builder state(@Nullable String state) {
             this.state = JsonNullable.of(state);
             return this;
         }
 
         /**
-         * State/province of the billing address.
-         */
-        public Builder state(JsonNullable<String> state) {
-            Utils.checkNotNull(state, "state");
-            this.state = state;
-            return this;
-        }
-
-
-        /**
          * Postal/ZIP code of the billing address.
          */
-        public Builder postalCode(String postalCode) {
-            Utils.checkNotNull(postalCode, "postalCode");
+        public Builder postalCode(@Nullable String postalCode) {
             this.postalCode = JsonNullable.of(postalCode);
             return this;
         }
 
         /**
-         * Postal/ZIP code of the billing address.
-         */
-        public Builder postalCode(JsonNullable<String> postalCode) {
-            Utils.checkNotNull(postalCode, "postalCode");
-            this.postalCode = postalCode;
-            return this;
-        }
-
-
-        /**
          * Country of the billing address.
          */
-        public Builder country(String country) {
-            Utils.checkNotNull(country, "country");
+        public Builder country(@Nullable String country) {
             this.country = JsonNullable.of(country);
             return this;
         }
 
-        /**
-         * Country of the billing address.
-         */
-        public Builder country(JsonNullable<String> country) {
-            Utils.checkNotNull(country, "country");
-            this.country = country;
-            return this;
-        }
-
         public EcommerceAddress build() {
-
             return new EcommerceAddress(
                 line1, line2, companyName,
                 city, state, postalCode,

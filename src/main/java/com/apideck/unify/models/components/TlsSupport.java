@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,40 +18,36 @@ public class TlsSupport {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<String> type;
+    private String type;
 
     /**
      * Description of the TLS support
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("description")
-    private Optional<String> description;
+    private String description;
 
     @JsonCreator
     public TlsSupport(
-            @JsonProperty("type") Optional<String> type,
-            @JsonProperty("description") Optional<String> description) {
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(description, "description");
+            @JsonProperty("type") @Nullable String type,
+            @JsonProperty("description") @Nullable String description) {
         this.type = type;
         this.description = description;
     }
     
     public TlsSupport() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<String> type() {
-        return type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * Description of the TLS support
      */
-    @JsonIgnore
     public Optional<String> description() {
-        return description;
+        return Optional.ofNullable(this.description);
     }
 
     public static Builder builder() {
@@ -59,37 +55,20 @@ public class TlsSupport {
     }
 
 
-    public TlsSupport withType(String type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public TlsSupport withType(Optional<String> type) {
-        Utils.checkNotNull(type, "type");
+    public TlsSupport withType(@Nullable String type) {
         this.type = type;
         return this;
     }
 
-    /**
-     * Description of the TLS support
-     */
-    public TlsSupport withDescription(String description) {
-        Utils.checkNotNull(description, "description");
-        this.description = Optional.ofNullable(description);
-        return this;
-    }
-
 
     /**
      * Description of the TLS support
      */
-    public TlsSupport withDescription(Optional<String> description) {
-        Utils.checkNotNull(description, "description");
+    public TlsSupport withDescription(@Nullable String description) {
         this.description = description;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -121,48 +100,28 @@ public class TlsSupport {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> type = Optional.empty();
+        private String type;
 
-        private Optional<String> description = Optional.empty();
+        private String description;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<String> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * Description of the TLS support
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
-            this.description = Optional.ofNullable(description);
-            return this;
-        }
-
-        /**
-         * Description of the TLS support
-         */
-        public Builder description(Optional<String> description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = description;
             return this;
         }
 
         public TlsSupport build() {
-
             return new TlsSupport(
                 type, description);
         }

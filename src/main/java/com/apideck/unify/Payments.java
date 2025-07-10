@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingPaymentsDeleteOperation;
 import com.apideck.unify.operations.AccountingPaymentsOneOperation;
 import com.apideck.unify.operations.AccountingPaymentsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingPaymentsAllResponse list(@Nonnull AccountingPaymentsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public AccountingPaymentsAllResponse list(
-            AccountingPaymentsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingPaymentsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
               = new AccountingPaymentsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingPaymentsAddResponse create(@Nonnull AccountingPaymentsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public AccountingPaymentsAddResponse create(
-            AccountingPaymentsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingPaymentsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
               = new AccountingPaymentsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingPaymentsOneResponse get(@Nonnull AccountingPaymentsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public AccountingPaymentsOneResponse get(
-            AccountingPaymentsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingPaymentsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
               = new AccountingPaymentsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingPaymentsUpdateResponse update(@Nonnull AccountingPaymentsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public AccountingPaymentsUpdateResponse update(
-            AccountingPaymentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingPaymentsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
               = new AccountingPaymentsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingPaymentsDeleteResponse delete(@Nonnull AccountingPaymentsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Payments {
      * @throws Exception if the API call fails
      */
     public AccountingPaymentsDeleteResponse delete(
-            AccountingPaymentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingPaymentsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
               = new AccountingPaymentsDeleteOperation(
                 sdkConfiguration,

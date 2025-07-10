@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultLogsAllRequestBuilder;
 import com.apideck.unify.models.operations.VaultLogsAllResponse;
 import com.apideck.unify.operations.VaultLogsAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class Logs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultLogsAllResponse list(VaultLogsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public VaultLogsAllResponse list(@Nonnull VaultLogsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class Logs {
      * @throws Exception if the API call fails
      */
     public VaultLogsAllResponse list(
-            VaultLogsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultLogsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
               = new VaultLogsAllOperation(
                 sdkConfiguration,

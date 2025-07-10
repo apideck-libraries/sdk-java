@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -53,66 +54,61 @@ public class Stages {
 
     @JsonCreator
     public Stages(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("value") JsonNullable<String> value,
-            @JsonProperty("win_probability") JsonNullable<Long> winProbability,
-            @JsonProperty("display_order") JsonNullable<Long> displayOrder) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(winProbability, "winProbability");
-        Utils.checkNotNull(displayOrder, "displayOrder");
-        this.id = id;
-        this.name = name;
-        this.value = value;
-        this.winProbability = winProbability;
-        this.displayOrder = displayOrder;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("value") @Nullable JsonNullable<String> value,
+            @JsonProperty("win_probability") @Nullable JsonNullable<Long> winProbability,
+            @JsonProperty("display_order") @Nullable JsonNullable<Long> displayOrder) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.value = Optional.ofNullable(value)
+            .orElse(JsonNullable.undefined());
+        this.winProbability = Optional.ofNullable(winProbability)
+            .orElse(JsonNullable.undefined());
+        this.displayOrder = Optional.ofNullable(displayOrder)
+            .orElse(JsonNullable.undefined());
     }
     
     public Stages() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * The unique identifier of the Pipeline Stage.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the Pipeline Stage.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The value of the Pipeline Stage.
      */
-    @JsonIgnore
     public JsonNullable<String> value() {
-        return value;
+        return this.value;
     }
 
     /**
      * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
      */
-    @JsonIgnore
     public JsonNullable<Long> winProbability() {
-        return winProbability;
+        return this.winProbability;
     }
 
     /**
      * The order in which the Pipeline Stage is displayed in the UI.
      */
-    @JsonIgnore
     public JsonNullable<Long> displayOrder() {
-        return displayOrder;
+        return this.displayOrder;
     }
 
     public static Builder builder() {
@@ -123,92 +119,47 @@ public class Stages {
     /**
      * The unique identifier of the Pipeline Stage.
      */
-    public Stages withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Stages withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * The unique identifier of the Pipeline Stage.
-     */
-    public Stages withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The name of the Pipeline Stage.
      */
-    public Stages withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Stages withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the Pipeline Stage.
-     */
-    public Stages withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The value of the Pipeline Stage.
      */
-    public Stages withValue(String value) {
-        Utils.checkNotNull(value, "value");
+    public Stages withValue(@Nullable String value) {
         this.value = JsonNullable.of(value);
         return this;
     }
 
-    /**
-     * The value of the Pipeline Stage.
-     */
-    public Stages withValue(JsonNullable<String> value) {
-        Utils.checkNotNull(value, "value");
-        this.value = value;
-        return this;
-    }
 
     /**
      * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
      */
-    public Stages withWinProbability(long winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
+    public Stages withWinProbability(@Nullable Long winProbability) {
         this.winProbability = JsonNullable.of(winProbability);
         return this;
     }
 
-    /**
-     * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
-     */
-    public Stages withWinProbability(JsonNullable<Long> winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
-        this.winProbability = winProbability;
-        return this;
-    }
 
     /**
      * The order in which the Pipeline Stage is displayed in the UI.
      */
-    public Stages withDisplayOrder(long displayOrder) {
-        Utils.checkNotNull(displayOrder, "displayOrder");
+    public Stages withDisplayOrder(@Nullable Long displayOrder) {
         this.displayOrder = JsonNullable.of(displayOrder);
         return this;
     }
 
-    /**
-     * The order in which the Pipeline Stage is displayed in the UI.
-     */
-    public Stages withDisplayOrder(JsonNullable<Long> displayOrder) {
-        Utils.checkNotNull(displayOrder, "displayOrder");
-        this.displayOrder = displayOrder;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -247,117 +198,61 @@ public class Stages {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> value = JsonNullable.undefined();
+        private JsonNullable<String> value;
 
-        private JsonNullable<Long> winProbability = JsonNullable.undefined();
+        private JsonNullable<Long> winProbability;
 
-        private JsonNullable<Long> displayOrder = JsonNullable.undefined();
+        private JsonNullable<Long> displayOrder;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the Pipeline Stage.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * The unique identifier of the Pipeline Stage.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The name of the Pipeline Stage.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the Pipeline Stage.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The value of the Pipeline Stage.
          */
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = JsonNullable.of(value);
             return this;
         }
 
         /**
-         * The value of the Pipeline Stage.
-         */
-        public Builder value(JsonNullable<String> value) {
-            Utils.checkNotNull(value, "value");
-            this.value = value;
-            return this;
-        }
-
-
-        /**
          * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
          */
-        public Builder winProbability(long winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
+        public Builder winProbability(@Nullable Long winProbability) {
             this.winProbability = JsonNullable.of(winProbability);
             return this;
         }
 
         /**
-         * The expected probability of winning an Opportunity in this Pipeline Stage. Valid values are [0-100].
-         */
-        public Builder winProbability(JsonNullable<Long> winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
-            this.winProbability = winProbability;
-            return this;
-        }
-
-
-        /**
          * The order in which the Pipeline Stage is displayed in the UI.
          */
-        public Builder displayOrder(long displayOrder) {
-            Utils.checkNotNull(displayOrder, "displayOrder");
+        public Builder displayOrder(@Nullable Long displayOrder) {
             this.displayOrder = JsonNullable.of(displayOrder);
             return this;
         }
 
-        /**
-         * The order in which the Pipeline Stage is displayed in the UI.
-         */
-        public Builder displayOrder(JsonNullable<Long> displayOrder) {
-            Utils.checkNotNull(displayOrder, "displayOrder");
-            this.displayOrder = displayOrder;
-            return this;
-        }
-
         public Stages build() {
-
             return new Stages(
                 id, name, value,
                 winProbability, displayOrder);

@@ -31,6 +31,8 @@ import com.apideck.unify.utils.SerializedBody;
 import com.apideck.unify.utils.Utils.JsonShape;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
@@ -54,13 +56,13 @@ public class AccountingAttachmentsUploadOperation implements RequestOperation<Ac
     };
     
     private final SDKConfiguration sdkConfiguration;
-    private final Optional<String> serverURL;
-    private final Optional<Options> options;
+    private final String serverURL;
+    private final Options options;
 
     public AccountingAttachmentsUploadOperation(
-            SDKConfiguration sdkConfiguration,
-            Optional<String> serverURL,
-            Optional<Options> options) {
+            @Nonnull SDKConfiguration sdkConfiguration,
+            @Nullable String serverURL,
+            @Nullable Options options) {
         this.sdkConfiguration = sdkConfiguration;
         this.serverURL = serverURL;
         this.options = options;
@@ -68,9 +70,9 @@ public class AccountingAttachmentsUploadOperation implements RequestOperation<Ac
     
     @Override
     public HttpResponse<InputStream> doRequest(AccountingAttachmentsUploadRequest request) throws Exception {
-        options
+        Optional.ofNullable(options)
                 .ifPresent(o -> o.validate(List.of(Options.Option.RETRY_CONFIG)));
-        String baseUrl = serverURL
+        String baseUrl = Optional.ofNullable(serverURL)
                 .filter(u -> !u.isBlank())
                 .orElse(Utils.templateUrl(
                         ACCOUNTING_ATTACHMENTS_UPLOAD_SERVERS[0], 
@@ -110,7 +112,7 @@ public class AccountingAttachmentsUploadOperation implements RequestOperation<Ac
                 this.sdkConfiguration.securitySource().getSecurity());
         HTTPClient client = this.sdkConfiguration.client();
         HTTPRequest finalReq = req;
-        RetryConfig retryConfig = options
+        RetryConfig retryConfig = Optional.ofNullable(options)
                 .flatMap(Options::retryConfig)
                 .or(this.sdkConfiguration::retryConfig)
                 .orElse(RetryConfig.builder()

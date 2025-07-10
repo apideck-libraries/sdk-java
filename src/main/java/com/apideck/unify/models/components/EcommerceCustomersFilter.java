@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,42 +17,38 @@ public class EcommerceCustomersFilter {
      * Customer email address to filter on
      */
     @SpeakeasyMetadata("queryParam:name=email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * Customer phone number to filter on
      */
     @SpeakeasyMetadata("queryParam:name=phone_number")
-    private Optional<String> phoneNumber;
+    private String phoneNumber;
 
     @JsonCreator
     public EcommerceCustomersFilter(
-            Optional<String> email,
-            Optional<String> phoneNumber) {
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+            @Nullable String email,
+            @Nullable String phoneNumber) {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
     
     public EcommerceCustomersFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Customer email address to filter on
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     /**
      * Customer phone number to filter on
      */
-    @JsonIgnore
     public Optional<String> phoneNumber() {
-        return phoneNumber;
+        return Optional.ofNullable(this.phoneNumber);
     }
 
     public static Builder builder() {
@@ -63,40 +59,20 @@ public class EcommerceCustomersFilter {
     /**
      * Customer email address to filter on
      */
-    public EcommerceCustomersFilter withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
-
-    /**
-     * Customer email address to filter on
-     */
-    public EcommerceCustomersFilter withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public EcommerceCustomersFilter withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
 
-    /**
-     * Customer phone number to filter on
-     */
-    public EcommerceCustomersFilter withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = Optional.ofNullable(phoneNumber);
-        return this;
-    }
-
 
     /**
      * Customer phone number to filter on
      */
-    public EcommerceCustomersFilter withPhoneNumber(Optional<String> phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+    public EcommerceCustomersFilter withPhoneNumber(@Nullable String phoneNumber) {
         this.phoneNumber = phoneNumber;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -128,54 +104,31 @@ public class EcommerceCustomersFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private Optional<String> phoneNumber = Optional.empty();
+        private String phoneNumber;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Customer email address to filter on
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * Customer email address to filter on
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * Customer phone number to filter on
          */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = Optional.ofNullable(phoneNumber);
-            return this;
-        }
-
-        /**
-         * Customer phone number to filter on
-         */
-        public Builder phoneNumber(Optional<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
+        public Builder phoneNumber(@Nullable String phoneNumber) {
             this.phoneNumber = phoneNumber;
             return this;
         }
 
         public EcommerceCustomersFilter build() {
-
             return new EcommerceCustomersFilter(
                 email, phoneNumber);
         }

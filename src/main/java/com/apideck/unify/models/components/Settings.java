@@ -6,15 +6,14 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,70 +28,70 @@ public class Settings {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_apis")
-    private Optional<? extends List<UnifiedApiId>> unifiedApis;
+    private List<UnifiedApiId> unifiedApis;
 
     /**
      * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hide_resource_settings")
-    private Optional<Boolean> hideResourceSettings;
+    private Boolean hideResourceSettings;
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sandbox_mode")
-    private Optional<Boolean> sandboxMode;
+    private Boolean sandboxMode;
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("isolation_mode")
-    private Optional<Boolean> isolationMode;
+    private Boolean isolationMode;
 
     /**
      * The duration of time the session is valid for (maximum 1 week).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("session_length")
-    private Optional<String> sessionLength;
+    private String sessionLength;
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_logs")
-    private Optional<Boolean> showLogs;
+    private Boolean showLogs;
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_suggestions")
-    private Optional<Boolean> showSuggestions;
+    private Boolean showSuggestions;
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("show_sidebar")
-    private Optional<Boolean> showSidebar;
+    private Boolean showSidebar;
 
     /**
      * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auto_redirect")
-    private Optional<Boolean> autoRedirect;
+    private Boolean autoRedirect;
 
     /**
      * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hide_guides")
-    private Optional<Boolean> hideGuides;
+    private Boolean hideGuides;
 
     /**
      * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
@@ -101,131 +100,118 @@ public class Settings {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allow_actions")
-    private Optional<? extends List<AllowActions>> allowActions;
+    private List<AllowActions> allowActions;
 
     @JsonCreator
     public Settings(
-            @JsonProperty("unified_apis") Optional<? extends List<UnifiedApiId>> unifiedApis,
-            @JsonProperty("hide_resource_settings") Optional<Boolean> hideResourceSettings,
-            @JsonProperty("sandbox_mode") Optional<Boolean> sandboxMode,
-            @JsonProperty("isolation_mode") Optional<Boolean> isolationMode,
-            @JsonProperty("session_length") Optional<String> sessionLength,
-            @JsonProperty("show_logs") Optional<Boolean> showLogs,
-            @JsonProperty("show_suggestions") Optional<Boolean> showSuggestions,
-            @JsonProperty("show_sidebar") Optional<Boolean> showSidebar,
-            @JsonProperty("auto_redirect") Optional<Boolean> autoRedirect,
-            @JsonProperty("hide_guides") Optional<Boolean> hideGuides,
-            @JsonProperty("allow_actions") Optional<? extends List<AllowActions>> allowActions) {
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
-        Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
-        Utils.checkNotNull(sandboxMode, "sandboxMode");
-        Utils.checkNotNull(isolationMode, "isolationMode");
-        Utils.checkNotNull(sessionLength, "sessionLength");
-        Utils.checkNotNull(showLogs, "showLogs");
-        Utils.checkNotNull(showSuggestions, "showSuggestions");
-        Utils.checkNotNull(showSidebar, "showSidebar");
-        Utils.checkNotNull(autoRedirect, "autoRedirect");
-        Utils.checkNotNull(hideGuides, "hideGuides");
-        Utils.checkNotNull(allowActions, "allowActions");
+            @JsonProperty("unified_apis") @Nullable List<UnifiedApiId> unifiedApis,
+            @JsonProperty("hide_resource_settings") @Nullable Boolean hideResourceSettings,
+            @JsonProperty("sandbox_mode") @Nullable Boolean sandboxMode,
+            @JsonProperty("isolation_mode") @Nullable Boolean isolationMode,
+            @JsonProperty("session_length") @Nullable String sessionLength,
+            @JsonProperty("show_logs") @Nullable Boolean showLogs,
+            @JsonProperty("show_suggestions") @Nullable Boolean showSuggestions,
+            @JsonProperty("show_sidebar") @Nullable Boolean showSidebar,
+            @JsonProperty("auto_redirect") @Nullable Boolean autoRedirect,
+            @JsonProperty("hide_guides") @Nullable Boolean hideGuides,
+            @JsonProperty("allow_actions") @Nullable List<AllowActions> allowActions) {
         this.unifiedApis = unifiedApis;
-        this.hideResourceSettings = hideResourceSettings;
-        this.sandboxMode = sandboxMode;
-        this.isolationMode = isolationMode;
-        this.sessionLength = sessionLength;
-        this.showLogs = showLogs;
-        this.showSuggestions = showSuggestions;
-        this.showSidebar = showSidebar;
-        this.autoRedirect = autoRedirect;
-        this.hideGuides = hideGuides;
+        this.hideResourceSettings = Optional.ofNullable(hideResourceSettings)
+            .orElse(Builder._SINGLETON_VALUE_HideResourceSettings.value());
+        this.sandboxMode = Optional.ofNullable(sandboxMode)
+            .orElse(Builder._SINGLETON_VALUE_SandboxMode.value());
+        this.isolationMode = Optional.ofNullable(isolationMode)
+            .orElse(Builder._SINGLETON_VALUE_IsolationMode.value());
+        this.sessionLength = Optional.ofNullable(sessionLength)
+            .orElse(Builder._SINGLETON_VALUE_SessionLength.value());
+        this.showLogs = Optional.ofNullable(showLogs)
+            .orElse(Builder._SINGLETON_VALUE_ShowLogs.value());
+        this.showSuggestions = Optional.ofNullable(showSuggestions)
+            .orElse(Builder._SINGLETON_VALUE_ShowSuggestions.value());
+        this.showSidebar = Optional.ofNullable(showSidebar)
+            .orElse(Builder._SINGLETON_VALUE_ShowSidebar.value());
+        this.autoRedirect = Optional.ofNullable(autoRedirect)
+            .orElse(Builder._SINGLETON_VALUE_AutoRedirect.value());
+        this.hideGuides = Optional.ofNullable(hideGuides)
+            .orElse(Builder._SINGLETON_VALUE_HideGuides.value());
         this.allowActions = allowActions;
     }
     
     public Settings() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<UnifiedApiId>> unifiedApis() {
-        return (Optional<List<UnifiedApiId>>) unifiedApis;
+        return Optional.ofNullable(this.unifiedApis);
     }
 
     /**
      * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
      */
-    @JsonIgnore
     public Optional<Boolean> hideResourceSettings() {
-        return hideResourceSettings;
+        return Optional.ofNullable(this.hideResourceSettings);
     }
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
      */
-    @JsonIgnore
     public Optional<Boolean> sandboxMode() {
-        return sandboxMode;
+        return Optional.ofNullable(this.sandboxMode);
     }
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
      */
-    @JsonIgnore
     public Optional<Boolean> isolationMode() {
-        return isolationMode;
+        return Optional.ofNullable(this.isolationMode);
     }
 
     /**
      * The duration of time the session is valid for (maximum 1 week).
      */
-    @JsonIgnore
     public Optional<String> sessionLength() {
-        return sessionLength;
+        return Optional.ofNullable(this.sessionLength);
     }
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
      */
-    @JsonIgnore
     public Optional<Boolean> showLogs() {
-        return showLogs;
+        return Optional.ofNullable(this.showLogs);
     }
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
      */
-    @JsonIgnore
     public Optional<Boolean> showSuggestions() {
-        return showSuggestions;
+        return Optional.ofNullable(this.showSuggestions);
     }
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
      */
-    @JsonIgnore
     public Optional<Boolean> showSidebar() {
-        return showSidebar;
+        return Optional.ofNullable(this.showSidebar);
     }
 
     /**
      * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
      */
-    @JsonIgnore
     public Optional<Boolean> autoRedirect() {
-        return autoRedirect;
+        return Optional.ofNullable(this.autoRedirect);
     }
 
     /**
      * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
      */
-    @JsonIgnore
     public Optional<Boolean> hideGuides() {
-        return hideGuides;
+        return Optional.ofNullable(this.hideGuides);
     }
 
     /**
@@ -233,10 +219,8 @@ public class Settings {
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<AllowActions>> allowActions() {
-        return (Optional<List<AllowActions>>) allowActions;
+        return Optional.ofNullable(this.allowActions);
     }
 
     public static Builder builder() {
@@ -247,215 +231,103 @@ public class Settings {
     /**
      * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
      */
-    public Settings withUnifiedApis(List<UnifiedApiId> unifiedApis) {
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
-        this.unifiedApis = Optional.ofNullable(unifiedApis);
-        return this;
-    }
-
-
-    /**
-     * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
-     */
-    public Settings withUnifiedApis(Optional<? extends List<UnifiedApiId>> unifiedApis) {
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
+    public Settings withUnifiedApis(@Nullable List<UnifiedApiId> unifiedApis) {
         this.unifiedApis = unifiedApis;
         return this;
     }
 
-    /**
-     * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
-     */
-    public Settings withHideResourceSettings(boolean hideResourceSettings) {
-        Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
-        this.hideResourceSettings = Optional.ofNullable(hideResourceSettings);
-        return this;
-    }
-
 
     /**
      * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
      */
-    public Settings withHideResourceSettings(Optional<Boolean> hideResourceSettings) {
-        Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
+    public Settings withHideResourceSettings(@Nullable Boolean hideResourceSettings) {
         this.hideResourceSettings = hideResourceSettings;
         return this;
     }
 
-    /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
-     */
-    public Settings withSandboxMode(boolean sandboxMode) {
-        Utils.checkNotNull(sandboxMode, "sandboxMode");
-        this.sandboxMode = Optional.ofNullable(sandboxMode);
-        return this;
-    }
-
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
      */
-    public Settings withSandboxMode(Optional<Boolean> sandboxMode) {
-        Utils.checkNotNull(sandboxMode, "sandboxMode");
+    public Settings withSandboxMode(@Nullable Boolean sandboxMode) {
         this.sandboxMode = sandboxMode;
         return this;
     }
 
-    /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
-     */
-    public Settings withIsolationMode(boolean isolationMode) {
-        Utils.checkNotNull(isolationMode, "isolationMode");
-        this.isolationMode = Optional.ofNullable(isolationMode);
-        return this;
-    }
-
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
      */
-    public Settings withIsolationMode(Optional<Boolean> isolationMode) {
-        Utils.checkNotNull(isolationMode, "isolationMode");
+    public Settings withIsolationMode(@Nullable Boolean isolationMode) {
         this.isolationMode = isolationMode;
         return this;
     }
 
-    /**
-     * The duration of time the session is valid for (maximum 1 week).
-     */
-    public Settings withSessionLength(String sessionLength) {
-        Utils.checkNotNull(sessionLength, "sessionLength");
-        this.sessionLength = Optional.ofNullable(sessionLength);
-        return this;
-    }
-
 
     /**
      * The duration of time the session is valid for (maximum 1 week).
      */
-    public Settings withSessionLength(Optional<String> sessionLength) {
-        Utils.checkNotNull(sessionLength, "sessionLength");
+    public Settings withSessionLength(@Nullable String sessionLength) {
         this.sessionLength = sessionLength;
         return this;
     }
 
-    /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
-     */
-    public Settings withShowLogs(boolean showLogs) {
-        Utils.checkNotNull(showLogs, "showLogs");
-        this.showLogs = Optional.ofNullable(showLogs);
-        return this;
-    }
-
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
      */
-    public Settings withShowLogs(Optional<Boolean> showLogs) {
-        Utils.checkNotNull(showLogs, "showLogs");
+    public Settings withShowLogs(@Nullable Boolean showLogs) {
         this.showLogs = showLogs;
         return this;
     }
 
-    /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
-     */
-    public Settings withShowSuggestions(boolean showSuggestions) {
-        Utils.checkNotNull(showSuggestions, "showSuggestions");
-        this.showSuggestions = Optional.ofNullable(showSuggestions);
-        return this;
-    }
-
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
      */
-    public Settings withShowSuggestions(Optional<Boolean> showSuggestions) {
-        Utils.checkNotNull(showSuggestions, "showSuggestions");
+    public Settings withShowSuggestions(@Nullable Boolean showSuggestions) {
         this.showSuggestions = showSuggestions;
         return this;
     }
 
-    /**
-     * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
-     */
-    public Settings withShowSidebar(boolean showSidebar) {
-        Utils.checkNotNull(showSidebar, "showSidebar");
-        this.showSidebar = Optional.ofNullable(showSidebar);
-        return this;
-    }
-
 
     /**
      * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
      */
-    public Settings withShowSidebar(Optional<Boolean> showSidebar) {
-        Utils.checkNotNull(showSidebar, "showSidebar");
+    public Settings withShowSidebar(@Nullable Boolean showSidebar) {
         this.showSidebar = showSidebar;
         return this;
     }
 
-    /**
-     * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
-     */
-    public Settings withAutoRedirect(boolean autoRedirect) {
-        Utils.checkNotNull(autoRedirect, "autoRedirect");
-        this.autoRedirect = Optional.ofNullable(autoRedirect);
-        return this;
-    }
-
 
     /**
      * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
      */
-    public Settings withAutoRedirect(Optional<Boolean> autoRedirect) {
-        Utils.checkNotNull(autoRedirect, "autoRedirect");
+    public Settings withAutoRedirect(@Nullable Boolean autoRedirect) {
         this.autoRedirect = autoRedirect;
         return this;
     }
 
-    /**
-     * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
-     */
-    public Settings withHideGuides(boolean hideGuides) {
-        Utils.checkNotNull(hideGuides, "hideGuides");
-        this.hideGuides = Optional.ofNullable(hideGuides);
-        return this;
-    }
-
 
     /**
      * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
      */
-    public Settings withHideGuides(Optional<Boolean> hideGuides) {
-        Utils.checkNotNull(hideGuides, "hideGuides");
+    public Settings withHideGuides(@Nullable Boolean hideGuides) {
         this.hideGuides = hideGuides;
         return this;
     }
 
-    /**
-     * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
-     * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
-     * Empty array will hide all actions. By default all actions are visible.
-     */
-    public Settings withAllowActions(List<AllowActions> allowActions) {
-        Utils.checkNotNull(allowActions, "allowActions");
-        this.allowActions = Optional.ofNullable(allowActions);
-        return this;
-    }
-
 
     /**
      * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
      * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
      * Empty array will hide all actions. By default all actions are visible.
      */
-    public Settings withAllowActions(Optional<? extends List<AllowActions>> allowActions) {
-        Utils.checkNotNull(allowActions, "allowActions");
+    public Settings withAllowActions(@Nullable List<AllowActions> allowActions) {
         this.allowActions = allowActions;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -508,274 +380,123 @@ public class Settings {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<UnifiedApiId>> unifiedApis = Optional.empty();
+        private List<UnifiedApiId> unifiedApis;
 
-        private Optional<Boolean> hideResourceSettings;
+        private Boolean hideResourceSettings;
 
-        private Optional<Boolean> sandboxMode;
+        private Boolean sandboxMode;
 
-        private Optional<Boolean> isolationMode;
+        private Boolean isolationMode;
 
-        private Optional<String> sessionLength;
+        private String sessionLength;
 
-        private Optional<Boolean> showLogs;
+        private Boolean showLogs;
 
-        private Optional<Boolean> showSuggestions;
+        private Boolean showSuggestions;
 
-        private Optional<Boolean> showSidebar;
+        private Boolean showSidebar;
 
-        private Optional<Boolean> autoRedirect;
+        private Boolean autoRedirect;
 
-        private Optional<Boolean> hideGuides;
+        private Boolean hideGuides;
 
-        private Optional<? extends List<AllowActions>> allowActions = Optional.empty();
+        private List<AllowActions> allowActions;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
          */
-        public Builder unifiedApis(List<UnifiedApiId> unifiedApis) {
-            Utils.checkNotNull(unifiedApis, "unifiedApis");
-            this.unifiedApis = Optional.ofNullable(unifiedApis);
-            return this;
-        }
-
-        /**
-         * Provide the IDs of the Unified APIs you want to be visible. Leaving it empty or omitting this field will show all Unified APIs.
-         */
-        public Builder unifiedApis(Optional<? extends List<UnifiedApiId>> unifiedApis) {
-            Utils.checkNotNull(unifiedApis, "unifiedApis");
+        public Builder unifiedApis(@Nullable List<UnifiedApiId> unifiedApis) {
             this.unifiedApis = unifiedApis;
             return this;
         }
 
-
         /**
          * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
          */
-        public Builder hideResourceSettings(boolean hideResourceSettings) {
-            Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
-            this.hideResourceSettings = Optional.ofNullable(hideResourceSettings);
-            return this;
-        }
-
-        /**
-         * A boolean that controls the display of the configurable resources for an integration. When set to true, the resource configuration options will be hidden and not shown to the user. When set to false, the resource configuration options will be displayed to the user.
-         */
-        public Builder hideResourceSettings(Optional<Boolean> hideResourceSettings) {
-            Utils.checkNotNull(hideResourceSettings, "hideResourceSettings");
+        public Builder hideResourceSettings(@Nullable Boolean hideResourceSettings) {
             this.hideResourceSettings = hideResourceSettings;
             return this;
         }
 
-
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
          */
-        public Builder sandboxMode(boolean sandboxMode) {
-            Utils.checkNotNull(sandboxMode, "sandboxMode");
-            this.sandboxMode = Optional.ofNullable(sandboxMode);
-            return this;
-        }
-
-        /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show a banner informing the logged in user is in a test environment.
-         */
-        public Builder sandboxMode(Optional<Boolean> sandboxMode) {
-            Utils.checkNotNull(sandboxMode, "sandboxMode");
+        public Builder sandboxMode(@Nullable Boolean sandboxMode) {
             this.sandboxMode = sandboxMode;
             return this;
         }
 
-
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
          */
-        public Builder isolationMode(boolean isolationMode) {
-            Utils.checkNotNull(isolationMode, "isolationMode");
-            this.isolationMode = Optional.ofNullable(isolationMode);
-            return this;
-        }
-
-        /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to run in isolation mode, meaning it only shows the connection settings and hides the navigation items.
-         */
-        public Builder isolationMode(Optional<Boolean> isolationMode) {
-            Utils.checkNotNull(isolationMode, "isolationMode");
+        public Builder isolationMode(@Nullable Boolean isolationMode) {
             this.isolationMode = isolationMode;
             return this;
         }
 
-
         /**
          * The duration of time the session is valid for (maximum 1 week).
          */
-        public Builder sessionLength(String sessionLength) {
-            Utils.checkNotNull(sessionLength, "sessionLength");
-            this.sessionLength = Optional.ofNullable(sessionLength);
-            return this;
-        }
-
-        /**
-         * The duration of time the session is valid for (maximum 1 week).
-         */
-        public Builder sessionLength(Optional<String> sessionLength) {
-            Utils.checkNotNull(sessionLength, "sessionLength");
+        public Builder sessionLength(@Nullable String sessionLength) {
             this.sessionLength = sessionLength;
             return this;
         }
 
-
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
          */
-        public Builder showLogs(boolean showLogs) {
-            Utils.checkNotNull(showLogs, "showLogs");
-            this.showLogs = Optional.ofNullable(showLogs);
-            return this;
-        }
-
-        /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the logs page. Defaults to `true`.
-         */
-        public Builder showLogs(Optional<Boolean> showLogs) {
-            Utils.checkNotNull(showLogs, "showLogs");
+        public Builder showLogs(@Nullable Boolean showLogs) {
             this.showLogs = showLogs;
             return this;
         }
 
-
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
          */
-        public Builder showSuggestions(boolean showSuggestions) {
-            Utils.checkNotNull(showSuggestions, "showSuggestions");
-            this.showSuggestions = Optional.ofNullable(showSuggestions);
-            return this;
-        }
-
-        /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the suggestions page. Defaults to `false`.
-         */
-        public Builder showSuggestions(Optional<Boolean> showSuggestions) {
-            Utils.checkNotNull(showSuggestions, "showSuggestions");
+        public Builder showSuggestions(@Nullable Boolean showSuggestions) {
             this.showSuggestions = showSuggestions;
             return this;
         }
 
-
         /**
          * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
          */
-        public Builder showSidebar(boolean showSidebar) {
-            Utils.checkNotNull(showSidebar, "showSidebar");
-            this.showSidebar = Optional.ofNullable(showSidebar);
-            return this;
-        }
-
-        /**
-         * Configure [Vault](/apis/vault/reference#section/Get-Started) to show the sidebar. Defaults to `true`.
-         */
-        public Builder showSidebar(Optional<Boolean> showSidebar) {
-            Utils.checkNotNull(showSidebar, "showSidebar");
+        public Builder showSidebar(@Nullable Boolean showSidebar) {
             this.showSidebar = showSidebar;
             return this;
         }
 
-
         /**
          * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
          */
-        public Builder autoRedirect(boolean autoRedirect) {
-            Utils.checkNotNull(autoRedirect, "autoRedirect");
-            this.autoRedirect = Optional.ofNullable(autoRedirect);
-            return this;
-        }
-
-        /**
-         * Automatically redirect to redirect uri after the connection has been configured as callable. Defaults to `false`.
-         */
-        public Builder autoRedirect(Optional<Boolean> autoRedirect) {
-            Utils.checkNotNull(autoRedirect, "autoRedirect");
+        public Builder autoRedirect(@Nullable Boolean autoRedirect) {
             this.autoRedirect = autoRedirect;
             return this;
         }
 
-
         /**
          * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
          */
-        public Builder hideGuides(boolean hideGuides) {
-            Utils.checkNotNull(hideGuides, "hideGuides");
-            this.hideGuides = Optional.ofNullable(hideGuides);
-            return this;
-        }
-
-        /**
-         * Hide Apideck connection guides in [Vault](/apis/vault/reference#section/Get-Started). Defaults to `false`.
-         */
-        public Builder hideGuides(Optional<Boolean> hideGuides) {
-            Utils.checkNotNull(hideGuides, "hideGuides");
+        public Builder hideGuides(@Nullable Boolean hideGuides) {
             this.hideGuides = hideGuides;
             return this;
         }
 
-
         /**
          * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
          * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
          * Empty array will hide all actions. By default all actions are visible.
          */
-        public Builder allowActions(List<AllowActions> allowActions) {
-            Utils.checkNotNull(allowActions, "allowActions");
-            this.allowActions = Optional.ofNullable(allowActions);
-            return this;
-        }
-
-        /**
-         * Hide actions from your users in [Vault](/apis/vault/reference#section/Get-Started). Actions in `allow_actions` will be shown on a connection in Vault.
-         * Available actions are: `delete`, `disconnect`, `reauthorize` and `disable`.
-         * Empty array will hide all actions. By default all actions are visible.
-         */
-        public Builder allowActions(Optional<? extends List<AllowActions>> allowActions) {
-            Utils.checkNotNull(allowActions, "allowActions");
+        public Builder allowActions(@Nullable List<AllowActions> allowActions) {
             this.allowActions = allowActions;
             return this;
         }
 
         public Settings build() {
-            if (hideResourceSettings == null) {
-                hideResourceSettings = _SINGLETON_VALUE_HideResourceSettings.value();
-            }
-            if (sandboxMode == null) {
-                sandboxMode = _SINGLETON_VALUE_SandboxMode.value();
-            }
-            if (isolationMode == null) {
-                isolationMode = _SINGLETON_VALUE_IsolationMode.value();
-            }
-            if (sessionLength == null) {
-                sessionLength = _SINGLETON_VALUE_SessionLength.value();
-            }
-            if (showLogs == null) {
-                showLogs = _SINGLETON_VALUE_ShowLogs.value();
-            }
-            if (showSuggestions == null) {
-                showSuggestions = _SINGLETON_VALUE_ShowSuggestions.value();
-            }
-            if (showSidebar == null) {
-                showSidebar = _SINGLETON_VALUE_ShowSidebar.value();
-            }
-            if (autoRedirect == null) {
-                autoRedirect = _SINGLETON_VALUE_AutoRedirect.value();
-            }
-            if (hideGuides == null) {
-                hideGuides = _SINGLETON_VALUE_HideGuides.value();
-            }
-
             return new Settings(
                 unifiedApis, hideResourceSettings, sandboxMode,
                 isolationMode, sessionLength, showLogs,
@@ -784,58 +505,58 @@ public class Settings {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_HideResourceSettings =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_HideResourceSettings =
                 new LazySingletonValue<>(
                         "hide_resource_settings",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_SandboxMode =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_SandboxMode =
                 new LazySingletonValue<>(
                         "sandbox_mode",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_IsolationMode =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_IsolationMode =
                 new LazySingletonValue<>(
                         "isolation_mode",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<String>> _SINGLETON_VALUE_SessionLength =
+        private static final LazySingletonValue<String> _SINGLETON_VALUE_SessionLength =
                 new LazySingletonValue<>(
                         "session_length",
                         "\"1h\"",
-                        new TypeReference<Optional<String>>() {});
+                        new TypeReference<String>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_ShowLogs =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_ShowLogs =
                 new LazySingletonValue<>(
                         "show_logs",
                         "true",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_ShowSuggestions =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_ShowSuggestions =
                 new LazySingletonValue<>(
                         "show_suggestions",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_ShowSidebar =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_ShowSidebar =
                 new LazySingletonValue<>(
                         "show_sidebar",
                         "true",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AutoRedirect =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_AutoRedirect =
                 new LazySingletonValue<>(
                         "auto_redirect",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_HideGuides =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_HideGuides =
                 new LazySingletonValue<>(
                         "hide_guides",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

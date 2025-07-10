@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class Department {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Parent ID
@@ -57,7 +56,7 @@ public class Department {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -92,134 +91,119 @@ public class Department {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Department(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("parent_id") JsonNullable<String> parentId,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(parentId, "parentId");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("parent_id") @Nullable JsonNullable<String> parentId,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.parentId = parentId;
-        this.name = name;
-        this.code = code;
-        this.description = description;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.parentId = Optional.ofNullable(parentId)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Department() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Parent ID
      */
-    @JsonIgnore
     public JsonNullable<String> parentId() {
-        return parentId;
+        return this.parentId;
     }
 
     /**
      * Department name
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -230,190 +214,95 @@ public class Department {
     /**
      * A unique identifier for an object.
      */
-    public Department withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Department withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Department withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * Parent ID
      */
-    public Department withParentId(String parentId) {
-        Utils.checkNotNull(parentId, "parentId");
+    public Department withParentId(@Nullable String parentId) {
         this.parentId = JsonNullable.of(parentId);
         return this;
     }
 
-    /**
-     * Parent ID
-     */
-    public Department withParentId(JsonNullable<String> parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = parentId;
-        return this;
-    }
 
     /**
      * Department name
      */
-    public Department withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Department withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Department name
-     */
-    public Department withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
-    public Department withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public Department withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    public Department withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
-    public Department withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Department withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    public Department withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Department withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Department withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Department withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public Department withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Department withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Department withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Department withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Department withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Department withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Department withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Department withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Department withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Department withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Department withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Department withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Department withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Department withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Department withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -466,231 +355,115 @@ public class Department {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> parentId = JsonNullable.undefined();
+        private JsonNullable<String> parentId;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Parent ID
          */
-        public Builder parentId(String parentId) {
-            Utils.checkNotNull(parentId, "parentId");
+        public Builder parentId(@Nullable String parentId) {
             this.parentId = JsonNullable.of(parentId);
             return this;
         }
 
         /**
-         * Parent ID
-         */
-        public Builder parentId(JsonNullable<String> parentId) {
-            Utils.checkNotNull(parentId, "parentId");
-            this.parentId = parentId;
-            return this;
-        }
-
-
-        /**
          * Department name
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * Department name
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Department build() {
-
             return new Department(
                 id, parentId, name,
                 code, description, customMappings,

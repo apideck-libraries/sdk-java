@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -30,75 +29,66 @@ public class UpdateWebhookRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends Status> status;
+    private Status status;
 
     /**
      * The delivery url of the webhook endpoint.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("delivery_url")
-    private Optional<String> deliveryUrl;
+    private String deliveryUrl;
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("events")
-    private Optional<? extends List<WebhookEventType>> events;
+    private List<WebhookEventType> events;
 
     @JsonCreator
     public UpdateWebhookRequest(
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("status") Optional<? extends Status> status,
-            @JsonProperty("delivery_url") Optional<String> deliveryUrl,
-            @JsonProperty("events") Optional<? extends List<WebhookEventType>> events) {
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        Utils.checkNotNull(events, "events");
-        this.description = description;
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("status") @Nullable Status status,
+            @JsonProperty("delivery_url") @Nullable String deliveryUrl,
+            @JsonProperty("events") @Nullable List<WebhookEventType> events) {
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.status = status;
         this.deliveryUrl = deliveryUrl;
         this.events = events;
     }
     
     public UpdateWebhookRequest() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The status of the webhook.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Status> status() {
-        return (Optional<Status>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * The delivery url of the webhook endpoint.
      */
-    @JsonIgnore
     public Optional<String> deliveryUrl() {
-        return deliveryUrl;
+        return Optional.ofNullable(this.deliveryUrl);
     }
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<WebhookEventType>> events() {
-        return (Optional<List<WebhookEventType>>) events;
+        return Optional.ofNullable(this.events);
     }
 
     public static Builder builder() {
@@ -109,77 +99,38 @@ public class UpdateWebhookRequest {
     /**
      * A description of the object.
      */
-    public UpdateWebhookRequest withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public UpdateWebhookRequest withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public UpdateWebhookRequest withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The status of the webhook.
      */
-    public UpdateWebhookRequest withStatus(Status status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * The status of the webhook.
-     */
-    public UpdateWebhookRequest withStatus(Optional<? extends Status> status) {
-        Utils.checkNotNull(status, "status");
+    public UpdateWebhookRequest withStatus(@Nullable Status status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * The delivery url of the webhook endpoint.
-     */
-    public UpdateWebhookRequest withDeliveryUrl(String deliveryUrl) {
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        this.deliveryUrl = Optional.ofNullable(deliveryUrl);
-        return this;
-    }
-
 
     /**
      * The delivery url of the webhook endpoint.
      */
-    public UpdateWebhookRequest withDeliveryUrl(Optional<String> deliveryUrl) {
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
+    public UpdateWebhookRequest withDeliveryUrl(@Nullable String deliveryUrl) {
         this.deliveryUrl = deliveryUrl;
         return this;
     }
 
-    /**
-     * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
-     */
-    public UpdateWebhookRequest withEvents(List<WebhookEventType> events) {
-        Utils.checkNotNull(events, "events");
-        this.events = Optional.ofNullable(events);
-        return this;
-    }
-
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    public UpdateWebhookRequest withEvents(Optional<? extends List<WebhookEventType>> events) {
-        Utils.checkNotNull(events, "events");
+    public UpdateWebhookRequest withEvents(@Nullable List<WebhookEventType> events) {
         this.events = events;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -216,96 +167,51 @@ public class UpdateWebhookRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends Status> status = Optional.empty();
+        private Status status;
 
-        private Optional<String> deliveryUrl = Optional.empty();
+        private String deliveryUrl;
 
-        private Optional<? extends List<WebhookEventType>> events = Optional.empty();
+        private List<WebhookEventType> events;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The status of the webhook.
          */
-        public Builder status(Status status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the webhook.
-         */
-        public Builder status(Optional<? extends Status> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable Status status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * The delivery url of the webhook endpoint.
          */
-        public Builder deliveryUrl(String deliveryUrl) {
-            Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-            this.deliveryUrl = Optional.ofNullable(deliveryUrl);
-            return this;
-        }
-
-        /**
-         * The delivery url of the webhook endpoint.
-         */
-        public Builder deliveryUrl(Optional<String> deliveryUrl) {
-            Utils.checkNotNull(deliveryUrl, "deliveryUrl");
+        public Builder deliveryUrl(@Nullable String deliveryUrl) {
             this.deliveryUrl = deliveryUrl;
             return this;
         }
 
-
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
-        public Builder events(List<WebhookEventType> events) {
-            Utils.checkNotNull(events, "events");
-            this.events = Optional.ofNullable(events);
-            return this;
-        }
-
-        /**
-         * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
-         */
-        public Builder events(Optional<? extends List<WebhookEventType>> events) {
-            Utils.checkNotNull(events, "events");
+        public Builder events(@Nullable List<WebhookEventType> events) {
             this.events = events;
             return this;
         }
 
         public UpdateWebhookRequest build() {
-
             return new UpdateWebhookRequest(
                 description, status, deliveryUrl,
                 events);

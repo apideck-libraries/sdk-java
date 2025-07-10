@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.EcommerceOrdersOneResponse;
 import com.apideck.unify.operations.EcommerceOrdersAllOperation;
 import com.apideck.unify.operations.EcommerceOrdersOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class Orders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceOrdersAllResponse list(EcommerceOrdersAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public EcommerceOrdersAllResponse list(@Nonnull EcommerceOrdersAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class Orders {
      * @throws Exception if the API call fails
      */
     public EcommerceOrdersAllResponse list(
-            EcommerceOrdersAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull EcommerceOrdersAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<EcommerceOrdersAllRequest, EcommerceOrdersAllResponse> operation
               = new EcommerceOrdersAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class Orders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceOrdersOneResponse get(EcommerceOrdersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public EcommerceOrdersOneResponse get(@Nonnull EcommerceOrdersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class Orders {
      * @throws Exception if the API call fails
      */
     public EcommerceOrdersOneResponse get(
-            EcommerceOrdersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull EcommerceOrdersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<EcommerceOrdersOneRequest, EcommerceOrdersOneResponse> operation
               = new EcommerceOrdersOneOperation(
                 sdkConfiguration,

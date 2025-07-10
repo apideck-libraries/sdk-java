@@ -10,47 +10,46 @@ import com.apideck.unify.operations.SmsMessagesAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class SmsMessagesAddRequestBuilder {
-
-    private SmsMessagesAddRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private SmsMessagesAddRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public SmsMessagesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public SmsMessagesAddRequestBuilder request(SmsMessagesAddRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public SmsMessagesAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public SmsMessagesAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public SmsMessagesAddRequestBuilder request(@Nonnull SmsMessagesAddRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private SmsMessagesAddRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public SmsMessagesAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
               = new SmsMessagesAddOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

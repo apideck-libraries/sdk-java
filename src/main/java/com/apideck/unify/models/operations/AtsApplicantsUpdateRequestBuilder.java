@@ -10,47 +10,46 @@ import com.apideck.unify.operations.AtsApplicantsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class AtsApplicantsUpdateRequestBuilder {
-
-    private AtsApplicantsUpdateRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private AtsApplicantsUpdateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public AtsApplicantsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public AtsApplicantsUpdateRequestBuilder request(AtsApplicantsUpdateRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public AtsApplicantsUpdateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public AtsApplicantsUpdateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public AtsApplicantsUpdateRequestBuilder request(@Nonnull AtsApplicantsUpdateRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private AtsApplicantsUpdateRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public AtsApplicantsUpdateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
               = new AtsApplicantsUpdateOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

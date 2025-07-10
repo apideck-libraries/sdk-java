@@ -5,11 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 
 
 public class BalanceSheet {
@@ -19,14 +20,13 @@ public class BalanceSheet {
 
     @JsonCreator
     public BalanceSheet(
-            @JsonProperty("reports") List<Reports> reports) {
-        Utils.checkNotNull(reports, "reports");
-        this.reports = reports;
+            @JsonProperty("reports") @Nonnull List<Reports> reports) {
+        this.reports = Optional.ofNullable(reports)
+            .orElseThrow(() -> new IllegalArgumentException("reports cannot be null"));
     }
 
-    @JsonIgnore
     public List<Reports> reports() {
-        return reports;
+        return this.reports;
     }
 
     public static Builder builder() {
@@ -34,11 +34,11 @@ public class BalanceSheet {
     }
 
 
-    public BalanceSheet withReports(List<Reports> reports) {
-        Utils.checkNotNull(reports, "reports");
-        this.reports = reports;
+    public BalanceSheet withReports(@Nonnull List<Reports> reports) {
+        this.reports = Utils.checkNotNull(reports, "reports");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,15 +74,12 @@ public class BalanceSheet {
           // force use of static builder() method
         }
 
-
-        public Builder reports(List<Reports> reports) {
-            Utils.checkNotNull(reports, "reports");
-            this.reports = reports;
+        public Builder reports(@Nonnull List<Reports> reports) {
+            this.reports = Utils.checkNotNull(reports, "reports");
             return this;
         }
 
         public BalanceSheet build() {
-
             return new BalanceSheet(
                 reports);
         }

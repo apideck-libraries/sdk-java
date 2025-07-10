@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -34,49 +35,45 @@ public class SharedLinkTarget {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends FileType> type;
+    private JsonNullable<FileType> type;
 
     @JsonCreator
     public SharedLinkTarget(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("type") JsonNullable<? extends FileType> type) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(type, "type");
-        this.id = id;
-        this.name = name;
-        this.type = type;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("type") @Nullable JsonNullable<FileType> type) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
     }
     
     public SharedLinkTarget(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the file
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The type of resource. Could be file, folder or url
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<FileType> type() {
-        return (JsonNullable<FileType>) type;
+        return this.type;
     }
 
     public static Builder builder() {
@@ -87,47 +84,29 @@ public class SharedLinkTarget {
     /**
      * A unique identifier for an object.
      */
-    public SharedLinkTarget withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public SharedLinkTarget withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * The name of the file
      */
-    public SharedLinkTarget withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public SharedLinkTarget withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the file
-     */
-    public SharedLinkTarget withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The type of resource. Could be file, folder or url
      */
-    public SharedLinkTarget withType(FileType type) {
-        Utils.checkNotNull(type, "type");
+    public SharedLinkTarget withType(@Nullable FileType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of resource. Could be file, folder or url
-     */
-    public SharedLinkTarget withType(JsonNullable<? extends FileType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -163,64 +142,39 @@ public class SharedLinkTarget {
 
         private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<? extends FileType> type = JsonNullable.undefined();
+        private JsonNullable<FileType> type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * The name of the file
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the file
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The type of resource. Could be file, folder or url
          */
-        public Builder type(FileType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable FileType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * The type of resource. Could be file, folder or url
-         */
-        public Builder type(JsonNullable<? extends FileType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
         public SharedLinkTarget build() {
-
             return new SharedLinkTarget(
                 id, name, type);
         }

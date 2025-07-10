@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingInvoiceItemsDeleteOperation;
 import com.apideck.unify.operations.AccountingInvoiceItemsOneOperation;
 import com.apideck.unify.operations.AccountingInvoiceItemsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class InvoiceItems {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoiceItemsAllResponse list(AccountingInvoiceItemsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingInvoiceItemsAllResponse list(@Nonnull AccountingInvoiceItemsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class InvoiceItems {
      * @throws Exception if the API call fails
      */
     public AccountingInvoiceItemsAllResponse list(
-            AccountingInvoiceItemsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingInvoiceItemsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAllRequest, AccountingInvoiceItemsAllResponse> operation
               = new AccountingInvoiceItemsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class InvoiceItems {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoiceItemsAddResponse create(AccountingInvoiceItemsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingInvoiceItemsAddResponse create(@Nonnull AccountingInvoiceItemsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class InvoiceItems {
      * @throws Exception if the API call fails
      */
     public AccountingInvoiceItemsAddResponse create(
-            AccountingInvoiceItemsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingInvoiceItemsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
               = new AccountingInvoiceItemsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class InvoiceItems {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoiceItemsOneResponse get(AccountingInvoiceItemsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingInvoiceItemsOneResponse get(@Nonnull AccountingInvoiceItemsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class InvoiceItems {
      * @throws Exception if the API call fails
      */
     public AccountingInvoiceItemsOneResponse get(
-            AccountingInvoiceItemsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingInvoiceItemsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingInvoiceItemsOneRequest, AccountingInvoiceItemsOneResponse> operation
               = new AccountingInvoiceItemsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class InvoiceItems {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoiceItemsUpdateResponse update(AccountingInvoiceItemsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingInvoiceItemsUpdateResponse update(@Nonnull AccountingInvoiceItemsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class InvoiceItems {
      * @throws Exception if the API call fails
      */
     public AccountingInvoiceItemsUpdateResponse update(
-            AccountingInvoiceItemsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingInvoiceItemsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingInvoiceItemsUpdateRequest, AccountingInvoiceItemsUpdateResponse> operation
               = new AccountingInvoiceItemsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class InvoiceItems {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoiceItemsDeleteResponse delete(AccountingInvoiceItemsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingInvoiceItemsDeleteResponse delete(@Nonnull AccountingInvoiceItemsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class InvoiceItems {
      * @throws Exception if the API call fails
      */
     public AccountingInvoiceItemsDeleteResponse delete(
-            AccountingInvoiceItemsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingInvoiceItemsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingInvoiceItemsDeleteRequest, AccountingInvoiceItemsDeleteResponse> operation
               = new AccountingInvoiceItemsDeleteOperation(
                 sdkConfiguration,

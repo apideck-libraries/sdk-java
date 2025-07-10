@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingTrackingCategoriesDeleteOperation;
 import com.apideck.unify.operations.AccountingTrackingCategoriesOneOperation;
 import com.apideck.unify.operations.AccountingTrackingCategoriesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class TrackingCategories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTrackingCategoriesAllResponse list(AccountingTrackingCategoriesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingTrackingCategoriesAllResponse list(@Nonnull AccountingTrackingCategoriesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class TrackingCategories {
      * @throws Exception if the API call fails
      */
     public AccountingTrackingCategoriesAllResponse list(
-            AccountingTrackingCategoriesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTrackingCategoriesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAllRequest, AccountingTrackingCategoriesAllResponse> operation
               = new AccountingTrackingCategoriesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class TrackingCategories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTrackingCategoriesAddResponse create(AccountingTrackingCategoriesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingTrackingCategoriesAddResponse create(@Nonnull AccountingTrackingCategoriesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class TrackingCategories {
      * @throws Exception if the API call fails
      */
     public AccountingTrackingCategoriesAddResponse create(
-            AccountingTrackingCategoriesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTrackingCategoriesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesAddRequest, AccountingTrackingCategoriesAddResponse> operation
               = new AccountingTrackingCategoriesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class TrackingCategories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTrackingCategoriesOneResponse get(AccountingTrackingCategoriesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingTrackingCategoriesOneResponse get(@Nonnull AccountingTrackingCategoriesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class TrackingCategories {
      * @throws Exception if the API call fails
      */
     public AccountingTrackingCategoriesOneResponse get(
-            AccountingTrackingCategoriesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTrackingCategoriesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
               = new AccountingTrackingCategoriesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class TrackingCategories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTrackingCategoriesUpdateResponse update(AccountingTrackingCategoriesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingTrackingCategoriesUpdateResponse update(@Nonnull AccountingTrackingCategoriesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class TrackingCategories {
      * @throws Exception if the API call fails
      */
     public AccountingTrackingCategoriesUpdateResponse update(
-            AccountingTrackingCategoriesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTrackingCategoriesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesUpdateRequest, AccountingTrackingCategoriesUpdateResponse> operation
               = new AccountingTrackingCategoriesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class TrackingCategories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTrackingCategoriesDeleteResponse delete(AccountingTrackingCategoriesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingTrackingCategoriesDeleteResponse delete(@Nonnull AccountingTrackingCategoriesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class TrackingCategories {
      * @throws Exception if the API call fails
      */
     public AccountingTrackingCategoriesDeleteResponse delete(
-            AccountingTrackingCategoriesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingTrackingCategoriesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingTrackingCategoriesDeleteRequest, AccountingTrackingCategoriesDeleteResponse> operation
               = new AccountingTrackingCategoriesDeleteOperation(
                 sdkConfiguration,

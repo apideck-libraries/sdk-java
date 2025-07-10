@@ -5,17 +5,17 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Long;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -45,60 +45,54 @@ public class GetCustomMappingsResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("_raw")
-    private JsonNullable<? extends Map<String, Object>> raw;
+    private JsonNullable<Map<String, Object>> raw;
 
     @JsonCreator
     public GetCustomMappingsResponse(
             @JsonProperty("status_code") long statusCode,
-            @JsonProperty("status") String status,
-            @JsonProperty("data") List<CustomMapping> data,
-            @JsonProperty("_raw") JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(data, "data");
-        Utils.checkNotNull(raw, "raw");
+            @JsonProperty("status") @Nonnull String status,
+            @JsonProperty("data") @Nonnull List<CustomMapping> data,
+            @JsonProperty("_raw") @Nullable JsonNullable<Map<String, Object>> raw) {
         this.statusCode = statusCode;
-        this.status = status;
-        this.data = data;
-        this.raw = raw;
+        this.status = Optional.ofNullable(status)
+            .orElseThrow(() -> new IllegalArgumentException("status cannot be null"));
+        this.data = Optional.ofNullable(data)
+            .orElseThrow(() -> new IllegalArgumentException("data cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(JsonNullable.undefined());
     }
     
     public GetCustomMappingsResponse(
             long statusCode,
-            String status,
-            List<CustomMapping> data) {
+            @Nonnull String status,
+            @Nonnull List<CustomMapping> data) {
         this(statusCode, status, data,
-            JsonNullable.undefined());
+            null);
     }
 
     /**
      * HTTP Response Status Code
      */
-    @JsonIgnore
     public long statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * HTTP Response Status
      */
-    @JsonIgnore
     public String status() {
-        return status;
+        return this.status;
     }
 
-    @JsonIgnore
     public List<CustomMapping> data() {
-        return data;
+        return this.data;
     }
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> raw() {
-        return (JsonNullable<Map<String, Object>>) raw;
+        return this.raw;
     }
 
     public static Builder builder() {
@@ -110,43 +104,34 @@ public class GetCustomMappingsResponse {
      * HTTP Response Status Code
      */
     public GetCustomMappingsResponse withStatusCode(long statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * HTTP Response Status
      */
-    public GetCustomMappingsResponse withStatus(String status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public GetCustomMappingsResponse withStatus(@Nonnull String status) {
+        this.status = Utils.checkNotNull(status, "status");
         return this;
     }
 
-    public GetCustomMappingsResponse withData(List<CustomMapping> data) {
-        Utils.checkNotNull(data, "data");
-        this.data = data;
+
+    public GetCustomMappingsResponse withData(@Nonnull List<CustomMapping> data) {
+        this.data = Utils.checkNotNull(data, "data");
         return this;
     }
+
 
     /**
      * Raw response from the integration when raw=true query param is provided
      */
-    public GetCustomMappingsResponse withRaw(Map<String, Object> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public GetCustomMappingsResponse withRaw(@Nullable Map<String, Object> raw) {
         this.raw = JsonNullable.of(raw);
         return this;
     }
 
-    /**
-     * Raw response from the integration when raw=true query param is provided
-     */
-    public GetCustomMappingsResponse withRaw(JsonNullable<? extends Map<String, Object>> raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = raw;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -183,66 +168,48 @@ public class GetCustomMappingsResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Long statusCode;
+        private long statusCode;
 
         private String status;
 
         private List<CustomMapping> data;
 
-        private JsonNullable<? extends Map<String, Object>> raw = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> raw;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP Response Status Code
          */
         public Builder statusCode(long statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * HTTP Response Status
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
+        public Builder status(@Nonnull String status) {
+            this.status = Utils.checkNotNull(status, "status");
             return this;
         }
 
-
-        public Builder data(List<CustomMapping> data) {
-            Utils.checkNotNull(data, "data");
-            this.data = data;
+        public Builder data(@Nonnull List<CustomMapping> data) {
+            this.data = Utils.checkNotNull(data, "data");
             return this;
         }
-
 
         /**
          * Raw response from the integration when raw=true query param is provided
          */
-        public Builder raw(Map<String, Object> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Map<String, Object> raw) {
             this.raw = JsonNullable.of(raw);
             return this;
         }
 
-        /**
-         * Raw response from the integration when raw=true query param is provided
-         */
-        public Builder raw(JsonNullable<? extends Map<String, Object>> raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = raw;
-            return this;
-        }
-
         public GetCustomMappingsResponse build() {
-
             return new GetCustomMappingsResponse(
                 statusCode, status, data,
                 raw);

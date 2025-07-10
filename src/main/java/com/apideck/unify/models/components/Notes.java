@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -27,26 +28,24 @@ public class Notes {
 
     @JsonCreator
     public Notes(
-            @JsonProperty("employee") JsonNullable<String> employee,
-            @JsonProperty("manager") JsonNullable<String> manager) {
-        Utils.checkNotNull(employee, "employee");
-        Utils.checkNotNull(manager, "manager");
-        this.employee = employee;
-        this.manager = manager;
+            @JsonProperty("employee") @Nullable JsonNullable<String> employee,
+            @JsonProperty("manager") @Nullable JsonNullable<String> manager) {
+        this.employee = Optional.ofNullable(employee)
+            .orElse(JsonNullable.undefined());
+        this.manager = Optional.ofNullable(manager)
+            .orElse(JsonNullable.undefined());
     }
     
     public Notes() {
-        this(JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null);
     }
 
-    @JsonIgnore
     public JsonNullable<String> employee() {
-        return employee;
+        return this.employee;
     }
 
-    @JsonIgnore
     public JsonNullable<String> manager() {
-        return manager;
+        return this.manager;
     }
 
     public static Builder builder() {
@@ -54,29 +53,17 @@ public class Notes {
     }
 
 
-    public Notes withEmployee(String employee) {
-        Utils.checkNotNull(employee, "employee");
+    public Notes withEmployee(@Nullable String employee) {
         this.employee = JsonNullable.of(employee);
         return this;
     }
 
-    public Notes withEmployee(JsonNullable<String> employee) {
-        Utils.checkNotNull(employee, "employee");
-        this.employee = employee;
-        return this;
-    }
 
-    public Notes withManager(String manager) {
-        Utils.checkNotNull(manager, "manager");
+    public Notes withManager(@Nullable String manager) {
         this.manager = JsonNullable.of(manager);
         return this;
     }
 
-    public Notes withManager(JsonNullable<String> manager) {
-        Utils.checkNotNull(manager, "manager");
-        this.manager = manager;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -108,42 +95,25 @@ public class Notes {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> employee = JsonNullable.undefined();
+        private JsonNullable<String> employee;
 
-        private JsonNullable<String> manager = JsonNullable.undefined();
+        private JsonNullable<String> manager;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder employee(String employee) {
-            Utils.checkNotNull(employee, "employee");
+        public Builder employee(@Nullable String employee) {
             this.employee = JsonNullable.of(employee);
             return this;
         }
 
-        public Builder employee(JsonNullable<String> employee) {
-            Utils.checkNotNull(employee, "employee");
-            this.employee = employee;
-            return this;
-        }
-
-
-        public Builder manager(String manager) {
-            Utils.checkNotNull(manager, "manager");
+        public Builder manager(@Nullable String manager) {
             this.manager = JsonNullable.of(manager);
             return this;
         }
 
-        public Builder manager(JsonNullable<String> manager) {
-            Utils.checkNotNull(manager, "manager");
-            this.manager = manager;
-            return this;
-        }
-
         public Notes build() {
-
             return new Notes(
                 employee, manager);
         }

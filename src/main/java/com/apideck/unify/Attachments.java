@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingAttachmentsDownloadOperation;
 import com.apideck.unify.operations.AccountingAttachmentsOneOperation;
 import com.apideck.unify.operations.AccountingAttachmentsUploadOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -58,8 +60,8 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingAttachmentsAllResponse list(@Nonnull AccountingAttachmentsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -73,8 +75,8 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsAllResponse list(
-            AccountingAttachmentsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAttachmentsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
               = new AccountingAttachmentsAllOperation(
                 sdkConfiguration,
@@ -102,8 +104,8 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsUploadResponse upload(AccountingAttachmentsUploadRequest request) throws Exception {
-        return upload(request, Optional.empty(), Optional.empty());
+    public AccountingAttachmentsUploadResponse upload(@Nonnull AccountingAttachmentsUploadRequest request) throws Exception {
+        return upload(request, null, null);
     }
 
     /**
@@ -118,9 +120,9 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsUploadResponse upload(
-            AccountingAttachmentsUploadRequest request,
-            Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAttachmentsUploadRequest request,
+            @Nullable String serverURL,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
               = new AccountingAttachmentsUploadOperation(
                 sdkConfiguration,
@@ -149,8 +151,8 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingAttachmentsOneResponse get(@Nonnull AccountingAttachmentsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -164,8 +166,8 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsOneResponse get(
-            AccountingAttachmentsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAttachmentsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
               = new AccountingAttachmentsOneOperation(
                 sdkConfiguration,
@@ -193,8 +195,8 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingAttachmentsDeleteResponse delete(@Nonnull AccountingAttachmentsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -208,8 +210,8 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsDeleteResponse delete(
-            AccountingAttachmentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAttachmentsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
               = new AccountingAttachmentsDeleteOperation(
                 sdkConfiguration,
@@ -237,8 +239,8 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request) throws Exception {
-        return download(request, Optional.empty());
+    public AccountingAttachmentsDownloadResponse download(@Nonnull AccountingAttachmentsDownloadRequest request) throws Exception {
+        return download(request, null);
     }
 
     /**
@@ -252,8 +254,8 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsDownloadResponse download(
-            AccountingAttachmentsDownloadRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAttachmentsDownloadRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
               = new AccountingAttachmentsDownloadOperation(
                 sdkConfiguration,

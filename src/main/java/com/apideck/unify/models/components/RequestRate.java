@@ -5,11 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Long;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
  * RequestRate
@@ -39,37 +39,32 @@ public class RequestRate {
     public RequestRate(
             @JsonProperty("rate") long rate,
             @JsonProperty("size") long size,
-            @JsonProperty("unit") Unit unit) {
-        Utils.checkNotNull(rate, "rate");
-        Utils.checkNotNull(size, "size");
-        Utils.checkNotNull(unit, "unit");
+            @JsonProperty("unit") @Nonnull Unit unit) {
         this.rate = rate;
         this.size = size;
-        this.unit = unit;
+        this.unit = Optional.ofNullable(unit)
+            .orElseThrow(() -> new IllegalArgumentException("unit cannot be null"));
     }
 
     /**
      * The number of requests per window unit.
      */
-    @JsonIgnore
     public long rate() {
-        return rate;
+        return this.rate;
     }
 
     /**
      * Size of request window.
      */
-    @JsonIgnore
     public long size() {
-        return size;
+        return this.size;
     }
 
     /**
      * The window unit for the rate.
      */
-    @JsonIgnore
     public Unit unit() {
-        return unit;
+        return this.unit;
     }
 
     public static Builder builder() {
@@ -81,28 +76,28 @@ public class RequestRate {
      * The number of requests per window unit.
      */
     public RequestRate withRate(long rate) {
-        Utils.checkNotNull(rate, "rate");
         this.rate = rate;
         return this;
     }
+
 
     /**
      * Size of request window.
      */
     public RequestRate withSize(long size) {
-        Utils.checkNotNull(size, "size");
         this.size = size;
         return this;
     }
 
+
     /**
      * The window unit for the rate.
      */
-    public RequestRate withUnit(Unit unit) {
-        Utils.checkNotNull(unit, "unit");
-        this.unit = unit;
+    public RequestRate withUnit(@Nonnull Unit unit) {
+        this.unit = Utils.checkNotNull(unit, "unit");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -136,9 +131,9 @@ public class RequestRate {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Long rate;
+        private long rate;
 
-        private Long size;
+        private long size;
 
         private Unit unit;
 
@@ -146,38 +141,31 @@ public class RequestRate {
           // force use of static builder() method
         }
 
-
         /**
          * The number of requests per window unit.
          */
         public Builder rate(long rate) {
-            Utils.checkNotNull(rate, "rate");
             this.rate = rate;
             return this;
         }
-
 
         /**
          * Size of request window.
          */
         public Builder size(long size) {
-            Utils.checkNotNull(size, "size");
             this.size = size;
             return this;
         }
 
-
         /**
          * The window unit for the rate.
          */
-        public Builder unit(Unit unit) {
-            Utils.checkNotNull(unit, "unit");
-            this.unit = unit;
+        public Builder unit(@Nonnull Unit unit) {
+            this.unit = Utils.checkNotNull(unit, "unit");
             return this;
         }
 
         public RequestRate build() {
-
             return new RequestRate(
                 rate, size, unit);
         }

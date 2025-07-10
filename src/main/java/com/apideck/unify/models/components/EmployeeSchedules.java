@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,37 +20,32 @@ public class EmployeeSchedules {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employee")
-    private Optional<? extends Employee> employee;
+    private Employee employee;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schedules")
-    private JsonNullable<? extends List<Schedule>> schedules;
+    private JsonNullable<List<Schedule>> schedules;
 
     @JsonCreator
     public EmployeeSchedules(
-            @JsonProperty("employee") Optional<? extends Employee> employee,
-            @JsonProperty("schedules") JsonNullable<? extends List<Schedule>> schedules) {
-        Utils.checkNotNull(employee, "employee");
-        Utils.checkNotNull(schedules, "schedules");
+            @JsonProperty("employee") @Nullable Employee employee,
+            @JsonProperty("schedules") @Nullable JsonNullable<List<Schedule>> schedules) {
         this.employee = employee;
-        this.schedules = schedules;
+        this.schedules = Optional.ofNullable(schedules)
+            .orElse(JsonNullable.undefined());
     }
     
     public EmployeeSchedules() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(null, null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Employee> employee() {
-        return (Optional<Employee>) employee;
+        return Optional.ofNullable(this.employee);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<Schedule>> schedules() {
-        return (JsonNullable<List<Schedule>>) schedules;
+        return this.schedules;
     }
 
     public static Builder builder() {
@@ -59,30 +53,17 @@ public class EmployeeSchedules {
     }
 
 
-    public EmployeeSchedules withEmployee(Employee employee) {
-        Utils.checkNotNull(employee, "employee");
-        this.employee = Optional.ofNullable(employee);
-        return this;
-    }
-
-
-    public EmployeeSchedules withEmployee(Optional<? extends Employee> employee) {
-        Utils.checkNotNull(employee, "employee");
+    public EmployeeSchedules withEmployee(@Nullable Employee employee) {
         this.employee = employee;
         return this;
     }
 
-    public EmployeeSchedules withSchedules(List<Schedule> schedules) {
-        Utils.checkNotNull(schedules, "schedules");
+
+    public EmployeeSchedules withSchedules(@Nullable List<Schedule> schedules) {
         this.schedules = JsonNullable.of(schedules);
         return this;
     }
 
-    public EmployeeSchedules withSchedules(JsonNullable<? extends List<Schedule>> schedules) {
-        Utils.checkNotNull(schedules, "schedules");
-        this.schedules = schedules;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -114,42 +95,25 @@ public class EmployeeSchedules {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends Employee> employee = Optional.empty();
+        private Employee employee;
 
-        private JsonNullable<? extends List<Schedule>> schedules = JsonNullable.undefined();
+        private JsonNullable<List<Schedule>> schedules;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder employee(Employee employee) {
-            Utils.checkNotNull(employee, "employee");
-            this.employee = Optional.ofNullable(employee);
-            return this;
-        }
-
-        public Builder employee(Optional<? extends Employee> employee) {
-            Utils.checkNotNull(employee, "employee");
+        public Builder employee(@Nullable Employee employee) {
             this.employee = employee;
             return this;
         }
 
-
-        public Builder schedules(List<Schedule> schedules) {
-            Utils.checkNotNull(schedules, "schedules");
+        public Builder schedules(@Nullable List<Schedule> schedules) {
             this.schedules = JsonNullable.of(schedules);
             return this;
         }
 
-        public Builder schedules(JsonNullable<? extends List<Schedule>> schedules) {
-            Utils.checkNotNull(schedules, "schedules");
-            this.schedules = schedules;
-            return this;
-        }
-
         public EmployeeSchedules build() {
-
             return new EmployeeSchedules(
                 employee, schedules);
         }

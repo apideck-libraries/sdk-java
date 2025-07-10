@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -20,142 +19,126 @@ public class CustomersFilter {
      * Company Name of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=company_name")
-    private Optional<String> companyName;
+    private String companyName;
 
     /**
      * Display Name of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=display_name")
-    private Optional<String> displayName;
+    private String displayName;
 
     /**
      * First name of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=first_name")
-    private Optional<String> firstName;
+    private String firstName;
 
     /**
      * Last name of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=last_name")
-    private Optional<String> lastName;
+    private String lastName;
 
     /**
      * Email of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=email")
-    private Optional<String> email;
+    private String email;
 
     /**
      * Status of customer to filter on
      */
     @SpeakeasyMetadata("queryParam:name=status")
-    private JsonNullable<? extends CustomersFilterStatus> status;
+    private JsonNullable<CustomersFilterStatus> status;
 
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
     /**
      * Supplier ID of customer to search for
      */
     @SpeakeasyMetadata("queryParam:name=supplier_id")
-    private Optional<String> supplierId;
+    private String supplierId;
 
     @JsonCreator
     public CustomersFilter(
-            Optional<String> companyName,
-            Optional<String> displayName,
-            Optional<String> firstName,
-            Optional<String> lastName,
-            Optional<String> email,
-            JsonNullable<? extends CustomersFilterStatus> status,
-            Optional<OffsetDateTime> updatedSince,
-            Optional<String> supplierId) {
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(supplierId, "supplierId");
+            @Nullable String companyName,
+            @Nullable String displayName,
+            @Nullable String firstName,
+            @Nullable String lastName,
+            @Nullable String email,
+            @Nullable JsonNullable<CustomersFilterStatus> status,
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable String supplierId) {
         this.companyName = companyName;
         this.displayName = displayName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.status = status;
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
         this.updatedSince = updatedSince;
         this.supplierId = supplierId;
     }
     
     public CustomersFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * Company Name of customer to search for
      */
-    @JsonIgnore
     public Optional<String> companyName() {
-        return companyName;
+        return Optional.ofNullable(this.companyName);
     }
 
     /**
      * Display Name of customer to search for
      */
-    @JsonIgnore
     public Optional<String> displayName() {
-        return displayName;
+        return Optional.ofNullable(this.displayName);
     }
 
     /**
      * First name of customer to search for
      */
-    @JsonIgnore
     public Optional<String> firstName() {
-        return firstName;
+        return Optional.ofNullable(this.firstName);
     }
 
     /**
      * Last name of customer to search for
      */
-    @JsonIgnore
     public Optional<String> lastName() {
-        return lastName;
+        return Optional.ofNullable(this.lastName);
     }
 
     /**
      * Email of customer to search for
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     /**
      * Status of customer to filter on
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<CustomersFilterStatus> status() {
-        return (JsonNullable<CustomersFilterStatus>) status;
+        return this.status;
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
     /**
      * Supplier ID of customer to search for
      */
-    @JsonIgnore
     public Optional<String> supplierId() {
-        return supplierId;
+        return Optional.ofNullable(this.supplierId);
     }
 
     public static Builder builder() {
@@ -166,147 +149,71 @@ public class CustomersFilter {
     /**
      * Company Name of customer to search for
      */
-    public CustomersFilter withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = Optional.ofNullable(companyName);
-        return this;
-    }
-
-
-    /**
-     * Company Name of customer to search for
-     */
-    public CustomersFilter withCompanyName(Optional<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public CustomersFilter withCompanyName(@Nullable String companyName) {
         this.companyName = companyName;
         return this;
     }
 
-    /**
-     * Display Name of customer to search for
-     */
-    public CustomersFilter withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = Optional.ofNullable(displayName);
-        return this;
-    }
-
 
     /**
      * Display Name of customer to search for
      */
-    public CustomersFilter withDisplayName(Optional<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public CustomersFilter withDisplayName(@Nullable String displayName) {
         this.displayName = displayName;
         return this;
     }
 
-    /**
-     * First name of customer to search for
-     */
-    public CustomersFilter withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = Optional.ofNullable(firstName);
-        return this;
-    }
-
 
     /**
      * First name of customer to search for
      */
-    public CustomersFilter withFirstName(Optional<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public CustomersFilter withFirstName(@Nullable String firstName) {
         this.firstName = firstName;
         return this;
     }
 
-    /**
-     * Last name of customer to search for
-     */
-    public CustomersFilter withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = Optional.ofNullable(lastName);
-        return this;
-    }
-
 
     /**
      * Last name of customer to search for
      */
-    public CustomersFilter withLastName(Optional<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public CustomersFilter withLastName(@Nullable String lastName) {
         this.lastName = lastName;
         return this;
     }
 
-    /**
-     * Email of customer to search for
-     */
-    public CustomersFilter withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
 
     /**
      * Email of customer to search for
      */
-    public CustomersFilter withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public CustomersFilter withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
 
+
     /**
      * Status of customer to filter on
      */
-    public CustomersFilter withStatus(CustomersFilterStatus status) {
-        Utils.checkNotNull(status, "status");
+    public CustomersFilter withStatus(@Nullable CustomersFilterStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Status of customer to filter on
-     */
-    public CustomersFilter withStatus(JsonNullable<? extends CustomersFilterStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
-    public CustomersFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
-
-    public CustomersFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public CustomersFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    /**
-     * Supplier ID of customer to search for
-     */
-    public CustomersFilter withSupplierId(String supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
-        this.supplierId = Optional.ofNullable(supplierId);
-        return this;
-    }
-
 
     /**
      * Supplier ID of customer to search for
      */
-    public CustomersFilter withSupplierId(Optional<String> supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
+    public CustomersFilter withSupplierId(@Nullable String supplierId) {
         this.supplierId = supplierId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -352,174 +259,88 @@ public class CustomersFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> companyName = Optional.empty();
+        private String companyName;
 
-        private Optional<String> displayName = Optional.empty();
+        private String displayName;
 
-        private Optional<String> firstName = Optional.empty();
+        private String firstName;
 
-        private Optional<String> lastName = Optional.empty();
+        private String lastName;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
-        private JsonNullable<? extends CustomersFilterStatus> status = JsonNullable.undefined();
+        private JsonNullable<CustomersFilterStatus> status;
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<String> supplierId = Optional.empty();
+        private String supplierId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Company Name of customer to search for
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = Optional.ofNullable(companyName);
-            return this;
-        }
-
-        /**
-         * Company Name of customer to search for
-         */
-        public Builder companyName(Optional<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = companyName;
             return this;
         }
 
-
         /**
          * Display Name of customer to search for
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = Optional.ofNullable(displayName);
-            return this;
-        }
-
-        /**
-         * Display Name of customer to search for
-         */
-        public Builder displayName(Optional<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = displayName;
             return this;
         }
 
-
         /**
          * First name of customer to search for
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = Optional.ofNullable(firstName);
-            return this;
-        }
-
-        /**
-         * First name of customer to search for
-         */
-        public Builder firstName(Optional<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-
         /**
          * Last name of customer to search for
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = Optional.ofNullable(lastName);
-            return this;
-        }
-
-        /**
-         * Last name of customer to search for
-         */
-        public Builder lastName(Optional<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-
         /**
          * Email of customer to search for
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * Email of customer to search for
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
-
         /**
          * Status of customer to filter on
          */
-        public Builder status(CustomersFilterStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable CustomersFilterStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        /**
-         * Status of customer to filter on
-         */
-        public Builder status(JsonNullable<? extends CustomersFilterStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
         /**
          * Supplier ID of customer to search for
          */
-        public Builder supplierId(String supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
-            this.supplierId = Optional.ofNullable(supplierId);
-            return this;
-        }
-
-        /**
-         * Supplier ID of customer to search for
-         */
-        public Builder supplierId(Optional<String> supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
+        public Builder supplierId(@Nullable String supplierId) {
             this.supplierId = supplierId;
             return this;
         }
 
         public CustomersFilter build() {
-
             return new CustomersFilter(
                 companyName, displayName, firstName,
                 lastName, email, status,

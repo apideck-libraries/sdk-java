@@ -28,6 +28,8 @@ import com.apideck.unify.operations.WebhookWebhooksDeleteOperation;
 import com.apideck.unify.operations.WebhookWebhooksOneOperation;
 import com.apideck.unify.operations.WebhookWebhooksUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
@@ -62,8 +64,8 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        return list(null, JsonNullable.undefined(), null,
+            null);
     }
 
     /**
@@ -79,17 +81,14 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<Options> options) throws Exception {
-        WebhookWebhooksAllRequest request =
-            WebhookWebhooksAllRequest
-                .builder()
-                .appId(appId)
-                .cursor(cursor)
-                .limit(limit)
-                .build();
+            @Nullable String appId,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit,
+            @Nullable Options options) throws Exception {
+        WebhookWebhooksAllRequest request = new WebhookWebhooksAllRequest(
+            appId,
+            cursor,
+            limit);
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
               = new WebhookWebhooksAllOperation(
                 sdkConfiguration,
@@ -117,8 +116,8 @@ public class Webhooks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public WebhookWebhooksAddResponse create(CreateWebhookRequest createWebhookRequest) throws Exception {
-        return create(Optional.empty(), createWebhookRequest, Optional.empty());
+    public WebhookWebhooksAddResponse create(@Nonnull CreateWebhookRequest createWebhookRequest) throws Exception {
+        return create(null, createWebhookRequest, null);
     }
 
     /**
@@ -133,15 +132,12 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksAddResponse create(
-            Optional<String> appId,
-            CreateWebhookRequest createWebhookRequest,
-            Optional<Options> options) throws Exception {
-        WebhookWebhooksAddRequest request =
-            WebhookWebhooksAddRequest
-                .builder()
-                .appId(appId)
-                .createWebhookRequest(createWebhookRequest)
-                .build();
+            @Nullable String appId,
+            @Nonnull CreateWebhookRequest createWebhookRequest,
+            @Nullable Options options) throws Exception {
+        WebhookWebhooksAddRequest request = new WebhookWebhooksAddRequest(
+            appId,
+            createWebhookRequest);
         RequestOperation<WebhookWebhooksAddRequest, WebhookWebhooksAddResponse> operation
               = new WebhookWebhooksAddOperation(
                 sdkConfiguration,
@@ -169,8 +165,8 @@ public class Webhooks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public WebhookWebhooksOneResponse get(String id) throws Exception {
-        return get(id, Optional.empty(), Optional.empty());
+    public WebhookWebhooksOneResponse get(@Nonnull String id) throws Exception {
+        return get(id, null, null);
     }
 
     /**
@@ -185,15 +181,12 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksOneResponse get(
-            String id,
-            Optional<String> appId,
-            Optional<Options> options) throws Exception {
-        WebhookWebhooksOneRequest request =
-            WebhookWebhooksOneRequest
-                .builder()
-                .id(id)
-                .appId(appId)
-                .build();
+            @Nonnull String id,
+            @Nullable String appId,
+            @Nullable Options options) throws Exception {
+        WebhookWebhooksOneRequest request = new WebhookWebhooksOneRequest(
+            id,
+            appId);
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
               = new WebhookWebhooksOneOperation(
                 sdkConfiguration,
@@ -223,10 +216,10 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksUpdateResponse update(
-            String id,
-            UpdateWebhookRequest updateWebhookRequest) throws Exception {
-        return update(id, Optional.empty(), updateWebhookRequest,
-            Optional.empty());
+            @Nonnull String id,
+            @Nonnull UpdateWebhookRequest updateWebhookRequest) throws Exception {
+        return update(id, null, updateWebhookRequest,
+            null);
     }
 
     /**
@@ -242,17 +235,14 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksUpdateResponse update(
-            String id,
-            Optional<String> appId,
-            UpdateWebhookRequest updateWebhookRequest,
-            Optional<Options> options) throws Exception {
-        WebhookWebhooksUpdateRequest request =
-            WebhookWebhooksUpdateRequest
-                .builder()
-                .id(id)
-                .appId(appId)
-                .updateWebhookRequest(updateWebhookRequest)
-                .build();
+            @Nonnull String id,
+            @Nullable String appId,
+            @Nonnull UpdateWebhookRequest updateWebhookRequest,
+            @Nullable Options options) throws Exception {
+        WebhookWebhooksUpdateRequest request = new WebhookWebhooksUpdateRequest(
+            id,
+            appId,
+            updateWebhookRequest);
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
               = new WebhookWebhooksUpdateOperation(
                 sdkConfiguration,
@@ -280,8 +270,8 @@ public class Webhooks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public WebhookWebhooksDeleteResponse delete(String id) throws Exception {
-        return delete(id, Optional.empty(), Optional.empty());
+    public WebhookWebhooksDeleteResponse delete(@Nonnull String id) throws Exception {
+        return delete(id, null, null);
     }
 
     /**
@@ -296,15 +286,12 @@ public class Webhooks {
      * @throws Exception if the API call fails
      */
     public WebhookWebhooksDeleteResponse delete(
-            String id,
-            Optional<String> appId,
-            Optional<Options> options) throws Exception {
-        WebhookWebhooksDeleteRequest request =
-            WebhookWebhooksDeleteRequest
-                .builder()
-                .id(id)
-                .appId(appId)
-                .build();
+            @Nonnull String id,
+            @Nullable String appId,
+            @Nullable Options options) throws Exception {
+        WebhookWebhooksDeleteRequest request = new WebhookWebhooksDeleteRequest(
+            id,
+            appId);
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
               = new WebhookWebhooksDeleteOperation(
                 sdkConfiguration,

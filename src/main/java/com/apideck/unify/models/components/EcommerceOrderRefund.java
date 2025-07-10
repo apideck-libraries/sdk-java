@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -34,21 +33,21 @@ public class EcommerceOrderRefund {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("amount")
-    private Optional<String> amount;
+    private String amount;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The reason for the refund.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reason")
-    private Optional<String> reason;
+    private String reason;
 
     /**
      * The date and time when the object was created.
@@ -59,67 +58,59 @@ public class EcommerceOrderRefund {
 
     @JsonCreator
     public EcommerceOrderRefund(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("amount") Optional<String> amount,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("reason") Optional<String> reason,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(reason, "reason");
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.id = id;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("amount") @Nullable String amount,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("reason") @Nullable String reason,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
         this.amount = amount;
-        this.currency = currency;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
         this.reason = reason;
-        this.createdAt = createdAt;
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceOrderRefund() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The amount of the refund.
      */
-    @JsonIgnore
     public Optional<String> amount() {
-        return amount;
+        return Optional.ofNullable(this.amount);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The reason for the refund.
      */
-    @JsonIgnore
     public Optional<String> reason() {
-        return reason;
+        return Optional.ofNullable(this.reason);
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -130,94 +121,47 @@ public class EcommerceOrderRefund {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceOrderRefund withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public EcommerceOrderRefund withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public EcommerceOrderRefund withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The amount of the refund.
      */
-    public EcommerceOrderRefund withAmount(String amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = Optional.ofNullable(amount);
-        return this;
-    }
-
-
-    /**
-     * The amount of the refund.
-     */
-    public EcommerceOrderRefund withAmount(Optional<String> amount) {
-        Utils.checkNotNull(amount, "amount");
+    public EcommerceOrderRefund withAmount(@Nullable String amount) {
         this.amount = amount;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public EcommerceOrderRefund withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public EcommerceOrderRefund withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public EcommerceOrderRefund withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The reason for the refund.
      */
-    public EcommerceOrderRefund withReason(String reason) {
-        Utils.checkNotNull(reason, "reason");
-        this.reason = Optional.ofNullable(reason);
-        return this;
-    }
-
-
-    /**
-     * The reason for the refund.
-     */
-    public EcommerceOrderRefund withReason(Optional<String> reason) {
-        Utils.checkNotNull(reason, "reason");
+    public EcommerceOrderRefund withReason(@Nullable String reason) {
         this.reason = reason;
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public EcommerceOrderRefund withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = JsonNullable.of(createdAt);
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public EcommerceOrderRefund withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
+    public EcommerceOrderRefund withCreatedAt(@Nullable OffsetDateTime createdAt) {
+        this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -256,117 +200,61 @@ public class EcommerceOrderRefund {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private Optional<String> amount = Optional.empty();
+        private String amount;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private Optional<String> reason = Optional.empty();
+        private String reason;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The amount of the refund.
          */
-        public Builder amount(String amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = Optional.ofNullable(amount);
-            return this;
-        }
-
-        /**
-         * The amount of the refund.
-         */
-        public Builder amount(Optional<String> amount) {
-            Utils.checkNotNull(amount, "amount");
+        public Builder amount(@Nullable String amount) {
             this.amount = amount;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The reason for the refund.
          */
-        public Builder reason(String reason) {
-            Utils.checkNotNull(reason, "reason");
-            this.reason = Optional.ofNullable(reason);
-            return this;
-        }
-
-        /**
-         * The reason for the refund.
-         */
-        public Builder reason(Optional<String> reason) {
-            Utils.checkNotNull(reason, "reason");
+        public Builder reason(@Nullable String reason) {
             this.reason = reason;
             return this;
         }
 
-
         /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public EcommerceOrderRefund build() {
-
             return new EcommerceOrderRefund(
                 id, amount, currency,
                 reason, createdAt);

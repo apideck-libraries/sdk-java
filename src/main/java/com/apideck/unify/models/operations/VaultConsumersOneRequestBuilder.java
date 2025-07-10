@@ -10,71 +10,59 @@ import com.apideck.unify.operations.VaultConsumersOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultConsumersOneRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String consumerId;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultConsumersOneRequest.Builder pojoBuilder;
+    private VaultConsumersOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultConsumersOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultConsumersOneRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultConsumersOneRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public VaultConsumersOneRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersOneRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public VaultConsumersOneRequestBuilder consumerId(@Nonnull String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersOneRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-                
     public VaultConsumersOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultConsumersOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultConsumersOneRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultConsumersOneRequest buildRequest() {
-
-        VaultConsumersOneRequest request = new VaultConsumersOneRequest(appId,
-            consumerId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultConsumersOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
               = new VaultConsumersOneOperation(
                 sdkConfiguration,
                 options);
-        VaultConsumersOneRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -25,25 +25,23 @@ public class Permissions {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("download")
-    private Optional<Boolean> download;
+    private Boolean download;
 
     @JsonCreator
     public Permissions(
-            @JsonProperty("download") Optional<Boolean> download) {
-        Utils.checkNotNull(download, "download");
+            @JsonProperty("download") @Nullable Boolean download) {
         this.download = download;
     }
     
     public Permissions() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Whether the current user can download this file.
      */
-    @JsonIgnore
     public Optional<Boolean> download() {
-        return download;
+        return Optional.ofNullable(this.download);
     }
 
     public static Builder builder() {
@@ -54,21 +52,11 @@ public class Permissions {
     /**
      * Whether the current user can download this file.
      */
-    public Permissions withDownload(boolean download) {
-        Utils.checkNotNull(download, "download");
-        this.download = Optional.ofNullable(download);
-        return this;
-    }
-
-
-    /**
-     * Whether the current user can download this file.
-     */
-    public Permissions withDownload(Optional<Boolean> download) {
-        Utils.checkNotNull(download, "download");
+    public Permissions withDownload(@Nullable Boolean download) {
         this.download = download;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -98,33 +86,21 @@ public class Permissions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> download = Optional.empty();
+        private Boolean download;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Whether the current user can download this file.
          */
-        public Builder download(boolean download) {
-            Utils.checkNotNull(download, "download");
-            this.download = Optional.ofNullable(download);
-            return this;
-        }
-
-        /**
-         * Whether the current user can download this file.
-         */
-        public Builder download(Optional<Boolean> download) {
-            Utils.checkNotNull(download, "download");
+        public Builder download(@Nullable Boolean download) {
             this.download = download;
             return this;
         }
 
         public Permissions build() {
-
             return new Permissions(
                 download);
         }

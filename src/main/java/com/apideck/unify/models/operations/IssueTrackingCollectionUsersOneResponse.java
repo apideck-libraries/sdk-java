@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class IssueTrackingCollectionUsersOneResponse implements Response {
     /**
      * User
      */
-    private Optional<? extends GetCollectionUserResponse> getCollectionUserResponse;
+    private GetCollectionUserResponse getCollectionUserResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public IssueTrackingCollectionUsersOneResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetCollectionUserResponse> getCollectionUserResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getCollectionUserResponse, "getCollectionUserResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable GetCollectionUserResponse getCollectionUserResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.getCollectionUserResponse = getCollectionUserResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public IssueTrackingCollectionUsersOneResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * User
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<GetCollectionUserResponse> getCollectionUserResponse() {
-        return (Optional<GetCollectionUserResponse>) getCollectionUserResponse;
+        return Optional.ofNullable(this.getCollectionUserResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class IssueTrackingCollectionUsersOneResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public IssueTrackingCollectionUsersOneResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public IssueTrackingCollectionUsersOneResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public IssueTrackingCollectionUsersOneResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public IssueTrackingCollectionUsersOneResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * User
-     */
-    public IssueTrackingCollectionUsersOneResponse withGetCollectionUserResponse(GetCollectionUserResponse getCollectionUserResponse) {
-        Utils.checkNotNull(getCollectionUserResponse, "getCollectionUserResponse");
-        this.getCollectionUserResponse = Optional.ofNullable(getCollectionUserResponse);
+    public IssueTrackingCollectionUsersOneResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class IssueTrackingCollectionUsersOneResponse implements Response {
     /**
      * User
      */
-    public IssueTrackingCollectionUsersOneResponse withGetCollectionUserResponse(Optional<? extends GetCollectionUserResponse> getCollectionUserResponse) {
-        Utils.checkNotNull(getCollectionUserResponse, "getCollectionUserResponse");
+    public IssueTrackingCollectionUsersOneResponse withGetCollectionUserResponse(@Nullable GetCollectionUserResponse getCollectionUserResponse) {
         this.getCollectionUserResponse = getCollectionUserResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public IssueTrackingCollectionUsersOneResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public IssueTrackingCollectionUsersOneResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public IssueTrackingCollectionUsersOneResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class IssueTrackingCollectionUsersOneResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetCollectionUserResponse> getCollectionUserResponse = Optional.empty();
+        private GetCollectionUserResponse getCollectionUserResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * User
-         */
-        public Builder getCollectionUserResponse(GetCollectionUserResponse getCollectionUserResponse) {
-            Utils.checkNotNull(getCollectionUserResponse, "getCollectionUserResponse");
-            this.getCollectionUserResponse = Optional.ofNullable(getCollectionUserResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * User
          */
-        public Builder getCollectionUserResponse(Optional<? extends GetCollectionUserResponse> getCollectionUserResponse) {
-            Utils.checkNotNull(getCollectionUserResponse, "getCollectionUserResponse");
+        public Builder getCollectionUserResponse(@Nullable GetCollectionUserResponse getCollectionUserResponse) {
             this.getCollectionUserResponse = getCollectionUserResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public IssueTrackingCollectionUsersOneResponse build() {
-
             return new IssueTrackingCollectionUsersOneResponse(
                 contentType, statusCode, rawResponse,
                 getCollectionUserResponse, unexpectedErrorResponse);

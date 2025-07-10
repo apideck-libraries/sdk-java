@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingLedgerAccountsAllResponse implements Response {
     /**
      * LedgerAccounts
      */
-    private Optional<? extends GetLedgerAccountsResponse> getLedgerAccountsResponse;
+    private GetLedgerAccountsResponse getLedgerAccountsResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingLedgerAccountsAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetLedgerAccountsResponse> getLedgerAccountsResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getLedgerAccountsResponse, "getLedgerAccountsResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable GetLedgerAccountsResponse getLedgerAccountsResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.getLedgerAccountsResponse = getLedgerAccountsResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingLedgerAccountsAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * LedgerAccounts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<GetLedgerAccountsResponse> getLedgerAccountsResponse() {
-        return (Optional<GetLedgerAccountsResponse>) getLedgerAccountsResponse;
+        return Optional.ofNullable(this.getLedgerAccountsResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingLedgerAccountsAllResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingLedgerAccountsAllResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingLedgerAccountsAllResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingLedgerAccountsAllResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingLedgerAccountsAllResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * LedgerAccounts
-     */
-    public AccountingLedgerAccountsAllResponse withGetLedgerAccountsResponse(GetLedgerAccountsResponse getLedgerAccountsResponse) {
-        Utils.checkNotNull(getLedgerAccountsResponse, "getLedgerAccountsResponse");
-        this.getLedgerAccountsResponse = Optional.ofNullable(getLedgerAccountsResponse);
+    public AccountingLedgerAccountsAllResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingLedgerAccountsAllResponse implements Response {
     /**
      * LedgerAccounts
      */
-    public AccountingLedgerAccountsAllResponse withGetLedgerAccountsResponse(Optional<? extends GetLedgerAccountsResponse> getLedgerAccountsResponse) {
-        Utils.checkNotNull(getLedgerAccountsResponse, "getLedgerAccountsResponse");
+    public AccountingLedgerAccountsAllResponse withGetLedgerAccountsResponse(@Nullable GetLedgerAccountsResponse getLedgerAccountsResponse) {
         this.getLedgerAccountsResponse = getLedgerAccountsResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingLedgerAccountsAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingLedgerAccountsAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingLedgerAccountsAllResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingLedgerAccountsAllResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetLedgerAccountsResponse> getLedgerAccountsResponse = Optional.empty();
+        private GetLedgerAccountsResponse getLedgerAccountsResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * LedgerAccounts
-         */
-        public Builder getLedgerAccountsResponse(GetLedgerAccountsResponse getLedgerAccountsResponse) {
-            Utils.checkNotNull(getLedgerAccountsResponse, "getLedgerAccountsResponse");
-            this.getLedgerAccountsResponse = Optional.ofNullable(getLedgerAccountsResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * LedgerAccounts
          */
-        public Builder getLedgerAccountsResponse(Optional<? extends GetLedgerAccountsResponse> getLedgerAccountsResponse) {
-            Utils.checkNotNull(getLedgerAccountsResponse, "getLedgerAccountsResponse");
+        public Builder getLedgerAccountsResponse(@Nullable GetLedgerAccountsResponse getLedgerAccountsResponse) {
             this.getLedgerAccountsResponse = getLedgerAccountsResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingLedgerAccountsAllResponse build() {
-
             return new AccountingLedgerAccountsAllResponse(
                 contentType, statusCode, rawResponse,
                 getLedgerAccountsResponse, unexpectedErrorResponse);

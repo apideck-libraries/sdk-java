@@ -103,7 +103,6 @@ import java.lang.Exception;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -196,7 +195,7 @@ public class Application {
                     .taxType("sales")
                     .taxCode("1234")
                     .number("OIT00546")
-                    .trackingCategories(JsonNullable.of(null))
+                    .trackingCategories(null)
                     .accountingPeriod("01-24")
                     .rowVersion("1-12345")
                     .customFields(List.of(

@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -28,7 +28,7 @@ public class Address {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends Type> type;
+    private JsonNullable<Type> type;
 
     /**
      * The address string. Some APIs don't provide structured address data.
@@ -186,282 +186,257 @@ public class Address {
 
     @JsonCreator
     public Address(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("type") JsonNullable<? extends Type> type,
-            @JsonProperty("string") JsonNullable<String> string,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("line1") JsonNullable<String> line1,
-            @JsonProperty("line2") JsonNullable<String> line2,
-            @JsonProperty("line3") JsonNullable<String> line3,
-            @JsonProperty("line4") JsonNullable<String> line4,
-            @JsonProperty("street_number") JsonNullable<String> streetNumber,
-            @JsonProperty("city") JsonNullable<String> city,
-            @JsonProperty("state") JsonNullable<String> state,
-            @JsonProperty("postal_code") JsonNullable<String> postalCode,
-            @JsonProperty("country") JsonNullable<String> country,
-            @JsonProperty("latitude") JsonNullable<String> latitude,
-            @JsonProperty("longitude") JsonNullable<String> longitude,
-            @JsonProperty("county") JsonNullable<String> county,
-            @JsonProperty("contact_name") JsonNullable<String> contactName,
-            @JsonProperty("salutation") JsonNullable<String> salutation,
-            @JsonProperty("phone_number") JsonNullable<String> phoneNumber,
-            @JsonProperty("fax") JsonNullable<String> fax,
-            @JsonProperty("email") JsonNullable<String> email,
-            @JsonProperty("website") JsonNullable<String> website,
-            @JsonProperty("notes") JsonNullable<String> notes,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(string, "string");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(line1, "line1");
-        Utils.checkNotNull(line2, "line2");
-        Utils.checkNotNull(line3, "line3");
-        Utils.checkNotNull(line4, "line4");
-        Utils.checkNotNull(streetNumber, "streetNumber");
-        Utils.checkNotNull(city, "city");
-        Utils.checkNotNull(state, "state");
-        Utils.checkNotNull(postalCode, "postalCode");
-        Utils.checkNotNull(country, "country");
-        Utils.checkNotNull(latitude, "latitude");
-        Utils.checkNotNull(longitude, "longitude");
-        Utils.checkNotNull(county, "county");
-        Utils.checkNotNull(contactName, "contactName");
-        Utils.checkNotNull(salutation, "salutation");
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        Utils.checkNotNull(fax, "fax");
-        Utils.checkNotNull(email, "email");
-        Utils.checkNotNull(website, "website");
-        Utils.checkNotNull(notes, "notes");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.id = id;
-        this.type = type;
-        this.string = string;
-        this.name = name;
-        this.line1 = line1;
-        this.line2 = line2;
-        this.line3 = line3;
-        this.line4 = line4;
-        this.streetNumber = streetNumber;
-        this.city = city;
-        this.state = state;
-        this.postalCode = postalCode;
-        this.country = country;
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.county = county;
-        this.contactName = contactName;
-        this.salutation = salutation;
-        this.phoneNumber = phoneNumber;
-        this.fax = fax;
-        this.email = email;
-        this.website = website;
-        this.notes = notes;
-        this.rowVersion = rowVersion;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("type") @Nullable JsonNullable<Type> type,
+            @JsonProperty("string") @Nullable JsonNullable<String> string,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("line1") @Nullable JsonNullable<String> line1,
+            @JsonProperty("line2") @Nullable JsonNullable<String> line2,
+            @JsonProperty("line3") @Nullable JsonNullable<String> line3,
+            @JsonProperty("line4") @Nullable JsonNullable<String> line4,
+            @JsonProperty("street_number") @Nullable JsonNullable<String> streetNumber,
+            @JsonProperty("city") @Nullable JsonNullable<String> city,
+            @JsonProperty("state") @Nullable JsonNullable<String> state,
+            @JsonProperty("postal_code") @Nullable JsonNullable<String> postalCode,
+            @JsonProperty("country") @Nullable JsonNullable<String> country,
+            @JsonProperty("latitude") @Nullable JsonNullable<String> latitude,
+            @JsonProperty("longitude") @Nullable JsonNullable<String> longitude,
+            @JsonProperty("county") @Nullable JsonNullable<String> county,
+            @JsonProperty("contact_name") @Nullable JsonNullable<String> contactName,
+            @JsonProperty("salutation") @Nullable JsonNullable<String> salutation,
+            @JsonProperty("phone_number") @Nullable JsonNullable<String> phoneNumber,
+            @JsonProperty("fax") @Nullable JsonNullable<String> fax,
+            @JsonProperty("email") @Nullable JsonNullable<String> email,
+            @JsonProperty("website") @Nullable JsonNullable<String> website,
+            @JsonProperty("notes") @Nullable JsonNullable<String> notes,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.string = Optional.ofNullable(string)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.line1 = Optional.ofNullable(line1)
+            .orElse(JsonNullable.undefined());
+        this.line2 = Optional.ofNullable(line2)
+            .orElse(JsonNullable.undefined());
+        this.line3 = Optional.ofNullable(line3)
+            .orElse(JsonNullable.undefined());
+        this.line4 = Optional.ofNullable(line4)
+            .orElse(JsonNullable.undefined());
+        this.streetNumber = Optional.ofNullable(streetNumber)
+            .orElse(JsonNullable.undefined());
+        this.city = Optional.ofNullable(city)
+            .orElse(JsonNullable.undefined());
+        this.state = Optional.ofNullable(state)
+            .orElse(JsonNullable.undefined());
+        this.postalCode = Optional.ofNullable(postalCode)
+            .orElse(JsonNullable.undefined());
+        this.country = Optional.ofNullable(country)
+            .orElse(JsonNullable.undefined());
+        this.latitude = Optional.ofNullable(latitude)
+            .orElse(JsonNullable.undefined());
+        this.longitude = Optional.ofNullable(longitude)
+            .orElse(JsonNullable.undefined());
+        this.county = Optional.ofNullable(county)
+            .orElse(JsonNullable.undefined());
+        this.contactName = Optional.ofNullable(contactName)
+            .orElse(JsonNullable.undefined());
+        this.salutation = Optional.ofNullable(salutation)
+            .orElse(JsonNullable.undefined());
+        this.phoneNumber = Optional.ofNullable(phoneNumber)
+            .orElse(JsonNullable.undefined());
+        this.fax = Optional.ofNullable(fax)
+            .orElse(JsonNullable.undefined());
+        this.email = Optional.ofNullable(email)
+            .orElse(JsonNullable.undefined());
+        this.website = Optional.ofNullable(website)
+            .orElse(JsonNullable.undefined());
+        this.notes = Optional.ofNullable(notes)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
     }
     
     public Address() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * Unique identifier for the address.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The type of address.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Type> type() {
-        return (JsonNullable<Type>) type;
+        return this.type;
     }
 
     /**
      * The address string. Some APIs don't provide structured address data.
      */
-    @JsonIgnore
     public JsonNullable<String> string() {
-        return string;
+        return this.string;
     }
 
     /**
      * The name of the address.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * Line 1 of the address e.g. number, street, suite, apt #, etc.
      */
-    @JsonIgnore
     public JsonNullable<String> line1() {
-        return line1;
+        return this.line1;
     }
 
     /**
      * Line 2 of the address
      */
-    @JsonIgnore
     public JsonNullable<String> line2() {
-        return line2;
+        return this.line2;
     }
 
     /**
      * Line 3 of the address
      */
-    @JsonIgnore
     public JsonNullable<String> line3() {
-        return line3;
+        return this.line3;
     }
 
     /**
      * Line 4 of the address
      */
-    @JsonIgnore
     public JsonNullable<String> line4() {
-        return line4;
+        return this.line4;
     }
 
     /**
      * Street number
      */
-    @JsonIgnore
     public JsonNullable<String> streetNumber() {
-        return streetNumber;
+        return this.streetNumber;
     }
 
     /**
      * Name of city.
      */
-    @JsonIgnore
     public JsonNullable<String> city() {
-        return city;
+        return this.city;
     }
 
     /**
      * Name of state
      */
-    @JsonIgnore
     public JsonNullable<String> state() {
-        return state;
+        return this.state;
     }
 
     /**
      * Zip code or equivalent.
      */
-    @JsonIgnore
     public JsonNullable<String> postalCode() {
-        return postalCode;
+        return this.postalCode;
     }
 
     /**
      * country code according to ISO 3166-1 alpha-2.
      */
-    @JsonIgnore
     public JsonNullable<String> country() {
-        return country;
+        return this.country;
     }
 
     /**
      * Latitude of the address
      */
-    @JsonIgnore
     public JsonNullable<String> latitude() {
-        return latitude;
+        return this.latitude;
     }
 
     /**
      * Longitude of the address
      */
-    @JsonIgnore
     public JsonNullable<String> longitude() {
-        return longitude;
+        return this.longitude;
     }
 
     /**
      * Address field that holds a sublocality, such as a county
      */
-    @JsonIgnore
     public JsonNullable<String> county() {
-        return county;
+        return this.county;
     }
 
     /**
      * Name of the contact person at the address
      */
-    @JsonIgnore
     public JsonNullable<String> contactName() {
-        return contactName;
+        return this.contactName;
     }
 
     /**
      * Salutation of the contact person at the address
      */
-    @JsonIgnore
     public JsonNullable<String> salutation() {
-        return salutation;
+        return this.salutation;
     }
 
     /**
      * Phone number of the address
      */
-    @JsonIgnore
     public JsonNullable<String> phoneNumber() {
-        return phoneNumber;
+        return this.phoneNumber;
     }
 
     /**
      * Fax number of the address
      */
-    @JsonIgnore
     public JsonNullable<String> fax() {
-        return fax;
+        return this.fax;
     }
 
     /**
      * Email address of the address
      */
-    @JsonIgnore
     public JsonNullable<String> email() {
-        return email;
+        return this.email;
     }
 
     /**
      * Website of the address
      */
-    @JsonIgnore
     public JsonNullable<String> website() {
-        return website;
+        return this.website;
     }
 
     /**
      * Additional notes
      */
-    @JsonIgnore
     public JsonNullable<String> notes() {
-        return notes;
+        return this.notes;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     public static Builder builder() {
@@ -472,434 +447,218 @@ public class Address {
     /**
      * Unique identifier for the address.
      */
-    public Address withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Address withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * Unique identifier for the address.
-     */
-    public Address withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The type of address.
      */
-    public Address withType(Type type) {
-        Utils.checkNotNull(type, "type");
+    public Address withType(@Nullable Type type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of address.
-     */
-    public Address withType(JsonNullable<? extends Type> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * The address string. Some APIs don't provide structured address data.
      */
-    public Address withString(String string) {
-        Utils.checkNotNull(string, "string");
+    public Address withString(@Nullable String string) {
         this.string = JsonNullable.of(string);
         return this;
     }
 
-    /**
-     * The address string. Some APIs don't provide structured address data.
-     */
-    public Address withString(JsonNullable<String> string) {
-        Utils.checkNotNull(string, "string");
-        this.string = string;
-        return this;
-    }
 
     /**
      * The name of the address.
      */
-    public Address withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public Address withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the address.
-     */
-    public Address withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * Line 1 of the address e.g. number, street, suite, apt #, etc.
      */
-    public Address withLine1(String line1) {
-        Utils.checkNotNull(line1, "line1");
+    public Address withLine1(@Nullable String line1) {
         this.line1 = JsonNullable.of(line1);
         return this;
     }
 
-    /**
-     * Line 1 of the address e.g. number, street, suite, apt #, etc.
-     */
-    public Address withLine1(JsonNullable<String> line1) {
-        Utils.checkNotNull(line1, "line1");
-        this.line1 = line1;
-        return this;
-    }
 
     /**
      * Line 2 of the address
      */
-    public Address withLine2(String line2) {
-        Utils.checkNotNull(line2, "line2");
+    public Address withLine2(@Nullable String line2) {
         this.line2 = JsonNullable.of(line2);
         return this;
     }
 
-    /**
-     * Line 2 of the address
-     */
-    public Address withLine2(JsonNullable<String> line2) {
-        Utils.checkNotNull(line2, "line2");
-        this.line2 = line2;
-        return this;
-    }
 
     /**
      * Line 3 of the address
      */
-    public Address withLine3(String line3) {
-        Utils.checkNotNull(line3, "line3");
+    public Address withLine3(@Nullable String line3) {
         this.line3 = JsonNullable.of(line3);
         return this;
     }
 
-    /**
-     * Line 3 of the address
-     */
-    public Address withLine3(JsonNullable<String> line3) {
-        Utils.checkNotNull(line3, "line3");
-        this.line3 = line3;
-        return this;
-    }
 
     /**
      * Line 4 of the address
      */
-    public Address withLine4(String line4) {
-        Utils.checkNotNull(line4, "line4");
+    public Address withLine4(@Nullable String line4) {
         this.line4 = JsonNullable.of(line4);
         return this;
     }
 
-    /**
-     * Line 4 of the address
-     */
-    public Address withLine4(JsonNullable<String> line4) {
-        Utils.checkNotNull(line4, "line4");
-        this.line4 = line4;
-        return this;
-    }
 
     /**
      * Street number
      */
-    public Address withStreetNumber(String streetNumber) {
-        Utils.checkNotNull(streetNumber, "streetNumber");
+    public Address withStreetNumber(@Nullable String streetNumber) {
         this.streetNumber = JsonNullable.of(streetNumber);
         return this;
     }
 
-    /**
-     * Street number
-     */
-    public Address withStreetNumber(JsonNullable<String> streetNumber) {
-        Utils.checkNotNull(streetNumber, "streetNumber");
-        this.streetNumber = streetNumber;
-        return this;
-    }
 
     /**
      * Name of city.
      */
-    public Address withCity(String city) {
-        Utils.checkNotNull(city, "city");
+    public Address withCity(@Nullable String city) {
         this.city = JsonNullable.of(city);
         return this;
     }
 
-    /**
-     * Name of city.
-     */
-    public Address withCity(JsonNullable<String> city) {
-        Utils.checkNotNull(city, "city");
-        this.city = city;
-        return this;
-    }
 
     /**
      * Name of state
      */
-    public Address withState(String state) {
-        Utils.checkNotNull(state, "state");
+    public Address withState(@Nullable String state) {
         this.state = JsonNullable.of(state);
         return this;
     }
 
-    /**
-     * Name of state
-     */
-    public Address withState(JsonNullable<String> state) {
-        Utils.checkNotNull(state, "state");
-        this.state = state;
-        return this;
-    }
 
     /**
      * Zip code or equivalent.
      */
-    public Address withPostalCode(String postalCode) {
-        Utils.checkNotNull(postalCode, "postalCode");
+    public Address withPostalCode(@Nullable String postalCode) {
         this.postalCode = JsonNullable.of(postalCode);
         return this;
     }
 
-    /**
-     * Zip code or equivalent.
-     */
-    public Address withPostalCode(JsonNullable<String> postalCode) {
-        Utils.checkNotNull(postalCode, "postalCode");
-        this.postalCode = postalCode;
-        return this;
-    }
 
     /**
      * country code according to ISO 3166-1 alpha-2.
      */
-    public Address withCountry(String country) {
-        Utils.checkNotNull(country, "country");
+    public Address withCountry(@Nullable String country) {
         this.country = JsonNullable.of(country);
         return this;
     }
 
-    /**
-     * country code according to ISO 3166-1 alpha-2.
-     */
-    public Address withCountry(JsonNullable<String> country) {
-        Utils.checkNotNull(country, "country");
-        this.country = country;
-        return this;
-    }
 
     /**
      * Latitude of the address
      */
-    public Address withLatitude(String latitude) {
-        Utils.checkNotNull(latitude, "latitude");
+    public Address withLatitude(@Nullable String latitude) {
         this.latitude = JsonNullable.of(latitude);
         return this;
     }
 
-    /**
-     * Latitude of the address
-     */
-    public Address withLatitude(JsonNullable<String> latitude) {
-        Utils.checkNotNull(latitude, "latitude");
-        this.latitude = latitude;
-        return this;
-    }
 
     /**
      * Longitude of the address
      */
-    public Address withLongitude(String longitude) {
-        Utils.checkNotNull(longitude, "longitude");
+    public Address withLongitude(@Nullable String longitude) {
         this.longitude = JsonNullable.of(longitude);
         return this;
     }
 
-    /**
-     * Longitude of the address
-     */
-    public Address withLongitude(JsonNullable<String> longitude) {
-        Utils.checkNotNull(longitude, "longitude");
-        this.longitude = longitude;
-        return this;
-    }
 
     /**
      * Address field that holds a sublocality, such as a county
      */
-    public Address withCounty(String county) {
-        Utils.checkNotNull(county, "county");
+    public Address withCounty(@Nullable String county) {
         this.county = JsonNullable.of(county);
         return this;
     }
 
-    /**
-     * Address field that holds a sublocality, such as a county
-     */
-    public Address withCounty(JsonNullable<String> county) {
-        Utils.checkNotNull(county, "county");
-        this.county = county;
-        return this;
-    }
 
     /**
      * Name of the contact person at the address
      */
-    public Address withContactName(String contactName) {
-        Utils.checkNotNull(contactName, "contactName");
+    public Address withContactName(@Nullable String contactName) {
         this.contactName = JsonNullable.of(contactName);
         return this;
     }
 
-    /**
-     * Name of the contact person at the address
-     */
-    public Address withContactName(JsonNullable<String> contactName) {
-        Utils.checkNotNull(contactName, "contactName");
-        this.contactName = contactName;
-        return this;
-    }
 
     /**
      * Salutation of the contact person at the address
      */
-    public Address withSalutation(String salutation) {
-        Utils.checkNotNull(salutation, "salutation");
+    public Address withSalutation(@Nullable String salutation) {
         this.salutation = JsonNullable.of(salutation);
         return this;
     }
 
-    /**
-     * Salutation of the contact person at the address
-     */
-    public Address withSalutation(JsonNullable<String> salutation) {
-        Utils.checkNotNull(salutation, "salutation");
-        this.salutation = salutation;
-        return this;
-    }
 
     /**
      * Phone number of the address
      */
-    public Address withPhoneNumber(String phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
+    public Address withPhoneNumber(@Nullable String phoneNumber) {
         this.phoneNumber = JsonNullable.of(phoneNumber);
         return this;
     }
 
-    /**
-     * Phone number of the address
-     */
-    public Address withPhoneNumber(JsonNullable<String> phoneNumber) {
-        Utils.checkNotNull(phoneNumber, "phoneNumber");
-        this.phoneNumber = phoneNumber;
-        return this;
-    }
 
     /**
      * Fax number of the address
      */
-    public Address withFax(String fax) {
-        Utils.checkNotNull(fax, "fax");
+    public Address withFax(@Nullable String fax) {
         this.fax = JsonNullable.of(fax);
         return this;
     }
 
-    /**
-     * Fax number of the address
-     */
-    public Address withFax(JsonNullable<String> fax) {
-        Utils.checkNotNull(fax, "fax");
-        this.fax = fax;
-        return this;
-    }
 
     /**
      * Email address of the address
      */
-    public Address withEmail(String email) {
-        Utils.checkNotNull(email, "email");
+    public Address withEmail(@Nullable String email) {
         this.email = JsonNullable.of(email);
         return this;
     }
 
-    /**
-     * Email address of the address
-     */
-    public Address withEmail(JsonNullable<String> email) {
-        Utils.checkNotNull(email, "email");
-        this.email = email;
-        return this;
-    }
 
     /**
      * Website of the address
      */
-    public Address withWebsite(String website) {
-        Utils.checkNotNull(website, "website");
+    public Address withWebsite(@Nullable String website) {
         this.website = JsonNullable.of(website);
         return this;
     }
 
-    /**
-     * Website of the address
-     */
-    public Address withWebsite(JsonNullable<String> website) {
-        Utils.checkNotNull(website, "website");
-        this.website = website;
-        return this;
-    }
 
     /**
      * Additional notes
      */
-    public Address withNotes(String notes) {
-        Utils.checkNotNull(notes, "notes");
+    public Address withNotes(@Nullable String notes) {
         this.notes = JsonNullable.of(notes);
         return this;
     }
 
-    /**
-     * Additional notes
-     */
-    public Address withNotes(JsonNullable<String> notes) {
-        Utils.checkNotNull(notes, "notes");
-        this.notes = notes;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public Address withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public Address withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public Address withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -982,516 +741,251 @@ public class Address {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<? extends Type> type = JsonNullable.undefined();
+        private JsonNullable<Type> type;
 
-        private JsonNullable<String> string = JsonNullable.undefined();
+        private JsonNullable<String> string;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> line1 = JsonNullable.undefined();
+        private JsonNullable<String> line1;
 
-        private JsonNullable<String> line2 = JsonNullable.undefined();
+        private JsonNullable<String> line2;
 
-        private JsonNullable<String> line3 = JsonNullable.undefined();
+        private JsonNullable<String> line3;
 
-        private JsonNullable<String> line4 = JsonNullable.undefined();
+        private JsonNullable<String> line4;
 
-        private JsonNullable<String> streetNumber = JsonNullable.undefined();
+        private JsonNullable<String> streetNumber;
 
-        private JsonNullable<String> city = JsonNullable.undefined();
+        private JsonNullable<String> city;
 
-        private JsonNullable<String> state = JsonNullable.undefined();
+        private JsonNullable<String> state;
 
-        private JsonNullable<String> postalCode = JsonNullable.undefined();
+        private JsonNullable<String> postalCode;
 
-        private JsonNullable<String> country = JsonNullable.undefined();
+        private JsonNullable<String> country;
 
-        private JsonNullable<String> latitude = JsonNullable.undefined();
+        private JsonNullable<String> latitude;
 
-        private JsonNullable<String> longitude = JsonNullable.undefined();
+        private JsonNullable<String> longitude;
 
-        private JsonNullable<String> county = JsonNullable.undefined();
+        private JsonNullable<String> county;
 
-        private JsonNullable<String> contactName = JsonNullable.undefined();
+        private JsonNullable<String> contactName;
 
-        private JsonNullable<String> salutation = JsonNullable.undefined();
+        private JsonNullable<String> salutation;
 
-        private JsonNullable<String> phoneNumber = JsonNullable.undefined();
+        private JsonNullable<String> phoneNumber;
 
-        private JsonNullable<String> fax = JsonNullable.undefined();
+        private JsonNullable<String> fax;
 
-        private JsonNullable<String> email = JsonNullable.undefined();
+        private JsonNullable<String> email;
 
-        private JsonNullable<String> website = JsonNullable.undefined();
+        private JsonNullable<String> website;
 
-        private JsonNullable<String> notes = JsonNullable.undefined();
+        private JsonNullable<String> notes;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier for the address.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * Unique identifier for the address.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The type of address.
          */
-        public Builder type(Type type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable Type type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * The type of address.
-         */
-        public Builder type(JsonNullable<? extends Type> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * The address string. Some APIs don't provide structured address data.
          */
-        public Builder string(String string) {
-            Utils.checkNotNull(string, "string");
+        public Builder string(@Nullable String string) {
             this.string = JsonNullable.of(string);
             return this;
         }
 
         /**
-         * The address string. Some APIs don't provide structured address data.
-         */
-        public Builder string(JsonNullable<String> string) {
-            Utils.checkNotNull(string, "string");
-            this.string = string;
-            return this;
-        }
-
-
-        /**
          * The name of the address.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the address.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * Line 1 of the address e.g. number, street, suite, apt #, etc.
          */
-        public Builder line1(String line1) {
-            Utils.checkNotNull(line1, "line1");
+        public Builder line1(@Nullable String line1) {
             this.line1 = JsonNullable.of(line1);
             return this;
         }
 
         /**
-         * Line 1 of the address e.g. number, street, suite, apt #, etc.
-         */
-        public Builder line1(JsonNullable<String> line1) {
-            Utils.checkNotNull(line1, "line1");
-            this.line1 = line1;
-            return this;
-        }
-
-
-        /**
          * Line 2 of the address
          */
-        public Builder line2(String line2) {
-            Utils.checkNotNull(line2, "line2");
+        public Builder line2(@Nullable String line2) {
             this.line2 = JsonNullable.of(line2);
             return this;
         }
 
         /**
-         * Line 2 of the address
-         */
-        public Builder line2(JsonNullable<String> line2) {
-            Utils.checkNotNull(line2, "line2");
-            this.line2 = line2;
-            return this;
-        }
-
-
-        /**
          * Line 3 of the address
          */
-        public Builder line3(String line3) {
-            Utils.checkNotNull(line3, "line3");
+        public Builder line3(@Nullable String line3) {
             this.line3 = JsonNullable.of(line3);
             return this;
         }
 
         /**
-         * Line 3 of the address
-         */
-        public Builder line3(JsonNullable<String> line3) {
-            Utils.checkNotNull(line3, "line3");
-            this.line3 = line3;
-            return this;
-        }
-
-
-        /**
          * Line 4 of the address
          */
-        public Builder line4(String line4) {
-            Utils.checkNotNull(line4, "line4");
+        public Builder line4(@Nullable String line4) {
             this.line4 = JsonNullable.of(line4);
             return this;
         }
 
         /**
-         * Line 4 of the address
-         */
-        public Builder line4(JsonNullable<String> line4) {
-            Utils.checkNotNull(line4, "line4");
-            this.line4 = line4;
-            return this;
-        }
-
-
-        /**
          * Street number
          */
-        public Builder streetNumber(String streetNumber) {
-            Utils.checkNotNull(streetNumber, "streetNumber");
+        public Builder streetNumber(@Nullable String streetNumber) {
             this.streetNumber = JsonNullable.of(streetNumber);
             return this;
         }
 
         /**
-         * Street number
-         */
-        public Builder streetNumber(JsonNullable<String> streetNumber) {
-            Utils.checkNotNull(streetNumber, "streetNumber");
-            this.streetNumber = streetNumber;
-            return this;
-        }
-
-
-        /**
          * Name of city.
          */
-        public Builder city(String city) {
-            Utils.checkNotNull(city, "city");
+        public Builder city(@Nullable String city) {
             this.city = JsonNullable.of(city);
             return this;
         }
 
         /**
-         * Name of city.
-         */
-        public Builder city(JsonNullable<String> city) {
-            Utils.checkNotNull(city, "city");
-            this.city = city;
-            return this;
-        }
-
-
-        /**
          * Name of state
          */
-        public Builder state(String state) {
-            Utils.checkNotNull(state, "state");
+        public Builder state(@Nullable String state) {
             this.state = JsonNullable.of(state);
             return this;
         }
 
         /**
-         * Name of state
-         */
-        public Builder state(JsonNullable<String> state) {
-            Utils.checkNotNull(state, "state");
-            this.state = state;
-            return this;
-        }
-
-
-        /**
          * Zip code or equivalent.
          */
-        public Builder postalCode(String postalCode) {
-            Utils.checkNotNull(postalCode, "postalCode");
+        public Builder postalCode(@Nullable String postalCode) {
             this.postalCode = JsonNullable.of(postalCode);
             return this;
         }
 
         /**
-         * Zip code or equivalent.
-         */
-        public Builder postalCode(JsonNullable<String> postalCode) {
-            Utils.checkNotNull(postalCode, "postalCode");
-            this.postalCode = postalCode;
-            return this;
-        }
-
-
-        /**
          * country code according to ISO 3166-1 alpha-2.
          */
-        public Builder country(String country) {
-            Utils.checkNotNull(country, "country");
+        public Builder country(@Nullable String country) {
             this.country = JsonNullable.of(country);
             return this;
         }
 
         /**
-         * country code according to ISO 3166-1 alpha-2.
-         */
-        public Builder country(JsonNullable<String> country) {
-            Utils.checkNotNull(country, "country");
-            this.country = country;
-            return this;
-        }
-
-
-        /**
          * Latitude of the address
          */
-        public Builder latitude(String latitude) {
-            Utils.checkNotNull(latitude, "latitude");
+        public Builder latitude(@Nullable String latitude) {
             this.latitude = JsonNullable.of(latitude);
             return this;
         }
 
         /**
-         * Latitude of the address
-         */
-        public Builder latitude(JsonNullable<String> latitude) {
-            Utils.checkNotNull(latitude, "latitude");
-            this.latitude = latitude;
-            return this;
-        }
-
-
-        /**
          * Longitude of the address
          */
-        public Builder longitude(String longitude) {
-            Utils.checkNotNull(longitude, "longitude");
+        public Builder longitude(@Nullable String longitude) {
             this.longitude = JsonNullable.of(longitude);
             return this;
         }
 
         /**
-         * Longitude of the address
-         */
-        public Builder longitude(JsonNullable<String> longitude) {
-            Utils.checkNotNull(longitude, "longitude");
-            this.longitude = longitude;
-            return this;
-        }
-
-
-        /**
          * Address field that holds a sublocality, such as a county
          */
-        public Builder county(String county) {
-            Utils.checkNotNull(county, "county");
+        public Builder county(@Nullable String county) {
             this.county = JsonNullable.of(county);
             return this;
         }
 
         /**
-         * Address field that holds a sublocality, such as a county
-         */
-        public Builder county(JsonNullable<String> county) {
-            Utils.checkNotNull(county, "county");
-            this.county = county;
-            return this;
-        }
-
-
-        /**
          * Name of the contact person at the address
          */
-        public Builder contactName(String contactName) {
-            Utils.checkNotNull(contactName, "contactName");
+        public Builder contactName(@Nullable String contactName) {
             this.contactName = JsonNullable.of(contactName);
             return this;
         }
 
         /**
-         * Name of the contact person at the address
-         */
-        public Builder contactName(JsonNullable<String> contactName) {
-            Utils.checkNotNull(contactName, "contactName");
-            this.contactName = contactName;
-            return this;
-        }
-
-
-        /**
          * Salutation of the contact person at the address
          */
-        public Builder salutation(String salutation) {
-            Utils.checkNotNull(salutation, "salutation");
+        public Builder salutation(@Nullable String salutation) {
             this.salutation = JsonNullable.of(salutation);
             return this;
         }
 
         /**
-         * Salutation of the contact person at the address
-         */
-        public Builder salutation(JsonNullable<String> salutation) {
-            Utils.checkNotNull(salutation, "salutation");
-            this.salutation = salutation;
-            return this;
-        }
-
-
-        /**
          * Phone number of the address
          */
-        public Builder phoneNumber(String phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
+        public Builder phoneNumber(@Nullable String phoneNumber) {
             this.phoneNumber = JsonNullable.of(phoneNumber);
             return this;
         }
 
         /**
-         * Phone number of the address
-         */
-        public Builder phoneNumber(JsonNullable<String> phoneNumber) {
-            Utils.checkNotNull(phoneNumber, "phoneNumber");
-            this.phoneNumber = phoneNumber;
-            return this;
-        }
-
-
-        /**
          * Fax number of the address
          */
-        public Builder fax(String fax) {
-            Utils.checkNotNull(fax, "fax");
+        public Builder fax(@Nullable String fax) {
             this.fax = JsonNullable.of(fax);
             return this;
         }
 
         /**
-         * Fax number of the address
-         */
-        public Builder fax(JsonNullable<String> fax) {
-            Utils.checkNotNull(fax, "fax");
-            this.fax = fax;
-            return this;
-        }
-
-
-        /**
          * Email address of the address
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = JsonNullable.of(email);
             return this;
         }
 
         /**
-         * Email address of the address
-         */
-        public Builder email(JsonNullable<String> email) {
-            Utils.checkNotNull(email, "email");
-            this.email = email;
-            return this;
-        }
-
-
-        /**
          * Website of the address
          */
-        public Builder website(String website) {
-            Utils.checkNotNull(website, "website");
+        public Builder website(@Nullable String website) {
             this.website = JsonNullable.of(website);
             return this;
         }
 
         /**
-         * Website of the address
-         */
-        public Builder website(JsonNullable<String> website) {
-            Utils.checkNotNull(website, "website");
-            this.website = website;
-            return this;
-        }
-
-
-        /**
          * Additional notes
          */
-        public Builder notes(String notes) {
-            Utils.checkNotNull(notes, "notes");
+        public Builder notes(@Nullable String notes) {
             this.notes = JsonNullable.of(notes);
             return this;
         }
 
         /**
-         * Additional notes
-         */
-        public Builder notes(JsonNullable<String> notes) {
-            Utils.checkNotNull(notes, "notes");
-            this.notes = notes;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
-        /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
         public Address build() {
-
             return new Address(
                 id, type, string,
                 name, line1, line2,

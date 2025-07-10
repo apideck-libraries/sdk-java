@@ -10,47 +10,46 @@ import com.apideck.unify.operations.FileStorageFoldersOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class FileStorageFoldersOneRequestBuilder {
-
-    private FileStorageFoldersOneRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private FileStorageFoldersOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public FileStorageFoldersOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public FileStorageFoldersOneRequestBuilder request(FileStorageFoldersOneRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public FileStorageFoldersOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public FileStorageFoldersOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public FileStorageFoldersOneRequestBuilder request(@Nonnull FileStorageFoldersOneRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private FileStorageFoldersOneRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public FileStorageFoldersOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
               = new FileStorageFoldersOneOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

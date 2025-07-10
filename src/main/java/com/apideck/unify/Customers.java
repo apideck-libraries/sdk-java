@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingCustomersDeleteOperation;
 import com.apideck.unify.operations.AccountingCustomersOneOperation;
 import com.apideck.unify.operations.AccountingCustomersUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersAllResponse list(AccountingCustomersAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingCustomersAllResponse list(@Nonnull AccountingCustomersAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public AccountingCustomersAllResponse list(
-            AccountingCustomersAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCustomersAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCustomersAllRequest, AccountingCustomersAllResponse> operation
               = new AccountingCustomersAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersAddResponse create(AccountingCustomersAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingCustomersAddResponse create(@Nonnull AccountingCustomersAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public AccountingCustomersAddResponse create(
-            AccountingCustomersAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCustomersAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCustomersAddRequest, AccountingCustomersAddResponse> operation
               = new AccountingCustomersAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersOneResponse get(AccountingCustomersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingCustomersOneResponse get(@Nonnull AccountingCustomersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public AccountingCustomersOneResponse get(
-            AccountingCustomersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCustomersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCustomersOneRequest, AccountingCustomersOneResponse> operation
               = new AccountingCustomersOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersUpdateResponse update(AccountingCustomersUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingCustomersUpdateResponse update(@Nonnull AccountingCustomersUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public AccountingCustomersUpdateResponse update(
-            AccountingCustomersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCustomersUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
               = new AccountingCustomersUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersDeleteResponse delete(AccountingCustomersDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingCustomersDeleteResponse delete(@Nonnull AccountingCustomersDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Customers {
      * @throws Exception if the API call fails
      */
     public AccountingCustomersDeleteResponse delete(
-            AccountingCustomersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingCustomersDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
               = new AccountingCustomersDeleteOperation(
                 sdkConfiguration,

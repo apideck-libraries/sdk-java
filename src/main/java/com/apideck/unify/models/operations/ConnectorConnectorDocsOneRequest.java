@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class ConnectorConnectorDocsOneRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the record you are acting upon.
@@ -33,45 +34,41 @@ public class ConnectorConnectorDocsOneRequest {
 
     @JsonCreator
     public ConnectorConnectorDocsOneRequest(
-            Optional<String> appId,
-            String id,
-            String docId) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(docId, "docId");
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String docId) {
         this.appId = appId;
-        this.id = id;
-        this.docId = docId;
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.docId = Optional.ofNullable(docId)
+            .orElseThrow(() -> new IllegalArgumentException("docId cannot be null"));
     }
     
     public ConnectorConnectorDocsOneRequest(
-            String id,
-            String docId) {
-        this(Optional.empty(), id, docId);
+            @Nonnull String id,
+            @Nonnull String docId) {
+        this(null, id, docId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the Doc
      */
-    @JsonIgnore
     public String docId() {
-        return docId;
+        return this.docId;
     }
 
     public static Builder builder() {
@@ -82,39 +79,29 @@ public class ConnectorConnectorDocsOneRequest {
     /**
      * The ID of your Unify application
      */
-    public ConnectorConnectorDocsOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public ConnectorConnectorDocsOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public ConnectorConnectorDocsOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the record you are acting upon.
      */
-    public ConnectorConnectorDocsOneRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public ConnectorConnectorDocsOneRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * ID of the Doc
      */
-    public ConnectorConnectorDocsOneRequest withDocId(String docId) {
-        Utils.checkNotNull(docId, "docId");
-        this.docId = docId;
+    public ConnectorConnectorDocsOneRequest withDocId(@Nonnull String docId) {
+        this.docId = Utils.checkNotNull(docId, "docId");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -148,7 +135,7 @@ public class ConnectorConnectorDocsOneRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String id;
 
@@ -158,47 +145,31 @@ public class ConnectorConnectorDocsOneRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * ID of the Doc
          */
-        public Builder docId(String docId) {
-            Utils.checkNotNull(docId, "docId");
-            this.docId = docId;
+        public Builder docId(@Nonnull String docId) {
+            this.docId = Utils.checkNotNull(docId, "docId");
             return this;
         }
 
         public ConnectorConnectorDocsOneRequest build() {
-
             return new ConnectorConnectorDocsOneRequest(
                 appId, id, docId);
         }

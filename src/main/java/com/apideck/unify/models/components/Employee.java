@@ -5,16 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -104,7 +103,7 @@ public class Employee {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("partner")
-    private Optional<? extends Person> partner;
+    private Person partner;
 
     /**
      * The division the person is currently in. Usually a collection of departments or teams or regions.
@@ -149,7 +148,7 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("team")
-    private JsonNullable<? extends Team> team;
+    private JsonNullable<Team> team;
 
     /**
      * The unique identifier of the company.
@@ -184,7 +183,7 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("leaving_reason")
-    private JsonNullable<? extends LeavingReason> leavingReason;
+    private JsonNullable<LeavingReason> leavingReason;
 
     /**
      * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
@@ -198,12 +197,12 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_status")
-    private JsonNullable<? extends EmploymentStatus> employmentStatus;
+    private JsonNullable<EmploymentStatus> employmentStatus;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_role")
-    private Optional<? extends EmploymentRole> employmentRole;
+    private EmploymentRole employmentRole;
 
     /**
      * The ethnicity of the employee
@@ -215,14 +214,14 @@ public class Employee {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("manager")
-    private Optional<? extends Manager> manager;
+    private Manager manager;
 
     /**
      * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("direct_reports")
-    private JsonNullable<? extends List<String>> directReports;
+    private JsonNullable<List<String>> directReports;
 
     /**
      * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
@@ -264,7 +263,7 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gender")
-    private JsonNullable<? extends Gender> gender;
+    private JsonNullable<Gender> gender;
 
     /**
      * The preferred pronouns of the person.
@@ -283,12 +282,12 @@ public class Employee {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("languages")
-    private Optional<? extends List<String>> languages;
+    private List<String> languages;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("nationalities")
-    private Optional<? extends List<String>> nationalities;
+    private List<String> nationalities;
 
     /**
      * The URL of the photo of a person.
@@ -326,12 +325,12 @@ public class Employee {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("jobs")
-    private JsonNullable<? extends List<EmployeeJob>> jobs;
+    private JsonNullable<List<EmployeeJob>> jobs;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("compensations")
-    private JsonNullable<? extends List<EmployeeCompensation>> compensations;
+    private JsonNullable<List<EmployeeCompensation>> compensations;
 
     /**
      * Indicates if the employee works from a remote location.
@@ -343,32 +342,32 @@ public class Employee {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
-    private Optional<? extends List<SocialLink>> socialLinks;
+    private List<SocialLink> socialLinks;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_accounts")
-    private Optional<? extends List<BankAccount>> bankAccounts;
+    private List<BankAccount> bankAccounts;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -392,24 +391,24 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("food_allergies")
-    private JsonNullable<? extends List<String>> foodAllergies;
+    private JsonNullable<List<String>> foodAllergies;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("probation_period")
-    private Optional<? extends ProbationPeriod> probationPeriod;
+    private ProbationPeriod probationPeriod;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -458,347 +457,319 @@ public class Employee {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Employee(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("downstream_id") JsonNullable<String> downstreamId,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("middle_name") JsonNullable<String> middleName,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("preferred_name") JsonNullable<String> preferredName,
-            @JsonProperty("initials") JsonNullable<String> initials,
-            @JsonProperty("salutation") JsonNullable<String> salutation,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("marital_status") JsonNullable<String> maritalStatus,
-            @JsonProperty("partner") Optional<? extends Person> partner,
-            @JsonProperty("division") JsonNullable<String> division,
-            @JsonProperty("division_id") JsonNullable<String> divisionId,
-            @JsonProperty("department") JsonNullable<String> department,
-            @JsonProperty("department_id") JsonNullable<String> departmentId,
-            @JsonProperty("department_name") JsonNullable<String> departmentName,
-            @JsonProperty("team") JsonNullable<? extends Team> team,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("employment_start_date") JsonNullable<String> employmentStartDate,
-            @JsonProperty("employment_end_date") JsonNullable<String> employmentEndDate,
-            @JsonProperty("leaving_reason") JsonNullable<? extends LeavingReason> leavingReason,
-            @JsonProperty("employee_number") JsonNullable<String> employeeNumber,
-            @JsonProperty("employment_status") JsonNullable<? extends EmploymentStatus> employmentStatus,
-            @JsonProperty("employment_role") Optional<? extends EmploymentRole> employmentRole,
-            @JsonProperty("ethnicity") JsonNullable<String> ethnicity,
-            @JsonProperty("manager") Optional<? extends Manager> manager,
-            @JsonProperty("direct_reports") JsonNullable<? extends List<String>> directReports,
-            @JsonProperty("social_security_number") JsonNullable<String> socialSecurityNumber,
-            @JsonProperty("birthday") JsonNullable<LocalDate> birthday,
-            @JsonProperty("deceased_on") JsonNullable<LocalDate> deceasedOn,
-            @JsonProperty("country_of_birth") JsonNullable<String> countryOfBirth,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("gender") JsonNullable<? extends Gender> gender,
-            @JsonProperty("pronouns") JsonNullable<String> pronouns,
-            @JsonProperty("preferred_language") JsonNullable<String> preferredLanguage,
-            @JsonProperty("languages") Optional<? extends List<String>> languages,
-            @JsonProperty("nationalities") Optional<? extends List<String>> nationalities,
-            @JsonProperty("photo_url") JsonNullable<String> photoUrl,
-            @JsonProperty("timezone") JsonNullable<String> timezone,
-            @JsonProperty("source") JsonNullable<String> source,
-            @JsonProperty("source_id") JsonNullable<String> sourceId,
-            @JsonProperty("record_url") JsonNullable<String> recordUrl,
-            @JsonProperty("jobs") JsonNullable<? extends List<EmployeeJob>> jobs,
-            @JsonProperty("compensations") JsonNullable<? extends List<EmployeeCompensation>> compensations,
-            @JsonProperty("works_remote") JsonNullable<Boolean> worksRemote,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("social_links") Optional<? extends List<SocialLink>> socialLinks,
-            @JsonProperty("bank_accounts") Optional<? extends List<BankAccount>> bankAccounts,
-            @JsonProperty("tax_code") JsonNullable<String> taxCode,
-            @JsonProperty("tax_id") JsonNullable<String> taxId,
-            @JsonProperty("dietary_preference") JsonNullable<String> dietaryPreference,
-            @JsonProperty("food_allergies") JsonNullable<? extends List<String>> foodAllergies,
-            @JsonProperty("probation_period") Optional<? extends ProbationPeriod> probationPeriod,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("deleted") JsonNullable<Boolean> deleted,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(middleName, "middleName");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(preferredName, "preferredName");
-        Utils.checkNotNull(initials, "initials");
-        Utils.checkNotNull(salutation, "salutation");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(maritalStatus, "maritalStatus");
-        Utils.checkNotNull(partner, "partner");
-        Utils.checkNotNull(division, "division");
-        Utils.checkNotNull(divisionId, "divisionId");
-        Utils.checkNotNull(department, "department");
-        Utils.checkNotNull(departmentId, "departmentId");
-        Utils.checkNotNull(departmentName, "departmentName");
-        Utils.checkNotNull(team, "team");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(employmentStartDate, "employmentStartDate");
-        Utils.checkNotNull(employmentEndDate, "employmentEndDate");
-        Utils.checkNotNull(leavingReason, "leavingReason");
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
-        Utils.checkNotNull(employmentRole, "employmentRole");
-        Utils.checkNotNull(ethnicity, "ethnicity");
-        Utils.checkNotNull(manager, "manager");
-        Utils.checkNotNull(directReports, "directReports");
-        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
-        Utils.checkNotNull(birthday, "birthday");
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        Utils.checkNotNull(countryOfBirth, "countryOfBirth");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(gender, "gender");
-        Utils.checkNotNull(pronouns, "pronouns");
-        Utils.checkNotNull(preferredLanguage, "preferredLanguage");
-        Utils.checkNotNull(languages, "languages");
-        Utils.checkNotNull(nationalities, "nationalities");
-        Utils.checkNotNull(photoUrl, "photoUrl");
-        Utils.checkNotNull(timezone, "timezone");
-        Utils.checkNotNull(source, "source");
-        Utils.checkNotNull(sourceId, "sourceId");
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        Utils.checkNotNull(jobs, "jobs");
-        Utils.checkNotNull(compensations, "compensations");
-        Utils.checkNotNull(worksRemote, "worksRemote");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        Utils.checkNotNull(taxCode, "taxCode");
-        Utils.checkNotNull(taxId, "taxId");
-        Utils.checkNotNull(dietaryPreference, "dietaryPreference");
-        Utils.checkNotNull(foodAllergies, "foodAllergies");
-        Utils.checkNotNull(probationPeriod, "probationPeriod");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.id = id;
-        this.downstreamId = downstreamId;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.displayName = displayName;
-        this.preferredName = preferredName;
-        this.initials = initials;
-        this.salutation = salutation;
-        this.title = title;
-        this.maritalStatus = maritalStatus;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("downstream_id") @Nullable JsonNullable<String> downstreamId,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("middle_name") @Nullable JsonNullable<String> middleName,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("preferred_name") @Nullable JsonNullable<String> preferredName,
+            @JsonProperty("initials") @Nullable JsonNullable<String> initials,
+            @JsonProperty("salutation") @Nullable JsonNullable<String> salutation,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("marital_status") @Nullable JsonNullable<String> maritalStatus,
+            @JsonProperty("partner") @Nullable Person partner,
+            @JsonProperty("division") @Nullable JsonNullable<String> division,
+            @JsonProperty("division_id") @Nullable JsonNullable<String> divisionId,
+            @JsonProperty("department") @Nullable JsonNullable<String> department,
+            @JsonProperty("department_id") @Nullable JsonNullable<String> departmentId,
+            @JsonProperty("department_name") @Nullable JsonNullable<String> departmentName,
+            @JsonProperty("team") @Nullable JsonNullable<Team> team,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("employment_start_date") @Nullable JsonNullable<String> employmentStartDate,
+            @JsonProperty("employment_end_date") @Nullable JsonNullable<String> employmentEndDate,
+            @JsonProperty("leaving_reason") @Nullable JsonNullable<LeavingReason> leavingReason,
+            @JsonProperty("employee_number") @Nullable JsonNullable<String> employeeNumber,
+            @JsonProperty("employment_status") @Nullable JsonNullable<EmploymentStatus> employmentStatus,
+            @JsonProperty("employment_role") @Nullable EmploymentRole employmentRole,
+            @JsonProperty("ethnicity") @Nullable JsonNullable<String> ethnicity,
+            @JsonProperty("manager") @Nullable Manager manager,
+            @JsonProperty("direct_reports") @Nullable JsonNullable<List<String>> directReports,
+            @JsonProperty("social_security_number") @Nullable JsonNullable<String> socialSecurityNumber,
+            @JsonProperty("birthday") @Nullable JsonNullable<LocalDate> birthday,
+            @JsonProperty("deceased_on") @Nullable JsonNullable<LocalDate> deceasedOn,
+            @JsonProperty("country_of_birth") @Nullable JsonNullable<String> countryOfBirth,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("gender") @Nullable JsonNullable<Gender> gender,
+            @JsonProperty("pronouns") @Nullable JsonNullable<String> pronouns,
+            @JsonProperty("preferred_language") @Nullable JsonNullable<String> preferredLanguage,
+            @JsonProperty("languages") @Nullable List<String> languages,
+            @JsonProperty("nationalities") @Nullable List<String> nationalities,
+            @JsonProperty("photo_url") @Nullable JsonNullable<String> photoUrl,
+            @JsonProperty("timezone") @Nullable JsonNullable<String> timezone,
+            @JsonProperty("source") @Nullable JsonNullable<String> source,
+            @JsonProperty("source_id") @Nullable JsonNullable<String> sourceId,
+            @JsonProperty("record_url") @Nullable JsonNullable<String> recordUrl,
+            @JsonProperty("jobs") @Nullable JsonNullable<List<EmployeeJob>> jobs,
+            @JsonProperty("compensations") @Nullable JsonNullable<List<EmployeeCompensation>> compensations,
+            @JsonProperty("works_remote") @Nullable JsonNullable<Boolean> worksRemote,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("social_links") @Nullable List<SocialLink> socialLinks,
+            @JsonProperty("bank_accounts") @Nullable List<BankAccount> bankAccounts,
+            @JsonProperty("tax_code") @Nullable JsonNullable<String> taxCode,
+            @JsonProperty("tax_id") @Nullable JsonNullable<String> taxId,
+            @JsonProperty("dietary_preference") @Nullable JsonNullable<String> dietaryPreference,
+            @JsonProperty("food_allergies") @Nullable JsonNullable<List<String>> foodAllergies,
+            @JsonProperty("probation_period") @Nullable ProbationPeriod probationPeriod,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("deleted") @Nullable JsonNullable<Boolean> deleted,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.downstreamId = Optional.ofNullable(downstreamId)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.middleName = Optional.ofNullable(middleName)
+            .orElse(JsonNullable.undefined());
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
+        this.preferredName = Optional.ofNullable(preferredName)
+            .orElse(JsonNullable.undefined());
+        this.initials = Optional.ofNullable(initials)
+            .orElse(JsonNullable.undefined());
+        this.salutation = Optional.ofNullable(salutation)
+            .orElse(JsonNullable.undefined());
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.maritalStatus = Optional.ofNullable(maritalStatus)
+            .orElse(JsonNullable.undefined());
         this.partner = partner;
-        this.division = division;
-        this.divisionId = divisionId;
-        this.department = department;
-        this.departmentId = departmentId;
-        this.departmentName = departmentName;
-        this.team = team;
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.employmentStartDate = employmentStartDate;
-        this.employmentEndDate = employmentEndDate;
-        this.leavingReason = leavingReason;
-        this.employeeNumber = employeeNumber;
-        this.employmentStatus = employmentStatus;
+        this.division = Optional.ofNullable(division)
+            .orElse(JsonNullable.undefined());
+        this.divisionId = Optional.ofNullable(divisionId)
+            .orElse(JsonNullable.undefined());
+        this.department = Optional.ofNullable(department)
+            .orElse(JsonNullable.undefined());
+        this.departmentId = Optional.ofNullable(departmentId)
+            .orElse(JsonNullable.undefined());
+        this.departmentName = Optional.ofNullable(departmentName)
+            .orElse(JsonNullable.undefined());
+        this.team = Optional.ofNullable(team)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.employmentStartDate = Optional.ofNullable(employmentStartDate)
+            .orElse(JsonNullable.undefined());
+        this.employmentEndDate = Optional.ofNullable(employmentEndDate)
+            .orElse(JsonNullable.undefined());
+        this.leavingReason = Optional.ofNullable(leavingReason)
+            .orElse(JsonNullable.undefined());
+        this.employeeNumber = Optional.ofNullable(employeeNumber)
+            .orElse(JsonNullable.undefined());
+        this.employmentStatus = Optional.ofNullable(employmentStatus)
+            .orElse(JsonNullable.undefined());
         this.employmentRole = employmentRole;
-        this.ethnicity = ethnicity;
+        this.ethnicity = Optional.ofNullable(ethnicity)
+            .orElse(JsonNullable.undefined());
         this.manager = manager;
-        this.directReports = directReports;
-        this.socialSecurityNumber = socialSecurityNumber;
-        this.birthday = birthday;
-        this.deceasedOn = deceasedOn;
-        this.countryOfBirth = countryOfBirth;
-        this.description = description;
-        this.gender = gender;
-        this.pronouns = pronouns;
-        this.preferredLanguage = preferredLanguage;
+        this.directReports = Optional.ofNullable(directReports)
+            .orElse(JsonNullable.undefined());
+        this.socialSecurityNumber = Optional.ofNullable(socialSecurityNumber)
+            .orElse(JsonNullable.undefined());
+        this.birthday = Optional.ofNullable(birthday)
+            .orElse(JsonNullable.undefined());
+        this.deceasedOn = Optional.ofNullable(deceasedOn)
+            .orElse(JsonNullable.undefined());
+        this.countryOfBirth = Optional.ofNullable(countryOfBirth)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.gender = Optional.ofNullable(gender)
+            .orElse(JsonNullable.undefined());
+        this.pronouns = Optional.ofNullable(pronouns)
+            .orElse(JsonNullable.undefined());
+        this.preferredLanguage = Optional.ofNullable(preferredLanguage)
+            .orElse(JsonNullable.undefined());
         this.languages = languages;
         this.nationalities = nationalities;
-        this.photoUrl = photoUrl;
-        this.timezone = timezone;
-        this.source = source;
-        this.sourceId = sourceId;
-        this.recordUrl = recordUrl;
-        this.jobs = jobs;
-        this.compensations = compensations;
-        this.worksRemote = worksRemote;
+        this.photoUrl = Optional.ofNullable(photoUrl)
+            .orElse(JsonNullable.undefined());
+        this.timezone = Optional.ofNullable(timezone)
+            .orElse(JsonNullable.undefined());
+        this.source = Optional.ofNullable(source)
+            .orElse(JsonNullable.undefined());
+        this.sourceId = Optional.ofNullable(sourceId)
+            .orElse(JsonNullable.undefined());
+        this.recordUrl = Optional.ofNullable(recordUrl)
+            .orElse(JsonNullable.undefined());
+        this.jobs = Optional.ofNullable(jobs)
+            .orElse(JsonNullable.undefined());
+        this.compensations = Optional.ofNullable(compensations)
+            .orElse(JsonNullable.undefined());
+        this.worksRemote = Optional.ofNullable(worksRemote)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
         this.customFields = customFields;
         this.socialLinks = socialLinks;
         this.bankAccounts = bankAccounts;
-        this.taxCode = taxCode;
-        this.taxId = taxId;
-        this.dietaryPreference = dietaryPreference;
-        this.foodAllergies = foodAllergies;
+        this.taxCode = Optional.ofNullable(taxCode)
+            .orElse(JsonNullable.undefined());
+        this.taxId = Optional.ofNullable(taxId)
+            .orElse(JsonNullable.undefined());
+        this.dietaryPreference = Optional.ofNullable(dietaryPreference)
+            .orElse(JsonNullable.undefined());
+        this.foodAllergies = Optional.ofNullable(foodAllergies)
+            .orElse(JsonNullable.undefined());
         this.probationPeriod = probationPeriod;
-        this.tags = tags;
-        this.customMappings = customMappings;
-        this.rowVersion = rowVersion;
-        this.deleted = deleted;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.deleted = Optional.ofNullable(deleted)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Employee() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The third-party API ID of original entity
      */
-    @JsonIgnore
     public JsonNullable<String> downstreamId() {
-        return downstreamId;
+        return this.downstreamId;
     }
 
     /**
      * The first name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * Middle name of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> middleName() {
-        return middleName;
+        return this.middleName;
     }
 
     /**
      * The name used to display the employee, often a combination of their first and last names.
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
     /**
      * The name the employee prefers to be addressed by, which may be different from their legal name.
      */
-    @JsonIgnore
     public JsonNullable<String> preferredName() {
-        return preferredName;
+        return this.preferredName;
     }
 
     /**
      * The initials of the person, usually derived from their first, middle, and last names.
      */
-    @JsonIgnore
     public JsonNullable<String> initials() {
-        return initials;
+        return this.initials;
     }
 
     /**
      * A formal salutation for the person. For example, 'Mr', 'Mrs'
      */
-    @JsonIgnore
     public JsonNullable<String> salutation() {
-        return salutation;
+        return this.salutation;
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The marital status of the employee.
      */
-    @JsonIgnore
     public JsonNullable<String> maritalStatus() {
-        return maritalStatus;
+        return this.maritalStatus;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Person> partner() {
-        return (Optional<Person>) partner;
+        return Optional.ofNullable(this.partner);
     }
 
     /**
      * The division the person is currently in. Usually a collection of departments or teams or regions.
      */
-    @JsonIgnore
     public JsonNullable<String> division() {
-        return division;
+        return this.division;
     }
 
     /**
      * Unique identifier of the division this employee belongs to.
      */
-    @JsonIgnore
     public JsonNullable<String> divisionId() {
-        return divisionId;
+        return this.divisionId;
     }
 
     /**
@@ -807,396 +778,321 @@ public class Employee {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> department() {
-        return department;
+        return this.department;
     }
 
     /**
      * Unique identifier of the department ID this employee belongs to.
      */
-    @JsonIgnore
     public JsonNullable<String> departmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
     /**
      * Name of the department this employee belongs to.
      */
-    @JsonIgnore
     public JsonNullable<String> departmentName() {
-        return departmentName;
+        return this.departmentName;
     }
 
     /**
      * The team the person is currently in.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Team> team() {
-        return (JsonNullable<Team>) team;
+        return this.team;
     }
 
     /**
      * The unique identifier of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The name of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * A Start Date is the date that the employee started working at the company
      */
-    @JsonIgnore
     public JsonNullable<String> employmentStartDate() {
-        return employmentStartDate;
+        return this.employmentStartDate;
     }
 
     /**
      * An End Date is the date that the employee ended working at the company
      */
-    @JsonIgnore
     public JsonNullable<String> employmentEndDate() {
-        return employmentEndDate;
+        return this.employmentEndDate;
     }
 
     /**
      * The reason because the employment ended.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LeavingReason> leavingReason() {
-        return (JsonNullable<LeavingReason>) leavingReason;
+        return this.leavingReason;
     }
 
     /**
      * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
      */
-    @JsonIgnore
     public JsonNullable<String> employeeNumber() {
-        return employeeNumber;
+        return this.employeeNumber;
     }
 
     /**
      * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EmploymentStatus> employmentStatus() {
-        return (JsonNullable<EmploymentStatus>) employmentStatus;
+        return this.employmentStatus;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<EmploymentRole> employmentRole() {
-        return (Optional<EmploymentRole>) employmentRole;
+        return Optional.ofNullable(this.employmentRole);
     }
 
     /**
      * The ethnicity of the employee
      */
-    @JsonIgnore
     public JsonNullable<String> ethnicity() {
-        return ethnicity;
+        return this.ethnicity;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Manager> manager() {
-        return (Optional<Manager>) manager;
+        return Optional.ofNullable(this.manager);
     }
 
     /**
      * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> directReports() {
-        return (JsonNullable<List<String>>) directReports;
+        return this.directReports;
     }
 
     /**
      * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
      */
-    @JsonIgnore
     public JsonNullable<String> socialSecurityNumber() {
-        return socialSecurityNumber;
+        return this.socialSecurityNumber;
     }
 
     /**
      * The date of birth of the person.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> birthday() {
-        return birthday;
+        return this.birthday;
     }
 
     /**
      * The date the person deceased.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> deceasedOn() {
-        return deceasedOn;
+        return this.deceasedOn;
     }
 
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    @JsonIgnore
     public JsonNullable<String> countryOfBirth() {
-        return countryOfBirth;
+        return this.countryOfBirth;
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Gender> gender() {
-        return (JsonNullable<Gender>) gender;
+        return this.gender;
     }
 
     /**
      * The preferred pronouns of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> pronouns() {
-        return pronouns;
+        return this.pronouns;
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> preferredLanguage() {
-        return preferredLanguage;
+        return this.preferredLanguage;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> languages() {
-        return (Optional<List<String>>) languages;
+        return Optional.ofNullable(this.languages);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> nationalities() {
-        return (Optional<List<String>>) nationalities;
+        return Optional.ofNullable(this.nationalities);
     }
 
     /**
      * The URL of the photo of a person.
      */
-    @JsonIgnore
     public JsonNullable<String> photoUrl() {
-        return photoUrl;
+        return this.photoUrl;
     }
 
     /**
      * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
      */
-    @JsonIgnore
     public JsonNullable<String> timezone() {
-        return timezone;
+        return this.timezone;
     }
 
     /**
      * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
      */
-    @JsonIgnore
     public JsonNullable<String> source() {
-        return source;
+        return this.source;
     }
 
     /**
      * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
      */
-    @JsonIgnore
     public JsonNullable<String> sourceId() {
-        return sourceId;
+        return this.sourceId;
     }
 
-    @JsonIgnore
     public JsonNullable<String> recordUrl() {
-        return recordUrl;
+        return this.recordUrl;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<EmployeeJob>> jobs() {
-        return (JsonNullable<List<EmployeeJob>>) jobs;
+        return this.jobs;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<EmployeeCompensation>> compensations() {
-        return (JsonNullable<List<EmployeeCompensation>>) compensations;
+        return this.compensations;
     }
 
     /**
      * Indicates if the employee works from a remote location.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> worksRemote() {
-        return worksRemote;
+        return this.worksRemote;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SocialLink>> socialLinks() {
-        return (Optional<List<SocialLink>>) socialLinks;
+        return Optional.ofNullable(this.socialLinks);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<BankAccount>> bankAccounts() {
-        return (Optional<List<BankAccount>>) bankAccounts;
+        return Optional.ofNullable(this.bankAccounts);
     }
 
-    @JsonIgnore
     public JsonNullable<String> taxCode() {
-        return taxCode;
+        return this.taxCode;
     }
 
-    @JsonIgnore
     public JsonNullable<String> taxId() {
-        return taxId;
+        return this.taxId;
     }
 
     /**
      * Indicate the employee's dietary preference.
      */
-    @JsonIgnore
     public JsonNullable<String> dietaryPreference() {
-        return dietaryPreference;
+        return this.dietaryPreference;
     }
 
     /**
      * Indicate the employee's food allergies.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> foodAllergies() {
-        return (JsonNullable<List<String>>) foodAllergies;
+        return this.foodAllergies;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ProbationPeriod> probationPeriod() {
-        return (Optional<ProbationPeriod>) probationPeriod;
+        return Optional.ofNullable(this.probationPeriod);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * Flag to indicate if the object is deleted.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> deleted() {
-        return deleted;
+        return this.deleted;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -1207,249 +1103,125 @@ public class Employee {
     /**
      * A unique identifier for an object.
      */
-    public Employee withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Employee withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public Employee withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The third-party API ID of original entity
      */
-    public Employee withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
+    public Employee withDownstreamId(@Nullable String downstreamId) {
         this.downstreamId = JsonNullable.of(downstreamId);
         return this;
     }
 
-    /**
-     * The third-party API ID of original entity
-     */
-    public Employee withDownstreamId(JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = downstreamId;
-        return this;
-    }
 
     /**
      * The first name of the person.
      */
-    public Employee withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public Employee withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the person.
-     */
-    public Employee withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the person.
      */
-    public Employee withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public Employee withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the person.
-     */
-    public Employee withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * Middle name of the person.
      */
-    public Employee withMiddleName(String middleName) {
-        Utils.checkNotNull(middleName, "middleName");
+    public Employee withMiddleName(@Nullable String middleName) {
         this.middleName = JsonNullable.of(middleName);
         return this;
     }
 
-    /**
-     * Middle name of the person.
-     */
-    public Employee withMiddleName(JsonNullable<String> middleName) {
-        Utils.checkNotNull(middleName, "middleName");
-        this.middleName = middleName;
-        return this;
-    }
 
     /**
      * The name used to display the employee, often a combination of their first and last names.
      */
-    public Employee withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public Employee withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The name used to display the employee, often a combination of their first and last names.
-     */
-    public Employee withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
     /**
      * The name the employee prefers to be addressed by, which may be different from their legal name.
      */
-    public Employee withPreferredName(String preferredName) {
-        Utils.checkNotNull(preferredName, "preferredName");
+    public Employee withPreferredName(@Nullable String preferredName) {
         this.preferredName = JsonNullable.of(preferredName);
         return this;
     }
 
-    /**
-     * The name the employee prefers to be addressed by, which may be different from their legal name.
-     */
-    public Employee withPreferredName(JsonNullable<String> preferredName) {
-        Utils.checkNotNull(preferredName, "preferredName");
-        this.preferredName = preferredName;
-        return this;
-    }
 
     /**
      * The initials of the person, usually derived from their first, middle, and last names.
      */
-    public Employee withInitials(String initials) {
-        Utils.checkNotNull(initials, "initials");
+    public Employee withInitials(@Nullable String initials) {
         this.initials = JsonNullable.of(initials);
         return this;
     }
 
-    /**
-     * The initials of the person, usually derived from their first, middle, and last names.
-     */
-    public Employee withInitials(JsonNullable<String> initials) {
-        Utils.checkNotNull(initials, "initials");
-        this.initials = initials;
-        return this;
-    }
 
     /**
      * A formal salutation for the person. For example, 'Mr', 'Mrs'
      */
-    public Employee withSalutation(String salutation) {
-        Utils.checkNotNull(salutation, "salutation");
+    public Employee withSalutation(@Nullable String salutation) {
         this.salutation = JsonNullable.of(salutation);
         return this;
     }
 
-    /**
-     * A formal salutation for the person. For example, 'Mr', 'Mrs'
-     */
-    public Employee withSalutation(JsonNullable<String> salutation) {
-        Utils.checkNotNull(salutation, "salutation");
-        this.salutation = salutation;
-        return this;
-    }
 
     /**
      * The job title of the person.
      */
-    public Employee withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public Employee withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public Employee withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * The marital status of the employee.
      */
-    public Employee withMaritalStatus(String maritalStatus) {
-        Utils.checkNotNull(maritalStatus, "maritalStatus");
+    public Employee withMaritalStatus(@Nullable String maritalStatus) {
         this.maritalStatus = JsonNullable.of(maritalStatus);
         return this;
     }
 
-    /**
-     * The marital status of the employee.
-     */
-    public Employee withMaritalStatus(JsonNullable<String> maritalStatus) {
-        Utils.checkNotNull(maritalStatus, "maritalStatus");
-        this.maritalStatus = maritalStatus;
-        return this;
-    }
 
-    public Employee withPartner(Person partner) {
-        Utils.checkNotNull(partner, "partner");
-        this.partner = Optional.ofNullable(partner);
-        return this;
-    }
-
-
-    public Employee withPartner(Optional<? extends Person> partner) {
-        Utils.checkNotNull(partner, "partner");
+    public Employee withPartner(@Nullable Person partner) {
         this.partner = partner;
         return this;
     }
 
+
     /**
      * The division the person is currently in. Usually a collection of departments or teams or regions.
      */
-    public Employee withDivision(String division) {
-        Utils.checkNotNull(division, "division");
+    public Employee withDivision(@Nullable String division) {
         this.division = JsonNullable.of(division);
         return this;
     }
 
-    /**
-     * The division the person is currently in. Usually a collection of departments or teams or regions.
-     */
-    public Employee withDivision(JsonNullable<String> division) {
-        Utils.checkNotNull(division, "division");
-        this.division = division;
-        return this;
-    }
 
     /**
      * Unique identifier of the division this employee belongs to.
      */
-    public Employee withDivisionId(String divisionId) {
-        Utils.checkNotNull(divisionId, "divisionId");
+    public Employee withDivisionId(@Nullable String divisionId) {
         this.divisionId = JsonNullable.of(divisionId);
         return this;
     }
 
-    /**
-     * Unique identifier of the division this employee belongs to.
-     */
-    public Employee withDivisionId(JsonNullable<String> divisionId) {
-        Utils.checkNotNull(divisionId, "divisionId");
-        this.divisionId = divisionId;
-        return this;
-    }
 
     /**
      * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
@@ -1457,869 +1229,428 @@ public class Employee {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Employee withDepartment(String department) {
-        Utils.checkNotNull(department, "department");
+    public Employee withDepartment(@Nullable String department) {
         this.department = JsonNullable.of(department);
         return this;
     }
 
-    /**
-     * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public Employee withDepartment(JsonNullable<String> department) {
-        Utils.checkNotNull(department, "department");
-        this.department = department;
-        return this;
-    }
 
     /**
      * Unique identifier of the department ID this employee belongs to.
      */
-    public Employee withDepartmentId(String departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
+    public Employee withDepartmentId(@Nullable String departmentId) {
         this.departmentId = JsonNullable.of(departmentId);
         return this;
     }
 
-    /**
-     * Unique identifier of the department ID this employee belongs to.
-     */
-    public Employee withDepartmentId(JsonNullable<String> departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
-        this.departmentId = departmentId;
-        return this;
-    }
 
     /**
      * Name of the department this employee belongs to.
      */
-    public Employee withDepartmentName(String departmentName) {
-        Utils.checkNotNull(departmentName, "departmentName");
+    public Employee withDepartmentName(@Nullable String departmentName) {
         this.departmentName = JsonNullable.of(departmentName);
         return this;
     }
 
-    /**
-     * Name of the department this employee belongs to.
-     */
-    public Employee withDepartmentName(JsonNullable<String> departmentName) {
-        Utils.checkNotNull(departmentName, "departmentName");
-        this.departmentName = departmentName;
-        return this;
-    }
 
     /**
      * The team the person is currently in.
      */
-    public Employee withTeam(Team team) {
-        Utils.checkNotNull(team, "team");
+    public Employee withTeam(@Nullable Team team) {
         this.team = JsonNullable.of(team);
         return this;
     }
 
-    /**
-     * The team the person is currently in.
-     */
-    public Employee withTeam(JsonNullable<? extends Team> team) {
-        Utils.checkNotNull(team, "team");
-        this.team = team;
-        return this;
-    }
 
     /**
      * The unique identifier of the company.
      */
-    public Employee withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public Employee withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The unique identifier of the company.
-     */
-    public Employee withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The name of the company.
      */
-    public Employee withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public Employee withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company.
-     */
-    public Employee withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * A Start Date is the date that the employee started working at the company
      */
-    public Employee withEmploymentStartDate(String employmentStartDate) {
-        Utils.checkNotNull(employmentStartDate, "employmentStartDate");
+    public Employee withEmploymentStartDate(@Nullable String employmentStartDate) {
         this.employmentStartDate = JsonNullable.of(employmentStartDate);
         return this;
     }
 
-    /**
-     * A Start Date is the date that the employee started working at the company
-     */
-    public Employee withEmploymentStartDate(JsonNullable<String> employmentStartDate) {
-        Utils.checkNotNull(employmentStartDate, "employmentStartDate");
-        this.employmentStartDate = employmentStartDate;
-        return this;
-    }
 
     /**
      * An End Date is the date that the employee ended working at the company
      */
-    public Employee withEmploymentEndDate(String employmentEndDate) {
-        Utils.checkNotNull(employmentEndDate, "employmentEndDate");
+    public Employee withEmploymentEndDate(@Nullable String employmentEndDate) {
         this.employmentEndDate = JsonNullable.of(employmentEndDate);
         return this;
     }
 
-    /**
-     * An End Date is the date that the employee ended working at the company
-     */
-    public Employee withEmploymentEndDate(JsonNullable<String> employmentEndDate) {
-        Utils.checkNotNull(employmentEndDate, "employmentEndDate");
-        this.employmentEndDate = employmentEndDate;
-        return this;
-    }
 
     /**
      * The reason because the employment ended.
      */
-    public Employee withLeavingReason(LeavingReason leavingReason) {
-        Utils.checkNotNull(leavingReason, "leavingReason");
+    public Employee withLeavingReason(@Nullable LeavingReason leavingReason) {
         this.leavingReason = JsonNullable.of(leavingReason);
         return this;
     }
 
-    /**
-     * The reason because the employment ended.
-     */
-    public Employee withLeavingReason(JsonNullable<? extends LeavingReason> leavingReason) {
-        Utils.checkNotNull(leavingReason, "leavingReason");
-        this.leavingReason = leavingReason;
-        return this;
-    }
 
     /**
      * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
      */
-    public Employee withEmployeeNumber(String employeeNumber) {
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
+    public Employee withEmployeeNumber(@Nullable String employeeNumber) {
         this.employeeNumber = JsonNullable.of(employeeNumber);
         return this;
     }
 
-    /**
-     * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-     */
-    public Employee withEmployeeNumber(JsonNullable<String> employeeNumber) {
-        Utils.checkNotNull(employeeNumber, "employeeNumber");
-        this.employeeNumber = employeeNumber;
-        return this;
-    }
 
     /**
      * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
      */
-    public Employee withEmploymentStatus(EmploymentStatus employmentStatus) {
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
+    public Employee withEmploymentStatus(@Nullable EmploymentStatus employmentStatus) {
         this.employmentStatus = JsonNullable.of(employmentStatus);
         return this;
     }
 
-    /**
-     * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-     */
-    public Employee withEmploymentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
-        Utils.checkNotNull(employmentStatus, "employmentStatus");
-        this.employmentStatus = employmentStatus;
-        return this;
-    }
 
-    public Employee withEmploymentRole(EmploymentRole employmentRole) {
-        Utils.checkNotNull(employmentRole, "employmentRole");
-        this.employmentRole = Optional.ofNullable(employmentRole);
-        return this;
-    }
-
-
-    public Employee withEmploymentRole(Optional<? extends EmploymentRole> employmentRole) {
-        Utils.checkNotNull(employmentRole, "employmentRole");
+    public Employee withEmploymentRole(@Nullable EmploymentRole employmentRole) {
         this.employmentRole = employmentRole;
         return this;
     }
 
+
     /**
      * The ethnicity of the employee
      */
-    public Employee withEthnicity(String ethnicity) {
-        Utils.checkNotNull(ethnicity, "ethnicity");
+    public Employee withEthnicity(@Nullable String ethnicity) {
         this.ethnicity = JsonNullable.of(ethnicity);
         return this;
     }
 
-    /**
-     * The ethnicity of the employee
-     */
-    public Employee withEthnicity(JsonNullable<String> ethnicity) {
-        Utils.checkNotNull(ethnicity, "ethnicity");
-        this.ethnicity = ethnicity;
-        return this;
-    }
 
-    public Employee withManager(Manager manager) {
-        Utils.checkNotNull(manager, "manager");
-        this.manager = Optional.ofNullable(manager);
-        return this;
-    }
-
-
-    public Employee withManager(Optional<? extends Manager> manager) {
-        Utils.checkNotNull(manager, "manager");
+    public Employee withManager(@Nullable Manager manager) {
         this.manager = manager;
         return this;
     }
 
+
     /**
      * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
      */
-    public Employee withDirectReports(List<String> directReports) {
-        Utils.checkNotNull(directReports, "directReports");
+    public Employee withDirectReports(@Nullable List<String> directReports) {
         this.directReports = JsonNullable.of(directReports);
         return this;
     }
 
-    /**
-     * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
-     */
-    public Employee withDirectReports(JsonNullable<? extends List<String>> directReports) {
-        Utils.checkNotNull(directReports, "directReports");
-        this.directReports = directReports;
-        return this;
-    }
 
     /**
      * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
      */
-    public Employee withSocialSecurityNumber(String socialSecurityNumber) {
-        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+    public Employee withSocialSecurityNumber(@Nullable String socialSecurityNumber) {
         this.socialSecurityNumber = JsonNullable.of(socialSecurityNumber);
         return this;
     }
 
-    /**
-     * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-     */
-    public Employee withSocialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
-        Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
-        this.socialSecurityNumber = socialSecurityNumber;
-        return this;
-    }
 
     /**
      * The date of birth of the person.
      */
-    public Employee withBirthday(LocalDate birthday) {
-        Utils.checkNotNull(birthday, "birthday");
+    public Employee withBirthday(@Nullable LocalDate birthday) {
         this.birthday = JsonNullable.of(birthday);
         return this;
     }
 
-    /**
-     * The date of birth of the person.
-     */
-    public Employee withBirthday(JsonNullable<LocalDate> birthday) {
-        Utils.checkNotNull(birthday, "birthday");
-        this.birthday = birthday;
-        return this;
-    }
 
     /**
      * The date the person deceased.
      */
-    public Employee withDeceasedOn(LocalDate deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
+    public Employee withDeceasedOn(@Nullable LocalDate deceasedOn) {
         this.deceasedOn = JsonNullable.of(deceasedOn);
         return this;
     }
 
-    /**
-     * The date the person deceased.
-     */
-    public Employee withDeceasedOn(JsonNullable<LocalDate> deceasedOn) {
-        Utils.checkNotNull(deceasedOn, "deceasedOn");
-        this.deceasedOn = deceasedOn;
-        return this;
-    }
 
     /**
      * Country code according to ISO 3166-1 alpha-2.
      */
-    public Employee withCountryOfBirth(String countryOfBirth) {
-        Utils.checkNotNull(countryOfBirth, "countryOfBirth");
+    public Employee withCountryOfBirth(@Nullable String countryOfBirth) {
         this.countryOfBirth = JsonNullable.of(countryOfBirth);
         return this;
     }
 
-    /**
-     * Country code according to ISO 3166-1 alpha-2.
-     */
-    public Employee withCountryOfBirth(JsonNullable<String> countryOfBirth) {
-        Utils.checkNotNull(countryOfBirth, "countryOfBirth");
-        this.countryOfBirth = countryOfBirth;
-        return this;
-    }
 
     /**
      * A description of the object.
      */
-    public Employee withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Employee withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public Employee withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The gender represents the gender identity of a person.
      */
-    public Employee withGender(Gender gender) {
-        Utils.checkNotNull(gender, "gender");
+    public Employee withGender(@Nullable Gender gender) {
         this.gender = JsonNullable.of(gender);
         return this;
     }
 
-    /**
-     * The gender represents the gender identity of a person.
-     */
-    public Employee withGender(JsonNullable<? extends Gender> gender) {
-        Utils.checkNotNull(gender, "gender");
-        this.gender = gender;
-        return this;
-    }
 
     /**
      * The preferred pronouns of the person.
      */
-    public Employee withPronouns(String pronouns) {
-        Utils.checkNotNull(pronouns, "pronouns");
+    public Employee withPronouns(@Nullable String pronouns) {
         this.pronouns = JsonNullable.of(pronouns);
         return this;
     }
 
-    /**
-     * The preferred pronouns of the person.
-     */
-    public Employee withPronouns(JsonNullable<String> pronouns) {
-        Utils.checkNotNull(pronouns, "pronouns");
-        this.pronouns = pronouns;
-        return this;
-    }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public Employee withPreferredLanguage(String preferredLanguage) {
-        Utils.checkNotNull(preferredLanguage, "preferredLanguage");
+    public Employee withPreferredLanguage(@Nullable String preferredLanguage) {
         this.preferredLanguage = JsonNullable.of(preferredLanguage);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public Employee withPreferredLanguage(JsonNullable<String> preferredLanguage) {
-        Utils.checkNotNull(preferredLanguage, "preferredLanguage");
-        this.preferredLanguage = preferredLanguage;
-        return this;
-    }
 
-    public Employee withLanguages(List<String> languages) {
-        Utils.checkNotNull(languages, "languages");
-        this.languages = Optional.ofNullable(languages);
-        return this;
-    }
-
-
-    public Employee withLanguages(Optional<? extends List<String>> languages) {
-        Utils.checkNotNull(languages, "languages");
+    public Employee withLanguages(@Nullable List<String> languages) {
         this.languages = languages;
         return this;
     }
 
-    public Employee withNationalities(List<String> nationalities) {
-        Utils.checkNotNull(nationalities, "nationalities");
-        this.nationalities = Optional.ofNullable(nationalities);
-        return this;
-    }
 
-
-    public Employee withNationalities(Optional<? extends List<String>> nationalities) {
-        Utils.checkNotNull(nationalities, "nationalities");
+    public Employee withNationalities(@Nullable List<String> nationalities) {
         this.nationalities = nationalities;
         return this;
     }
 
+
     /**
      * The URL of the photo of a person.
      */
-    public Employee withPhotoUrl(String photoUrl) {
-        Utils.checkNotNull(photoUrl, "photoUrl");
+    public Employee withPhotoUrl(@Nullable String photoUrl) {
         this.photoUrl = JsonNullable.of(photoUrl);
         return this;
     }
 
-    /**
-     * The URL of the photo of a person.
-     */
-    public Employee withPhotoUrl(JsonNullable<String> photoUrl) {
-        Utils.checkNotNull(photoUrl, "photoUrl");
-        this.photoUrl = photoUrl;
-        return this;
-    }
 
     /**
      * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
      */
-    public Employee withTimezone(String timezone) {
-        Utils.checkNotNull(timezone, "timezone");
+    public Employee withTimezone(@Nullable String timezone) {
         this.timezone = JsonNullable.of(timezone);
         return this;
     }
 
-    /**
-     * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
-     */
-    public Employee withTimezone(JsonNullable<String> timezone) {
-        Utils.checkNotNull(timezone, "timezone");
-        this.timezone = timezone;
-        return this;
-    }
 
     /**
      * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
      */
-    public Employee withSource(String source) {
-        Utils.checkNotNull(source, "source");
+    public Employee withSource(@Nullable String source) {
         this.source = JsonNullable.of(source);
         return this;
     }
 
-    /**
-     * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
-     */
-    public Employee withSource(JsonNullable<String> source) {
-        Utils.checkNotNull(source, "source");
-        this.source = source;
-        return this;
-    }
 
     /**
      * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
      */
-    public Employee withSourceId(String sourceId) {
-        Utils.checkNotNull(sourceId, "sourceId");
+    public Employee withSourceId(@Nullable String sourceId) {
         this.sourceId = JsonNullable.of(sourceId);
         return this;
     }
 
-    /**
-     * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
-     */
-    public Employee withSourceId(JsonNullable<String> sourceId) {
-        Utils.checkNotNull(sourceId, "sourceId");
-        this.sourceId = sourceId;
-        return this;
-    }
 
-    public Employee withRecordUrl(String recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
+    public Employee withRecordUrl(@Nullable String recordUrl) {
         this.recordUrl = JsonNullable.of(recordUrl);
         return this;
     }
 
-    public Employee withRecordUrl(JsonNullable<String> recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        this.recordUrl = recordUrl;
-        return this;
-    }
 
-    public Employee withJobs(List<EmployeeJob> jobs) {
-        Utils.checkNotNull(jobs, "jobs");
+    public Employee withJobs(@Nullable List<EmployeeJob> jobs) {
         this.jobs = JsonNullable.of(jobs);
         return this;
     }
 
-    public Employee withJobs(JsonNullable<? extends List<EmployeeJob>> jobs) {
-        Utils.checkNotNull(jobs, "jobs");
-        this.jobs = jobs;
-        return this;
-    }
 
-    public Employee withCompensations(List<EmployeeCompensation> compensations) {
-        Utils.checkNotNull(compensations, "compensations");
+    public Employee withCompensations(@Nullable List<EmployeeCompensation> compensations) {
         this.compensations = JsonNullable.of(compensations);
         return this;
     }
 
-    public Employee withCompensations(JsonNullable<? extends List<EmployeeCompensation>> compensations) {
-        Utils.checkNotNull(compensations, "compensations");
-        this.compensations = compensations;
-        return this;
-    }
 
     /**
      * Indicates if the employee works from a remote location.
      */
-    public Employee withWorksRemote(boolean worksRemote) {
-        Utils.checkNotNull(worksRemote, "worksRemote");
+    public Employee withWorksRemote(@Nullable Boolean worksRemote) {
         this.worksRemote = JsonNullable.of(worksRemote);
         return this;
     }
 
-    /**
-     * Indicates if the employee works from a remote location.
-     */
-    public Employee withWorksRemote(JsonNullable<Boolean> worksRemote) {
-        Utils.checkNotNull(worksRemote, "worksRemote");
-        this.worksRemote = worksRemote;
-        return this;
-    }
 
-    public Employee withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public Employee withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public Employee withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public Employee withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public Employee withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public Employee withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public Employee withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public Employee withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public Employee withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public Employee withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
 
-
-    public Employee withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public Employee withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
-    public Employee withSocialLinks(List<SocialLink> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        this.socialLinks = Optional.ofNullable(socialLinks);
-        return this;
-    }
 
-
-    public Employee withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
+    public Employee withSocialLinks(@Nullable List<SocialLink> socialLinks) {
         this.socialLinks = socialLinks;
         return this;
     }
 
-    public Employee withBankAccounts(List<BankAccount> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
-        this.bankAccounts = Optional.ofNullable(bankAccounts);
-        return this;
-    }
 
-
-    public Employee withBankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
-        Utils.checkNotNull(bankAccounts, "bankAccounts");
+    public Employee withBankAccounts(@Nullable List<BankAccount> bankAccounts) {
         this.bankAccounts = bankAccounts;
         return this;
     }
 
-    public Employee withTaxCode(String taxCode) {
-        Utils.checkNotNull(taxCode, "taxCode");
+
+    public Employee withTaxCode(@Nullable String taxCode) {
         this.taxCode = JsonNullable.of(taxCode);
         return this;
     }
 
-    public Employee withTaxCode(JsonNullable<String> taxCode) {
-        Utils.checkNotNull(taxCode, "taxCode");
-        this.taxCode = taxCode;
-        return this;
-    }
 
-    public Employee withTaxId(String taxId) {
-        Utils.checkNotNull(taxId, "taxId");
+    public Employee withTaxId(@Nullable String taxId) {
         this.taxId = JsonNullable.of(taxId);
         return this;
     }
 
-    public Employee withTaxId(JsonNullable<String> taxId) {
-        Utils.checkNotNull(taxId, "taxId");
-        this.taxId = taxId;
-        return this;
-    }
 
     /**
      * Indicate the employee's dietary preference.
      */
-    public Employee withDietaryPreference(String dietaryPreference) {
-        Utils.checkNotNull(dietaryPreference, "dietaryPreference");
+    public Employee withDietaryPreference(@Nullable String dietaryPreference) {
         this.dietaryPreference = JsonNullable.of(dietaryPreference);
         return this;
     }
 
-    /**
-     * Indicate the employee's dietary preference.
-     */
-    public Employee withDietaryPreference(JsonNullable<String> dietaryPreference) {
-        Utils.checkNotNull(dietaryPreference, "dietaryPreference");
-        this.dietaryPreference = dietaryPreference;
-        return this;
-    }
 
     /**
      * Indicate the employee's food allergies.
      */
-    public Employee withFoodAllergies(List<String> foodAllergies) {
-        Utils.checkNotNull(foodAllergies, "foodAllergies");
+    public Employee withFoodAllergies(@Nullable List<String> foodAllergies) {
         this.foodAllergies = JsonNullable.of(foodAllergies);
         return this;
     }
 
-    /**
-     * Indicate the employee's food allergies.
-     */
-    public Employee withFoodAllergies(JsonNullable<? extends List<String>> foodAllergies) {
-        Utils.checkNotNull(foodAllergies, "foodAllergies");
-        this.foodAllergies = foodAllergies;
-        return this;
-    }
 
-    public Employee withProbationPeriod(ProbationPeriod probationPeriod) {
-        Utils.checkNotNull(probationPeriod, "probationPeriod");
-        this.probationPeriod = Optional.ofNullable(probationPeriod);
-        return this;
-    }
-
-
-    public Employee withProbationPeriod(Optional<? extends ProbationPeriod> probationPeriod) {
-        Utils.checkNotNull(probationPeriod, "probationPeriod");
+    public Employee withProbationPeriod(@Nullable ProbationPeriod probationPeriod) {
         this.probationPeriod = probationPeriod;
         return this;
     }
 
-    public Employee withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+
+    public Employee withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public Employee withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Employee withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Employee withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Employee withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public Employee withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public Employee withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public Employee withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * Flag to indicate if the object is deleted.
      */
-    public Employee withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public Employee withDeleted(@Nullable Boolean deleted) {
         this.deleted = JsonNullable.of(deleted);
         return this;
     }
 
-    /**
-     * Flag to indicate if the object is deleted.
-     */
-    public Employee withDeleted(JsonNullable<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = deleted;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public Employee withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Employee withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Employee withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Employee withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Employee withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Employee withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Employee withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Employee withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Employee withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Employee withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Employee withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Employee withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Employee withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Employee withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Employee withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -2503,1318 +1834,631 @@ public class Employee {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+        private JsonNullable<String> downstreamId;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> middleName = JsonNullable.undefined();
+        private JsonNullable<String> middleName;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private JsonNullable<String> preferredName = JsonNullable.undefined();
+        private JsonNullable<String> preferredName;
 
-        private JsonNullable<String> initials = JsonNullable.undefined();
+        private JsonNullable<String> initials;
 
-        private JsonNullable<String> salutation = JsonNullable.undefined();
+        private JsonNullable<String> salutation;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> maritalStatus = JsonNullable.undefined();
+        private JsonNullable<String> maritalStatus;
 
-        private Optional<? extends Person> partner = Optional.empty();
+        private Person partner;
 
-        private JsonNullable<String> division = JsonNullable.undefined();
+        private JsonNullable<String> division;
 
-        private JsonNullable<String> divisionId = JsonNullable.undefined();
+        private JsonNullable<String> divisionId;
 
         @Deprecated
-        private JsonNullable<String> department = JsonNullable.undefined();
+        private JsonNullable<String> department;
 
-        private JsonNullable<String> departmentId = JsonNullable.undefined();
+        private JsonNullable<String> departmentId;
 
-        private JsonNullable<String> departmentName = JsonNullable.undefined();
+        private JsonNullable<String> departmentName;
 
-        private JsonNullable<? extends Team> team = JsonNullable.undefined();
+        private JsonNullable<Team> team;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> employmentStartDate = JsonNullable.undefined();
+        private JsonNullable<String> employmentStartDate;
 
-        private JsonNullable<String> employmentEndDate = JsonNullable.undefined();
+        private JsonNullable<String> employmentEndDate;
 
-        private JsonNullable<? extends LeavingReason> leavingReason = JsonNullable.undefined();
+        private JsonNullable<LeavingReason> leavingReason;
 
-        private JsonNullable<String> employeeNumber = JsonNullable.undefined();
+        private JsonNullable<String> employeeNumber;
 
-        private JsonNullable<? extends EmploymentStatus> employmentStatus = JsonNullable.undefined();
+        private JsonNullable<EmploymentStatus> employmentStatus;
 
-        private Optional<? extends EmploymentRole> employmentRole = Optional.empty();
+        private EmploymentRole employmentRole;
 
-        private JsonNullable<String> ethnicity = JsonNullable.undefined();
+        private JsonNullable<String> ethnicity;
 
-        private Optional<? extends Manager> manager = Optional.empty();
+        private Manager manager;
 
-        private JsonNullable<? extends List<String>> directReports = JsonNullable.undefined();
+        private JsonNullable<List<String>> directReports;
 
-        private JsonNullable<String> socialSecurityNumber = JsonNullable.undefined();
+        private JsonNullable<String> socialSecurityNumber;
 
-        private JsonNullable<LocalDate> birthday = JsonNullable.undefined();
+        private JsonNullable<LocalDate> birthday;
 
-        private JsonNullable<LocalDate> deceasedOn = JsonNullable.undefined();
+        private JsonNullable<LocalDate> deceasedOn;
 
-        private JsonNullable<String> countryOfBirth = JsonNullable.undefined();
+        private JsonNullable<String> countryOfBirth;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<? extends Gender> gender = JsonNullable.undefined();
+        private JsonNullable<Gender> gender;
 
-        private JsonNullable<String> pronouns = JsonNullable.undefined();
+        private JsonNullable<String> pronouns;
 
-        private JsonNullable<String> preferredLanguage = JsonNullable.undefined();
+        private JsonNullable<String> preferredLanguage;
 
-        private Optional<? extends List<String>> languages = Optional.empty();
+        private List<String> languages;
 
-        private Optional<? extends List<String>> nationalities = Optional.empty();
+        private List<String> nationalities;
 
-        private JsonNullable<String> photoUrl = JsonNullable.undefined();
+        private JsonNullable<String> photoUrl;
 
-        private JsonNullable<String> timezone = JsonNullable.undefined();
+        private JsonNullable<String> timezone;
 
-        private JsonNullable<String> source = JsonNullable.undefined();
+        private JsonNullable<String> source;
 
-        private JsonNullable<String> sourceId = JsonNullable.undefined();
+        private JsonNullable<String> sourceId;
 
-        private JsonNullable<String> recordUrl = JsonNullable.undefined();
+        private JsonNullable<String> recordUrl;
 
-        private JsonNullable<? extends List<EmployeeJob>> jobs = JsonNullable.undefined();
+        private JsonNullable<List<EmployeeJob>> jobs;
 
-        private JsonNullable<? extends List<EmployeeCompensation>> compensations = JsonNullable.undefined();
+        private JsonNullable<List<EmployeeCompensation>> compensations;
 
-        private JsonNullable<Boolean> worksRemote = JsonNullable.undefined();
+        private JsonNullable<Boolean> worksRemote;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
+        private List<SocialLink> socialLinks;
 
-        private Optional<? extends List<BankAccount>> bankAccounts = Optional.empty();
+        private List<BankAccount> bankAccounts;
 
-        private JsonNullable<String> taxCode = JsonNullable.undefined();
+        private JsonNullable<String> taxCode;
 
-        private JsonNullable<String> taxId = JsonNullable.undefined();
+        private JsonNullable<String> taxId;
 
-        private JsonNullable<String> dietaryPreference = JsonNullable.undefined();
+        private JsonNullable<String> dietaryPreference;
 
-        private JsonNullable<? extends List<String>> foodAllergies = JsonNullable.undefined();
+        private JsonNullable<List<String>> foodAllergies;
 
-        private Optional<? extends ProbationPeriod> probationPeriod = Optional.empty();
+        private ProbationPeriod probationPeriod;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private JsonNullable<List<String>> tags;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+        private JsonNullable<Boolean> deleted;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The third-party API ID of original entity
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = JsonNullable.of(downstreamId);
             return this;
         }
 
         /**
-         * The third-party API ID of original entity
-         */
-        public Builder downstreamId(JsonNullable<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = downstreamId;
-            return this;
-        }
-
-
-        /**
          * The first name of the person.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the person.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the person.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the person.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * Middle name of the person.
          */
-        public Builder middleName(String middleName) {
-            Utils.checkNotNull(middleName, "middleName");
+        public Builder middleName(@Nullable String middleName) {
             this.middleName = JsonNullable.of(middleName);
             return this;
         }
 
         /**
-         * Middle name of the person.
-         */
-        public Builder middleName(JsonNullable<String> middleName) {
-            Utils.checkNotNull(middleName, "middleName");
-            this.middleName = middleName;
-            return this;
-        }
-
-
-        /**
          * The name used to display the employee, often a combination of their first and last names.
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
         /**
-         * The name used to display the employee, often a combination of their first and last names.
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        /**
          * The name the employee prefers to be addressed by, which may be different from their legal name.
          */
-        public Builder preferredName(String preferredName) {
-            Utils.checkNotNull(preferredName, "preferredName");
+        public Builder preferredName(@Nullable String preferredName) {
             this.preferredName = JsonNullable.of(preferredName);
             return this;
         }
 
         /**
-         * The name the employee prefers to be addressed by, which may be different from their legal name.
-         */
-        public Builder preferredName(JsonNullable<String> preferredName) {
-            Utils.checkNotNull(preferredName, "preferredName");
-            this.preferredName = preferredName;
-            return this;
-        }
-
-
-        /**
          * The initials of the person, usually derived from their first, middle, and last names.
          */
-        public Builder initials(String initials) {
-            Utils.checkNotNull(initials, "initials");
+        public Builder initials(@Nullable String initials) {
             this.initials = JsonNullable.of(initials);
             return this;
         }
 
         /**
-         * The initials of the person, usually derived from their first, middle, and last names.
-         */
-        public Builder initials(JsonNullable<String> initials) {
-            Utils.checkNotNull(initials, "initials");
-            this.initials = initials;
-            return this;
-        }
-
-
-        /**
          * A formal salutation for the person. For example, 'Mr', 'Mrs'
          */
-        public Builder salutation(String salutation) {
-            Utils.checkNotNull(salutation, "salutation");
+        public Builder salutation(@Nullable String salutation) {
             this.salutation = JsonNullable.of(salutation);
             return this;
         }
 
         /**
-         * A formal salutation for the person. For example, 'Mr', 'Mrs'
-         */
-        public Builder salutation(JsonNullable<String> salutation) {
-            Utils.checkNotNull(salutation, "salutation");
-            this.salutation = salutation;
-            return this;
-        }
-
-
-        /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * The marital status of the employee.
          */
-        public Builder maritalStatus(String maritalStatus) {
-            Utils.checkNotNull(maritalStatus, "maritalStatus");
+        public Builder maritalStatus(@Nullable String maritalStatus) {
             this.maritalStatus = JsonNullable.of(maritalStatus);
             return this;
         }
 
-        /**
-         * The marital status of the employee.
-         */
-        public Builder maritalStatus(JsonNullable<String> maritalStatus) {
-            Utils.checkNotNull(maritalStatus, "maritalStatus");
-            this.maritalStatus = maritalStatus;
-            return this;
-        }
-
-
-        public Builder partner(Person partner) {
-            Utils.checkNotNull(partner, "partner");
-            this.partner = Optional.ofNullable(partner);
-            return this;
-        }
-
-        public Builder partner(Optional<? extends Person> partner) {
-            Utils.checkNotNull(partner, "partner");
+        public Builder partner(@Nullable Person partner) {
             this.partner = partner;
             return this;
         }
 
-
         /**
          * The division the person is currently in. Usually a collection of departments or teams or regions.
          */
-        public Builder division(String division) {
-            Utils.checkNotNull(division, "division");
+        public Builder division(@Nullable String division) {
             this.division = JsonNullable.of(division);
             return this;
         }
 
         /**
-         * The division the person is currently in. Usually a collection of departments or teams or regions.
-         */
-        public Builder division(JsonNullable<String> division) {
-            Utils.checkNotNull(division, "division");
-            this.division = division;
-            return this;
-        }
-
-
-        /**
          * Unique identifier of the division this employee belongs to.
          */
-        public Builder divisionId(String divisionId) {
-            Utils.checkNotNull(divisionId, "divisionId");
+        public Builder divisionId(@Nullable String divisionId) {
             this.divisionId = JsonNullable.of(divisionId);
             return this;
         }
 
         /**
-         * Unique identifier of the division this employee belongs to.
-         */
-        public Builder divisionId(JsonNullable<String> divisionId) {
-            Utils.checkNotNull(divisionId, "divisionId");
-            this.divisionId = divisionId;
-            return this;
-        }
-
-
-        /**
          * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder department(String department) {
-            Utils.checkNotNull(department, "department");
+        public Builder department(@Nullable String department) {
             this.department = JsonNullable.of(department);
             return this;
         }
 
         /**
-         * The department the person is currently in. [Deprecated](https://developers.apideck.com/changelog) in favor of the dedicated department_id and department_name field.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder department(JsonNullable<String> department) {
-            Utils.checkNotNull(department, "department");
-            this.department = department;
-            return this;
-        }
-
-
-        /**
          * Unique identifier of the department ID this employee belongs to.
          */
-        public Builder departmentId(String departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
+        public Builder departmentId(@Nullable String departmentId) {
             this.departmentId = JsonNullable.of(departmentId);
             return this;
         }
 
         /**
-         * Unique identifier of the department ID this employee belongs to.
-         */
-        public Builder departmentId(JsonNullable<String> departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
-            this.departmentId = departmentId;
-            return this;
-        }
-
-
-        /**
          * Name of the department this employee belongs to.
          */
-        public Builder departmentName(String departmentName) {
-            Utils.checkNotNull(departmentName, "departmentName");
+        public Builder departmentName(@Nullable String departmentName) {
             this.departmentName = JsonNullable.of(departmentName);
             return this;
         }
 
         /**
-         * Name of the department this employee belongs to.
-         */
-        public Builder departmentName(JsonNullable<String> departmentName) {
-            Utils.checkNotNull(departmentName, "departmentName");
-            this.departmentName = departmentName;
-            return this;
-        }
-
-
-        /**
          * The team the person is currently in.
          */
-        public Builder team(Team team) {
-            Utils.checkNotNull(team, "team");
+        public Builder team(@Nullable Team team) {
             this.team = JsonNullable.of(team);
             return this;
         }
 
         /**
-         * The team the person is currently in.
-         */
-        public Builder team(JsonNullable<? extends Team> team) {
-            Utils.checkNotNull(team, "team");
-            this.team = team;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the company.
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The unique identifier of the company.
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The name of the company.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * A Start Date is the date that the employee started working at the company
          */
-        public Builder employmentStartDate(String employmentStartDate) {
-            Utils.checkNotNull(employmentStartDate, "employmentStartDate");
+        public Builder employmentStartDate(@Nullable String employmentStartDate) {
             this.employmentStartDate = JsonNullable.of(employmentStartDate);
             return this;
         }
 
         /**
-         * A Start Date is the date that the employee started working at the company
-         */
-        public Builder employmentStartDate(JsonNullable<String> employmentStartDate) {
-            Utils.checkNotNull(employmentStartDate, "employmentStartDate");
-            this.employmentStartDate = employmentStartDate;
-            return this;
-        }
-
-
-        /**
          * An End Date is the date that the employee ended working at the company
          */
-        public Builder employmentEndDate(String employmentEndDate) {
-            Utils.checkNotNull(employmentEndDate, "employmentEndDate");
+        public Builder employmentEndDate(@Nullable String employmentEndDate) {
             this.employmentEndDate = JsonNullable.of(employmentEndDate);
             return this;
         }
 
         /**
-         * An End Date is the date that the employee ended working at the company
-         */
-        public Builder employmentEndDate(JsonNullable<String> employmentEndDate) {
-            Utils.checkNotNull(employmentEndDate, "employmentEndDate");
-            this.employmentEndDate = employmentEndDate;
-            return this;
-        }
-
-
-        /**
          * The reason because the employment ended.
          */
-        public Builder leavingReason(LeavingReason leavingReason) {
-            Utils.checkNotNull(leavingReason, "leavingReason");
+        public Builder leavingReason(@Nullable LeavingReason leavingReason) {
             this.leavingReason = JsonNullable.of(leavingReason);
             return this;
         }
 
         /**
-         * The reason because the employment ended.
-         */
-        public Builder leavingReason(JsonNullable<? extends LeavingReason> leavingReason) {
-            Utils.checkNotNull(leavingReason, "leavingReason");
-            this.leavingReason = leavingReason;
-            return this;
-        }
-
-
-        /**
          * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
          */
-        public Builder employeeNumber(String employeeNumber) {
-            Utils.checkNotNull(employeeNumber, "employeeNumber");
+        public Builder employeeNumber(@Nullable String employeeNumber) {
             this.employeeNumber = JsonNullable.of(employeeNumber);
             return this;
         }
 
         /**
-         * An Employee Number, Employee ID or Employee Code, is a unique number that has been assigned to each individual staff member within a company.
-         */
-        public Builder employeeNumber(JsonNullable<String> employeeNumber) {
-            Utils.checkNotNull(employeeNumber, "employeeNumber");
-            this.employeeNumber = employeeNumber;
-            return this;
-        }
-
-
-        /**
          * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
          */
-        public Builder employmentStatus(EmploymentStatus employmentStatus) {
-            Utils.checkNotNull(employmentStatus, "employmentStatus");
+        public Builder employmentStatus(@Nullable EmploymentStatus employmentStatus) {
             this.employmentStatus = JsonNullable.of(employmentStatus);
             return this;
         }
 
-        /**
-         * The employment status of the employee, indicating whether they are currently employed, inactive, terminated, or in another status.
-         */
-        public Builder employmentStatus(JsonNullable<? extends EmploymentStatus> employmentStatus) {
-            Utils.checkNotNull(employmentStatus, "employmentStatus");
-            this.employmentStatus = employmentStatus;
-            return this;
-        }
-
-
-        public Builder employmentRole(EmploymentRole employmentRole) {
-            Utils.checkNotNull(employmentRole, "employmentRole");
-            this.employmentRole = Optional.ofNullable(employmentRole);
-            return this;
-        }
-
-        public Builder employmentRole(Optional<? extends EmploymentRole> employmentRole) {
-            Utils.checkNotNull(employmentRole, "employmentRole");
+        public Builder employmentRole(@Nullable EmploymentRole employmentRole) {
             this.employmentRole = employmentRole;
             return this;
         }
 
-
         /**
          * The ethnicity of the employee
          */
-        public Builder ethnicity(String ethnicity) {
-            Utils.checkNotNull(ethnicity, "ethnicity");
+        public Builder ethnicity(@Nullable String ethnicity) {
             this.ethnicity = JsonNullable.of(ethnicity);
             return this;
         }
 
-        /**
-         * The ethnicity of the employee
-         */
-        public Builder ethnicity(JsonNullable<String> ethnicity) {
-            Utils.checkNotNull(ethnicity, "ethnicity");
-            this.ethnicity = ethnicity;
-            return this;
-        }
-
-
-        public Builder manager(Manager manager) {
-            Utils.checkNotNull(manager, "manager");
-            this.manager = Optional.ofNullable(manager);
-            return this;
-        }
-
-        public Builder manager(Optional<? extends Manager> manager) {
-            Utils.checkNotNull(manager, "manager");
+        public Builder manager(@Nullable Manager manager) {
             this.manager = manager;
             return this;
         }
 
-
         /**
          * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
          */
-        public Builder directReports(List<String> directReports) {
-            Utils.checkNotNull(directReports, "directReports");
+        public Builder directReports(@Nullable List<String> directReports) {
             this.directReports = JsonNullable.of(directReports);
             return this;
         }
 
         /**
-         * Direct reports is an array of ids that reflect the individuals in an organizational hierarchy who are directly supervised by this specific employee.
-         */
-        public Builder directReports(JsonNullable<? extends List<String>> directReports) {
-            Utils.checkNotNull(directReports, "directReports");
-            this.directReports = directReports;
-            return this;
-        }
-
-
-        /**
          * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
          */
-        public Builder socialSecurityNumber(String socialSecurityNumber) {
-            Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
+        public Builder socialSecurityNumber(@Nullable String socialSecurityNumber) {
             this.socialSecurityNumber = JsonNullable.of(socialSecurityNumber);
             return this;
         }
 
         /**
-         * A unique identifier assigned by the government. This field is considered sensitive information and may be subject to special security and privacy restrictions.
-         */
-        public Builder socialSecurityNumber(JsonNullable<String> socialSecurityNumber) {
-            Utils.checkNotNull(socialSecurityNumber, "socialSecurityNumber");
-            this.socialSecurityNumber = socialSecurityNumber;
-            return this;
-        }
-
-
-        /**
          * The date of birth of the person.
          */
-        public Builder birthday(LocalDate birthday) {
-            Utils.checkNotNull(birthday, "birthday");
+        public Builder birthday(@Nullable LocalDate birthday) {
             this.birthday = JsonNullable.of(birthday);
             return this;
         }
 
         /**
-         * The date of birth of the person.
-         */
-        public Builder birthday(JsonNullable<LocalDate> birthday) {
-            Utils.checkNotNull(birthday, "birthday");
-            this.birthday = birthday;
-            return this;
-        }
-
-
-        /**
          * The date the person deceased.
          */
-        public Builder deceasedOn(LocalDate deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
+        public Builder deceasedOn(@Nullable LocalDate deceasedOn) {
             this.deceasedOn = JsonNullable.of(deceasedOn);
             return this;
         }
 
         /**
-         * The date the person deceased.
-         */
-        public Builder deceasedOn(JsonNullable<LocalDate> deceasedOn) {
-            Utils.checkNotNull(deceasedOn, "deceasedOn");
-            this.deceasedOn = deceasedOn;
-            return this;
-        }
-
-
-        /**
          * Country code according to ISO 3166-1 alpha-2.
          */
-        public Builder countryOfBirth(String countryOfBirth) {
-            Utils.checkNotNull(countryOfBirth, "countryOfBirth");
+        public Builder countryOfBirth(@Nullable String countryOfBirth) {
             this.countryOfBirth = JsonNullable.of(countryOfBirth);
             return this;
         }
 
         /**
-         * Country code according to ISO 3166-1 alpha-2.
-         */
-        public Builder countryOfBirth(JsonNullable<String> countryOfBirth) {
-            Utils.checkNotNull(countryOfBirth, "countryOfBirth");
-            this.countryOfBirth = countryOfBirth;
-            return this;
-        }
-
-
-        /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The gender represents the gender identity of a person.
          */
-        public Builder gender(Gender gender) {
-            Utils.checkNotNull(gender, "gender");
+        public Builder gender(@Nullable Gender gender) {
             this.gender = JsonNullable.of(gender);
             return this;
         }
 
         /**
-         * The gender represents the gender identity of a person.
-         */
-        public Builder gender(JsonNullable<? extends Gender> gender) {
-            Utils.checkNotNull(gender, "gender");
-            this.gender = gender;
-            return this;
-        }
-
-
-        /**
          * The preferred pronouns of the person.
          */
-        public Builder pronouns(String pronouns) {
-            Utils.checkNotNull(pronouns, "pronouns");
+        public Builder pronouns(@Nullable String pronouns) {
             this.pronouns = JsonNullable.of(pronouns);
             return this;
         }
 
         /**
-         * The preferred pronouns of the person.
-         */
-        public Builder pronouns(JsonNullable<String> pronouns) {
-            Utils.checkNotNull(pronouns, "pronouns");
-            this.pronouns = pronouns;
-            return this;
-        }
-
-
-        /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder preferredLanguage(String preferredLanguage) {
-            Utils.checkNotNull(preferredLanguage, "preferredLanguage");
+        public Builder preferredLanguage(@Nullable String preferredLanguage) {
             this.preferredLanguage = JsonNullable.of(preferredLanguage);
             return this;
         }
 
-        /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder preferredLanguage(JsonNullable<String> preferredLanguage) {
-            Utils.checkNotNull(preferredLanguage, "preferredLanguage");
-            this.preferredLanguage = preferredLanguage;
-            return this;
-        }
-
-
-        public Builder languages(List<String> languages) {
-            Utils.checkNotNull(languages, "languages");
-            this.languages = Optional.ofNullable(languages);
-            return this;
-        }
-
-        public Builder languages(Optional<? extends List<String>> languages) {
-            Utils.checkNotNull(languages, "languages");
+        public Builder languages(@Nullable List<String> languages) {
             this.languages = languages;
             return this;
         }
 
-
-        public Builder nationalities(List<String> nationalities) {
-            Utils.checkNotNull(nationalities, "nationalities");
-            this.nationalities = Optional.ofNullable(nationalities);
-            return this;
-        }
-
-        public Builder nationalities(Optional<? extends List<String>> nationalities) {
-            Utils.checkNotNull(nationalities, "nationalities");
+        public Builder nationalities(@Nullable List<String> nationalities) {
             this.nationalities = nationalities;
             return this;
         }
 
-
         /**
          * The URL of the photo of a person.
          */
-        public Builder photoUrl(String photoUrl) {
-            Utils.checkNotNull(photoUrl, "photoUrl");
+        public Builder photoUrl(@Nullable String photoUrl) {
             this.photoUrl = JsonNullable.of(photoUrl);
             return this;
         }
 
         /**
-         * The URL of the photo of a person.
-         */
-        public Builder photoUrl(JsonNullable<String> photoUrl) {
-            Utils.checkNotNull(photoUrl, "photoUrl");
-            this.photoUrl = photoUrl;
-            return this;
-        }
-
-
-        /**
          * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
          */
-        public Builder timezone(String timezone) {
-            Utils.checkNotNull(timezone, "timezone");
+        public Builder timezone(@Nullable String timezone) {
             this.timezone = JsonNullable.of(timezone);
             return this;
         }
 
         /**
-         * The time zone related to the resource. The value is a string containing a standard time zone identifier, e.g. Europe/London.
-         */
-        public Builder timezone(JsonNullable<String> timezone) {
-            Utils.checkNotNull(timezone, "timezone");
-            this.timezone = timezone;
-            return this;
-        }
-
-
-        /**
          * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
          */
-        public Builder source(String source) {
-            Utils.checkNotNull(source, "source");
+        public Builder source(@Nullable String source) {
             this.source = JsonNullable.of(source);
             return this;
         }
 
         /**
-         * When the employee is imported as a new hire, this field indicates what system (e.g. the name of the ATS) this employee was imported from.
-         */
-        public Builder source(JsonNullable<String> source) {
-            Utils.checkNotNull(source, "source");
-            this.source = source;
-            return this;
-        }
-
-
-        /**
          * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
          */
-        public Builder sourceId(String sourceId) {
-            Utils.checkNotNull(sourceId, "sourceId");
+        public Builder sourceId(@Nullable String sourceId) {
             this.sourceId = JsonNullable.of(sourceId);
             return this;
         }
 
-        /**
-         * Unique identifier of the employee in the system this employee was imported from (e.g. the ID in the ATS).
-         */
-        public Builder sourceId(JsonNullable<String> sourceId) {
-            Utils.checkNotNull(sourceId, "sourceId");
-            this.sourceId = sourceId;
-            return this;
-        }
-
-
-        public Builder recordUrl(String recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
+        public Builder recordUrl(@Nullable String recordUrl) {
             this.recordUrl = JsonNullable.of(recordUrl);
             return this;
         }
 
-        public Builder recordUrl(JsonNullable<String> recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
-            this.recordUrl = recordUrl;
-            return this;
-        }
-
-
-        public Builder jobs(List<EmployeeJob> jobs) {
-            Utils.checkNotNull(jobs, "jobs");
+        public Builder jobs(@Nullable List<EmployeeJob> jobs) {
             this.jobs = JsonNullable.of(jobs);
             return this;
         }
 
-        public Builder jobs(JsonNullable<? extends List<EmployeeJob>> jobs) {
-            Utils.checkNotNull(jobs, "jobs");
-            this.jobs = jobs;
-            return this;
-        }
-
-
-        public Builder compensations(List<EmployeeCompensation> compensations) {
-            Utils.checkNotNull(compensations, "compensations");
+        public Builder compensations(@Nullable List<EmployeeCompensation> compensations) {
             this.compensations = JsonNullable.of(compensations);
             return this;
         }
 
-        public Builder compensations(JsonNullable<? extends List<EmployeeCompensation>> compensations) {
-            Utils.checkNotNull(compensations, "compensations");
-            this.compensations = compensations;
-            return this;
-        }
-
-
         /**
          * Indicates if the employee works from a remote location.
          */
-        public Builder worksRemote(boolean worksRemote) {
-            Utils.checkNotNull(worksRemote, "worksRemote");
+        public Builder worksRemote(@Nullable Boolean worksRemote) {
             this.worksRemote = JsonNullable.of(worksRemote);
             return this;
         }
 
-        /**
-         * Indicates if the employee works from a remote location.
-         */
-        public Builder worksRemote(JsonNullable<Boolean> worksRemote) {
-            Utils.checkNotNull(worksRemote, "worksRemote");
-            this.worksRemote = worksRemote;
-            return this;
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
-        public Builder socialLinks(List<SocialLink> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
-            this.socialLinks = Optional.ofNullable(socialLinks);
-            return this;
-        }
-
-        public Builder socialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
+        public Builder socialLinks(@Nullable List<SocialLink> socialLinks) {
             this.socialLinks = socialLinks;
             return this;
         }
 
-
-        public Builder bankAccounts(List<BankAccount> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
-            this.bankAccounts = Optional.ofNullable(bankAccounts);
-            return this;
-        }
-
-        public Builder bankAccounts(Optional<? extends List<BankAccount>> bankAccounts) {
-            Utils.checkNotNull(bankAccounts, "bankAccounts");
+        public Builder bankAccounts(@Nullable List<BankAccount> bankAccounts) {
             this.bankAccounts = bankAccounts;
             return this;
         }
 
-
-        public Builder taxCode(String taxCode) {
-            Utils.checkNotNull(taxCode, "taxCode");
+        public Builder taxCode(@Nullable String taxCode) {
             this.taxCode = JsonNullable.of(taxCode);
             return this;
         }
 
-        public Builder taxCode(JsonNullable<String> taxCode) {
-            Utils.checkNotNull(taxCode, "taxCode");
-            this.taxCode = taxCode;
-            return this;
-        }
-
-
-        public Builder taxId(String taxId) {
-            Utils.checkNotNull(taxId, "taxId");
+        public Builder taxId(@Nullable String taxId) {
             this.taxId = JsonNullable.of(taxId);
             return this;
         }
 
-        public Builder taxId(JsonNullable<String> taxId) {
-            Utils.checkNotNull(taxId, "taxId");
-            this.taxId = taxId;
-            return this;
-        }
-
-
         /**
          * Indicate the employee's dietary preference.
          */
-        public Builder dietaryPreference(String dietaryPreference) {
-            Utils.checkNotNull(dietaryPreference, "dietaryPreference");
+        public Builder dietaryPreference(@Nullable String dietaryPreference) {
             this.dietaryPreference = JsonNullable.of(dietaryPreference);
             return this;
         }
 
         /**
-         * Indicate the employee's dietary preference.
-         */
-        public Builder dietaryPreference(JsonNullable<String> dietaryPreference) {
-            Utils.checkNotNull(dietaryPreference, "dietaryPreference");
-            this.dietaryPreference = dietaryPreference;
-            return this;
-        }
-
-
-        /**
          * Indicate the employee's food allergies.
          */
-        public Builder foodAllergies(List<String> foodAllergies) {
-            Utils.checkNotNull(foodAllergies, "foodAllergies");
+        public Builder foodAllergies(@Nullable List<String> foodAllergies) {
             this.foodAllergies = JsonNullable.of(foodAllergies);
             return this;
         }
 
-        /**
-         * Indicate the employee's food allergies.
-         */
-        public Builder foodAllergies(JsonNullable<? extends List<String>> foodAllergies) {
-            Utils.checkNotNull(foodAllergies, "foodAllergies");
-            this.foodAllergies = foodAllergies;
-            return this;
-        }
-
-
-        public Builder probationPeriod(ProbationPeriod probationPeriod) {
-            Utils.checkNotNull(probationPeriod, "probationPeriod");
-            this.probationPeriod = Optional.ofNullable(probationPeriod);
-            return this;
-        }
-
-        public Builder probationPeriod(Optional<? extends ProbationPeriod> probationPeriod) {
-            Utils.checkNotNull(probationPeriod, "probationPeriod");
+        public Builder probationPeriod(@Nullable ProbationPeriod probationPeriod) {
             this.probationPeriod = probationPeriod;
             return this;
         }
 
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * Flag to indicate if the object is deleted.
          */
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = JsonNullable.of(deleted);
             return this;
         }
 
         /**
-         * Flag to indicate if the object is deleted.
-         */
-        public Builder deleted(JsonNullable<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = deleted;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Employee build() {
-
             return new Employee(
                 id, downstreamId, firstName,
                 lastName, middleName, displayName,

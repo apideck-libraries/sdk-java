@@ -21,7 +21,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 java:
-  version: 0.17.0
+  version: 0.18.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: unify
@@ -49,7 +49,7 @@ java:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0.html
   maxMethodParams: 4
-  nullFriendlyParameters: false
+  nullFriendlyParameters: true
   outputModelSuffix: output
   projectName: Apideck
   templateVersion: v2

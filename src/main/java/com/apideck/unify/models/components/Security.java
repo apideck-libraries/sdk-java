@@ -7,9 +7,10 @@ import com.apideck.unify.utils.HasSecurity;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class Security implements HasSecurity {
@@ -19,14 +20,13 @@ public class Security implements HasSecurity {
 
     @JsonCreator
     public Security(
-            String apiKey) {
-        Utils.checkNotNull(apiKey, "apiKey");
-        this.apiKey = apiKey;
+            @Nonnull String apiKey) {
+        this.apiKey = Optional.ofNullable(apiKey)
+            .orElseThrow(() -> new IllegalArgumentException("apiKey cannot be null"));
     }
 
-    @JsonIgnore
     public String apiKey() {
-        return apiKey;
+        return this.apiKey;
     }
 
     public static Builder builder() {
@@ -34,11 +34,11 @@ public class Security implements HasSecurity {
     }
 
 
-    public Security withApiKey(String apiKey) {
-        Utils.checkNotNull(apiKey, "apiKey");
-        this.apiKey = apiKey;
+    public Security withApiKey(@Nonnull String apiKey) {
+        this.apiKey = Utils.checkNotNull(apiKey, "apiKey");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -74,15 +74,12 @@ public class Security implements HasSecurity {
           // force use of static builder() method
         }
 
-
-        public Builder apiKey(String apiKey) {
-            Utils.checkNotNull(apiKey, "apiKey");
-            this.apiKey = apiKey;
+        public Builder apiKey(@Nonnull String apiKey) {
+            this.apiKey = Utils.checkNotNull(apiKey, "apiKey");
             return this;
         }
 
         public Security build() {
-
             return new Security(
                 apiKey);
         }

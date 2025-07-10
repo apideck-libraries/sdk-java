@@ -5,15 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -28,35 +28,35 @@ public class Expenses {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The account code of the account
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private Optional<String> code;
+    private String code;
 
     /**
      * The name of the account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private Optional<String> title;
+    private String title;
 
     /**
      * The type of profit and loss
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends ProfitAndLossType> type;
+    private JsonNullable<ProfitAndLossType> type;
 
     /**
      * The aggregated total of all accounts within this category.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("total")
-    private Optional<Double> total;
+    private JsonNullable<Double> total;
 
 
     @JsonProperty("records")
@@ -64,76 +64,65 @@ public class Expenses {
 
     @JsonCreator
     public Expenses(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("title") Optional<String> title,
-            @JsonProperty("type") JsonNullable<? extends ProfitAndLossType> type,
-            @JsonProperty("total") Optional<Double> total,
-            @JsonProperty("records") Object records) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(total, "total");
-        Utils.checkNotNull(records, "records");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("code") @Nullable String code,
+            @JsonProperty("title") @Nullable String title,
+            @JsonProperty("type") @Nullable JsonNullable<ProfitAndLossType> type,
+            @JsonProperty("total") @Nullable Double total,
+            @JsonProperty("records") @Nonnull Object records) {
         this.id = id;
         this.code = code;
         this.title = title;
-        this.type = type;
-        this.total = total;
-        this.records = records;
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.total = JsonNullable.of(total);
+        this.records = Optional.ofNullable(records)
+            .orElseThrow(() -> new IllegalArgumentException("records cannot be null"));
     }
     
     public Expenses(
-            Object records) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), records);
+            @Nonnull Object records) {
+        this(null, null, null,
+            null, null, records);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The account code of the account
      */
-    @JsonIgnore
     public Optional<String> code() {
-        return code;
+        return Optional.ofNullable(this.code);
     }
 
     /**
      * The name of the account.
      */
-    @JsonIgnore
     public Optional<String> title() {
-        return title;
+        return Optional.ofNullable(this.title);
     }
 
     /**
      * The type of profit and loss
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ProfitAndLossType> type() {
-        return (JsonNullable<ProfitAndLossType>) type;
+        return this.type;
     }
 
     /**
      * The aggregated total of all accounts within this category.
      */
-    @JsonIgnore
-    public Optional<Double> total() {
-        return total;
+    public JsonNullable<Double> total() {
+        return this.total;
     }
 
-    @JsonIgnore
     public Object records() {
-        return records;
+        return this.records;
     }
 
     public static Builder builder() {
@@ -144,102 +133,53 @@ public class Expenses {
     /**
      * A unique identifier for an object.
      */
-    public Expenses withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Expenses withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Expenses withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The account code of the account
-     */
-    public Expenses withCode(String code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
 
     /**
      * The account code of the account
      */
-    public Expenses withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
+    public Expenses withCode(@Nullable String code) {
         this.code = code;
         return this;
     }
 
-    /**
-     * The name of the account.
-     */
-    public Expenses withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
 
     /**
      * The name of the account.
      */
-    public Expenses withTitle(Optional<String> title) {
-        Utils.checkNotNull(title, "title");
+    public Expenses withTitle(@Nullable String title) {
         this.title = title;
         return this;
     }
 
+
     /**
      * The type of profit and loss
      */
-    public Expenses withType(ProfitAndLossType type) {
-        Utils.checkNotNull(type, "type");
+    public Expenses withType(@Nullable ProfitAndLossType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of profit and loss
-     */
-    public Expenses withType(JsonNullable<? extends ProfitAndLossType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * The aggregated total of all accounts within this category.
      */
-    public Expenses withTotal(double total) {
-        Utils.checkNotNull(total, "total");
-        this.total = Optional.ofNullable(total);
+    public Expenses withTotal(@Nullable Double total) {
+        this.total = JsonNullable.of(total);
         return this;
     }
 
 
-    /**
-     * The aggregated total of all accounts within this category.
-     */
-    public Expenses withTotal(Optional<Double> total) {
-        Utils.checkNotNull(total, "total");
-        this.total = total;
+    public Expenses withRecords(@Nonnull Object records) {
+        this.records = Utils.checkNotNull(records, "records");
         return this;
     }
 
-    public Expenses withRecords(Object records) {
-        Utils.checkNotNull(records, "records");
-        this.records = records;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -280,15 +220,15 @@ public class Expenses {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> code = Optional.empty();
+        private String code;
 
-        private Optional<String> title = Optional.empty();
+        private String title;
 
-        private JsonNullable<? extends ProfitAndLossType> type = JsonNullable.undefined();
+        private JsonNullable<ProfitAndLossType> type;
 
-        private Optional<Double> total = Optional.empty();
+        private Double total;
 
         private Object records;
 
@@ -296,110 +236,52 @@ public class Expenses {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The account code of the account
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
-            this.code = Optional.ofNullable(code);
-            return this;
-        }
-
-        /**
-         * The account code of the account
-         */
-        public Builder code(Optional<String> code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = code;
             return this;
         }
 
-
         /**
          * The name of the account.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
-         * The name of the account.
-         */
-        public Builder title(Optional<String> title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = title;
             return this;
         }
 
-
         /**
          * The type of profit and loss
          */
-        public Builder type(ProfitAndLossType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable ProfitAndLossType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * The type of profit and loss
-         */
-        public Builder type(JsonNullable<? extends ProfitAndLossType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * The aggregated total of all accounts within this category.
          */
-        public Builder total(double total) {
-            Utils.checkNotNull(total, "total");
-            this.total = Optional.ofNullable(total);
-            return this;
-        }
-
-        /**
-         * The aggregated total of all accounts within this category.
-         */
-        public Builder total(Optional<Double> total) {
-            Utils.checkNotNull(total, "total");
+        public Builder total(@Nullable Double total) {
             this.total = total;
             return this;
         }
 
-
-        public Builder records(Object records) {
-            Utils.checkNotNull(records, "records");
-            this.records = records;
+        public Builder records(@Nonnull Object records) {
+            this.records = Utils.checkNotNull(records, "records");
             return this;
         }
 
         public Expenses build() {
-
             return new Expenses(
                 id, code, title,
                 type, total, records);

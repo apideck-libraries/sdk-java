@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
@@ -18,60 +18,53 @@ public class OpportunitiesFilter {
      * Title of the opportunity to filter on
      */
     @SpeakeasyMetadata("queryParam:name=title")
-    private Optional<String> title;
+    private String title;
 
     /**
      * Status to filter on
      */
     @SpeakeasyMetadata("queryParam:name=status")
-    private Optional<String> status;
+    private String status;
 
     /**
      * Monetary amount to filter on
      */
     @SpeakeasyMetadata("queryParam:name=monetary_amount")
-    private Optional<Double> monetaryAmount;
+    private Double monetaryAmount;
 
     /**
      * Win probability to filter on
      */
     @SpeakeasyMetadata("queryParam:name=win_probability")
-    private Optional<Double> winProbability;
+    private Double winProbability;
 
     /**
      * Company ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=company_id")
-    private Optional<String> companyId;
+    private String companyId;
 
     /**
      * Owner ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=owner_id")
-    private Optional<String> ownerId;
+    private String ownerId;
 
     /**
      * Primary contact ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=primary_contact_id")
-    private Optional<String> primaryContactId;
+    private String primaryContactId;
 
     @JsonCreator
     public OpportunitiesFilter(
-            Optional<String> title,
-            Optional<String> status,
-            Optional<Double> monetaryAmount,
-            Optional<Double> winProbability,
-            Optional<String> companyId,
-            Optional<String> ownerId,
-            Optional<String> primaryContactId) {
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        Utils.checkNotNull(winProbability, "winProbability");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
+            @Nullable String title,
+            @Nullable String status,
+            @Nullable Double monetaryAmount,
+            @Nullable Double winProbability,
+            @Nullable String companyId,
+            @Nullable String ownerId,
+            @Nullable String primaryContactId) {
         this.title = title;
         this.status = status;
         this.monetaryAmount = monetaryAmount;
@@ -82,65 +75,58 @@ public class OpportunitiesFilter {
     }
     
     public OpportunitiesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Title of the opportunity to filter on
      */
-    @JsonIgnore
     public Optional<String> title() {
-        return title;
+        return Optional.ofNullable(this.title);
     }
 
     /**
      * Status to filter on
      */
-    @JsonIgnore
     public Optional<String> status() {
-        return status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Monetary amount to filter on
      */
-    @JsonIgnore
     public Optional<Double> monetaryAmount() {
-        return monetaryAmount;
+        return Optional.ofNullable(this.monetaryAmount);
     }
 
     /**
      * Win probability to filter on
      */
-    @JsonIgnore
     public Optional<Double> winProbability() {
-        return winProbability;
+        return Optional.ofNullable(this.winProbability);
     }
 
     /**
      * Company ID to filter on
      */
-    @JsonIgnore
     public Optional<String> companyId() {
-        return companyId;
+        return Optional.ofNullable(this.companyId);
     }
 
     /**
      * Owner ID to filter on
      */
-    @JsonIgnore
     public Optional<String> ownerId() {
-        return ownerId;
+        return Optional.ofNullable(this.ownerId);
     }
 
     /**
      * Primary contact ID to filter on
      */
-    @JsonIgnore
     public Optional<String> primaryContactId() {
-        return primaryContactId;
+        return Optional.ofNullable(this.primaryContactId);
     }
 
     public static Builder builder() {
@@ -151,135 +137,65 @@ public class OpportunitiesFilter {
     /**
      * Title of the opportunity to filter on
      */
-    public OpportunitiesFilter withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
-
-    /**
-     * Title of the opportunity to filter on
-     */
-    public OpportunitiesFilter withTitle(Optional<String> title) {
-        Utils.checkNotNull(title, "title");
+    public OpportunitiesFilter withTitle(@Nullable String title) {
         this.title = title;
         return this;
     }
 
-    /**
-     * Status to filter on
-     */
-    public OpportunitiesFilter withStatus(String status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status to filter on
      */
-    public OpportunitiesFilter withStatus(Optional<String> status) {
-        Utils.checkNotNull(status, "status");
+    public OpportunitiesFilter withStatus(@Nullable String status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Monetary amount to filter on
-     */
-    public OpportunitiesFilter withMonetaryAmount(double monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        this.monetaryAmount = Optional.ofNullable(monetaryAmount);
-        return this;
-    }
-
 
     /**
      * Monetary amount to filter on
      */
-    public OpportunitiesFilter withMonetaryAmount(Optional<Double> monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+    public OpportunitiesFilter withMonetaryAmount(@Nullable Double monetaryAmount) {
         this.monetaryAmount = monetaryAmount;
         return this;
     }
 
-    /**
-     * Win probability to filter on
-     */
-    public OpportunitiesFilter withWinProbability(double winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
-        this.winProbability = Optional.ofNullable(winProbability);
-        return this;
-    }
-
 
     /**
      * Win probability to filter on
      */
-    public OpportunitiesFilter withWinProbability(Optional<Double> winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
+    public OpportunitiesFilter withWinProbability(@Nullable Double winProbability) {
         this.winProbability = winProbability;
         return this;
     }
 
-    /**
-     * Company ID to filter on
-     */
-    public OpportunitiesFilter withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = Optional.ofNullable(companyId);
-        return this;
-    }
-
 
     /**
      * Company ID to filter on
      */
-    public OpportunitiesFilter withCompanyId(Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public OpportunitiesFilter withCompanyId(@Nullable String companyId) {
         this.companyId = companyId;
         return this;
     }
 
-    /**
-     * Owner ID to filter on
-     */
-    public OpportunitiesFilter withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = Optional.ofNullable(ownerId);
-        return this;
-    }
-
 
     /**
      * Owner ID to filter on
      */
-    public OpportunitiesFilter withOwnerId(Optional<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public OpportunitiesFilter withOwnerId(@Nullable String ownerId) {
         this.ownerId = ownerId;
         return this;
     }
 
-    /**
-     * Primary contact ID to filter on
-     */
-    public OpportunitiesFilter withPrimaryContactId(String primaryContactId) {
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
-        this.primaryContactId = Optional.ofNullable(primaryContactId);
-        return this;
-    }
-
 
     /**
      * Primary contact ID to filter on
      */
-    public OpportunitiesFilter withPrimaryContactId(Optional<String> primaryContactId) {
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
+    public OpportunitiesFilter withPrimaryContactId(@Nullable String primaryContactId) {
         this.primaryContactId = primaryContactId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -323,159 +239,81 @@ public class OpportunitiesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> title = Optional.empty();
+        private String title;
 
-        private Optional<String> status = Optional.empty();
+        private String status;
 
-        private Optional<Double> monetaryAmount = Optional.empty();
+        private Double monetaryAmount;
 
-        private Optional<Double> winProbability = Optional.empty();
+        private Double winProbability;
 
-        private Optional<String> companyId = Optional.empty();
+        private String companyId;
 
-        private Optional<String> ownerId = Optional.empty();
+        private String ownerId;
 
-        private Optional<String> primaryContactId = Optional.empty();
+        private String primaryContactId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Title of the opportunity to filter on
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        /**
-         * Title of the opportunity to filter on
-         */
-        public Builder title(Optional<String> title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = title;
             return this;
         }
 
-
         /**
          * Status to filter on
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status to filter on
-         */
-        public Builder status(Optional<String> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Monetary amount to filter on
          */
-        public Builder monetaryAmount(double monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-            this.monetaryAmount = Optional.ofNullable(monetaryAmount);
-            return this;
-        }
-
-        /**
-         * Monetary amount to filter on
-         */
-        public Builder monetaryAmount(Optional<Double> monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+        public Builder monetaryAmount(@Nullable Double monetaryAmount) {
             this.monetaryAmount = monetaryAmount;
             return this;
         }
 
-
         /**
          * Win probability to filter on
          */
-        public Builder winProbability(double winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
-            this.winProbability = Optional.ofNullable(winProbability);
-            return this;
-        }
-
-        /**
-         * Win probability to filter on
-         */
-        public Builder winProbability(Optional<Double> winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
+        public Builder winProbability(@Nullable Double winProbability) {
             this.winProbability = winProbability;
             return this;
         }
 
-
         /**
          * Company ID to filter on
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = Optional.ofNullable(companyId);
-            return this;
-        }
-
-        /**
-         * Company ID to filter on
-         */
-        public Builder companyId(Optional<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = companyId;
             return this;
         }
 
-
         /**
          * Owner ID to filter on
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = Optional.ofNullable(ownerId);
-            return this;
-        }
-
-        /**
-         * Owner ID to filter on
-         */
-        public Builder ownerId(Optional<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
-
         /**
          * Primary contact ID to filter on
          */
-        public Builder primaryContactId(String primaryContactId) {
-            Utils.checkNotNull(primaryContactId, "primaryContactId");
-            this.primaryContactId = Optional.ofNullable(primaryContactId);
-            return this;
-        }
-
-        /**
-         * Primary contact ID to filter on
-         */
-        public Builder primaryContactId(Optional<String> primaryContactId) {
-            Utils.checkNotNull(primaryContactId, "primaryContactId");
+        public Builder primaryContactId(@Nullable String primaryContactId) {
             this.primaryContactId = primaryContactId;
             return this;
         }
 
         public OpportunitiesFilter build() {
-
             return new OpportunitiesFilter(
                 title, status, monetaryAmount,
                 winProbability, companyId, ownerId,

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,36 +19,31 @@ public class Configuration {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resource")
-    private Optional<String> resource;
+    private String resource;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("defaults")
-    private Optional<? extends List<Defaults>> defaults;
+    private List<Defaults> defaults;
 
     @JsonCreator
     public Configuration(
-            @JsonProperty("resource") Optional<String> resource,
-            @JsonProperty("defaults") Optional<? extends List<Defaults>> defaults) {
-        Utils.checkNotNull(resource, "resource");
-        Utils.checkNotNull(defaults, "defaults");
+            @JsonProperty("resource") @Nullable String resource,
+            @JsonProperty("defaults") @Nullable List<Defaults> defaults) {
         this.resource = resource;
         this.defaults = defaults;
     }
     
     public Configuration() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<String> resource() {
-        return resource;
+        return Optional.ofNullable(this.resource);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Defaults>> defaults() {
-        return (Optional<List<Defaults>>) defaults;
+        return Optional.ofNullable(this.defaults);
     }
 
     public static Builder builder() {
@@ -57,31 +51,17 @@ public class Configuration {
     }
 
 
-    public Configuration withResource(String resource) {
-        Utils.checkNotNull(resource, "resource");
-        this.resource = Optional.ofNullable(resource);
-        return this;
-    }
-
-
-    public Configuration withResource(Optional<String> resource) {
-        Utils.checkNotNull(resource, "resource");
+    public Configuration withResource(@Nullable String resource) {
         this.resource = resource;
         return this;
     }
 
-    public Configuration withDefaults(List<Defaults> defaults) {
-        Utils.checkNotNull(defaults, "defaults");
-        this.defaults = Optional.ofNullable(defaults);
-        return this;
-    }
 
-
-    public Configuration withDefaults(Optional<? extends List<Defaults>> defaults) {
-        Utils.checkNotNull(defaults, "defaults");
+    public Configuration withDefaults(@Nullable List<Defaults> defaults) {
         this.defaults = defaults;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -113,42 +93,25 @@ public class Configuration {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> resource = Optional.empty();
+        private String resource;
 
-        private Optional<? extends List<Defaults>> defaults = Optional.empty();
+        private List<Defaults> defaults;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder resource(String resource) {
-            Utils.checkNotNull(resource, "resource");
-            this.resource = Optional.ofNullable(resource);
-            return this;
-        }
-
-        public Builder resource(Optional<String> resource) {
-            Utils.checkNotNull(resource, "resource");
+        public Builder resource(@Nullable String resource) {
             this.resource = resource;
             return this;
         }
 
-
-        public Builder defaults(List<Defaults> defaults) {
-            Utils.checkNotNull(defaults, "defaults");
-            this.defaults = Optional.ofNullable(defaults);
-            return this;
-        }
-
-        public Builder defaults(Optional<? extends List<Defaults>> defaults) {
-            Utils.checkNotNull(defaults, "defaults");
+        public Builder defaults(@Nullable List<Defaults> defaults) {
             this.defaults = defaults;
             return this;
         }
 
         public Configuration build() {
-
             return new Configuration(
                 resource, defaults);
         }

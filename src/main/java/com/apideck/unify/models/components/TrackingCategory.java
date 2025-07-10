@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -26,7 +25,7 @@ public class TrackingCategory {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * A unique identifier for an object.
@@ -40,7 +39,7 @@ public class TrackingCategory {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * The code of the tracking category.
@@ -54,14 +53,14 @@ public class TrackingCategory {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends TrackingCategoryStatus> status;
+    private TrackingCategoryStatus status;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -103,172 +102,150 @@ public class TrackingCategory {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     /**
      * The subsidiaries the account belongs to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subsidiaries")
-    private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries;
+    private List<TrackingCategorySubsidiaries> subsidiaries;
 
     @JsonCreator
     public TrackingCategory(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("parent_id") JsonNullable<String> parentId,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("status") Optional<? extends TrackingCategoryStatus> status,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("subsidiaries") Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(parentId, "parentId");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("parent_id") @Nullable JsonNullable<String> parentId,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("status") @Nullable TrackingCategoryStatus status,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough,
+            @JsonProperty("subsidiaries") @Nullable List<TrackingCategorySubsidiaries> subsidiaries) {
         this.id = id;
-        this.parentId = parentId;
+        this.parentId = Optional.ofNullable(parentId)
+            .orElse(JsonNullable.undefined());
         this.name = name;
-        this.code = code;
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
         this.status = status;
-        this.customMappings = customMappings;
-        this.rowVersion = rowVersion;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
         this.subsidiaries = subsidiaries;
     }
     
     public TrackingCategory() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> parentId() {
-        return parentId;
+        return this.parentId;
     }
 
     /**
      * The name of the tracking category.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The code of the tracking category.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * Based on the status some functionality is enabled or disabled.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<TrackingCategoryStatus> status() {
-        return (Optional<TrackingCategoryStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The subsidiaries the account belongs to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<TrackingCategorySubsidiaries>> subsidiaries() {
-        return (Optional<List<TrackingCategorySubsidiaries>>) subsidiaries;
+        return Optional.ofNullable(this.subsidiaries);
     }
 
     public static Builder builder() {
@@ -279,241 +256,119 @@ public class TrackingCategory {
     /**
      * A unique identifier for an object.
      */
-    public TrackingCategory withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public TrackingCategory withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public TrackingCategory withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * A unique identifier for an object.
      */
-    public TrackingCategory withParentId(String parentId) {
-        Utils.checkNotNull(parentId, "parentId");
+    public TrackingCategory withParentId(@Nullable String parentId) {
         this.parentId = JsonNullable.of(parentId);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public TrackingCategory withParentId(JsonNullable<String> parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = parentId;
-        return this;
-    }
 
     /**
      * The name of the tracking category.
      */
-    public TrackingCategory withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the tracking category.
-     */
-    public TrackingCategory withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public TrackingCategory withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
+
     /**
      * The code of the tracking category.
      */
-    public TrackingCategory withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public TrackingCategory withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * The code of the tracking category.
-     */
-    public TrackingCategory withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * Based on the status some functionality is enabled or disabled.
      */
-    public TrackingCategory withStatus(TrackingCategoryStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Based on the status some functionality is enabled or disabled.
-     */
-    public TrackingCategory withStatus(Optional<? extends TrackingCategoryStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public TrackingCategory withStatus(@Nullable TrackingCategoryStatus status) {
         this.status = status;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public TrackingCategory withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public TrackingCategory withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public TrackingCategory withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public TrackingCategory withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public TrackingCategory withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public TrackingCategory withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public TrackingCategory withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public TrackingCategory withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public TrackingCategory withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public TrackingCategory withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public TrackingCategory withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public TrackingCategory withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public TrackingCategory withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public TrackingCategory withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public TrackingCategory withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public TrackingCategory withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public TrackingCategory withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public TrackingCategory withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public TrackingCategory withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public TrackingCategory withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public TrackingCategory withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
-    /**
-     * The subsidiaries the account belongs to.
-     */
-    public TrackingCategory withSubsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
-        this.subsidiaries = Optional.ofNullable(subsidiaries);
-        return this;
-    }
-
 
     /**
      * The subsidiaries the account belongs to.
      */
-    public TrackingCategory withSubsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
-        Utils.checkNotNull(subsidiaries, "subsidiaries");
+    public TrackingCategory withSubsidiaries(@Nullable List<TrackingCategorySubsidiaries> subsidiaries) {
         this.subsidiaries = subsidiaries;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -571,285 +426,141 @@ public class TrackingCategory {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> parentId = JsonNullable.undefined();
+        private JsonNullable<String> parentId;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private Optional<? extends TrackingCategoryStatus> status = Optional.empty();
+        private TrackingCategoryStatus status;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
-        private Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries = Optional.empty();
+        private List<TrackingCategorySubsidiaries> subsidiaries;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder parentId(String parentId) {
-            Utils.checkNotNull(parentId, "parentId");
+        public Builder parentId(@Nullable String parentId) {
             this.parentId = JsonNullable.of(parentId);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder parentId(JsonNullable<String> parentId) {
-            Utils.checkNotNull(parentId, "parentId");
-            this.parentId = parentId;
-            return this;
-        }
-
-
-        /**
          * The name of the tracking category.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the tracking category.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The code of the tracking category.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * The code of the tracking category.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * Based on the status some functionality is enabled or disabled.
          */
-        public Builder status(TrackingCategoryStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Based on the status some functionality is enabled or disabled.
-         */
-        public Builder status(Optional<? extends TrackingCategoryStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable TrackingCategoryStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The subsidiaries the account belongs to.
          */
-        public Builder subsidiaries(List<TrackingCategorySubsidiaries> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
-            this.subsidiaries = Optional.ofNullable(subsidiaries);
-            return this;
-        }
-
-        /**
-         * The subsidiaries the account belongs to.
-         */
-        public Builder subsidiaries(Optional<? extends List<TrackingCategorySubsidiaries>> subsidiaries) {
-            Utils.checkNotNull(subsidiaries, "subsidiaries");
+        public Builder subsidiaries(@Nullable List<TrackingCategorySubsidiaries> subsidiaries) {
             this.subsidiaries = subsidiaries;
             return this;
         }
 
         public TrackingCategory build() {
-
             return new TrackingCategory(
                 id, parentId, name,
                 code, status, customMappings,

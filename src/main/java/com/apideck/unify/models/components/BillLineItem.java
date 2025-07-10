@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -26,14 +25,14 @@ public class BillLineItem {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Row ID
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("row_id")
-    private Optional<String> rowId;
+    private String rowId;
 
     /**
      * User defined item code
@@ -61,7 +60,7 @@ public class BillLineItem {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends BillLineItemType> type;
+    private JsonNullable<BillLineItemType> type;
 
     /**
      * Tax amount
@@ -125,24 +124,24 @@ public class BillLineItem {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("item")
-    private Optional<? extends LinkedInvoiceItem> item;
+    private LinkedInvoiceItem item;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRate> taxRate;
+    private LinkedTaxRate taxRate;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount;
+    private JsonNullable<LinkedLedgerAccount> ledgerAccount;
 
     /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -181,271 +180,238 @@ public class BillLineItem {
 
     @JsonCreator
     public BillLineItem(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("row_id") Optional<String> rowId,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("line_number") JsonNullable<Long> lineNumber,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") JsonNullable<? extends BillLineItemType> type,
-            @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
-            @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
-            @JsonProperty("quantity") JsonNullable<Double> quantity,
-            @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
-            @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
-            @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
-            @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
-            @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("department_id") JsonNullable<String> departmentId,
-            @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(rowId, "rowId");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(quantity, "quantity");
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
-        Utils.checkNotNull(discountAmount, "discountAmount");
-        Utils.checkNotNull(locationId, "locationId");
-        Utils.checkNotNull(departmentId, "departmentId");
-        Utils.checkNotNull(item, "item");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("row_id") @Nullable String rowId,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("line_number") @Nullable JsonNullable<Long> lineNumber,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("type") @Nullable JsonNullable<BillLineItemType> type,
+            @JsonProperty("tax_amount") @Nullable JsonNullable<Double> taxAmount,
+            @JsonProperty("total_amount") @Nullable JsonNullable<Double> totalAmount,
+            @JsonProperty("quantity") @Nullable JsonNullable<Double> quantity,
+            @JsonProperty("unit_price") @Nullable JsonNullable<Double> unitPrice,
+            @JsonProperty("unit_of_measure") @Nullable JsonNullable<String> unitOfMeasure,
+            @JsonProperty("discount_percentage") @Nullable JsonNullable<Double> discountPercentage,
+            @JsonProperty("discount_amount") @Nullable JsonNullable<Double> discountAmount,
+            @JsonProperty("location_id") @Nullable JsonNullable<String> locationId,
+            @JsonProperty("department_id") @Nullable JsonNullable<String> departmentId,
+            @JsonProperty("item") @Nullable LinkedInvoiceItem item,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRate taxRate,
+            @JsonProperty("ledger_account") @Nullable JsonNullable<LinkedLedgerAccount> ledgerAccount,
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
         this.id = id;
         this.rowId = rowId;
-        this.code = code;
-        this.lineNumber = lineNumber;
-        this.description = description;
-        this.type = type;
-        this.taxAmount = taxAmount;
-        this.totalAmount = totalAmount;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-        this.unitOfMeasure = unitOfMeasure;
-        this.discountPercentage = discountPercentage;
-        this.discountAmount = discountAmount;
-        this.locationId = locationId;
-        this.departmentId = departmentId;
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.lineNumber = Optional.ofNullable(lineNumber)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.taxAmount = Optional.ofNullable(taxAmount)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = Optional.ofNullable(totalAmount)
+            .orElse(JsonNullable.undefined());
+        this.quantity = Optional.ofNullable(quantity)
+            .orElse(JsonNullable.undefined());
+        this.unitPrice = Optional.ofNullable(unitPrice)
+            .orElse(JsonNullable.undefined());
+        this.unitOfMeasure = Optional.ofNullable(unitOfMeasure)
+            .orElse(JsonNullable.undefined());
+        this.discountPercentage = Optional.ofNullable(discountPercentage)
+            .orElse(JsonNullable.undefined());
+        this.discountAmount = Optional.ofNullable(discountAmount)
+            .orElse(JsonNullable.undefined());
+        this.locationId = Optional.ofNullable(locationId)
+            .orElse(JsonNullable.undefined());
+        this.departmentId = Optional.ofNullable(departmentId)
+            .orElse(JsonNullable.undefined());
         this.item = item;
         this.taxRate = taxRate;
-        this.ledgerAccount = ledgerAccount;
-        this.trackingCategories = trackingCategories;
-        this.rowVersion = rowVersion;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.ledgerAccount = Optional.ofNullable(ledgerAccount)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public BillLineItem() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Row ID
      */
-    @JsonIgnore
     public Optional<String> rowId() {
-        return rowId;
+        return Optional.ofNullable(this.rowId);
     }
 
     /**
      * User defined item code
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * Line number in the invoice
      */
-    @JsonIgnore
     public JsonNullable<Long> lineNumber() {
-        return lineNumber;
+        return this.lineNumber;
     }
 
     /**
      * User defined description
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Bill Line Item type
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<BillLineItemType> type() {
-        return (JsonNullable<BillLineItemType>) type;
+        return this.type;
     }
 
     /**
      * Tax amount
      */
-    @JsonIgnore
     public JsonNullable<Double> taxAmount() {
-        return taxAmount;
+        return this.taxAmount;
     }
 
     /**
      * Total amount of the line item
      */
-    @JsonIgnore
     public JsonNullable<Double> totalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
-    @JsonIgnore
     public JsonNullable<Double> quantity() {
-        return quantity;
+        return this.quantity;
     }
 
-    @JsonIgnore
     public JsonNullable<Double> unitPrice() {
-        return unitPrice;
+        return this.unitPrice;
     }
 
     /**
      * Description of the unit type the item is sold as, ie: kg, hour.
      */
-    @JsonIgnore
     public JsonNullable<String> unitOfMeasure() {
-        return unitOfMeasure;
+        return this.unitOfMeasure;
     }
 
     /**
      * Discount percentage applied to the line item when supported downstream.
      */
-    @JsonIgnore
     public JsonNullable<Double> discountPercentage() {
-        return discountPercentage;
+        return this.discountPercentage;
     }
 
     /**
      * Discount amount applied to the line item when supported downstream.
      */
-    @JsonIgnore
     public JsonNullable<Double> discountAmount() {
-        return discountAmount;
+        return this.discountAmount;
     }
 
     /**
      * The ID of the location
      */
-    @JsonIgnore
     public JsonNullable<String> locationId() {
-        return locationId;
+        return this.locationId;
     }
 
     /**
      * The ID of the department
      */
-    @JsonIgnore
     public JsonNullable<String> departmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedInvoiceItem> item() {
-        return (Optional<LinkedInvoiceItem>) item;
+        return Optional.ofNullable(this.item);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
-        return (Optional<LinkedTaxRate>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccount>) ledgerAccount;
+        return this.ledgerAccount;
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -456,408 +422,203 @@ public class BillLineItem {
     /**
      * A unique identifier for an object.
      */
-    public BillLineItem withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public BillLineItem withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public BillLineItem withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Row ID
-     */
-    public BillLineItem withRowId(String rowId) {
-        Utils.checkNotNull(rowId, "rowId");
-        this.rowId = Optional.ofNullable(rowId);
-        return this;
-    }
-
 
     /**
      * Row ID
      */
-    public BillLineItem withRowId(Optional<String> rowId) {
-        Utils.checkNotNull(rowId, "rowId");
+    public BillLineItem withRowId(@Nullable String rowId) {
         this.rowId = rowId;
         return this;
     }
 
+
     /**
      * User defined item code
      */
-    public BillLineItem withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public BillLineItem withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * User defined item code
-     */
-    public BillLineItem withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * Line number in the invoice
      */
-    public BillLineItem withLineNumber(long lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
+    public BillLineItem withLineNumber(@Nullable Long lineNumber) {
         this.lineNumber = JsonNullable.of(lineNumber);
         return this;
     }
 
-    /**
-     * Line number in the invoice
-     */
-    public BillLineItem withLineNumber(JsonNullable<Long> lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        this.lineNumber = lineNumber;
-        return this;
-    }
 
     /**
      * User defined description
      */
-    public BillLineItem withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public BillLineItem withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * User defined description
-     */
-    public BillLineItem withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Bill Line Item type
      */
-    public BillLineItem withType(BillLineItemType type) {
-        Utils.checkNotNull(type, "type");
+    public BillLineItem withType(@Nullable BillLineItemType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Bill Line Item type
-     */
-    public BillLineItem withType(JsonNullable<? extends BillLineItemType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * Tax amount
      */
-    public BillLineItem withTaxAmount(double taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
+    public BillLineItem withTaxAmount(@Nullable Double taxAmount) {
         this.taxAmount = JsonNullable.of(taxAmount);
         return this;
     }
 
-    /**
-     * Tax amount
-     */
-    public BillLineItem withTaxAmount(JsonNullable<Double> taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        this.taxAmount = taxAmount;
-        return this;
-    }
 
     /**
      * Total amount of the line item
      */
-    public BillLineItem withTotalAmount(double totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
+    public BillLineItem withTotalAmount(@Nullable Double totalAmount) {
         this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
-    /**
-     * Total amount of the line item
-     */
-    public BillLineItem withTotalAmount(JsonNullable<Double> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
 
-    public BillLineItem withQuantity(double quantity) {
-        Utils.checkNotNull(quantity, "quantity");
+    public BillLineItem withQuantity(@Nullable Double quantity) {
         this.quantity = JsonNullable.of(quantity);
         return this;
     }
 
-    public BillLineItem withQuantity(JsonNullable<Double> quantity) {
-        Utils.checkNotNull(quantity, "quantity");
-        this.quantity = quantity;
-        return this;
-    }
 
-    public BillLineItem withUnitPrice(double unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
+    public BillLineItem withUnitPrice(@Nullable Double unitPrice) {
         this.unitPrice = JsonNullable.of(unitPrice);
         return this;
     }
 
-    public BillLineItem withUnitPrice(JsonNullable<Double> unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        this.unitPrice = unitPrice;
-        return this;
-    }
 
     /**
      * Description of the unit type the item is sold as, ie: kg, hour.
      */
-    public BillLineItem withUnitOfMeasure(String unitOfMeasure) {
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+    public BillLineItem withUnitOfMeasure(@Nullable String unitOfMeasure) {
         this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
         return this;
     }
 
-    /**
-     * Description of the unit type the item is sold as, ie: kg, hour.
-     */
-    public BillLineItem withUnitOfMeasure(JsonNullable<String> unitOfMeasure) {
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-        this.unitOfMeasure = unitOfMeasure;
-        return this;
-    }
 
     /**
      * Discount percentage applied to the line item when supported downstream.
      */
-    public BillLineItem withDiscountPercentage(double discountPercentage) {
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
+    public BillLineItem withDiscountPercentage(@Nullable Double discountPercentage) {
         this.discountPercentage = JsonNullable.of(discountPercentage);
         return this;
     }
 
-    /**
-     * Discount percentage applied to the line item when supported downstream.
-     */
-    public BillLineItem withDiscountPercentage(JsonNullable<Double> discountPercentage) {
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
-        this.discountPercentage = discountPercentage;
-        return this;
-    }
 
     /**
      * Discount amount applied to the line item when supported downstream.
      */
-    public BillLineItem withDiscountAmount(double discountAmount) {
-        Utils.checkNotNull(discountAmount, "discountAmount");
+    public BillLineItem withDiscountAmount(@Nullable Double discountAmount) {
         this.discountAmount = JsonNullable.of(discountAmount);
         return this;
     }
 
-    /**
-     * Discount amount applied to the line item when supported downstream.
-     */
-    public BillLineItem withDiscountAmount(JsonNullable<Double> discountAmount) {
-        Utils.checkNotNull(discountAmount, "discountAmount");
-        this.discountAmount = discountAmount;
-        return this;
-    }
 
     /**
      * The ID of the location
      */
-    public BillLineItem withLocationId(String locationId) {
-        Utils.checkNotNull(locationId, "locationId");
+    public BillLineItem withLocationId(@Nullable String locationId) {
         this.locationId = JsonNullable.of(locationId);
         return this;
     }
 
-    /**
-     * The ID of the location
-     */
-    public BillLineItem withLocationId(JsonNullable<String> locationId) {
-        Utils.checkNotNull(locationId, "locationId");
-        this.locationId = locationId;
-        return this;
-    }
 
     /**
      * The ID of the department
      */
-    public BillLineItem withDepartmentId(String departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
+    public BillLineItem withDepartmentId(@Nullable String departmentId) {
         this.departmentId = JsonNullable.of(departmentId);
         return this;
     }
 
-    /**
-     * The ID of the department
-     */
-    public BillLineItem withDepartmentId(JsonNullable<String> departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
-        this.departmentId = departmentId;
-        return this;
-    }
 
-    public BillLineItem withItem(LinkedInvoiceItem item) {
-        Utils.checkNotNull(item, "item");
-        this.item = Optional.ofNullable(item);
-        return this;
-    }
-
-
-    public BillLineItem withItem(Optional<? extends LinkedInvoiceItem> item) {
-        Utils.checkNotNull(item, "item");
+    public BillLineItem withItem(@Nullable LinkedInvoiceItem item) {
         this.item = item;
         return this;
     }
 
-    public BillLineItem withTaxRate(LinkedTaxRate taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
-        return this;
-    }
 
-
-    public BillLineItem withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public BillLineItem withTaxRate(@Nullable LinkedTaxRate taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
-    public BillLineItem withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+
+    public BillLineItem withLedgerAccount(@Nullable LinkedLedgerAccount ledgerAccount) {
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public BillLineItem withLedgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        this.ledgerAccount = ledgerAccount;
-        return this;
-    }
 
     /**
      * A list of linked tracking categories.
      */
-    public BillLineItem withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public BillLineItem withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public BillLineItem withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
-        return this;
-    }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public BillLineItem withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public BillLineItem withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public BillLineItem withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public BillLineItem withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public BillLineItem withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public BillLineItem withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public BillLineItem withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public BillLineItem withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public BillLineItem withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public BillLineItem withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public BillLineItem withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public BillLineItem withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public BillLineItem withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public BillLineItem withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public BillLineItem withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -940,486 +701,236 @@ public class BillLineItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> rowId = Optional.empty();
+        private String rowId;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<Long> lineNumber = JsonNullable.undefined();
+        private JsonNullable<Long> lineNumber;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<? extends BillLineItemType> type = JsonNullable.undefined();
+        private JsonNullable<BillLineItemType> type;
 
-        private JsonNullable<Double> taxAmount = JsonNullable.undefined();
+        private JsonNullable<Double> taxAmount;
 
-        private JsonNullable<Double> totalAmount = JsonNullable.undefined();
+        private JsonNullable<Double> totalAmount;
 
-        private JsonNullable<Double> quantity = JsonNullable.undefined();
+        private JsonNullable<Double> quantity;
 
-        private JsonNullable<Double> unitPrice = JsonNullable.undefined();
+        private JsonNullable<Double> unitPrice;
 
-        private JsonNullable<String> unitOfMeasure = JsonNullable.undefined();
+        private JsonNullable<String> unitOfMeasure;
 
-        private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
+        private JsonNullable<Double> discountPercentage;
 
-        private JsonNullable<Double> discountAmount = JsonNullable.undefined();
+        private JsonNullable<Double> discountAmount;
 
-        private JsonNullable<String> locationId = JsonNullable.undefined();
+        private JsonNullable<String> locationId;
 
-        private JsonNullable<String> departmentId = JsonNullable.undefined();
+        private JsonNullable<String> departmentId;
 
-        private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
+        private LinkedInvoiceItem item;
 
-        private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+        private LinkedTaxRate taxRate;
 
-        private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccount> ledgerAccount;
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Row ID
          */
-        public Builder rowId(String rowId) {
-            Utils.checkNotNull(rowId, "rowId");
-            this.rowId = Optional.ofNullable(rowId);
-            return this;
-        }
-
-        /**
-         * Row ID
-         */
-        public Builder rowId(Optional<String> rowId) {
-            Utils.checkNotNull(rowId, "rowId");
+        public Builder rowId(@Nullable String rowId) {
             this.rowId = rowId;
             return this;
         }
 
-
         /**
          * User defined item code
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * User defined item code
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * Line number in the invoice
          */
-        public Builder lineNumber(long lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
+        public Builder lineNumber(@Nullable Long lineNumber) {
             this.lineNumber = JsonNullable.of(lineNumber);
             return this;
         }
 
         /**
-         * Line number in the invoice
-         */
-        public Builder lineNumber(JsonNullable<Long> lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
-            this.lineNumber = lineNumber;
-            return this;
-        }
-
-
-        /**
          * User defined description
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * User defined description
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Bill Line Item type
          */
-        public Builder type(BillLineItemType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable BillLineItemType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * Bill Line Item type
-         */
-        public Builder type(JsonNullable<? extends BillLineItemType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * Tax amount
          */
-        public Builder taxAmount(double taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
+        public Builder taxAmount(@Nullable Double taxAmount) {
             this.taxAmount = JsonNullable.of(taxAmount);
             return this;
         }
 
         /**
-         * Tax amount
-         */
-        public Builder taxAmount(JsonNullable<Double> taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
-            this.taxAmount = taxAmount;
-            return this;
-        }
-
-
-        /**
          * Total amount of the line item
          */
-        public Builder totalAmount(double totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable Double totalAmount) {
             this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
-        /**
-         * Total amount of the line item
-         */
-        public Builder totalAmount(JsonNullable<Double> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = totalAmount;
-            return this;
-        }
-
-
-        public Builder quantity(double quantity) {
-            Utils.checkNotNull(quantity, "quantity");
+        public Builder quantity(@Nullable Double quantity) {
             this.quantity = JsonNullable.of(quantity);
             return this;
         }
 
-        public Builder quantity(JsonNullable<Double> quantity) {
-            Utils.checkNotNull(quantity, "quantity");
-            this.quantity = quantity;
-            return this;
-        }
-
-
-        public Builder unitPrice(double unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
+        public Builder unitPrice(@Nullable Double unitPrice) {
             this.unitPrice = JsonNullable.of(unitPrice);
             return this;
         }
 
-        public Builder unitPrice(JsonNullable<Double> unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
-            this.unitPrice = unitPrice;
-            return this;
-        }
-
-
         /**
          * Description of the unit type the item is sold as, ie: kg, hour.
          */
-        public Builder unitOfMeasure(String unitOfMeasure) {
-            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+        public Builder unitOfMeasure(@Nullable String unitOfMeasure) {
             this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
             return this;
         }
 
         /**
-         * Description of the unit type the item is sold as, ie: kg, hour.
-         */
-        public Builder unitOfMeasure(JsonNullable<String> unitOfMeasure) {
-            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-            this.unitOfMeasure = unitOfMeasure;
-            return this;
-        }
-
-
-        /**
          * Discount percentage applied to the line item when supported downstream.
          */
-        public Builder discountPercentage(double discountPercentage) {
-            Utils.checkNotNull(discountPercentage, "discountPercentage");
+        public Builder discountPercentage(@Nullable Double discountPercentage) {
             this.discountPercentage = JsonNullable.of(discountPercentage);
             return this;
         }
 
         /**
-         * Discount percentage applied to the line item when supported downstream.
-         */
-        public Builder discountPercentage(JsonNullable<Double> discountPercentage) {
-            Utils.checkNotNull(discountPercentage, "discountPercentage");
-            this.discountPercentage = discountPercentage;
-            return this;
-        }
-
-
-        /**
          * Discount amount applied to the line item when supported downstream.
          */
-        public Builder discountAmount(double discountAmount) {
-            Utils.checkNotNull(discountAmount, "discountAmount");
+        public Builder discountAmount(@Nullable Double discountAmount) {
             this.discountAmount = JsonNullable.of(discountAmount);
             return this;
         }
 
         /**
-         * Discount amount applied to the line item when supported downstream.
-         */
-        public Builder discountAmount(JsonNullable<Double> discountAmount) {
-            Utils.checkNotNull(discountAmount, "discountAmount");
-            this.discountAmount = discountAmount;
-            return this;
-        }
-
-
-        /**
          * The ID of the location
          */
-        public Builder locationId(String locationId) {
-            Utils.checkNotNull(locationId, "locationId");
+        public Builder locationId(@Nullable String locationId) {
             this.locationId = JsonNullable.of(locationId);
             return this;
         }
 
         /**
-         * The ID of the location
-         */
-        public Builder locationId(JsonNullable<String> locationId) {
-            Utils.checkNotNull(locationId, "locationId");
-            this.locationId = locationId;
-            return this;
-        }
-
-
-        /**
          * The ID of the department
          */
-        public Builder departmentId(String departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
+        public Builder departmentId(@Nullable String departmentId) {
             this.departmentId = JsonNullable.of(departmentId);
             return this;
         }
 
-        /**
-         * The ID of the department
-         */
-        public Builder departmentId(JsonNullable<String> departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
-            this.departmentId = departmentId;
-            return this;
-        }
-
-
-        public Builder item(LinkedInvoiceItem item) {
-            Utils.checkNotNull(item, "item");
-            this.item = Optional.ofNullable(item);
-            return this;
-        }
-
-        public Builder item(Optional<? extends LinkedInvoiceItem> item) {
-            Utils.checkNotNull(item, "item");
+        public Builder item(@Nullable LinkedInvoiceItem item) {
             this.item = item;
             return this;
         }
 
-
-        public Builder taxRate(LinkedTaxRate taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRate taxRate) {
             this.taxRate = taxRate;
             return this;
         }
 
-
-        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        public Builder ledgerAccount(@Nullable LinkedLedgerAccount ledgerAccount) {
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccount> ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-            this.ledgerAccount = ledgerAccount;
-            return this;
-        }
-
-
         /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
         /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public BillLineItem build() {
-
             return new BillLineItem(
                 id, rowId, code,
                 lineNumber, description, type,

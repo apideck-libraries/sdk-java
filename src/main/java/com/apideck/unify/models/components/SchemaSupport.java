@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -25,25 +25,23 @@ public class SchemaSupport {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported")
-    private Optional<Boolean> supported;
+    private Boolean supported;
 
     @JsonCreator
     public SchemaSupport(
-            @JsonProperty("supported") Optional<Boolean> supported) {
-        Utils.checkNotNull(supported, "supported");
+            @JsonProperty("supported") @Nullable Boolean supported) {
         this.supported = supported;
     }
     
     public SchemaSupport() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Can a resource schema be retrieved for this connector?
      */
-    @JsonIgnore
     public Optional<Boolean> supported() {
-        return supported;
+        return Optional.ofNullable(this.supported);
     }
 
     public static Builder builder() {
@@ -54,21 +52,11 @@ public class SchemaSupport {
     /**
      * Can a resource schema be retrieved for this connector?
      */
-    public SchemaSupport withSupported(boolean supported) {
-        Utils.checkNotNull(supported, "supported");
-        this.supported = Optional.ofNullable(supported);
-        return this;
-    }
-
-
-    /**
-     * Can a resource schema be retrieved for this connector?
-     */
-    public SchemaSupport withSupported(Optional<Boolean> supported) {
-        Utils.checkNotNull(supported, "supported");
+    public SchemaSupport withSupported(@Nullable Boolean supported) {
         this.supported = supported;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -98,33 +86,21 @@ public class SchemaSupport {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> supported = Optional.empty();
+        private Boolean supported;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Can a resource schema be retrieved for this connector?
          */
-        public Builder supported(boolean supported) {
-            Utils.checkNotNull(supported, "supported");
-            this.supported = Optional.ofNullable(supported);
-            return this;
-        }
-
-        /**
-         * Can a resource schema be retrieved for this connector?
-         */
-        public Builder supported(Optional<Boolean> supported) {
-            Utils.checkNotNull(supported, "supported");
+        public Builder supported(@Nullable Boolean supported) {
             this.supported = supported;
             return this;
         }
 
         public SchemaSupport build() {
-
             return new SchemaSupport(
                 supported);
         }

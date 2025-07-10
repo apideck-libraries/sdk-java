@@ -6,7 +6,8 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,7 +18,7 @@ public class VaultConsumersOneRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * ID of the consumer to return
@@ -27,33 +28,30 @@ public class VaultConsumersOneRequest {
 
     @JsonCreator
     public VaultConsumersOneRequest(
-            Optional<String> appId,
-            String consumerId) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(consumerId, "consumerId");
+            @Nullable String appId,
+            @Nonnull String consumerId) {
         this.appId = appId;
-        this.consumerId = consumerId;
+        this.consumerId = Optional.ofNullable(consumerId)
+            .orElseThrow(() -> new IllegalArgumentException("consumerId cannot be null"));
     }
     
     public VaultConsumersOneRequest(
-            String consumerId) {
-        this(Optional.empty(), consumerId);
+            @Nonnull String consumerId) {
+        this(null, consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * ID of the consumer to return
      */
-    @JsonIgnore
     public String consumerId() {
-        return consumerId;
+        return this.consumerId;
     }
 
     public static Builder builder() {
@@ -64,30 +62,20 @@ public class VaultConsumersOneRequest {
     /**
      * The ID of your Unify application
      */
-    public VaultConsumersOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConsumersOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConsumersOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
+
     /**
      * ID of the consumer to return
      */
-    public VaultConsumersOneRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
+    public VaultConsumersOneRequest withConsumerId(@Nonnull String consumerId) {
+        this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -119,7 +107,7 @@ public class VaultConsumersOneRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private String consumerId;
 
@@ -127,37 +115,23 @@ public class VaultConsumersOneRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * ID of the consumer to return
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = consumerId;
+        public Builder consumerId(@Nonnull String consumerId) {
+            this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
             return this;
         }
 
         public VaultConsumersOneRequest build() {
-
             return new VaultConsumersOneRequest(
                 appId, consumerId);
         }

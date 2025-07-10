@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllReque
 import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllResponse;
 import com.apideck.unify.operations.VaultConnectionCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class ConnectionCustomMappings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionCustomMappingsAllResponse list(VaultConnectionCustomMappingsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public VaultConnectionCustomMappingsAllResponse list(@Nonnull VaultConnectionCustomMappingsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class ConnectionCustomMappings {
      * @throws Exception if the API call fails
      */
     public VaultConnectionCustomMappingsAllResponse list(
-            VaultConnectionCustomMappingsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultConnectionCustomMappingsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
               = new VaultConnectionCustomMappingsAllOperation(
                 sdkConfiguration,

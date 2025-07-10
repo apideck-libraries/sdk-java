@@ -6,7 +6,7 @@ package com.apideck.unify.models.operations;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -18,36 +18,32 @@ public class VaultConnectionsAllRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Scope results to Unified API
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=api")
-    private Optional<String> api;
+    private String api;
 
     /**
      * Scopes results to connections that have been configured or not
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=configured")
-    private Optional<Boolean> configured;
+    private Boolean configured;
 
     @JsonCreator
     public VaultConnectionsAllRequest(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> api,
-            Optional<Boolean> configured) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(api, "api");
-        Utils.checkNotNull(configured, "configured");
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String api,
+            @Nullable Boolean configured) {
         this.consumerId = consumerId;
         this.appId = appId;
         this.api = api;
@@ -55,40 +51,36 @@ public class VaultConnectionsAllRequest {
     }
     
     public VaultConnectionsAllRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Scope results to Unified API
      */
-    @JsonIgnore
     public Optional<String> api() {
-        return api;
+        return Optional.ofNullable(this.api);
     }
 
     /**
      * Scopes results to connections that have been configured or not
      */
-    @JsonIgnore
     public Optional<Boolean> configured() {
-        return configured;
+        return Optional.ofNullable(this.configured);
     }
 
     public static Builder builder() {
@@ -99,78 +91,38 @@ public class VaultConnectionsAllRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public VaultConnectionsAllRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public VaultConnectionsAllRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public VaultConnectionsAllRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public VaultConnectionsAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public VaultConnectionsAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public VaultConnectionsAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Scope results to Unified API
-     */
-    public VaultConnectionsAllRequest withApi(String api) {
-        Utils.checkNotNull(api, "api");
-        this.api = Optional.ofNullable(api);
-        return this;
-    }
-
 
     /**
      * Scope results to Unified API
      */
-    public VaultConnectionsAllRequest withApi(Optional<String> api) {
-        Utils.checkNotNull(api, "api");
+    public VaultConnectionsAllRequest withApi(@Nullable String api) {
         this.api = api;
         return this;
     }
 
-    /**
-     * Scopes results to connections that have been configured or not
-     */
-    public VaultConnectionsAllRequest withConfigured(boolean configured) {
-        Utils.checkNotNull(configured, "configured");
-        this.configured = Optional.ofNullable(configured);
-        return this;
-    }
-
 
     /**
      * Scopes results to connections that have been configured or not
      */
-    public VaultConnectionsAllRequest withConfigured(Optional<Boolean> configured) {
-        Utils.checkNotNull(configured, "configured");
+    public VaultConnectionsAllRequest withConfigured(@Nullable Boolean configured) {
         this.configured = configured;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -207,96 +159,51 @@ public class VaultConnectionsAllRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> api = Optional.empty();
+        private String api;
 
-        private Optional<Boolean> configured = Optional.empty();
+        private Boolean configured;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Scope results to Unified API
          */
-        public Builder api(String api) {
-            Utils.checkNotNull(api, "api");
-            this.api = Optional.ofNullable(api);
-            return this;
-        }
-
-        /**
-         * Scope results to Unified API
-         */
-        public Builder api(Optional<String> api) {
-            Utils.checkNotNull(api, "api");
+        public Builder api(@Nullable String api) {
             this.api = api;
             return this;
         }
 
-
         /**
          * Scopes results to connections that have been configured or not
          */
-        public Builder configured(boolean configured) {
-            Utils.checkNotNull(configured, "configured");
-            this.configured = Optional.ofNullable(configured);
-            return this;
-        }
-
-        /**
-         * Scopes results to connections that have been configured or not
-         */
-        public Builder configured(Optional<Boolean> configured) {
-            Utils.checkNotNull(configured, "configured");
+        public Builder configured(@Nullable Boolean configured) {
             this.configured = configured;
             return this;
         }
 
         public VaultConnectionsAllRequest build() {
-
             return new VaultConnectionsAllRequest(
                 consumerId, appId, api,
                 configured);

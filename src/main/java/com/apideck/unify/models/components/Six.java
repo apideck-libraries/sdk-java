@@ -49,7 +49,6 @@ public class Six {
         }
 
         public Six build() {
-
             return new Six(
                 );
         }

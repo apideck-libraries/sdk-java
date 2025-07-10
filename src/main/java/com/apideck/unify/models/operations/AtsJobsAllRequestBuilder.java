@@ -15,56 +15,55 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class AtsJobsAllRequestBuilder {
-
-    private AtsJobsAllRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private AtsJobsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public AtsJobsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public AtsJobsAllRequestBuilder request(AtsJobsAllRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public AtsJobsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public AtsJobsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public AtsJobsAllRequestBuilder request(@Nonnull AtsJobsAllRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private AtsJobsAllRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public AtsJobsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
               = new AtsJobsAllOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
-
+    
     /**
     * Returns an iterable that performs next page calls till no more pages
     * are returned.
@@ -79,29 +78,27 @@ public class AtsJobsAllRequestBuilder {
     * @return An iterable that can be used to iterate through all pages
     */
     public Iterable<AtsJobsAllResponse> callAsIterable() {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
-        RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
-              = new AtsJobsAllOperation(
-                sdkConfiguration,
-                options);
+        AtsJobsAllRequest request = this.request;
+        Options options = optionsBuilder.build();
+        RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation =
+                new AtsJobsAllOperation(
+                    sdkConfiguration,
+                    options);
+        
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                AtsJobsAllRequest::withCursor,
+            AtsJobsAllRequest::withCursor,
             nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+
         return () -> transform(iterator, operation::handleResponse);
     }
 
     /**
-     * Returns a stream that performs next page calls till no more pages
-     * are returned.
-     **/  
+    * Returns a stream that performs next page calls till no more pages
+    * are returned.
+    **/  
     public Stream<AtsJobsAllResponse> callAsStream() {
         return toStream(callAsIterable());
     }
-
 }

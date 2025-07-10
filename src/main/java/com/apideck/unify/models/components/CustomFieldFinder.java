@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -23,7 +22,7 @@ public class CustomFieldFinder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Custom Field name to use as a label if provided
@@ -44,78 +43,69 @@ public class CustomFieldFinder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<? extends Object> value;
+    private Object value;
 
     /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("finder")
-    private Optional<String> finder;
+    private String finder;
 
     @JsonCreator
     public CustomFieldFinder(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("value") Optional<? extends Object> value,
-            @JsonProperty("finder") Optional<String> finder) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(finder, "finder");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("value") @Nullable Object value,
+            @JsonProperty("finder") @Nullable String finder) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.value = value;
         this.finder = finder;
     }
     
     public CustomFieldFinder() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Custom Field ID
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Custom Field name to use as a label if provided
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * More information about the custom field
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Custom Field value
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Object> value() {
-        return (Optional<Object>) value;
+        return Optional.ofNullable(this.value);
     }
 
     /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
-    @JsonIgnore
     public Optional<String> finder() {
-        return finder;
+        return Optional.ofNullable(this.finder);
     }
 
     public static Builder builder() {
@@ -126,95 +116,47 @@ public class CustomFieldFinder {
     /**
      * Custom Field ID
      */
-    public CustomFieldFinder withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * Custom Field ID
-     */
-    public CustomFieldFinder withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public CustomFieldFinder withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * Custom Field name to use as a label if provided
      */
-    public CustomFieldFinder withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public CustomFieldFinder withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Custom Field name to use as a label if provided
-     */
-    public CustomFieldFinder withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * More information about the custom field
      */
-    public CustomFieldFinder withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public CustomFieldFinder withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * More information about the custom field
-     */
-    public CustomFieldFinder withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Custom Field value
      */
-    public CustomFieldFinder withValue(Object value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
-
-
-    /**
-     * Custom Field value
-     */
-    public CustomFieldFinder withValue(Optional<? extends Object> value) {
-        Utils.checkNotNull(value, "value");
+    public CustomFieldFinder withValue(@Nullable Object value) {
         this.value = value;
         return this;
     }
 
-    /**
-     * JSONPath finder for retrieving this value when mapping a response payload from downstream
-     */
-    public CustomFieldFinder withFinder(String finder) {
-        Utils.checkNotNull(finder, "finder");
-        this.finder = Optional.ofNullable(finder);
-        return this;
-    }
-
 
     /**
      * JSONPath finder for retrieving this value when mapping a response payload from downstream
      */
-    public CustomFieldFinder withFinder(Optional<String> finder) {
-        Utils.checkNotNull(finder, "finder");
+    public CustomFieldFinder withFinder(@Nullable String finder) {
         this.finder = finder;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -253,117 +195,61 @@ public class CustomFieldFinder {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends Object> value = Optional.empty();
+        private Object value;
 
-        private Optional<String> finder = Optional.empty();
+        private String finder;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Custom Field ID
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * Custom Field ID
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Custom Field name to use as a label if provided
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Custom Field name to use as a label if provided
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * More information about the custom field
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * More information about the custom field
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Custom Field value
          */
-        public Builder value(Object value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        /**
-         * Custom Field value
-         */
-        public Builder value(Optional<? extends Object> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable Object value) {
             this.value = value;
             return this;
         }
 
-
         /**
          * JSONPath finder for retrieving this value when mapping a response payload from downstream
          */
-        public Builder finder(String finder) {
-            Utils.checkNotNull(finder, "finder");
-            this.finder = Optional.ofNullable(finder);
-            return this;
-        }
-
-        /**
-         * JSONPath finder for retrieving this value when mapping a response payload from downstream
-         */
-        public Builder finder(Optional<String> finder) {
-            Utils.checkNotNull(finder, "finder");
+        public Builder finder(@Nullable String finder) {
             this.finder = finder;
             return this;
         }
 
         public CustomFieldFinder build() {
-
             return new CustomFieldFinder(
                 id, name, description,
                 value, finder);

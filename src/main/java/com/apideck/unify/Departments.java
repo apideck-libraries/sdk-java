@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingDepartmentsDeleteOperation;
 import com.apideck.unify.operations.AccountingDepartmentsOneOperation;
 import com.apideck.unify.operations.AccountingDepartmentsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingDepartmentsAllResponse list(@Nonnull AccountingDepartmentsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Departments {
      * @throws Exception if the API call fails
      */
     public AccountingDepartmentsAllResponse list(
-            AccountingDepartmentsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingDepartmentsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
               = new AccountingDepartmentsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingDepartmentsAddResponse create(@Nonnull AccountingDepartmentsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Departments {
      * @throws Exception if the API call fails
      */
     public AccountingDepartmentsAddResponse create(
-            AccountingDepartmentsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingDepartmentsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
               = new AccountingDepartmentsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingDepartmentsOneResponse get(@Nonnull AccountingDepartmentsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Departments {
      * @throws Exception if the API call fails
      */
     public AccountingDepartmentsOneResponse get(
-            AccountingDepartmentsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingDepartmentsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
               = new AccountingDepartmentsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingDepartmentsUpdateResponse update(@Nonnull AccountingDepartmentsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Departments {
      * @throws Exception if the API call fails
      */
     public AccountingDepartmentsUpdateResponse update(
-            AccountingDepartmentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingDepartmentsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
               = new AccountingDepartmentsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingDepartmentsDeleteResponse delete(@Nonnull AccountingDepartmentsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Departments {
      * @throws Exception if the API call fails
      */
     public AccountingDepartmentsDeleteResponse delete(
-            AccountingDepartmentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingDepartmentsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
               = new AccountingDepartmentsDeleteOperation(
                 sdkConfiguration,

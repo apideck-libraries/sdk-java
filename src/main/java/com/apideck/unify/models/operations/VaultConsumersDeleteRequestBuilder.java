@@ -10,71 +10,59 @@ import com.apideck.unify.operations.VaultConsumersDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultConsumersDeleteRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String consumerId;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultConsumersDeleteRequest.Builder pojoBuilder;
+    private VaultConsumersDeleteRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultConsumersDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultConsumersDeleteRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultConsumersDeleteRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public VaultConsumersDeleteRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersDeleteRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public VaultConsumersDeleteRequestBuilder consumerId(@Nonnull String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConsumersDeleteRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-                
     public VaultConsumersDeleteRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultConsumersDeleteRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultConsumersDeleteRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultConsumersDeleteRequest buildRequest() {
-
-        VaultConsumersDeleteRequest request = new VaultConsumersDeleteRequest(appId,
-            consumerId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultConsumersDeleteResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
               = new VaultConsumersDeleteOperation(
                 sdkConfiguration,
                 options);
-        VaultConsumersDeleteRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -26,7 +25,7 @@ public class LinkedSupplierInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The display name of the supplier.
@@ -38,45 +37,39 @@ public class LinkedSupplierInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends Address> address;
+    private Address address;
 
     @JsonCreator
     public LinkedSupplierInput(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("address") Optional<? extends Address> address) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(address, "address");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("address") @Nullable Address address) {
         this.id = id;
-        this.displayName = displayName;
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
         this.address = address;
     }
     
     public LinkedSupplierInput() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * The ID of the supplier this entity is linked to.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The display name of the supplier.
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> address() {
-        return (Optional<Address>) address;
+        return Optional.ofNullable(this.address);
     }
 
     public static Builder builder() {
@@ -87,52 +80,26 @@ public class LinkedSupplierInput {
     /**
      * The ID of the supplier this entity is linked to.
      */
-    public LinkedSupplierInput withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The ID of the supplier this entity is linked to.
-     */
-    public LinkedSupplierInput withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedSupplierInput withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The display name of the supplier.
      */
-    public LinkedSupplierInput withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public LinkedSupplierInput withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The display name of the supplier.
-     */
-    public LinkedSupplierInput withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
-    public LinkedSupplierInput withAddress(Address address) {
-        Utils.checkNotNull(address, "address");
-        this.address = Optional.ofNullable(address);
-        return this;
-    }
-
-
-    public LinkedSupplierInput withAddress(Optional<? extends Address> address) {
-        Utils.checkNotNull(address, "address");
+    public LinkedSupplierInput withAddress(@Nullable Address address) {
         this.address = address;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -166,69 +133,38 @@ public class LinkedSupplierInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private Optional<? extends Address> address = Optional.empty();
+        private Address address;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the supplier this entity is linked to.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The ID of the supplier this entity is linked to.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The display name of the supplier.
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
-        /**
-         * The display name of the supplier.
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        public Builder address(Address address) {
-            Utils.checkNotNull(address, "address");
-            this.address = Optional.ofNullable(address);
-            return this;
-        }
-
-        public Builder address(Optional<? extends Address> address) {
-            Utils.checkNotNull(address, "address");
+        public Builder address(@Nullable Address address) {
             this.address = address;
             return this;
         }
 
         public LinkedSupplierInput build() {
-
             return new LinkedSupplierInput(
                 id, displayName, address);
         }

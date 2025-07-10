@@ -10,47 +10,46 @@ import com.apideck.unify.operations.HrisCompaniesAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class HrisCompaniesAddRequestBuilder {
-
-    private HrisCompaniesAddRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private HrisCompaniesAddRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public HrisCompaniesAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public HrisCompaniesAddRequestBuilder request(HrisCompaniesAddRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public HrisCompaniesAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public HrisCompaniesAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public HrisCompaniesAddRequestBuilder request(@Nonnull HrisCompaniesAddRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private HrisCompaniesAddRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public HrisCompaniesAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
               = new HrisCompaniesAddOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

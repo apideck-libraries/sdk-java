@@ -6,15 +6,14 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -26,14 +25,14 @@ public class FormField {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The label of the field
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     /**
      * The placeholder for the form field
@@ -52,26 +51,26 @@ public class FormField {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends FormFieldType> type;
+    private FormFieldType type;
 
     /**
      * Indicates if the form field is required, which means it must be filled in before the form can be submitted
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("required")
-    private Optional<Boolean> required;
+    private Boolean required;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_field")
-    private Optional<Boolean> customField;
+    private Boolean customField;
 
     /**
      * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allow_custom_values")
-    private Optional<Boolean> allowCustomValues;
+    private Boolean allowCustomValues;
 
     /**
      * Indicates if the form field is displayed in a “read-only” mode.
@@ -118,176 +117,153 @@ public class FormField {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private Optional<? extends List<FormFieldOption>> options;
+    private List<FormFieldOption> options;
 
     @JsonCreator
     public FormField(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") Optional<String> label,
-            @JsonProperty("placeholder") JsonNullable<String> placeholder,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") Optional<? extends FormFieldType> type,
-            @JsonProperty("required") Optional<Boolean> required,
-            @JsonProperty("custom_field") Optional<Boolean> customField,
-            @JsonProperty("allow_custom_values") Optional<Boolean> allowCustomValues,
-            @JsonProperty("disabled") JsonNullable<Boolean> disabled,
-            @JsonProperty("hidden") JsonNullable<Boolean> hidden,
-            @JsonProperty("deprecated") JsonNullable<Boolean> deprecated,
-            @JsonProperty("sensitive") JsonNullable<Boolean> sensitive,
-            @JsonProperty("prefix") JsonNullable<String> prefix,
-            @JsonProperty("suffix") JsonNullable<String> suffix,
-            @JsonProperty("options") Optional<? extends List<FormFieldOption>> options) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(placeholder, "placeholder");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(required, "required");
-        Utils.checkNotNull(customField, "customField");
-        Utils.checkNotNull(allowCustomValues, "allowCustomValues");
-        Utils.checkNotNull(disabled, "disabled");
-        Utils.checkNotNull(hidden, "hidden");
-        Utils.checkNotNull(deprecated, "deprecated");
-        Utils.checkNotNull(sensitive, "sensitive");
-        Utils.checkNotNull(prefix, "prefix");
-        Utils.checkNotNull(suffix, "suffix");
-        Utils.checkNotNull(options, "options");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nullable String label,
+            @JsonProperty("placeholder") @Nullable JsonNullable<String> placeholder,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("type") @Nullable FormFieldType type,
+            @JsonProperty("required") @Nullable Boolean required,
+            @JsonProperty("custom_field") @Nullable Boolean customField,
+            @JsonProperty("allow_custom_values") @Nullable Boolean allowCustomValues,
+            @JsonProperty("disabled") @Nullable JsonNullable<Boolean> disabled,
+            @JsonProperty("hidden") @Nullable JsonNullable<Boolean> hidden,
+            @JsonProperty("deprecated") @Nullable JsonNullable<Boolean> deprecated,
+            @JsonProperty("sensitive") @Nullable JsonNullable<Boolean> sensitive,
+            @JsonProperty("prefix") @Nullable JsonNullable<String> prefix,
+            @JsonProperty("suffix") @Nullable JsonNullable<String> suffix,
+            @JsonProperty("options") @Nullable List<FormFieldOption> options) {
         this.id = id;
         this.label = label;
-        this.placeholder = placeholder;
-        this.description = description;
+        this.placeholder = Optional.ofNullable(placeholder)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.type = type;
         this.required = required;
         this.customField = customField;
-        this.allowCustomValues = allowCustomValues;
-        this.disabled = disabled;
-        this.hidden = hidden;
-        this.deprecated = deprecated;
-        this.sensitive = sensitive;
-        this.prefix = prefix;
-        this.suffix = suffix;
+        this.allowCustomValues = Optional.ofNullable(allowCustomValues)
+            .orElse(Builder._SINGLETON_VALUE_AllowCustomValues.value());
+        this.disabled = Optional.ofNullable(disabled)
+            .orElse(JsonNullable.undefined());
+        this.hidden = Optional.ofNullable(hidden)
+            .orElse(JsonNullable.undefined());
+        this.deprecated = Optional.ofNullable(deprecated)
+            .orElse(JsonNullable.undefined());
+        this.sensitive = Optional.ofNullable(sensitive)
+            .orElse(JsonNullable.undefined());
+        this.prefix = Optional.ofNullable(prefix)
+            .orElse(JsonNullable.undefined());
+        this.suffix = Optional.ofNullable(suffix)
+            .orElse(JsonNullable.undefined());
         this.options = options;
     }
     
     public FormField() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The unique identifier of the form field.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The label of the field
      */
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
     /**
      * The placeholder for the form field
      */
-    @JsonIgnore
     public JsonNullable<String> placeholder() {
-        return placeholder;
+        return this.placeholder;
     }
 
     /**
      * The description of the form field
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<FormFieldType> type() {
-        return (Optional<FormFieldType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * Indicates if the form field is required, which means it must be filled in before the form can be submitted
      */
-    @JsonIgnore
     public Optional<Boolean> required() {
-        return required;
+        return Optional.ofNullable(this.required);
     }
 
-    @JsonIgnore
     public Optional<Boolean> customField() {
-        return customField;
+        return Optional.ofNullable(this.customField);
     }
 
     /**
      * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
      */
-    @JsonIgnore
     public Optional<Boolean> allowCustomValues() {
-        return allowCustomValues;
+        return Optional.ofNullable(this.allowCustomValues);
     }
 
     /**
      * Indicates if the form field is displayed in a “read-only” mode.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> disabled() {
-        return disabled;
+        return this.disabled;
     }
 
     /**
      * Indicates if the form field is not displayed but the value that is being stored on the connection.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> hidden() {
-        return hidden;
+        return this.hidden;
     }
 
     /**
      * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> deprecated() {
-        return deprecated;
+        return this.deprecated;
     }
 
     /**
      * Indicates if the form field contains sensitive data, which will display the value as a masked input.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> sensitive() {
-        return sensitive;
+        return this.sensitive;
     }
 
     /**
      * Prefix to display in front of the form field.
      */
-    @JsonIgnore
     public JsonNullable<String> prefix() {
-        return prefix;
+        return this.prefix;
     }
 
     /**
      * Suffix to display next to the form field.
      */
-    @JsonIgnore
     public JsonNullable<String> suffix() {
-        return suffix;
+        return this.suffix;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<FormFieldOption>> options() {
-        return (Optional<List<FormFieldOption>>) options;
+        return Optional.ofNullable(this.options);
     }
 
     public static Builder builder() {
@@ -298,261 +274,128 @@ public class FormField {
     /**
      * The unique identifier of the form field.
      */
-    public FormField withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the form field.
-     */
-    public FormField withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public FormField withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The label of the field
-     */
-    public FormField withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
-
 
     /**
      * The label of the field
      */
-    public FormField withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public FormField withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
 
+
     /**
      * The placeholder for the form field
      */
-    public FormField withPlaceholder(String placeholder) {
-        Utils.checkNotNull(placeholder, "placeholder");
+    public FormField withPlaceholder(@Nullable String placeholder) {
         this.placeholder = JsonNullable.of(placeholder);
         return this;
     }
 
-    /**
-     * The placeholder for the form field
-     */
-    public FormField withPlaceholder(JsonNullable<String> placeholder) {
-        Utils.checkNotNull(placeholder, "placeholder");
-        this.placeholder = placeholder;
-        return this;
-    }
 
     /**
      * The description of the form field
      */
-    public FormField withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public FormField withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The description of the form field
-     */
-    public FormField withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
-    public FormField withType(FormFieldType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public FormField withType(Optional<? extends FormFieldType> type) {
-        Utils.checkNotNull(type, "type");
+    public FormField withType(@Nullable FormFieldType type) {
         this.type = type;
         return this;
     }
 
-    /**
-     * Indicates if the form field is required, which means it must be filled in before the form can be submitted
-     */
-    public FormField withRequired(boolean required) {
-        Utils.checkNotNull(required, "required");
-        this.required = Optional.ofNullable(required);
-        return this;
-    }
-
 
     /**
      * Indicates if the form field is required, which means it must be filled in before the form can be submitted
      */
-    public FormField withRequired(Optional<Boolean> required) {
-        Utils.checkNotNull(required, "required");
+    public FormField withRequired(@Nullable Boolean required) {
         this.required = required;
         return this;
     }
 
-    public FormField withCustomField(boolean customField) {
-        Utils.checkNotNull(customField, "customField");
-        this.customField = Optional.ofNullable(customField);
-        return this;
-    }
 
-
-    public FormField withCustomField(Optional<Boolean> customField) {
-        Utils.checkNotNull(customField, "customField");
+    public FormField withCustomField(@Nullable Boolean customField) {
         this.customField = customField;
         return this;
     }
 
-    /**
-     * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
-     */
-    public FormField withAllowCustomValues(boolean allowCustomValues) {
-        Utils.checkNotNull(allowCustomValues, "allowCustomValues");
-        this.allowCustomValues = Optional.ofNullable(allowCustomValues);
-        return this;
-    }
-
 
     /**
      * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
      */
-    public FormField withAllowCustomValues(Optional<Boolean> allowCustomValues) {
-        Utils.checkNotNull(allowCustomValues, "allowCustomValues");
+    public FormField withAllowCustomValues(@Nullable Boolean allowCustomValues) {
         this.allowCustomValues = allowCustomValues;
         return this;
     }
 
+
     /**
      * Indicates if the form field is displayed in a “read-only” mode.
      */
-    public FormField withDisabled(boolean disabled) {
-        Utils.checkNotNull(disabled, "disabled");
+    public FormField withDisabled(@Nullable Boolean disabled) {
         this.disabled = JsonNullable.of(disabled);
         return this;
     }
 
-    /**
-     * Indicates if the form field is displayed in a “read-only” mode.
-     */
-    public FormField withDisabled(JsonNullable<Boolean> disabled) {
-        Utils.checkNotNull(disabled, "disabled");
-        this.disabled = disabled;
-        return this;
-    }
 
     /**
      * Indicates if the form field is not displayed but the value that is being stored on the connection.
      */
-    public FormField withHidden(boolean hidden) {
-        Utils.checkNotNull(hidden, "hidden");
+    public FormField withHidden(@Nullable Boolean hidden) {
         this.hidden = JsonNullable.of(hidden);
         return this;
     }
 
-    /**
-     * Indicates if the form field is not displayed but the value that is being stored on the connection.
-     */
-    public FormField withHidden(JsonNullable<Boolean> hidden) {
-        Utils.checkNotNull(hidden, "hidden");
-        this.hidden = hidden;
-        return this;
-    }
 
     /**
      * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
      */
-    public FormField withDeprecated(boolean deprecated) {
-        Utils.checkNotNull(deprecated, "deprecated");
+    public FormField withDeprecated(@Nullable Boolean deprecated) {
         this.deprecated = JsonNullable.of(deprecated);
         return this;
     }
 
-    /**
-     * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
-     */
-    public FormField withDeprecated(JsonNullable<Boolean> deprecated) {
-        Utils.checkNotNull(deprecated, "deprecated");
-        this.deprecated = deprecated;
-        return this;
-    }
 
     /**
      * Indicates if the form field contains sensitive data, which will display the value as a masked input.
      */
-    public FormField withSensitive(boolean sensitive) {
-        Utils.checkNotNull(sensitive, "sensitive");
+    public FormField withSensitive(@Nullable Boolean sensitive) {
         this.sensitive = JsonNullable.of(sensitive);
         return this;
     }
 
-    /**
-     * Indicates if the form field contains sensitive data, which will display the value as a masked input.
-     */
-    public FormField withSensitive(JsonNullable<Boolean> sensitive) {
-        Utils.checkNotNull(sensitive, "sensitive");
-        this.sensitive = sensitive;
-        return this;
-    }
 
     /**
      * Prefix to display in front of the form field.
      */
-    public FormField withPrefix(String prefix) {
-        Utils.checkNotNull(prefix, "prefix");
+    public FormField withPrefix(@Nullable String prefix) {
         this.prefix = JsonNullable.of(prefix);
         return this;
     }
 
-    /**
-     * Prefix to display in front of the form field.
-     */
-    public FormField withPrefix(JsonNullable<String> prefix) {
-        Utils.checkNotNull(prefix, "prefix");
-        this.prefix = prefix;
-        return this;
-    }
 
     /**
      * Suffix to display next to the form field.
      */
-    public FormField withSuffix(String suffix) {
-        Utils.checkNotNull(suffix, "suffix");
+    public FormField withSuffix(@Nullable String suffix) {
         this.suffix = JsonNullable.of(suffix);
         return this;
     }
 
-    /**
-     * Suffix to display next to the form field.
-     */
-    public FormField withSuffix(JsonNullable<String> suffix) {
-        Utils.checkNotNull(suffix, "suffix");
-        this.suffix = suffix;
-        return this;
-    }
 
-    public FormField withOptions(List<FormFieldOption> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = Optional.ofNullable(options);
-        return this;
-    }
-
-
-    public FormField withOptions(Optional<? extends List<FormFieldOption>> options) {
-        Utils.checkNotNull(options, "options");
+    public FormField withOptions(@Nullable List<FormFieldOption> options) {
         this.options = options;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -614,312 +457,152 @@ public class FormField {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
-        private JsonNullable<String> placeholder = JsonNullable.undefined();
+        private JsonNullable<String> placeholder;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends FormFieldType> type = Optional.empty();
+        private FormFieldType type;
 
-        private Optional<Boolean> required = Optional.empty();
+        private Boolean required;
 
-        private Optional<Boolean> customField = Optional.empty();
+        private Boolean customField;
 
-        private Optional<Boolean> allowCustomValues;
+        private Boolean allowCustomValues;
 
-        private JsonNullable<Boolean> disabled = JsonNullable.undefined();
+        private JsonNullable<Boolean> disabled;
 
-        private JsonNullable<Boolean> hidden = JsonNullable.undefined();
+        private JsonNullable<Boolean> hidden;
 
-        private JsonNullable<Boolean> deprecated = JsonNullable.undefined();
+        private JsonNullable<Boolean> deprecated;
 
-        private JsonNullable<Boolean> sensitive = JsonNullable.undefined();
+        private JsonNullable<Boolean> sensitive;
 
-        private JsonNullable<String> prefix = JsonNullable.undefined();
+        private JsonNullable<String> prefix;
 
-        private JsonNullable<String> suffix = JsonNullable.undefined();
+        private JsonNullable<String> suffix;
 
-        private Optional<? extends List<FormFieldOption>> options = Optional.empty();
+        private List<FormFieldOption> options;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the form field.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the form field.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The label of the field
          */
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        /**
-         * The label of the field
-         */
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
-
         /**
          * The placeholder for the form field
          */
-        public Builder placeholder(String placeholder) {
-            Utils.checkNotNull(placeholder, "placeholder");
+        public Builder placeholder(@Nullable String placeholder) {
             this.placeholder = JsonNullable.of(placeholder);
             return this;
         }
 
         /**
-         * The placeholder for the form field
-         */
-        public Builder placeholder(JsonNullable<String> placeholder) {
-            Utils.checkNotNull(placeholder, "placeholder");
-            this.placeholder = placeholder;
-            return this;
-        }
-
-
-        /**
          * The description of the form field
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
-        /**
-         * The description of the form field
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        public Builder type(FormFieldType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends FormFieldType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable FormFieldType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * Indicates if the form field is required, which means it must be filled in before the form can be submitted
          */
-        public Builder required(boolean required) {
-            Utils.checkNotNull(required, "required");
-            this.required = Optional.ofNullable(required);
-            return this;
-        }
-
-        /**
-         * Indicates if the form field is required, which means it must be filled in before the form can be submitted
-         */
-        public Builder required(Optional<Boolean> required) {
-            Utils.checkNotNull(required, "required");
+        public Builder required(@Nullable Boolean required) {
             this.required = required;
             return this;
         }
 
-
-        public Builder customField(boolean customField) {
-            Utils.checkNotNull(customField, "customField");
-            this.customField = Optional.ofNullable(customField);
-            return this;
-        }
-
-        public Builder customField(Optional<Boolean> customField) {
-            Utils.checkNotNull(customField, "customField");
+        public Builder customField(@Nullable Boolean customField) {
             this.customField = customField;
             return this;
         }
 
-
         /**
          * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
          */
-        public Builder allowCustomValues(boolean allowCustomValues) {
-            Utils.checkNotNull(allowCustomValues, "allowCustomValues");
-            this.allowCustomValues = Optional.ofNullable(allowCustomValues);
-            return this;
-        }
-
-        /**
-         * Only applicable to select fields. Allow the user to add a custom value though the option select if the desired value is not in the option select list.
-         */
-        public Builder allowCustomValues(Optional<Boolean> allowCustomValues) {
-            Utils.checkNotNull(allowCustomValues, "allowCustomValues");
+        public Builder allowCustomValues(@Nullable Boolean allowCustomValues) {
             this.allowCustomValues = allowCustomValues;
             return this;
         }
 
-
         /**
          * Indicates if the form field is displayed in a “read-only” mode.
          */
-        public Builder disabled(boolean disabled) {
-            Utils.checkNotNull(disabled, "disabled");
+        public Builder disabled(@Nullable Boolean disabled) {
             this.disabled = JsonNullable.of(disabled);
             return this;
         }
 
         /**
-         * Indicates if the form field is displayed in a “read-only” mode.
-         */
-        public Builder disabled(JsonNullable<Boolean> disabled) {
-            Utils.checkNotNull(disabled, "disabled");
-            this.disabled = disabled;
-            return this;
-        }
-
-
-        /**
          * Indicates if the form field is not displayed but the value that is being stored on the connection.
          */
-        public Builder hidden(boolean hidden) {
-            Utils.checkNotNull(hidden, "hidden");
+        public Builder hidden(@Nullable Boolean hidden) {
             this.hidden = JsonNullable.of(hidden);
             return this;
         }
 
         /**
-         * Indicates if the form field is not displayed but the value that is being stored on the connection.
-         */
-        public Builder hidden(JsonNullable<Boolean> hidden) {
-            Utils.checkNotNull(hidden, "hidden");
-            this.hidden = hidden;
-            return this;
-        }
-
-
-        /**
          * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
          */
-        public Builder deprecated(boolean deprecated) {
-            Utils.checkNotNull(deprecated, "deprecated");
+        public Builder deprecated(@Nullable Boolean deprecated) {
             this.deprecated = JsonNullable.of(deprecated);
             return this;
         }
 
         /**
-         * When the setting is deprecated, it should be hidden from the user interface. The value will still be stored on the connection for the sake of backwards compatibility.
-         */
-        public Builder deprecated(JsonNullable<Boolean> deprecated) {
-            Utils.checkNotNull(deprecated, "deprecated");
-            this.deprecated = deprecated;
-            return this;
-        }
-
-
-        /**
          * Indicates if the form field contains sensitive data, which will display the value as a masked input.
          */
-        public Builder sensitive(boolean sensitive) {
-            Utils.checkNotNull(sensitive, "sensitive");
+        public Builder sensitive(@Nullable Boolean sensitive) {
             this.sensitive = JsonNullable.of(sensitive);
             return this;
         }
 
         /**
-         * Indicates if the form field contains sensitive data, which will display the value as a masked input.
-         */
-        public Builder sensitive(JsonNullable<Boolean> sensitive) {
-            Utils.checkNotNull(sensitive, "sensitive");
-            this.sensitive = sensitive;
-            return this;
-        }
-
-
-        /**
          * Prefix to display in front of the form field.
          */
-        public Builder prefix(String prefix) {
-            Utils.checkNotNull(prefix, "prefix");
+        public Builder prefix(@Nullable String prefix) {
             this.prefix = JsonNullable.of(prefix);
             return this;
         }
 
         /**
-         * Prefix to display in front of the form field.
-         */
-        public Builder prefix(JsonNullable<String> prefix) {
-            Utils.checkNotNull(prefix, "prefix");
-            this.prefix = prefix;
-            return this;
-        }
-
-
-        /**
          * Suffix to display next to the form field.
          */
-        public Builder suffix(String suffix) {
-            Utils.checkNotNull(suffix, "suffix");
+        public Builder suffix(@Nullable String suffix) {
             this.suffix = JsonNullable.of(suffix);
             return this;
         }
 
-        /**
-         * Suffix to display next to the form field.
-         */
-        public Builder suffix(JsonNullable<String> suffix) {
-            Utils.checkNotNull(suffix, "suffix");
-            this.suffix = suffix;
-            return this;
-        }
-
-
-        public Builder options(List<FormFieldOption> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = Optional.ofNullable(options);
-            return this;
-        }
-
-        public Builder options(Optional<? extends List<FormFieldOption>> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<FormFieldOption> options) {
             this.options = options;
             return this;
         }
 
         public FormField build() {
-            if (allowCustomValues == null) {
-                allowCustomValues = _SINGLETON_VALUE_AllowCustomValues.value();
-            }
-
             return new FormField(
                 id, label, placeholder,
                 description, type, required,
@@ -929,10 +612,10 @@ public class FormField {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_AllowCustomValues =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_AllowCustomValues =
                 new LazySingletonValue<>(
                         "allow_custom_values",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

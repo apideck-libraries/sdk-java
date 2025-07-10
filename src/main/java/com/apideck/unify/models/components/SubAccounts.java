@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -20,43 +20,39 @@ public class SubAccounts {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the sub account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_sub_name")
-    private Optional<String> accountSubName;
+    private String accountSubName;
 
     @JsonCreator
     public SubAccounts(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("account_sub_name") Optional<String> accountSubName) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(accountSubName, "accountSubName");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("account_sub_name") @Nullable String accountSubName) {
         this.id = id;
         this.accountSubName = accountSubName;
     }
     
     public SubAccounts() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The ID of the sub account.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the sub account.
      */
-    @JsonIgnore
     public Optional<String> accountSubName() {
-        return accountSubName;
+        return Optional.ofNullable(this.accountSubName);
     }
 
     public static Builder builder() {
@@ -67,40 +63,20 @@ public class SubAccounts {
     /**
      * The ID of the sub account.
      */
-    public SubAccounts withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The ID of the sub account.
-     */
-    public SubAccounts withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public SubAccounts withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The name of the sub account.
-     */
-    public SubAccounts withAccountSubName(String accountSubName) {
-        Utils.checkNotNull(accountSubName, "accountSubName");
-        this.accountSubName = Optional.ofNullable(accountSubName);
-        return this;
-    }
-
 
     /**
      * The name of the sub account.
      */
-    public SubAccounts withAccountSubName(Optional<String> accountSubName) {
-        Utils.checkNotNull(accountSubName, "accountSubName");
+    public SubAccounts withAccountSubName(@Nullable String accountSubName) {
         this.accountSubName = accountSubName;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -132,54 +108,31 @@ public class SubAccounts {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> accountSubName = Optional.empty();
+        private String accountSubName;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the sub account.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The ID of the sub account.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the sub account.
          */
-        public Builder accountSubName(String accountSubName) {
-            Utils.checkNotNull(accountSubName, "accountSubName");
-            this.accountSubName = Optional.ofNullable(accountSubName);
-            return this;
-        }
-
-        /**
-         * The name of the sub account.
-         */
-        public Builder accountSubName(Optional<String> accountSubName) {
-            Utils.checkNotNull(accountSubName, "accountSubName");
+        public Builder accountSubName(@Nullable String accountSubName) {
             this.accountSubName = accountSubName;
             return this;
         }
 
         public SubAccounts build() {
-
             return new SubAccounts(
                 id, accountSubName);
         }

@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -18,44 +18,39 @@ public class AgedReportFilter {
      * Filter by customer id
      */
     @SpeakeasyMetadata("queryParam:name=customer_id")
-    private Optional<String> customerId;
+    private String customerId;
 
     /**
      * Filter by supplier id
      */
     @SpeakeasyMetadata("queryParam:name=supplier_id")
-    private Optional<String> supplierId;
+    private String supplierId;
 
     /**
      * The cutoff date for considering transactions
      */
     @SpeakeasyMetadata("queryParam:name=report_as_of_date")
-    private Optional<String> reportAsOfDate;
+    private String reportAsOfDate;
 
     /**
      * Number of periods to split the aged creditors report into
      */
     @SpeakeasyMetadata("queryParam:name=period_count")
-    private Optional<Long> periodCount;
+    private Long periodCount;
 
     /**
      * Length of each period in days
      */
     @SpeakeasyMetadata("queryParam:name=period_length")
-    private Optional<Long> periodLength;
+    private Long periodLength;
 
     @JsonCreator
     public AgedReportFilter(
-            Optional<String> customerId,
-            Optional<String> supplierId,
-            Optional<String> reportAsOfDate,
-            Optional<Long> periodCount,
-            Optional<Long> periodLength) {
-        Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(supplierId, "supplierId");
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-        Utils.checkNotNull(periodCount, "periodCount");
-        Utils.checkNotNull(periodLength, "periodLength");
+            @Nullable String customerId,
+            @Nullable String supplierId,
+            @Nullable String reportAsOfDate,
+            @Nullable Long periodCount,
+            @Nullable Long periodLength) {
         this.customerId = customerId;
         this.supplierId = supplierId;
         this.reportAsOfDate = reportAsOfDate;
@@ -64,48 +59,43 @@ public class AgedReportFilter {
     }
     
     public AgedReportFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
     /**
      * Filter by customer id
      */
-    @JsonIgnore
     public Optional<String> customerId() {
-        return customerId;
+        return Optional.ofNullable(this.customerId);
     }
 
     /**
      * Filter by supplier id
      */
-    @JsonIgnore
     public Optional<String> supplierId() {
-        return supplierId;
+        return Optional.ofNullable(this.supplierId);
     }
 
     /**
      * The cutoff date for considering transactions
      */
-    @JsonIgnore
     public Optional<String> reportAsOfDate() {
-        return reportAsOfDate;
+        return Optional.ofNullable(this.reportAsOfDate);
     }
 
     /**
      * Number of periods to split the aged creditors report into
      */
-    @JsonIgnore
     public Optional<Long> periodCount() {
-        return periodCount;
+        return Optional.ofNullable(this.periodCount);
     }
 
     /**
      * Length of each period in days
      */
-    @JsonIgnore
     public Optional<Long> periodLength() {
-        return periodLength;
+        return Optional.ofNullable(this.periodLength);
     }
 
     public static Builder builder() {
@@ -116,97 +106,47 @@ public class AgedReportFilter {
     /**
      * Filter by customer id
      */
-    public AgedReportFilter withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
-
-    /**
-     * Filter by customer id
-     */
-    public AgedReportFilter withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
+    public AgedReportFilter withCustomerId(@Nullable String customerId) {
         this.customerId = customerId;
         return this;
     }
 
-    /**
-     * Filter by supplier id
-     */
-    public AgedReportFilter withSupplierId(String supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
-        this.supplierId = Optional.ofNullable(supplierId);
-        return this;
-    }
-
 
     /**
      * Filter by supplier id
      */
-    public AgedReportFilter withSupplierId(Optional<String> supplierId) {
-        Utils.checkNotNull(supplierId, "supplierId");
+    public AgedReportFilter withSupplierId(@Nullable String supplierId) {
         this.supplierId = supplierId;
         return this;
     }
 
-    /**
-     * The cutoff date for considering transactions
-     */
-    public AgedReportFilter withReportAsOfDate(String reportAsOfDate) {
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-        this.reportAsOfDate = Optional.ofNullable(reportAsOfDate);
-        return this;
-    }
-
 
     /**
      * The cutoff date for considering transactions
      */
-    public AgedReportFilter withReportAsOfDate(Optional<String> reportAsOfDate) {
-        Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
+    public AgedReportFilter withReportAsOfDate(@Nullable String reportAsOfDate) {
         this.reportAsOfDate = reportAsOfDate;
         return this;
     }
 
-    /**
-     * Number of periods to split the aged creditors report into
-     */
-    public AgedReportFilter withPeriodCount(long periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
-        this.periodCount = Optional.ofNullable(periodCount);
-        return this;
-    }
-
 
     /**
      * Number of periods to split the aged creditors report into
      */
-    public AgedReportFilter withPeriodCount(Optional<Long> periodCount) {
-        Utils.checkNotNull(periodCount, "periodCount");
+    public AgedReportFilter withPeriodCount(@Nullable Long periodCount) {
         this.periodCount = periodCount;
         return this;
     }
 
-    /**
-     * Length of each period in days
-     */
-    public AgedReportFilter withPeriodLength(long periodLength) {
-        Utils.checkNotNull(periodLength, "periodLength");
-        this.periodLength = Optional.ofNullable(periodLength);
-        return this;
-    }
-
 
     /**
      * Length of each period in days
      */
-    public AgedReportFilter withPeriodLength(Optional<Long> periodLength) {
-        Utils.checkNotNull(periodLength, "periodLength");
+    public AgedReportFilter withPeriodLength(@Nullable Long periodLength) {
         this.periodLength = periodLength;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -245,117 +185,61 @@ public class AgedReportFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> customerId = Optional.empty();
+        private String customerId;
 
-        private Optional<String> supplierId = Optional.empty();
+        private String supplierId;
 
-        private Optional<String> reportAsOfDate = Optional.empty();
+        private String reportAsOfDate;
 
-        private Optional<Long> periodCount = Optional.empty();
+        private Long periodCount;
 
-        private Optional<Long> periodLength = Optional.empty();
+        private Long periodLength;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Filter by customer id
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        /**
-         * Filter by customer id
-         */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
+        public Builder customerId(@Nullable String customerId) {
             this.customerId = customerId;
             return this;
         }
 
-
         /**
          * Filter by supplier id
          */
-        public Builder supplierId(String supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
-            this.supplierId = Optional.ofNullable(supplierId);
-            return this;
-        }
-
-        /**
-         * Filter by supplier id
-         */
-        public Builder supplierId(Optional<String> supplierId) {
-            Utils.checkNotNull(supplierId, "supplierId");
+        public Builder supplierId(@Nullable String supplierId) {
             this.supplierId = supplierId;
             return this;
         }
 
-
         /**
          * The cutoff date for considering transactions
          */
-        public Builder reportAsOfDate(String reportAsOfDate) {
-            Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
-            this.reportAsOfDate = Optional.ofNullable(reportAsOfDate);
-            return this;
-        }
-
-        /**
-         * The cutoff date for considering transactions
-         */
-        public Builder reportAsOfDate(Optional<String> reportAsOfDate) {
-            Utils.checkNotNull(reportAsOfDate, "reportAsOfDate");
+        public Builder reportAsOfDate(@Nullable String reportAsOfDate) {
             this.reportAsOfDate = reportAsOfDate;
             return this;
         }
 
-
         /**
          * Number of periods to split the aged creditors report into
          */
-        public Builder periodCount(long periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
-            this.periodCount = Optional.ofNullable(periodCount);
-            return this;
-        }
-
-        /**
-         * Number of periods to split the aged creditors report into
-         */
-        public Builder periodCount(Optional<Long> periodCount) {
-            Utils.checkNotNull(periodCount, "periodCount");
+        public Builder periodCount(@Nullable Long periodCount) {
             this.periodCount = periodCount;
             return this;
         }
 
-
         /**
          * Length of each period in days
          */
-        public Builder periodLength(long periodLength) {
-            Utils.checkNotNull(periodLength, "periodLength");
-            this.periodLength = Optional.ofNullable(periodLength);
-            return this;
-        }
-
-        /**
-         * Length of each period in days
-         */
-        public Builder periodLength(Optional<Long> periodLength) {
-            Utils.checkNotNull(periodLength, "periodLength");
+        public Builder periodLength(@Nullable Long periodLength) {
             this.periodLength = periodLength;
             return this;
         }
 
         public AgedReportFilter build() {
-
             return new AgedReportFilter(
                 customerId, supplierId, reportAsOfDate,
                 periodCount, periodLength);

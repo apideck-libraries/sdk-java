@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +26,7 @@ public class TimeOffRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * ID of the employee
@@ -48,7 +47,7 @@ public class TimeOffRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends TimeOffRequestStatusStatus> status;
+    private JsonNullable<TimeOffRequestStatusStatus> status;
 
     /**
      * Description of the time off request.
@@ -83,7 +82,7 @@ public class TimeOffRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_type")
-    private JsonNullable<? extends RequestType> requestType;
+    private JsonNullable<RequestType> requestType;
 
     /**
      * The date the request was approved
@@ -97,7 +96,7 @@ public class TimeOffRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("units")
-    private JsonNullable<? extends Units> units;
+    private JsonNullable<Units> units;
 
     /**
      * The amount of time off requested.
@@ -116,14 +115,14 @@ public class TimeOffRequest {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("notes")
-    private Optional<? extends Notes> notes;
+    private Notes notes;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -158,261 +157,230 @@ public class TimeOffRequest {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     /**
      * The policy type of the time off request
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("policy_type")
-    private Optional<String> policyType;
+    private String policyType;
 
     @JsonCreator
     public TimeOffRequest(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("employee_id") JsonNullable<String> employeeId,
-            @JsonProperty("policy_id") JsonNullable<String> policyId,
-            @JsonProperty("status") JsonNullable<? extends TimeOffRequestStatusStatus> status,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("start_date") JsonNullable<String> startDate,
-            @JsonProperty("end_date") JsonNullable<String> endDate,
-            @JsonProperty("request_date") JsonNullable<String> requestDate,
-            @JsonProperty("request_type") JsonNullable<? extends RequestType> requestType,
-            @JsonProperty("approval_date") JsonNullable<String> approvalDate,
-            @JsonProperty("units") JsonNullable<? extends Units> units,
-            @JsonProperty("amount") JsonNullable<Double> amount,
-            @JsonProperty("day_part") JsonNullable<String> dayPart,
-            @JsonProperty("notes") Optional<? extends Notes> notes,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough,
-            @JsonProperty("policy_type") Optional<String> policyType) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(employeeId, "employeeId");
-        Utils.checkNotNull(policyId, "policyId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(requestDate, "requestDate");
-        Utils.checkNotNull(requestType, "requestType");
-        Utils.checkNotNull(approvalDate, "approvalDate");
-        Utils.checkNotNull(units, "units");
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(dayPart, "dayPart");
-        Utils.checkNotNull(notes, "notes");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(policyType, "policyType");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("employee_id") @Nullable JsonNullable<String> employeeId,
+            @JsonProperty("policy_id") @Nullable JsonNullable<String> policyId,
+            @JsonProperty("status") @Nullable JsonNullable<TimeOffRequestStatusStatus> status,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("start_date") @Nullable JsonNullable<String> startDate,
+            @JsonProperty("end_date") @Nullable JsonNullable<String> endDate,
+            @JsonProperty("request_date") @Nullable JsonNullable<String> requestDate,
+            @JsonProperty("request_type") @Nullable JsonNullable<RequestType> requestType,
+            @JsonProperty("approval_date") @Nullable JsonNullable<String> approvalDate,
+            @JsonProperty("units") @Nullable JsonNullable<Units> units,
+            @JsonProperty("amount") @Nullable JsonNullable<Double> amount,
+            @JsonProperty("day_part") @Nullable JsonNullable<String> dayPart,
+            @JsonProperty("notes") @Nullable Notes notes,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough,
+            @JsonProperty("policy_type") @Nullable String policyType) {
         this.id = id;
-        this.employeeId = employeeId;
-        this.policyId = policyId;
-        this.status = status;
-        this.description = description;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.requestDate = requestDate;
-        this.requestType = requestType;
-        this.approvalDate = approvalDate;
-        this.units = units;
-        this.amount = amount;
-        this.dayPart = dayPart;
+        this.employeeId = Optional.ofNullable(employeeId)
+            .orElse(JsonNullable.undefined());
+        this.policyId = Optional.ofNullable(policyId)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.startDate = Optional.ofNullable(startDate)
+            .orElse(JsonNullable.undefined());
+        this.endDate = Optional.ofNullable(endDate)
+            .orElse(JsonNullable.undefined());
+        this.requestDate = Optional.ofNullable(requestDate)
+            .orElse(JsonNullable.undefined());
+        this.requestType = Optional.ofNullable(requestType)
+            .orElse(JsonNullable.undefined());
+        this.approvalDate = Optional.ofNullable(approvalDate)
+            .orElse(JsonNullable.undefined());
+        this.units = Optional.ofNullable(units)
+            .orElse(JsonNullable.undefined());
+        this.amount = Optional.ofNullable(amount)
+            .orElse(JsonNullable.undefined());
+        this.dayPart = Optional.ofNullable(dayPart)
+            .orElse(JsonNullable.undefined());
         this.notes = notes;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
         this.policyType = policyType;
     }
     
     public TimeOffRequest() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * ID of the employee
      */
-    @JsonIgnore
     public JsonNullable<String> employeeId() {
-        return employeeId;
+        return this.employeeId;
     }
 
     /**
      * ID of the policy
      */
-    @JsonIgnore
     public JsonNullable<String> policyId() {
-        return policyId;
+        return this.policyId;
     }
 
     /**
      * The status of the time off request.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<TimeOffRequestStatusStatus> status() {
-        return (JsonNullable<TimeOffRequestStatusStatus>) status;
+        return this.status;
     }
 
     /**
      * Description of the time off request.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The start date of the time off request.
      */
-    @JsonIgnore
     public JsonNullable<String> startDate() {
-        return startDate;
+        return this.startDate;
     }
 
     /**
      * The end date of the time off request.
      */
-    @JsonIgnore
     public JsonNullable<String> endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     /**
      * The date the request was made.
      */
-    @JsonIgnore
     public JsonNullable<String> requestDate() {
-        return requestDate;
+        return this.requestDate;
     }
 
     /**
      * The type of request
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<RequestType> requestType() {
-        return (JsonNullable<RequestType>) requestType;
+        return this.requestType;
     }
 
     /**
      * The date the request was approved
      */
-    @JsonIgnore
     public JsonNullable<String> approvalDate() {
-        return approvalDate;
+        return this.approvalDate;
     }
 
     /**
      * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Units> units() {
-        return (JsonNullable<Units>) units;
+        return this.units;
     }
 
     /**
      * The amount of time off requested.
      */
-    @JsonIgnore
     public JsonNullable<Double> amount() {
-        return amount;
+        return this.amount;
     }
 
     /**
      * The day part of the time off request.
      */
-    @JsonIgnore
     public JsonNullable<String> dayPart() {
-        return dayPart;
+        return this.dayPart;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Notes> notes() {
-        return (Optional<Notes>) notes;
+        return Optional.ofNullable(this.notes);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The policy type of the time off request
      */
-    @JsonIgnore
     public Optional<String> policyType() {
-        return policyType;
+        return Optional.ofNullable(this.policyType);
     }
 
     public static Builder builder() {
@@ -423,378 +391,188 @@ public class TimeOffRequest {
     /**
      * A unique identifier for an object.
      */
-    public TimeOffRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public TimeOffRequest withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public TimeOffRequest withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * ID of the employee
      */
-    public TimeOffRequest withEmployeeId(String employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
+    public TimeOffRequest withEmployeeId(@Nullable String employeeId) {
         this.employeeId = JsonNullable.of(employeeId);
         return this;
     }
 
-    /**
-     * ID of the employee
-     */
-    public TimeOffRequest withEmployeeId(JsonNullable<String> employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = employeeId;
-        return this;
-    }
 
     /**
      * ID of the policy
      */
-    public TimeOffRequest withPolicyId(String policyId) {
-        Utils.checkNotNull(policyId, "policyId");
+    public TimeOffRequest withPolicyId(@Nullable String policyId) {
         this.policyId = JsonNullable.of(policyId);
         return this;
     }
 
-    /**
-     * ID of the policy
-     */
-    public TimeOffRequest withPolicyId(JsonNullable<String> policyId) {
-        Utils.checkNotNull(policyId, "policyId");
-        this.policyId = policyId;
-        return this;
-    }
 
     /**
      * The status of the time off request.
      */
-    public TimeOffRequest withStatus(TimeOffRequestStatusStatus status) {
-        Utils.checkNotNull(status, "status");
+    public TimeOffRequest withStatus(@Nullable TimeOffRequestStatusStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The status of the time off request.
-     */
-    public TimeOffRequest withStatus(JsonNullable<? extends TimeOffRequestStatusStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Description of the time off request.
      */
-    public TimeOffRequest withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public TimeOffRequest withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * Description of the time off request.
-     */
-    public TimeOffRequest withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The start date of the time off request.
      */
-    public TimeOffRequest withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public TimeOffRequest withStartDate(@Nullable String startDate) {
         this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
-    /**
-     * The start date of the time off request.
-     */
-    public TimeOffRequest withStartDate(JsonNullable<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
-        return this;
-    }
 
     /**
      * The end date of the time off request.
      */
-    public TimeOffRequest withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public TimeOffRequest withEndDate(@Nullable String endDate) {
         this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
-    /**
-     * The end date of the time off request.
-     */
-    public TimeOffRequest withEndDate(JsonNullable<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
 
     /**
      * The date the request was made.
      */
-    public TimeOffRequest withRequestDate(String requestDate) {
-        Utils.checkNotNull(requestDate, "requestDate");
+    public TimeOffRequest withRequestDate(@Nullable String requestDate) {
         this.requestDate = JsonNullable.of(requestDate);
         return this;
     }
 
-    /**
-     * The date the request was made.
-     */
-    public TimeOffRequest withRequestDate(JsonNullable<String> requestDate) {
-        Utils.checkNotNull(requestDate, "requestDate");
-        this.requestDate = requestDate;
-        return this;
-    }
 
     /**
      * The type of request
      */
-    public TimeOffRequest withRequestType(RequestType requestType) {
-        Utils.checkNotNull(requestType, "requestType");
+    public TimeOffRequest withRequestType(@Nullable RequestType requestType) {
         this.requestType = JsonNullable.of(requestType);
         return this;
     }
 
-    /**
-     * The type of request
-     */
-    public TimeOffRequest withRequestType(JsonNullable<? extends RequestType> requestType) {
-        Utils.checkNotNull(requestType, "requestType");
-        this.requestType = requestType;
-        return this;
-    }
 
     /**
      * The date the request was approved
      */
-    public TimeOffRequest withApprovalDate(String approvalDate) {
-        Utils.checkNotNull(approvalDate, "approvalDate");
+    public TimeOffRequest withApprovalDate(@Nullable String approvalDate) {
         this.approvalDate = JsonNullable.of(approvalDate);
         return this;
     }
 
-    /**
-     * The date the request was approved
-     */
-    public TimeOffRequest withApprovalDate(JsonNullable<String> approvalDate) {
-        Utils.checkNotNull(approvalDate, "approvalDate");
-        this.approvalDate = approvalDate;
-        return this;
-    }
 
     /**
      * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
      */
-    public TimeOffRequest withUnits(Units units) {
-        Utils.checkNotNull(units, "units");
+    public TimeOffRequest withUnits(@Nullable Units units) {
         this.units = JsonNullable.of(units);
         return this;
     }
 
-    /**
-     * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
-     */
-    public TimeOffRequest withUnits(JsonNullable<? extends Units> units) {
-        Utils.checkNotNull(units, "units");
-        this.units = units;
-        return this;
-    }
 
     /**
      * The amount of time off requested.
      */
-    public TimeOffRequest withAmount(double amount) {
-        Utils.checkNotNull(amount, "amount");
+    public TimeOffRequest withAmount(@Nullable Double amount) {
         this.amount = JsonNullable.of(amount);
         return this;
     }
 
-    /**
-     * The amount of time off requested.
-     */
-    public TimeOffRequest withAmount(JsonNullable<Double> amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = amount;
-        return this;
-    }
 
     /**
      * The day part of the time off request.
      */
-    public TimeOffRequest withDayPart(String dayPart) {
-        Utils.checkNotNull(dayPart, "dayPart");
+    public TimeOffRequest withDayPart(@Nullable String dayPart) {
         this.dayPart = JsonNullable.of(dayPart);
         return this;
     }
 
-    /**
-     * The day part of the time off request.
-     */
-    public TimeOffRequest withDayPart(JsonNullable<String> dayPart) {
-        Utils.checkNotNull(dayPart, "dayPart");
-        this.dayPart = dayPart;
-        return this;
-    }
 
-    public TimeOffRequest withNotes(Notes notes) {
-        Utils.checkNotNull(notes, "notes");
-        this.notes = Optional.ofNullable(notes);
-        return this;
-    }
-
-
-    public TimeOffRequest withNotes(Optional<? extends Notes> notes) {
-        Utils.checkNotNull(notes, "notes");
+    public TimeOffRequest withNotes(@Nullable Notes notes) {
         this.notes = notes;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public TimeOffRequest withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public TimeOffRequest withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public TimeOffRequest withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public TimeOffRequest withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public TimeOffRequest withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public TimeOffRequest withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public TimeOffRequest withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public TimeOffRequest withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public TimeOffRequest withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public TimeOffRequest withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public TimeOffRequest withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public TimeOffRequest withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public TimeOffRequest withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public TimeOffRequest withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public TimeOffRequest withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public TimeOffRequest withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public TimeOffRequest withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public TimeOffRequest withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
-    /**
-     * The policy type of the time off request
-     */
-    public TimeOffRequest withPolicyType(String policyType) {
-        Utils.checkNotNull(policyType, "policyType");
-        this.policyType = Optional.ofNullable(policyType);
-        return this;
-    }
-
 
     /**
      * The policy type of the time off request
      */
-    public TimeOffRequest withPolicyType(Optional<String> policyType) {
-        Utils.checkNotNull(policyType, "policyType");
+    public TimeOffRequest withPolicyType(@Nullable String policyType) {
         this.policyType = policyType;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -870,447 +648,218 @@ public class TimeOffRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> employeeId = JsonNullable.undefined();
+        private JsonNullable<String> employeeId;
 
-        private JsonNullable<String> policyId = JsonNullable.undefined();
+        private JsonNullable<String> policyId;
 
-        private JsonNullable<? extends TimeOffRequestStatusStatus> status = JsonNullable.undefined();
+        private JsonNullable<TimeOffRequestStatusStatus> status;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> startDate = JsonNullable.undefined();
+        private JsonNullable<String> startDate;
 
-        private JsonNullable<String> endDate = JsonNullable.undefined();
+        private JsonNullable<String> endDate;
 
-        private JsonNullable<String> requestDate = JsonNullable.undefined();
+        private JsonNullable<String> requestDate;
 
-        private JsonNullable<? extends RequestType> requestType = JsonNullable.undefined();
+        private JsonNullable<RequestType> requestType;
 
-        private JsonNullable<String> approvalDate = JsonNullable.undefined();
+        private JsonNullable<String> approvalDate;
 
-        private JsonNullable<? extends Units> units = JsonNullable.undefined();
+        private JsonNullable<Units> units;
 
-        private JsonNullable<Double> amount = JsonNullable.undefined();
+        private JsonNullable<Double> amount;
 
-        private JsonNullable<String> dayPart = JsonNullable.undefined();
+        private JsonNullable<String> dayPart;
 
-        private Optional<? extends Notes> notes = Optional.empty();
+        private Notes notes;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
-        private Optional<String> policyType = Optional.empty();
+        private String policyType;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * ID of the employee
          */
-        public Builder employeeId(String employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
+        public Builder employeeId(@Nullable String employeeId) {
             this.employeeId = JsonNullable.of(employeeId);
             return this;
         }
 
         /**
-         * ID of the employee
-         */
-        public Builder employeeId(JsonNullable<String> employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = employeeId;
-            return this;
-        }
-
-
-        /**
          * ID of the policy
          */
-        public Builder policyId(String policyId) {
-            Utils.checkNotNull(policyId, "policyId");
+        public Builder policyId(@Nullable String policyId) {
             this.policyId = JsonNullable.of(policyId);
             return this;
         }
 
         /**
-         * ID of the policy
-         */
-        public Builder policyId(JsonNullable<String> policyId) {
-            Utils.checkNotNull(policyId, "policyId");
-            this.policyId = policyId;
-            return this;
-        }
-
-
-        /**
          * The status of the time off request.
          */
-        public Builder status(TimeOffRequestStatusStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable TimeOffRequestStatusStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The status of the time off request.
-         */
-        public Builder status(JsonNullable<? extends TimeOffRequestStatusStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Description of the time off request.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * Description of the time off request.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The start date of the time off request.
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
-         * The start date of the time off request.
-         */
-        public Builder startDate(JsonNullable<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = startDate;
-            return this;
-        }
-
-
-        /**
          * The end date of the time off request.
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
-         * The end date of the time off request.
-         */
-        public Builder endDate(JsonNullable<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
-            return this;
-        }
-
-
-        /**
          * The date the request was made.
          */
-        public Builder requestDate(String requestDate) {
-            Utils.checkNotNull(requestDate, "requestDate");
+        public Builder requestDate(@Nullable String requestDate) {
             this.requestDate = JsonNullable.of(requestDate);
             return this;
         }
 
         /**
-         * The date the request was made.
-         */
-        public Builder requestDate(JsonNullable<String> requestDate) {
-            Utils.checkNotNull(requestDate, "requestDate");
-            this.requestDate = requestDate;
-            return this;
-        }
-
-
-        /**
          * The type of request
          */
-        public Builder requestType(RequestType requestType) {
-            Utils.checkNotNull(requestType, "requestType");
+        public Builder requestType(@Nullable RequestType requestType) {
             this.requestType = JsonNullable.of(requestType);
             return this;
         }
 
         /**
-         * The type of request
-         */
-        public Builder requestType(JsonNullable<? extends RequestType> requestType) {
-            Utils.checkNotNull(requestType, "requestType");
-            this.requestType = requestType;
-            return this;
-        }
-
-
-        /**
          * The date the request was approved
          */
-        public Builder approvalDate(String approvalDate) {
-            Utils.checkNotNull(approvalDate, "approvalDate");
+        public Builder approvalDate(@Nullable String approvalDate) {
             this.approvalDate = JsonNullable.of(approvalDate);
             return this;
         }
 
         /**
-         * The date the request was approved
-         */
-        public Builder approvalDate(JsonNullable<String> approvalDate) {
-            Utils.checkNotNull(approvalDate, "approvalDate");
-            this.approvalDate = approvalDate;
-            return this;
-        }
-
-
-        /**
          * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
          */
-        public Builder units(Units units) {
-            Utils.checkNotNull(units, "units");
+        public Builder units(@Nullable Units units) {
             this.units = JsonNullable.of(units);
             return this;
         }
 
         /**
-         * The unit of time off requested. Possible values include: `hours`, `days`, or `other`.
-         */
-        public Builder units(JsonNullable<? extends Units> units) {
-            Utils.checkNotNull(units, "units");
-            this.units = units;
-            return this;
-        }
-
-
-        /**
          * The amount of time off requested.
          */
-        public Builder amount(double amount) {
-            Utils.checkNotNull(amount, "amount");
+        public Builder amount(@Nullable Double amount) {
             this.amount = JsonNullable.of(amount);
             return this;
         }
 
         /**
-         * The amount of time off requested.
-         */
-        public Builder amount(JsonNullable<Double> amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = amount;
-            return this;
-        }
-
-
-        /**
          * The day part of the time off request.
          */
-        public Builder dayPart(String dayPart) {
-            Utils.checkNotNull(dayPart, "dayPart");
+        public Builder dayPart(@Nullable String dayPart) {
             this.dayPart = JsonNullable.of(dayPart);
             return this;
         }
 
-        /**
-         * The day part of the time off request.
-         */
-        public Builder dayPart(JsonNullable<String> dayPart) {
-            Utils.checkNotNull(dayPart, "dayPart");
-            this.dayPart = dayPart;
-            return this;
-        }
-
-
-        public Builder notes(Notes notes) {
-            Utils.checkNotNull(notes, "notes");
-            this.notes = Optional.ofNullable(notes);
-            return this;
-        }
-
-        public Builder notes(Optional<? extends Notes> notes) {
-            Utils.checkNotNull(notes, "notes");
+        public Builder notes(@Nullable Notes notes) {
             this.notes = notes;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The policy type of the time off request
          */
-        public Builder policyType(String policyType) {
-            Utils.checkNotNull(policyType, "policyType");
-            this.policyType = Optional.ofNullable(policyType);
-            return this;
-        }
-
-        /**
-         * The policy type of the time off request
-         */
-        public Builder policyType(Optional<String> policyType) {
-            Utils.checkNotNull(policyType, "policyType");
+        public Builder policyType(@Nullable String policyType) {
             this.policyType = policyType;
             return this;
         }
 
         public TimeOffRequest build() {
-
             return new TimeOffRequest(
                 id, employeeId, policyId,
                 status, description, startDate,

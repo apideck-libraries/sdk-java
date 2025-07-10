@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -56,7 +55,7 @@ public class EcommerceOrderLineItem {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("name")
-    private Optional<String> name;
+    private JsonNullable<String> name;
 
     /**
      * The description of the product or variant associated with the line item.
@@ -68,14 +67,14 @@ public class EcommerceOrderLineItem {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("options")
-    private Optional<? extends List<Options>> options;
+    private List<Options> options;
 
     /**
      * The quantity of the product or variant associated with the line item.
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("quantity")
-    private Optional<String> quantity;
+    private JsonNullable<String> quantity;
 
     /**
      * The unit price of the product or variant associated with the line item.
@@ -136,202 +135,179 @@ public class EcommerceOrderLineItem {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discounts")
-    private Optional<? extends List<EcommerceDiscount>> discounts;
+    private List<EcommerceDiscount> discounts;
 
     @JsonCreator
     public EcommerceOrderLineItem(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("product_id") JsonNullable<String> productId,
-            @JsonProperty("variant_id") JsonNullable<String> variantId,
-            @JsonProperty("sku") JsonNullable<String> sku,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("options") Optional<? extends List<Options>> options,
-            @JsonProperty("quantity") Optional<String> quantity,
-            @JsonProperty("unit_price") JsonNullable<String> unitPrice,
-            @JsonProperty("tax_rate") JsonNullable<String> taxRate,
-            @JsonProperty("tax_amount") JsonNullable<String> taxAmount,
-            @JsonProperty("is_refunded") JsonNullable<Boolean> isRefunded,
-            @JsonProperty("refunded_amount") JsonNullable<String> refundedAmount,
-            @JsonProperty("refunded_quantity") JsonNullable<String> refundedQuantity,
-            @JsonProperty("sub_total") JsonNullable<String> subTotal,
-            @JsonProperty("total_amount") JsonNullable<String> totalAmount,
-            @JsonProperty("discounts") Optional<? extends List<EcommerceDiscount>> discounts) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(productId, "productId");
-        Utils.checkNotNull(variantId, "variantId");
-        Utils.checkNotNull(sku, "sku");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(options, "options");
-        Utils.checkNotNull(quantity, "quantity");
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        Utils.checkNotNull(isRefunded, "isRefunded");
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
-        Utils.checkNotNull(refundedQuantity, "refundedQuantity");
-        Utils.checkNotNull(subTotal, "subTotal");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(discounts, "discounts");
-        this.id = id;
-        this.productId = productId;
-        this.variantId = variantId;
-        this.sku = sku;
-        this.name = name;
-        this.description = description;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("product_id") @Nullable JsonNullable<String> productId,
+            @JsonProperty("variant_id") @Nullable JsonNullable<String> variantId,
+            @JsonProperty("sku") @Nullable JsonNullable<String> sku,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("options") @Nullable List<Options> options,
+            @JsonProperty("quantity") @Nullable String quantity,
+            @JsonProperty("unit_price") @Nullable JsonNullable<String> unitPrice,
+            @JsonProperty("tax_rate") @Nullable JsonNullable<String> taxRate,
+            @JsonProperty("tax_amount") @Nullable JsonNullable<String> taxAmount,
+            @JsonProperty("is_refunded") @Nullable JsonNullable<Boolean> isRefunded,
+            @JsonProperty("refunded_amount") @Nullable JsonNullable<String> refundedAmount,
+            @JsonProperty("refunded_quantity") @Nullable JsonNullable<String> refundedQuantity,
+            @JsonProperty("sub_total") @Nullable JsonNullable<String> subTotal,
+            @JsonProperty("total_amount") @Nullable JsonNullable<String> totalAmount,
+            @JsonProperty("discounts") @Nullable List<EcommerceDiscount> discounts) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.productId = Optional.ofNullable(productId)
+            .orElse(JsonNullable.undefined());
+        this.variantId = Optional.ofNullable(variantId)
+            .orElse(JsonNullable.undefined());
+        this.sku = Optional.ofNullable(sku)
+            .orElse(JsonNullable.undefined());
+        this.name = JsonNullable.of(name);
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.options = options;
-        this.quantity = quantity;
-        this.unitPrice = unitPrice;
-        this.taxRate = taxRate;
-        this.taxAmount = taxAmount;
-        this.isRefunded = isRefunded;
-        this.refundedAmount = refundedAmount;
-        this.refundedQuantity = refundedQuantity;
-        this.subTotal = subTotal;
-        this.totalAmount = totalAmount;
+        this.quantity = JsonNullable.of(quantity);
+        this.unitPrice = Optional.ofNullable(unitPrice)
+            .orElse(JsonNullable.undefined());
+        this.taxRate = Optional.ofNullable(taxRate)
+            .orElse(JsonNullable.undefined());
+        this.taxAmount = Optional.ofNullable(taxAmount)
+            .orElse(JsonNullable.undefined());
+        this.isRefunded = Optional.ofNullable(isRefunded)
+            .orElse(JsonNullable.undefined());
+        this.refundedAmount = Optional.ofNullable(refundedAmount)
+            .orElse(JsonNullable.undefined());
+        this.refundedQuantity = Optional.ofNullable(refundedQuantity)
+            .orElse(JsonNullable.undefined());
+        this.subTotal = Optional.ofNullable(subTotal)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = Optional.ofNullable(totalAmount)
+            .orElse(JsonNullable.undefined());
         this.discounts = discounts;
     }
     
     public EcommerceOrderLineItem() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * A unique identifier for the product associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> productId() {
-        return productId;
+        return this.productId;
     }
 
     /**
      * A unique identifier for the variant of the product associated with the line item, if applicable.
      */
-    @JsonIgnore
     public JsonNullable<String> variantId() {
-        return variantId;
+        return this.variantId;
     }
 
     /**
      * The SKU of the product or variant associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> sku() {
-        return sku;
+        return this.sku;
     }
 
     /**
      * The name of the product or variant associated with the line item.
      */
-    @JsonIgnore
-    public Optional<String> name() {
-        return name;
+    public JsonNullable<String> name() {
+        return this.name;
     }
 
     /**
      * The description of the product or variant associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Options>> options() {
-        return (Optional<List<Options>>) options;
+        return Optional.ofNullable(this.options);
     }
 
     /**
      * The quantity of the product or variant associated with the line item.
      */
-    @JsonIgnore
-    public Optional<String> quantity() {
-        return quantity;
+    public JsonNullable<String> quantity() {
+        return this.quantity;
     }
 
     /**
      * The unit price of the product or variant associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> unitPrice() {
-        return unitPrice;
+        return this.unitPrice;
     }
 
     /**
      * The tax rate applied to the product or variant associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> taxRate() {
-        return taxRate;
+        return this.taxRate;
     }
 
     /**
      * The total tax amount applied to the product or variant associated with the line item.
      */
-    @JsonIgnore
     public JsonNullable<String> taxAmount() {
-        return taxAmount;
+        return this.taxAmount;
     }
 
     /**
      * Whether the line item has been refunded.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> isRefunded() {
-        return isRefunded;
+        return this.isRefunded;
     }
 
     /**
      * The amount of the line item that has been refunded.
      */
-    @JsonIgnore
     public JsonNullable<String> refundedAmount() {
-        return refundedAmount;
+        return this.refundedAmount;
     }
 
     /**
      * The quantity of the line item that has been refunded.
      */
-    @JsonIgnore
     public JsonNullable<String> refundedQuantity() {
-        return refundedQuantity;
+        return this.refundedQuantity;
     }
 
     /**
      * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
      */
-    @JsonIgnore
     public JsonNullable<String> subTotal() {
-        return subTotal;
+        return this.subTotal;
     }
 
     /**
      * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
      */
-    @JsonIgnore
     public JsonNullable<String> totalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceDiscount>> discounts() {
-        return (Optional<List<EcommerceDiscount>>) discounts;
+        return Optional.ofNullable(this.discounts);
     }
 
     public static Builder builder() {
@@ -342,300 +318,149 @@ public class EcommerceOrderLineItem {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceOrderLineItem withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public EcommerceOrderLineItem withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public EcommerceOrderLineItem withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * A unique identifier for the product associated with the line item.
      */
-    public EcommerceOrderLineItem withProductId(String productId) {
-        Utils.checkNotNull(productId, "productId");
+    public EcommerceOrderLineItem withProductId(@Nullable String productId) {
         this.productId = JsonNullable.of(productId);
         return this;
     }
 
-    /**
-     * A unique identifier for the product associated with the line item.
-     */
-    public EcommerceOrderLineItem withProductId(JsonNullable<String> productId) {
-        Utils.checkNotNull(productId, "productId");
-        this.productId = productId;
-        return this;
-    }
 
     /**
      * A unique identifier for the variant of the product associated with the line item, if applicable.
      */
-    public EcommerceOrderLineItem withVariantId(String variantId) {
-        Utils.checkNotNull(variantId, "variantId");
+    public EcommerceOrderLineItem withVariantId(@Nullable String variantId) {
         this.variantId = JsonNullable.of(variantId);
         return this;
     }
 
-    /**
-     * A unique identifier for the variant of the product associated with the line item, if applicable.
-     */
-    public EcommerceOrderLineItem withVariantId(JsonNullable<String> variantId) {
-        Utils.checkNotNull(variantId, "variantId");
-        this.variantId = variantId;
-        return this;
-    }
 
     /**
      * The SKU of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withSku(String sku) {
-        Utils.checkNotNull(sku, "sku");
+    public EcommerceOrderLineItem withSku(@Nullable String sku) {
         this.sku = JsonNullable.of(sku);
         return this;
     }
 
-    /**
-     * The SKU of the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withSku(JsonNullable<String> sku) {
-        Utils.checkNotNull(sku, "sku");
-        this.sku = sku;
-        return this;
-    }
 
     /**
      * The name of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+    public EcommerceOrderLineItem withName(@Nullable String name) {
+        this.name = JsonNullable.of(name);
         return this;
     }
 
-
-    /**
-     * The name of the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The description of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public EcommerceOrderLineItem withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The description of the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
-    public EcommerceOrderLineItem withOptions(List<Options> options) {
-        Utils.checkNotNull(options, "options");
-        this.options = Optional.ofNullable(options);
-        return this;
-    }
-
-
-    public EcommerceOrderLineItem withOptions(Optional<? extends List<Options>> options) {
-        Utils.checkNotNull(options, "options");
+    public EcommerceOrderLineItem withOptions(@Nullable List<Options> options) {
         this.options = options;
         return this;
     }
 
-    /**
-     * The quantity of the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withQuantity(String quantity) {
-        Utils.checkNotNull(quantity, "quantity");
-        this.quantity = Optional.ofNullable(quantity);
-        return this;
-    }
-
 
     /**
      * The quantity of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withQuantity(Optional<String> quantity) {
-        Utils.checkNotNull(quantity, "quantity");
-        this.quantity = quantity;
+    public EcommerceOrderLineItem withQuantity(@Nullable String quantity) {
+        this.quantity = JsonNullable.of(quantity);
         return this;
     }
+
 
     /**
      * The unit price of the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withUnitPrice(String unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
+    public EcommerceOrderLineItem withUnitPrice(@Nullable String unitPrice) {
         this.unitPrice = JsonNullable.of(unitPrice);
         return this;
     }
 
-    /**
-     * The unit price of the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withUnitPrice(JsonNullable<String> unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        this.unitPrice = unitPrice;
-        return this;
-    }
 
     /**
      * The tax rate applied to the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withTaxRate(String taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public EcommerceOrderLineItem withTaxRate(@Nullable String taxRate) {
         this.taxRate = JsonNullable.of(taxRate);
         return this;
     }
 
-    /**
-     * The tax rate applied to the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withTaxRate(JsonNullable<String> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = taxRate;
-        return this;
-    }
 
     /**
      * The total tax amount applied to the product or variant associated with the line item.
      */
-    public EcommerceOrderLineItem withTaxAmount(String taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
+    public EcommerceOrderLineItem withTaxAmount(@Nullable String taxAmount) {
         this.taxAmount = JsonNullable.of(taxAmount);
         return this;
     }
 
-    /**
-     * The total tax amount applied to the product or variant associated with the line item.
-     */
-    public EcommerceOrderLineItem withTaxAmount(JsonNullable<String> taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        this.taxAmount = taxAmount;
-        return this;
-    }
 
     /**
      * Whether the line item has been refunded.
      */
-    public EcommerceOrderLineItem withIsRefunded(boolean isRefunded) {
-        Utils.checkNotNull(isRefunded, "isRefunded");
+    public EcommerceOrderLineItem withIsRefunded(@Nullable Boolean isRefunded) {
         this.isRefunded = JsonNullable.of(isRefunded);
         return this;
     }
 
-    /**
-     * Whether the line item has been refunded.
-     */
-    public EcommerceOrderLineItem withIsRefunded(JsonNullable<Boolean> isRefunded) {
-        Utils.checkNotNull(isRefunded, "isRefunded");
-        this.isRefunded = isRefunded;
-        return this;
-    }
 
     /**
      * The amount of the line item that has been refunded.
      */
-    public EcommerceOrderLineItem withRefundedAmount(String refundedAmount) {
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
+    public EcommerceOrderLineItem withRefundedAmount(@Nullable String refundedAmount) {
         this.refundedAmount = JsonNullable.of(refundedAmount);
         return this;
     }
 
-    /**
-     * The amount of the line item that has been refunded.
-     */
-    public EcommerceOrderLineItem withRefundedAmount(JsonNullable<String> refundedAmount) {
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
-        this.refundedAmount = refundedAmount;
-        return this;
-    }
 
     /**
      * The quantity of the line item that has been refunded.
      */
-    public EcommerceOrderLineItem withRefundedQuantity(String refundedQuantity) {
-        Utils.checkNotNull(refundedQuantity, "refundedQuantity");
+    public EcommerceOrderLineItem withRefundedQuantity(@Nullable String refundedQuantity) {
         this.refundedQuantity = JsonNullable.of(refundedQuantity);
         return this;
     }
 
-    /**
-     * The quantity of the line item that has been refunded.
-     */
-    public EcommerceOrderLineItem withRefundedQuantity(JsonNullable<String> refundedQuantity) {
-        Utils.checkNotNull(refundedQuantity, "refundedQuantity");
-        this.refundedQuantity = refundedQuantity;
-        return this;
-    }
 
     /**
      * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
      */
-    public EcommerceOrderLineItem withSubTotal(String subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
+    public EcommerceOrderLineItem withSubTotal(@Nullable String subTotal) {
         this.subTotal = JsonNullable.of(subTotal);
         return this;
     }
 
-    /**
-     * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
-     */
-    public EcommerceOrderLineItem withSubTotal(JsonNullable<String> subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
-        this.subTotal = subTotal;
-        return this;
-    }
 
     /**
      * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
      */
-    public EcommerceOrderLineItem withTotalAmount(String totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
+    public EcommerceOrderLineItem withTotalAmount(@Nullable String totalAmount) {
         this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
-    /**
-     * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
-     */
-    public EcommerceOrderLineItem withTotalAmount(JsonNullable<String> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
 
-    public EcommerceOrderLineItem withDiscounts(List<EcommerceDiscount> discounts) {
-        Utils.checkNotNull(discounts, "discounts");
-        this.discounts = Optional.ofNullable(discounts);
-        return this;
-    }
-
-
-    public EcommerceOrderLineItem withDiscounts(Optional<? extends List<EcommerceDiscount>> discounts) {
-        Utils.checkNotNull(discounts, "discounts");
+    public EcommerceOrderLineItem withDiscounts(@Nullable List<EcommerceDiscount> discounts) {
         this.discounts = discounts;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -702,357 +527,175 @@ public class EcommerceOrderLineItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> productId = JsonNullable.undefined();
+        private JsonNullable<String> productId;
 
-        private JsonNullable<String> variantId = JsonNullable.undefined();
+        private JsonNullable<String> variantId;
 
-        private JsonNullable<String> sku = JsonNullable.undefined();
+        private JsonNullable<String> sku;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends List<Options>> options = Optional.empty();
+        private List<Options> options;
 
-        private Optional<String> quantity = Optional.empty();
+        private String quantity;
 
-        private JsonNullable<String> unitPrice = JsonNullable.undefined();
+        private JsonNullable<String> unitPrice;
 
-        private JsonNullable<String> taxRate = JsonNullable.undefined();
+        private JsonNullable<String> taxRate;
 
-        private JsonNullable<String> taxAmount = JsonNullable.undefined();
+        private JsonNullable<String> taxAmount;
 
-        private JsonNullable<Boolean> isRefunded = JsonNullable.undefined();
+        private JsonNullable<Boolean> isRefunded;
 
-        private JsonNullable<String> refundedAmount = JsonNullable.undefined();
+        private JsonNullable<String> refundedAmount;
 
-        private JsonNullable<String> refundedQuantity = JsonNullable.undefined();
+        private JsonNullable<String> refundedQuantity;
 
-        private JsonNullable<String> subTotal = JsonNullable.undefined();
+        private JsonNullable<String> subTotal;
 
-        private JsonNullable<String> totalAmount = JsonNullable.undefined();
+        private JsonNullable<String> totalAmount;
 
-        private Optional<? extends List<EcommerceDiscount>> discounts = Optional.empty();
+        private List<EcommerceDiscount> discounts;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * A unique identifier for the product associated with the line item.
          */
-        public Builder productId(String productId) {
-            Utils.checkNotNull(productId, "productId");
+        public Builder productId(@Nullable String productId) {
             this.productId = JsonNullable.of(productId);
             return this;
         }
 
         /**
-         * A unique identifier for the product associated with the line item.
-         */
-        public Builder productId(JsonNullable<String> productId) {
-            Utils.checkNotNull(productId, "productId");
-            this.productId = productId;
-            return this;
-        }
-
-
-        /**
          * A unique identifier for the variant of the product associated with the line item, if applicable.
          */
-        public Builder variantId(String variantId) {
-            Utils.checkNotNull(variantId, "variantId");
+        public Builder variantId(@Nullable String variantId) {
             this.variantId = JsonNullable.of(variantId);
             return this;
         }
 
         /**
-         * A unique identifier for the variant of the product associated with the line item, if applicable.
-         */
-        public Builder variantId(JsonNullable<String> variantId) {
-            Utils.checkNotNull(variantId, "variantId");
-            this.variantId = variantId;
-            return this;
-        }
-
-
-        /**
          * The SKU of the product or variant associated with the line item.
          */
-        public Builder sku(String sku) {
-            Utils.checkNotNull(sku, "sku");
+        public Builder sku(@Nullable String sku) {
             this.sku = JsonNullable.of(sku);
             return this;
         }
 
         /**
-         * The SKU of the product or variant associated with the line item.
-         */
-        public Builder sku(JsonNullable<String> sku) {
-            Utils.checkNotNull(sku, "sku");
-            this.sku = sku;
-            return this;
-        }
-
-
-        /**
          * The name of the product or variant associated with the line item.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the product or variant associated with the line item.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The description of the product or variant associated with the line item.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
-        /**
-         * The description of the product or variant associated with the line item.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        public Builder options(List<Options> options) {
-            Utils.checkNotNull(options, "options");
-            this.options = Optional.ofNullable(options);
-            return this;
-        }
-
-        public Builder options(Optional<? extends List<Options>> options) {
-            Utils.checkNotNull(options, "options");
+        public Builder options(@Nullable List<Options> options) {
             this.options = options;
             return this;
         }
 
-
         /**
          * The quantity of the product or variant associated with the line item.
          */
-        public Builder quantity(String quantity) {
-            Utils.checkNotNull(quantity, "quantity");
-            this.quantity = Optional.ofNullable(quantity);
-            return this;
-        }
-
-        /**
-         * The quantity of the product or variant associated with the line item.
-         */
-        public Builder quantity(Optional<String> quantity) {
-            Utils.checkNotNull(quantity, "quantity");
+        public Builder quantity(@Nullable String quantity) {
             this.quantity = quantity;
             return this;
         }
 
-
         /**
          * The unit price of the product or variant associated with the line item.
          */
-        public Builder unitPrice(String unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
+        public Builder unitPrice(@Nullable String unitPrice) {
             this.unitPrice = JsonNullable.of(unitPrice);
             return this;
         }
 
         /**
-         * The unit price of the product or variant associated with the line item.
-         */
-        public Builder unitPrice(JsonNullable<String> unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
-            this.unitPrice = unitPrice;
-            return this;
-        }
-
-
-        /**
          * The tax rate applied to the product or variant associated with the line item.
          */
-        public Builder taxRate(String taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable String taxRate) {
             this.taxRate = JsonNullable.of(taxRate);
             return this;
         }
 
         /**
-         * The tax rate applied to the product or variant associated with the line item.
-         */
-        public Builder taxRate(JsonNullable<String> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = taxRate;
-            return this;
-        }
-
-
-        /**
          * The total tax amount applied to the product or variant associated with the line item.
          */
-        public Builder taxAmount(String taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
+        public Builder taxAmount(@Nullable String taxAmount) {
             this.taxAmount = JsonNullable.of(taxAmount);
             return this;
         }
 
         /**
-         * The total tax amount applied to the product or variant associated with the line item.
-         */
-        public Builder taxAmount(JsonNullable<String> taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
-            this.taxAmount = taxAmount;
-            return this;
-        }
-
-
-        /**
          * Whether the line item has been refunded.
          */
-        public Builder isRefunded(boolean isRefunded) {
-            Utils.checkNotNull(isRefunded, "isRefunded");
+        public Builder isRefunded(@Nullable Boolean isRefunded) {
             this.isRefunded = JsonNullable.of(isRefunded);
             return this;
         }
 
         /**
-         * Whether the line item has been refunded.
-         */
-        public Builder isRefunded(JsonNullable<Boolean> isRefunded) {
-            Utils.checkNotNull(isRefunded, "isRefunded");
-            this.isRefunded = isRefunded;
-            return this;
-        }
-
-
-        /**
          * The amount of the line item that has been refunded.
          */
-        public Builder refundedAmount(String refundedAmount) {
-            Utils.checkNotNull(refundedAmount, "refundedAmount");
+        public Builder refundedAmount(@Nullable String refundedAmount) {
             this.refundedAmount = JsonNullable.of(refundedAmount);
             return this;
         }
 
         /**
-         * The amount of the line item that has been refunded.
-         */
-        public Builder refundedAmount(JsonNullable<String> refundedAmount) {
-            Utils.checkNotNull(refundedAmount, "refundedAmount");
-            this.refundedAmount = refundedAmount;
-            return this;
-        }
-
-
-        /**
          * The quantity of the line item that has been refunded.
          */
-        public Builder refundedQuantity(String refundedQuantity) {
-            Utils.checkNotNull(refundedQuantity, "refundedQuantity");
+        public Builder refundedQuantity(@Nullable String refundedQuantity) {
             this.refundedQuantity = JsonNullable.of(refundedQuantity);
             return this;
         }
 
         /**
-         * The quantity of the line item that has been refunded.
-         */
-        public Builder refundedQuantity(JsonNullable<String> refundedQuantity) {
-            Utils.checkNotNull(refundedQuantity, "refundedQuantity");
-            this.refundedQuantity = refundedQuantity;
-            return this;
-        }
-
-
-        /**
          * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
          */
-        public Builder subTotal(String subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
+        public Builder subTotal(@Nullable String subTotal) {
             this.subTotal = JsonNullable.of(subTotal);
             return this;
         }
 
         /**
-         * The sub total for the product(s) or variant associated with the line item, excluding taxes and discounts.
-         */
-        public Builder subTotal(JsonNullable<String> subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
-            this.subTotal = subTotal;
-            return this;
-        }
-
-
-        /**
          * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
          */
-        public Builder totalAmount(String totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable String totalAmount) {
             this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
-        /**
-         * The total amount for the product(s) or variant associated with the line item, including taxes and discounts.
-         */
-        public Builder totalAmount(JsonNullable<String> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = totalAmount;
-            return this;
-        }
-
-
-        public Builder discounts(List<EcommerceDiscount> discounts) {
-            Utils.checkNotNull(discounts, "discounts");
-            this.discounts = Optional.ofNullable(discounts);
-            return this;
-        }
-
-        public Builder discounts(Optional<? extends List<EcommerceDiscount>> discounts) {
-            Utils.checkNotNull(discounts, "discounts");
+        public Builder discounts(@Nullable List<EcommerceDiscount> discounts) {
             this.discounts = discounts;
             return this;
         }
 
         public EcommerceOrderLineItem build() {
-
             return new EcommerceOrderLineItem(
                 id, productId, variantId,
                 sku, name, description,

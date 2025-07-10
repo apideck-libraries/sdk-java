@@ -26,6 +26,8 @@ import com.apideck.unify.operations.HrisTimeOffRequestsDeleteOperation;
 import com.apideck.unify.operations.HrisTimeOffRequestsOneOperation;
 import com.apideck.unify.operations.HrisTimeOffRequestsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public HrisTimeOffRequestsAllResponse list(@Nonnull HrisTimeOffRequestsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class TimeOffRequests {
      * @throws Exception if the API call fails
      */
     public HrisTimeOffRequestsAllResponse list(
-            HrisTimeOffRequestsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisTimeOffRequestsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
               = new HrisTimeOffRequestsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public HrisTimeOffRequestsAddResponse create(@Nonnull HrisTimeOffRequestsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class TimeOffRequests {
      * @throws Exception if the API call fails
      */
     public HrisTimeOffRequestsAddResponse create(
-            HrisTimeOffRequestsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisTimeOffRequestsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
               = new HrisTimeOffRequestsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public HrisTimeOffRequestsOneResponse get(@Nonnull HrisTimeOffRequestsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class TimeOffRequests {
      * @throws Exception if the API call fails
      */
     public HrisTimeOffRequestsOneResponse get(
-            HrisTimeOffRequestsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisTimeOffRequestsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
               = new HrisTimeOffRequestsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public HrisTimeOffRequestsUpdateResponse update(@Nonnull HrisTimeOffRequestsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class TimeOffRequests {
      * @throws Exception if the API call fails
      */
     public HrisTimeOffRequestsUpdateResponse update(
-            HrisTimeOffRequestsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisTimeOffRequestsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
               = new HrisTimeOffRequestsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public HrisTimeOffRequestsDeleteResponse delete(@Nonnull HrisTimeOffRequestsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class TimeOffRequests {
      * @throws Exception if the API call fails
      */
     public HrisTimeOffRequestsDeleteResponse delete(
-            HrisTimeOffRequestsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisTimeOffRequestsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
               = new HrisTimeOffRequestsDeleteOperation(
                 sdkConfiguration,

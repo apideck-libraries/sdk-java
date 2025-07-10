@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class EmployeesOneFilter {
      * Company ID to filter on
      */
     @SpeakeasyMetadata("queryParam:name=company_id")
-    private Optional<String> companyId;
+    private String companyId;
 
     @JsonCreator
     public EmployeesOneFilter(
-            Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+            @Nullable String companyId) {
         this.companyId = companyId;
     }
     
     public EmployeesOneFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Company ID to filter on
      */
-    @JsonIgnore
     public Optional<String> companyId() {
-        return companyId;
+        return Optional.ofNullable(this.companyId);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class EmployeesOneFilter {
     /**
      * Company ID to filter on
      */
-    public EmployeesOneFilter withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = Optional.ofNullable(companyId);
-        return this;
-    }
-
-
-    /**
-     * Company ID to filter on
-     */
-    public EmployeesOneFilter withCompanyId(Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public EmployeesOneFilter withCompanyId(@Nullable String companyId) {
         this.companyId = companyId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class EmployeesOneFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> companyId = Optional.empty();
+        private String companyId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Company ID to filter on
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = Optional.ofNullable(companyId);
-            return this;
-        }
-
-        /**
-         * Company ID to filter on
-         */
-        public Builder companyId(Optional<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = companyId;
             return this;
         }
 
         public EmployeesOneFilter build() {
-
             return new EmployeesOneFilter(
                 companyId);
         }

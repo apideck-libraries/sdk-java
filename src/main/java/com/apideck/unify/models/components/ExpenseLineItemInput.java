@@ -5,16 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -26,21 +25,21 @@ public class ExpenseLineItemInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
     /**
      * The unique identifier for the ledger account.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("account_id")
-    private Optional<String> accountId;
+    private String accountId;
 
     /**
      * The ID of the customer this expense item is linked to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer_id")
-    private Optional<String> customerId;
+    private String customerId;
 
     /**
      * The ID of the department
@@ -66,7 +65,7 @@ public class ExpenseLineItemInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRateInput> taxRate;
+    private LinkedTaxRateInput taxRate;
 
     /**
      * The expense line item description
@@ -80,14 +79,14 @@ public class ExpenseLineItemInput {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("total_amount")
-    private Optional<Double> totalAmount;
+    private JsonNullable<Double> totalAmount;
 
     /**
      * Boolean that indicates if the line item is billable or not.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billable")
-    private Optional<Boolean> billable;
+    private Boolean billable;
 
     /**
      * Line number of the resource
@@ -98,133 +97,115 @@ public class ExpenseLineItemInput {
 
     @JsonCreator
     public ExpenseLineItemInput(
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("account_id") Optional<String> accountId,
-            @JsonProperty("customer_id") Optional<String> customerId,
-            @JsonProperty("department_id") JsonNullable<String> departmentId,
-            @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("total_amount") Optional<Double> totalAmount,
-            @JsonProperty("billable") Optional<Boolean> billable,
-            @JsonProperty("line_number") JsonNullable<Long> lineNumber) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(accountId, "accountId");
-        Utils.checkNotNull(customerId, "customerId");
-        Utils.checkNotNull(departmentId, "departmentId");
-        Utils.checkNotNull(locationId, "locationId");
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(billable, "billable");
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        this.trackingCategories = trackingCategories;
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("account_id") @Nullable String accountId,
+            @JsonProperty("customer_id") @Nullable String customerId,
+            @JsonProperty("department_id") @Nullable JsonNullable<String> departmentId,
+            @JsonProperty("location_id") @Nullable JsonNullable<String> locationId,
+            @JsonProperty("subsidiary_id") @Nullable JsonNullable<String> subsidiaryId,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRateInput taxRate,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("total_amount") @Nullable Double totalAmount,
+            @JsonProperty("billable") @Nullable Boolean billable,
+            @JsonProperty("line_number") @Nullable JsonNullable<Long> lineNumber) {
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
         this.accountId = accountId;
         this.customerId = customerId;
-        this.departmentId = departmentId;
-        this.locationId = locationId;
-        this.subsidiaryId = subsidiaryId;
+        this.departmentId = Optional.ofNullable(departmentId)
+            .orElse(JsonNullable.undefined());
+        this.locationId = Optional.ofNullable(locationId)
+            .orElse(JsonNullable.undefined());
+        this.subsidiaryId = Optional.ofNullable(subsidiaryId)
+            .orElse(JsonNullable.undefined());
         this.taxRate = taxRate;
-        this.description = description;
-        this.totalAmount = totalAmount;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = JsonNullable.of(totalAmount);
         this.billable = billable;
-        this.lineNumber = lineNumber;
+        this.lineNumber = Optional.ofNullable(lineNumber)
+            .orElse(JsonNullable.undefined());
     }
     
     public ExpenseLineItemInput() {
-        this(JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
     /**
      * The unique identifier for the ledger account.
      */
-    @JsonIgnore
     public Optional<String> accountId() {
-        return accountId;
+        return Optional.ofNullable(this.accountId);
     }
 
     /**
      * The ID of the customer this expense item is linked to.
      */
-    @JsonIgnore
     public Optional<String> customerId() {
-        return customerId;
+        return Optional.ofNullable(this.customerId);
     }
 
     /**
      * The ID of the department
      */
-    @JsonIgnore
     public JsonNullable<String> departmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
     /**
      * The ID of the location
      */
-    @JsonIgnore
     public JsonNullable<String> locationId() {
-        return locationId;
+        return this.locationId;
     }
 
     /**
      * The ID of the subsidiary
      */
-    @JsonIgnore
     public JsonNullable<String> subsidiaryId() {
-        return subsidiaryId;
+        return this.subsidiaryId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRateInput> taxRate() {
-        return (Optional<LinkedTaxRateInput>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
     /**
      * The expense line item description
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The total amount of the expense line item.
      */
-    @JsonIgnore
-    public Optional<Double> totalAmount() {
-        return totalAmount;
+    public JsonNullable<Double> totalAmount() {
+        return this.totalAmount;
     }
 
     /**
      * Boolean that indicates if the line item is billable or not.
      */
-    @JsonIgnore
     public Optional<Boolean> billable() {
-        return billable;
+        return Optional.ofNullable(this.billable);
     }
 
     /**
      * Line number of the resource
      */
-    @JsonIgnore
     public JsonNullable<Long> lineNumber() {
-        return lineNumber;
+        return this.lineNumber;
     }
 
     public static Builder builder() {
@@ -235,169 +216,77 @@ public class ExpenseLineItemInput {
     /**
      * A list of linked tracking categories.
      */
-    public ExpenseLineItemInput withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public ExpenseLineItemInput withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public ExpenseLineItemInput withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
-        return this;
-    }
 
     /**
      * The unique identifier for the ledger account.
      */
-    public ExpenseLineItemInput withAccountId(String accountId) {
-        Utils.checkNotNull(accountId, "accountId");
-        this.accountId = Optional.ofNullable(accountId);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the ledger account.
-     */
-    public ExpenseLineItemInput withAccountId(Optional<String> accountId) {
-        Utils.checkNotNull(accountId, "accountId");
+    public ExpenseLineItemInput withAccountId(@Nullable String accountId) {
         this.accountId = accountId;
         return this;
     }
 
-    /**
-     * The ID of the customer this expense item is linked to.
-     */
-    public ExpenseLineItemInput withCustomerId(String customerId) {
-        Utils.checkNotNull(customerId, "customerId");
-        this.customerId = Optional.ofNullable(customerId);
-        return this;
-    }
-
 
     /**
      * The ID of the customer this expense item is linked to.
      */
-    public ExpenseLineItemInput withCustomerId(Optional<String> customerId) {
-        Utils.checkNotNull(customerId, "customerId");
+    public ExpenseLineItemInput withCustomerId(@Nullable String customerId) {
         this.customerId = customerId;
         return this;
     }
 
+
     /**
      * The ID of the department
      */
-    public ExpenseLineItemInput withDepartmentId(String departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
+    public ExpenseLineItemInput withDepartmentId(@Nullable String departmentId) {
         this.departmentId = JsonNullable.of(departmentId);
         return this;
     }
 
-    /**
-     * The ID of the department
-     */
-    public ExpenseLineItemInput withDepartmentId(JsonNullable<String> departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
-        this.departmentId = departmentId;
-        return this;
-    }
 
     /**
      * The ID of the location
      */
-    public ExpenseLineItemInput withLocationId(String locationId) {
-        Utils.checkNotNull(locationId, "locationId");
+    public ExpenseLineItemInput withLocationId(@Nullable String locationId) {
         this.locationId = JsonNullable.of(locationId);
         return this;
     }
 
-    /**
-     * The ID of the location
-     */
-    public ExpenseLineItemInput withLocationId(JsonNullable<String> locationId) {
-        Utils.checkNotNull(locationId, "locationId");
-        this.locationId = locationId;
-        return this;
-    }
 
     /**
      * The ID of the subsidiary
      */
-    public ExpenseLineItemInput withSubsidiaryId(String subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+    public ExpenseLineItemInput withSubsidiaryId(@Nullable String subsidiaryId) {
         this.subsidiaryId = JsonNullable.of(subsidiaryId);
         return this;
     }
 
-    /**
-     * The ID of the subsidiary
-     */
-    public ExpenseLineItemInput withSubsidiaryId(JsonNullable<String> subsidiaryId) {
-        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-        this.subsidiaryId = subsidiaryId;
-        return this;
-    }
 
-    public ExpenseLineItemInput withTaxRate(LinkedTaxRateInput taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
-        return this;
-    }
-
-
-    public ExpenseLineItemInput withTaxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public ExpenseLineItemInput withTaxRate(@Nullable LinkedTaxRateInput taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
+
     /**
      * The expense line item description
      */
-    public ExpenseLineItemInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public ExpenseLineItemInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The expense line item description
-     */
-    public ExpenseLineItemInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The total amount of the expense line item.
      */
-    public ExpenseLineItemInput withTotalAmount(double totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
-        return this;
-    }
-
-
-    /**
-     * The total amount of the expense line item.
-     */
-    public ExpenseLineItemInput withTotalAmount(Optional<Double> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
-
-    /**
-     * Boolean that indicates if the line item is billable or not.
-     */
-    public ExpenseLineItemInput withBillable(boolean billable) {
-        Utils.checkNotNull(billable, "billable");
-        this.billable = Optional.ofNullable(billable);
+    public ExpenseLineItemInput withTotalAmount(@Nullable Double totalAmount) {
+        this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
@@ -405,29 +294,20 @@ public class ExpenseLineItemInput {
     /**
      * Boolean that indicates if the line item is billable or not.
      */
-    public ExpenseLineItemInput withBillable(Optional<Boolean> billable) {
-        Utils.checkNotNull(billable, "billable");
+    public ExpenseLineItemInput withBillable(@Nullable Boolean billable) {
         this.billable = billable;
         return this;
     }
 
-    /**
-     * Line number of the resource
-     */
-    public ExpenseLineItemInput withLineNumber(long lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        this.lineNumber = JsonNullable.of(lineNumber);
-        return this;
-    }
 
     /**
      * Line number of the resource
      */
-    public ExpenseLineItemInput withLineNumber(JsonNullable<Long> lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        this.lineNumber = lineNumber;
+    public ExpenseLineItemInput withLineNumber(@Nullable Long lineNumber) {
+        this.lineNumber = JsonNullable.of(lineNumber);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -480,237 +360,118 @@ public class ExpenseLineItemInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private Optional<String> accountId = Optional.empty();
+        private String accountId;
 
-        private Optional<String> customerId = Optional.empty();
+        private String customerId;
 
-        private JsonNullable<String> departmentId = JsonNullable.undefined();
+        private JsonNullable<String> departmentId;
 
-        private JsonNullable<String> locationId = JsonNullable.undefined();
+        private JsonNullable<String> locationId;
 
-        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+        private JsonNullable<String> subsidiaryId;
 
-        private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
+        private LinkedTaxRateInput taxRate;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<Double> totalAmount = Optional.empty();
+        private Double totalAmount;
 
-        private Optional<Boolean> billable = Optional.empty();
+        private Boolean billable;
 
-        private JsonNullable<Long> lineNumber = JsonNullable.undefined();
+        private JsonNullable<Long> lineNumber;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
         /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        /**
          * The unique identifier for the ledger account.
          */
-        public Builder accountId(String accountId) {
-            Utils.checkNotNull(accountId, "accountId");
-            this.accountId = Optional.ofNullable(accountId);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the ledger account.
-         */
-        public Builder accountId(Optional<String> accountId) {
-            Utils.checkNotNull(accountId, "accountId");
+        public Builder accountId(@Nullable String accountId) {
             this.accountId = accountId;
             return this;
         }
 
-
         /**
          * The ID of the customer this expense item is linked to.
          */
-        public Builder customerId(String customerId) {
-            Utils.checkNotNull(customerId, "customerId");
-            this.customerId = Optional.ofNullable(customerId);
-            return this;
-        }
-
-        /**
-         * The ID of the customer this expense item is linked to.
-         */
-        public Builder customerId(Optional<String> customerId) {
-            Utils.checkNotNull(customerId, "customerId");
+        public Builder customerId(@Nullable String customerId) {
             this.customerId = customerId;
             return this;
         }
 
-
         /**
          * The ID of the department
          */
-        public Builder departmentId(String departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
+        public Builder departmentId(@Nullable String departmentId) {
             this.departmentId = JsonNullable.of(departmentId);
             return this;
         }
 
         /**
-         * The ID of the department
-         */
-        public Builder departmentId(JsonNullable<String> departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
-            this.departmentId = departmentId;
-            return this;
-        }
-
-
-        /**
          * The ID of the location
          */
-        public Builder locationId(String locationId) {
-            Utils.checkNotNull(locationId, "locationId");
+        public Builder locationId(@Nullable String locationId) {
             this.locationId = JsonNullable.of(locationId);
             return this;
         }
 
         /**
-         * The ID of the location
-         */
-        public Builder locationId(JsonNullable<String> locationId) {
-            Utils.checkNotNull(locationId, "locationId");
-            this.locationId = locationId;
-            return this;
-        }
-
-
-        /**
          * The ID of the subsidiary
          */
-        public Builder subsidiaryId(String subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        public Builder subsidiaryId(@Nullable String subsidiaryId) {
             this.subsidiaryId = JsonNullable.of(subsidiaryId);
             return this;
         }
 
-        /**
-         * The ID of the subsidiary
-         */
-        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
-            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
-            this.subsidiaryId = subsidiaryId;
-            return this;
-        }
-
-
-        public Builder taxRate(LinkedTaxRateInput taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRateInput> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRateInput taxRate) {
             this.taxRate = taxRate;
             return this;
         }
 
-
         /**
          * The expense line item description
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * The expense line item description
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The total amount of the expense line item.
          */
-        public Builder totalAmount(double totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
-            return this;
-        }
-
-        /**
-         * The total amount of the expense line item.
-         */
-        public Builder totalAmount(Optional<Double> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable Double totalAmount) {
             this.totalAmount = totalAmount;
             return this;
         }
 
-
         /**
          * Boolean that indicates if the line item is billable or not.
          */
-        public Builder billable(boolean billable) {
-            Utils.checkNotNull(billable, "billable");
-            this.billable = Optional.ofNullable(billable);
-            return this;
-        }
-
-        /**
-         * Boolean that indicates if the line item is billable or not.
-         */
-        public Builder billable(Optional<Boolean> billable) {
-            Utils.checkNotNull(billable, "billable");
+        public Builder billable(@Nullable Boolean billable) {
             this.billable = billable;
             return this;
         }
 
-
         /**
          * Line number of the resource
          */
-        public Builder lineNumber(long lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
+        public Builder lineNumber(@Nullable Long lineNumber) {
             this.lineNumber = JsonNullable.of(lineNumber);
             return this;
         }
 
-        /**
-         * Line number of the resource
-         */
-        public Builder lineNumber(JsonNullable<Long> lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
-            this.lineNumber = lineNumber;
-            return this;
-        }
-
         public ExpenseLineItemInput build() {
-
             return new ExpenseLineItemInput(
                 trackingCategories, accountId, customerId,
                 departmentId, locationId, subsidiaryId,

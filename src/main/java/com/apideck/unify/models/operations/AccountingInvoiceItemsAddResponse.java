@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingInvoiceItemsAddResponse implements Response {
     /**
      * InvoiceItems
      */
-    private Optional<? extends CreateInvoiceItemResponse> createInvoiceItemResponse;
+    private CreateInvoiceItemResponse createInvoiceItemResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingInvoiceItemsAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateInvoiceItemResponse> createInvoiceItemResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(createInvoiceItemResponse, "createInvoiceItemResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable CreateInvoiceItemResponse createInvoiceItemResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.createInvoiceItemResponse = createInvoiceItemResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingInvoiceItemsAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * InvoiceItems
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CreateInvoiceItemResponse> createInvoiceItemResponse() {
-        return (Optional<CreateInvoiceItemResponse>) createInvoiceItemResponse;
+        return Optional.ofNullable(this.createInvoiceItemResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingInvoiceItemsAddResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingInvoiceItemsAddResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingInvoiceItemsAddResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingInvoiceItemsAddResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingInvoiceItemsAddResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * InvoiceItems
-     */
-    public AccountingInvoiceItemsAddResponse withCreateInvoiceItemResponse(CreateInvoiceItemResponse createInvoiceItemResponse) {
-        Utils.checkNotNull(createInvoiceItemResponse, "createInvoiceItemResponse");
-        this.createInvoiceItemResponse = Optional.ofNullable(createInvoiceItemResponse);
+    public AccountingInvoiceItemsAddResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingInvoiceItemsAddResponse implements Response {
     /**
      * InvoiceItems
      */
-    public AccountingInvoiceItemsAddResponse withCreateInvoiceItemResponse(Optional<? extends CreateInvoiceItemResponse> createInvoiceItemResponse) {
-        Utils.checkNotNull(createInvoiceItemResponse, "createInvoiceItemResponse");
+    public AccountingInvoiceItemsAddResponse withCreateInvoiceItemResponse(@Nullable CreateInvoiceItemResponse createInvoiceItemResponse) {
         this.createInvoiceItemResponse = createInvoiceItemResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingInvoiceItemsAddResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingInvoiceItemsAddResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingInvoiceItemsAddResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingInvoiceItemsAddResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateInvoiceItemResponse> createInvoiceItemResponse = Optional.empty();
+        private CreateInvoiceItemResponse createInvoiceItemResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * InvoiceItems
-         */
-        public Builder createInvoiceItemResponse(CreateInvoiceItemResponse createInvoiceItemResponse) {
-            Utils.checkNotNull(createInvoiceItemResponse, "createInvoiceItemResponse");
-            this.createInvoiceItemResponse = Optional.ofNullable(createInvoiceItemResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * InvoiceItems
          */
-        public Builder createInvoiceItemResponse(Optional<? extends CreateInvoiceItemResponse> createInvoiceItemResponse) {
-            Utils.checkNotNull(createInvoiceItemResponse, "createInvoiceItemResponse");
+        public Builder createInvoiceItemResponse(@Nullable CreateInvoiceItemResponse createInvoiceItemResponse) {
             this.createInvoiceItemResponse = createInvoiceItemResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingInvoiceItemsAddResponse build() {
-
             return new AccountingInvoiceItemsAddResponse(
                 contentType, statusCode, rawResponse,
                 createInvoiceItemResponse, unexpectedErrorResponse);

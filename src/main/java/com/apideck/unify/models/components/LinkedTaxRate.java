@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -46,55 +47,51 @@ public class LinkedTaxRate {
 
     @JsonCreator
     public LinkedTaxRate(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("rate") JsonNullable<Double> rate) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(rate, "rate");
-        this.id = id;
-        this.code = code;
-        this.name = name;
-        this.rate = rate;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("rate") @Nullable JsonNullable<Double> rate) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.rate = Optional.ofNullable(rate)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedTaxRate() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The ID of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Tax rate code
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * Name of the tax rate
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * Rate of the tax rate
      */
-    @JsonIgnore
     public JsonNullable<Double> rate() {
-        return rate;
+        return this.rate;
     }
 
     public static Builder builder() {
@@ -105,74 +102,38 @@ public class LinkedTaxRate {
     /**
      * The ID of the object.
      */
-    public LinkedTaxRate withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedTaxRate withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * The ID of the object.
-     */
-    public LinkedTaxRate withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Tax rate code
      */
-    public LinkedTaxRate withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public LinkedTaxRate withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * Tax rate code
-     */
-    public LinkedTaxRate withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * Name of the tax rate
      */
-    public LinkedTaxRate withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedTaxRate withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * Name of the tax rate
-     */
-    public LinkedTaxRate withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * Rate of the tax rate
      */
-    public LinkedTaxRate withRate(double rate) {
-        Utils.checkNotNull(rate, "rate");
+    public LinkedTaxRate withRate(@Nullable Double rate) {
         this.rate = JsonNullable.of(rate);
         return this;
     }
 
-    /**
-     * Rate of the tax rate
-     */
-    public LinkedTaxRate withRate(JsonNullable<Double> rate) {
-        Utils.checkNotNull(rate, "rate");
-        this.rate = rate;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -209,96 +170,51 @@ public class LinkedTaxRate {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<Double> rate = JsonNullable.undefined();
+        private JsonNullable<Double> rate;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * The ID of the object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * Tax rate code
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * Tax rate code
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * Name of the tax rate
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * Name of the tax rate
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * Rate of the tax rate
          */
-        public Builder rate(double rate) {
-            Utils.checkNotNull(rate, "rate");
+        public Builder rate(@Nullable Double rate) {
             this.rate = JsonNullable.of(rate);
             return this;
         }
 
-        /**
-         * Rate of the tax rate
-         */
-        public Builder rate(JsonNullable<Double> rate) {
-            Utils.checkNotNull(rate, "rate");
-            this.rate = rate;
-            return this;
-        }
-
         public LinkedTaxRate build() {
-
             return new LinkedTaxRate(
                 id, code, name,
                 rate);

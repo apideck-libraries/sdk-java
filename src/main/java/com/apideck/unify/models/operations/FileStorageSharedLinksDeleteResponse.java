@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class FileStorageSharedLinksDeleteResponse implements Response {
     /**
      * Shared Links
      */
-    private Optional<? extends DeleteSharedLinkResponse> deleteSharedLinkResponse;
+    private DeleteSharedLinkResponse deleteSharedLinkResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public FileStorageSharedLinksDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends DeleteSharedLinkResponse> deleteSharedLinkResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(deleteSharedLinkResponse, "deleteSharedLinkResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable DeleteSharedLinkResponse deleteSharedLinkResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.deleteSharedLinkResponse = deleteSharedLinkResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public FileStorageSharedLinksDeleteResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Shared Links
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<DeleteSharedLinkResponse> deleteSharedLinkResponse() {
-        return (Optional<DeleteSharedLinkResponse>) deleteSharedLinkResponse;
+        return Optional.ofNullable(this.deleteSharedLinkResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class FileStorageSharedLinksDeleteResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public FileStorageSharedLinksDeleteResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public FileStorageSharedLinksDeleteResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public FileStorageSharedLinksDeleteResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public FileStorageSharedLinksDeleteResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Shared Links
-     */
-    public FileStorageSharedLinksDeleteResponse withDeleteSharedLinkResponse(DeleteSharedLinkResponse deleteSharedLinkResponse) {
-        Utils.checkNotNull(deleteSharedLinkResponse, "deleteSharedLinkResponse");
-        this.deleteSharedLinkResponse = Optional.ofNullable(deleteSharedLinkResponse);
+    public FileStorageSharedLinksDeleteResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class FileStorageSharedLinksDeleteResponse implements Response {
     /**
      * Shared Links
      */
-    public FileStorageSharedLinksDeleteResponse withDeleteSharedLinkResponse(Optional<? extends DeleteSharedLinkResponse> deleteSharedLinkResponse) {
-        Utils.checkNotNull(deleteSharedLinkResponse, "deleteSharedLinkResponse");
+    public FileStorageSharedLinksDeleteResponse withDeleteSharedLinkResponse(@Nullable DeleteSharedLinkResponse deleteSharedLinkResponse) {
         this.deleteSharedLinkResponse = deleteSharedLinkResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public FileStorageSharedLinksDeleteResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public FileStorageSharedLinksDeleteResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public FileStorageSharedLinksDeleteResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class FileStorageSharedLinksDeleteResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends DeleteSharedLinkResponse> deleteSharedLinkResponse = Optional.empty();
+        private DeleteSharedLinkResponse deleteSharedLinkResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Shared Links
-         */
-        public Builder deleteSharedLinkResponse(DeleteSharedLinkResponse deleteSharedLinkResponse) {
-            Utils.checkNotNull(deleteSharedLinkResponse, "deleteSharedLinkResponse");
-            this.deleteSharedLinkResponse = Optional.ofNullable(deleteSharedLinkResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Shared Links
          */
-        public Builder deleteSharedLinkResponse(Optional<? extends DeleteSharedLinkResponse> deleteSharedLinkResponse) {
-            Utils.checkNotNull(deleteSharedLinkResponse, "deleteSharedLinkResponse");
+        public Builder deleteSharedLinkResponse(@Nullable DeleteSharedLinkResponse deleteSharedLinkResponse) {
             this.deleteSharedLinkResponse = deleteSharedLinkResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public FileStorageSharedLinksDeleteResponse build() {
-
             return new FileStorageSharedLinksDeleteResponse(
                 contentType, statusCode, rawResponse,
                 deleteSharedLinkResponse, unexpectedErrorResponse);

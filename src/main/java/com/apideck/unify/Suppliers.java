@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingSuppliersDeleteOperation;
 import com.apideck.unify.operations.AccountingSuppliersOneOperation;
 import com.apideck.unify.operations.AccountingSuppliersUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Suppliers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSuppliersAllResponse list(AccountingSuppliersAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingSuppliersAllResponse list(@Nonnull AccountingSuppliersAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Suppliers {
      * @throws Exception if the API call fails
      */
     public AccountingSuppliersAllResponse list(
-            AccountingSuppliersAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSuppliersAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSuppliersAllRequest, AccountingSuppliersAllResponse> operation
               = new AccountingSuppliersAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Suppliers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSuppliersAddResponse create(AccountingSuppliersAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingSuppliersAddResponse create(@Nonnull AccountingSuppliersAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Suppliers {
      * @throws Exception if the API call fails
      */
     public AccountingSuppliersAddResponse create(
-            AccountingSuppliersAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSuppliersAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
               = new AccountingSuppliersAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Suppliers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSuppliersOneResponse get(AccountingSuppliersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingSuppliersOneResponse get(@Nonnull AccountingSuppliersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Suppliers {
      * @throws Exception if the API call fails
      */
     public AccountingSuppliersOneResponse get(
-            AccountingSuppliersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSuppliersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSuppliersOneRequest, AccountingSuppliersOneResponse> operation
               = new AccountingSuppliersOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Suppliers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSuppliersUpdateResponse update(AccountingSuppliersUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingSuppliersUpdateResponse update(@Nonnull AccountingSuppliersUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Suppliers {
      * @throws Exception if the API call fails
      */
     public AccountingSuppliersUpdateResponse update(
-            AccountingSuppliersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSuppliersUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSuppliersUpdateRequest, AccountingSuppliersUpdateResponse> operation
               = new AccountingSuppliersUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Suppliers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSuppliersDeleteResponse delete(AccountingSuppliersDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingSuppliersDeleteResponse delete(@Nonnull AccountingSuppliersDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Suppliers {
      * @throws Exception if the API call fails
      */
     public AccountingSuppliersDeleteResponse delete(
-            AccountingSuppliersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingSuppliersDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
               = new AccountingSuppliersDeleteOperation(
                 sdkConfiguration,

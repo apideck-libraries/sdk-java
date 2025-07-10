@@ -9,107 +9,71 @@ import com.apideck.unify.SDKConfiguration;
 import com.apideck.unify.operations.VaultConnectionsAllOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
-import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class VaultConnectionsAllRequestBuilder {
-
-    private Optional<String> consumerId = Optional.empty();
-    private Optional<String> appId = Optional.empty();
-    private Optional<String> api = Optional.empty();
-    private Optional<Boolean> configured = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final VaultConnectionsAllRequest.Builder pojoBuilder;
+    private VaultConnectionsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public VaultConnectionsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = VaultConnectionsAllRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public VaultConnectionsAllRequestBuilder consumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.of(consumerId);
+
+    public VaultConnectionsAllRequestBuilder consumerId(@Nullable String consumerId) {
+        this.pojoBuilder.consumerId(consumerId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder consumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-                
-    public VaultConnectionsAllRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public VaultConnectionsAllRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
-        return this;
-    }
-                
-    public VaultConnectionsAllRequestBuilder api(String api) {
-        Utils.checkNotNull(api, "api");
-        this.api = Optional.of(api);
+    public VaultConnectionsAllRequestBuilder api(@Nullable String api) {
+        this.pojoBuilder.api(api);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder api(Optional<String> api) {
-        Utils.checkNotNull(api, "api");
-        this.api = api;
-        return this;
-    }
-                
-    public VaultConnectionsAllRequestBuilder configured(boolean configured) {
-        Utils.checkNotNull(configured, "configured");
-        this.configured = Optional.of(configured);
+    public VaultConnectionsAllRequestBuilder configured(@Nullable Boolean configured) {
+        this.pojoBuilder.configured(configured);
+        this._setterCalled = true;
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder configured(Optional<Boolean> configured) {
-        Utils.checkNotNull(configured, "configured");
-        this.configured = configured;
-        return this;
-    }
-                
     public VaultConnectionsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public VaultConnectionsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private VaultConnectionsAllRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private VaultConnectionsAllRequest buildRequest() {
-
-        VaultConnectionsAllRequest request = new VaultConnectionsAllRequest(consumerId,
-            appId,
-            api,
-            configured);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public VaultConnectionsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
               = new VaultConnectionsAllOperation(
                 sdkConfiguration,
                 options);
-        VaultConnectionsAllRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

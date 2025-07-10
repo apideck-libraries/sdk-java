@@ -26,6 +26,8 @@ import com.apideck.unify.operations.FileStorageUploadSessionsFinishOperation;
 import com.apideck.unify.operations.FileStorageUploadSessionsOneOperation;
 import com.apideck.unify.operations.FileStorageUploadSessionsUploadOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -58,8 +60,8 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsAddResponse create(FileStorageUploadSessionsAddRequest request) throws Exception {
-        return create(request, Optional.empty(), Optional.empty());
+    public FileStorageUploadSessionsAddResponse create(@Nonnull FileStorageUploadSessionsAddRequest request) throws Exception {
+        return create(request, null, null);
     }
 
     /**
@@ -74,9 +76,9 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsAddResponse create(
-            FileStorageUploadSessionsAddRequest request,
-            Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageUploadSessionsAddRequest request,
+            @Nullable String serverURL,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
               = new FileStorageUploadSessionsAddOperation(
                 sdkConfiguration,
@@ -105,8 +107,8 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsOneResponse get(FileStorageUploadSessionsOneRequest request) throws Exception {
-        return get(request, Optional.empty(), Optional.empty());
+    public FileStorageUploadSessionsOneResponse get(@Nonnull FileStorageUploadSessionsOneRequest request) throws Exception {
+        return get(request, null, null);
     }
 
     /**
@@ -121,9 +123,9 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsOneResponse get(
-            FileStorageUploadSessionsOneRequest request,
-            Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageUploadSessionsOneRequest request,
+            @Nullable String serverURL,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
               = new FileStorageUploadSessionsOneOperation(
                 sdkConfiguration,
@@ -152,8 +154,8 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsUploadResponse upload(FileStorageUploadSessionsUploadRequest request) throws Exception {
-        return upload(request, Optional.empty(), Optional.empty());
+    public FileStorageUploadSessionsUploadResponse upload(@Nonnull FileStorageUploadSessionsUploadRequest request) throws Exception {
+        return upload(request, null, null);
     }
 
     /**
@@ -168,9 +170,9 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsUploadResponse upload(
-            FileStorageUploadSessionsUploadRequest request,
-            Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageUploadSessionsUploadRequest request,
+            @Nullable String serverURL,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
               = new FileStorageUploadSessionsUploadOperation(
                 sdkConfiguration,
@@ -199,8 +201,8 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageUploadSessionsDeleteResponse delete(@Nonnull FileStorageUploadSessionsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -214,8 +216,8 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsDeleteResponse delete(
-            FileStorageUploadSessionsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageUploadSessionsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
               = new FileStorageUploadSessionsDeleteOperation(
                 sdkConfiguration,
@@ -243,8 +245,8 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsFinishResponse finish(FileStorageUploadSessionsFinishRequest request) throws Exception {
-        return finish(request, Optional.empty(), Optional.empty());
+    public FileStorageUploadSessionsFinishResponse finish(@Nonnull FileStorageUploadSessionsFinishRequest request) throws Exception {
+        return finish(request, null, null);
     }
 
     /**
@@ -259,9 +261,9 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsFinishResponse finish(
-            FileStorageUploadSessionsFinishRequest request,
-            Optional<String> serverURL,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageUploadSessionsFinishRequest request,
+            @Nullable String serverURL,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
               = new FileStorageUploadSessionsFinishOperation(
                 sdkConfiguration,

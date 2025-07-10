@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -17,25 +17,23 @@ public class DriveGroupsFilter {
      * ID of the drive group to filter on
      */
     @SpeakeasyMetadata("queryParam:name=parent_group_id")
-    private Optional<String> parentGroupId;
+    private String parentGroupId;
 
     @JsonCreator
     public DriveGroupsFilter(
-            Optional<String> parentGroupId) {
-        Utils.checkNotNull(parentGroupId, "parentGroupId");
+            @Nullable String parentGroupId) {
         this.parentGroupId = parentGroupId;
     }
     
     public DriveGroupsFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * ID of the drive group to filter on
      */
-    @JsonIgnore
     public Optional<String> parentGroupId() {
-        return parentGroupId;
+        return Optional.ofNullable(this.parentGroupId);
     }
 
     public static Builder builder() {
@@ -46,21 +44,11 @@ public class DriveGroupsFilter {
     /**
      * ID of the drive group to filter on
      */
-    public DriveGroupsFilter withParentGroupId(String parentGroupId) {
-        Utils.checkNotNull(parentGroupId, "parentGroupId");
-        this.parentGroupId = Optional.ofNullable(parentGroupId);
-        return this;
-    }
-
-
-    /**
-     * ID of the drive group to filter on
-     */
-    public DriveGroupsFilter withParentGroupId(Optional<String> parentGroupId) {
-        Utils.checkNotNull(parentGroupId, "parentGroupId");
+    public DriveGroupsFilter withParentGroupId(@Nullable String parentGroupId) {
         this.parentGroupId = parentGroupId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -90,33 +78,21 @@ public class DriveGroupsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> parentGroupId = Optional.empty();
+        private String parentGroupId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the drive group to filter on
          */
-        public Builder parentGroupId(String parentGroupId) {
-            Utils.checkNotNull(parentGroupId, "parentGroupId");
-            this.parentGroupId = Optional.ofNullable(parentGroupId);
-            return this;
-        }
-
-        /**
-         * ID of the drive group to filter on
-         */
-        public Builder parentGroupId(Optional<String> parentGroupId) {
-            Utils.checkNotNull(parentGroupId, "parentGroupId");
+        public Builder parentGroupId(@Nullable String parentGroupId) {
             this.parentGroupId = parentGroupId;
             return this;
         }
 
         public DriveGroupsFilter build() {
-
             return new DriveGroupsFilter(
                 parentGroupId);
         }

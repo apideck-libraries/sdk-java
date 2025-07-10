@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -29,7 +29,7 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The title or name of the opportunity.
@@ -70,7 +70,7 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The probability of winning the opportunity, expressed as a percentage.
@@ -168,7 +168,7 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("contact_ids")
-    private Optional<? extends List<String>> contactIds;
+    private List<String> contactIds;
 
     /**
      * The unique identifier of the company associated with the opportunity.
@@ -215,7 +215,7 @@ public class Opportunity {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
     /**
      * The number of interactions with the opportunity.
@@ -227,7 +227,7 @@ public class Opportunity {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * The date and time when the stage of the opportunity was last changed.
@@ -248,7 +248,7 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("deleted")
-    private Optional<Boolean> deleted;
+    private Boolean deleted;
 
     /**
      * The date and time when the stage of the opportunity was last changed.
@@ -276,7 +276,7 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The unique identifier of the user who last updated the opportunity.
@@ -311,490 +311,437 @@ public class Opportunity {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public Opportunity(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("title") String title,
-            @JsonProperty("primary_contact_id") JsonNullable<String> primaryContactId,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("type") JsonNullable<String> type,
-            @JsonProperty("monetary_amount") JsonNullable<Double> monetaryAmount,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("win_probability") JsonNullable<Double> winProbability,
-            @JsonProperty("expected_revenue") JsonNullable<Double> expectedRevenue,
-            @JsonProperty("close_date") JsonNullable<LocalDate> closeDate,
-            @JsonProperty("loss_reason_id") JsonNullable<String> lossReasonId,
-            @JsonProperty("loss_reason") JsonNullable<String> lossReason,
-            @JsonProperty("won_reason_id") JsonNullable<String> wonReasonId,
-            @JsonProperty("won_reason") JsonNullable<String> wonReason,
-            @JsonProperty("pipeline_id") JsonNullable<String> pipelineId,
-            @JsonProperty("pipeline_stage_id") JsonNullable<String> pipelineStageId,
-            @JsonProperty("source_id") JsonNullable<String> sourceId,
-            @JsonProperty("lead_id") JsonNullable<String> leadId,
-            @JsonProperty("lead_source") JsonNullable<String> leadSource,
-            @JsonProperty("contact_id") JsonNullable<String> contactId,
-            @JsonProperty("contact_ids") Optional<? extends List<String>> contactIds,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("priority") JsonNullable<String> priority,
-            @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("status_id") JsonNullable<String> statusId,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("interaction_count") JsonNullable<Double> interactionCount,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("stage_last_changed_at") JsonNullable<OffsetDateTime> stageLastChangedAt,
-            @JsonProperty("last_activity_at") JsonNullable<String> lastActivityAt,
-            @JsonProperty("deleted") Optional<Boolean> deleted,
-            @JsonProperty("date_stage_changed") JsonNullable<OffsetDateTime> dateStageChanged,
-            @JsonProperty("date_last_contacted") JsonNullable<OffsetDateTime> dateLastContacted,
-            @JsonProperty("date_lead_created") JsonNullable<OffsetDateTime> dateLeadCreated,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(winProbability, "winProbability");
-        Utils.checkNotNull(expectedRevenue, "expectedRevenue");
-        Utils.checkNotNull(closeDate, "closeDate");
-        Utils.checkNotNull(lossReasonId, "lossReasonId");
-        Utils.checkNotNull(lossReason, "lossReason");
-        Utils.checkNotNull(wonReasonId, "wonReasonId");
-        Utils.checkNotNull(wonReason, "wonReason");
-        Utils.checkNotNull(pipelineId, "pipelineId");
-        Utils.checkNotNull(pipelineStageId, "pipelineStageId");
-        Utils.checkNotNull(sourceId, "sourceId");
-        Utils.checkNotNull(leadId, "leadId");
-        Utils.checkNotNull(leadSource, "leadSource");
-        Utils.checkNotNull(contactId, "contactId");
-        Utils.checkNotNull(contactIds, "contactIds");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(priority, "priority");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(statusId, "statusId");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(interactionCount, "interactionCount");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(stageLastChangedAt, "stageLastChangedAt");
-        Utils.checkNotNull(lastActivityAt, "lastActivityAt");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(dateStageChanged, "dateStageChanged");
-        Utils.checkNotNull(dateLastContacted, "dateLastContacted");
-        Utils.checkNotNull(dateLeadCreated, "dateLeadCreated");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("title") @Nonnull String title,
+            @JsonProperty("primary_contact_id") @Nullable JsonNullable<String> primaryContactId,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("type") @Nullable JsonNullable<String> type,
+            @JsonProperty("monetary_amount") @Nullable JsonNullable<Double> monetaryAmount,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("win_probability") @Nullable JsonNullable<Double> winProbability,
+            @JsonProperty("expected_revenue") @Nullable JsonNullable<Double> expectedRevenue,
+            @JsonProperty("close_date") @Nullable JsonNullable<LocalDate> closeDate,
+            @JsonProperty("loss_reason_id") @Nullable JsonNullable<String> lossReasonId,
+            @JsonProperty("loss_reason") @Nullable JsonNullable<String> lossReason,
+            @JsonProperty("won_reason_id") @Nullable JsonNullable<String> wonReasonId,
+            @JsonProperty("won_reason") @Nullable JsonNullable<String> wonReason,
+            @JsonProperty("pipeline_id") @Nullable JsonNullable<String> pipelineId,
+            @JsonProperty("pipeline_stage_id") @Nullable JsonNullable<String> pipelineStageId,
+            @JsonProperty("source_id") @Nullable JsonNullable<String> sourceId,
+            @JsonProperty("lead_id") @Nullable JsonNullable<String> leadId,
+            @JsonProperty("lead_source") @Nullable JsonNullable<String> leadSource,
+            @JsonProperty("contact_id") @Nullable JsonNullable<String> contactId,
+            @JsonProperty("contact_ids") @Nullable List<String> contactIds,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("priority") @Nullable JsonNullable<String> priority,
+            @JsonProperty("status") @Nullable JsonNullable<String> status,
+            @JsonProperty("status_id") @Nullable JsonNullable<String> statusId,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("interaction_count") @Nullable JsonNullable<Double> interactionCount,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("stage_last_changed_at") @Nullable JsonNullable<OffsetDateTime> stageLastChangedAt,
+            @JsonProperty("last_activity_at") @Nullable JsonNullable<String> lastActivityAt,
+            @JsonProperty("deleted") @Nullable Boolean deleted,
+            @JsonProperty("date_stage_changed") @Nullable JsonNullable<OffsetDateTime> dateStageChanged,
+            @JsonProperty("date_last_contacted") @Nullable JsonNullable<OffsetDateTime> dateLastContacted,
+            @JsonProperty("date_lead_created") @Nullable JsonNullable<OffsetDateTime> dateLeadCreated,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.title = title;
-        this.primaryContactId = primaryContactId;
-        this.description = description;
-        this.type = type;
-        this.monetaryAmount = monetaryAmount;
-        this.currency = currency;
-        this.winProbability = winProbability;
-        this.expectedRevenue = expectedRevenue;
-        this.closeDate = closeDate;
-        this.lossReasonId = lossReasonId;
-        this.lossReason = lossReason;
-        this.wonReasonId = wonReasonId;
-        this.wonReason = wonReason;
-        this.pipelineId = pipelineId;
-        this.pipelineStageId = pipelineStageId;
-        this.sourceId = sourceId;
-        this.leadId = leadId;
-        this.leadSource = leadSource;
-        this.contactId = contactId;
+        this.title = Optional.ofNullable(title)
+            .orElseThrow(() -> new IllegalArgumentException("title cannot be null"));
+        this.primaryContactId = Optional.ofNullable(primaryContactId)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.monetaryAmount = Optional.ofNullable(monetaryAmount)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.winProbability = Optional.ofNullable(winProbability)
+            .orElse(JsonNullable.undefined());
+        this.expectedRevenue = Optional.ofNullable(expectedRevenue)
+            .orElse(JsonNullable.undefined());
+        this.closeDate = Optional.ofNullable(closeDate)
+            .orElse(JsonNullable.undefined());
+        this.lossReasonId = Optional.ofNullable(lossReasonId)
+            .orElse(JsonNullable.undefined());
+        this.lossReason = Optional.ofNullable(lossReason)
+            .orElse(JsonNullable.undefined());
+        this.wonReasonId = Optional.ofNullable(wonReasonId)
+            .orElse(JsonNullable.undefined());
+        this.wonReason = Optional.ofNullable(wonReason)
+            .orElse(JsonNullable.undefined());
+        this.pipelineId = Optional.ofNullable(pipelineId)
+            .orElse(JsonNullable.undefined());
+        this.pipelineStageId = Optional.ofNullable(pipelineStageId)
+            .orElse(JsonNullable.undefined());
+        this.sourceId = Optional.ofNullable(sourceId)
+            .orElse(JsonNullable.undefined());
+        this.leadId = Optional.ofNullable(leadId)
+            .orElse(JsonNullable.undefined());
+        this.leadSource = Optional.ofNullable(leadSource)
+            .orElse(JsonNullable.undefined());
+        this.contactId = Optional.ofNullable(contactId)
+            .orElse(JsonNullable.undefined());
         this.contactIds = contactIds;
-        this.companyId = companyId;
-        this.companyName = companyName;
-        this.ownerId = ownerId;
-        this.priority = priority;
-        this.status = status;
-        this.statusId = statusId;
-        this.tags = tags;
-        this.interactionCount = interactionCount;
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.priority = Optional.ofNullable(priority)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.statusId = Optional.ofNullable(statusId)
+            .orElse(JsonNullable.undefined());
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
+        this.interactionCount = Optional.ofNullable(interactionCount)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
-        this.stageLastChangedAt = stageLastChangedAt;
-        this.lastActivityAt = lastActivityAt;
+        this.stageLastChangedAt = Optional.ofNullable(stageLastChangedAt)
+            .orElse(JsonNullable.undefined());
+        this.lastActivityAt = Optional.ofNullable(lastActivityAt)
+            .orElse(JsonNullable.undefined());
         this.deleted = deleted;
-        this.dateStageChanged = dateStageChanged;
-        this.dateLastContacted = dateLastContacted;
-        this.dateLeadCreated = dateLeadCreated;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.dateStageChanged = Optional.ofNullable(dateStageChanged)
+            .orElse(JsonNullable.undefined());
+        this.dateLastContacted = Optional.ofNullable(dateLastContacted)
+            .orElse(JsonNullable.undefined());
+        this.dateLeadCreated = Optional.ofNullable(dateLeadCreated)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public Opportunity(
-            String title) {
-        this(Optional.empty(), title, JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+            @Nonnull String title) {
+        this(null, title, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for the opportunity.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The title or name of the opportunity.
      */
-    @JsonIgnore
     public String title() {
-        return title;
+        return this.title;
     }
 
     /**
      * The unique identifier of the primary contact associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> primaryContactId() {
-        return primaryContactId;
+        return this.primaryContactId;
     }
 
     /**
      * A description of the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The type of the opportunity
      */
-    @JsonIgnore
     public JsonNullable<String> type() {
-        return type;
+        return this.type;
     }
 
     /**
      * The monetary value associated with the opportunity
      */
-    @JsonIgnore
     public JsonNullable<Double> monetaryAmount() {
-        return monetaryAmount;
+        return this.monetaryAmount;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The probability of winning the opportunity, expressed as a percentage.
      */
-    @JsonIgnore
     public JsonNullable<Double> winProbability() {
-        return winProbability;
+        return this.winProbability;
     }
 
     /**
      * The expected revenue from the opportunity
      */
-    @JsonIgnore
     public JsonNullable<Double> expectedRevenue() {
-        return expectedRevenue;
+        return this.expectedRevenue;
     }
 
     /**
      * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> closeDate() {
-        return closeDate;
+        return this.closeDate;
     }
 
     /**
      * The unique identifier of the reason why the opportunity was lost.
      */
-    @JsonIgnore
     public JsonNullable<String> lossReasonId() {
-        return lossReasonId;
+        return this.lossReasonId;
     }
 
     /**
      * The reason why the opportunity was lost.
      */
-    @JsonIgnore
     public JsonNullable<String> lossReason() {
-        return lossReason;
+        return this.lossReason;
     }
 
     /**
      * The unique identifier of the reason why the opportunity was won.
      */
-    @JsonIgnore
     public JsonNullable<String> wonReasonId() {
-        return wonReasonId;
+        return this.wonReasonId;
     }
 
     /**
      * The reason why the opportunity was won.
      */
-    @JsonIgnore
     public JsonNullable<String> wonReason() {
-        return wonReason;
+        return this.wonReason;
     }
 
     /**
      * The unique identifier of the pipeline associated with the opportunity
      */
-    @JsonIgnore
     public JsonNullable<String> pipelineId() {
-        return pipelineId;
+        return this.pipelineId;
     }
 
     /**
      * The unique identifier of the stage in the pipeline associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> pipelineStageId() {
-        return pipelineStageId;
+        return this.pipelineStageId;
     }
 
     /**
      * The unique identifier of the source of the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> sourceId() {
-        return sourceId;
+        return this.sourceId;
     }
 
     /**
      * The unique identifier of the lead associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> leadId() {
-        return leadId;
+        return this.leadId;
     }
 
     /**
      * The source of the lead associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> leadSource() {
-        return leadSource;
+        return this.leadSource;
     }
 
     /**
      * The unique identifier of the contact associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> contactId() {
-        return contactId;
+        return this.contactId;
     }
 
     /**
      * An array of unique identifiers of all contacts associated with the opportunity.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> contactIds() {
-        return (Optional<List<String>>) contactIds;
+        return Optional.ofNullable(this.contactIds);
     }
 
     /**
      * The unique identifier of the company associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The name of the company associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * The unique identifier of the user who owns the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     /**
      * The priority level of the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> priority() {
-        return priority;
+        return this.priority;
     }
 
     /**
      * The current status of the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> status() {
-        return status;
+        return this.status;
     }
 
     /**
      * The unique identifier of the current status of the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> statusId() {
-        return statusId;
+        return this.statusId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
     /**
      * The number of interactions with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<Double> interactionCount() {
-        return interactionCount;
+        return this.interactionCount;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * The date and time when the stage of the opportunity was last changed.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> stageLastChangedAt() {
-        return stageLastChangedAt;
+        return this.stageLastChangedAt;
     }
 
     /**
      * The date and time of the last activity associated with the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> lastActivityAt() {
-        return lastActivityAt;
+        return this.lastActivityAt;
     }
 
     /**
      * Indicates whether the opportunity has been deleted.
      */
-    @JsonIgnore
     public Optional<Boolean> deleted() {
-        return deleted;
+        return Optional.ofNullable(this.deleted);
     }
 
     /**
      * The date and time when the stage of the opportunity was last changed.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> dateStageChanged() {
-        return dateStageChanged;
+        return this.dateStageChanged;
     }
 
     /**
      * The date and time when the opportunity was last contacted.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> dateLastContacted() {
-        return dateLastContacted;
+        return this.dateLastContacted;
     }
 
     /**
      * The date and time when the lead associated with the opportunity was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> dateLeadCreated() {
-        return dateLeadCreated;
+        return this.dateLeadCreated;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The unique identifier of the user who last updated the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The unique identifier of the user who created the opportunity.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the opportunity was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the opportunity was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -805,742 +752,374 @@ public class Opportunity {
     /**
      * A unique identifier for the opportunity.
      */
-    public Opportunity withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for the opportunity.
-     */
-    public Opportunity withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Opportunity withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The title or name of the opportunity.
      */
-    public Opportunity withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
+    public Opportunity withTitle(@Nonnull String title) {
+        this.title = Utils.checkNotNull(title, "title");
         return this;
     }
+
 
     /**
      * The unique identifier of the primary contact associated with the opportunity.
      */
-    public Opportunity withPrimaryContactId(String primaryContactId) {
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
+    public Opportunity withPrimaryContactId(@Nullable String primaryContactId) {
         this.primaryContactId = JsonNullable.of(primaryContactId);
         return this;
     }
 
-    /**
-     * The unique identifier of the primary contact associated with the opportunity.
-     */
-    public Opportunity withPrimaryContactId(JsonNullable<String> primaryContactId) {
-        Utils.checkNotNull(primaryContactId, "primaryContactId");
-        this.primaryContactId = primaryContactId;
-        return this;
-    }
 
     /**
      * A description of the opportunity.
      */
-    public Opportunity withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Opportunity withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the opportunity.
-     */
-    public Opportunity withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The type of the opportunity
      */
-    public Opportunity withType(String type) {
-        Utils.checkNotNull(type, "type");
+    public Opportunity withType(@Nullable String type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of the opportunity
-     */
-    public Opportunity withType(JsonNullable<String> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * The monetary value associated with the opportunity
      */
-    public Opportunity withMonetaryAmount(double monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+    public Opportunity withMonetaryAmount(@Nullable Double monetaryAmount) {
         this.monetaryAmount = JsonNullable.of(monetaryAmount);
         return this;
     }
 
-    /**
-     * The monetary value associated with the opportunity
-     */
-    public Opportunity withMonetaryAmount(JsonNullable<Double> monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        this.monetaryAmount = monetaryAmount;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public Opportunity withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public Opportunity withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public Opportunity withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The probability of winning the opportunity, expressed as a percentage.
      */
-    public Opportunity withWinProbability(double winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
+    public Opportunity withWinProbability(@Nullable Double winProbability) {
         this.winProbability = JsonNullable.of(winProbability);
         return this;
     }
 
-    /**
-     * The probability of winning the opportunity, expressed as a percentage.
-     */
-    public Opportunity withWinProbability(JsonNullable<Double> winProbability) {
-        Utils.checkNotNull(winProbability, "winProbability");
-        this.winProbability = winProbability;
-        return this;
-    }
 
     /**
      * The expected revenue from the opportunity
      */
-    public Opportunity withExpectedRevenue(double expectedRevenue) {
-        Utils.checkNotNull(expectedRevenue, "expectedRevenue");
+    public Opportunity withExpectedRevenue(@Nullable Double expectedRevenue) {
         this.expectedRevenue = JsonNullable.of(expectedRevenue);
         return this;
     }
 
-    /**
-     * The expected revenue from the opportunity
-     */
-    public Opportunity withExpectedRevenue(JsonNullable<Double> expectedRevenue) {
-        Utils.checkNotNull(expectedRevenue, "expectedRevenue");
-        this.expectedRevenue = expectedRevenue;
-        return this;
-    }
 
     /**
      * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
      */
-    public Opportunity withCloseDate(LocalDate closeDate) {
-        Utils.checkNotNull(closeDate, "closeDate");
+    public Opportunity withCloseDate(@Nullable LocalDate closeDate) {
         this.closeDate = JsonNullable.of(closeDate);
         return this;
     }
 
-    /**
-     * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
-     */
-    public Opportunity withCloseDate(JsonNullable<LocalDate> closeDate) {
-        Utils.checkNotNull(closeDate, "closeDate");
-        this.closeDate = closeDate;
-        return this;
-    }
 
     /**
      * The unique identifier of the reason why the opportunity was lost.
      */
-    public Opportunity withLossReasonId(String lossReasonId) {
-        Utils.checkNotNull(lossReasonId, "lossReasonId");
+    public Opportunity withLossReasonId(@Nullable String lossReasonId) {
         this.lossReasonId = JsonNullable.of(lossReasonId);
         return this;
     }
 
-    /**
-     * The unique identifier of the reason why the opportunity was lost.
-     */
-    public Opportunity withLossReasonId(JsonNullable<String> lossReasonId) {
-        Utils.checkNotNull(lossReasonId, "lossReasonId");
-        this.lossReasonId = lossReasonId;
-        return this;
-    }
 
     /**
      * The reason why the opportunity was lost.
      */
-    public Opportunity withLossReason(String lossReason) {
-        Utils.checkNotNull(lossReason, "lossReason");
+    public Opportunity withLossReason(@Nullable String lossReason) {
         this.lossReason = JsonNullable.of(lossReason);
         return this;
     }
 
-    /**
-     * The reason why the opportunity was lost.
-     */
-    public Opportunity withLossReason(JsonNullable<String> lossReason) {
-        Utils.checkNotNull(lossReason, "lossReason");
-        this.lossReason = lossReason;
-        return this;
-    }
 
     /**
      * The unique identifier of the reason why the opportunity was won.
      */
-    public Opportunity withWonReasonId(String wonReasonId) {
-        Utils.checkNotNull(wonReasonId, "wonReasonId");
+    public Opportunity withWonReasonId(@Nullable String wonReasonId) {
         this.wonReasonId = JsonNullable.of(wonReasonId);
         return this;
     }
 
-    /**
-     * The unique identifier of the reason why the opportunity was won.
-     */
-    public Opportunity withWonReasonId(JsonNullable<String> wonReasonId) {
-        Utils.checkNotNull(wonReasonId, "wonReasonId");
-        this.wonReasonId = wonReasonId;
-        return this;
-    }
 
     /**
      * The reason why the opportunity was won.
      */
-    public Opportunity withWonReason(String wonReason) {
-        Utils.checkNotNull(wonReason, "wonReason");
+    public Opportunity withWonReason(@Nullable String wonReason) {
         this.wonReason = JsonNullable.of(wonReason);
         return this;
     }
 
-    /**
-     * The reason why the opportunity was won.
-     */
-    public Opportunity withWonReason(JsonNullable<String> wonReason) {
-        Utils.checkNotNull(wonReason, "wonReason");
-        this.wonReason = wonReason;
-        return this;
-    }
 
     /**
      * The unique identifier of the pipeline associated with the opportunity
      */
-    public Opportunity withPipelineId(String pipelineId) {
-        Utils.checkNotNull(pipelineId, "pipelineId");
+    public Opportunity withPipelineId(@Nullable String pipelineId) {
         this.pipelineId = JsonNullable.of(pipelineId);
         return this;
     }
 
-    /**
-     * The unique identifier of the pipeline associated with the opportunity
-     */
-    public Opportunity withPipelineId(JsonNullable<String> pipelineId) {
-        Utils.checkNotNull(pipelineId, "pipelineId");
-        this.pipelineId = pipelineId;
-        return this;
-    }
 
     /**
      * The unique identifier of the stage in the pipeline associated with the opportunity.
      */
-    public Opportunity withPipelineStageId(String pipelineStageId) {
-        Utils.checkNotNull(pipelineStageId, "pipelineStageId");
+    public Opportunity withPipelineStageId(@Nullable String pipelineStageId) {
         this.pipelineStageId = JsonNullable.of(pipelineStageId);
         return this;
     }
 
-    /**
-     * The unique identifier of the stage in the pipeline associated with the opportunity.
-     */
-    public Opportunity withPipelineStageId(JsonNullable<String> pipelineStageId) {
-        Utils.checkNotNull(pipelineStageId, "pipelineStageId");
-        this.pipelineStageId = pipelineStageId;
-        return this;
-    }
 
     /**
      * The unique identifier of the source of the opportunity.
      */
-    public Opportunity withSourceId(String sourceId) {
-        Utils.checkNotNull(sourceId, "sourceId");
+    public Opportunity withSourceId(@Nullable String sourceId) {
         this.sourceId = JsonNullable.of(sourceId);
         return this;
     }
 
-    /**
-     * The unique identifier of the source of the opportunity.
-     */
-    public Opportunity withSourceId(JsonNullable<String> sourceId) {
-        Utils.checkNotNull(sourceId, "sourceId");
-        this.sourceId = sourceId;
-        return this;
-    }
 
     /**
      * The unique identifier of the lead associated with the opportunity.
      */
-    public Opportunity withLeadId(String leadId) {
-        Utils.checkNotNull(leadId, "leadId");
+    public Opportunity withLeadId(@Nullable String leadId) {
         this.leadId = JsonNullable.of(leadId);
         return this;
     }
 
-    /**
-     * The unique identifier of the lead associated with the opportunity.
-     */
-    public Opportunity withLeadId(JsonNullable<String> leadId) {
-        Utils.checkNotNull(leadId, "leadId");
-        this.leadId = leadId;
-        return this;
-    }
 
     /**
      * The source of the lead associated with the opportunity.
      */
-    public Opportunity withLeadSource(String leadSource) {
-        Utils.checkNotNull(leadSource, "leadSource");
+    public Opportunity withLeadSource(@Nullable String leadSource) {
         this.leadSource = JsonNullable.of(leadSource);
         return this;
     }
 
-    /**
-     * The source of the lead associated with the opportunity.
-     */
-    public Opportunity withLeadSource(JsonNullable<String> leadSource) {
-        Utils.checkNotNull(leadSource, "leadSource");
-        this.leadSource = leadSource;
-        return this;
-    }
 
     /**
      * The unique identifier of the contact associated with the opportunity.
      */
-    public Opportunity withContactId(String contactId) {
-        Utils.checkNotNull(contactId, "contactId");
+    public Opportunity withContactId(@Nullable String contactId) {
         this.contactId = JsonNullable.of(contactId);
         return this;
     }
 
-    /**
-     * The unique identifier of the contact associated with the opportunity.
-     */
-    public Opportunity withContactId(JsonNullable<String> contactId) {
-        Utils.checkNotNull(contactId, "contactId");
-        this.contactId = contactId;
-        return this;
-    }
 
     /**
      * An array of unique identifiers of all contacts associated with the opportunity.
      */
-    public Opportunity withContactIds(List<String> contactIds) {
-        Utils.checkNotNull(contactIds, "contactIds");
-        this.contactIds = Optional.ofNullable(contactIds);
-        return this;
-    }
-
-
-    /**
-     * An array of unique identifiers of all contacts associated with the opportunity.
-     */
-    public Opportunity withContactIds(Optional<? extends List<String>> contactIds) {
-        Utils.checkNotNull(contactIds, "contactIds");
+    public Opportunity withContactIds(@Nullable List<String> contactIds) {
         this.contactIds = contactIds;
         return this;
     }
 
+
     /**
      * The unique identifier of the company associated with the opportunity.
      */
-    public Opportunity withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public Opportunity withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The unique identifier of the company associated with the opportunity.
-     */
-    public Opportunity withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The name of the company associated with the opportunity.
      */
-    public Opportunity withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public Opportunity withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company associated with the opportunity.
-     */
-    public Opportunity withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * The unique identifier of the user who owns the opportunity.
      */
-    public Opportunity withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public Opportunity withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    /**
-     * The unique identifier of the user who owns the opportunity.
-     */
-    public Opportunity withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
     /**
      * The priority level of the opportunity.
      */
-    public Opportunity withPriority(String priority) {
-        Utils.checkNotNull(priority, "priority");
+    public Opportunity withPriority(@Nullable String priority) {
         this.priority = JsonNullable.of(priority);
         return this;
     }
 
-    /**
-     * The priority level of the opportunity.
-     */
-    public Opportunity withPriority(JsonNullable<String> priority) {
-        Utils.checkNotNull(priority, "priority");
-        this.priority = priority;
-        return this;
-    }
 
     /**
      * The current status of the opportunity.
      */
-    public Opportunity withStatus(String status) {
-        Utils.checkNotNull(status, "status");
+    public Opportunity withStatus(@Nullable String status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * The current status of the opportunity.
-     */
-    public Opportunity withStatus(JsonNullable<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * The unique identifier of the current status of the opportunity.
      */
-    public Opportunity withStatusId(String statusId) {
-        Utils.checkNotNull(statusId, "statusId");
+    public Opportunity withStatusId(@Nullable String statusId) {
         this.statusId = JsonNullable.of(statusId);
         return this;
     }
 
-    /**
-     * The unique identifier of the current status of the opportunity.
-     */
-    public Opportunity withStatusId(JsonNullable<String> statusId) {
-        Utils.checkNotNull(statusId, "statusId");
-        this.statusId = statusId;
-        return this;
-    }
 
-    public Opportunity withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+    public Opportunity withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public Opportunity withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
     /**
      * The number of interactions with the opportunity.
      */
-    public Opportunity withInteractionCount(double interactionCount) {
-        Utils.checkNotNull(interactionCount, "interactionCount");
+    public Opportunity withInteractionCount(@Nullable Double interactionCount) {
         this.interactionCount = JsonNullable.of(interactionCount);
         return this;
     }
 
-    /**
-     * The number of interactions with the opportunity.
-     */
-    public Opportunity withInteractionCount(JsonNullable<Double> interactionCount) {
-        Utils.checkNotNull(interactionCount, "interactionCount");
-        this.interactionCount = interactionCount;
-        return this;
-    }
 
-    public Opportunity withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public Opportunity withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public Opportunity withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * The date and time when the stage of the opportunity was last changed.
      */
-    public Opportunity withStageLastChangedAt(OffsetDateTime stageLastChangedAt) {
-        Utils.checkNotNull(stageLastChangedAt, "stageLastChangedAt");
+    public Opportunity withStageLastChangedAt(@Nullable OffsetDateTime stageLastChangedAt) {
         this.stageLastChangedAt = JsonNullable.of(stageLastChangedAt);
         return this;
     }
 
-    /**
-     * The date and time when the stage of the opportunity was last changed.
-     */
-    public Opportunity withStageLastChangedAt(JsonNullable<OffsetDateTime> stageLastChangedAt) {
-        Utils.checkNotNull(stageLastChangedAt, "stageLastChangedAt");
-        this.stageLastChangedAt = stageLastChangedAt;
-        return this;
-    }
 
     /**
      * The date and time of the last activity associated with the opportunity.
      */
-    public Opportunity withLastActivityAt(String lastActivityAt) {
-        Utils.checkNotNull(lastActivityAt, "lastActivityAt");
+    public Opportunity withLastActivityAt(@Nullable String lastActivityAt) {
         this.lastActivityAt = JsonNullable.of(lastActivityAt);
         return this;
     }
 
-    /**
-     * The date and time of the last activity associated with the opportunity.
-     */
-    public Opportunity withLastActivityAt(JsonNullable<String> lastActivityAt) {
-        Utils.checkNotNull(lastActivityAt, "lastActivityAt");
-        this.lastActivityAt = lastActivityAt;
-        return this;
-    }
 
     /**
      * Indicates whether the opportunity has been deleted.
      */
-    public Opportunity withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = Optional.ofNullable(deleted);
-        return this;
-    }
-
-
-    /**
-     * Indicates whether the opportunity has been deleted.
-     */
-    public Opportunity withDeleted(Optional<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public Opportunity withDeleted(@Nullable Boolean deleted) {
         this.deleted = deleted;
         return this;
     }
 
+
     /**
      * The date and time when the stage of the opportunity was last changed.
      */
-    public Opportunity withDateStageChanged(OffsetDateTime dateStageChanged) {
-        Utils.checkNotNull(dateStageChanged, "dateStageChanged");
+    public Opportunity withDateStageChanged(@Nullable OffsetDateTime dateStageChanged) {
         this.dateStageChanged = JsonNullable.of(dateStageChanged);
         return this;
     }
 
-    /**
-     * The date and time when the stage of the opportunity was last changed.
-     */
-    public Opportunity withDateStageChanged(JsonNullable<OffsetDateTime> dateStageChanged) {
-        Utils.checkNotNull(dateStageChanged, "dateStageChanged");
-        this.dateStageChanged = dateStageChanged;
-        return this;
-    }
 
     /**
      * The date and time when the opportunity was last contacted.
      */
-    public Opportunity withDateLastContacted(OffsetDateTime dateLastContacted) {
-        Utils.checkNotNull(dateLastContacted, "dateLastContacted");
+    public Opportunity withDateLastContacted(@Nullable OffsetDateTime dateLastContacted) {
         this.dateLastContacted = JsonNullable.of(dateLastContacted);
         return this;
     }
 
-    /**
-     * The date and time when the opportunity was last contacted.
-     */
-    public Opportunity withDateLastContacted(JsonNullable<OffsetDateTime> dateLastContacted) {
-        Utils.checkNotNull(dateLastContacted, "dateLastContacted");
-        this.dateLastContacted = dateLastContacted;
-        return this;
-    }
 
     /**
      * The date and time when the lead associated with the opportunity was created.
      */
-    public Opportunity withDateLeadCreated(OffsetDateTime dateLeadCreated) {
-        Utils.checkNotNull(dateLeadCreated, "dateLeadCreated");
+    public Opportunity withDateLeadCreated(@Nullable OffsetDateTime dateLeadCreated) {
         this.dateLeadCreated = JsonNullable.of(dateLeadCreated);
         return this;
     }
 
-    /**
-     * The date and time when the lead associated with the opportunity was created.
-     */
-    public Opportunity withDateLeadCreated(JsonNullable<OffsetDateTime> dateLeadCreated) {
-        Utils.checkNotNull(dateLeadCreated, "dateLeadCreated");
-        this.dateLeadCreated = dateLeadCreated;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Opportunity withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Opportunity withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Opportunity withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The unique identifier of the user who last updated the opportunity.
      */
-    public Opportunity withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Opportunity withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The unique identifier of the user who last updated the opportunity.
-     */
-    public Opportunity withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The unique identifier of the user who created the opportunity.
      */
-    public Opportunity withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Opportunity withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The unique identifier of the user who created the opportunity.
-     */
-    public Opportunity withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the opportunity was last updated.
      */
-    public Opportunity withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Opportunity withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the opportunity was last updated.
-     */
-    public Opportunity withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the opportunity was created.
      */
-    public Opportunity withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Opportunity withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the opportunity was created.
-     */
-    public Opportunity withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public Opportunity withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public Opportunity withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public Opportunity withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1665,873 +1244,425 @@ public class Opportunity {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
         private String title;
 
-        private JsonNullable<String> primaryContactId = JsonNullable.undefined();
+        private JsonNullable<String> primaryContactId;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> type = JsonNullable.undefined();
+        private JsonNullable<String> type;
 
-        private JsonNullable<Double> monetaryAmount = JsonNullable.undefined();
+        private JsonNullable<Double> monetaryAmount;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<Double> winProbability = JsonNullable.undefined();
+        private JsonNullable<Double> winProbability;
 
-        private JsonNullable<Double> expectedRevenue = JsonNullable.undefined();
+        private JsonNullable<Double> expectedRevenue;
 
-        private JsonNullable<LocalDate> closeDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> closeDate;
 
-        private JsonNullable<String> lossReasonId = JsonNullable.undefined();
+        private JsonNullable<String> lossReasonId;
 
-        private JsonNullable<String> lossReason = JsonNullable.undefined();
+        private JsonNullable<String> lossReason;
 
-        private JsonNullable<String> wonReasonId = JsonNullable.undefined();
+        private JsonNullable<String> wonReasonId;
 
-        private JsonNullable<String> wonReason = JsonNullable.undefined();
+        private JsonNullable<String> wonReason;
 
-        private JsonNullable<String> pipelineId = JsonNullable.undefined();
+        private JsonNullable<String> pipelineId;
 
-        private JsonNullable<String> pipelineStageId = JsonNullable.undefined();
+        private JsonNullable<String> pipelineStageId;
 
-        private JsonNullable<String> sourceId = JsonNullable.undefined();
+        private JsonNullable<String> sourceId;
 
-        private JsonNullable<String> leadId = JsonNullable.undefined();
+        private JsonNullable<String> leadId;
 
-        private JsonNullable<String> leadSource = JsonNullable.undefined();
+        private JsonNullable<String> leadSource;
 
-        private JsonNullable<String> contactId = JsonNullable.undefined();
+        private JsonNullable<String> contactId;
 
-        private Optional<? extends List<String>> contactIds = Optional.empty();
+        private List<String> contactIds;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> priority = JsonNullable.undefined();
+        private JsonNullable<String> priority;
 
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private JsonNullable<String> status;
 
-        private JsonNullable<String> statusId = JsonNullable.undefined();
+        private JsonNullable<String> statusId;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private JsonNullable<List<String>> tags;
 
-        private JsonNullable<Double> interactionCount = JsonNullable.undefined();
+        private JsonNullable<Double> interactionCount;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<OffsetDateTime> stageLastChangedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> stageLastChangedAt;
 
-        private JsonNullable<String> lastActivityAt = JsonNullable.undefined();
+        private JsonNullable<String> lastActivityAt;
 
-        private Optional<Boolean> deleted = Optional.empty();
+        private Boolean deleted;
 
-        private JsonNullable<OffsetDateTime> dateStageChanged = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> dateStageChanged;
 
-        private JsonNullable<OffsetDateTime> dateLastContacted = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> dateLastContacted;
 
-        private JsonNullable<OffsetDateTime> dateLeadCreated = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> dateLeadCreated;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for the opportunity.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for the opportunity.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The title or name of the opportunity.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
+        public Builder title(@Nonnull String title) {
+            this.title = Utils.checkNotNull(title, "title");
             return this;
         }
-
 
         /**
          * The unique identifier of the primary contact associated with the opportunity.
          */
-        public Builder primaryContactId(String primaryContactId) {
-            Utils.checkNotNull(primaryContactId, "primaryContactId");
+        public Builder primaryContactId(@Nullable String primaryContactId) {
             this.primaryContactId = JsonNullable.of(primaryContactId);
             return this;
         }
 
         /**
-         * The unique identifier of the primary contact associated with the opportunity.
-         */
-        public Builder primaryContactId(JsonNullable<String> primaryContactId) {
-            Utils.checkNotNull(primaryContactId, "primaryContactId");
-            this.primaryContactId = primaryContactId;
-            return this;
-        }
-
-
-        /**
          * A description of the opportunity.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the opportunity.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The type of the opportunity
          */
-        public Builder type(String type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable String type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * The type of the opportunity
-         */
-        public Builder type(JsonNullable<String> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * The monetary value associated with the opportunity
          */
-        public Builder monetaryAmount(double monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+        public Builder monetaryAmount(@Nullable Double monetaryAmount) {
             this.monetaryAmount = JsonNullable.of(monetaryAmount);
             return this;
         }
 
         /**
-         * The monetary value associated with the opportunity
-         */
-        public Builder monetaryAmount(JsonNullable<Double> monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-            this.monetaryAmount = monetaryAmount;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The probability of winning the opportunity, expressed as a percentage.
          */
-        public Builder winProbability(double winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
+        public Builder winProbability(@Nullable Double winProbability) {
             this.winProbability = JsonNullable.of(winProbability);
             return this;
         }
 
         /**
-         * The probability of winning the opportunity, expressed as a percentage.
-         */
-        public Builder winProbability(JsonNullable<Double> winProbability) {
-            Utils.checkNotNull(winProbability, "winProbability");
-            this.winProbability = winProbability;
-            return this;
-        }
-
-
-        /**
          * The expected revenue from the opportunity
          */
-        public Builder expectedRevenue(double expectedRevenue) {
-            Utils.checkNotNull(expectedRevenue, "expectedRevenue");
+        public Builder expectedRevenue(@Nullable Double expectedRevenue) {
             this.expectedRevenue = JsonNullable.of(expectedRevenue);
             return this;
         }
 
         /**
-         * The expected revenue from the opportunity
-         */
-        public Builder expectedRevenue(JsonNullable<Double> expectedRevenue) {
-            Utils.checkNotNull(expectedRevenue, "expectedRevenue");
-            this.expectedRevenue = expectedRevenue;
-            return this;
-        }
-
-
-        /**
          * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
          */
-        public Builder closeDate(LocalDate closeDate) {
-            Utils.checkNotNull(closeDate, "closeDate");
+        public Builder closeDate(@Nullable LocalDate closeDate) {
             this.closeDate = JsonNullable.of(closeDate);
             return this;
         }
 
         /**
-         * The actual closing date for the opportunity. If close_date is null, the opportunity is not closed yet.
-         */
-        public Builder closeDate(JsonNullable<LocalDate> closeDate) {
-            Utils.checkNotNull(closeDate, "closeDate");
-            this.closeDate = closeDate;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the reason why the opportunity was lost.
          */
-        public Builder lossReasonId(String lossReasonId) {
-            Utils.checkNotNull(lossReasonId, "lossReasonId");
+        public Builder lossReasonId(@Nullable String lossReasonId) {
             this.lossReasonId = JsonNullable.of(lossReasonId);
             return this;
         }
 
         /**
-         * The unique identifier of the reason why the opportunity was lost.
-         */
-        public Builder lossReasonId(JsonNullable<String> lossReasonId) {
-            Utils.checkNotNull(lossReasonId, "lossReasonId");
-            this.lossReasonId = lossReasonId;
-            return this;
-        }
-
-
-        /**
          * The reason why the opportunity was lost.
          */
-        public Builder lossReason(String lossReason) {
-            Utils.checkNotNull(lossReason, "lossReason");
+        public Builder lossReason(@Nullable String lossReason) {
             this.lossReason = JsonNullable.of(lossReason);
             return this;
         }
 
         /**
-         * The reason why the opportunity was lost.
-         */
-        public Builder lossReason(JsonNullable<String> lossReason) {
-            Utils.checkNotNull(lossReason, "lossReason");
-            this.lossReason = lossReason;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the reason why the opportunity was won.
          */
-        public Builder wonReasonId(String wonReasonId) {
-            Utils.checkNotNull(wonReasonId, "wonReasonId");
+        public Builder wonReasonId(@Nullable String wonReasonId) {
             this.wonReasonId = JsonNullable.of(wonReasonId);
             return this;
         }
 
         /**
-         * The unique identifier of the reason why the opportunity was won.
-         */
-        public Builder wonReasonId(JsonNullable<String> wonReasonId) {
-            Utils.checkNotNull(wonReasonId, "wonReasonId");
-            this.wonReasonId = wonReasonId;
-            return this;
-        }
-
-
-        /**
          * The reason why the opportunity was won.
          */
-        public Builder wonReason(String wonReason) {
-            Utils.checkNotNull(wonReason, "wonReason");
+        public Builder wonReason(@Nullable String wonReason) {
             this.wonReason = JsonNullable.of(wonReason);
             return this;
         }
 
         /**
-         * The reason why the opportunity was won.
-         */
-        public Builder wonReason(JsonNullable<String> wonReason) {
-            Utils.checkNotNull(wonReason, "wonReason");
-            this.wonReason = wonReason;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the pipeline associated with the opportunity
          */
-        public Builder pipelineId(String pipelineId) {
-            Utils.checkNotNull(pipelineId, "pipelineId");
+        public Builder pipelineId(@Nullable String pipelineId) {
             this.pipelineId = JsonNullable.of(pipelineId);
             return this;
         }
 
         /**
-         * The unique identifier of the pipeline associated with the opportunity
-         */
-        public Builder pipelineId(JsonNullable<String> pipelineId) {
-            Utils.checkNotNull(pipelineId, "pipelineId");
-            this.pipelineId = pipelineId;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the stage in the pipeline associated with the opportunity.
          */
-        public Builder pipelineStageId(String pipelineStageId) {
-            Utils.checkNotNull(pipelineStageId, "pipelineStageId");
+        public Builder pipelineStageId(@Nullable String pipelineStageId) {
             this.pipelineStageId = JsonNullable.of(pipelineStageId);
             return this;
         }
 
         /**
-         * The unique identifier of the stage in the pipeline associated with the opportunity.
-         */
-        public Builder pipelineStageId(JsonNullable<String> pipelineStageId) {
-            Utils.checkNotNull(pipelineStageId, "pipelineStageId");
-            this.pipelineStageId = pipelineStageId;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the source of the opportunity.
          */
-        public Builder sourceId(String sourceId) {
-            Utils.checkNotNull(sourceId, "sourceId");
+        public Builder sourceId(@Nullable String sourceId) {
             this.sourceId = JsonNullable.of(sourceId);
             return this;
         }
 
         /**
-         * The unique identifier of the source of the opportunity.
-         */
-        public Builder sourceId(JsonNullable<String> sourceId) {
-            Utils.checkNotNull(sourceId, "sourceId");
-            this.sourceId = sourceId;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the lead associated with the opportunity.
          */
-        public Builder leadId(String leadId) {
-            Utils.checkNotNull(leadId, "leadId");
+        public Builder leadId(@Nullable String leadId) {
             this.leadId = JsonNullable.of(leadId);
             return this;
         }
 
         /**
-         * The unique identifier of the lead associated with the opportunity.
-         */
-        public Builder leadId(JsonNullable<String> leadId) {
-            Utils.checkNotNull(leadId, "leadId");
-            this.leadId = leadId;
-            return this;
-        }
-
-
-        /**
          * The source of the lead associated with the opportunity.
          */
-        public Builder leadSource(String leadSource) {
-            Utils.checkNotNull(leadSource, "leadSource");
+        public Builder leadSource(@Nullable String leadSource) {
             this.leadSource = JsonNullable.of(leadSource);
             return this;
         }
 
         /**
-         * The source of the lead associated with the opportunity.
-         */
-        public Builder leadSource(JsonNullable<String> leadSource) {
-            Utils.checkNotNull(leadSource, "leadSource");
-            this.leadSource = leadSource;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the contact associated with the opportunity.
          */
-        public Builder contactId(String contactId) {
-            Utils.checkNotNull(contactId, "contactId");
+        public Builder contactId(@Nullable String contactId) {
             this.contactId = JsonNullable.of(contactId);
             return this;
         }
 
         /**
-         * The unique identifier of the contact associated with the opportunity.
-         */
-        public Builder contactId(JsonNullable<String> contactId) {
-            Utils.checkNotNull(contactId, "contactId");
-            this.contactId = contactId;
-            return this;
-        }
-
-
-        /**
          * An array of unique identifiers of all contacts associated with the opportunity.
          */
-        public Builder contactIds(List<String> contactIds) {
-            Utils.checkNotNull(contactIds, "contactIds");
-            this.contactIds = Optional.ofNullable(contactIds);
-            return this;
-        }
-
-        /**
-         * An array of unique identifiers of all contacts associated with the opportunity.
-         */
-        public Builder contactIds(Optional<? extends List<String>> contactIds) {
-            Utils.checkNotNull(contactIds, "contactIds");
+        public Builder contactIds(@Nullable List<String> contactIds) {
             this.contactIds = contactIds;
             return this;
         }
 
-
         /**
          * The unique identifier of the company associated with the opportunity.
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The unique identifier of the company associated with the opportunity.
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The name of the company associated with the opportunity.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company associated with the opportunity.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the user who owns the opportunity.
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
         /**
-         * The unique identifier of the user who owns the opportunity.
-         */
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        /**
          * The priority level of the opportunity.
          */
-        public Builder priority(String priority) {
-            Utils.checkNotNull(priority, "priority");
+        public Builder priority(@Nullable String priority) {
             this.priority = JsonNullable.of(priority);
             return this;
         }
 
         /**
-         * The priority level of the opportunity.
-         */
-        public Builder priority(JsonNullable<String> priority) {
-            Utils.checkNotNull(priority, "priority");
-            this.priority = priority;
-            return this;
-        }
-
-
-        /**
          * The current status of the opportunity.
          */
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * The current status of the opportunity.
-         */
-        public Builder status(JsonNullable<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the current status of the opportunity.
          */
-        public Builder statusId(String statusId) {
-            Utils.checkNotNull(statusId, "statusId");
+        public Builder statusId(@Nullable String statusId) {
             this.statusId = JsonNullable.of(statusId);
             return this;
         }
 
-        /**
-         * The unique identifier of the current status of the opportunity.
-         */
-        public Builder statusId(JsonNullable<String> statusId) {
-            Utils.checkNotNull(statusId, "statusId");
-            this.statusId = statusId;
-            return this;
-        }
-
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
         /**
          * The number of interactions with the opportunity.
          */
-        public Builder interactionCount(double interactionCount) {
-            Utils.checkNotNull(interactionCount, "interactionCount");
+        public Builder interactionCount(@Nullable Double interactionCount) {
             this.interactionCount = JsonNullable.of(interactionCount);
             return this;
         }
 
-        /**
-         * The number of interactions with the opportunity.
-         */
-        public Builder interactionCount(JsonNullable<Double> interactionCount) {
-            Utils.checkNotNull(interactionCount, "interactionCount");
-            this.interactionCount = interactionCount;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * The date and time when the stage of the opportunity was last changed.
          */
-        public Builder stageLastChangedAt(OffsetDateTime stageLastChangedAt) {
-            Utils.checkNotNull(stageLastChangedAt, "stageLastChangedAt");
+        public Builder stageLastChangedAt(@Nullable OffsetDateTime stageLastChangedAt) {
             this.stageLastChangedAt = JsonNullable.of(stageLastChangedAt);
             return this;
         }
 
         /**
-         * The date and time when the stage of the opportunity was last changed.
-         */
-        public Builder stageLastChangedAt(JsonNullable<OffsetDateTime> stageLastChangedAt) {
-            Utils.checkNotNull(stageLastChangedAt, "stageLastChangedAt");
-            this.stageLastChangedAt = stageLastChangedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time of the last activity associated with the opportunity.
          */
-        public Builder lastActivityAt(String lastActivityAt) {
-            Utils.checkNotNull(lastActivityAt, "lastActivityAt");
+        public Builder lastActivityAt(@Nullable String lastActivityAt) {
             this.lastActivityAt = JsonNullable.of(lastActivityAt);
             return this;
         }
 
         /**
-         * The date and time of the last activity associated with the opportunity.
-         */
-        public Builder lastActivityAt(JsonNullable<String> lastActivityAt) {
-            Utils.checkNotNull(lastActivityAt, "lastActivityAt");
-            this.lastActivityAt = lastActivityAt;
-            return this;
-        }
-
-
-        /**
          * Indicates whether the opportunity has been deleted.
          */
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = Optional.ofNullable(deleted);
-            return this;
-        }
-
-        /**
-         * Indicates whether the opportunity has been deleted.
-         */
-        public Builder deleted(Optional<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = deleted;
             return this;
         }
 
-
         /**
          * The date and time when the stage of the opportunity was last changed.
          */
-        public Builder dateStageChanged(OffsetDateTime dateStageChanged) {
-            Utils.checkNotNull(dateStageChanged, "dateStageChanged");
+        public Builder dateStageChanged(@Nullable OffsetDateTime dateStageChanged) {
             this.dateStageChanged = JsonNullable.of(dateStageChanged);
             return this;
         }
 
         /**
-         * The date and time when the stage of the opportunity was last changed.
-         */
-        public Builder dateStageChanged(JsonNullable<OffsetDateTime> dateStageChanged) {
-            Utils.checkNotNull(dateStageChanged, "dateStageChanged");
-            this.dateStageChanged = dateStageChanged;
-            return this;
-        }
-
-
-        /**
          * The date and time when the opportunity was last contacted.
          */
-        public Builder dateLastContacted(OffsetDateTime dateLastContacted) {
-            Utils.checkNotNull(dateLastContacted, "dateLastContacted");
+        public Builder dateLastContacted(@Nullable OffsetDateTime dateLastContacted) {
             this.dateLastContacted = JsonNullable.of(dateLastContacted);
             return this;
         }
 
         /**
-         * The date and time when the opportunity was last contacted.
-         */
-        public Builder dateLastContacted(JsonNullable<OffsetDateTime> dateLastContacted) {
-            Utils.checkNotNull(dateLastContacted, "dateLastContacted");
-            this.dateLastContacted = dateLastContacted;
-            return this;
-        }
-
-
-        /**
          * The date and time when the lead associated with the opportunity was created.
          */
-        public Builder dateLeadCreated(OffsetDateTime dateLeadCreated) {
-            Utils.checkNotNull(dateLeadCreated, "dateLeadCreated");
+        public Builder dateLeadCreated(@Nullable OffsetDateTime dateLeadCreated) {
             this.dateLeadCreated = JsonNullable.of(dateLeadCreated);
             return this;
         }
 
         /**
-         * The date and time when the lead associated with the opportunity was created.
-         */
-        public Builder dateLeadCreated(JsonNullable<OffsetDateTime> dateLeadCreated) {
-            Utils.checkNotNull(dateLeadCreated, "dateLeadCreated");
-            this.dateLeadCreated = dateLeadCreated;
-            return this;
-        }
-
-
-        /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the user who last updated the opportunity.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The unique identifier of the user who last updated the opportunity.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The unique identifier of the user who created the opportunity.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The unique identifier of the user who created the opportunity.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the opportunity was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the opportunity was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the opportunity was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the opportunity was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public Opportunity build() {
-
             return new Opportunity(
                 id, title, primaryContactId,
                 description, type, monetaryAmount,

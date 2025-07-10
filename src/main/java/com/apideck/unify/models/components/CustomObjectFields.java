@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,35 +18,31 @@ public class CustomObjectFields {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<String> value;
+    private String value;
 
     @JsonCreator
     public CustomObjectFields(
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("value") Optional<String> value) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(value, "value");
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("value") @Nullable String value) {
         this.name = name;
         this.value = value;
     }
     
     public CustomObjectFields() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
-    @JsonIgnore
     public Optional<String> value() {
-        return value;
+        return Optional.ofNullable(this.value);
     }
 
     public static Builder builder() {
@@ -54,31 +50,17 @@ public class CustomObjectFields {
     }
 
 
-    public CustomObjectFields withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    public CustomObjectFields withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public CustomObjectFields withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    public CustomObjectFields withValue(String value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
 
-
-    public CustomObjectFields withValue(Optional<String> value) {
-        Utils.checkNotNull(value, "value");
+    public CustomObjectFields withValue(@Nullable String value) {
         this.value = value;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -110,42 +92,25 @@ public class CustomObjectFields {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> value = Optional.empty();
+        private String value;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        public Builder value(Optional<String> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = value;
             return this;
         }
 
         public CustomObjectFields build() {
-
             return new CustomObjectFields(
                 name, value);
         }

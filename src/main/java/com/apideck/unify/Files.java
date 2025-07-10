@@ -34,6 +34,8 @@ import com.apideck.unify.operations.FileStorageFilesOneOperation;
 import com.apideck.unify.operations.FileStorageFilesSearchOperation;
 import com.apideck.unify.operations.FileStorageFilesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -65,8 +67,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public FileStorageFilesAllResponse list(@Nonnull FileStorageFilesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -80,8 +82,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesAllResponse list(
-            FileStorageFilesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
               = new FileStorageFilesAllOperation(
                 sdkConfiguration,
@@ -109,8 +111,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request) throws Exception {
-        return search(request, Optional.empty());
+    public FileStorageFilesSearchResponse search(@Nonnull FileStorageFilesSearchRequest request) throws Exception {
+        return search(request, null);
     }
 
     /**
@@ -124,8 +126,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesSearchResponse search(
-            FileStorageFilesSearchRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesSearchRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
               = new FileStorageFilesSearchOperation(
                 sdkConfiguration,
@@ -153,8 +155,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public FileStorageFilesOneResponse get(@Nonnull FileStorageFilesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -168,8 +170,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesOneResponse get(
-            FileStorageFilesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
               = new FileStorageFilesOneOperation(
                 sdkConfiguration,
@@ -197,8 +199,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public FileStorageFilesUpdateResponse update(@Nonnull FileStorageFilesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -212,8 +214,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesUpdateResponse update(
-            FileStorageFilesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
               = new FileStorageFilesUpdateOperation(
                 sdkConfiguration,
@@ -241,8 +243,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageFilesDeleteResponse delete(@Nonnull FileStorageFilesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -256,8 +258,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesDeleteResponse delete(
-            FileStorageFilesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
               = new FileStorageFilesDeleteOperation(
                 sdkConfiguration,
@@ -285,8 +287,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request) throws Exception {
-        return download(request, Optional.empty());
+    public FileStorageFilesDownloadResponse download(@Nonnull FileStorageFilesDownloadRequest request) throws Exception {
+        return download(request, null);
     }
 
     /**
@@ -300,8 +302,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesDownloadResponse download(
-            FileStorageFilesDownloadRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesDownloadRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
               = new FileStorageFilesDownloadOperation(
                 sdkConfiguration,
@@ -329,8 +331,8 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request) throws Exception {
-        return export(request, Optional.empty());
+    public FileStorageFilesExportResponse export(@Nonnull FileStorageFilesExportRequest request) throws Exception {
+        return export(request, null);
     }
 
     /**
@@ -344,8 +346,8 @@ public class Files {
      * @throws Exception if the API call fails
      */
     public FileStorageFilesExportResponse export(
-            FileStorageFilesExportRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFilesExportRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
               = new FileStorageFilesExportOperation(
                 sdkConfiguration,

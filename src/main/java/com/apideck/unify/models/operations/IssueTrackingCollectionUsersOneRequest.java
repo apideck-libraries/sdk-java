@@ -7,8 +7,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -33,25 +34,25 @@ public class IssueTrackingCollectionUsersOneRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -61,91 +62,81 @@ public class IssueTrackingCollectionUsersOneRequest {
 
     @JsonCreator
     public IssueTrackingCollectionUsersOneRequest(
-            String collectionId,
-            String id,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<Boolean> raw,
-            JsonNullable<String> fields) {
-        Utils.checkNotNull(collectionId, "collectionId");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(fields, "fields");
-        this.collectionId = collectionId;
-        this.id = id;
+            @Nonnull String collectionId,
+            @Nonnull String id,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Boolean raw,
+            @Nullable JsonNullable<String> fields) {
+        this.collectionId = Optional.ofNullable(collectionId)
+            .orElseThrow(() -> new IllegalArgumentException("collectionId cannot be null"));
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.raw = raw;
-        this.fields = fields;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.fields = Optional.ofNullable(fields)
+            .orElse(JsonNullable.undefined());
     }
     
     public IssueTrackingCollectionUsersOneRequest(
-            String collectionId,
-            String id) {
-        this(collectionId, id, Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            @Nonnull String collectionId,
+            @Nonnull String id) {
+        this(collectionId, id, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The collection ID
      */
-    @JsonIgnore
     public String collectionId() {
-        return collectionId;
+        return this.collectionId;
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    @JsonIgnore
     public JsonNullable<String> fields() {
-        return fields;
+        return this.fields;
     }
 
     public static Builder builder() {
@@ -156,27 +147,17 @@ public class IssueTrackingCollectionUsersOneRequest {
     /**
      * The collection ID
      */
-    public IssueTrackingCollectionUsersOneRequest withCollectionId(String collectionId) {
-        Utils.checkNotNull(collectionId, "collectionId");
-        this.collectionId = collectionId;
+    public IssueTrackingCollectionUsersOneRequest withCollectionId(@Nonnull String collectionId) {
+        this.collectionId = Utils.checkNotNull(collectionId, "collectionId");
         return this;
     }
+
 
     /**
      * ID of the record you are acting upon.
      */
-    public IssueTrackingCollectionUsersOneRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public IssueTrackingCollectionUsersOneRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public IssueTrackingCollectionUsersOneRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -184,86 +165,47 @@ public class IssueTrackingCollectionUsersOneRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionUsersOneRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public IssueTrackingCollectionUsersOneRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public IssueTrackingCollectionUsersOneRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public IssueTrackingCollectionUsersOneRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public IssueTrackingCollectionUsersOneRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public IssueTrackingCollectionUsersOneRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public IssueTrackingCollectionUsersOneRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public IssueTrackingCollectionUsersOneRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public IssueTrackingCollectionUsersOneRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public IssueTrackingCollectionUsersOneRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public IssueTrackingCollectionUsersOneRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-     */
-    public IssueTrackingCollectionUsersOneRequest withFields(String fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = JsonNullable.of(fields);
-        return this;
-    }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    public IssueTrackingCollectionUsersOneRequest withFields(JsonNullable<String> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = fields;
+    public IssueTrackingCollectionUsersOneRequest withFields(@Nullable String fields) {
+        this.fields = JsonNullable.of(fields);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -311,140 +253,77 @@ public class IssueTrackingCollectionUsersOneRequest {
 
         private String id;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private JsonNullable<String> fields = JsonNullable.undefined();
+        private JsonNullable<String> fields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The collection ID
          */
-        public Builder collectionId(String collectionId) {
-            Utils.checkNotNull(collectionId, "collectionId");
-            this.collectionId = collectionId;
+        public Builder collectionId(@Nonnull String collectionId) {
+            this.collectionId = Utils.checkNotNull(collectionId, "collectionId");
             return this;
         }
-
 
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
-        public Builder fields(String fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable String fields) {
             this.fields = JsonNullable.of(fields);
             return this;
         }
 
-        /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-         */
-        public Builder fields(JsonNullable<String> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = fields;
-            return this;
-        }
-
         public IssueTrackingCollectionUsersOneRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new IssueTrackingCollectionUsersOneRequest(
                 collectionId, id, consumerId,
                 appId, serviceId, raw,
@@ -452,10 +331,10 @@ public class IssueTrackingCollectionUsersOneRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

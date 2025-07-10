@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +28,25 @@ public class FileStorageDrivesUpdateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -53,76 +54,67 @@ public class FileStorageDrivesUpdateRequest {
 
     @JsonCreator
     public FileStorageDrivesUpdateRequest(
-            String id,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<Boolean> raw,
-            DriveInput drive) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(drive, "drive");
-        this.id = id;
+            @Nonnull String id,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Boolean raw,
+            @Nonnull DriveInput drive) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.raw = raw;
-        this.drive = drive;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.drive = Optional.ofNullable(drive)
+            .orElseThrow(() -> new IllegalArgumentException("drive cannot be null"));
     }
     
     public FileStorageDrivesUpdateRequest(
-            String id,
-            DriveInput drive) {
-        this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), drive);
+            @Nonnull String id,
+            @Nonnull DriveInput drive) {
+        this(id, null, null,
+            null, null, drive);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
-    @JsonIgnore
     public DriveInput drive() {
-        return drive;
+        return this.drive;
     }
 
     public static Builder builder() {
@@ -133,18 +125,8 @@ public class FileStorageDrivesUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
-    public FileStorageDrivesUpdateRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public FileStorageDrivesUpdateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public FileStorageDrivesUpdateRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -152,74 +134,44 @@ public class FileStorageDrivesUpdateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageDrivesUpdateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public FileStorageDrivesUpdateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public FileStorageDrivesUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public FileStorageDrivesUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public FileStorageDrivesUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public FileStorageDrivesUpdateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public FileStorageDrivesUpdateRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public FileStorageDrivesUpdateRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public FileStorageDrivesUpdateRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public FileStorageDrivesUpdateRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public FileStorageDrivesUpdateRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    public FileStorageDrivesUpdateRequest withDrive(DriveInput drive) {
-        Utils.checkNotNull(drive, "drive");
-        this.drive = drive;
+
+    public FileStorageDrivesUpdateRequest withDrive(@Nonnull DriveInput drive) {
+        this.drive = Utils.checkNotNull(drive, "drive");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -262,13 +214,13 @@ public class FileStorageDrivesUpdateRequest {
 
         private String id;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
         private DriveInput drive;
 
@@ -276,114 +228,62 @@ public class FileStorageDrivesUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
-        public Builder drive(DriveInput drive) {
-            Utils.checkNotNull(drive, "drive");
-            this.drive = drive;
+        public Builder drive(@Nonnull DriveInput drive) {
+            this.drive = Utils.checkNotNull(drive, "drive");
             return this;
         }
 
         public FileStorageDrivesUpdateRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new FileStorageDrivesUpdateRequest(
                 id, consumerId, appId,
                 serviceId, raw, drive);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

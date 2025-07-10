@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +28,25 @@ public class CrmUsersUpdateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -53,76 +54,67 @@ public class CrmUsersUpdateRequest {
 
     @JsonCreator
     public CrmUsersUpdateRequest(
-            String id,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<Boolean> raw,
-            UserInput user) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(user, "user");
-        this.id = id;
+            @Nonnull String id,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Boolean raw,
+            @Nonnull UserInput user) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.raw = raw;
-        this.user = user;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.user = Optional.ofNullable(user)
+            .orElseThrow(() -> new IllegalArgumentException("user cannot be null"));
     }
     
     public CrmUsersUpdateRequest(
-            String id,
-            UserInput user) {
-        this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), user);
+            @Nonnull String id,
+            @Nonnull UserInput user) {
+        this(id, null, null,
+            null, null, user);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
-    @JsonIgnore
     public UserInput user() {
-        return user;
+        return this.user;
     }
 
     public static Builder builder() {
@@ -133,18 +125,8 @@ public class CrmUsersUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
-    public CrmUsersUpdateRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public CrmUsersUpdateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public CrmUsersUpdateRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -152,74 +134,44 @@ public class CrmUsersUpdateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public CrmUsersUpdateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public CrmUsersUpdateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public CrmUsersUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public CrmUsersUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public CrmUsersUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public CrmUsersUpdateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public CrmUsersUpdateRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public CrmUsersUpdateRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public CrmUsersUpdateRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public CrmUsersUpdateRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public CrmUsersUpdateRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    public CrmUsersUpdateRequest withUser(UserInput user) {
-        Utils.checkNotNull(user, "user");
-        this.user = user;
+
+    public CrmUsersUpdateRequest withUser(@Nonnull UserInput user) {
+        this.user = Utils.checkNotNull(user, "user");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -262,13 +214,13 @@ public class CrmUsersUpdateRequest {
 
         private String id;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
         private UserInput user;
 
@@ -276,114 +228,62 @@ public class CrmUsersUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
-        public Builder user(UserInput user) {
-            Utils.checkNotNull(user, "user");
-            this.user = user;
+        public Builder user(@Nonnull UserInput user) {
+            this.user = Utils.checkNotNull(user, "user");
             return this;
         }
 
         public CrmUsersUpdateRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new CrmUsersUpdateRequest(
                 id, consumerId, appId,
                 serviceId, raw, user);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

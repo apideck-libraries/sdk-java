@@ -15,6 +15,8 @@ import com.apideck.unify.models.operations.ConnectorApisOneResponse;
 import com.apideck.unify.operations.ConnectorApisAllOperation;
 import com.apideck.unify.operations.ConnectorApisOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
@@ -49,8 +51,8 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        return list(null, JsonNullable.undefined(), null,
+            null, null);
     }
 
     /**
@@ -67,19 +69,16 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<? extends ApisFilter> filter,
-            Optional<Options> options) throws Exception {
-        ConnectorApisAllRequest request =
-            ConnectorApisAllRequest
-                .builder()
-                .appId(appId)
-                .cursor(cursor)
-                .limit(limit)
-                .filter(filter)
-                .build();
+            @Nullable String appId,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit,
+            @Nullable ApisFilter filter,
+            @Nullable Options options) throws Exception {
+        ConnectorApisAllRequest request = new ConnectorApisAllRequest(
+            appId,
+            cursor,
+            limit,
+            filter);
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
               = new ConnectorApisAllOperation(
                 sdkConfiguration,
@@ -107,8 +106,8 @@ public class Apis {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorApisOneResponse get(String id) throws Exception {
-        return get(Optional.empty(), id, Optional.empty());
+    public ConnectorApisOneResponse get(@Nonnull String id) throws Exception {
+        return get(null, id, null);
     }
 
     /**
@@ -123,15 +122,12 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisOneResponse get(
-            Optional<String> appId,
-            String id,
-            Optional<Options> options) throws Exception {
-        ConnectorApisOneRequest request =
-            ConnectorApisOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nullable Options options) throws Exception {
+        ConnectorApisOneRequest request = new ConnectorApisOneRequest(
+            appId,
+            id);
         RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
               = new ConnectorApisOneOperation(
                 sdkConfiguration,

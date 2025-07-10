@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -24,21 +25,20 @@ public class SubsidiaryReferenceInput {
 
     @JsonCreator
     public SubsidiaryReferenceInput(
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public SubsidiaryReferenceInput() {
-        this(JsonNullable.undefined());
+        this(null);
     }
 
     /**
      * The name of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -49,20 +49,11 @@ public class SubsidiaryReferenceInput {
     /**
      * The name of the company.
      */
-    public SubsidiaryReferenceInput withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public SubsidiaryReferenceInput withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the company.
-     */
-    public SubsidiaryReferenceInput withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -92,33 +83,21 @@ public class SubsidiaryReferenceInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the company.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * The name of the company.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public SubsidiaryReferenceInput build() {
-
             return new SubsidiaryReferenceInput(
                 name);
         }

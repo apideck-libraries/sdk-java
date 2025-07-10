@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 /**
@@ -26,44 +25,39 @@ public class Meta {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("items_on_page")
-    private Optional<Long> itemsOnPage;
+    private Long itemsOnPage;
 
     /**
      * Cursors to navigate to previous or next pages through the API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("cursors")
-    private Optional<? extends Cursors> cursors;
+    private Cursors cursors;
 
     @JsonCreator
     public Meta(
-            @JsonProperty("items_on_page") Optional<Long> itemsOnPage,
-            @JsonProperty("cursors") Optional<? extends Cursors> cursors) {
-        Utils.checkNotNull(itemsOnPage, "itemsOnPage");
-        Utils.checkNotNull(cursors, "cursors");
+            @JsonProperty("items_on_page") @Nullable Long itemsOnPage,
+            @JsonProperty("cursors") @Nullable Cursors cursors) {
         this.itemsOnPage = itemsOnPage;
         this.cursors = cursors;
     }
     
     public Meta() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Number of items returned in the data property of the response
      */
-    @JsonIgnore
     public Optional<Long> itemsOnPage() {
-        return itemsOnPage;
+        return Optional.ofNullable(this.itemsOnPage);
     }
 
     /**
      * Cursors to navigate to previous or next pages through the API
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Cursors> cursors() {
-        return (Optional<Cursors>) cursors;
+        return Optional.ofNullable(this.cursors);
     }
 
     public static Builder builder() {
@@ -74,40 +68,20 @@ public class Meta {
     /**
      * Number of items returned in the data property of the response
      */
-    public Meta withItemsOnPage(long itemsOnPage) {
-        Utils.checkNotNull(itemsOnPage, "itemsOnPage");
-        this.itemsOnPage = Optional.ofNullable(itemsOnPage);
-        return this;
-    }
-
-
-    /**
-     * Number of items returned in the data property of the response
-     */
-    public Meta withItemsOnPage(Optional<Long> itemsOnPage) {
-        Utils.checkNotNull(itemsOnPage, "itemsOnPage");
+    public Meta withItemsOnPage(@Nullable Long itemsOnPage) {
         this.itemsOnPage = itemsOnPage;
         return this;
     }
 
-    /**
-     * Cursors to navigate to previous or next pages through the API
-     */
-    public Meta withCursors(Cursors cursors) {
-        Utils.checkNotNull(cursors, "cursors");
-        this.cursors = Optional.ofNullable(cursors);
-        return this;
-    }
-
 
     /**
      * Cursors to navigate to previous or next pages through the API
      */
-    public Meta withCursors(Optional<? extends Cursors> cursors) {
-        Utils.checkNotNull(cursors, "cursors");
+    public Meta withCursors(@Nullable Cursors cursors) {
         this.cursors = cursors;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -139,54 +113,31 @@ public class Meta {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Long> itemsOnPage = Optional.empty();
+        private Long itemsOnPage;
 
-        private Optional<? extends Cursors> cursors = Optional.empty();
+        private Cursors cursors;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Number of items returned in the data property of the response
          */
-        public Builder itemsOnPage(long itemsOnPage) {
-            Utils.checkNotNull(itemsOnPage, "itemsOnPage");
-            this.itemsOnPage = Optional.ofNullable(itemsOnPage);
-            return this;
-        }
-
-        /**
-         * Number of items returned in the data property of the response
-         */
-        public Builder itemsOnPage(Optional<Long> itemsOnPage) {
-            Utils.checkNotNull(itemsOnPage, "itemsOnPage");
+        public Builder itemsOnPage(@Nullable Long itemsOnPage) {
             this.itemsOnPage = itemsOnPage;
             return this;
         }
 
-
         /**
          * Cursors to navigate to previous or next pages through the API
          */
-        public Builder cursors(Cursors cursors) {
-            Utils.checkNotNull(cursors, "cursors");
-            this.cursors = Optional.ofNullable(cursors);
-            return this;
-        }
-
-        /**
-         * Cursors to navigate to previous or next pages through the API
-         */
-        public Builder cursors(Optional<? extends Cursors> cursors) {
-            Utils.checkNotNull(cursors, "cursors");
+        public Builder cursors(@Nullable Cursors cursors) {
             this.cursors = cursors;
             return this;
         }
 
         public Meta build() {
-
             return new Meta(
                 itemsOnPage, cursors);
         }

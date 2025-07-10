@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.HrisPayrollsOneResponse;
 import com.apideck.unify.operations.HrisPayrollsAllOperation;
 import com.apideck.unify.operations.HrisPayrollsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class Payrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisPayrollsAllResponse list(HrisPayrollsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public HrisPayrollsAllResponse list(@Nonnull HrisPayrollsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class Payrolls {
      * @throws Exception if the API call fails
      */
     public HrisPayrollsAllResponse list(
-            HrisPayrollsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisPayrollsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
               = new HrisPayrollsAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class Payrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisPayrollsOneResponse get(HrisPayrollsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public HrisPayrollsOneResponse get(@Nonnull HrisPayrollsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class Payrolls {
      * @throws Exception if the API call fails
      */
     public HrisPayrollsOneResponse get(
-            HrisPayrollsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisPayrollsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
               = new HrisPayrollsOneOperation(
                 sdkConfiguration,

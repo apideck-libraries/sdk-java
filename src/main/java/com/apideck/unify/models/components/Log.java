@@ -5,13 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.lang.Boolean;
-import java.lang.Double;
-import java.lang.Long;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -97,7 +95,7 @@ public class Log {
      */
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("parent_id")
-    private Optional<String> parentId;
+    private JsonNullable<String> parentId;
 
     /**
      * The path component of the URI the request was made to.
@@ -150,265 +148,235 @@ public class Log {
 
     @JsonCreator
     public Log(
-            @JsonProperty("api_style") String apiStyle,
-            @JsonProperty("base_url") String baseUrl,
+            @JsonProperty("api_style") @Nonnull String apiStyle,
+            @JsonProperty("base_url") @Nonnull String baseUrl,
             @JsonProperty("child_request") boolean childRequest,
-            @JsonProperty("consumer_id") String consumerId,
+            @JsonProperty("consumer_id") @Nonnull String consumerId,
             @JsonProperty("duration") double duration,
-            @JsonProperty("error_message") JsonNullable<String> errorMessage,
+            @JsonProperty("error_message") @Nullable JsonNullable<String> errorMessage,
             @JsonProperty("execution") long execution,
             @JsonProperty("has_children") boolean hasChildren,
-            @JsonProperty("http_method") String httpMethod,
-            @JsonProperty("id") String id,
+            @JsonProperty("http_method") @Nonnull String httpMethod,
+            @JsonProperty("id") @Nonnull String id,
             @JsonProperty("latency") double latency,
-            @JsonProperty("operation") Operation operation,
-            @JsonProperty("parent_id") Optional<String> parentId,
-            @JsonProperty("path") String path,
+            @JsonProperty("operation") @Nonnull Operation operation,
+            @JsonProperty("parent_id") @Nullable String parentId,
+            @JsonProperty("path") @Nonnull String path,
             @JsonProperty("sandbox") boolean sandbox,
-            @JsonProperty("service") Service service,
-            @JsonProperty("source_ip") JsonNullable<String> sourceIp,
+            @JsonProperty("service") @Nonnull Service service,
+            @JsonProperty("source_ip") @Nullable JsonNullable<String> sourceIp,
             @JsonProperty("status_code") long statusCode,
             @JsonProperty("success") boolean success,
-            @JsonProperty("timestamp") String timestamp,
-            @JsonProperty("unified_api") UnifiedApi unifiedApi) {
-        Utils.checkNotNull(apiStyle, "apiStyle");
-        Utils.checkNotNull(baseUrl, "baseUrl");
-        Utils.checkNotNull(childRequest, "childRequest");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(duration, "duration");
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        Utils.checkNotNull(execution, "execution");
-        Utils.checkNotNull(hasChildren, "hasChildren");
-        Utils.checkNotNull(httpMethod, "httpMethod");
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(latency, "latency");
-        Utils.checkNotNull(operation, "operation");
-        Utils.checkNotNull(parentId, "parentId");
-        Utils.checkNotNull(path, "path");
-        Utils.checkNotNull(sandbox, "sandbox");
-        Utils.checkNotNull(service, "service");
-        Utils.checkNotNull(sourceIp, "sourceIp");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(success, "success");
-        Utils.checkNotNull(timestamp, "timestamp");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.apiStyle = apiStyle;
-        this.baseUrl = baseUrl;
+            @JsonProperty("timestamp") @Nonnull String timestamp,
+            @JsonProperty("unified_api") @Nonnull UnifiedApi unifiedApi) {
+        this.apiStyle = Optional.ofNullable(apiStyle)
+            .orElseThrow(() -> new IllegalArgumentException("apiStyle cannot be null"));
+        this.baseUrl = Optional.ofNullable(baseUrl)
+            .orElseThrow(() -> new IllegalArgumentException("baseUrl cannot be null"));
         this.childRequest = childRequest;
-        this.consumerId = consumerId;
+        this.consumerId = Optional.ofNullable(consumerId)
+            .orElseThrow(() -> new IllegalArgumentException("consumerId cannot be null"));
         this.duration = duration;
-        this.errorMessage = errorMessage;
+        this.errorMessage = Optional.ofNullable(errorMessage)
+            .orElse(JsonNullable.undefined());
         this.execution = execution;
         this.hasChildren = hasChildren;
-        this.httpMethod = httpMethod;
-        this.id = id;
+        this.httpMethod = Optional.ofNullable(httpMethod)
+            .orElseThrow(() -> new IllegalArgumentException("httpMethod cannot be null"));
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.latency = latency;
-        this.operation = operation;
-        this.parentId = parentId;
-        this.path = path;
+        this.operation = Optional.ofNullable(operation)
+            .orElseThrow(() -> new IllegalArgumentException("operation cannot be null"));
+        this.parentId = JsonNullable.of(parentId);
+        this.path = Optional.ofNullable(path)
+            .orElseThrow(() -> new IllegalArgumentException("path cannot be null"));
         this.sandbox = sandbox;
-        this.service = service;
-        this.sourceIp = sourceIp;
+        this.service = Optional.ofNullable(service)
+            .orElseThrow(() -> new IllegalArgumentException("service cannot be null"));
+        this.sourceIp = Optional.ofNullable(sourceIp)
+            .orElse(JsonNullable.undefined());
         this.statusCode = statusCode;
         this.success = success;
-        this.timestamp = timestamp;
-        this.unifiedApi = unifiedApi;
+        this.timestamp = Optional.ofNullable(timestamp)
+            .orElseThrow(() -> new IllegalArgumentException("timestamp cannot be null"));
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
     }
     
     public Log(
-            String apiStyle,
-            String baseUrl,
+            @Nonnull String apiStyle,
+            @Nonnull String baseUrl,
             boolean childRequest,
-            String consumerId,
+            @Nonnull String consumerId,
             double duration,
             long execution,
             boolean hasChildren,
-            String httpMethod,
-            String id,
+            @Nonnull String httpMethod,
+            @Nonnull String id,
             double latency,
-            Operation operation,
-            String path,
+            @Nonnull Operation operation,
+            @Nonnull String path,
             boolean sandbox,
-            Service service,
+            @Nonnull Service service,
             long statusCode,
             boolean success,
-            String timestamp,
-            UnifiedApi unifiedApi) {
+            @Nonnull String timestamp,
+            @Nonnull UnifiedApi unifiedApi) {
         this(apiStyle, baseUrl, childRequest,
-            consumerId, duration, JsonNullable.undefined(),
+            consumerId, duration, null,
             execution, hasChildren, httpMethod,
             id, latency, operation,
-            Optional.empty(), path, sandbox,
-            service, JsonNullable.undefined(), statusCode,
+            null, path, sandbox,
+            service, null, statusCode,
             success, timestamp, unifiedApi);
     }
 
     /**
      * Indicates if the request was made via REST or Graphql endpoint.
      */
-    @JsonIgnore
     public String apiStyle() {
-        return apiStyle;
+        return this.apiStyle;
     }
 
     /**
      * The Apideck base URL the request was made to.
      */
-    @JsonIgnore
     public String baseUrl() {
-        return baseUrl;
+        return this.baseUrl;
     }
 
     /**
      * Indicates whether or not this is a child or parent request.
      */
-    @JsonIgnore
     public boolean childRequest() {
-        return childRequest;
+        return this.childRequest;
     }
 
     /**
      * The consumer Id associated with the request.
      */
-    @JsonIgnore
     public String consumerId() {
-        return consumerId;
+        return this.consumerId;
     }
 
     /**
      * The entire execution time in milliseconds it took to call the Apideck service provider.
      */
-    @JsonIgnore
     public double duration() {
-        return duration;
+        return this.duration;
     }
 
     /**
      * If error occurred, this is brief explanation
      */
-    @JsonIgnore
     public JsonNullable<String> errorMessage() {
-        return errorMessage;
+        return this.errorMessage;
     }
 
     /**
      * The entire execution time in milliseconds it took to make the request.
      */
-    @JsonIgnore
     public long execution() {
-        return execution;
+        return this.execution;
     }
 
     /**
      * When request is a parent request, this indicates if there are child requests associated.
      */
-    @JsonIgnore
     public boolean hasChildren() {
-        return hasChildren;
+        return this.hasChildren;
     }
 
     /**
      * HTTP Method of request.
      */
-    @JsonIgnore
     public String httpMethod() {
-        return httpMethod;
+        return this.httpMethod;
     }
 
     /**
      * UUID acting as Request Identifier.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Latency added by making this request via Unified Api.
      */
-    @JsonIgnore
     public double latency() {
-        return latency;
+        return this.latency;
     }
 
     /**
      * The request as defined in OpenApi Spec.
      */
-    @JsonIgnore
     public Operation operation() {
-        return operation;
+        return this.operation;
     }
 
     /**
      * When request is a child request, this UUID indicates it's parent request.
      */
-    @JsonIgnore
-    public Optional<String> parentId() {
-        return parentId;
+    public JsonNullable<String> parentId() {
+        return this.parentId;
     }
 
     /**
      * The path component of the URI the request was made to.
      */
-    @JsonIgnore
     public String path() {
-        return path;
+        return this.path;
     }
 
     /**
      * Indicates whether the request was made using Apidecks sandbox credentials or not.
      */
-    @JsonIgnore
     public boolean sandbox() {
-        return sandbox;
+        return this.sandbox;
     }
 
     /**
      * Apideck service provider associated with request.
      */
-    @JsonIgnore
     public Service service() {
-        return service;
+        return this.service;
     }
 
     /**
      * The IP address of the source of the request.
      */
-    @JsonIgnore
     public JsonNullable<String> sourceIp() {
-        return sourceIp;
+        return this.sourceIp;
     }
 
     /**
      * HTTP Status code that was returned.
      */
-    @JsonIgnore
     public long statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Whether or not the request was successful.
      */
-    @JsonIgnore
     public boolean success() {
-        return success;
+        return this.success;
     }
 
     /**
      * ISO Date and time when the request was made.
      */
-    @JsonIgnore
     public String timestamp() {
-        return timestamp;
+        return this.timestamp;
     }
 
     /**
      * Which Unified Api request was made to.
      */
-    @JsonIgnore
     public UnifiedApi unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     public static Builder builder() {
@@ -419,126 +387,107 @@ public class Log {
     /**
      * Indicates if the request was made via REST or Graphql endpoint.
      */
-    public Log withApiStyle(String apiStyle) {
-        Utils.checkNotNull(apiStyle, "apiStyle");
-        this.apiStyle = apiStyle;
+    public Log withApiStyle(@Nonnull String apiStyle) {
+        this.apiStyle = Utils.checkNotNull(apiStyle, "apiStyle");
         return this;
     }
+
 
     /**
      * The Apideck base URL the request was made to.
      */
-    public Log withBaseUrl(String baseUrl) {
-        Utils.checkNotNull(baseUrl, "baseUrl");
-        this.baseUrl = baseUrl;
+    public Log withBaseUrl(@Nonnull String baseUrl) {
+        this.baseUrl = Utils.checkNotNull(baseUrl, "baseUrl");
         return this;
     }
+
 
     /**
      * Indicates whether or not this is a child or parent request.
      */
     public Log withChildRequest(boolean childRequest) {
-        Utils.checkNotNull(childRequest, "childRequest");
         this.childRequest = childRequest;
         return this;
     }
 
+
     /**
      * The consumer Id associated with the request.
      */
-    public Log withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
+    public Log withConsumerId(@Nonnull String consumerId) {
+        this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
         return this;
     }
+
 
     /**
      * The entire execution time in milliseconds it took to call the Apideck service provider.
      */
     public Log withDuration(double duration) {
-        Utils.checkNotNull(duration, "duration");
         this.duration = duration;
         return this;
     }
 
-    /**
-     * If error occurred, this is brief explanation
-     */
-    public Log withErrorMessage(String errorMessage) {
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorMessage = JsonNullable.of(errorMessage);
-        return this;
-    }
 
     /**
      * If error occurred, this is brief explanation
      */
-    public Log withErrorMessage(JsonNullable<String> errorMessage) {
-        Utils.checkNotNull(errorMessage, "errorMessage");
-        this.errorMessage = errorMessage;
+    public Log withErrorMessage(@Nullable String errorMessage) {
+        this.errorMessage = JsonNullable.of(errorMessage);
         return this;
     }
+
 
     /**
      * The entire execution time in milliseconds it took to make the request.
      */
     public Log withExecution(long execution) {
-        Utils.checkNotNull(execution, "execution");
         this.execution = execution;
         return this;
     }
+
 
     /**
      * When request is a parent request, this indicates if there are child requests associated.
      */
     public Log withHasChildren(boolean hasChildren) {
-        Utils.checkNotNull(hasChildren, "hasChildren");
         this.hasChildren = hasChildren;
         return this;
     }
 
+
     /**
      * HTTP Method of request.
      */
-    public Log withHttpMethod(String httpMethod) {
-        Utils.checkNotNull(httpMethod, "httpMethod");
-        this.httpMethod = httpMethod;
+    public Log withHttpMethod(@Nonnull String httpMethod) {
+        this.httpMethod = Utils.checkNotNull(httpMethod, "httpMethod");
         return this;
     }
+
 
     /**
      * UUID acting as Request Identifier.
      */
-    public Log withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Log withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * Latency added by making this request via Unified Api.
      */
     public Log withLatency(double latency) {
-        Utils.checkNotNull(latency, "latency");
         this.latency = latency;
         return this;
     }
 
+
     /**
      * The request as defined in OpenApi Spec.
      */
-    public Log withOperation(Operation operation) {
-        Utils.checkNotNull(operation, "operation");
-        this.operation = operation;
-        return this;
-    }
-
-    /**
-     * When request is a child request, this UUID indicates it's parent request.
-     */
-    public Log withParentId(String parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = Optional.ofNullable(parentId);
+    public Log withOperation(@Nonnull Operation operation) {
+        this.operation = Utils.checkNotNull(operation, "operation");
         return this;
     }
 
@@ -546,92 +495,83 @@ public class Log {
     /**
      * When request is a child request, this UUID indicates it's parent request.
      */
-    public Log withParentId(Optional<String> parentId) {
-        Utils.checkNotNull(parentId, "parentId");
-        this.parentId = parentId;
+    public Log withParentId(@Nullable String parentId) {
+        this.parentId = JsonNullable.of(parentId);
         return this;
     }
+
 
     /**
      * The path component of the URI the request was made to.
      */
-    public Log withPath(String path) {
-        Utils.checkNotNull(path, "path");
-        this.path = path;
+    public Log withPath(@Nonnull String path) {
+        this.path = Utils.checkNotNull(path, "path");
         return this;
     }
+
 
     /**
      * Indicates whether the request was made using Apidecks sandbox credentials or not.
      */
     public Log withSandbox(boolean sandbox) {
-        Utils.checkNotNull(sandbox, "sandbox");
         this.sandbox = sandbox;
         return this;
     }
 
+
     /**
      * Apideck service provider associated with request.
      */
-    public Log withService(Service service) {
-        Utils.checkNotNull(service, "service");
-        this.service = service;
+    public Log withService(@Nonnull Service service) {
+        this.service = Utils.checkNotNull(service, "service");
         return this;
     }
+
 
     /**
      * The IP address of the source of the request.
      */
-    public Log withSourceIp(String sourceIp) {
-        Utils.checkNotNull(sourceIp, "sourceIp");
+    public Log withSourceIp(@Nullable String sourceIp) {
         this.sourceIp = JsonNullable.of(sourceIp);
         return this;
     }
 
-    /**
-     * The IP address of the source of the request.
-     */
-    public Log withSourceIp(JsonNullable<String> sourceIp) {
-        Utils.checkNotNull(sourceIp, "sourceIp");
-        this.sourceIp = sourceIp;
-        return this;
-    }
 
     /**
      * HTTP Status code that was returned.
      */
     public Log withStatusCode(long statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
+
 
     /**
      * Whether or not the request was successful.
      */
     public Log withSuccess(boolean success) {
-        Utils.checkNotNull(success, "success");
         this.success = success;
         return this;
     }
 
+
     /**
      * ISO Date and time when the request was made.
      */
-    public Log withTimestamp(String timestamp) {
-        Utils.checkNotNull(timestamp, "timestamp");
-        this.timestamp = timestamp;
+    public Log withTimestamp(@Nonnull String timestamp) {
+        this.timestamp = Utils.checkNotNull(timestamp, "timestamp");
         return this;
     }
+
 
     /**
      * Which Unified Api request was made to.
      */
-    public Log withUnifiedApi(UnifiedApi unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public Log withUnifiedApi(@Nonnull UnifiedApi unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -711,39 +651,39 @@ public class Log {
 
         private String baseUrl;
 
-        private Boolean childRequest;
+        private boolean childRequest;
 
         private String consumerId;
 
-        private Double duration;
+        private double duration;
 
-        private JsonNullable<String> errorMessage = JsonNullable.undefined();
+        private JsonNullable<String> errorMessage;
 
-        private Long execution;
+        private long execution;
 
-        private Boolean hasChildren;
+        private boolean hasChildren;
 
         private String httpMethod;
 
         private String id;
 
-        private Double latency;
+        private double latency;
 
         private Operation operation;
 
-        private Optional<String> parentId = Optional.empty();
+        private String parentId;
 
         private String path;
 
-        private Boolean sandbox;
+        private boolean sandbox;
 
         private Service service;
 
-        private JsonNullable<String> sourceIp = JsonNullable.undefined();
+        private JsonNullable<String> sourceIp;
 
-        private Long statusCode;
+        private long statusCode;
 
-        private Boolean success;
+        private boolean success;
 
         private String timestamp;
 
@@ -753,245 +693,175 @@ public class Log {
           // force use of static builder() method
         }
 
-
         /**
          * Indicates if the request was made via REST or Graphql endpoint.
          */
-        public Builder apiStyle(String apiStyle) {
-            Utils.checkNotNull(apiStyle, "apiStyle");
-            this.apiStyle = apiStyle;
+        public Builder apiStyle(@Nonnull String apiStyle) {
+            this.apiStyle = Utils.checkNotNull(apiStyle, "apiStyle");
             return this;
         }
-
 
         /**
          * The Apideck base URL the request was made to.
          */
-        public Builder baseUrl(String baseUrl) {
-            Utils.checkNotNull(baseUrl, "baseUrl");
-            this.baseUrl = baseUrl;
+        public Builder baseUrl(@Nonnull String baseUrl) {
+            this.baseUrl = Utils.checkNotNull(baseUrl, "baseUrl");
             return this;
         }
-
 
         /**
          * Indicates whether or not this is a child or parent request.
          */
         public Builder childRequest(boolean childRequest) {
-            Utils.checkNotNull(childRequest, "childRequest");
             this.childRequest = childRequest;
             return this;
         }
 
-
         /**
          * The consumer Id associated with the request.
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = consumerId;
+        public Builder consumerId(@Nonnull String consumerId) {
+            this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
             return this;
         }
-
 
         /**
          * The entire execution time in milliseconds it took to call the Apideck service provider.
          */
         public Builder duration(double duration) {
-            Utils.checkNotNull(duration, "duration");
             this.duration = duration;
             return this;
         }
 
-
         /**
          * If error occurred, this is brief explanation
          */
-        public Builder errorMessage(String errorMessage) {
-            Utils.checkNotNull(errorMessage, "errorMessage");
+        public Builder errorMessage(@Nullable String errorMessage) {
             this.errorMessage = JsonNullable.of(errorMessage);
             return this;
         }
 
         /**
-         * If error occurred, this is brief explanation
-         */
-        public Builder errorMessage(JsonNullable<String> errorMessage) {
-            Utils.checkNotNull(errorMessage, "errorMessage");
-            this.errorMessage = errorMessage;
-            return this;
-        }
-
-
-        /**
          * The entire execution time in milliseconds it took to make the request.
          */
         public Builder execution(long execution) {
-            Utils.checkNotNull(execution, "execution");
             this.execution = execution;
             return this;
         }
-
 
         /**
          * When request is a parent request, this indicates if there are child requests associated.
          */
         public Builder hasChildren(boolean hasChildren) {
-            Utils.checkNotNull(hasChildren, "hasChildren");
             this.hasChildren = hasChildren;
             return this;
         }
 
-
         /**
          * HTTP Method of request.
          */
-        public Builder httpMethod(String httpMethod) {
-            Utils.checkNotNull(httpMethod, "httpMethod");
-            this.httpMethod = httpMethod;
+        public Builder httpMethod(@Nonnull String httpMethod) {
+            this.httpMethod = Utils.checkNotNull(httpMethod, "httpMethod");
             return this;
         }
-
 
         /**
          * UUID acting as Request Identifier.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * Latency added by making this request via Unified Api.
          */
         public Builder latency(double latency) {
-            Utils.checkNotNull(latency, "latency");
             this.latency = latency;
             return this;
         }
 
-
         /**
          * The request as defined in OpenApi Spec.
          */
-        public Builder operation(Operation operation) {
-            Utils.checkNotNull(operation, "operation");
-            this.operation = operation;
-            return this;
-        }
-
-
-        /**
-         * When request is a child request, this UUID indicates it's parent request.
-         */
-        public Builder parentId(String parentId) {
-            Utils.checkNotNull(parentId, "parentId");
-            this.parentId = Optional.ofNullable(parentId);
+        public Builder operation(@Nonnull Operation operation) {
+            this.operation = Utils.checkNotNull(operation, "operation");
             return this;
         }
 
         /**
          * When request is a child request, this UUID indicates it's parent request.
          */
-        public Builder parentId(Optional<String> parentId) {
-            Utils.checkNotNull(parentId, "parentId");
+        public Builder parentId(@Nullable String parentId) {
             this.parentId = parentId;
             return this;
         }
 
-
         /**
          * The path component of the URI the request was made to.
          */
-        public Builder path(String path) {
-            Utils.checkNotNull(path, "path");
-            this.path = path;
+        public Builder path(@Nonnull String path) {
+            this.path = Utils.checkNotNull(path, "path");
             return this;
         }
-
 
         /**
          * Indicates whether the request was made using Apidecks sandbox credentials or not.
          */
         public Builder sandbox(boolean sandbox) {
-            Utils.checkNotNull(sandbox, "sandbox");
             this.sandbox = sandbox;
             return this;
         }
 
-
         /**
          * Apideck service provider associated with request.
          */
-        public Builder service(Service service) {
-            Utils.checkNotNull(service, "service");
-            this.service = service;
+        public Builder service(@Nonnull Service service) {
+            this.service = Utils.checkNotNull(service, "service");
             return this;
         }
-
 
         /**
          * The IP address of the source of the request.
          */
-        public Builder sourceIp(String sourceIp) {
-            Utils.checkNotNull(sourceIp, "sourceIp");
+        public Builder sourceIp(@Nullable String sourceIp) {
             this.sourceIp = JsonNullable.of(sourceIp);
             return this;
         }
 
         /**
-         * The IP address of the source of the request.
-         */
-        public Builder sourceIp(JsonNullable<String> sourceIp) {
-            Utils.checkNotNull(sourceIp, "sourceIp");
-            this.sourceIp = sourceIp;
-            return this;
-        }
-
-
-        /**
          * HTTP Status code that was returned.
          */
         public Builder statusCode(long statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
-
 
         /**
          * Whether or not the request was successful.
          */
         public Builder success(boolean success) {
-            Utils.checkNotNull(success, "success");
             this.success = success;
             return this;
         }
 
-
         /**
          * ISO Date and time when the request was made.
          */
-        public Builder timestamp(String timestamp) {
-            Utils.checkNotNull(timestamp, "timestamp");
-            this.timestamp = timestamp;
+        public Builder timestamp(@Nonnull String timestamp) {
+            this.timestamp = Utils.checkNotNull(timestamp, "timestamp");
             return this;
         }
-
 
         /**
          * Which Unified Api request was made to.
          */
-        public Builder unifiedApi(UnifiedApi unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull UnifiedApi unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
 
         public Log build() {
-
             return new Log(
                 apiStyle, baseUrl, childRequest,
                 consumerId, duration, errorMessage,

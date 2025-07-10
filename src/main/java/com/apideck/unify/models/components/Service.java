@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 /**
  * Service
@@ -30,28 +31,26 @@ public class Service {
 
     @JsonCreator
     public Service(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") String name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
-        this.name = name;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nonnull String name) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
     }
 
     /**
      * Apideck service provider id.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Apideck service provider name.
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -62,20 +61,20 @@ public class Service {
     /**
      * Apideck service provider id.
      */
-    public Service withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Service withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * Apideck service provider name.
      */
-    public Service withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public Service withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -115,28 +114,23 @@ public class Service {
           // force use of static builder() method
         }
 
-
         /**
          * Apideck service provider id.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * Apideck service provider name.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
 
         public Service build() {
-
             return new Service(
                 id, name);
         }

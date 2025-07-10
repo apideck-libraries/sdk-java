@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionsOneResponse;
 import com.apideck.unify.operations.IssueTrackingCollectionsAllOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionsAllResponse list(IssueTrackingCollectionsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public IssueTrackingCollectionsAllResponse list(@Nonnull IssueTrackingCollectionsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class Collections {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionsAllResponse list(
-            IssueTrackingCollectionsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionsAllRequest, IssueTrackingCollectionsAllResponse> operation
               = new IssueTrackingCollectionsAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class Collections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionsOneResponse get(IssueTrackingCollectionsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public IssueTrackingCollectionsOneResponse get(@Nonnull IssueTrackingCollectionsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class Collections {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionsOneResponse get(
-            IssueTrackingCollectionsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionsOneRequest, IssueTrackingCollectionsOneResponse> operation
               = new IssueTrackingCollectionsOneOperation(
                 sdkConfiguration,

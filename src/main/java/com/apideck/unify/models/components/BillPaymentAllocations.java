@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -30,7 +29,7 @@ public class BillPaymentAllocations {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends BillPaymentAllocationType> type;
+    private BillPaymentAllocationType type;
 
     /**
      * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
@@ -44,60 +43,53 @@ public class BillPaymentAllocations {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("allocation_id")
-    private Optional<String> allocationId;
+    private String allocationId;
 
     @JsonCreator
     public BillPaymentAllocations(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("type") Optional<? extends BillPaymentAllocationType> type,
-            @JsonProperty("amount") JsonNullable<Double> amount,
-            @JsonProperty("allocation_id") Optional<String> allocationId) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(amount, "amount");
-        Utils.checkNotNull(allocationId, "allocationId");
-        this.id = id;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("type") @Nullable BillPaymentAllocationType type,
+            @JsonProperty("amount") @Nullable JsonNullable<Double> amount,
+            @JsonProperty("allocation_id") @Nullable String allocationId) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
         this.type = type;
-        this.amount = amount;
+        this.amount = Optional.ofNullable(amount)
+            .orElse(JsonNullable.undefined());
         this.allocationId = allocationId;
     }
     
     public BillPaymentAllocations() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Type of entity this payment should be attributed to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BillPaymentAllocationType> type() {
-        return (Optional<BillPaymentAllocationType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
      */
-    @JsonIgnore
     public JsonNullable<Double> amount() {
-        return amount;
+        return this.amount;
     }
 
     /**
      * Unique identifier of the allocation
      */
-    @JsonIgnore
     public Optional<String> allocationId() {
-        return allocationId;
+        return Optional.ofNullable(this.allocationId);
     }
 
     public static Builder builder() {
@@ -108,76 +100,38 @@ public class BillPaymentAllocations {
     /**
      * A unique identifier for an object.
      */
-    public BillPaymentAllocations withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public BillPaymentAllocations withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for an object.
-     */
-    public BillPaymentAllocations withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * Type of entity this payment should be attributed to.
      */
-    public BillPaymentAllocations withType(BillPaymentAllocationType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    /**
-     * Type of entity this payment should be attributed to.
-     */
-    public BillPaymentAllocations withType(Optional<? extends BillPaymentAllocationType> type) {
-        Utils.checkNotNull(type, "type");
+    public BillPaymentAllocations withType(@Nullable BillPaymentAllocationType type) {
         this.type = type;
         return this;
     }
 
+
     /**
      * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
      */
-    public BillPaymentAllocations withAmount(double amount) {
-        Utils.checkNotNull(amount, "amount");
+    public BillPaymentAllocations withAmount(@Nullable Double amount) {
         this.amount = JsonNullable.of(amount);
         return this;
     }
 
-    /**
-     * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
-     */
-    public BillPaymentAllocations withAmount(JsonNullable<Double> amount) {
-        Utils.checkNotNull(amount, "amount");
-        this.amount = amount;
-        return this;
-    }
 
     /**
      * Unique identifier of the allocation
      */
-    public BillPaymentAllocations withAllocationId(String allocationId) {
-        Utils.checkNotNull(allocationId, "allocationId");
-        this.allocationId = Optional.ofNullable(allocationId);
-        return this;
-    }
-
-
-    /**
-     * Unique identifier of the allocation
-     */
-    public BillPaymentAllocations withAllocationId(Optional<String> allocationId) {
-        Utils.checkNotNull(allocationId, "allocationId");
+    public BillPaymentAllocations withAllocationId(@Nullable String allocationId) {
         this.allocationId = allocationId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -214,96 +168,51 @@ public class BillPaymentAllocations {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private Optional<? extends BillPaymentAllocationType> type = Optional.empty();
+        private BillPaymentAllocationType type;
 
-        private JsonNullable<Double> amount = JsonNullable.undefined();
+        private JsonNullable<Double> amount;
 
-        private Optional<String> allocationId = Optional.empty();
+        private String allocationId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for an object.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * Type of entity this payment should be attributed to.
          */
-        public Builder type(BillPaymentAllocationType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        /**
-         * Type of entity this payment should be attributed to.
-         */
-        public Builder type(Optional<? extends BillPaymentAllocationType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable BillPaymentAllocationType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
          */
-        public Builder amount(double amount) {
-            Utils.checkNotNull(amount, "amount");
+        public Builder amount(@Nullable Double amount) {
             this.amount = JsonNullable.of(amount);
             return this;
         }
 
         /**
-         * Amount of payment that should be attributed to this allocation. If null, the total_amount will be used.
-         */
-        public Builder amount(JsonNullable<Double> amount) {
-            Utils.checkNotNull(amount, "amount");
-            this.amount = amount;
-            return this;
-        }
-
-
-        /**
          * Unique identifier of the allocation
          */
-        public Builder allocationId(String allocationId) {
-            Utils.checkNotNull(allocationId, "allocationId");
-            this.allocationId = Optional.ofNullable(allocationId);
-            return this;
-        }
-
-        /**
-         * Unique identifier of the allocation
-         */
-        public Builder allocationId(Optional<String> allocationId) {
-            Utils.checkNotNull(allocationId, "allocationId");
+        public Builder allocationId(@Nullable String allocationId) {
             this.allocationId = allocationId;
             return this;
         }
 
         public BillPaymentAllocations build() {
-
             return new BillPaymentAllocations(
                 id, type, amount,
                 allocationId);

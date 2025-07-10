@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +28,25 @@ public class AccountingPaymentsUpdateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -53,76 +54,67 @@ public class AccountingPaymentsUpdateRequest {
 
     @JsonCreator
     public AccountingPaymentsUpdateRequest(
-            String id,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<Boolean> raw,
-            PaymentInput payment) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(payment, "payment");
-        this.id = id;
+            @Nonnull String id,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Boolean raw,
+            @Nonnull PaymentInput payment) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.raw = raw;
-        this.payment = payment;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.payment = Optional.ofNullable(payment)
+            .orElseThrow(() -> new IllegalArgumentException("payment cannot be null"));
     }
     
     public AccountingPaymentsUpdateRequest(
-            String id,
-            PaymentInput payment) {
-        this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), payment);
+            @Nonnull String id,
+            @Nonnull PaymentInput payment) {
+        this(id, null, null,
+            null, null, payment);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
-    @JsonIgnore
     public PaymentInput payment() {
-        return payment;
+        return this.payment;
     }
 
     public static Builder builder() {
@@ -133,18 +125,8 @@ public class AccountingPaymentsUpdateRequest {
     /**
      * ID of the record you are acting upon.
      */
-    public AccountingPaymentsUpdateRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public AccountingPaymentsUpdateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public AccountingPaymentsUpdateRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -152,74 +134,44 @@ public class AccountingPaymentsUpdateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingPaymentsUpdateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public AccountingPaymentsUpdateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public AccountingPaymentsUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public AccountingPaymentsUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public AccountingPaymentsUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public AccountingPaymentsUpdateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public AccountingPaymentsUpdateRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public AccountingPaymentsUpdateRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public AccountingPaymentsUpdateRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public AccountingPaymentsUpdateRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public AccountingPaymentsUpdateRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    public AccountingPaymentsUpdateRequest withPayment(PaymentInput payment) {
-        Utils.checkNotNull(payment, "payment");
-        this.payment = payment;
+
+    public AccountingPaymentsUpdateRequest withPayment(@Nonnull PaymentInput payment) {
+        this.payment = Utils.checkNotNull(payment, "payment");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -262,13 +214,13 @@ public class AccountingPaymentsUpdateRequest {
 
         private String id;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
         private PaymentInput payment;
 
@@ -276,114 +228,62 @@ public class AccountingPaymentsUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
-        public Builder payment(PaymentInput payment) {
-            Utils.checkNotNull(payment, "payment");
-            this.payment = payment;
+        public Builder payment(@Nonnull PaymentInput payment) {
+            this.payment = Utils.checkNotNull(payment, "payment");
             return this;
         }
 
         public AccountingPaymentsUpdateRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new AccountingPaymentsUpdateRequest(
                 id, consumerId, appId,
                 serviceId, raw, payment);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

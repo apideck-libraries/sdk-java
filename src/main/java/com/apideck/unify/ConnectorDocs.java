@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.ConnectorConnectorDocsOneRequestBuild
 import com.apideck.unify.models.operations.ConnectorConnectorDocsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorDocsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
 import java.util.List;
@@ -44,10 +46,10 @@ public class ConnectorDocs {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorDocsOneResponse get(
-            String id,
-            String docId) throws Exception {
-        return get(Optional.empty(), id, docId,
-            Optional.empty());
+            @Nonnull String id,
+            @Nonnull String docId) throws Exception {
+        return get(null, id, docId,
+            null);
     }
 
     /**
@@ -63,17 +65,14 @@ public class ConnectorDocs {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorDocsOneResponse get(
-            Optional<String> appId,
-            String id,
-            String docId,
-            Optional<Options> options) throws Exception {
-        ConnectorConnectorDocsOneRequest request =
-            ConnectorConnectorDocsOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .docId(docId)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nonnull String docId,
+            @Nullable Options options) throws Exception {
+        ConnectorConnectorDocsOneRequest request = new ConnectorConnectorDocsOneRequest(
+            appId,
+            id,
+            docId);
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
               = new ConnectorConnectorDocsOneOperation(
                 sdkConfiguration,

@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -16,34 +16,30 @@ import java.util.Optional;
 public class PaymentsFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
 
     @SpeakeasyMetadata("queryParam:name=invoice_id")
-    private Optional<String> invoiceId;
+    private String invoiceId;
 
     @JsonCreator
     public PaymentsFilter(
-            Optional<OffsetDateTime> updatedSince,
-            Optional<String> invoiceId) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(invoiceId, "invoiceId");
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable String invoiceId) {
         this.updatedSince = updatedSince;
         this.invoiceId = invoiceId;
     }
     
     public PaymentsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
-    @JsonIgnore
     public Optional<String> invoiceId() {
-        return invoiceId;
+        return Optional.ofNullable(this.invoiceId);
     }
 
     public static Builder builder() {
@@ -51,31 +47,17 @@ public class PaymentsFilter {
     }
 
 
-    public PaymentsFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
-
-    public PaymentsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public PaymentsFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    public PaymentsFilter withInvoiceId(String invoiceId) {
-        Utils.checkNotNull(invoiceId, "invoiceId");
-        this.invoiceId = Optional.ofNullable(invoiceId);
-        return this;
-    }
 
-
-    public PaymentsFilter withInvoiceId(Optional<String> invoiceId) {
-        Utils.checkNotNull(invoiceId, "invoiceId");
+    public PaymentsFilter withInvoiceId(@Nullable String invoiceId) {
         this.invoiceId = invoiceId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -107,42 +89,25 @@ public class PaymentsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<String> invoiceId = Optional.empty();
+        private String invoiceId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
-        public Builder invoiceId(String invoiceId) {
-            Utils.checkNotNull(invoiceId, "invoiceId");
-            this.invoiceId = Optional.ofNullable(invoiceId);
-            return this;
-        }
-
-        public Builder invoiceId(Optional<String> invoiceId) {
-            Utils.checkNotNull(invoiceId, "invoiceId");
+        public Builder invoiceId(@Nullable String invoiceId) {
             this.invoiceId = invoiceId;
             return this;
         }
 
         public PaymentsFilter build() {
-
             return new PaymentsFilter(
                 updatedSince, invoiceId);
         }

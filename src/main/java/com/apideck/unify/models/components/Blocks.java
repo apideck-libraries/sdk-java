@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,35 +18,31 @@ public class Blocks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("title")
-    private Optional<String> title;
+    private String title;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("content")
-    private Optional<String> content;
+    private String content;
 
     @JsonCreator
     public Blocks(
-            @JsonProperty("title") Optional<String> title,
-            @JsonProperty("content") Optional<String> content) {
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(content, "content");
+            @JsonProperty("title") @Nullable String title,
+            @JsonProperty("content") @Nullable String content) {
         this.title = title;
         this.content = content;
     }
     
     public Blocks() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<String> title() {
-        return title;
+        return Optional.ofNullable(this.title);
     }
 
-    @JsonIgnore
     public Optional<String> content() {
-        return content;
+        return Optional.ofNullable(this.content);
     }
 
     public static Builder builder() {
@@ -54,31 +50,17 @@ public class Blocks {
     }
 
 
-    public Blocks withTitle(String title) {
-        Utils.checkNotNull(title, "title");
-        this.title = Optional.ofNullable(title);
-        return this;
-    }
-
-
-    public Blocks withTitle(Optional<String> title) {
-        Utils.checkNotNull(title, "title");
+    public Blocks withTitle(@Nullable String title) {
         this.title = title;
         return this;
     }
 
-    public Blocks withContent(String content) {
-        Utils.checkNotNull(content, "content");
-        this.content = Optional.ofNullable(content);
-        return this;
-    }
 
-
-    public Blocks withContent(Optional<String> content) {
-        Utils.checkNotNull(content, "content");
+    public Blocks withContent(@Nullable String content) {
         this.content = content;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -110,42 +92,25 @@ public class Blocks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> title = Optional.empty();
+        private String title;
 
-        private Optional<String> content = Optional.empty();
+        private String content;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
-            this.title = Optional.ofNullable(title);
-            return this;
-        }
-
-        public Builder title(Optional<String> title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = title;
             return this;
         }
 
-
-        public Builder content(String content) {
-            Utils.checkNotNull(content, "content");
-            this.content = Optional.ofNullable(content);
-            return this;
-        }
-
-        public Builder content(Optional<String> content) {
-            Utils.checkNotNull(content, "content");
+        public Builder content(@Nullable String content) {
             this.content = content;
             return this;
         }
 
         public Blocks build() {
-
             return new Blocks(
                 title, content);
         }

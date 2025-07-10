@@ -103,7 +103,6 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -161,7 +160,7 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
-                    .trackingCategories(JsonNullable.of(null))
+                    .trackingCategories(null)
                     .active(true)
                     .departmentId("12345")
                     .locationId("12345")
@@ -307,7 +306,6 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -356,7 +354,7 @@ public class Application {
                         .nominalCode("N091")
                         .code("453")
                         .build())
-                    .incomeAccount(JsonNullable.of(null))
+                    .incomeAccount(null)
                     .expenseAccount(LinkedLedgerAccountInput.builder()
                         .id("123456")
                         .nominalCode("N091")

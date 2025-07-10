@@ -10,47 +10,46 @@ import com.apideck.unify.operations.AccountingLocationsDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class AccountingLocationsDeleteRequestBuilder {
-
-    private AccountingLocationsDeleteRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private AccountingLocationsDeleteRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public AccountingLocationsDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public AccountingLocationsDeleteRequestBuilder request(AccountingLocationsDeleteRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public AccountingLocationsDeleteRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public AccountingLocationsDeleteRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public AccountingLocationsDeleteRequestBuilder request(@Nonnull AccountingLocationsDeleteRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private AccountingLocationsDeleteRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public AccountingLocationsDeleteResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
               = new AccountingLocationsDeleteOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

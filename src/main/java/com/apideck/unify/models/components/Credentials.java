@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
@@ -30,7 +30,7 @@ public class Credentials {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("access_token")
-    private Optional<String> accessToken;
+    private String accessToken;
 
     /**
      * The datetime at which the token was issued. If omitted the token will be queued for refresh.
@@ -48,55 +48,50 @@ public class Credentials {
 
     @JsonCreator
     public Credentials(
-            @JsonProperty("refresh_token") JsonNullable<String> refreshToken,
-            @JsonProperty("access_token") Optional<String> accessToken,
-            @JsonProperty("issued_at") JsonNullable<OffsetDateTime> issuedAt,
-            @JsonProperty("expires_in") JsonNullable<Long> expiresIn) {
-        Utils.checkNotNull(refreshToken, "refreshToken");
-        Utils.checkNotNull(accessToken, "accessToken");
-        Utils.checkNotNull(issuedAt, "issuedAt");
-        Utils.checkNotNull(expiresIn, "expiresIn");
-        this.refreshToken = refreshToken;
+            @JsonProperty("refresh_token") @Nullable JsonNullable<String> refreshToken,
+            @JsonProperty("access_token") @Nullable String accessToken,
+            @JsonProperty("issued_at") @Nullable JsonNullable<OffsetDateTime> issuedAt,
+            @JsonProperty("expires_in") @Nullable JsonNullable<Long> expiresIn) {
+        this.refreshToken = Optional.ofNullable(refreshToken)
+            .orElse(JsonNullable.undefined());
         this.accessToken = accessToken;
-        this.issuedAt = issuedAt;
-        this.expiresIn = expiresIn;
+        this.issuedAt = Optional.ofNullable(issuedAt)
+            .orElse(JsonNullable.undefined());
+        this.expiresIn = Optional.ofNullable(expiresIn)
+            .orElse(JsonNullable.undefined());
     }
     
     public Credentials() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The refresh token can be used to obtain a new access token.
      */
-    @JsonIgnore
     public JsonNullable<String> refreshToken() {
-        return refreshToken;
+        return this.refreshToken;
     }
 
     /**
      * Access token
      */
-    @JsonIgnore
     public Optional<String> accessToken() {
-        return accessToken;
+        return Optional.ofNullable(this.accessToken);
     }
 
     /**
      * The datetime at which the token was issued. If omitted the token will be queued for refresh.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> issuedAt() {
-        return issuedAt;
+        return this.issuedAt;
     }
 
     /**
      * The number of seconds until the token expires. If omitted the token will be queued for refresh.
      */
-    @JsonIgnore
     public JsonNullable<Long> expiresIn() {
-        return expiresIn;
+        return this.expiresIn;
     }
 
     public static Builder builder() {
@@ -107,75 +102,38 @@ public class Credentials {
     /**
      * The refresh token can be used to obtain a new access token.
      */
-    public Credentials withRefreshToken(String refreshToken) {
-        Utils.checkNotNull(refreshToken, "refreshToken");
+    public Credentials withRefreshToken(@Nullable String refreshToken) {
         this.refreshToken = JsonNullable.of(refreshToken);
         return this;
     }
 
-    /**
-     * The refresh token can be used to obtain a new access token.
-     */
-    public Credentials withRefreshToken(JsonNullable<String> refreshToken) {
-        Utils.checkNotNull(refreshToken, "refreshToken");
-        this.refreshToken = refreshToken;
-        return this;
-    }
 
     /**
      * Access token
      */
-    public Credentials withAccessToken(String accessToken) {
-        Utils.checkNotNull(accessToken, "accessToken");
-        this.accessToken = Optional.ofNullable(accessToken);
-        return this;
-    }
-
-
-    /**
-     * Access token
-     */
-    public Credentials withAccessToken(Optional<String> accessToken) {
-        Utils.checkNotNull(accessToken, "accessToken");
+    public Credentials withAccessToken(@Nullable String accessToken) {
         this.accessToken = accessToken;
         return this;
     }
 
+
     /**
      * The datetime at which the token was issued. If omitted the token will be queued for refresh.
      */
-    public Credentials withIssuedAt(OffsetDateTime issuedAt) {
-        Utils.checkNotNull(issuedAt, "issuedAt");
+    public Credentials withIssuedAt(@Nullable OffsetDateTime issuedAt) {
         this.issuedAt = JsonNullable.of(issuedAt);
         return this;
     }
 
-    /**
-     * The datetime at which the token was issued. If omitted the token will be queued for refresh.
-     */
-    public Credentials withIssuedAt(JsonNullable<OffsetDateTime> issuedAt) {
-        Utils.checkNotNull(issuedAt, "issuedAt");
-        this.issuedAt = issuedAt;
-        return this;
-    }
 
     /**
      * The number of seconds until the token expires. If omitted the token will be queued for refresh.
      */
-    public Credentials withExpiresIn(long expiresIn) {
-        Utils.checkNotNull(expiresIn, "expiresIn");
+    public Credentials withExpiresIn(@Nullable Long expiresIn) {
         this.expiresIn = JsonNullable.of(expiresIn);
         return this;
     }
 
-    /**
-     * The number of seconds until the token expires. If omitted the token will be queued for refresh.
-     */
-    public Credentials withExpiresIn(JsonNullable<Long> expiresIn) {
-        Utils.checkNotNull(expiresIn, "expiresIn");
-        this.expiresIn = expiresIn;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -212,96 +170,51 @@ public class Credentials {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> refreshToken = JsonNullable.undefined();
+        private JsonNullable<String> refreshToken;
 
-        private Optional<String> accessToken = Optional.empty();
+        private String accessToken;
 
-        private JsonNullable<OffsetDateTime> issuedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> issuedAt;
 
-        private JsonNullable<Long> expiresIn = JsonNullable.undefined();
+        private JsonNullable<Long> expiresIn;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The refresh token can be used to obtain a new access token.
          */
-        public Builder refreshToken(String refreshToken) {
-            Utils.checkNotNull(refreshToken, "refreshToken");
+        public Builder refreshToken(@Nullable String refreshToken) {
             this.refreshToken = JsonNullable.of(refreshToken);
             return this;
         }
 
         /**
-         * The refresh token can be used to obtain a new access token.
-         */
-        public Builder refreshToken(JsonNullable<String> refreshToken) {
-            Utils.checkNotNull(refreshToken, "refreshToken");
-            this.refreshToken = refreshToken;
-            return this;
-        }
-
-
-        /**
          * Access token
          */
-        public Builder accessToken(String accessToken) {
-            Utils.checkNotNull(accessToken, "accessToken");
-            this.accessToken = Optional.ofNullable(accessToken);
-            return this;
-        }
-
-        /**
-         * Access token
-         */
-        public Builder accessToken(Optional<String> accessToken) {
-            Utils.checkNotNull(accessToken, "accessToken");
+        public Builder accessToken(@Nullable String accessToken) {
             this.accessToken = accessToken;
             return this;
         }
 
-
         /**
          * The datetime at which the token was issued. If omitted the token will be queued for refresh.
          */
-        public Builder issuedAt(OffsetDateTime issuedAt) {
-            Utils.checkNotNull(issuedAt, "issuedAt");
+        public Builder issuedAt(@Nullable OffsetDateTime issuedAt) {
             this.issuedAt = JsonNullable.of(issuedAt);
             return this;
         }
 
         /**
-         * The datetime at which the token was issued. If omitted the token will be queued for refresh.
-         */
-        public Builder issuedAt(JsonNullable<OffsetDateTime> issuedAt) {
-            Utils.checkNotNull(issuedAt, "issuedAt");
-            this.issuedAt = issuedAt;
-            return this;
-        }
-
-
-        /**
          * The number of seconds until the token expires. If omitted the token will be queued for refresh.
          */
-        public Builder expiresIn(long expiresIn) {
-            Utils.checkNotNull(expiresIn, "expiresIn");
+        public Builder expiresIn(@Nullable Long expiresIn) {
             this.expiresIn = JsonNullable.of(expiresIn);
             return this;
         }
 
-        /**
-         * The number of seconds until the token expires. If omitted the token will be queued for refresh.
-         */
-        public Builder expiresIn(JsonNullable<Long> expiresIn) {
-            Utils.checkNotNull(expiresIn, "expiresIn");
-            this.expiresIn = expiresIn;
-            return this;
-        }
-
         public Credentials build() {
-
             return new Credentials(
                 refreshToken, accessToken, issuedAt,
                 expiresIn);

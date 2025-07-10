@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllRequestBuilde
 import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllResponse;
 import com.apideck.unify.operations.HrisEmployeeSchedulesAllOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class EmployeeSchedules {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeeSchedulesAllResponse list(HrisEmployeeSchedulesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public HrisEmployeeSchedulesAllResponse list(@Nonnull HrisEmployeeSchedulesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class EmployeeSchedules {
      * @throws Exception if the API call fails
      */
     public HrisEmployeeSchedulesAllResponse list(
-            HrisEmployeeSchedulesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeeSchedulesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
               = new HrisEmployeeSchedulesAllOperation(
                 sdkConfiguration,

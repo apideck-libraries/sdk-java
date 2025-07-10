@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingBankFeedStatementsAddResponse implements Response {
     /**
      * Bank Feed Statements
      */
-    private Optional<? extends CreateBankFeedStatementResponse> createBankFeedStatementResponse;
+    private CreateBankFeedStatementResponse createBankFeedStatementResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingBankFeedStatementsAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends CreateBankFeedStatementResponse> createBankFeedStatementResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(createBankFeedStatementResponse, "createBankFeedStatementResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable CreateBankFeedStatementResponse createBankFeedStatementResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.createBankFeedStatementResponse = createBankFeedStatementResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingBankFeedStatementsAddResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Bank Feed Statements
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CreateBankFeedStatementResponse> createBankFeedStatementResponse() {
-        return (Optional<CreateBankFeedStatementResponse>) createBankFeedStatementResponse;
+        return Optional.ofNullable(this.createBankFeedStatementResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingBankFeedStatementsAddResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingBankFeedStatementsAddResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingBankFeedStatementsAddResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingBankFeedStatementsAddResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingBankFeedStatementsAddResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Bank Feed Statements
-     */
-    public AccountingBankFeedStatementsAddResponse withCreateBankFeedStatementResponse(CreateBankFeedStatementResponse createBankFeedStatementResponse) {
-        Utils.checkNotNull(createBankFeedStatementResponse, "createBankFeedStatementResponse");
-        this.createBankFeedStatementResponse = Optional.ofNullable(createBankFeedStatementResponse);
+    public AccountingBankFeedStatementsAddResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingBankFeedStatementsAddResponse implements Response {
     /**
      * Bank Feed Statements
      */
-    public AccountingBankFeedStatementsAddResponse withCreateBankFeedStatementResponse(Optional<? extends CreateBankFeedStatementResponse> createBankFeedStatementResponse) {
-        Utils.checkNotNull(createBankFeedStatementResponse, "createBankFeedStatementResponse");
+    public AccountingBankFeedStatementsAddResponse withCreateBankFeedStatementResponse(@Nullable CreateBankFeedStatementResponse createBankFeedStatementResponse) {
         this.createBankFeedStatementResponse = createBankFeedStatementResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingBankFeedStatementsAddResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingBankFeedStatementsAddResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingBankFeedStatementsAddResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingBankFeedStatementsAddResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends CreateBankFeedStatementResponse> createBankFeedStatementResponse = Optional.empty();
+        private CreateBankFeedStatementResponse createBankFeedStatementResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Bank Feed Statements
-         */
-        public Builder createBankFeedStatementResponse(CreateBankFeedStatementResponse createBankFeedStatementResponse) {
-            Utils.checkNotNull(createBankFeedStatementResponse, "createBankFeedStatementResponse");
-            this.createBankFeedStatementResponse = Optional.ofNullable(createBankFeedStatementResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Bank Feed Statements
          */
-        public Builder createBankFeedStatementResponse(Optional<? extends CreateBankFeedStatementResponse> createBankFeedStatementResponse) {
-            Utils.checkNotNull(createBankFeedStatementResponse, "createBankFeedStatementResponse");
+        public Builder createBankFeedStatementResponse(@Nullable CreateBankFeedStatementResponse createBankFeedStatementResponse) {
             this.createBankFeedStatementResponse = createBankFeedStatementResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingBankFeedStatementsAddResponse build() {
-
             return new AccountingBankFeedStatementsAddResponse(
                 contentType, statusCode, rawResponse,
                 createBankFeedStatementResponse, unexpectedErrorResponse);

@@ -103,7 +103,6 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -235,7 +234,7 @@ public class Application {
                         .build())
                     .discountPercentage(5.5)
                     .sourceDocumentUrl("https://www.invoicesolution.com/bill/123456")
-                    .trackingCategories(JsonNullable.of(null))
+                    .trackingCategories(null)
                     .rowVersion("1-12345")
                     .customFields(List.of(
                         CustomField.builder()

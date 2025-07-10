@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,37 +18,31 @@ public class WorkPattern {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("odd_weeks")
-    private Optional<? extends OddWeeks> oddWeeks;
+    private OddWeeks oddWeeks;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("even_weeks")
-    private Optional<? extends EvenWeeks> evenWeeks;
+    private EvenWeeks evenWeeks;
 
     @JsonCreator
     public WorkPattern(
-            @JsonProperty("odd_weeks") Optional<? extends OddWeeks> oddWeeks,
-            @JsonProperty("even_weeks") Optional<? extends EvenWeeks> evenWeeks) {
-        Utils.checkNotNull(oddWeeks, "oddWeeks");
-        Utils.checkNotNull(evenWeeks, "evenWeeks");
+            @JsonProperty("odd_weeks") @Nullable OddWeeks oddWeeks,
+            @JsonProperty("even_weeks") @Nullable EvenWeeks evenWeeks) {
         this.oddWeeks = oddWeeks;
         this.evenWeeks = evenWeeks;
     }
     
     public WorkPattern() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<OddWeeks> oddWeeks() {
-        return (Optional<OddWeeks>) oddWeeks;
+        return Optional.ofNullable(this.oddWeeks);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<EvenWeeks> evenWeeks() {
-        return (Optional<EvenWeeks>) evenWeeks;
+        return Optional.ofNullable(this.evenWeeks);
     }
 
     public static Builder builder() {
@@ -57,31 +50,17 @@ public class WorkPattern {
     }
 
 
-    public WorkPattern withOddWeeks(OddWeeks oddWeeks) {
-        Utils.checkNotNull(oddWeeks, "oddWeeks");
-        this.oddWeeks = Optional.ofNullable(oddWeeks);
-        return this;
-    }
-
-
-    public WorkPattern withOddWeeks(Optional<? extends OddWeeks> oddWeeks) {
-        Utils.checkNotNull(oddWeeks, "oddWeeks");
+    public WorkPattern withOddWeeks(@Nullable OddWeeks oddWeeks) {
         this.oddWeeks = oddWeeks;
         return this;
     }
 
-    public WorkPattern withEvenWeeks(EvenWeeks evenWeeks) {
-        Utils.checkNotNull(evenWeeks, "evenWeeks");
-        this.evenWeeks = Optional.ofNullable(evenWeeks);
-        return this;
-    }
 
-
-    public WorkPattern withEvenWeeks(Optional<? extends EvenWeeks> evenWeeks) {
-        Utils.checkNotNull(evenWeeks, "evenWeeks");
+    public WorkPattern withEvenWeeks(@Nullable EvenWeeks evenWeeks) {
         this.evenWeeks = evenWeeks;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -113,42 +92,25 @@ public class WorkPattern {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends OddWeeks> oddWeeks = Optional.empty();
+        private OddWeeks oddWeeks;
 
-        private Optional<? extends EvenWeeks> evenWeeks = Optional.empty();
+        private EvenWeeks evenWeeks;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder oddWeeks(OddWeeks oddWeeks) {
-            Utils.checkNotNull(oddWeeks, "oddWeeks");
-            this.oddWeeks = Optional.ofNullable(oddWeeks);
-            return this;
-        }
-
-        public Builder oddWeeks(Optional<? extends OddWeeks> oddWeeks) {
-            Utils.checkNotNull(oddWeeks, "oddWeeks");
+        public Builder oddWeeks(@Nullable OddWeeks oddWeeks) {
             this.oddWeeks = oddWeeks;
             return this;
         }
 
-
-        public Builder evenWeeks(EvenWeeks evenWeeks) {
-            Utils.checkNotNull(evenWeeks, "evenWeeks");
-            this.evenWeeks = Optional.ofNullable(evenWeeks);
-            return this;
-        }
-
-        public Builder evenWeeks(Optional<? extends EvenWeeks> evenWeeks) {
-            Utils.checkNotNull(evenWeeks, "evenWeeks");
+        public Builder evenWeeks(@Nullable EvenWeeks evenWeeks) {
             this.evenWeeks = evenWeeks;
             return this;
         }
 
         public WorkPattern build() {
-
             return new WorkPattern(
                 oddWeeks, evenWeeks);
         }

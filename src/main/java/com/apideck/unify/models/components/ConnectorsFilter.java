@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -18,44 +17,38 @@ public class ConnectorsFilter {
      * Name of Apideck Unified API
      */
     @SpeakeasyMetadata("queryParam:name=unified_api")
-    private Optional<? extends UnifiedApiId> unifiedApi;
+    private UnifiedApiId unifiedApi;
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
     @SpeakeasyMetadata("queryParam:name=status")
-    private Optional<? extends ConnectorStatus> status;
+    private ConnectorStatus status;
 
     @JsonCreator
     public ConnectorsFilter(
-            Optional<? extends UnifiedApiId> unifiedApi,
-            Optional<? extends ConnectorStatus> status) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(status, "status");
+            @Nullable UnifiedApiId unifiedApi,
+            @Nullable ConnectorStatus status) {
         this.unifiedApi = unifiedApi;
         this.status = status;
     }
     
     public ConnectorsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Name of Apideck Unified API
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnifiedApiId> unifiedApi() {
-        return (Optional<UnifiedApiId>) unifiedApi;
+        return Optional.ofNullable(this.unifiedApi);
     }
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectorStatus> status() {
-        return (Optional<ConnectorStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     public static Builder builder() {
@@ -66,40 +59,20 @@ public class ConnectorsFilter {
     /**
      * Name of Apideck Unified API
      */
-    public ConnectorsFilter withUnifiedApi(UnifiedApiId unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = Optional.ofNullable(unifiedApi);
-        return this;
-    }
-
-
-    /**
-     * Name of Apideck Unified API
-     */
-    public ConnectorsFilter withUnifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
+    public ConnectorsFilter withUnifiedApi(@Nullable UnifiedApiId unifiedApi) {
         this.unifiedApi = unifiedApi;
         return this;
     }
 
-    /**
-     * Status of the connector. Connectors with status live or beta are callable.
-     */
-    public ConnectorsFilter withStatus(ConnectorStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
-    public ConnectorsFilter withStatus(Optional<? extends ConnectorStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public ConnectorsFilter withStatus(@Nullable ConnectorStatus status) {
         this.status = status;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,54 +104,31 @@ public class ConnectorsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends UnifiedApiId> unifiedApi = Optional.empty();
+        private UnifiedApiId unifiedApi;
 
-        private Optional<? extends ConnectorStatus> status = Optional.empty();
+        private ConnectorStatus status;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Name of Apideck Unified API
          */
-        public Builder unifiedApi(UnifiedApiId unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = Optional.ofNullable(unifiedApi);
-            return this;
-        }
-
-        /**
-         * Name of Apideck Unified API
-         */
-        public Builder unifiedApi(Optional<? extends UnifiedApiId> unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
+        public Builder unifiedApi(@Nullable UnifiedApiId unifiedApi) {
             this.unifiedApi = unifiedApi;
             return this;
         }
 
-
         /**
          * Status of the connector. Connectors with status live or beta are callable.
          */
-        public Builder status(ConnectorStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the connector. Connectors with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ConnectorStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ConnectorStatus status) {
             this.status = status;
             return this;
         }
 
         public ConnectorsFilter build() {
-
             return new ConnectorsFilter(
                 unifiedApi, status);
         }

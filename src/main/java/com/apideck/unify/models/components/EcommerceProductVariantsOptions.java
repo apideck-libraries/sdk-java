@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -38,43 +39,40 @@ public class EcommerceProductVariantsOptions {
 
     @JsonCreator
     public EcommerceProductVariantsOptions(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("value") JsonNullable<String> value) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(value, "value");
-        this.id = id;
-        this.name = name;
-        this.value = value;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("value") @Nullable JsonNullable<String> value) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.value = Optional.ofNullable(value)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceProductVariantsOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * A unique identifier for the option of the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the option for the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The value of the option for the variant.
      */
-    @JsonIgnore
     public JsonNullable<String> value() {
-        return value;
+        return this.value;
     }
 
     public static Builder builder() {
@@ -85,56 +83,29 @@ public class EcommerceProductVariantsOptions {
     /**
      * A unique identifier for the option of the variant.
      */
-    public EcommerceProductVariantsOptions withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public EcommerceProductVariantsOptions withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for the option of the variant.
-     */
-    public EcommerceProductVariantsOptions withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The name of the option for the variant.
      */
-    public EcommerceProductVariantsOptions withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public EcommerceProductVariantsOptions withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the option for the variant.
-     */
-    public EcommerceProductVariantsOptions withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The value of the option for the variant.
      */
-    public EcommerceProductVariantsOptions withValue(String value) {
-        Utils.checkNotNull(value, "value");
+    public EcommerceProductVariantsOptions withValue(@Nullable String value) {
         this.value = JsonNullable.of(value);
         return this;
     }
 
-    /**
-     * The value of the option for the variant.
-     */
-    public EcommerceProductVariantsOptions withValue(JsonNullable<String> value) {
-        Utils.checkNotNull(value, "value");
-        this.value = value;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -168,75 +139,41 @@ public class EcommerceProductVariantsOptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> value = JsonNullable.undefined();
+        private JsonNullable<String> value;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for the option of the variant.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for the option of the variant.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The name of the option for the variant.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the option for the variant.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The value of the option for the variant.
          */
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = JsonNullable.of(value);
             return this;
         }
 
-        /**
-         * The value of the option for the variant.
-         */
-        public Builder value(JsonNullable<String> value) {
-            Utils.checkNotNull(value, "value");
-            this.value = value;
-            return this;
-        }
-
         public EcommerceProductVariantsOptions build() {
-
             return new EcommerceProductVariantsOptions(
                 id, name, value);
         }

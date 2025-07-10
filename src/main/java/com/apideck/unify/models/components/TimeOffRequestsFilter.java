@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -18,52 +17,46 @@ public class TimeOffRequestsFilter {
      * Start date
      */
     @SpeakeasyMetadata("queryParam:name=start_date")
-    private Optional<String> startDate;
+    private String startDate;
 
     /**
      * End date
      */
     @SpeakeasyMetadata("queryParam:name=end_date")
-    private Optional<String> endDate;
+    private String endDate;
 
     /**
      * Minimum date the time off request was last created or modified
      */
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<String> updatedSince;
+    private String updatedSince;
 
     /**
      * Employee ID
      */
     @SpeakeasyMetadata("queryParam:name=employee_id")
-    private Optional<String> employeeId;
+    private String employeeId;
 
     /**
      * Time off request status to filter on
      */
     @SpeakeasyMetadata("queryParam:name=time_off_request_status")
-    private Optional<? extends TimeOffRequestStatus> timeOffRequestStatus;
+    private TimeOffRequestStatus timeOffRequestStatus;
 
     /**
      * Company ID
      */
     @SpeakeasyMetadata("queryParam:name=company_id")
-    private Optional<String> companyId;
+    private String companyId;
 
     @JsonCreator
     public TimeOffRequestsFilter(
-            Optional<String> startDate,
-            Optional<String> endDate,
-            Optional<String> updatedSince,
-            Optional<String> employeeId,
-            Optional<? extends TimeOffRequestStatus> timeOffRequestStatus,
-            Optional<String> companyId) {
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(employeeId, "employeeId");
-        Utils.checkNotNull(timeOffRequestStatus, "timeOffRequestStatus");
-        Utils.checkNotNull(companyId, "companyId");
+            @Nullable String startDate,
+            @Nullable String endDate,
+            @Nullable String updatedSince,
+            @Nullable String employeeId,
+            @Nullable TimeOffRequestStatus timeOffRequestStatus,
+            @Nullable String companyId) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.updatedSince = updatedSince;
@@ -73,57 +66,50 @@ public class TimeOffRequestsFilter {
     }
     
     public TimeOffRequestsFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null);
     }
 
     /**
      * Start date
      */
-    @JsonIgnore
     public Optional<String> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * End date
      */
-    @JsonIgnore
     public Optional<String> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
     }
 
     /**
      * Minimum date the time off request was last created or modified
      */
-    @JsonIgnore
     public Optional<String> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
     /**
      * Employee ID
      */
-    @JsonIgnore
     public Optional<String> employeeId() {
-        return employeeId;
+        return Optional.ofNullable(this.employeeId);
     }
 
     /**
      * Time off request status to filter on
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<TimeOffRequestStatus> timeOffRequestStatus() {
-        return (Optional<TimeOffRequestStatus>) timeOffRequestStatus;
+        return Optional.ofNullable(this.timeOffRequestStatus);
     }
 
     /**
      * Company ID
      */
-    @JsonIgnore
     public Optional<String> companyId() {
-        return companyId;
+        return Optional.ofNullable(this.companyId);
     }
 
     public static Builder builder() {
@@ -134,116 +120,56 @@ public class TimeOffRequestsFilter {
     /**
      * Start date
      */
-    public TimeOffRequestsFilter withStartDate(String startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
-
-    /**
-     * Start date
-     */
-    public TimeOffRequestsFilter withStartDate(Optional<String> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public TimeOffRequestsFilter withStartDate(@Nullable String startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * End date
-     */
-    public TimeOffRequestsFilter withEndDate(String endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * End date
      */
-    public TimeOffRequestsFilter withEndDate(Optional<String> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public TimeOffRequestsFilter withEndDate(@Nullable String endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    /**
-     * Minimum date the time off request was last created or modified
-     */
-    public TimeOffRequestsFilter withUpdatedSince(String updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
 
     /**
      * Minimum date the time off request was last created or modified
      */
-    public TimeOffRequestsFilter withUpdatedSince(Optional<String> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public TimeOffRequestsFilter withUpdatedSince(@Nullable String updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    /**
-     * Employee ID
-     */
-    public TimeOffRequestsFilter withEmployeeId(String employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = Optional.ofNullable(employeeId);
-        return this;
-    }
-
 
     /**
      * Employee ID
      */
-    public TimeOffRequestsFilter withEmployeeId(Optional<String> employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
+    public TimeOffRequestsFilter withEmployeeId(@Nullable String employeeId) {
         this.employeeId = employeeId;
         return this;
     }
 
-    /**
-     * Time off request status to filter on
-     */
-    public TimeOffRequestsFilter withTimeOffRequestStatus(TimeOffRequestStatus timeOffRequestStatus) {
-        Utils.checkNotNull(timeOffRequestStatus, "timeOffRequestStatus");
-        this.timeOffRequestStatus = Optional.ofNullable(timeOffRequestStatus);
-        return this;
-    }
-
 
     /**
      * Time off request status to filter on
      */
-    public TimeOffRequestsFilter withTimeOffRequestStatus(Optional<? extends TimeOffRequestStatus> timeOffRequestStatus) {
-        Utils.checkNotNull(timeOffRequestStatus, "timeOffRequestStatus");
+    public TimeOffRequestsFilter withTimeOffRequestStatus(@Nullable TimeOffRequestStatus timeOffRequestStatus) {
         this.timeOffRequestStatus = timeOffRequestStatus;
         return this;
     }
 
-    /**
-     * Company ID
-     */
-    public TimeOffRequestsFilter withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = Optional.ofNullable(companyId);
-        return this;
-    }
-
 
     /**
      * Company ID
      */
-    public TimeOffRequestsFilter withCompanyId(Optional<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public TimeOffRequestsFilter withCompanyId(@Nullable String companyId) {
         this.companyId = companyId;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -284,138 +210,71 @@ public class TimeOffRequestsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> startDate = Optional.empty();
+        private String startDate;
 
-        private Optional<String> endDate = Optional.empty();
+        private String endDate;
 
-        private Optional<String> updatedSince = Optional.empty();
+        private String updatedSince;
 
-        private Optional<String> employeeId = Optional.empty();
+        private String employeeId;
 
-        private Optional<? extends TimeOffRequestStatus> timeOffRequestStatus = Optional.empty();
+        private TimeOffRequestStatus timeOffRequestStatus;
 
-        private Optional<String> companyId = Optional.empty();
+        private String companyId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Start date
          */
-        public Builder startDate(String startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * Start date
-         */
-        public Builder startDate(Optional<String> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable String startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * End date
          */
-        public Builder endDate(String endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * End date
-         */
-        public Builder endDate(Optional<String> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable String endDate) {
             this.endDate = endDate;
             return this;
         }
 
-
         /**
          * Minimum date the time off request was last created or modified
          */
-        public Builder updatedSince(String updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        /**
-         * Minimum date the time off request was last created or modified
-         */
-        public Builder updatedSince(Optional<String> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable String updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
         /**
          * Employee ID
          */
-        public Builder employeeId(String employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = Optional.ofNullable(employeeId);
-            return this;
-        }
-
-        /**
-         * Employee ID
-         */
-        public Builder employeeId(Optional<String> employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
+        public Builder employeeId(@Nullable String employeeId) {
             this.employeeId = employeeId;
             return this;
         }
 
-
         /**
          * Time off request status to filter on
          */
-        public Builder timeOffRequestStatus(TimeOffRequestStatus timeOffRequestStatus) {
-            Utils.checkNotNull(timeOffRequestStatus, "timeOffRequestStatus");
-            this.timeOffRequestStatus = Optional.ofNullable(timeOffRequestStatus);
-            return this;
-        }
-
-        /**
-         * Time off request status to filter on
-         */
-        public Builder timeOffRequestStatus(Optional<? extends TimeOffRequestStatus> timeOffRequestStatus) {
-            Utils.checkNotNull(timeOffRequestStatus, "timeOffRequestStatus");
+        public Builder timeOffRequestStatus(@Nullable TimeOffRequestStatus timeOffRequestStatus) {
             this.timeOffRequestStatus = timeOffRequestStatus;
             return this;
         }
 
-
         /**
          * Company ID
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = Optional.ofNullable(companyId);
-            return this;
-        }
-
-        /**
-         * Company ID
-         */
-        public Builder companyId(Optional<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = companyId;
             return this;
         }
 
         public TimeOffRequestsFilter build() {
-
             return new TimeOffRequestsFilter(
                 startDate, endDate, updatedSince,
                 employeeId, timeOffRequestStatus, companyId);

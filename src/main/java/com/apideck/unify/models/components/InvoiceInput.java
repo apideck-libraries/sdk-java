@@ -5,16 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +26,7 @@ public class InvoiceInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends InvoiceType> type;
+    private JsonNullable<InvoiceType> type;
 
     /**
      * Invoice number.
@@ -41,7 +40,7 @@ public class InvoiceInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private JsonNullable<? extends LinkedCustomerInput> customer;
+    private JsonNullable<LinkedCustomerInput> customer;
 
     /**
      * The company or subsidiary id the transaction belongs to
@@ -90,21 +89,21 @@ public class InvoiceInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends InvoiceStatus> status;
+    private JsonNullable<InvoiceStatus> status;
 
     /**
      * Invoice sent to contact/customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("invoice_sent")
-    private Optional<Boolean> invoiceSent;
+    private Boolean invoiceSent;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
@@ -190,29 +189,29 @@ public class InvoiceInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_category")
     @Deprecated
-    private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory;
+    private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
     /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
-    private Optional<? extends List<InvoiceLineItemInput>> lineItems;
+    private List<InvoiceLineItemInput> lineItems;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
-    private Optional<? extends Address> billingAddress;
+    private Address billingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
-    private Optional<? extends Address> shippingAddress;
+    private Address shippingAddress;
 
     /**
      * Optional invoice template
@@ -233,7 +232,7 @@ public class InvoiceInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_allocations")
-    private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations;
+    private JsonNullable<List<PaymentAllocations>> paymentAllocations;
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
@@ -266,17 +265,17 @@ public class InvoiceInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_account")
-    private Optional<? extends BankAccount> bankAccount;
+    private BankAccount bankAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
-    private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+    private JsonNullable<LinkedLedgerAccountInput> ledgerAccount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -290,335 +289,301 @@ public class InvoiceInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public InvoiceInput(
-            @JsonProperty("type") JsonNullable<? extends InvoiceType> type,
-            @JsonProperty("number") JsonNullable<String> number,
-            @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("invoice_date") JsonNullable<LocalDate> invoiceDate,
-            @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
-            @JsonProperty("terms") JsonNullable<String> terms,
-            @JsonProperty("po_number") JsonNullable<String> poNumber,
-            @JsonProperty("reference") JsonNullable<String> reference,
-            @JsonProperty("status") JsonNullable<? extends InvoiceStatus> status,
-            @JsonProperty("invoice_sent") Optional<Boolean> invoiceSent,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("currency_rate") JsonNullable<Double> currencyRate,
-            @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
-            @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_tax") JsonNullable<Double> totalTax,
-            @JsonProperty("tax_code") JsonNullable<String> taxCode,
-            @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
-            @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
-            @JsonProperty("total") JsonNullable<Double> total,
-            @JsonProperty("balance") JsonNullable<Double> balance,
-            @JsonProperty("deposit") JsonNullable<Double> deposit,
-            @JsonProperty("customer_memo") JsonNullable<String> customerMemo,
-            @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("line_items") Optional<? extends List<InvoiceLineItemInput>> lineItems,
-            @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
-            @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
-            @JsonProperty("template_id") JsonNullable<String> templateId,
-            @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
-            @JsonProperty("payment_allocations") JsonNullable<? extends List<PaymentAllocations>> paymentAllocations,
-            @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
-            @JsonProperty("channel") JsonNullable<String> channel,
-            @JsonProperty("language") JsonNullable<String> language,
-            @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
-            @JsonProperty("bank_account") Optional<? extends BankAccount> bankAccount,
-            @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(number, "number");
-        Utils.checkNotNull(customer, "customer");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(invoiceDate, "invoiceDate");
-        Utils.checkNotNull(dueDate, "dueDate");
-        Utils.checkNotNull(terms, "terms");
-        Utils.checkNotNull(poNumber, "poNumber");
-        Utils.checkNotNull(reference, "reference");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(invoiceSent, "invoiceSent");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(currencyRate, "currencyRate");
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
-        Utils.checkNotNull(subTotal, "subTotal");
-        Utils.checkNotNull(totalTax, "totalTax");
-        Utils.checkNotNull(taxCode, "taxCode");
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
-        Utils.checkNotNull(discountAmount, "discountAmount");
-        Utils.checkNotNull(total, "total");
-        Utils.checkNotNull(balance, "balance");
-        Utils.checkNotNull(deposit, "deposit");
-        Utils.checkNotNull(customerMemo, "customerMemo");
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(lineItems, "lineItems");
-        Utils.checkNotNull(billingAddress, "billingAddress");
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
-        Utils.checkNotNull(templateId, "templateId");
-        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
-        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        Utils.checkNotNull(channel, "channel");
-        Utils.checkNotNull(language, "language");
-        Utils.checkNotNull(accountingByRow, "accountingByRow");
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.type = type;
-        this.number = number;
-        this.customer = customer;
-        this.companyId = companyId;
-        this.invoiceDate = invoiceDate;
-        this.dueDate = dueDate;
-        this.terms = terms;
-        this.poNumber = poNumber;
-        this.reference = reference;
-        this.status = status;
+            @JsonProperty("type") @Nullable JsonNullable<InvoiceType> type,
+            @JsonProperty("number") @Nullable JsonNullable<String> number,
+            @JsonProperty("customer") @Nullable JsonNullable<LinkedCustomerInput> customer,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("invoice_date") @Nullable JsonNullable<LocalDate> invoiceDate,
+            @JsonProperty("due_date") @Nullable JsonNullable<LocalDate> dueDate,
+            @JsonProperty("terms") @Nullable JsonNullable<String> terms,
+            @JsonProperty("po_number") @Nullable JsonNullable<String> poNumber,
+            @JsonProperty("reference") @Nullable JsonNullable<String> reference,
+            @JsonProperty("status") @Nullable JsonNullable<InvoiceStatus> status,
+            @JsonProperty("invoice_sent") @Nullable Boolean invoiceSent,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("currency_rate") @Nullable JsonNullable<Double> currencyRate,
+            @JsonProperty("tax_inclusive") @Nullable JsonNullable<Boolean> taxInclusive,
+            @JsonProperty("sub_total") @Nullable JsonNullable<Double> subTotal,
+            @JsonProperty("total_tax") @Nullable JsonNullable<Double> totalTax,
+            @JsonProperty("tax_code") @Nullable JsonNullable<String> taxCode,
+            @JsonProperty("discount_percentage") @Nullable JsonNullable<Double> discountPercentage,
+            @JsonProperty("discount_amount") @Nullable JsonNullable<Double> discountAmount,
+            @JsonProperty("total") @Nullable JsonNullable<Double> total,
+            @JsonProperty("balance") @Nullable JsonNullable<Double> balance,
+            @JsonProperty("deposit") @Nullable JsonNullable<Double> deposit,
+            @JsonProperty("customer_memo") @Nullable JsonNullable<String> customerMemo,
+            @JsonProperty("tracking_category") @Nullable JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory,
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("line_items") @Nullable List<InvoiceLineItemInput> lineItems,
+            @JsonProperty("billing_address") @Nullable Address billingAddress,
+            @JsonProperty("shipping_address") @Nullable Address shippingAddress,
+            @JsonProperty("template_id") @Nullable JsonNullable<String> templateId,
+            @JsonProperty("source_document_url") @Nullable JsonNullable<String> sourceDocumentUrl,
+            @JsonProperty("payment_allocations") @Nullable JsonNullable<List<PaymentAllocations>> paymentAllocations,
+            @JsonProperty("payment_method") @Nullable JsonNullable<String> paymentMethod,
+            @JsonProperty("channel") @Nullable JsonNullable<String> channel,
+            @JsonProperty("language") @Nullable JsonNullable<String> language,
+            @JsonProperty("accounting_by_row") @Nullable JsonNullable<Boolean> accountingByRow,
+            @JsonProperty("bank_account") @Nullable BankAccount bankAccount,
+            @JsonProperty("ledger_account") @Nullable JsonNullable<LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
+        this.number = Optional.ofNullable(number)
+            .orElse(JsonNullable.undefined());
+        this.customer = Optional.ofNullable(customer)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.invoiceDate = Optional.ofNullable(invoiceDate)
+            .orElse(JsonNullable.undefined());
+        this.dueDate = Optional.ofNullable(dueDate)
+            .orElse(JsonNullable.undefined());
+        this.terms = Optional.ofNullable(terms)
+            .orElse(JsonNullable.undefined());
+        this.poNumber = Optional.ofNullable(poNumber)
+            .orElse(JsonNullable.undefined());
+        this.reference = Optional.ofNullable(reference)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
         this.invoiceSent = invoiceSent;
-        this.currency = currency;
-        this.currencyRate = currencyRate;
-        this.taxInclusive = taxInclusive;
-        this.subTotal = subTotal;
-        this.totalTax = totalTax;
-        this.taxCode = taxCode;
-        this.discountPercentage = discountPercentage;
-        this.discountAmount = discountAmount;
-        this.total = total;
-        this.balance = balance;
-        this.deposit = deposit;
-        this.customerMemo = customerMemo;
-        this.trackingCategory = trackingCategory;
-        this.trackingCategories = trackingCategories;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.currencyRate = Optional.ofNullable(currencyRate)
+            .orElse(JsonNullable.undefined());
+        this.taxInclusive = Optional.ofNullable(taxInclusive)
+            .orElse(JsonNullable.undefined());
+        this.subTotal = Optional.ofNullable(subTotal)
+            .orElse(JsonNullable.undefined());
+        this.totalTax = Optional.ofNullable(totalTax)
+            .orElse(JsonNullable.undefined());
+        this.taxCode = Optional.ofNullable(taxCode)
+            .orElse(JsonNullable.undefined());
+        this.discountPercentage = Optional.ofNullable(discountPercentage)
+            .orElse(JsonNullable.undefined());
+        this.discountAmount = Optional.ofNullable(discountAmount)
+            .orElse(JsonNullable.undefined());
+        this.total = Optional.ofNullable(total)
+            .orElse(JsonNullable.undefined());
+        this.balance = Optional.ofNullable(balance)
+            .orElse(JsonNullable.undefined());
+        this.deposit = Optional.ofNullable(deposit)
+            .orElse(JsonNullable.undefined());
+        this.customerMemo = Optional.ofNullable(customerMemo)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategory = Optional.ofNullable(trackingCategory)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
         this.lineItems = lineItems;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
-        this.templateId = templateId;
-        this.sourceDocumentUrl = sourceDocumentUrl;
-        this.paymentAllocations = paymentAllocations;
-        this.paymentMethod = paymentMethod;
-        this.channel = channel;
-        this.language = language;
-        this.accountingByRow = accountingByRow;
+        this.templateId = Optional.ofNullable(templateId)
+            .orElse(JsonNullable.undefined());
+        this.sourceDocumentUrl = Optional.ofNullable(sourceDocumentUrl)
+            .orElse(JsonNullable.undefined());
+        this.paymentAllocations = Optional.ofNullable(paymentAllocations)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethod = Optional.ofNullable(paymentMethod)
+            .orElse(JsonNullable.undefined());
+        this.channel = Optional.ofNullable(channel)
+            .orElse(JsonNullable.undefined());
+        this.language = Optional.ofNullable(language)
+            .orElse(JsonNullable.undefined());
+        this.accountingByRow = Optional.ofNullable(accountingByRow)
+            .orElse(JsonNullable.undefined());
         this.bankAccount = bankAccount;
-        this.ledgerAccount = ledgerAccount;
+        this.ledgerAccount = Optional.ofNullable(ledgerAccount)
+            .orElse(JsonNullable.undefined());
         this.customFields = customFields;
-        this.rowVersion = rowVersion;
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public InvoiceInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Invoice type
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<InvoiceType> type() {
-        return (JsonNullable<InvoiceType>) type;
+        return this.type;
     }
 
     /**
      * Invoice number.
      */
-    @JsonIgnore
     public JsonNullable<String> number() {
-        return number;
+        return this.number;
     }
 
     /**
      * The customer this entity is linked to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedCustomerInput> customer() {
-        return (JsonNullable<LinkedCustomerInput>) customer;
+        return this.customer;
     }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * Date invoice was issued - YYYY-MM-DD.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> invoiceDate() {
-        return invoiceDate;
+        return this.invoiceDate;
     }
 
     /**
      * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> dueDate() {
-        return dueDate;
+        return this.dueDate;
     }
 
     /**
      * Terms of payment.
      */
-    @JsonIgnore
     public JsonNullable<String> terms() {
-        return terms;
+        return this.terms;
     }
 
     /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
      */
-    @JsonIgnore
     public JsonNullable<String> poNumber() {
-        return poNumber;
+        return this.poNumber;
     }
 
     /**
      * Optional reference identifier for the transaction.
      */
-    @JsonIgnore
     public JsonNullable<String> reference() {
-        return reference;
+        return this.reference;
     }
 
     /**
      * Invoice status
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<InvoiceStatus> status() {
-        return (JsonNullable<InvoiceStatus>) status;
+        return this.status;
     }
 
     /**
      * Invoice sent to contact/customer.
      */
-    @JsonIgnore
     public Optional<Boolean> invoiceSent() {
-        return invoiceSent;
+        return Optional.ofNullable(this.invoiceSent);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
      */
-    @JsonIgnore
     public JsonNullable<Double> currencyRate() {
-        return currencyRate;
+        return this.currencyRate;
     }
 
     /**
      * Amounts are including tax
      */
-    @JsonIgnore
     public JsonNullable<Boolean> taxInclusive() {
-        return taxInclusive;
+        return this.taxInclusive;
     }
 
     /**
      * Sub-total amount, normally before tax.
      */
-    @JsonIgnore
     public JsonNullable<Double> subTotal() {
-        return subTotal;
+        return this.subTotal;
     }
 
     /**
      * Total tax amount applied to this invoice.
      */
-    @JsonIgnore
     public JsonNullable<Double> totalTax() {
-        return totalTax;
+        return this.totalTax;
     }
 
     /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
      */
-    @JsonIgnore
     public JsonNullable<String> taxCode() {
-        return taxCode;
+        return this.taxCode;
     }
 
     /**
      * Discount percentage applied to this invoice.
      */
-    @JsonIgnore
     public JsonNullable<Double> discountPercentage() {
-        return discountPercentage;
+        return this.discountPercentage;
     }
 
     /**
      * Discount amount applied to this invoice.
      */
-    @JsonIgnore
     public JsonNullable<Double> discountAmount() {
-        return discountAmount;
+        return this.discountAmount;
     }
 
     /**
      * Total amount of invoice, including tax.
      */
-    @JsonIgnore
     public JsonNullable<Double> total() {
-        return total;
+        return this.total;
     }
 
     /**
      * Balance of invoice due.
      */
-    @JsonIgnore
     public JsonNullable<Double> balance() {
-        return balance;
+        return this.balance;
     }
 
     /**
      * Amount of deposit made to this invoice.
      */
-    @JsonIgnore
     public JsonNullable<Double> deposit() {
-        return deposit;
+        return this.deposit;
     }
 
     /**
      * Customer memo
      */
-    @JsonIgnore
     public JsonNullable<String> customerMemo() {
-        return customerMemo;
+        return this.customerMemo;
     }
 
     /**
@@ -626,129 +591,102 @@ public class InvoiceInput {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory() {
-        return (JsonNullable<DeprecatedLinkedTrackingCategory>) trackingCategory;
+        return this.trackingCategory;
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<InvoiceLineItemInput>> lineItems() {
-        return (Optional<List<InvoiceLineItemInput>>) lineItems;
+        return Optional.ofNullable(this.lineItems);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> billingAddress() {
-        return (Optional<Address>) billingAddress;
+        return Optional.ofNullable(this.billingAddress);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> shippingAddress() {
-        return (Optional<Address>) shippingAddress;
+        return Optional.ofNullable(this.shippingAddress);
     }
 
     /**
      * Optional invoice template
      */
-    @JsonIgnore
     public JsonNullable<String> templateId() {
-        return templateId;
+        return this.templateId;
     }
 
     /**
      * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
      */
-    @JsonIgnore
     public JsonNullable<String> sourceDocumentUrl() {
-        return sourceDocumentUrl;
+        return this.sourceDocumentUrl;
     }
 
     /**
      * IDs of payments made on the invoice
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<PaymentAllocations>> paymentAllocations() {
-        return (JsonNullable<List<PaymentAllocations>>) paymentAllocations;
+        return this.paymentAllocations;
     }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     /**
      * The channel through which the transaction is processed.
      */
-    @JsonIgnore
     public JsonNullable<String> channel() {
-        return channel;
+        return this.channel;
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> language() {
-        return language;
+        return this.language;
     }
 
     /**
      * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> accountingByRow() {
-        return accountingByRow;
+        return this.accountingByRow;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<BankAccount> bankAccount() {
-        return (Optional<BankAccount>) bankAccount;
+        return Optional.ofNullable(this.bankAccount);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
-        return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+        return this.ledgerAccount;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -759,697 +697,346 @@ public class InvoiceInput {
     /**
      * Invoice type
      */
-    public InvoiceInput withType(InvoiceType type) {
-        Utils.checkNotNull(type, "type");
+    public InvoiceInput withType(@Nullable InvoiceType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * Invoice type
-     */
-    public InvoiceInput withType(JsonNullable<? extends InvoiceType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     /**
      * Invoice number.
      */
-    public InvoiceInput withNumber(String number) {
-        Utils.checkNotNull(number, "number");
+    public InvoiceInput withNumber(@Nullable String number) {
         this.number = JsonNullable.of(number);
         return this;
     }
 
-    /**
-     * Invoice number.
-     */
-    public InvoiceInput withNumber(JsonNullable<String> number) {
-        Utils.checkNotNull(number, "number");
-        this.number = number;
-        return this;
-    }
 
     /**
      * The customer this entity is linked to.
      */
-    public InvoiceInput withCustomer(LinkedCustomerInput customer) {
-        Utils.checkNotNull(customer, "customer");
+    public InvoiceInput withCustomer(@Nullable LinkedCustomerInput customer) {
         this.customer = JsonNullable.of(customer);
         return this;
     }
 
-    /**
-     * The customer this entity is linked to.
-     */
-    public InvoiceInput withCustomer(JsonNullable<? extends LinkedCustomerInput> customer) {
-        Utils.checkNotNull(customer, "customer");
-        this.customer = customer;
-        return this;
-    }
 
     /**
      * The company or subsidiary id the transaction belongs to
      */
-    public InvoiceInput withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public InvoiceInput withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company or subsidiary id the transaction belongs to
-     */
-    public InvoiceInput withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * Date invoice was issued - YYYY-MM-DD.
      */
-    public InvoiceInput withInvoiceDate(LocalDate invoiceDate) {
-        Utils.checkNotNull(invoiceDate, "invoiceDate");
+    public InvoiceInput withInvoiceDate(@Nullable LocalDate invoiceDate) {
         this.invoiceDate = JsonNullable.of(invoiceDate);
         return this;
     }
 
-    /**
-     * Date invoice was issued - YYYY-MM-DD.
-     */
-    public InvoiceInput withInvoiceDate(JsonNullable<LocalDate> invoiceDate) {
-        Utils.checkNotNull(invoiceDate, "invoiceDate");
-        this.invoiceDate = invoiceDate;
-        return this;
-    }
 
     /**
      * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
      */
-    public InvoiceInput withDueDate(LocalDate dueDate) {
-        Utils.checkNotNull(dueDate, "dueDate");
+    public InvoiceInput withDueDate(@Nullable LocalDate dueDate) {
         this.dueDate = JsonNullable.of(dueDate);
         return this;
     }
 
-    /**
-     * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
-     */
-    public InvoiceInput withDueDate(JsonNullable<LocalDate> dueDate) {
-        Utils.checkNotNull(dueDate, "dueDate");
-        this.dueDate = dueDate;
-        return this;
-    }
 
     /**
      * Terms of payment.
      */
-    public InvoiceInput withTerms(String terms) {
-        Utils.checkNotNull(terms, "terms");
+    public InvoiceInput withTerms(@Nullable String terms) {
         this.terms = JsonNullable.of(terms);
         return this;
     }
 
-    /**
-     * Terms of payment.
-     */
-    public InvoiceInput withTerms(JsonNullable<String> terms) {
-        Utils.checkNotNull(terms, "terms");
-        this.terms = terms;
-        return this;
-    }
 
     /**
      * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
      */
-    public InvoiceInput withPoNumber(String poNumber) {
-        Utils.checkNotNull(poNumber, "poNumber");
+    public InvoiceInput withPoNumber(@Nullable String poNumber) {
         this.poNumber = JsonNullable.of(poNumber);
         return this;
     }
 
-    /**
-     * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-     */
-    public InvoiceInput withPoNumber(JsonNullable<String> poNumber) {
-        Utils.checkNotNull(poNumber, "poNumber");
-        this.poNumber = poNumber;
-        return this;
-    }
 
     /**
      * Optional reference identifier for the transaction.
      */
-    public InvoiceInput withReference(String reference) {
-        Utils.checkNotNull(reference, "reference");
+    public InvoiceInput withReference(@Nullable String reference) {
         this.reference = JsonNullable.of(reference);
         return this;
     }
 
-    /**
-     * Optional reference identifier for the transaction.
-     */
-    public InvoiceInput withReference(JsonNullable<String> reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = reference;
-        return this;
-    }
 
     /**
      * Invoice status
      */
-    public InvoiceInput withStatus(InvoiceStatus status) {
-        Utils.checkNotNull(status, "status");
+    public InvoiceInput withStatus(@Nullable InvoiceStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Invoice status
-     */
-    public InvoiceInput withStatus(JsonNullable<? extends InvoiceStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Invoice sent to contact/customer.
      */
-    public InvoiceInput withInvoiceSent(boolean invoiceSent) {
-        Utils.checkNotNull(invoiceSent, "invoiceSent");
-        this.invoiceSent = Optional.ofNullable(invoiceSent);
-        return this;
-    }
-
-
-    /**
-     * Invoice sent to contact/customer.
-     */
-    public InvoiceInput withInvoiceSent(Optional<Boolean> invoiceSent) {
-        Utils.checkNotNull(invoiceSent, "invoiceSent");
+    public InvoiceInput withInvoiceSent(@Nullable Boolean invoiceSent) {
         this.invoiceSent = invoiceSent;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public InvoiceInput withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public InvoiceInput withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public InvoiceInput withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * Currency Exchange Rate at the time entity was recorded/generated.
      */
-    public InvoiceInput withCurrencyRate(double currencyRate) {
-        Utils.checkNotNull(currencyRate, "currencyRate");
+    public InvoiceInput withCurrencyRate(@Nullable Double currencyRate) {
         this.currencyRate = JsonNullable.of(currencyRate);
         return this;
     }
 
-    /**
-     * Currency Exchange Rate at the time entity was recorded/generated.
-     */
-    public InvoiceInput withCurrencyRate(JsonNullable<Double> currencyRate) {
-        Utils.checkNotNull(currencyRate, "currencyRate");
-        this.currencyRate = currencyRate;
-        return this;
-    }
 
     /**
      * Amounts are including tax
      */
-    public InvoiceInput withTaxInclusive(boolean taxInclusive) {
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
+    public InvoiceInput withTaxInclusive(@Nullable Boolean taxInclusive) {
         this.taxInclusive = JsonNullable.of(taxInclusive);
         return this;
     }
 
-    /**
-     * Amounts are including tax
-     */
-    public InvoiceInput withTaxInclusive(JsonNullable<Boolean> taxInclusive) {
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
-        this.taxInclusive = taxInclusive;
-        return this;
-    }
 
     /**
      * Sub-total amount, normally before tax.
      */
-    public InvoiceInput withSubTotal(double subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
+    public InvoiceInput withSubTotal(@Nullable Double subTotal) {
         this.subTotal = JsonNullable.of(subTotal);
         return this;
     }
 
-    /**
-     * Sub-total amount, normally before tax.
-     */
-    public InvoiceInput withSubTotal(JsonNullable<Double> subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
-        this.subTotal = subTotal;
-        return this;
-    }
 
     /**
      * Total tax amount applied to this invoice.
      */
-    public InvoiceInput withTotalTax(double totalTax) {
-        Utils.checkNotNull(totalTax, "totalTax");
+    public InvoiceInput withTotalTax(@Nullable Double totalTax) {
         this.totalTax = JsonNullable.of(totalTax);
         return this;
     }
 
-    /**
-     * Total tax amount applied to this invoice.
-     */
-    public InvoiceInput withTotalTax(JsonNullable<Double> totalTax) {
-        Utils.checkNotNull(totalTax, "totalTax");
-        this.totalTax = totalTax;
-        return this;
-    }
 
     /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
      */
-    public InvoiceInput withTaxCode(String taxCode) {
-        Utils.checkNotNull(taxCode, "taxCode");
+    public InvoiceInput withTaxCode(@Nullable String taxCode) {
         this.taxCode = JsonNullable.of(taxCode);
         return this;
     }
 
-    /**
-     * Applicable tax id/code override if tax is not supplied on a line item basis.
-     */
-    public InvoiceInput withTaxCode(JsonNullable<String> taxCode) {
-        Utils.checkNotNull(taxCode, "taxCode");
-        this.taxCode = taxCode;
-        return this;
-    }
 
     /**
      * Discount percentage applied to this invoice.
      */
-    public InvoiceInput withDiscountPercentage(double discountPercentage) {
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
+    public InvoiceInput withDiscountPercentage(@Nullable Double discountPercentage) {
         this.discountPercentage = JsonNullable.of(discountPercentage);
         return this;
     }
 
-    /**
-     * Discount percentage applied to this invoice.
-     */
-    public InvoiceInput withDiscountPercentage(JsonNullable<Double> discountPercentage) {
-        Utils.checkNotNull(discountPercentage, "discountPercentage");
-        this.discountPercentage = discountPercentage;
-        return this;
-    }
 
     /**
      * Discount amount applied to this invoice.
      */
-    public InvoiceInput withDiscountAmount(double discountAmount) {
-        Utils.checkNotNull(discountAmount, "discountAmount");
+    public InvoiceInput withDiscountAmount(@Nullable Double discountAmount) {
         this.discountAmount = JsonNullable.of(discountAmount);
         return this;
     }
 
-    /**
-     * Discount amount applied to this invoice.
-     */
-    public InvoiceInput withDiscountAmount(JsonNullable<Double> discountAmount) {
-        Utils.checkNotNull(discountAmount, "discountAmount");
-        this.discountAmount = discountAmount;
-        return this;
-    }
 
     /**
      * Total amount of invoice, including tax.
      */
-    public InvoiceInput withTotal(double total) {
-        Utils.checkNotNull(total, "total");
+    public InvoiceInput withTotal(@Nullable Double total) {
         this.total = JsonNullable.of(total);
         return this;
     }
 
-    /**
-     * Total amount of invoice, including tax.
-     */
-    public InvoiceInput withTotal(JsonNullable<Double> total) {
-        Utils.checkNotNull(total, "total");
-        this.total = total;
-        return this;
-    }
 
     /**
      * Balance of invoice due.
      */
-    public InvoiceInput withBalance(double balance) {
-        Utils.checkNotNull(balance, "balance");
+    public InvoiceInput withBalance(@Nullable Double balance) {
         this.balance = JsonNullable.of(balance);
         return this;
     }
 
-    /**
-     * Balance of invoice due.
-     */
-    public InvoiceInput withBalance(JsonNullable<Double> balance) {
-        Utils.checkNotNull(balance, "balance");
-        this.balance = balance;
-        return this;
-    }
 
     /**
      * Amount of deposit made to this invoice.
      */
-    public InvoiceInput withDeposit(double deposit) {
-        Utils.checkNotNull(deposit, "deposit");
+    public InvoiceInput withDeposit(@Nullable Double deposit) {
         this.deposit = JsonNullable.of(deposit);
         return this;
     }
 
-    /**
-     * Amount of deposit made to this invoice.
-     */
-    public InvoiceInput withDeposit(JsonNullable<Double> deposit) {
-        Utils.checkNotNull(deposit, "deposit");
-        this.deposit = deposit;
-        return this;
-    }
 
     /**
      * Customer memo
      */
-    public InvoiceInput withCustomerMemo(String customerMemo) {
-        Utils.checkNotNull(customerMemo, "customerMemo");
+    public InvoiceInput withCustomerMemo(@Nullable String customerMemo) {
         this.customerMemo = JsonNullable.of(customerMemo);
         return this;
     }
 
-    /**
-     * Customer memo
-     */
-    public InvoiceInput withCustomerMemo(JsonNullable<String> customerMemo) {
-        Utils.checkNotNull(customerMemo, "customerMemo");
-        this.customerMemo = customerMemo;
-        return this;
-    }
 
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public InvoiceInput withTrackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
+    public InvoiceInput withTrackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
         this.trackingCategory = JsonNullable.of(trackingCategory);
         return this;
     }
 
-    /**
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public InvoiceInput withTrackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        this.trackingCategory = trackingCategory;
-        return this;
-    }
 
     /**
      * A list of linked tracking categories.
      */
-    public InvoiceInput withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public InvoiceInput withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public InvoiceInput withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
-        return this;
-    }
 
-    public InvoiceInput withLineItems(List<InvoiceLineItemInput> lineItems) {
-        Utils.checkNotNull(lineItems, "lineItems");
-        this.lineItems = Optional.ofNullable(lineItems);
-        return this;
-    }
-
-
-    public InvoiceInput withLineItems(Optional<? extends List<InvoiceLineItemInput>> lineItems) {
-        Utils.checkNotNull(lineItems, "lineItems");
+    public InvoiceInput withLineItems(@Nullable List<InvoiceLineItemInput> lineItems) {
         this.lineItems = lineItems;
         return this;
     }
 
-    public InvoiceInput withBillingAddress(Address billingAddress) {
-        Utils.checkNotNull(billingAddress, "billingAddress");
-        this.billingAddress = Optional.ofNullable(billingAddress);
-        return this;
-    }
 
-
-    public InvoiceInput withBillingAddress(Optional<? extends Address> billingAddress) {
-        Utils.checkNotNull(billingAddress, "billingAddress");
+    public InvoiceInput withBillingAddress(@Nullable Address billingAddress) {
         this.billingAddress = billingAddress;
         return this;
     }
 
-    public InvoiceInput withShippingAddress(Address shippingAddress) {
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
-        this.shippingAddress = Optional.ofNullable(shippingAddress);
-        return this;
-    }
 
-
-    public InvoiceInput withShippingAddress(Optional<? extends Address> shippingAddress) {
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
+    public InvoiceInput withShippingAddress(@Nullable Address shippingAddress) {
         this.shippingAddress = shippingAddress;
         return this;
     }
 
+
     /**
      * Optional invoice template
      */
-    public InvoiceInput withTemplateId(String templateId) {
-        Utils.checkNotNull(templateId, "templateId");
+    public InvoiceInput withTemplateId(@Nullable String templateId) {
         this.templateId = JsonNullable.of(templateId);
         return this;
     }
 
-    /**
-     * Optional invoice template
-     */
-    public InvoiceInput withTemplateId(JsonNullable<String> templateId) {
-        Utils.checkNotNull(templateId, "templateId");
-        this.templateId = templateId;
-        return this;
-    }
 
     /**
      * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
      */
-    public InvoiceInput withSourceDocumentUrl(String sourceDocumentUrl) {
-        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+    public InvoiceInput withSourceDocumentUrl(@Nullable String sourceDocumentUrl) {
         this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
         return this;
     }
 
-    /**
-     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-     */
-    public InvoiceInput withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
-        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
-        this.sourceDocumentUrl = sourceDocumentUrl;
-        return this;
-    }
 
     /**
      * IDs of payments made on the invoice
      */
-    public InvoiceInput withPaymentAllocations(List<PaymentAllocations> paymentAllocations) {
-        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+    public InvoiceInput withPaymentAllocations(@Nullable List<PaymentAllocations> paymentAllocations) {
         this.paymentAllocations = JsonNullable.of(paymentAllocations);
         return this;
     }
 
-    /**
-     * IDs of payments made on the invoice
-     */
-    public InvoiceInput withPaymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
-        Utils.checkNotNull(paymentAllocations, "paymentAllocations");
-        this.paymentAllocations = paymentAllocations;
-        return this;
-    }
 
     /**
      * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
      */
-    public InvoiceInput withPaymentMethod(String paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
+    public InvoiceInput withPaymentMethod(@Nullable String paymentMethod) {
         this.paymentMethod = JsonNullable.of(paymentMethod);
         return this;
     }
 
-    /**
-     * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-     */
-    public InvoiceInput withPaymentMethod(JsonNullable<String> paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        this.paymentMethod = paymentMethod;
-        return this;
-    }
 
     /**
      * The channel through which the transaction is processed.
      */
-    public InvoiceInput withChannel(String channel) {
-        Utils.checkNotNull(channel, "channel");
+    public InvoiceInput withChannel(@Nullable String channel) {
         this.channel = JsonNullable.of(channel);
         return this;
     }
 
-    /**
-     * The channel through which the transaction is processed.
-     */
-    public InvoiceInput withChannel(JsonNullable<String> channel) {
-        Utils.checkNotNull(channel, "channel");
-        this.channel = channel;
-        return this;
-    }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public InvoiceInput withLanguage(String language) {
-        Utils.checkNotNull(language, "language");
+    public InvoiceInput withLanguage(@Nullable String language) {
         this.language = JsonNullable.of(language);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public InvoiceInput withLanguage(JsonNullable<String> language) {
-        Utils.checkNotNull(language, "language");
-        this.language = language;
-        return this;
-    }
 
     /**
      * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
      */
-    public InvoiceInput withAccountingByRow(boolean accountingByRow) {
-        Utils.checkNotNull(accountingByRow, "accountingByRow");
+    public InvoiceInput withAccountingByRow(@Nullable Boolean accountingByRow) {
         this.accountingByRow = JsonNullable.of(accountingByRow);
         return this;
     }
 
-    /**
-     * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-     */
-    public InvoiceInput withAccountingByRow(JsonNullable<Boolean> accountingByRow) {
-        Utils.checkNotNull(accountingByRow, "accountingByRow");
-        this.accountingByRow = accountingByRow;
-        return this;
-    }
 
-    public InvoiceInput withBankAccount(BankAccount bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
-        this.bankAccount = Optional.ofNullable(bankAccount);
-        return this;
-    }
-
-
-    public InvoiceInput withBankAccount(Optional<? extends BankAccount> bankAccount) {
-        Utils.checkNotNull(bankAccount, "bankAccount");
+    public InvoiceInput withBankAccount(@Nullable BankAccount bankAccount) {
         this.bankAccount = bankAccount;
         return this;
     }
 
-    public InvoiceInput withLedgerAccount(LinkedLedgerAccountInput ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+
+    public InvoiceInput withLedgerAccount(@Nullable LinkedLedgerAccountInput ledgerAccount) {
         this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public InvoiceInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        this.ledgerAccount = ledgerAccount;
-        return this;
-    }
 
-    public InvoiceInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
-
-
-    public InvoiceInput withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public InvoiceInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public InvoiceInput withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public InvoiceInput withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public InvoiceInput withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public InvoiceInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public InvoiceInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public InvoiceInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1570,821 +1157,396 @@ public class InvoiceInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<? extends InvoiceType> type = JsonNullable.undefined();
+        private JsonNullable<InvoiceType> type;
 
-        private JsonNullable<String> number = JsonNullable.undefined();
+        private JsonNullable<String> number;
 
-        private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
+        private JsonNullable<LinkedCustomerInput> customer;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<LocalDate> invoiceDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> invoiceDate;
 
-        private JsonNullable<LocalDate> dueDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> dueDate;
 
-        private JsonNullable<String> terms = JsonNullable.undefined();
+        private JsonNullable<String> terms;
 
-        private JsonNullable<String> poNumber = JsonNullable.undefined();
+        private JsonNullable<String> poNumber;
 
-        private JsonNullable<String> reference = JsonNullable.undefined();
+        private JsonNullable<String> reference;
 
-        private JsonNullable<? extends InvoiceStatus> status = JsonNullable.undefined();
+        private JsonNullable<InvoiceStatus> status;
 
-        private Optional<Boolean> invoiceSent = Optional.empty();
+        private Boolean invoiceSent;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<Double> currencyRate = JsonNullable.undefined();
+        private JsonNullable<Double> currencyRate;
 
-        private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
+        private JsonNullable<Boolean> taxInclusive;
 
-        private JsonNullable<Double> subTotal = JsonNullable.undefined();
+        private JsonNullable<Double> subTotal;
 
-        private JsonNullable<Double> totalTax = JsonNullable.undefined();
+        private JsonNullable<Double> totalTax;
 
-        private JsonNullable<String> taxCode = JsonNullable.undefined();
+        private JsonNullable<String> taxCode;
 
-        private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
+        private JsonNullable<Double> discountPercentage;
 
-        private JsonNullable<Double> discountAmount = JsonNullable.undefined();
+        private JsonNullable<Double> discountAmount;
 
-        private JsonNullable<Double> total = JsonNullable.undefined();
+        private JsonNullable<Double> total;
 
-        private JsonNullable<Double> balance = JsonNullable.undefined();
+        private JsonNullable<Double> balance;
 
-        private JsonNullable<Double> deposit = JsonNullable.undefined();
+        private JsonNullable<Double> deposit;
 
-        private JsonNullable<String> customerMemo = JsonNullable.undefined();
+        private JsonNullable<String> customerMemo;
 
         @Deprecated
-        private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
+        private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private Optional<? extends List<InvoiceLineItemInput>> lineItems = Optional.empty();
+        private List<InvoiceLineItemInput> lineItems;
 
-        private Optional<? extends Address> billingAddress = Optional.empty();
+        private Address billingAddress;
 
-        private Optional<? extends Address> shippingAddress = Optional.empty();
+        private Address shippingAddress;
 
-        private JsonNullable<String> templateId = JsonNullable.undefined();
+        private JsonNullable<String> templateId;
 
-        private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
+        private JsonNullable<String> sourceDocumentUrl;
 
-        private JsonNullable<? extends List<PaymentAllocations>> paymentAllocations = JsonNullable.undefined();
+        private JsonNullable<List<PaymentAllocations>> paymentAllocations;
 
-        private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethod;
 
-        private JsonNullable<String> channel = JsonNullable.undefined();
+        private JsonNullable<String> channel;
 
-        private JsonNullable<String> language = JsonNullable.undefined();
+        private JsonNullable<String> language;
 
-        private JsonNullable<Boolean> accountingByRow = JsonNullable.undefined();
+        private JsonNullable<Boolean> accountingByRow;
 
-        private Optional<? extends BankAccount> bankAccount = Optional.empty();
+        private BankAccount bankAccount;
 
-        private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+        private JsonNullable<LinkedLedgerAccountInput> ledgerAccount;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<CustomField> customFields;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Invoice type
          */
-        public Builder type(InvoiceType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable InvoiceType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
         /**
-         * Invoice type
-         */
-        public Builder type(JsonNullable<? extends InvoiceType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        /**
          * Invoice number.
          */
-        public Builder number(String number) {
-            Utils.checkNotNull(number, "number");
+        public Builder number(@Nullable String number) {
             this.number = JsonNullable.of(number);
             return this;
         }
 
         /**
-         * Invoice number.
-         */
-        public Builder number(JsonNullable<String> number) {
-            Utils.checkNotNull(number, "number");
-            this.number = number;
-            return this;
-        }
-
-
-        /**
          * The customer this entity is linked to.
          */
-        public Builder customer(LinkedCustomerInput customer) {
-            Utils.checkNotNull(customer, "customer");
+        public Builder customer(@Nullable LinkedCustomerInput customer) {
             this.customer = JsonNullable.of(customer);
             return this;
         }
 
         /**
-         * The customer this entity is linked to.
-         */
-        public Builder customer(JsonNullable<? extends LinkedCustomerInput> customer) {
-            Utils.checkNotNull(customer, "customer");
-            this.customer = customer;
-            return this;
-        }
-
-
-        /**
          * The company or subsidiary id the transaction belongs to
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company or subsidiary id the transaction belongs to
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * Date invoice was issued - YYYY-MM-DD.
          */
-        public Builder invoiceDate(LocalDate invoiceDate) {
-            Utils.checkNotNull(invoiceDate, "invoiceDate");
+        public Builder invoiceDate(@Nullable LocalDate invoiceDate) {
             this.invoiceDate = JsonNullable.of(invoiceDate);
             return this;
         }
 
         /**
-         * Date invoice was issued - YYYY-MM-DD.
-         */
-        public Builder invoiceDate(JsonNullable<LocalDate> invoiceDate) {
-            Utils.checkNotNull(invoiceDate, "invoiceDate");
-            this.invoiceDate = invoiceDate;
-            return this;
-        }
-
-
-        /**
          * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
          */
-        public Builder dueDate(LocalDate dueDate) {
-            Utils.checkNotNull(dueDate, "dueDate");
+        public Builder dueDate(@Nullable LocalDate dueDate) {
             this.dueDate = JsonNullable.of(dueDate);
             return this;
         }
 
         /**
-         * The invoice due date is the date on which a payment or invoice is scheduled to be received by the seller - YYYY-MM-DD.
-         */
-        public Builder dueDate(JsonNullable<LocalDate> dueDate) {
-            Utils.checkNotNull(dueDate, "dueDate");
-            this.dueDate = dueDate;
-            return this;
-        }
-
-
-        /**
          * Terms of payment.
          */
-        public Builder terms(String terms) {
-            Utils.checkNotNull(terms, "terms");
+        public Builder terms(@Nullable String terms) {
             this.terms = JsonNullable.of(terms);
             return this;
         }
 
         /**
-         * Terms of payment.
-         */
-        public Builder terms(JsonNullable<String> terms) {
-            Utils.checkNotNull(terms, "terms");
-            this.terms = terms;
-            return this;
-        }
-
-
-        /**
          * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
          */
-        public Builder poNumber(String poNumber) {
-            Utils.checkNotNull(poNumber, "poNumber");
+        public Builder poNumber(@Nullable String poNumber) {
             this.poNumber = JsonNullable.of(poNumber);
             return this;
         }
 
         /**
-         * A PO Number uniquely identifies a purchase order and is generally defined by the buyer. The buyer will match the PO number in the invoice to the Purchase Order.
-         */
-        public Builder poNumber(JsonNullable<String> poNumber) {
-            Utils.checkNotNull(poNumber, "poNumber");
-            this.poNumber = poNumber;
-            return this;
-        }
-
-
-        /**
          * Optional reference identifier for the transaction.
          */
-        public Builder reference(String reference) {
-            Utils.checkNotNull(reference, "reference");
+        public Builder reference(@Nullable String reference) {
             this.reference = JsonNullable.of(reference);
             return this;
         }
 
         /**
-         * Optional reference identifier for the transaction.
-         */
-        public Builder reference(JsonNullable<String> reference) {
-            Utils.checkNotNull(reference, "reference");
-            this.reference = reference;
-            return this;
-        }
-
-
-        /**
          * Invoice status
          */
-        public Builder status(InvoiceStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable InvoiceStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * Invoice status
-         */
-        public Builder status(JsonNullable<? extends InvoiceStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Invoice sent to contact/customer.
          */
-        public Builder invoiceSent(boolean invoiceSent) {
-            Utils.checkNotNull(invoiceSent, "invoiceSent");
-            this.invoiceSent = Optional.ofNullable(invoiceSent);
-            return this;
-        }
-
-        /**
-         * Invoice sent to contact/customer.
-         */
-        public Builder invoiceSent(Optional<Boolean> invoiceSent) {
-            Utils.checkNotNull(invoiceSent, "invoiceSent");
+        public Builder invoiceSent(@Nullable Boolean invoiceSent) {
             this.invoiceSent = invoiceSent;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * Currency Exchange Rate at the time entity was recorded/generated.
          */
-        public Builder currencyRate(double currencyRate) {
-            Utils.checkNotNull(currencyRate, "currencyRate");
+        public Builder currencyRate(@Nullable Double currencyRate) {
             this.currencyRate = JsonNullable.of(currencyRate);
             return this;
         }
 
         /**
-         * Currency Exchange Rate at the time entity was recorded/generated.
-         */
-        public Builder currencyRate(JsonNullable<Double> currencyRate) {
-            Utils.checkNotNull(currencyRate, "currencyRate");
-            this.currencyRate = currencyRate;
-            return this;
-        }
-
-
-        /**
          * Amounts are including tax
          */
-        public Builder taxInclusive(boolean taxInclusive) {
-            Utils.checkNotNull(taxInclusive, "taxInclusive");
+        public Builder taxInclusive(@Nullable Boolean taxInclusive) {
             this.taxInclusive = JsonNullable.of(taxInclusive);
             return this;
         }
 
         /**
-         * Amounts are including tax
-         */
-        public Builder taxInclusive(JsonNullable<Boolean> taxInclusive) {
-            Utils.checkNotNull(taxInclusive, "taxInclusive");
-            this.taxInclusive = taxInclusive;
-            return this;
-        }
-
-
-        /**
          * Sub-total amount, normally before tax.
          */
-        public Builder subTotal(double subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
+        public Builder subTotal(@Nullable Double subTotal) {
             this.subTotal = JsonNullable.of(subTotal);
             return this;
         }
 
         /**
-         * Sub-total amount, normally before tax.
-         */
-        public Builder subTotal(JsonNullable<Double> subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
-            this.subTotal = subTotal;
-            return this;
-        }
-
-
-        /**
          * Total tax amount applied to this invoice.
          */
-        public Builder totalTax(double totalTax) {
-            Utils.checkNotNull(totalTax, "totalTax");
+        public Builder totalTax(@Nullable Double totalTax) {
             this.totalTax = JsonNullable.of(totalTax);
             return this;
         }
 
         /**
-         * Total tax amount applied to this invoice.
-         */
-        public Builder totalTax(JsonNullable<Double> totalTax) {
-            Utils.checkNotNull(totalTax, "totalTax");
-            this.totalTax = totalTax;
-            return this;
-        }
-
-
-        /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
-        public Builder taxCode(String taxCode) {
-            Utils.checkNotNull(taxCode, "taxCode");
+        public Builder taxCode(@Nullable String taxCode) {
             this.taxCode = JsonNullable.of(taxCode);
             return this;
         }
 
         /**
-         * Applicable tax id/code override if tax is not supplied on a line item basis.
-         */
-        public Builder taxCode(JsonNullable<String> taxCode) {
-            Utils.checkNotNull(taxCode, "taxCode");
-            this.taxCode = taxCode;
-            return this;
-        }
-
-
-        /**
          * Discount percentage applied to this invoice.
          */
-        public Builder discountPercentage(double discountPercentage) {
-            Utils.checkNotNull(discountPercentage, "discountPercentage");
+        public Builder discountPercentage(@Nullable Double discountPercentage) {
             this.discountPercentage = JsonNullable.of(discountPercentage);
             return this;
         }
 
         /**
-         * Discount percentage applied to this invoice.
-         */
-        public Builder discountPercentage(JsonNullable<Double> discountPercentage) {
-            Utils.checkNotNull(discountPercentage, "discountPercentage");
-            this.discountPercentage = discountPercentage;
-            return this;
-        }
-
-
-        /**
          * Discount amount applied to this invoice.
          */
-        public Builder discountAmount(double discountAmount) {
-            Utils.checkNotNull(discountAmount, "discountAmount");
+        public Builder discountAmount(@Nullable Double discountAmount) {
             this.discountAmount = JsonNullable.of(discountAmount);
             return this;
         }
 
         /**
-         * Discount amount applied to this invoice.
-         */
-        public Builder discountAmount(JsonNullable<Double> discountAmount) {
-            Utils.checkNotNull(discountAmount, "discountAmount");
-            this.discountAmount = discountAmount;
-            return this;
-        }
-
-
-        /**
          * Total amount of invoice, including tax.
          */
-        public Builder total(double total) {
-            Utils.checkNotNull(total, "total");
+        public Builder total(@Nullable Double total) {
             this.total = JsonNullable.of(total);
             return this;
         }
 
         /**
-         * Total amount of invoice, including tax.
-         */
-        public Builder total(JsonNullable<Double> total) {
-            Utils.checkNotNull(total, "total");
-            this.total = total;
-            return this;
-        }
-
-
-        /**
          * Balance of invoice due.
          */
-        public Builder balance(double balance) {
-            Utils.checkNotNull(balance, "balance");
+        public Builder balance(@Nullable Double balance) {
             this.balance = JsonNullable.of(balance);
             return this;
         }
 
         /**
-         * Balance of invoice due.
-         */
-        public Builder balance(JsonNullable<Double> balance) {
-            Utils.checkNotNull(balance, "balance");
-            this.balance = balance;
-            return this;
-        }
-
-
-        /**
          * Amount of deposit made to this invoice.
          */
-        public Builder deposit(double deposit) {
-            Utils.checkNotNull(deposit, "deposit");
+        public Builder deposit(@Nullable Double deposit) {
             this.deposit = JsonNullable.of(deposit);
             return this;
         }
 
         /**
-         * Amount of deposit made to this invoice.
-         */
-        public Builder deposit(JsonNullable<Double> deposit) {
-            Utils.checkNotNull(deposit, "deposit");
-            this.deposit = deposit;
-            return this;
-        }
-
-
-        /**
          * Customer memo
          */
-        public Builder customerMemo(String customerMemo) {
-            Utils.checkNotNull(customerMemo, "customerMemo");
+        public Builder customerMemo(@Nullable String customerMemo) {
             this.customerMemo = JsonNullable.of(customerMemo);
             return this;
         }
 
         /**
-         * Customer memo
-         */
-        public Builder customerMemo(JsonNullable<String> customerMemo) {
-            Utils.checkNotNull(customerMemo, "customerMemo");
-            this.customerMemo = customerMemo;
-            return this;
-        }
-
-
-        /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder trackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
+        public Builder trackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
             this.trackingCategory = JsonNullable.of(trackingCategory);
             return this;
         }
 
         /**
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder trackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
-            this.trackingCategory = trackingCategory;
-            return this;
-        }
-
-
-        /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
-        /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        public Builder lineItems(List<InvoiceLineItemInput> lineItems) {
-            Utils.checkNotNull(lineItems, "lineItems");
-            this.lineItems = Optional.ofNullable(lineItems);
-            return this;
-        }
-
-        public Builder lineItems(Optional<? extends List<InvoiceLineItemInput>> lineItems) {
-            Utils.checkNotNull(lineItems, "lineItems");
+        public Builder lineItems(@Nullable List<InvoiceLineItemInput> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-
-        public Builder billingAddress(Address billingAddress) {
-            Utils.checkNotNull(billingAddress, "billingAddress");
-            this.billingAddress = Optional.ofNullable(billingAddress);
-            return this;
-        }
-
-        public Builder billingAddress(Optional<? extends Address> billingAddress) {
-            Utils.checkNotNull(billingAddress, "billingAddress");
+        public Builder billingAddress(@Nullable Address billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }
 
-
-        public Builder shippingAddress(Address shippingAddress) {
-            Utils.checkNotNull(shippingAddress, "shippingAddress");
-            this.shippingAddress = Optional.ofNullable(shippingAddress);
-            return this;
-        }
-
-        public Builder shippingAddress(Optional<? extends Address> shippingAddress) {
-            Utils.checkNotNull(shippingAddress, "shippingAddress");
+        public Builder shippingAddress(@Nullable Address shippingAddress) {
             this.shippingAddress = shippingAddress;
             return this;
         }
 
-
         /**
          * Optional invoice template
          */
-        public Builder templateId(String templateId) {
-            Utils.checkNotNull(templateId, "templateId");
+        public Builder templateId(@Nullable String templateId) {
             this.templateId = JsonNullable.of(templateId);
             return this;
         }
 
         /**
-         * Optional invoice template
-         */
-        public Builder templateId(JsonNullable<String> templateId) {
-            Utils.checkNotNull(templateId, "templateId");
-            this.templateId = templateId;
-            return this;
-        }
-
-
-        /**
          * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
          */
-        public Builder sourceDocumentUrl(String sourceDocumentUrl) {
-            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        public Builder sourceDocumentUrl(@Nullable String sourceDocumentUrl) {
             this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
             return this;
         }
 
         /**
-         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
-         */
-        public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
-            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
-            this.sourceDocumentUrl = sourceDocumentUrl;
-            return this;
-        }
-
-
-        /**
          * IDs of payments made on the invoice
          */
-        public Builder paymentAllocations(List<PaymentAllocations> paymentAllocations) {
-            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
+        public Builder paymentAllocations(@Nullable List<PaymentAllocations> paymentAllocations) {
             this.paymentAllocations = JsonNullable.of(paymentAllocations);
             return this;
         }
 
         /**
-         * IDs of payments made on the invoice
-         */
-        public Builder paymentAllocations(JsonNullable<? extends List<PaymentAllocations>> paymentAllocations) {
-            Utils.checkNotNull(paymentAllocations, "paymentAllocations");
-            this.paymentAllocations = paymentAllocations;
-            return this;
-        }
-
-
-        /**
          * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
          */
-        public Builder paymentMethod(String paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
+        public Builder paymentMethod(@Nullable String paymentMethod) {
             this.paymentMethod = JsonNullable.of(paymentMethod);
             return this;
         }
 
         /**
-         * Payment method used for the transaction, such as cash, credit card, bank transfer, or check
-         */
-        public Builder paymentMethod(JsonNullable<String> paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
-            this.paymentMethod = paymentMethod;
-            return this;
-        }
-
-
-        /**
          * The channel through which the transaction is processed.
          */
-        public Builder channel(String channel) {
-            Utils.checkNotNull(channel, "channel");
+        public Builder channel(@Nullable String channel) {
             this.channel = JsonNullable.of(channel);
             return this;
         }
 
         /**
-         * The channel through which the transaction is processed.
-         */
-        public Builder channel(JsonNullable<String> channel) {
-            Utils.checkNotNull(channel, "channel");
-            this.channel = channel;
-            return this;
-        }
-
-
-        /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder language(String language) {
-            Utils.checkNotNull(language, "language");
+        public Builder language(@Nullable String language) {
             this.language = JsonNullable.of(language);
             return this;
         }
 
         /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder language(JsonNullable<String> language) {
-            Utils.checkNotNull(language, "language");
-            this.language = language;
-            return this;
-        }
-
-
-        /**
          * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
          */
-        public Builder accountingByRow(boolean accountingByRow) {
-            Utils.checkNotNull(accountingByRow, "accountingByRow");
+        public Builder accountingByRow(@Nullable Boolean accountingByRow) {
             this.accountingByRow = JsonNullable.of(accountingByRow);
             return this;
         }
 
-        /**
-         * Indicates if accounting by row is used (true) or not (false). Accounting by row means that a separate ledger transaction is created for each row.
-         */
-        public Builder accountingByRow(JsonNullable<Boolean> accountingByRow) {
-            Utils.checkNotNull(accountingByRow, "accountingByRow");
-            this.accountingByRow = accountingByRow;
-            return this;
-        }
-
-
-        public Builder bankAccount(BankAccount bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
-            this.bankAccount = Optional.ofNullable(bankAccount);
-            return this;
-        }
-
-        public Builder bankAccount(Optional<? extends BankAccount> bankAccount) {
-            Utils.checkNotNull(bankAccount, "bankAccount");
+        public Builder bankAccount(@Nullable BankAccount bankAccount) {
             this.bankAccount = bankAccount;
             return this;
         }
 
-
-        public Builder ledgerAccount(LinkedLedgerAccountInput ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        public Builder ledgerAccount(@Nullable LinkedLedgerAccountInput ledgerAccount) {
             this.ledgerAccount = JsonNullable.of(ledgerAccount);
             return this;
         }
 
-        public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-            this.ledgerAccount = ledgerAccount;
-            return this;
-        }
-
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public InvoiceInput build() {
-
             return new InvoiceInput(
                 type, number, customer,
                 companyId, invoiceDate, dueDate,

@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.AccountingAgedDebtorsOneRequestBuilde
 import com.apideck.unify.models.operations.AccountingAgedDebtorsOneResponse;
 import com.apideck.unify.operations.AccountingAgedDebtorsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class AgedDebtors {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAgedDebtorsOneResponse get(AccountingAgedDebtorsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingAgedDebtorsOneResponse get(@Nonnull AccountingAgedDebtorsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class AgedDebtors {
      * @throws Exception if the API call fails
      */
     public AccountingAgedDebtorsOneResponse get(
-            AccountingAgedDebtorsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingAgedDebtorsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingAgedDebtorsOneRequest, AccountingAgedDebtorsOneResponse> operation
               = new AccountingAgedDebtorsOneOperation(
                 sdkConfiguration,

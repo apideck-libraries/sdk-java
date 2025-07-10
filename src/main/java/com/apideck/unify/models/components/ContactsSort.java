@@ -7,11 +7,10 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -20,44 +19,39 @@ public class ContactsSort {
      * The field on which to sort the Contacts
      */
     @SpeakeasyMetadata("queryParam:name=by")
-    private Optional<? extends ContactsSortBy> by;
+    private ContactsSortBy by;
 
     /**
      * The direction in which to sort the results
      */
     @SpeakeasyMetadata("queryParam:name=direction")
-    private Optional<? extends SortDirection> direction;
+    private SortDirection direction;
 
     @JsonCreator
     public ContactsSort(
-            Optional<? extends ContactsSortBy> by,
-            Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(by, "by");
-        Utils.checkNotNull(direction, "direction");
+            @Nullable ContactsSortBy by,
+            @Nullable SortDirection direction) {
         this.by = by;
-        this.direction = direction;
+        this.direction = Optional.ofNullable(direction)
+            .orElse(Builder._SINGLETON_VALUE_Direction.value());
     }
     
     public ContactsSort() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The field on which to sort the Contacts
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ContactsSortBy> by() {
-        return (Optional<ContactsSortBy>) by;
+        return Optional.ofNullable(this.by);
     }
 
     /**
      * The direction in which to sort the results
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SortDirection> direction() {
-        return (Optional<SortDirection>) direction;
+        return Optional.ofNullable(this.direction);
     }
 
     public static Builder builder() {
@@ -68,40 +62,20 @@ public class ContactsSort {
     /**
      * The field on which to sort the Contacts
      */
-    public ContactsSort withBy(ContactsSortBy by) {
-        Utils.checkNotNull(by, "by");
-        this.by = Optional.ofNullable(by);
-        return this;
-    }
-
-
-    /**
-     * The field on which to sort the Contacts
-     */
-    public ContactsSort withBy(Optional<? extends ContactsSortBy> by) {
-        Utils.checkNotNull(by, "by");
+    public ContactsSort withBy(@Nullable ContactsSortBy by) {
         this.by = by;
         return this;
     }
 
-    /**
-     * The direction in which to sort the results
-     */
-    public ContactsSort withDirection(SortDirection direction) {
-        Utils.checkNotNull(direction, "direction");
-        this.direction = Optional.ofNullable(direction);
-        return this;
-    }
-
 
     /**
      * The direction in which to sort the results
      */
-    public ContactsSort withDirection(Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(direction, "direction");
+    public ContactsSort withDirection(@Nullable SortDirection direction) {
         this.direction = direction;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -133,66 +107,40 @@ public class ContactsSort {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ContactsSortBy> by = Optional.empty();
+        private ContactsSortBy by;
 
-        private Optional<? extends SortDirection> direction;
+        private SortDirection direction;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The field on which to sort the Contacts
          */
-        public Builder by(ContactsSortBy by) {
-            Utils.checkNotNull(by, "by");
-            this.by = Optional.ofNullable(by);
-            return this;
-        }
-
-        /**
-         * The field on which to sort the Contacts
-         */
-        public Builder by(Optional<? extends ContactsSortBy> by) {
-            Utils.checkNotNull(by, "by");
+        public Builder by(@Nullable ContactsSortBy by) {
             this.by = by;
             return this;
         }
 
-
         /**
          * The direction in which to sort the results
          */
-        public Builder direction(SortDirection direction) {
-            Utils.checkNotNull(direction, "direction");
-            this.direction = Optional.ofNullable(direction);
-            return this;
-        }
-
-        /**
-         * The direction in which to sort the results
-         */
-        public Builder direction(Optional<? extends SortDirection> direction) {
-            Utils.checkNotNull(direction, "direction");
+        public Builder direction(@Nullable SortDirection direction) {
             this.direction = direction;
             return this;
         }
 
         public ContactsSort build() {
-            if (direction == null) {
-                direction = _SINGLETON_VALUE_Direction.value();
-            }
-
             return new ContactsSort(
                 by, direction);
         }
 
 
-        private static final LazySingletonValue<Optional<? extends SortDirection>> _SINGLETON_VALUE_Direction =
+        private static final LazySingletonValue<SortDirection> _SINGLETON_VALUE_Direction =
                 new LazySingletonValue<>(
                         "direction",
                         "\"asc\"",
-                        new TypeReference<Optional<? extends SortDirection>>() {});
+                        new TypeReference<SortDirection>() {});
     }
 }

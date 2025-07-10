@@ -7,11 +7,10 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -20,44 +19,39 @@ public class JournalEntriesSort {
      * The field on which to sort the Journal Entries.
      */
     @SpeakeasyMetadata("queryParam:name=by")
-    private Optional<? extends JournalEntriesSortBy> by;
+    private JournalEntriesSortBy by;
 
     /**
      * The direction in which to sort the results
      */
     @SpeakeasyMetadata("queryParam:name=direction")
-    private Optional<? extends SortDirection> direction;
+    private SortDirection direction;
 
     @JsonCreator
     public JournalEntriesSort(
-            Optional<? extends JournalEntriesSortBy> by,
-            Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(by, "by");
-        Utils.checkNotNull(direction, "direction");
+            @Nullable JournalEntriesSortBy by,
+            @Nullable SortDirection direction) {
         this.by = by;
-        this.direction = direction;
+        this.direction = Optional.ofNullable(direction)
+            .orElse(Builder._SINGLETON_VALUE_Direction.value());
     }
     
     public JournalEntriesSort() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The field on which to sort the Journal Entries.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<JournalEntriesSortBy> by() {
-        return (Optional<JournalEntriesSortBy>) by;
+        return Optional.ofNullable(this.by);
     }
 
     /**
      * The direction in which to sort the results
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SortDirection> direction() {
-        return (Optional<SortDirection>) direction;
+        return Optional.ofNullable(this.direction);
     }
 
     public static Builder builder() {
@@ -68,40 +62,20 @@ public class JournalEntriesSort {
     /**
      * The field on which to sort the Journal Entries.
      */
-    public JournalEntriesSort withBy(JournalEntriesSortBy by) {
-        Utils.checkNotNull(by, "by");
-        this.by = Optional.ofNullable(by);
-        return this;
-    }
-
-
-    /**
-     * The field on which to sort the Journal Entries.
-     */
-    public JournalEntriesSort withBy(Optional<? extends JournalEntriesSortBy> by) {
-        Utils.checkNotNull(by, "by");
+    public JournalEntriesSort withBy(@Nullable JournalEntriesSortBy by) {
         this.by = by;
         return this;
     }
 
-    /**
-     * The direction in which to sort the results
-     */
-    public JournalEntriesSort withDirection(SortDirection direction) {
-        Utils.checkNotNull(direction, "direction");
-        this.direction = Optional.ofNullable(direction);
-        return this;
-    }
-
 
     /**
      * The direction in which to sort the results
      */
-    public JournalEntriesSort withDirection(Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(direction, "direction");
+    public JournalEntriesSort withDirection(@Nullable SortDirection direction) {
         this.direction = direction;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -133,66 +107,40 @@ public class JournalEntriesSort {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends JournalEntriesSortBy> by = Optional.empty();
+        private JournalEntriesSortBy by;
 
-        private Optional<? extends SortDirection> direction;
+        private SortDirection direction;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The field on which to sort the Journal Entries.
          */
-        public Builder by(JournalEntriesSortBy by) {
-            Utils.checkNotNull(by, "by");
-            this.by = Optional.ofNullable(by);
-            return this;
-        }
-
-        /**
-         * The field on which to sort the Journal Entries.
-         */
-        public Builder by(Optional<? extends JournalEntriesSortBy> by) {
-            Utils.checkNotNull(by, "by");
+        public Builder by(@Nullable JournalEntriesSortBy by) {
             this.by = by;
             return this;
         }
 
-
         /**
          * The direction in which to sort the results
          */
-        public Builder direction(SortDirection direction) {
-            Utils.checkNotNull(direction, "direction");
-            this.direction = Optional.ofNullable(direction);
-            return this;
-        }
-
-        /**
-         * The direction in which to sort the results
-         */
-        public Builder direction(Optional<? extends SortDirection> direction) {
-            Utils.checkNotNull(direction, "direction");
+        public Builder direction(@Nullable SortDirection direction) {
             this.direction = direction;
             return this;
         }
 
         public JournalEntriesSort build() {
-            if (direction == null) {
-                direction = _SINGLETON_VALUE_Direction.value();
-            }
-
             return new JournalEntriesSort(
                 by, direction);
         }
 
 
-        private static final LazySingletonValue<Optional<? extends SortDirection>> _SINGLETON_VALUE_Direction =
+        private static final LazySingletonValue<SortDirection> _SINGLETON_VALUE_Direction =
                 new LazySingletonValue<>(
                         "direction",
                         "\"asc\"",
-                        new TypeReference<Optional<? extends SortDirection>>() {});
+                        new TypeReference<SortDirection>() {});
     }
 }

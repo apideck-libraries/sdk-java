@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -28,7 +27,7 @@ public class CompanyInfo {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the company.
@@ -42,14 +41,14 @@ public class CompanyInfo {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends CompanyStatus> status;
+    private CompanyStatus status;
 
     /**
      * The legal name of the company
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("legal_name")
-    private Optional<String> legalName;
+    private String legalName;
 
     /**
      * country code according to ISO 3166-1 alpha-2.
@@ -68,26 +67,26 @@ public class CompanyInfo {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("automated_sales_tax")
-    private Optional<Boolean> automatedSalesTax;
+    private Boolean automatedSalesTax;
 
     /**
      * Whether sales tax is enabled for the company
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sales_tax_enabled")
-    private Optional<Boolean> salesTaxEnabled;
+    private Boolean salesTaxEnabled;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default_sales_tax")
-    private Optional<? extends TaxRate> defaultSalesTax;
+    private TaxRate defaultSalesTax;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * language code according to ISO 639-1. For the United States - EN
@@ -101,43 +100,43 @@ public class CompanyInfo {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fiscal_year_start_month")
-    private Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth;
+    private TheStartMonthOfFiscalYear fiscalYearStartMonth;
 
     /**
      * Date when company file was created
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("company_start_date")
-    private Optional<LocalDate> companyStartDate;
+    private LocalDate companyStartDate;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * Whether tracking categories are enabled for the company on transactions
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories_enabled")
-    private Optional<Boolean> trackingCategoriesEnabled;
+    private Boolean trackingCategoriesEnabled;
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
@@ -176,263 +175,220 @@ public class CompanyInfo {
 
     @JsonCreator
     public CompanyInfo(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("status") Optional<? extends CompanyStatus> status,
-            @JsonProperty("legal_name") Optional<String> legalName,
-            @JsonProperty("country") JsonNullable<String> country,
-            @JsonProperty("sales_tax_number") JsonNullable<String> salesTaxNumber,
-            @JsonProperty("automated_sales_tax") Optional<Boolean> automatedSalesTax,
-            @JsonProperty("sales_tax_enabled") Optional<Boolean> salesTaxEnabled,
-            @JsonProperty("default_sales_tax") Optional<? extends TaxRate> defaultSalesTax,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("language") JsonNullable<String> language,
-            @JsonProperty("fiscal_year_start_month") Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth,
-            @JsonProperty("company_start_date") Optional<LocalDate> companyStartDate,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("tracking_categories_enabled") Optional<Boolean> trackingCategoriesEnabled,
-            @JsonProperty("row_version") JsonNullable<String> rowVersion,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(legalName, "legalName");
-        Utils.checkNotNull(country, "country");
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-        Utils.checkNotNull(automatedSalesTax, "automatedSalesTax");
-        Utils.checkNotNull(salesTaxEnabled, "salesTaxEnabled");
-        Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(language, "language");
-        Utils.checkNotNull(fiscalYearStartMonth, "fiscalYearStartMonth");
-        Utils.checkNotNull(companyStartDate, "companyStartDate");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("status") @Nullable CompanyStatus status,
+            @JsonProperty("legal_name") @Nullable String legalName,
+            @JsonProperty("country") @Nullable JsonNullable<String> country,
+            @JsonProperty("sales_tax_number") @Nullable JsonNullable<String> salesTaxNumber,
+            @JsonProperty("automated_sales_tax") @Nullable Boolean automatedSalesTax,
+            @JsonProperty("sales_tax_enabled") @Nullable Boolean salesTaxEnabled,
+            @JsonProperty("default_sales_tax") @Nullable TaxRate defaultSalesTax,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("language") @Nullable JsonNullable<String> language,
+            @JsonProperty("fiscal_year_start_month") @Nullable TheStartMonthOfFiscalYear fiscalYearStartMonth,
+            @JsonProperty("company_start_date") @Nullable LocalDate companyStartDate,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("tracking_categories_enabled") @Nullable Boolean trackingCategoriesEnabled,
+            @JsonProperty("row_version") @Nullable JsonNullable<String> rowVersion,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
         this.id = id;
-        this.companyName = companyName;
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
         this.status = status;
         this.legalName = legalName;
-        this.country = country;
-        this.salesTaxNumber = salesTaxNumber;
+        this.country = Optional.ofNullable(country)
+            .orElse(JsonNullable.undefined());
+        this.salesTaxNumber = Optional.ofNullable(salesTaxNumber)
+            .orElse(JsonNullable.undefined());
         this.automatedSalesTax = automatedSalesTax;
         this.salesTaxEnabled = salesTaxEnabled;
         this.defaultSalesTax = defaultSalesTax;
-        this.currency = currency;
-        this.language = language;
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.language = Optional.ofNullable(language)
+            .orElse(JsonNullable.undefined());
         this.fiscalYearStartMonth = fiscalYearStartMonth;
         this.companyStartDate = companyStartDate;
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
-        this.customMappings = customMappings;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
         this.trackingCategoriesEnabled = trackingCategoriesEnabled;
-        this.rowVersion = rowVersion;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.rowVersion = Optional.ofNullable(rowVersion)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public CompanyInfo() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the company.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * Based on the status some functionality is enabled or disabled.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CompanyStatus> status() {
-        return (Optional<CompanyStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * The legal name of the company
      */
-    @JsonIgnore
     public Optional<String> legalName() {
-        return legalName;
+        return Optional.ofNullable(this.legalName);
     }
 
     /**
      * country code according to ISO 3166-1 alpha-2.
      */
-    @JsonIgnore
     public JsonNullable<String> country() {
-        return country;
+        return this.country;
     }
 
-    @JsonIgnore
     public JsonNullable<String> salesTaxNumber() {
-        return salesTaxNumber;
+        return this.salesTaxNumber;
     }
 
     /**
      * Whether sales tax is calculated automatically for the company
      */
-    @JsonIgnore
     public Optional<Boolean> automatedSalesTax() {
-        return automatedSalesTax;
+        return Optional.ofNullable(this.automatedSalesTax);
     }
 
     /**
      * Whether sales tax is enabled for the company
      */
-    @JsonIgnore
     public Optional<Boolean> salesTaxEnabled() {
-        return salesTaxEnabled;
+        return Optional.ofNullable(this.salesTaxEnabled);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<TaxRate> defaultSalesTax() {
-        return (Optional<TaxRate>) defaultSalesTax;
+        return Optional.ofNullable(this.defaultSalesTax);
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> language() {
-        return language;
+        return this.language;
     }
 
     /**
      * The start month of fiscal year.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<TheStartMonthOfFiscalYear> fiscalYearStartMonth() {
-        return (Optional<TheStartMonthOfFiscalYear>) fiscalYearStartMonth;
+        return Optional.ofNullable(this.fiscalYearStartMonth);
     }
 
     /**
      * Date when company file was created
      */
-    @JsonIgnore
     public Optional<LocalDate> companyStartDate() {
-        return companyStartDate;
+        return Optional.ofNullable(this.companyStartDate);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * Whether tracking categories are enabled for the company on transactions
      */
-    @JsonIgnore
     public Optional<Boolean> trackingCategoriesEnabled() {
-        return trackingCategoriesEnabled;
+        return Optional.ofNullable(this.trackingCategoriesEnabled);
     }
 
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    @JsonIgnore
     public JsonNullable<String> rowVersion() {
-        return rowVersion;
+        return this.rowVersion;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -443,398 +399,194 @@ public class CompanyInfo {
     /**
      * A unique identifier for an object.
      */
-    public CompanyInfo withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public CompanyInfo withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public CompanyInfo withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The name of the company.
      */
-    public CompanyInfo withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public CompanyInfo withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company.
-     */
-    public CompanyInfo withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * Based on the status some functionality is enabled or disabled.
      */
-    public CompanyInfo withStatus(CompanyStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Based on the status some functionality is enabled or disabled.
-     */
-    public CompanyInfo withStatus(Optional<? extends CompanyStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public CompanyInfo withStatus(@Nullable CompanyStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * The legal name of the company
-     */
-    public CompanyInfo withLegalName(String legalName) {
-        Utils.checkNotNull(legalName, "legalName");
-        this.legalName = Optional.ofNullable(legalName);
-        return this;
-    }
-
 
     /**
      * The legal name of the company
      */
-    public CompanyInfo withLegalName(Optional<String> legalName) {
-        Utils.checkNotNull(legalName, "legalName");
+    public CompanyInfo withLegalName(@Nullable String legalName) {
         this.legalName = legalName;
         return this;
     }
 
+
     /**
      * country code according to ISO 3166-1 alpha-2.
      */
-    public CompanyInfo withCountry(String country) {
-        Utils.checkNotNull(country, "country");
+    public CompanyInfo withCountry(@Nullable String country) {
         this.country = JsonNullable.of(country);
         return this;
     }
 
-    /**
-     * country code according to ISO 3166-1 alpha-2.
-     */
-    public CompanyInfo withCountry(JsonNullable<String> country) {
-        Utils.checkNotNull(country, "country");
-        this.country = country;
-        return this;
-    }
 
-    public CompanyInfo withSalesTaxNumber(String salesTaxNumber) {
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
+    public CompanyInfo withSalesTaxNumber(@Nullable String salesTaxNumber) {
         this.salesTaxNumber = JsonNullable.of(salesTaxNumber);
         return this;
     }
 
-    public CompanyInfo withSalesTaxNumber(JsonNullable<String> salesTaxNumber) {
-        Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-        this.salesTaxNumber = salesTaxNumber;
-        return this;
-    }
 
     /**
      * Whether sales tax is calculated automatically for the company
      */
-    public CompanyInfo withAutomatedSalesTax(boolean automatedSalesTax) {
-        Utils.checkNotNull(automatedSalesTax, "automatedSalesTax");
-        this.automatedSalesTax = Optional.ofNullable(automatedSalesTax);
-        return this;
-    }
-
-
-    /**
-     * Whether sales tax is calculated automatically for the company
-     */
-    public CompanyInfo withAutomatedSalesTax(Optional<Boolean> automatedSalesTax) {
-        Utils.checkNotNull(automatedSalesTax, "automatedSalesTax");
+    public CompanyInfo withAutomatedSalesTax(@Nullable Boolean automatedSalesTax) {
         this.automatedSalesTax = automatedSalesTax;
         return this;
     }
 
-    /**
-     * Whether sales tax is enabled for the company
-     */
-    public CompanyInfo withSalesTaxEnabled(boolean salesTaxEnabled) {
-        Utils.checkNotNull(salesTaxEnabled, "salesTaxEnabled");
-        this.salesTaxEnabled = Optional.ofNullable(salesTaxEnabled);
-        return this;
-    }
-
 
     /**
      * Whether sales tax is enabled for the company
      */
-    public CompanyInfo withSalesTaxEnabled(Optional<Boolean> salesTaxEnabled) {
-        Utils.checkNotNull(salesTaxEnabled, "salesTaxEnabled");
+    public CompanyInfo withSalesTaxEnabled(@Nullable Boolean salesTaxEnabled) {
         this.salesTaxEnabled = salesTaxEnabled;
         return this;
     }
 
-    public CompanyInfo withDefaultSalesTax(TaxRate defaultSalesTax) {
-        Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
-        this.defaultSalesTax = Optional.ofNullable(defaultSalesTax);
-        return this;
-    }
 
-
-    public CompanyInfo withDefaultSalesTax(Optional<? extends TaxRate> defaultSalesTax) {
-        Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
+    public CompanyInfo withDefaultSalesTax(@Nullable TaxRate defaultSalesTax) {
         this.defaultSalesTax = defaultSalesTax;
         return this;
     }
 
+
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public CompanyInfo withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public CompanyInfo withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public CompanyInfo withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public CompanyInfo withLanguage(String language) {
-        Utils.checkNotNull(language, "language");
+    public CompanyInfo withLanguage(@Nullable String language) {
         this.language = JsonNullable.of(language);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public CompanyInfo withLanguage(JsonNullable<String> language) {
-        Utils.checkNotNull(language, "language");
-        this.language = language;
-        return this;
-    }
 
     /**
      * The start month of fiscal year.
      */
-    public CompanyInfo withFiscalYearStartMonth(TheStartMonthOfFiscalYear fiscalYearStartMonth) {
-        Utils.checkNotNull(fiscalYearStartMonth, "fiscalYearStartMonth");
-        this.fiscalYearStartMonth = Optional.ofNullable(fiscalYearStartMonth);
-        return this;
-    }
-
-
-    /**
-     * The start month of fiscal year.
-     */
-    public CompanyInfo withFiscalYearStartMonth(Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth) {
-        Utils.checkNotNull(fiscalYearStartMonth, "fiscalYearStartMonth");
+    public CompanyInfo withFiscalYearStartMonth(@Nullable TheStartMonthOfFiscalYear fiscalYearStartMonth) {
         this.fiscalYearStartMonth = fiscalYearStartMonth;
         return this;
     }
 
-    /**
-     * Date when company file was created
-     */
-    public CompanyInfo withCompanyStartDate(LocalDate companyStartDate) {
-        Utils.checkNotNull(companyStartDate, "companyStartDate");
-        this.companyStartDate = Optional.ofNullable(companyStartDate);
-        return this;
-    }
-
 
     /**
      * Date when company file was created
      */
-    public CompanyInfo withCompanyStartDate(Optional<LocalDate> companyStartDate) {
-        Utils.checkNotNull(companyStartDate, "companyStartDate");
+    public CompanyInfo withCompanyStartDate(@Nullable LocalDate companyStartDate) {
         this.companyStartDate = companyStartDate;
         return this;
     }
 
-    public CompanyInfo withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
 
-
-    public CompanyInfo withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public CompanyInfo withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public CompanyInfo withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public CompanyInfo withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public CompanyInfo withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public CompanyInfo withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public CompanyInfo withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public CompanyInfo withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public CompanyInfo withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public CompanyInfo withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public CompanyInfo withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * Whether tracking categories are enabled for the company on transactions
      */
-    public CompanyInfo withTrackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
-        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
-        this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
-        return this;
-    }
-
-
-    /**
-     * Whether tracking categories are enabled for the company on transactions
-     */
-    public CompanyInfo withTrackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
-        Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+    public CompanyInfo withTrackingCategoriesEnabled(@Nullable Boolean trackingCategoriesEnabled) {
         this.trackingCategoriesEnabled = trackingCategoriesEnabled;
         return this;
     }
 
+
     /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
-    public CompanyInfo withRowVersion(String rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
+    public CompanyInfo withRowVersion(@Nullable String rowVersion) {
         this.rowVersion = JsonNullable.of(rowVersion);
         return this;
     }
 
-    /**
-     * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-     */
-    public CompanyInfo withRowVersion(JsonNullable<String> rowVersion) {
-        Utils.checkNotNull(rowVersion, "rowVersion");
-        this.rowVersion = rowVersion;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public CompanyInfo withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public CompanyInfo withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public CompanyInfo withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public CompanyInfo withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public CompanyInfo withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public CompanyInfo withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public CompanyInfo withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public CompanyInfo withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public CompanyInfo withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public CompanyInfo withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public CompanyInfo withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public CompanyInfo withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -915,465 +667,226 @@ public class CompanyInfo {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private Optional<? extends CompanyStatus> status = Optional.empty();
+        private CompanyStatus status;
 
-        private Optional<String> legalName = Optional.empty();
+        private String legalName;
 
-        private JsonNullable<String> country = JsonNullable.undefined();
+        private JsonNullable<String> country;
 
-        private JsonNullable<String> salesTaxNumber = JsonNullable.undefined();
+        private JsonNullable<String> salesTaxNumber;
 
-        private Optional<Boolean> automatedSalesTax = Optional.empty();
+        private Boolean automatedSalesTax;
 
-        private Optional<Boolean> salesTaxEnabled = Optional.empty();
+        private Boolean salesTaxEnabled;
 
-        private Optional<? extends TaxRate> defaultSalesTax = Optional.empty();
+        private TaxRate defaultSalesTax;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<String> language = JsonNullable.undefined();
+        private JsonNullable<String> language;
 
-        private Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth = Optional.empty();
+        private TheStartMonthOfFiscalYear fiscalYearStartMonth;
 
-        private Optional<LocalDate> companyStartDate = Optional.empty();
+        private LocalDate companyStartDate;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private Optional<Boolean> trackingCategoriesEnabled = Optional.empty();
+        private Boolean trackingCategoriesEnabled;
 
-        private JsonNullable<String> rowVersion = JsonNullable.undefined();
+        private JsonNullable<String> rowVersion;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the company.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * Based on the status some functionality is enabled or disabled.
          */
-        public Builder status(CompanyStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Based on the status some functionality is enabled or disabled.
-         */
-        public Builder status(Optional<? extends CompanyStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable CompanyStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * The legal name of the company
          */
-        public Builder legalName(String legalName) {
-            Utils.checkNotNull(legalName, "legalName");
-            this.legalName = Optional.ofNullable(legalName);
-            return this;
-        }
-
-        /**
-         * The legal name of the company
-         */
-        public Builder legalName(Optional<String> legalName) {
-            Utils.checkNotNull(legalName, "legalName");
+        public Builder legalName(@Nullable String legalName) {
             this.legalName = legalName;
             return this;
         }
 
-
         /**
          * country code according to ISO 3166-1 alpha-2.
          */
-        public Builder country(String country) {
-            Utils.checkNotNull(country, "country");
+        public Builder country(@Nullable String country) {
             this.country = JsonNullable.of(country);
             return this;
         }
 
-        /**
-         * country code according to ISO 3166-1 alpha-2.
-         */
-        public Builder country(JsonNullable<String> country) {
-            Utils.checkNotNull(country, "country");
-            this.country = country;
-            return this;
-        }
-
-
-        public Builder salesTaxNumber(String salesTaxNumber) {
-            Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
+        public Builder salesTaxNumber(@Nullable String salesTaxNumber) {
             this.salesTaxNumber = JsonNullable.of(salesTaxNumber);
             return this;
         }
 
-        public Builder salesTaxNumber(JsonNullable<String> salesTaxNumber) {
-            Utils.checkNotNull(salesTaxNumber, "salesTaxNumber");
-            this.salesTaxNumber = salesTaxNumber;
-            return this;
-        }
-
-
         /**
          * Whether sales tax is calculated automatically for the company
          */
-        public Builder automatedSalesTax(boolean automatedSalesTax) {
-            Utils.checkNotNull(automatedSalesTax, "automatedSalesTax");
-            this.automatedSalesTax = Optional.ofNullable(automatedSalesTax);
-            return this;
-        }
-
-        /**
-         * Whether sales tax is calculated automatically for the company
-         */
-        public Builder automatedSalesTax(Optional<Boolean> automatedSalesTax) {
-            Utils.checkNotNull(automatedSalesTax, "automatedSalesTax");
+        public Builder automatedSalesTax(@Nullable Boolean automatedSalesTax) {
             this.automatedSalesTax = automatedSalesTax;
             return this;
         }
 
-
         /**
          * Whether sales tax is enabled for the company
          */
-        public Builder salesTaxEnabled(boolean salesTaxEnabled) {
-            Utils.checkNotNull(salesTaxEnabled, "salesTaxEnabled");
-            this.salesTaxEnabled = Optional.ofNullable(salesTaxEnabled);
-            return this;
-        }
-
-        /**
-         * Whether sales tax is enabled for the company
-         */
-        public Builder salesTaxEnabled(Optional<Boolean> salesTaxEnabled) {
-            Utils.checkNotNull(salesTaxEnabled, "salesTaxEnabled");
+        public Builder salesTaxEnabled(@Nullable Boolean salesTaxEnabled) {
             this.salesTaxEnabled = salesTaxEnabled;
             return this;
         }
 
-
-        public Builder defaultSalesTax(TaxRate defaultSalesTax) {
-            Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
-            this.defaultSalesTax = Optional.ofNullable(defaultSalesTax);
-            return this;
-        }
-
-        public Builder defaultSalesTax(Optional<? extends TaxRate> defaultSalesTax) {
-            Utils.checkNotNull(defaultSalesTax, "defaultSalesTax");
+        public Builder defaultSalesTax(@Nullable TaxRate defaultSalesTax) {
             this.defaultSalesTax = defaultSalesTax;
             return this;
         }
 
-
         /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder language(String language) {
-            Utils.checkNotNull(language, "language");
+        public Builder language(@Nullable String language) {
             this.language = JsonNullable.of(language);
             return this;
         }
 
         /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder language(JsonNullable<String> language) {
-            Utils.checkNotNull(language, "language");
-            this.language = language;
-            return this;
-        }
-
-
-        /**
          * The start month of fiscal year.
          */
-        public Builder fiscalYearStartMonth(TheStartMonthOfFiscalYear fiscalYearStartMonth) {
-            Utils.checkNotNull(fiscalYearStartMonth, "fiscalYearStartMonth");
-            this.fiscalYearStartMonth = Optional.ofNullable(fiscalYearStartMonth);
-            return this;
-        }
-
-        /**
-         * The start month of fiscal year.
-         */
-        public Builder fiscalYearStartMonth(Optional<? extends TheStartMonthOfFiscalYear> fiscalYearStartMonth) {
-            Utils.checkNotNull(fiscalYearStartMonth, "fiscalYearStartMonth");
+        public Builder fiscalYearStartMonth(@Nullable TheStartMonthOfFiscalYear fiscalYearStartMonth) {
             this.fiscalYearStartMonth = fiscalYearStartMonth;
             return this;
         }
 
-
         /**
          * Date when company file was created
          */
-        public Builder companyStartDate(LocalDate companyStartDate) {
-            Utils.checkNotNull(companyStartDate, "companyStartDate");
-            this.companyStartDate = Optional.ofNullable(companyStartDate);
-            return this;
-        }
-
-        /**
-         * Date when company file was created
-         */
-        public Builder companyStartDate(Optional<LocalDate> companyStartDate) {
-            Utils.checkNotNull(companyStartDate, "companyStartDate");
+        public Builder companyStartDate(@Nullable LocalDate companyStartDate) {
             this.companyStartDate = companyStartDate;
             return this;
         }
 
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * Whether tracking categories are enabled for the company on transactions
          */
-        public Builder trackingCategoriesEnabled(boolean trackingCategoriesEnabled) {
-            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
-            this.trackingCategoriesEnabled = Optional.ofNullable(trackingCategoriesEnabled);
-            return this;
-        }
-
-        /**
-         * Whether tracking categories are enabled for the company on transactions
-         */
-        public Builder trackingCategoriesEnabled(Optional<Boolean> trackingCategoriesEnabled) {
-            Utils.checkNotNull(trackingCategoriesEnabled, "trackingCategoriesEnabled");
+        public Builder trackingCategoriesEnabled(@Nullable Boolean trackingCategoriesEnabled) {
             this.trackingCategoriesEnabled = trackingCategoriesEnabled;
             return this;
         }
 
-
         /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
-        public Builder rowVersion(String rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
+        public Builder rowVersion(@Nullable String rowVersion) {
             this.rowVersion = JsonNullable.of(rowVersion);
             return this;
         }
 
         /**
-         * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
-         */
-        public Builder rowVersion(JsonNullable<String> rowVersion) {
-            Utils.checkNotNull(rowVersion, "rowVersion");
-            this.rowVersion = rowVersion;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public CompanyInfo build() {
-
             return new CompanyInfo(
                 id, companyName, status,
                 legalName, country, salesTaxNumber,

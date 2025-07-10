@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmNotesDeleteOperation;
 import com.apideck.unify.operations.CrmNotesOneOperation;
 import com.apideck.unify.operations.CrmNotesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesAllResponse list(CrmNotesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmNotesAllResponse list(@Nonnull CrmNotesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Notes {
      * @throws Exception if the API call fails
      */
     public CrmNotesAllResponse list(
-            CrmNotesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmNotesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
               = new CrmNotesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesAddResponse create(CrmNotesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmNotesAddResponse create(@Nonnull CrmNotesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Notes {
      * @throws Exception if the API call fails
      */
     public CrmNotesAddResponse create(
-            CrmNotesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmNotesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
               = new CrmNotesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesOneResponse get(CrmNotesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmNotesOneResponse get(@Nonnull CrmNotesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Notes {
      * @throws Exception if the API call fails
      */
     public CrmNotesOneResponse get(
-            CrmNotesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmNotesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
               = new CrmNotesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmNotesUpdateResponse update(@Nonnull CrmNotesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Notes {
      * @throws Exception if the API call fails
      */
     public CrmNotesUpdateResponse update(
-            CrmNotesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmNotesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
               = new CrmNotesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmNotesDeleteResponse delete(@Nonnull CrmNotesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Notes {
      * @throws Exception if the API call fails
      */
     public CrmNotesDeleteResponse delete(
-            CrmNotesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmNotesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
               = new CrmNotesDeleteOperation(
                 sdkConfiguration,

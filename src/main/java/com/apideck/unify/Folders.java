@@ -26,6 +26,8 @@ import com.apideck.unify.operations.FileStorageFoldersDeleteOperation;
 import com.apideck.unify.operations.FileStorageFoldersOneOperation;
 import com.apideck.unify.operations.FileStorageFoldersUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public FileStorageFoldersAddResponse create(@Nonnull FileStorageFoldersAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Folders {
      * @throws Exception if the API call fails
      */
     public FileStorageFoldersAddResponse create(
-            FileStorageFoldersAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFoldersAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
               = new FileStorageFoldersAddOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public FileStorageFoldersOneResponse get(@Nonnull FileStorageFoldersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Folders {
      * @throws Exception if the API call fails
      */
     public FileStorageFoldersOneResponse get(
-            FileStorageFoldersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFoldersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
               = new FileStorageFoldersOneOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public FileStorageFoldersUpdateResponse update(@Nonnull FileStorageFoldersUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Folders {
      * @throws Exception if the API call fails
      */
     public FileStorageFoldersUpdateResponse update(
-            FileStorageFoldersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFoldersUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
               = new FileStorageFoldersUpdateOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageFoldersDeleteResponse delete(@Nonnull FileStorageFoldersDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Folders {
      * @throws Exception if the API call fails
      */
     public FileStorageFoldersDeleteResponse delete(
-            FileStorageFoldersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFoldersDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
               = new FileStorageFoldersDeleteOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request) throws Exception {
-        return copy(request, Optional.empty());
+    public FileStorageFoldersCopyResponse copy(@Nonnull FileStorageFoldersCopyRequest request) throws Exception {
+        return copy(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Folders {
      * @throws Exception if the API call fails
      */
     public FileStorageFoldersCopyResponse copy(
-            FileStorageFoldersCopyRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageFoldersCopyRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
               = new FileStorageFoldersCopyOperation(
                 sdkConfiguration,

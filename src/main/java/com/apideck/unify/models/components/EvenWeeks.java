@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
@@ -19,54 +19,47 @@ public class EvenWeeks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_monday")
-    private Optional<Double> hoursMonday;
+    private Double hoursMonday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_tuesday")
-    private Optional<Double> hoursTuesday;
+    private Double hoursTuesday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_wednesday")
-    private Optional<Double> hoursWednesday;
+    private Double hoursWednesday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_thursday")
-    private Optional<Double> hoursThursday;
+    private Double hoursThursday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_friday")
-    private Optional<Double> hoursFriday;
+    private Double hoursFriday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_saturday")
-    private Optional<Double> hoursSaturday;
+    private Double hoursSaturday;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hours_sunday")
-    private Optional<Double> hoursSunday;
+    private Double hoursSunday;
 
     @JsonCreator
     public EvenWeeks(
-            @JsonProperty("hours_monday") Optional<Double> hoursMonday,
-            @JsonProperty("hours_tuesday") Optional<Double> hoursTuesday,
-            @JsonProperty("hours_wednesday") Optional<Double> hoursWednesday,
-            @JsonProperty("hours_thursday") Optional<Double> hoursThursday,
-            @JsonProperty("hours_friday") Optional<Double> hoursFriday,
-            @JsonProperty("hours_saturday") Optional<Double> hoursSaturday,
-            @JsonProperty("hours_sunday") Optional<Double> hoursSunday) {
-        Utils.checkNotNull(hoursMonday, "hoursMonday");
-        Utils.checkNotNull(hoursTuesday, "hoursTuesday");
-        Utils.checkNotNull(hoursWednesday, "hoursWednesday");
-        Utils.checkNotNull(hoursThursday, "hoursThursday");
-        Utils.checkNotNull(hoursFriday, "hoursFriday");
-        Utils.checkNotNull(hoursSaturday, "hoursSaturday");
-        Utils.checkNotNull(hoursSunday, "hoursSunday");
+            @JsonProperty("hours_monday") @Nullable Double hoursMonday,
+            @JsonProperty("hours_tuesday") @Nullable Double hoursTuesday,
+            @JsonProperty("hours_wednesday") @Nullable Double hoursWednesday,
+            @JsonProperty("hours_thursday") @Nullable Double hoursThursday,
+            @JsonProperty("hours_friday") @Nullable Double hoursFriday,
+            @JsonProperty("hours_saturday") @Nullable Double hoursSaturday,
+            @JsonProperty("hours_sunday") @Nullable Double hoursSunday) {
         this.hoursMonday = hoursMonday;
         this.hoursTuesday = hoursTuesday;
         this.hoursWednesday = hoursWednesday;
@@ -77,44 +70,37 @@ public class EvenWeeks {
     }
     
     public EvenWeeks() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursMonday() {
-        return hoursMonday;
+        return Optional.ofNullable(this.hoursMonday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursTuesday() {
-        return hoursTuesday;
+        return Optional.ofNullable(this.hoursTuesday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursWednesday() {
-        return hoursWednesday;
+        return Optional.ofNullable(this.hoursWednesday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursThursday() {
-        return hoursThursday;
+        return Optional.ofNullable(this.hoursThursday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursFriday() {
-        return hoursFriday;
+        return Optional.ofNullable(this.hoursFriday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursSaturday() {
-        return hoursSaturday;
+        return Optional.ofNullable(this.hoursSaturday);
     }
 
-    @JsonIgnore
     public Optional<Double> hoursSunday() {
-        return hoursSunday;
+        return Optional.ofNullable(this.hoursSunday);
     }
 
     public static Builder builder() {
@@ -122,96 +108,47 @@ public class EvenWeeks {
     }
 
 
-    public EvenWeeks withHoursMonday(double hoursMonday) {
-        Utils.checkNotNull(hoursMonday, "hoursMonday");
-        this.hoursMonday = Optional.ofNullable(hoursMonday);
-        return this;
-    }
-
-
-    public EvenWeeks withHoursMonday(Optional<Double> hoursMonday) {
-        Utils.checkNotNull(hoursMonday, "hoursMonday");
+    public EvenWeeks withHoursMonday(@Nullable Double hoursMonday) {
         this.hoursMonday = hoursMonday;
         return this;
     }
 
-    public EvenWeeks withHoursTuesday(double hoursTuesday) {
-        Utils.checkNotNull(hoursTuesday, "hoursTuesday");
-        this.hoursTuesday = Optional.ofNullable(hoursTuesday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursTuesday(Optional<Double> hoursTuesday) {
-        Utils.checkNotNull(hoursTuesday, "hoursTuesday");
+    public EvenWeeks withHoursTuesday(@Nullable Double hoursTuesday) {
         this.hoursTuesday = hoursTuesday;
         return this;
     }
 
-    public EvenWeeks withHoursWednesday(double hoursWednesday) {
-        Utils.checkNotNull(hoursWednesday, "hoursWednesday");
-        this.hoursWednesday = Optional.ofNullable(hoursWednesday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursWednesday(Optional<Double> hoursWednesday) {
-        Utils.checkNotNull(hoursWednesday, "hoursWednesday");
+    public EvenWeeks withHoursWednesday(@Nullable Double hoursWednesday) {
         this.hoursWednesday = hoursWednesday;
         return this;
     }
 
-    public EvenWeeks withHoursThursday(double hoursThursday) {
-        Utils.checkNotNull(hoursThursday, "hoursThursday");
-        this.hoursThursday = Optional.ofNullable(hoursThursday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursThursday(Optional<Double> hoursThursday) {
-        Utils.checkNotNull(hoursThursday, "hoursThursday");
+    public EvenWeeks withHoursThursday(@Nullable Double hoursThursday) {
         this.hoursThursday = hoursThursday;
         return this;
     }
 
-    public EvenWeeks withHoursFriday(double hoursFriday) {
-        Utils.checkNotNull(hoursFriday, "hoursFriday");
-        this.hoursFriday = Optional.ofNullable(hoursFriday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursFriday(Optional<Double> hoursFriday) {
-        Utils.checkNotNull(hoursFriday, "hoursFriday");
+    public EvenWeeks withHoursFriday(@Nullable Double hoursFriday) {
         this.hoursFriday = hoursFriday;
         return this;
     }
 
-    public EvenWeeks withHoursSaturday(double hoursSaturday) {
-        Utils.checkNotNull(hoursSaturday, "hoursSaturday");
-        this.hoursSaturday = Optional.ofNullable(hoursSaturday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursSaturday(Optional<Double> hoursSaturday) {
-        Utils.checkNotNull(hoursSaturday, "hoursSaturday");
+    public EvenWeeks withHoursSaturday(@Nullable Double hoursSaturday) {
         this.hoursSaturday = hoursSaturday;
         return this;
     }
 
-    public EvenWeeks withHoursSunday(double hoursSunday) {
-        Utils.checkNotNull(hoursSunday, "hoursSunday");
-        this.hoursSunday = Optional.ofNullable(hoursSunday);
-        return this;
-    }
 
-
-    public EvenWeeks withHoursSunday(Optional<Double> hoursSunday) {
-        Utils.checkNotNull(hoursSunday, "hoursSunday");
+    public EvenWeeks withHoursSunday(@Nullable Double hoursSunday) {
         this.hoursSunday = hoursSunday;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -255,117 +192,60 @@ public class EvenWeeks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Double> hoursMonday = Optional.empty();
+        private Double hoursMonday;
 
-        private Optional<Double> hoursTuesday = Optional.empty();
+        private Double hoursTuesday;
 
-        private Optional<Double> hoursWednesday = Optional.empty();
+        private Double hoursWednesday;
 
-        private Optional<Double> hoursThursday = Optional.empty();
+        private Double hoursThursday;
 
-        private Optional<Double> hoursFriday = Optional.empty();
+        private Double hoursFriday;
 
-        private Optional<Double> hoursSaturday = Optional.empty();
+        private Double hoursSaturday;
 
-        private Optional<Double> hoursSunday = Optional.empty();
+        private Double hoursSunday;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder hoursMonday(double hoursMonday) {
-            Utils.checkNotNull(hoursMonday, "hoursMonday");
-            this.hoursMonday = Optional.ofNullable(hoursMonday);
-            return this;
-        }
-
-        public Builder hoursMonday(Optional<Double> hoursMonday) {
-            Utils.checkNotNull(hoursMonday, "hoursMonday");
+        public Builder hoursMonday(@Nullable Double hoursMonday) {
             this.hoursMonday = hoursMonday;
             return this;
         }
 
-
-        public Builder hoursTuesday(double hoursTuesday) {
-            Utils.checkNotNull(hoursTuesday, "hoursTuesday");
-            this.hoursTuesday = Optional.ofNullable(hoursTuesday);
-            return this;
-        }
-
-        public Builder hoursTuesday(Optional<Double> hoursTuesday) {
-            Utils.checkNotNull(hoursTuesday, "hoursTuesday");
+        public Builder hoursTuesday(@Nullable Double hoursTuesday) {
             this.hoursTuesday = hoursTuesday;
             return this;
         }
 
-
-        public Builder hoursWednesday(double hoursWednesday) {
-            Utils.checkNotNull(hoursWednesday, "hoursWednesday");
-            this.hoursWednesday = Optional.ofNullable(hoursWednesday);
-            return this;
-        }
-
-        public Builder hoursWednesday(Optional<Double> hoursWednesday) {
-            Utils.checkNotNull(hoursWednesday, "hoursWednesday");
+        public Builder hoursWednesday(@Nullable Double hoursWednesday) {
             this.hoursWednesday = hoursWednesday;
             return this;
         }
 
-
-        public Builder hoursThursday(double hoursThursday) {
-            Utils.checkNotNull(hoursThursday, "hoursThursday");
-            this.hoursThursday = Optional.ofNullable(hoursThursday);
-            return this;
-        }
-
-        public Builder hoursThursday(Optional<Double> hoursThursday) {
-            Utils.checkNotNull(hoursThursday, "hoursThursday");
+        public Builder hoursThursday(@Nullable Double hoursThursday) {
             this.hoursThursday = hoursThursday;
             return this;
         }
 
-
-        public Builder hoursFriday(double hoursFriday) {
-            Utils.checkNotNull(hoursFriday, "hoursFriday");
-            this.hoursFriday = Optional.ofNullable(hoursFriday);
-            return this;
-        }
-
-        public Builder hoursFriday(Optional<Double> hoursFriday) {
-            Utils.checkNotNull(hoursFriday, "hoursFriday");
+        public Builder hoursFriday(@Nullable Double hoursFriday) {
             this.hoursFriday = hoursFriday;
             return this;
         }
 
-
-        public Builder hoursSaturday(double hoursSaturday) {
-            Utils.checkNotNull(hoursSaturday, "hoursSaturday");
-            this.hoursSaturday = Optional.ofNullable(hoursSaturday);
-            return this;
-        }
-
-        public Builder hoursSaturday(Optional<Double> hoursSaturday) {
-            Utils.checkNotNull(hoursSaturday, "hoursSaturday");
+        public Builder hoursSaturday(@Nullable Double hoursSaturday) {
             this.hoursSaturday = hoursSaturday;
             return this;
         }
 
-
-        public Builder hoursSunday(double hoursSunday) {
-            Utils.checkNotNull(hoursSunday, "hoursSunday");
-            this.hoursSunday = Optional.ofNullable(hoursSunday);
-            return this;
-        }
-
-        public Builder hoursSunday(Optional<Double> hoursSunday) {
-            Utils.checkNotNull(hoursSunday, "hoursSunday");
+        public Builder hoursSunday(@Nullable Double hoursSunday) {
             this.hoursSunday = hoursSunday;
             return this;
         }
 
         public EvenWeeks build() {
-
             return new EvenWeeks(
                 hoursMonday, hoursTuesday, hoursWednesday,
                 hoursThursday, hoursFriday, hoursSaturday,

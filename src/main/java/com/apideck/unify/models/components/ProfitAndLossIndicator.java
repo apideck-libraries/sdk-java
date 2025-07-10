@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -25,21 +26,20 @@ public class ProfitAndLossIndicator {
 
     @JsonCreator
     public ProfitAndLossIndicator(
-            @JsonProperty("total") JsonNullable<Double> total) {
-        Utils.checkNotNull(total, "total");
-        this.total = total;
+            @JsonProperty("total") @Nullable JsonNullable<Double> total) {
+        this.total = Optional.ofNullable(total)
+            .orElse(JsonNullable.undefined());
     }
     
     public ProfitAndLossIndicator() {
-        this(JsonNullable.undefined());
+        this(null);
     }
 
     /**
      * The total amount of the transaction or record
      */
-    @JsonIgnore
     public JsonNullable<Double> total() {
-        return total;
+        return this.total;
     }
 
     public static Builder builder() {
@@ -50,20 +50,11 @@ public class ProfitAndLossIndicator {
     /**
      * The total amount of the transaction or record
      */
-    public ProfitAndLossIndicator withTotal(double total) {
-        Utils.checkNotNull(total, "total");
+    public ProfitAndLossIndicator withTotal(@Nullable Double total) {
         this.total = JsonNullable.of(total);
         return this;
     }
 
-    /**
-     * The total amount of the transaction or record
-     */
-    public ProfitAndLossIndicator withTotal(JsonNullable<Double> total) {
-        Utils.checkNotNull(total, "total");
-        this.total = total;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -93,33 +84,21 @@ public class ProfitAndLossIndicator {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Double> total = JsonNullable.undefined();
+        private JsonNullable<Double> total;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The total amount of the transaction or record
          */
-        public Builder total(double total) {
-            Utils.checkNotNull(total, "total");
+        public Builder total(@Nullable Double total) {
             this.total = JsonNullable.of(total);
             return this;
         }
 
-        /**
-         * The total amount of the transaction or record
-         */
-        public Builder total(JsonNullable<Double> total) {
-            Utils.checkNotNull(total, "total");
-            this.total = total;
-            return this;
-        }
-
         public ProfitAndLossIndicator build() {
-
             return new ProfitAndLossIndicator(
                 total);
         }

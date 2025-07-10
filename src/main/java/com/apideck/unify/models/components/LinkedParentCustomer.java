@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -30,37 +31,34 @@ public class LinkedParentCustomer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     @JsonCreator
     public LinkedParentCustomer(
-            @JsonProperty("id") String id,
-            @JsonProperty("name") Optional<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("name") @Nullable String name) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.name = name;
     }
     
     public LinkedParentCustomer(
-            String id) {
-        this(id, Optional.empty());
+            @Nonnull String id) {
+        this(id, null);
     }
 
     /**
      * The parent ID of the customer this entity is linked to.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the parent customer.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     public static Builder builder() {
@@ -71,18 +69,8 @@ public class LinkedParentCustomer {
     /**
      * The parent ID of the customer this entity is linked to.
      */
-    public LinkedParentCustomer withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * The name of the parent customer.
-     */
-    public LinkedParentCustomer withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
+    public LinkedParentCustomer withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -90,11 +78,11 @@ public class LinkedParentCustomer {
     /**
      * The name of the parent customer.
      */
-    public LinkedParentCustomer withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedParentCustomer withName(@Nullable String name) {
         this.name = name;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -128,43 +116,29 @@ public class LinkedParentCustomer {
 
         private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The parent ID of the customer this entity is linked to.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * The name of the parent customer.
-         */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * The name of the parent customer.
          */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
         public LinkedParentCustomer build() {
-
             return new LinkedParentCustomer(
                 id, name);
         }

@@ -523,7 +523,6 @@ import java.lang.Exception;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Application {
 
@@ -608,7 +607,7 @@ public class Application {
                                 .id("123456")
                                 .rate(10d)
                                 .build())
-                            .trackingCategories(JsonNullable.of(null))
+                            .trackingCategories(null)
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
                                 .nominalCode("N091")
@@ -660,7 +659,7 @@ public class Application {
                                 .id("123456")
                                 .rate(10d)
                                 .build())
-                            .trackingCategories(JsonNullable.of(null))
+                            .trackingCategories(null)
                             .ledgerAccount(LinkedLedgerAccountInput.builder()
                                 .id("123456")
                                 .nominalCode("N091")

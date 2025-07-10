@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class LinkedLedgerAccountInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The nominal code of the account.
@@ -39,43 +39,39 @@ public class LinkedLedgerAccountInput {
 
     @JsonCreator
     public LinkedLedgerAccountInput(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("nominal_code") JsonNullable<String> nominalCode,
-            @JsonProperty("code") JsonNullable<String> code) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        Utils.checkNotNull(code, "code");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("nominal_code") @Nullable JsonNullable<String> nominalCode,
+            @JsonProperty("code") @Nullable JsonNullable<String> code) {
         this.id = id;
-        this.nominalCode = nominalCode;
-        this.code = code;
+        this.nominalCode = Optional.ofNullable(nominalCode)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedLedgerAccountInput() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * The unique identifier for the account.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The nominal code of the account.
      */
-    @JsonIgnore
     public JsonNullable<String> nominalCode() {
-        return nominalCode;
+        return this.nominalCode;
     }
 
     /**
      * The code assigned to the account.
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     public static Builder builder() {
@@ -86,57 +82,29 @@ public class LinkedLedgerAccountInput {
     /**
      * The unique identifier for the account.
      */
-    public LinkedLedgerAccountInput withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier for the account.
-     */
-    public LinkedLedgerAccountInput withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedLedgerAccountInput withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The nominal code of the account.
      */
-    public LinkedLedgerAccountInput withNominalCode(String nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
+    public LinkedLedgerAccountInput withNominalCode(@Nullable String nominalCode) {
         this.nominalCode = JsonNullable.of(nominalCode);
         return this;
     }
 
-    /**
-     * The nominal code of the account.
-     */
-    public LinkedLedgerAccountInput withNominalCode(JsonNullable<String> nominalCode) {
-        Utils.checkNotNull(nominalCode, "nominalCode");
-        this.nominalCode = nominalCode;
-        return this;
-    }
 
     /**
      * The code assigned to the account.
      */
-    public LinkedLedgerAccountInput withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public LinkedLedgerAccountInput withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * The code assigned to the account.
-     */
-    public LinkedLedgerAccountInput withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -170,75 +138,41 @@ public class LinkedLedgerAccountInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> nominalCode = JsonNullable.undefined();
+        private JsonNullable<String> nominalCode;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier for the account.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier for the account.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The nominal code of the account.
          */
-        public Builder nominalCode(String nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
+        public Builder nominalCode(@Nullable String nominalCode) {
             this.nominalCode = JsonNullable.of(nominalCode);
             return this;
         }
 
         /**
-         * The nominal code of the account.
-         */
-        public Builder nominalCode(JsonNullable<String> nominalCode) {
-            Utils.checkNotNull(nominalCode, "nominalCode");
-            this.nominalCode = nominalCode;
-            return this;
-        }
-
-
-        /**
          * The code assigned to the account.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
-        /**
-         * The code assigned to the account.
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
         public LinkedLedgerAccountInput build() {
-
             return new LinkedLedgerAccountInput(
                 id, nominalCode, code);
         }

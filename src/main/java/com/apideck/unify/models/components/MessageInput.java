@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +33,7 @@ public class MessageInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("subject")
-    private Optional<String> subject;
+    private String subject;
 
     /**
      * The message text.
@@ -46,69 +46,62 @@ public class MessageInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends MessageType> type;
+    private MessageType type;
 
     /**
      * The scheduled date and time of the message.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("scheduled_at")
-    private Optional<OffsetDateTime> scheduledAt;
+    private OffsetDateTime scheduledAt;
 
     /**
      * Define a webhook to receive delivery notifications.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhook_url")
-    private Optional<String> webhookUrl;
+    private String webhookUrl;
 
     /**
      * A client reference.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("reference")
-    private Optional<String> reference;
+    private String reference;
 
     /**
      * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("messaging_service_id")
-    private Optional<String> messagingServiceId;
+    private String messagingServiceId;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public MessageInput(
-            @JsonProperty("from") String from,
-            @JsonProperty("to") String to,
-            @JsonProperty("subject") Optional<String> subject,
-            @JsonProperty("body") String body,
-            @JsonProperty("type") Optional<? extends MessageType> type,
-            @JsonProperty("scheduled_at") Optional<OffsetDateTime> scheduledAt,
-            @JsonProperty("webhook_url") Optional<String> webhookUrl,
-            @JsonProperty("reference") Optional<String> reference,
-            @JsonProperty("messaging_service_id") Optional<String> messagingServiceId,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(from, "from");
-        Utils.checkNotNull(to, "to");
-        Utils.checkNotNull(subject, "subject");
-        Utils.checkNotNull(body, "body");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(scheduledAt, "scheduledAt");
-        Utils.checkNotNull(webhookUrl, "webhookUrl");
-        Utils.checkNotNull(reference, "reference");
-        Utils.checkNotNull(messagingServiceId, "messagingServiceId");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.from = from;
-        this.to = to;
+            @JsonProperty("from") @Nonnull String from,
+            @JsonProperty("to") @Nonnull String to,
+            @JsonProperty("subject") @Nullable String subject,
+            @JsonProperty("body") @Nonnull String body,
+            @JsonProperty("type") @Nullable MessageType type,
+            @JsonProperty("scheduled_at") @Nullable OffsetDateTime scheduledAt,
+            @JsonProperty("webhook_url") @Nullable String webhookUrl,
+            @JsonProperty("reference") @Nullable String reference,
+            @JsonProperty("messaging_service_id") @Nullable String messagingServiceId,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.from = Optional.ofNullable(from)
+            .orElseThrow(() -> new IllegalArgumentException("from cannot be null"));
+        this.to = Optional.ofNullable(to)
+            .orElseThrow(() -> new IllegalArgumentException("to cannot be null"));
         this.subject = subject;
-        this.body = body;
+        this.body = Optional.ofNullable(body)
+            .orElseThrow(() -> new IllegalArgumentException("body cannot be null"));
         this.type = type;
         this.scheduledAt = scheduledAt;
         this.webhookUrl = webhookUrl;
@@ -118,92 +111,80 @@ public class MessageInput {
     }
     
     public MessageInput(
-            String from,
-            String to,
-            String body) {
-        this(from, to, Optional.empty(),
-            body, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            @Nonnull String from,
+            @Nonnull String to,
+            @Nonnull String body) {
+        this(from, to, null,
+            body, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * The phone number that initiated the message.
      */
-    @JsonIgnore
     public String from() {
-        return from;
+        return this.from;
     }
 
     /**
      * The phone number that received the message.
      */
-    @JsonIgnore
     public String to() {
-        return to;
+        return this.to;
     }
 
-    @JsonIgnore
     public Optional<String> subject() {
-        return subject;
+        return Optional.ofNullable(this.subject);
     }
 
     /**
      * The message text.
      */
-    @JsonIgnore
     public String body() {
-        return body;
+        return this.body;
     }
 
     /**
      * Set to sms for SMS messages and mms for MMS messages.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<MessageType> type() {
-        return (Optional<MessageType>) type;
+        return Optional.ofNullable(this.type);
     }
 
     /**
      * The scheduled date and time of the message.
      */
-    @JsonIgnore
     public Optional<OffsetDateTime> scheduledAt() {
-        return scheduledAt;
+        return Optional.ofNullable(this.scheduledAt);
     }
 
     /**
      * Define a webhook to receive delivery notifications.
      */
-    @JsonIgnore
     public Optional<String> webhookUrl() {
-        return webhookUrl;
+        return Optional.ofNullable(this.webhookUrl);
     }
 
     /**
      * A client reference.
      */
-    @JsonIgnore
     public Optional<String> reference() {
-        return reference;
+        return Optional.ofNullable(this.reference);
     }
 
     /**
      * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
      */
-    @JsonIgnore
     public Optional<String> messagingServiceId() {
-        return messagingServiceId;
+        return Optional.ofNullable(this.messagingServiceId);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -214,49 +195,32 @@ public class MessageInput {
     /**
      * The phone number that initiated the message.
      */
-    public MessageInput withFrom(String from) {
-        Utils.checkNotNull(from, "from");
-        this.from = from;
+    public MessageInput withFrom(@Nonnull String from) {
+        this.from = Utils.checkNotNull(from, "from");
         return this;
     }
+
 
     /**
      * The phone number that received the message.
      */
-    public MessageInput withTo(String to) {
-        Utils.checkNotNull(to, "to");
-        this.to = to;
-        return this;
-    }
-
-    public MessageInput withSubject(String subject) {
-        Utils.checkNotNull(subject, "subject");
-        this.subject = Optional.ofNullable(subject);
+    public MessageInput withTo(@Nonnull String to) {
+        this.to = Utils.checkNotNull(to, "to");
         return this;
     }
 
 
-    public MessageInput withSubject(Optional<String> subject) {
-        Utils.checkNotNull(subject, "subject");
+    public MessageInput withSubject(@Nullable String subject) {
         this.subject = subject;
         return this;
     }
 
+
     /**
      * The message text.
      */
-    public MessageInput withBody(String body) {
-        Utils.checkNotNull(body, "body");
-        this.body = body;
-        return this;
-    }
-
-    /**
-     * Set to sms for SMS messages and mms for MMS messages.
-     */
-    public MessageInput withType(MessageType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
+    public MessageInput withBody(@Nonnull String body) {
+        this.body = Utils.checkNotNull(body, "body");
         return this;
     }
 
@@ -264,106 +228,56 @@ public class MessageInput {
     /**
      * Set to sms for SMS messages and mms for MMS messages.
      */
-    public MessageInput withType(Optional<? extends MessageType> type) {
-        Utils.checkNotNull(type, "type");
+    public MessageInput withType(@Nullable MessageType type) {
         this.type = type;
         return this;
     }
 
-    /**
-     * The scheduled date and time of the message.
-     */
-    public MessageInput withScheduledAt(OffsetDateTime scheduledAt) {
-        Utils.checkNotNull(scheduledAt, "scheduledAt");
-        this.scheduledAt = Optional.ofNullable(scheduledAt);
-        return this;
-    }
-
 
     /**
      * The scheduled date and time of the message.
      */
-    public MessageInput withScheduledAt(Optional<OffsetDateTime> scheduledAt) {
-        Utils.checkNotNull(scheduledAt, "scheduledAt");
+    public MessageInput withScheduledAt(@Nullable OffsetDateTime scheduledAt) {
         this.scheduledAt = scheduledAt;
         return this;
     }
 
-    /**
-     * Define a webhook to receive delivery notifications.
-     */
-    public MessageInput withWebhookUrl(String webhookUrl) {
-        Utils.checkNotNull(webhookUrl, "webhookUrl");
-        this.webhookUrl = Optional.ofNullable(webhookUrl);
-        return this;
-    }
-
 
     /**
      * Define a webhook to receive delivery notifications.
      */
-    public MessageInput withWebhookUrl(Optional<String> webhookUrl) {
-        Utils.checkNotNull(webhookUrl, "webhookUrl");
+    public MessageInput withWebhookUrl(@Nullable String webhookUrl) {
         this.webhookUrl = webhookUrl;
         return this;
     }
 
-    /**
-     * A client reference.
-     */
-    public MessageInput withReference(String reference) {
-        Utils.checkNotNull(reference, "reference");
-        this.reference = Optional.ofNullable(reference);
-        return this;
-    }
-
 
     /**
      * A client reference.
      */
-    public MessageInput withReference(Optional<String> reference) {
-        Utils.checkNotNull(reference, "reference");
+    public MessageInput withReference(@Nullable String reference) {
         this.reference = reference;
         return this;
     }
 
-    /**
-     * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
-     */
-    public MessageInput withMessagingServiceId(String messagingServiceId) {
-        Utils.checkNotNull(messagingServiceId, "messagingServiceId");
-        this.messagingServiceId = Optional.ofNullable(messagingServiceId);
-        return this;
-    }
-
 
     /**
      * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
      */
-    public MessageInput withMessagingServiceId(Optional<String> messagingServiceId) {
-        Utils.checkNotNull(messagingServiceId, "messagingServiceId");
+    public MessageInput withMessagingServiceId(@Nullable String messagingServiceId) {
         this.messagingServiceId = messagingServiceId;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public MessageInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public MessageInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public MessageInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -418,185 +332,104 @@ public class MessageInput {
 
         private String to;
 
-        private Optional<String> subject = Optional.empty();
+        private String subject;
 
         private String body;
 
-        private Optional<? extends MessageType> type = Optional.empty();
+        private MessageType type;
 
-        private Optional<OffsetDateTime> scheduledAt = Optional.empty();
+        private OffsetDateTime scheduledAt;
 
-        private Optional<String> webhookUrl = Optional.empty();
+        private String webhookUrl;
 
-        private Optional<String> reference = Optional.empty();
+        private String reference;
 
-        private Optional<String> messagingServiceId = Optional.empty();
+        private String messagingServiceId;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The phone number that initiated the message.
          */
-        public Builder from(String from) {
-            Utils.checkNotNull(from, "from");
-            this.from = from;
+        public Builder from(@Nonnull String from) {
+            this.from = Utils.checkNotNull(from, "from");
             return this;
         }
-
 
         /**
          * The phone number that received the message.
          */
-        public Builder to(String to) {
-            Utils.checkNotNull(to, "to");
-            this.to = to;
+        public Builder to(@Nonnull String to) {
+            this.to = Utils.checkNotNull(to, "to");
             return this;
         }
 
-
-        public Builder subject(String subject) {
-            Utils.checkNotNull(subject, "subject");
-            this.subject = Optional.ofNullable(subject);
-            return this;
-        }
-
-        public Builder subject(Optional<String> subject) {
-            Utils.checkNotNull(subject, "subject");
+        public Builder subject(@Nullable String subject) {
             this.subject = subject;
             return this;
         }
 
-
         /**
          * The message text.
          */
-        public Builder body(String body) {
-            Utils.checkNotNull(body, "body");
-            this.body = body;
-            return this;
-        }
-
-
-        /**
-         * Set to sms for SMS messages and mms for MMS messages.
-         */
-        public Builder type(MessageType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
+        public Builder body(@Nonnull String body) {
+            this.body = Utils.checkNotNull(body, "body");
             return this;
         }
 
         /**
          * Set to sms for SMS messages and mms for MMS messages.
          */
-        public Builder type(Optional<? extends MessageType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable MessageType type) {
             this.type = type;
             return this;
         }
 
-
         /**
          * The scheduled date and time of the message.
          */
-        public Builder scheduledAt(OffsetDateTime scheduledAt) {
-            Utils.checkNotNull(scheduledAt, "scheduledAt");
-            this.scheduledAt = Optional.ofNullable(scheduledAt);
-            return this;
-        }
-
-        /**
-         * The scheduled date and time of the message.
-         */
-        public Builder scheduledAt(Optional<OffsetDateTime> scheduledAt) {
-            Utils.checkNotNull(scheduledAt, "scheduledAt");
+        public Builder scheduledAt(@Nullable OffsetDateTime scheduledAt) {
             this.scheduledAt = scheduledAt;
             return this;
         }
 
-
         /**
          * Define a webhook to receive delivery notifications.
          */
-        public Builder webhookUrl(String webhookUrl) {
-            Utils.checkNotNull(webhookUrl, "webhookUrl");
-            this.webhookUrl = Optional.ofNullable(webhookUrl);
-            return this;
-        }
-
-        /**
-         * Define a webhook to receive delivery notifications.
-         */
-        public Builder webhookUrl(Optional<String> webhookUrl) {
-            Utils.checkNotNull(webhookUrl, "webhookUrl");
+        public Builder webhookUrl(@Nullable String webhookUrl) {
             this.webhookUrl = webhookUrl;
             return this;
         }
 
-
         /**
          * A client reference.
          */
-        public Builder reference(String reference) {
-            Utils.checkNotNull(reference, "reference");
-            this.reference = Optional.ofNullable(reference);
-            return this;
-        }
-
-        /**
-         * A client reference.
-         */
-        public Builder reference(Optional<String> reference) {
-            Utils.checkNotNull(reference, "reference");
+        public Builder reference(@Nullable String reference) {
             this.reference = reference;
             return this;
         }
 
-
         /**
          * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
          */
-        public Builder messagingServiceId(String messagingServiceId) {
-            Utils.checkNotNull(messagingServiceId, "messagingServiceId");
-            this.messagingServiceId = Optional.ofNullable(messagingServiceId);
-            return this;
-        }
-
-        /**
-         * The ID of the Messaging Service used with the message. In case of Plivo this links to the Powerpack ID.
-         */
-        public Builder messagingServiceId(Optional<String> messagingServiceId) {
-            Utils.checkNotNull(messagingServiceId, "messagingServiceId");
+        public Builder messagingServiceId(@Nullable String messagingServiceId) {
             this.messagingServiceId = messagingServiceId;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public MessageInput build() {
-
             return new MessageInput(
                 from, to, subject,
                 body, type, scheduledAt,

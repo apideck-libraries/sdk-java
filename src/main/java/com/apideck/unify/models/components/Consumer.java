@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,73 +29,64 @@ public class Consumer {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("application_id")
-    private Optional<String> applicationId;
+    private String applicationId;
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("metadata")
-    private Optional<? extends ConsumerMetadata> metadata;
+    private ConsumerMetadata metadata;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("connections")
-    private Optional<? extends List<ConsumerConnection>> connections;
+    private List<ConsumerConnection> connections;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("services")
-    private Optional<? extends List<String>> services;
+    private List<String> services;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("aggregated_request_count")
-    private Optional<Double> aggregatedRequestCount;
+    private Double aggregatedRequestCount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_counts")
-    private Optional<? extends RequestCountAllocation> requestCounts;
+    private RequestCountAllocation requestCounts;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created")
-    private Optional<String> created;
+    private String created;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("modified")
-    private Optional<String> modified;
+    private String modified;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("request_count_updated")
-    private Optional<String> requestCountUpdated;
+    private String requestCountUpdated;
 
     @JsonCreator
     public Consumer(
-            @JsonProperty("consumer_id") String consumerId,
-            @JsonProperty("application_id") Optional<String> applicationId,
-            @JsonProperty("metadata") Optional<? extends ConsumerMetadata> metadata,
-            @JsonProperty("connections") Optional<? extends List<ConsumerConnection>> connections,
-            @JsonProperty("services") Optional<? extends List<String>> services,
-            @JsonProperty("aggregated_request_count") Optional<Double> aggregatedRequestCount,
-            @JsonProperty("request_counts") Optional<? extends RequestCountAllocation> requestCounts,
-            @JsonProperty("created") Optional<String> created,
-            @JsonProperty("modified") Optional<String> modified,
-            @JsonProperty("request_count_updated") Optional<String> requestCountUpdated) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(applicationId, "applicationId");
-        Utils.checkNotNull(metadata, "metadata");
-        Utils.checkNotNull(connections, "connections");
-        Utils.checkNotNull(services, "services");
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-        Utils.checkNotNull(requestCounts, "requestCounts");
-        Utils.checkNotNull(created, "created");
-        Utils.checkNotNull(modified, "modified");
-        Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
-        this.consumerId = consumerId;
+            @JsonProperty("consumer_id") @Nonnull String consumerId,
+            @JsonProperty("application_id") @Nullable String applicationId,
+            @JsonProperty("metadata") @Nullable ConsumerMetadata metadata,
+            @JsonProperty("connections") @Nullable List<ConsumerConnection> connections,
+            @JsonProperty("services") @Nullable List<String> services,
+            @JsonProperty("aggregated_request_count") @Nullable Double aggregatedRequestCount,
+            @JsonProperty("request_counts") @Nullable RequestCountAllocation requestCounts,
+            @JsonProperty("created") @Nullable String created,
+            @JsonProperty("modified") @Nullable String modified,
+            @JsonProperty("request_count_updated") @Nullable String requestCountUpdated) {
+        this.consumerId = Optional.ofNullable(consumerId)
+            .orElseThrow(() -> new IllegalArgumentException("consumerId cannot be null"));
         this.applicationId = applicationId;
         this.metadata = metadata;
         this.connections = connections;
@@ -108,74 +99,60 @@ public class Consumer {
     }
     
     public Consumer(
-            String consumerId) {
-        this(consumerId, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            @Nonnull String consumerId) {
+        this(consumerId, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
-    @JsonIgnore
     public String consumerId() {
-        return consumerId;
+        return this.consumerId;
     }
 
     /**
      * ID of your Apideck Application
      */
-    @JsonIgnore
     public Optional<String> applicationId() {
-        return applicationId;
+        return Optional.ofNullable(this.applicationId);
     }
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConsumerMetadata> metadata() {
-        return (Optional<ConsumerMetadata>) metadata;
+        return Optional.ofNullable(this.metadata);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConsumerConnection>> connections() {
-        return (Optional<List<ConsumerConnection>>) connections;
+        return Optional.ofNullable(this.connections);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> services() {
-        return (Optional<List<String>>) services;
+        return Optional.ofNullable(this.services);
     }
 
-    @JsonIgnore
     public Optional<Double> aggregatedRequestCount() {
-        return aggregatedRequestCount;
+        return Optional.ofNullable(this.aggregatedRequestCount);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<RequestCountAllocation> requestCounts() {
-        return (Optional<RequestCountAllocation>) requestCounts;
+        return Optional.ofNullable(this.requestCounts);
     }
 
-    @JsonIgnore
     public Optional<String> created() {
-        return created;
+        return Optional.ofNullable(this.created);
     }
 
-    @JsonIgnore
     public Optional<String> modified() {
-        return modified;
+        return Optional.ofNullable(this.modified);
     }
 
-    @JsonIgnore
     public Optional<String> requestCountUpdated() {
-        return requestCountUpdated;
+        return Optional.ofNullable(this.requestCountUpdated);
     }
 
     public static Builder builder() {
@@ -186,18 +163,8 @@ public class Consumer {
     /**
      * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
      */
-    public Consumer withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = consumerId;
-        return this;
-    }
-
-    /**
-     * ID of your Apideck Application
-     */
-    public Consumer withApplicationId(String applicationId) {
-        Utils.checkNotNull(applicationId, "applicationId");
-        this.applicationId = Optional.ofNullable(applicationId);
+    public Consumer withConsumerId(@Nonnull String consumerId) {
+        this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
         return this;
     }
 
@@ -205,121 +172,62 @@ public class Consumer {
     /**
      * ID of your Apideck Application
      */
-    public Consumer withApplicationId(Optional<String> applicationId) {
-        Utils.checkNotNull(applicationId, "applicationId");
+    public Consumer withApplicationId(@Nullable String applicationId) {
         this.applicationId = applicationId;
         return this;
     }
 
-    /**
-     * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-     */
-    public Consumer withMetadata(ConsumerMetadata metadata) {
-        Utils.checkNotNull(metadata, "metadata");
-        this.metadata = Optional.ofNullable(metadata);
-        return this;
-    }
-
 
     /**
      * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
      */
-    public Consumer withMetadata(Optional<? extends ConsumerMetadata> metadata) {
-        Utils.checkNotNull(metadata, "metadata");
+    public Consumer withMetadata(@Nullable ConsumerMetadata metadata) {
         this.metadata = metadata;
         return this;
     }
 
-    public Consumer withConnections(List<ConsumerConnection> connections) {
-        Utils.checkNotNull(connections, "connections");
-        this.connections = Optional.ofNullable(connections);
-        return this;
-    }
 
-
-    public Consumer withConnections(Optional<? extends List<ConsumerConnection>> connections) {
-        Utils.checkNotNull(connections, "connections");
+    public Consumer withConnections(@Nullable List<ConsumerConnection> connections) {
         this.connections = connections;
         return this;
     }
 
-    public Consumer withServices(List<String> services) {
-        Utils.checkNotNull(services, "services");
-        this.services = Optional.ofNullable(services);
-        return this;
-    }
 
-
-    public Consumer withServices(Optional<? extends List<String>> services) {
-        Utils.checkNotNull(services, "services");
+    public Consumer withServices(@Nullable List<String> services) {
         this.services = services;
         return this;
     }
 
-    public Consumer withAggregatedRequestCount(double aggregatedRequestCount) {
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-        this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
-        return this;
-    }
 
-
-    public Consumer withAggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
-        Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
+    public Consumer withAggregatedRequestCount(@Nullable Double aggregatedRequestCount) {
         this.aggregatedRequestCount = aggregatedRequestCount;
         return this;
     }
 
-    public Consumer withRequestCounts(RequestCountAllocation requestCounts) {
-        Utils.checkNotNull(requestCounts, "requestCounts");
-        this.requestCounts = Optional.ofNullable(requestCounts);
-        return this;
-    }
 
-
-    public Consumer withRequestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
-        Utils.checkNotNull(requestCounts, "requestCounts");
+    public Consumer withRequestCounts(@Nullable RequestCountAllocation requestCounts) {
         this.requestCounts = requestCounts;
         return this;
     }
 
-    public Consumer withCreated(String created) {
-        Utils.checkNotNull(created, "created");
-        this.created = Optional.ofNullable(created);
-        return this;
-    }
 
-
-    public Consumer withCreated(Optional<String> created) {
-        Utils.checkNotNull(created, "created");
+    public Consumer withCreated(@Nullable String created) {
         this.created = created;
         return this;
     }
 
-    public Consumer withModified(String modified) {
-        Utils.checkNotNull(modified, "modified");
-        this.modified = Optional.ofNullable(modified);
-        return this;
-    }
 
-
-    public Consumer withModified(Optional<String> modified) {
-        Utils.checkNotNull(modified, "modified");
+    public Consumer withModified(@Nullable String modified) {
         this.modified = modified;
         return this;
     }
 
-    public Consumer withRequestCountUpdated(String requestCountUpdated) {
-        Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
-        this.requestCountUpdated = Optional.ofNullable(requestCountUpdated);
-        return this;
-    }
 
-
-    public Consumer withRequestCountUpdated(Optional<String> requestCountUpdated) {
-        Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
+    public Consumer withRequestCountUpdated(@Nullable String requestCountUpdated) {
         this.requestCountUpdated = requestCountUpdated;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -372,169 +280,88 @@ public class Consumer {
 
         private String consumerId;
 
-        private Optional<String> applicationId = Optional.empty();
+        private String applicationId;
 
-        private Optional<? extends ConsumerMetadata> metadata = Optional.empty();
+        private ConsumerMetadata metadata;
 
-        private Optional<? extends List<ConsumerConnection>> connections = Optional.empty();
+        private List<ConsumerConnection> connections;
 
-        private Optional<? extends List<String>> services = Optional.empty();
+        private List<String> services;
 
-        private Optional<Double> aggregatedRequestCount = Optional.empty();
+        private Double aggregatedRequestCount;
 
-        private Optional<? extends RequestCountAllocation> requestCounts = Optional.empty();
+        private RequestCountAllocation requestCounts;
 
-        private Optional<String> created = Optional.empty();
+        private String created;
 
-        private Optional<String> modified = Optional.empty();
+        private String modified;
 
-        private Optional<String> requestCountUpdated = Optional.empty();
+        private String requestCountUpdated;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique consumer identifier. You can freely choose a consumer ID yourself. Most of the time, this is an ID of your internal data model that represents a user or account in your system (for example account:12345). If the consumer doesn't exist yet, Vault will upsert a consumer based on your ID.
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = consumerId;
-            return this;
-        }
-
-
-        /**
-         * ID of your Apideck Application
-         */
-        public Builder applicationId(String applicationId) {
-            Utils.checkNotNull(applicationId, "applicationId");
-            this.applicationId = Optional.ofNullable(applicationId);
+        public Builder consumerId(@Nonnull String consumerId) {
+            this.consumerId = Utils.checkNotNull(consumerId, "consumerId");
             return this;
         }
 
         /**
          * ID of your Apideck Application
          */
-        public Builder applicationId(Optional<String> applicationId) {
-            Utils.checkNotNull(applicationId, "applicationId");
+        public Builder applicationId(@Nullable String applicationId) {
             this.applicationId = applicationId;
             return this;
         }
 
-
         /**
          * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
          */
-        public Builder metadata(ConsumerMetadata metadata) {
-            Utils.checkNotNull(metadata, "metadata");
-            this.metadata = Optional.ofNullable(metadata);
-            return this;
-        }
-
-        /**
-         * The metadata of the consumer. This is used to display the consumer in the sidebar. This is optional, but recommended.
-         */
-        public Builder metadata(Optional<? extends ConsumerMetadata> metadata) {
-            Utils.checkNotNull(metadata, "metadata");
+        public Builder metadata(@Nullable ConsumerMetadata metadata) {
             this.metadata = metadata;
             return this;
         }
 
-
-        public Builder connections(List<ConsumerConnection> connections) {
-            Utils.checkNotNull(connections, "connections");
-            this.connections = Optional.ofNullable(connections);
-            return this;
-        }
-
-        public Builder connections(Optional<? extends List<ConsumerConnection>> connections) {
-            Utils.checkNotNull(connections, "connections");
+        public Builder connections(@Nullable List<ConsumerConnection> connections) {
             this.connections = connections;
             return this;
         }
 
-
-        public Builder services(List<String> services) {
-            Utils.checkNotNull(services, "services");
-            this.services = Optional.ofNullable(services);
-            return this;
-        }
-
-        public Builder services(Optional<? extends List<String>> services) {
-            Utils.checkNotNull(services, "services");
+        public Builder services(@Nullable List<String> services) {
             this.services = services;
             return this;
         }
 
-
-        public Builder aggregatedRequestCount(double aggregatedRequestCount) {
-            Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
-            this.aggregatedRequestCount = Optional.ofNullable(aggregatedRequestCount);
-            return this;
-        }
-
-        public Builder aggregatedRequestCount(Optional<Double> aggregatedRequestCount) {
-            Utils.checkNotNull(aggregatedRequestCount, "aggregatedRequestCount");
+        public Builder aggregatedRequestCount(@Nullable Double aggregatedRequestCount) {
             this.aggregatedRequestCount = aggregatedRequestCount;
             return this;
         }
 
-
-        public Builder requestCounts(RequestCountAllocation requestCounts) {
-            Utils.checkNotNull(requestCounts, "requestCounts");
-            this.requestCounts = Optional.ofNullable(requestCounts);
-            return this;
-        }
-
-        public Builder requestCounts(Optional<? extends RequestCountAllocation> requestCounts) {
-            Utils.checkNotNull(requestCounts, "requestCounts");
+        public Builder requestCounts(@Nullable RequestCountAllocation requestCounts) {
             this.requestCounts = requestCounts;
             return this;
         }
 
-
-        public Builder created(String created) {
-            Utils.checkNotNull(created, "created");
-            this.created = Optional.ofNullable(created);
-            return this;
-        }
-
-        public Builder created(Optional<String> created) {
-            Utils.checkNotNull(created, "created");
+        public Builder created(@Nullable String created) {
             this.created = created;
             return this;
         }
 
-
-        public Builder modified(String modified) {
-            Utils.checkNotNull(modified, "modified");
-            this.modified = Optional.ofNullable(modified);
-            return this;
-        }
-
-        public Builder modified(Optional<String> modified) {
-            Utils.checkNotNull(modified, "modified");
+        public Builder modified(@Nullable String modified) {
             this.modified = modified;
             return this;
         }
 
-
-        public Builder requestCountUpdated(String requestCountUpdated) {
-            Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
-            this.requestCountUpdated = Optional.ofNullable(requestCountUpdated);
-            return this;
-        }
-
-        public Builder requestCountUpdated(Optional<String> requestCountUpdated) {
-            Utils.checkNotNull(requestCountUpdated, "requestCountUpdated");
+        public Builder requestCountUpdated(@Nullable String requestCountUpdated) {
             this.requestCountUpdated = requestCountUpdated;
             return this;
         }
 
         public Consumer build() {
-
             return new Consumer(
                 consumerId, applicationId, metadata,
                 connections, services, aggregatedRequestCount,

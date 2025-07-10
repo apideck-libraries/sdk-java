@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -21,83 +20,71 @@ public class ApplicationInput {
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("applicant_id")
-    private Optional<String> applicantId;
+    private JsonNullable<String> applicantId;
 
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("job_id")
-    private Optional<String> jobId;
+    private JsonNullable<String> jobId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends ApplicationStatus> status;
+    private JsonNullable<ApplicationStatus> status;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("stage")
-    private Optional<? extends Stage> stage;
+    private Stage stage;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public ApplicationInput(
-            @JsonProperty("applicant_id") Optional<String> applicantId,
-            @JsonProperty("job_id") Optional<String> jobId,
-            @JsonProperty("status") JsonNullable<? extends ApplicationStatus> status,
-            @JsonProperty("stage") Optional<? extends Stage> stage,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(applicantId, "applicantId");
-        Utils.checkNotNull(jobId, "jobId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(stage, "stage");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.applicantId = applicantId;
-        this.jobId = jobId;
-        this.status = status;
+            @JsonProperty("applicant_id") @Nullable String applicantId,
+            @JsonProperty("job_id") @Nullable String jobId,
+            @JsonProperty("status") @Nullable JsonNullable<ApplicationStatus> status,
+            @JsonProperty("stage") @Nullable Stage stage,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.applicantId = JsonNullable.of(applicantId);
+        this.jobId = JsonNullable.of(jobId);
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
         this.stage = stage;
         this.passThrough = passThrough;
     }
     
     public ApplicationInput() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null);
     }
 
-    @JsonIgnore
-    public Optional<String> applicantId() {
-        return applicantId;
+    public JsonNullable<String> applicantId() {
+        return this.applicantId;
     }
 
-    @JsonIgnore
-    public Optional<String> jobId() {
-        return jobId;
+    public JsonNullable<String> jobId() {
+        return this.jobId;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ApplicationStatus> status() {
-        return (JsonNullable<ApplicationStatus>) status;
+        return this.status;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Stage> stage() {
-        return (Optional<Stage>) stage;
+        return Optional.ofNullable(this.stage);
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -105,75 +92,38 @@ public class ApplicationInput {
     }
 
 
-    public ApplicationInput withApplicantId(String applicantId) {
-        Utils.checkNotNull(applicantId, "applicantId");
-        this.applicantId = Optional.ofNullable(applicantId);
+    public ApplicationInput withApplicantId(@Nullable String applicantId) {
+        this.applicantId = JsonNullable.of(applicantId);
         return this;
     }
 
 
-    public ApplicationInput withApplicantId(Optional<String> applicantId) {
-        Utils.checkNotNull(applicantId, "applicantId");
-        this.applicantId = applicantId;
-        return this;
-    }
-
-    public ApplicationInput withJobId(String jobId) {
-        Utils.checkNotNull(jobId, "jobId");
-        this.jobId = Optional.ofNullable(jobId);
+    public ApplicationInput withJobId(@Nullable String jobId) {
+        this.jobId = JsonNullable.of(jobId);
         return this;
     }
 
 
-    public ApplicationInput withJobId(Optional<String> jobId) {
-        Utils.checkNotNull(jobId, "jobId");
-        this.jobId = jobId;
-        return this;
-    }
-
-    public ApplicationInput withStatus(ApplicationStatus status) {
-        Utils.checkNotNull(status, "status");
+    public ApplicationInput withStatus(@Nullable ApplicationStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    public ApplicationInput withStatus(JsonNullable<? extends ApplicationStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
-    public ApplicationInput withStage(Stage stage) {
-        Utils.checkNotNull(stage, "stage");
-        this.stage = Optional.ofNullable(stage);
-        return this;
-    }
-
-
-    public ApplicationInput withStage(Optional<? extends Stage> stage) {
-        Utils.checkNotNull(stage, "stage");
+    public ApplicationInput withStage(@Nullable Stage stage) {
         this.stage = stage;
         return this;
     }
 
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public ApplicationInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public ApplicationInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public ApplicationInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -212,93 +162,49 @@ public class ApplicationInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> applicantId = Optional.empty();
+        private String applicantId;
 
-        private Optional<String> jobId = Optional.empty();
+        private String jobId;
 
-        private JsonNullable<? extends ApplicationStatus> status = JsonNullable.undefined();
+        private JsonNullable<ApplicationStatus> status;
 
-        private Optional<? extends Stage> stage = Optional.empty();
+        private Stage stage;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder applicantId(String applicantId) {
-            Utils.checkNotNull(applicantId, "applicantId");
-            this.applicantId = Optional.ofNullable(applicantId);
-            return this;
-        }
-
-        public Builder applicantId(Optional<String> applicantId) {
-            Utils.checkNotNull(applicantId, "applicantId");
+        public Builder applicantId(@Nullable String applicantId) {
             this.applicantId = applicantId;
             return this;
         }
 
-
-        public Builder jobId(String jobId) {
-            Utils.checkNotNull(jobId, "jobId");
-            this.jobId = Optional.ofNullable(jobId);
-            return this;
-        }
-
-        public Builder jobId(Optional<String> jobId) {
-            Utils.checkNotNull(jobId, "jobId");
+        public Builder jobId(@Nullable String jobId) {
             this.jobId = jobId;
             return this;
         }
 
-
-        public Builder status(ApplicationStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ApplicationStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        public Builder status(JsonNullable<? extends ApplicationStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        public Builder stage(Stage stage) {
-            Utils.checkNotNull(stage, "stage");
-            this.stage = Optional.ofNullable(stage);
-            return this;
-        }
-
-        public Builder stage(Optional<? extends Stage> stage) {
-            Utils.checkNotNull(stage, "stage");
+        public Builder stage(@Nullable Stage stage) {
             this.stage = stage;
             return this;
         }
 
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public ApplicationInput build() {
-
             return new ApplicationInput(
                 applicantId, jobId, status,
                 stage, passThrough);

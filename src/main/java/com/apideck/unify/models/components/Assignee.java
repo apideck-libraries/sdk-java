@@ -5,12 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -28,30 +30,28 @@ public class Assignee {
 
     @JsonCreator
     public Assignee(
-            @JsonProperty("id") String id,
-            @JsonProperty("username") JsonNullable<String> username) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(username, "username");
-        this.id = id;
-        this.username = username;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("username") @Nullable JsonNullable<String> username) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.username = Optional.ofNullable(username)
+            .orElse(JsonNullable.undefined());
     }
     
     public Assignee(
-            String id) {
-        this(id, JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
-    @JsonIgnore
     public JsonNullable<String> username() {
-        return username;
+        return this.username;
     }
 
     public static Builder builder() {
@@ -62,23 +62,17 @@ public class Assignee {
     /**
      * A unique identifier for an object.
      */
-    public Assignee withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public Assignee withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
-    public Assignee withUsername(String username) {
-        Utils.checkNotNull(username, "username");
+
+    public Assignee withUsername(@Nullable String username) {
         this.username = JsonNullable.of(username);
         return this;
     }
 
-    public Assignee withUsername(JsonNullable<String> username) {
-        Utils.checkNotNull(username, "username");
-        this.username = username;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,37 +106,26 @@ public class Assignee {
 
         private String id;
 
-        private JsonNullable<String> username = JsonNullable.undefined();
+        private JsonNullable<String> username;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
-
-        public Builder username(String username) {
-            Utils.checkNotNull(username, "username");
+        public Builder username(@Nullable String username) {
             this.username = JsonNullable.of(username);
             return this;
         }
 
-        public Builder username(JsonNullable<String> username) {
-            Utils.checkNotNull(username, "username");
-            this.username = username;
-            return this;
-        }
-
         public Assignee build() {
-
             return new Assignee(
                 id, username);
         }

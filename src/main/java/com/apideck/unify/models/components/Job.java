@@ -5,17 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Deprecated;
 import java.lang.Long;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -30,7 +29,7 @@ public class Job {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -49,28 +48,28 @@ public class Job {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("sequence")
-    private Optional<Long> sequence;
+    private Long sequence;
 
     /**
      * The visibility of the job
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("visibility")
-    private Optional<? extends Visibility> visibility;
+    private Visibility visibility;
 
     /**
      * The status of the job.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends JobStatus> status;
+    private JobStatus status;
 
     /**
      * The code of the job.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("code")
-    private Optional<String> code;
+    private String code;
 
     /**
      * language code according to ISO 639-1. For the United States - EN
@@ -82,14 +81,14 @@ public class Job {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("employment_terms")
-    private JsonNullable<? extends EmploymentTerms> employmentTerms;
+    private JsonNullable<EmploymentTerms> employmentTerms;
 
     /**
      * Level of experience required for the job role.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("experience")
-    private Optional<String> experience;
+    private String experience;
 
     /**
      * Specifies the location for the job posting.
@@ -110,36 +109,36 @@ public class Job {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("requisition_id")
-    private Optional<String> requisitionId;
+    private String requisitionId;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("department")
-    private Optional<? extends Department> department;
+    private Department department;
 
     /**
      * Details of the branch for which the job is created.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("branch")
-    private Optional<? extends Branch> branch;
+    private Branch branch;
 
     /**
      * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("recruiters")
-    private JsonNullable<? extends List<String>> recruiters;
+    private JsonNullable<List<String>> recruiters;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("hiring_managers")
-    private Optional<? extends List<String>> hiringManagers;
+    private List<String> hiringManagers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("followers")
-    private JsonNullable<? extends List<String>> followers;
+    private JsonNullable<List<String>> followers;
 
     /**
      * A description of the object.
@@ -158,7 +157,7 @@ public class Job {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("blocks")
-    private Optional<? extends List<Blocks>> blocks;
+    private List<Blocks> blocks;
 
 
     @JsonInclude(Include.NON_ABSENT)
@@ -180,7 +179,7 @@ public class Job {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("salary")
-    private Optional<? extends Salary> salary;
+    private Salary salary;
 
     /**
      * URL of the job description
@@ -214,34 +213,34 @@ public class Job {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("links")
-    private Optional<? extends List<JobLinks>> links;
+    private List<JobLinks> links;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("confidential")
-    private Optional<Boolean> confidential;
+    private Boolean confidential;
 
     /**
      * Specifies whether an employee of the organization can apply for the job.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("available_to_employees")
-    private Optional<Boolean> availableToEmployees;
+    private Boolean availableToEmployees;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private Optional<? extends List<CustomField>> customFields;
+    private List<CustomField> customFields;
 
     /**
      * Flag to indicate if the object is deleted.
@@ -265,7 +264,7 @@ public class Job {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The user who last updated the object.
@@ -297,332 +296,280 @@ public class Job {
 
     @JsonCreator
     public Job(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("slug") JsonNullable<String> slug,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("sequence") Optional<Long> sequence,
-            @JsonProperty("visibility") Optional<? extends Visibility> visibility,
-            @JsonProperty("status") Optional<? extends JobStatus> status,
-            @JsonProperty("code") Optional<String> code,
-            @JsonProperty("language") JsonNullable<String> language,
-            @JsonProperty("employment_terms") JsonNullable<? extends EmploymentTerms> employmentTerms,
-            @JsonProperty("experience") Optional<String> experience,
-            @JsonProperty("location") JsonNullable<String> location,
-            @JsonProperty("remote") JsonNullable<Boolean> remote,
-            @JsonProperty("requisition_id") Optional<String> requisitionId,
-            @JsonProperty("department") Optional<? extends Department> department,
-            @JsonProperty("branch") Optional<? extends Branch> branch,
-            @JsonProperty("recruiters") JsonNullable<? extends List<String>> recruiters,
-            @JsonProperty("hiring_managers") Optional<? extends List<String>> hiringManagers,
-            @JsonProperty("followers") JsonNullable<? extends List<String>> followers,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("description_html") JsonNullable<String> descriptionHtml,
-            @JsonProperty("blocks") Optional<? extends List<Blocks>> blocks,
-            @JsonProperty("closing") JsonNullable<String> closing,
-            @JsonProperty("closing_html") JsonNullable<String> closingHtml,
-            @JsonProperty("closing_date") JsonNullable<LocalDate> closingDate,
-            @JsonProperty("salary") Optional<? extends Salary> salary,
-            @JsonProperty("url") JsonNullable<String> url,
-            @JsonProperty("job_portal_url") JsonNullable<String> jobPortalUrl,
-            @JsonProperty("record_url") JsonNullable<String> recordUrl,
-            @JsonProperty("links") Optional<? extends List<JobLinks>> links,
-            @JsonProperty("confidential") Optional<Boolean> confidential,
-            @JsonProperty("available_to_employees") Optional<Boolean> availableToEmployees,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
-            @JsonProperty("deleted") JsonNullable<Boolean> deleted,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("published_at") JsonNullable<OffsetDateTime> publishedAt,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(slug, "slug");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(sequence, "sequence");
-        Utils.checkNotNull(visibility, "visibility");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(language, "language");
-        Utils.checkNotNull(employmentTerms, "employmentTerms");
-        Utils.checkNotNull(experience, "experience");
-        Utils.checkNotNull(location, "location");
-        Utils.checkNotNull(remote, "remote");
-        Utils.checkNotNull(requisitionId, "requisitionId");
-        Utils.checkNotNull(department, "department");
-        Utils.checkNotNull(branch, "branch");
-        Utils.checkNotNull(recruiters, "recruiters");
-        Utils.checkNotNull(hiringManagers, "hiringManagers");
-        Utils.checkNotNull(followers, "followers");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(descriptionHtml, "descriptionHtml");
-        Utils.checkNotNull(blocks, "blocks");
-        Utils.checkNotNull(closing, "closing");
-        Utils.checkNotNull(closingHtml, "closingHtml");
-        Utils.checkNotNull(closingDate, "closingDate");
-        Utils.checkNotNull(salary, "salary");
-        Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(jobPortalUrl, "jobPortalUrl");
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        Utils.checkNotNull(links, "links");
-        Utils.checkNotNull(confidential, "confidential");
-        Utils.checkNotNull(availableToEmployees, "availableToEmployees");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(deleted, "deleted");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(publishedAt, "publishedAt");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("slug") @Nullable JsonNullable<String> slug,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("sequence") @Nullable Long sequence,
+            @JsonProperty("visibility") @Nullable Visibility visibility,
+            @JsonProperty("status") @Nullable JobStatus status,
+            @JsonProperty("code") @Nullable String code,
+            @JsonProperty("language") @Nullable JsonNullable<String> language,
+            @JsonProperty("employment_terms") @Nullable JsonNullable<EmploymentTerms> employmentTerms,
+            @JsonProperty("experience") @Nullable String experience,
+            @JsonProperty("location") @Nullable JsonNullable<String> location,
+            @JsonProperty("remote") @Nullable JsonNullable<Boolean> remote,
+            @JsonProperty("requisition_id") @Nullable String requisitionId,
+            @JsonProperty("department") @Nullable Department department,
+            @JsonProperty("branch") @Nullable Branch branch,
+            @JsonProperty("recruiters") @Nullable JsonNullable<List<String>> recruiters,
+            @JsonProperty("hiring_managers") @Nullable List<String> hiringManagers,
+            @JsonProperty("followers") @Nullable JsonNullable<List<String>> followers,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("description_html") @Nullable JsonNullable<String> descriptionHtml,
+            @JsonProperty("blocks") @Nullable List<Blocks> blocks,
+            @JsonProperty("closing") @Nullable JsonNullable<String> closing,
+            @JsonProperty("closing_html") @Nullable JsonNullable<String> closingHtml,
+            @JsonProperty("closing_date") @Nullable JsonNullable<LocalDate> closingDate,
+            @JsonProperty("salary") @Nullable Salary salary,
+            @JsonProperty("url") @Nullable JsonNullable<String> url,
+            @JsonProperty("job_portal_url") @Nullable JsonNullable<String> jobPortalUrl,
+            @JsonProperty("record_url") @Nullable JsonNullable<String> recordUrl,
+            @JsonProperty("links") @Nullable List<JobLinks> links,
+            @JsonProperty("confidential") @Nullable Boolean confidential,
+            @JsonProperty("available_to_employees") @Nullable Boolean availableToEmployees,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("custom_fields") @Nullable List<CustomField> customFields,
+            @JsonProperty("deleted") @Nullable JsonNullable<Boolean> deleted,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("published_at") @Nullable JsonNullable<OffsetDateTime> publishedAt,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
         this.id = id;
-        this.slug = slug;
-        this.title = title;
+        this.slug = Optional.ofNullable(slug)
+            .orElse(JsonNullable.undefined());
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
         this.sequence = sequence;
         this.visibility = visibility;
         this.status = status;
         this.code = code;
-        this.language = language;
-        this.employmentTerms = employmentTerms;
+        this.language = Optional.ofNullable(language)
+            .orElse(JsonNullable.undefined());
+        this.employmentTerms = Optional.ofNullable(employmentTerms)
+            .orElse(JsonNullable.undefined());
         this.experience = experience;
-        this.location = location;
-        this.remote = remote;
+        this.location = Optional.ofNullable(location)
+            .orElse(JsonNullable.undefined());
+        this.remote = Optional.ofNullable(remote)
+            .orElse(JsonNullable.undefined());
         this.requisitionId = requisitionId;
         this.department = department;
         this.branch = branch;
-        this.recruiters = recruiters;
+        this.recruiters = Optional.ofNullable(recruiters)
+            .orElse(JsonNullable.undefined());
         this.hiringManagers = hiringManagers;
-        this.followers = followers;
-        this.description = description;
-        this.descriptionHtml = descriptionHtml;
+        this.followers = Optional.ofNullable(followers)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.descriptionHtml = Optional.ofNullable(descriptionHtml)
+            .orElse(JsonNullable.undefined());
         this.blocks = blocks;
-        this.closing = closing;
-        this.closingHtml = closingHtml;
-        this.closingDate = closingDate;
+        this.closing = Optional.ofNullable(closing)
+            .orElse(JsonNullable.undefined());
+        this.closingHtml = Optional.ofNullable(closingHtml)
+            .orElse(JsonNullable.undefined());
+        this.closingDate = Optional.ofNullable(closingDate)
+            .orElse(JsonNullable.undefined());
         this.salary = salary;
-        this.url = url;
-        this.jobPortalUrl = jobPortalUrl;
-        this.recordUrl = recordUrl;
+        this.url = Optional.ofNullable(url)
+            .orElse(JsonNullable.undefined());
+        this.jobPortalUrl = Optional.ofNullable(jobPortalUrl)
+            .orElse(JsonNullable.undefined());
+        this.recordUrl = Optional.ofNullable(recordUrl)
+            .orElse(JsonNullable.undefined());
         this.links = links;
         this.confidential = confidential;
         this.availableToEmployees = availableToEmployees;
-        this.tags = tags;
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
         this.addresses = addresses;
         this.customFields = customFields;
-        this.deleted = deleted;
-        this.ownerId = ownerId;
-        this.publishedAt = publishedAt;
-        this.customMappings = customMappings;
-        this.updatedBy = updatedBy;
-        this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.deleted = Optional.ofNullable(deleted)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.publishedAt = Optional.ofNullable(publishedAt)
+            .orElse(JsonNullable.undefined());
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public Job() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
-    @JsonIgnore
     public JsonNullable<String> slug() {
-        return slug;
+        return this.slug;
     }
 
     /**
      * The job title of the person.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * Sequence in relation to other jobs.
      */
-    @JsonIgnore
     public Optional<Long> sequence() {
-        return sequence;
+        return Optional.ofNullable(this.sequence);
     }
 
     /**
      * The visibility of the job
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Visibility> visibility() {
-        return (Optional<Visibility>) visibility;
+        return Optional.ofNullable(this.visibility);
     }
 
     /**
      * The status of the job.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<JobStatus> status() {
-        return (Optional<JobStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * The code of the job.
      */
-    @JsonIgnore
     public Optional<String> code() {
-        return code;
+        return Optional.ofNullable(this.code);
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> language() {
-        return language;
+        return this.language;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EmploymentTerms> employmentTerms() {
-        return (JsonNullable<EmploymentTerms>) employmentTerms;
+        return this.employmentTerms;
     }
 
     /**
      * Level of experience required for the job role.
      */
-    @JsonIgnore
     public Optional<String> experience() {
-        return experience;
+        return Optional.ofNullable(this.experience);
     }
 
     /**
      * Specifies the location for the job posting.
      */
-    @JsonIgnore
     public JsonNullable<String> location() {
-        return location;
+        return this.location;
     }
 
     /**
      * Specifies whether the posting is for a remote job.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> remote() {
-        return remote;
+        return this.remote;
     }
 
     /**
      * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
      */
-    @JsonIgnore
     public Optional<String> requisitionId() {
-        return requisitionId;
+        return Optional.ofNullable(this.requisitionId);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Department> department() {
-        return (Optional<Department>) department;
+        return Optional.ofNullable(this.department);
     }
 
     /**
      * Details of the branch for which the job is created.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Branch> branch() {
-        return (Optional<Branch>) branch;
+        return Optional.ofNullable(this.branch);
     }
 
     /**
      * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> recruiters() {
-        return (JsonNullable<List<String>>) recruiters;
+        return this.recruiters;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> hiringManagers() {
-        return (Optional<List<String>>) hiringManagers;
+        return Optional.ofNullable(this.hiringManagers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> followers() {
-        return (JsonNullable<List<String>>) followers;
+        return this.followers;
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The job description in HTML format
      */
-    @JsonIgnore
     public JsonNullable<String> descriptionHtml() {
-        return descriptionHtml;
+        return this.descriptionHtml;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Blocks>> blocks() {
-        return (Optional<List<Blocks>>) blocks;
+        return Optional.ofNullable(this.blocks);
     }
 
-    @JsonIgnore
     public JsonNullable<String> closing() {
-        return closing;
+        return this.closing;
     }
 
     /**
      * The closing section of the job description in HTML format
      */
-    @JsonIgnore
     public JsonNullable<String> closingHtml() {
-        return closingHtml;
+        return this.closingHtml;
     }
 
-    @JsonIgnore
     public JsonNullable<LocalDate> closingDate() {
-        return closingDate;
+        return this.closingDate;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Salary> salary() {
-        return (Optional<Salary>) salary;
+        return Optional.ofNullable(this.salary);
     }
 
     /**
@@ -631,9 +578,8 @@ public class Job {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> url() {
-        return url;
+        return this.url;
     }
 
     /**
@@ -642,9 +588,8 @@ public class Job {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> jobPortalUrl() {
-        return jobPortalUrl;
+        return this.jobPortalUrl;
     }
 
     /**
@@ -652,105 +597,85 @@ public class Job {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public JsonNullable<String> recordUrl() {
-        return recordUrl;
+        return this.recordUrl;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<JobLinks>> links() {
-        return (Optional<List<JobLinks>>) links;
+        return Optional.ofNullable(this.links);
     }
 
-    @JsonIgnore
     public Optional<Boolean> confidential() {
-        return confidential;
+        return Optional.ofNullable(this.confidential);
     }
 
     /**
      * Specifies whether an employee of the organization can apply for the job.
      */
-    @JsonIgnore
     public Optional<Boolean> availableToEmployees() {
-        return availableToEmployees;
+        return Optional.ofNullable(this.availableToEmployees);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomField>> customFields() {
-        return (Optional<List<CustomField>>) customFields;
+        return Optional.ofNullable(this.customFields);
     }
 
     /**
      * Flag to indicate if the object is deleted.
      */
-    @JsonIgnore
     public JsonNullable<Boolean> deleted() {
-        return deleted;
+        return this.deleted;
     }
 
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> publishedAt() {
-        return publishedAt;
+        return this.publishedAt;
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The user who last updated the object.
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The user who created the object.
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -761,434 +686,212 @@ public class Job {
     /**
      * A unique identifier for an object.
      */
-    public Job withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Job withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Job withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    public Job withSlug(String slug) {
-        Utils.checkNotNull(slug, "slug");
+
+    public Job withSlug(@Nullable String slug) {
         this.slug = JsonNullable.of(slug);
         return this;
     }
 
-    public Job withSlug(JsonNullable<String> slug) {
-        Utils.checkNotNull(slug, "slug");
-        this.slug = slug;
-        return this;
-    }
 
     /**
      * The job title of the person.
      */
-    public Job withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public Job withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the person.
-     */
-    public Job withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * Sequence in relation to other jobs.
      */
-    public Job withSequence(long sequence) {
-        Utils.checkNotNull(sequence, "sequence");
-        this.sequence = Optional.ofNullable(sequence);
-        return this;
-    }
-
-
-    /**
-     * Sequence in relation to other jobs.
-     */
-    public Job withSequence(Optional<Long> sequence) {
-        Utils.checkNotNull(sequence, "sequence");
+    public Job withSequence(@Nullable Long sequence) {
         this.sequence = sequence;
         return this;
     }
 
-    /**
-     * The visibility of the job
-     */
-    public Job withVisibility(Visibility visibility) {
-        Utils.checkNotNull(visibility, "visibility");
-        this.visibility = Optional.ofNullable(visibility);
-        return this;
-    }
-
 
     /**
      * The visibility of the job
      */
-    public Job withVisibility(Optional<? extends Visibility> visibility) {
-        Utils.checkNotNull(visibility, "visibility");
+    public Job withVisibility(@Nullable Visibility visibility) {
         this.visibility = visibility;
         return this;
     }
 
-    /**
-     * The status of the job.
-     */
-    public Job withStatus(JobStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * The status of the job.
      */
-    public Job withStatus(Optional<? extends JobStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public Job withStatus(@Nullable JobStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * The code of the job.
-     */
-    public Job withCode(String code) {
-        Utils.checkNotNull(code, "code");
-        this.code = Optional.ofNullable(code);
-        return this;
-    }
-
 
     /**
      * The code of the job.
      */
-    public Job withCode(Optional<String> code) {
-        Utils.checkNotNull(code, "code");
+    public Job withCode(@Nullable String code) {
         this.code = code;
         return this;
     }
 
+
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public Job withLanguage(String language) {
-        Utils.checkNotNull(language, "language");
+    public Job withLanguage(@Nullable String language) {
         this.language = JsonNullable.of(language);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public Job withLanguage(JsonNullable<String> language) {
-        Utils.checkNotNull(language, "language");
-        this.language = language;
-        return this;
-    }
 
-    public Job withEmploymentTerms(EmploymentTerms employmentTerms) {
-        Utils.checkNotNull(employmentTerms, "employmentTerms");
+    public Job withEmploymentTerms(@Nullable EmploymentTerms employmentTerms) {
         this.employmentTerms = JsonNullable.of(employmentTerms);
         return this;
     }
 
-    public Job withEmploymentTerms(JsonNullable<? extends EmploymentTerms> employmentTerms) {
-        Utils.checkNotNull(employmentTerms, "employmentTerms");
-        this.employmentTerms = employmentTerms;
-        return this;
-    }
 
     /**
      * Level of experience required for the job role.
      */
-    public Job withExperience(String experience) {
-        Utils.checkNotNull(experience, "experience");
-        this.experience = Optional.ofNullable(experience);
-        return this;
-    }
-
-
-    /**
-     * Level of experience required for the job role.
-     */
-    public Job withExperience(Optional<String> experience) {
-        Utils.checkNotNull(experience, "experience");
+    public Job withExperience(@Nullable String experience) {
         this.experience = experience;
         return this;
     }
 
+
     /**
      * Specifies the location for the job posting.
      */
-    public Job withLocation(String location) {
-        Utils.checkNotNull(location, "location");
+    public Job withLocation(@Nullable String location) {
         this.location = JsonNullable.of(location);
         return this;
     }
 
-    /**
-     * Specifies the location for the job posting.
-     */
-    public Job withLocation(JsonNullable<String> location) {
-        Utils.checkNotNull(location, "location");
-        this.location = location;
-        return this;
-    }
 
     /**
      * Specifies whether the posting is for a remote job.
      */
-    public Job withRemote(boolean remote) {
-        Utils.checkNotNull(remote, "remote");
+    public Job withRemote(@Nullable Boolean remote) {
         this.remote = JsonNullable.of(remote);
         return this;
     }
 
-    /**
-     * Specifies whether the posting is for a remote job.
-     */
-    public Job withRemote(JsonNullable<Boolean> remote) {
-        Utils.checkNotNull(remote, "remote");
-        this.remote = remote;
-        return this;
-    }
 
     /**
      * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
      */
-    public Job withRequisitionId(String requisitionId) {
-        Utils.checkNotNull(requisitionId, "requisitionId");
-        this.requisitionId = Optional.ofNullable(requisitionId);
-        return this;
-    }
-
-
-    /**
-     * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
-     */
-    public Job withRequisitionId(Optional<String> requisitionId) {
-        Utils.checkNotNull(requisitionId, "requisitionId");
+    public Job withRequisitionId(@Nullable String requisitionId) {
         this.requisitionId = requisitionId;
         return this;
     }
 
-    public Job withDepartment(Department department) {
-        Utils.checkNotNull(department, "department");
-        this.department = Optional.ofNullable(department);
-        return this;
-    }
 
-
-    public Job withDepartment(Optional<? extends Department> department) {
-        Utils.checkNotNull(department, "department");
+    public Job withDepartment(@Nullable Department department) {
         this.department = department;
         return this;
     }
 
-    /**
-     * Details of the branch for which the job is created.
-     */
-    public Job withBranch(Branch branch) {
-        Utils.checkNotNull(branch, "branch");
-        this.branch = Optional.ofNullable(branch);
-        return this;
-    }
-
 
     /**
      * Details of the branch for which the job is created.
      */
-    public Job withBranch(Optional<? extends Branch> branch) {
-        Utils.checkNotNull(branch, "branch");
+    public Job withBranch(@Nullable Branch branch) {
         this.branch = branch;
         return this;
     }
 
+
     /**
      * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
      */
-    public Job withRecruiters(List<String> recruiters) {
-        Utils.checkNotNull(recruiters, "recruiters");
+    public Job withRecruiters(@Nullable List<String> recruiters) {
         this.recruiters = JsonNullable.of(recruiters);
         return this;
     }
 
-    /**
-     * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
-     */
-    public Job withRecruiters(JsonNullable<? extends List<String>> recruiters) {
-        Utils.checkNotNull(recruiters, "recruiters");
-        this.recruiters = recruiters;
-        return this;
-    }
 
-    public Job withHiringManagers(List<String> hiringManagers) {
-        Utils.checkNotNull(hiringManagers, "hiringManagers");
-        this.hiringManagers = Optional.ofNullable(hiringManagers);
-        return this;
-    }
-
-
-    public Job withHiringManagers(Optional<? extends List<String>> hiringManagers) {
-        Utils.checkNotNull(hiringManagers, "hiringManagers");
+    public Job withHiringManagers(@Nullable List<String> hiringManagers) {
         this.hiringManagers = hiringManagers;
         return this;
     }
 
-    public Job withFollowers(List<String> followers) {
-        Utils.checkNotNull(followers, "followers");
+
+    public Job withFollowers(@Nullable List<String> followers) {
         this.followers = JsonNullable.of(followers);
         return this;
     }
 
-    public Job withFollowers(JsonNullable<? extends List<String>> followers) {
-        Utils.checkNotNull(followers, "followers");
-        this.followers = followers;
-        return this;
-    }
 
     /**
      * A description of the object.
      */
-    public Job withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Job withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public Job withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The job description in HTML format
      */
-    public Job withDescriptionHtml(String descriptionHtml) {
-        Utils.checkNotNull(descriptionHtml, "descriptionHtml");
+    public Job withDescriptionHtml(@Nullable String descriptionHtml) {
         this.descriptionHtml = JsonNullable.of(descriptionHtml);
         return this;
     }
 
-    /**
-     * The job description in HTML format
-     */
-    public Job withDescriptionHtml(JsonNullable<String> descriptionHtml) {
-        Utils.checkNotNull(descriptionHtml, "descriptionHtml");
-        this.descriptionHtml = descriptionHtml;
-        return this;
-    }
 
-    public Job withBlocks(List<Blocks> blocks) {
-        Utils.checkNotNull(blocks, "blocks");
-        this.blocks = Optional.ofNullable(blocks);
-        return this;
-    }
-
-
-    public Job withBlocks(Optional<? extends List<Blocks>> blocks) {
-        Utils.checkNotNull(blocks, "blocks");
+    public Job withBlocks(@Nullable List<Blocks> blocks) {
         this.blocks = blocks;
         return this;
     }
 
-    public Job withClosing(String closing) {
-        Utils.checkNotNull(closing, "closing");
+
+    public Job withClosing(@Nullable String closing) {
         this.closing = JsonNullable.of(closing);
         return this;
     }
 
-    public Job withClosing(JsonNullable<String> closing) {
-        Utils.checkNotNull(closing, "closing");
-        this.closing = closing;
-        return this;
-    }
 
     /**
      * The closing section of the job description in HTML format
      */
-    public Job withClosingHtml(String closingHtml) {
-        Utils.checkNotNull(closingHtml, "closingHtml");
+    public Job withClosingHtml(@Nullable String closingHtml) {
         this.closingHtml = JsonNullable.of(closingHtml);
         return this;
     }
 
-    /**
-     * The closing section of the job description in HTML format
-     */
-    public Job withClosingHtml(JsonNullable<String> closingHtml) {
-        Utils.checkNotNull(closingHtml, "closingHtml");
-        this.closingHtml = closingHtml;
-        return this;
-    }
 
-    public Job withClosingDate(LocalDate closingDate) {
-        Utils.checkNotNull(closingDate, "closingDate");
+    public Job withClosingDate(@Nullable LocalDate closingDate) {
         this.closingDate = JsonNullable.of(closingDate);
         return this;
     }
 
-    public Job withClosingDate(JsonNullable<LocalDate> closingDate) {
-        Utils.checkNotNull(closingDate, "closingDate");
-        this.closingDate = closingDate;
-        return this;
-    }
 
-    public Job withSalary(Salary salary) {
-        Utils.checkNotNull(salary, "salary");
-        this.salary = Optional.ofNullable(salary);
-        return this;
-    }
-
-
-    public Job withSalary(Optional<? extends Salary> salary) {
-        Utils.checkNotNull(salary, "salary");
+    public Job withSalary(@Nullable Salary salary) {
         this.salary = salary;
         return this;
     }
 
+
     /**
      * URL of the job description
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Job withUrl(String url) {
-        Utils.checkNotNull(url, "url");
+    public Job withUrl(@Nullable String url) {
         this.url = JsonNullable.of(url);
         return this;
     }
 
-    /**
-     * URL of the job description
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public Job withUrl(JsonNullable<String> url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
-        return this;
-    }
 
     /**
      * URL of the job portal
@@ -1196,260 +899,127 @@ public class Job {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Job withJobPortalUrl(String jobPortalUrl) {
-        Utils.checkNotNull(jobPortalUrl, "jobPortalUrl");
+    public Job withJobPortalUrl(@Nullable String jobPortalUrl) {
         this.jobPortalUrl = JsonNullable.of(jobPortalUrl);
         return this;
     }
 
-    /**
-     * URL of the job portal
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public Job withJobPortalUrl(JsonNullable<String> jobPortalUrl) {
-        Utils.checkNotNull(jobPortalUrl, "jobPortalUrl");
-        this.jobPortalUrl = jobPortalUrl;
-        return this;
-    }
 
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public Job withRecordUrl(String recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
+    public Job withRecordUrl(@Nullable String recordUrl) {
         this.recordUrl = JsonNullable.of(recordUrl);
         return this;
     }
 
-    /**
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public Job withRecordUrl(JsonNullable<String> recordUrl) {
-        Utils.checkNotNull(recordUrl, "recordUrl");
-        this.recordUrl = recordUrl;
-        return this;
-    }
 
-    public Job withLinks(List<JobLinks> links) {
-        Utils.checkNotNull(links, "links");
-        this.links = Optional.ofNullable(links);
-        return this;
-    }
-
-
-    public Job withLinks(Optional<? extends List<JobLinks>> links) {
-        Utils.checkNotNull(links, "links");
+    public Job withLinks(@Nullable List<JobLinks> links) {
         this.links = links;
         return this;
     }
 
-    public Job withConfidential(boolean confidential) {
-        Utils.checkNotNull(confidential, "confidential");
-        this.confidential = Optional.ofNullable(confidential);
-        return this;
-    }
 
-
-    public Job withConfidential(Optional<Boolean> confidential) {
-        Utils.checkNotNull(confidential, "confidential");
+    public Job withConfidential(@Nullable Boolean confidential) {
         this.confidential = confidential;
         return this;
     }
 
-    /**
-     * Specifies whether an employee of the organization can apply for the job.
-     */
-    public Job withAvailableToEmployees(boolean availableToEmployees) {
-        Utils.checkNotNull(availableToEmployees, "availableToEmployees");
-        this.availableToEmployees = Optional.ofNullable(availableToEmployees);
-        return this;
-    }
-
 
     /**
      * Specifies whether an employee of the organization can apply for the job.
      */
-    public Job withAvailableToEmployees(Optional<Boolean> availableToEmployees) {
-        Utils.checkNotNull(availableToEmployees, "availableToEmployees");
+    public Job withAvailableToEmployees(@Nullable Boolean availableToEmployees) {
         this.availableToEmployees = availableToEmployees;
         return this;
     }
 
-    public Job withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+
+    public Job withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public Job withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
-    public Job withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
-
-
-    public Job withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public Job withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public Job withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = Optional.ofNullable(customFields);
-        return this;
-    }
 
-
-    public Job withCustomFields(Optional<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+    public Job withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = customFields;
         return this;
     }
 
+
     /**
      * Flag to indicate if the object is deleted.
      */
-    public Job withDeleted(boolean deleted) {
-        Utils.checkNotNull(deleted, "deleted");
+    public Job withDeleted(@Nullable Boolean deleted) {
         this.deleted = JsonNullable.of(deleted);
         return this;
     }
 
-    /**
-     * Flag to indicate if the object is deleted.
-     */
-    public Job withDeleted(JsonNullable<Boolean> deleted) {
-        Utils.checkNotNull(deleted, "deleted");
-        this.deleted = deleted;
-        return this;
-    }
 
-    public Job withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public Job withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    public Job withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
-    public Job withPublishedAt(OffsetDateTime publishedAt) {
-        Utils.checkNotNull(publishedAt, "publishedAt");
+    public Job withPublishedAt(@Nullable OffsetDateTime publishedAt) {
         this.publishedAt = JsonNullable.of(publishedAt);
         return this;
     }
 
-    public Job withPublishedAt(JsonNullable<OffsetDateTime> publishedAt) {
-        Utils.checkNotNull(publishedAt, "publishedAt");
-        this.publishedAt = publishedAt;
-        return this;
-    }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public Job withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public Job withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public Job withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The user who last updated the object.
      */
-    public Job withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public Job withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The user who last updated the object.
-     */
-    public Job withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The user who created the object.
      */
-    public Job withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public Job withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The user who created the object.
-     */
-    public Job withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public Job withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Job withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Job withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Job withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Job withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Job withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1574,518 +1144,269 @@ public class Job {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> slug = JsonNullable.undefined();
+        private JsonNullable<String> slug;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private Optional<Long> sequence = Optional.empty();
+        private Long sequence;
 
-        private Optional<? extends Visibility> visibility = Optional.empty();
+        private Visibility visibility;
 
-        private Optional<? extends JobStatus> status = Optional.empty();
+        private JobStatus status;
 
-        private Optional<String> code = Optional.empty();
+        private String code;
 
-        private JsonNullable<String> language = JsonNullable.undefined();
+        private JsonNullable<String> language;
 
-        private JsonNullable<? extends EmploymentTerms> employmentTerms = JsonNullable.undefined();
+        private JsonNullable<EmploymentTerms> employmentTerms;
 
-        private Optional<String> experience = Optional.empty();
+        private String experience;
 
-        private JsonNullable<String> location = JsonNullable.undefined();
+        private JsonNullable<String> location;
 
-        private JsonNullable<Boolean> remote = JsonNullable.undefined();
+        private JsonNullable<Boolean> remote;
 
-        private Optional<String> requisitionId = Optional.empty();
+        private String requisitionId;
 
-        private Optional<? extends Department> department = Optional.empty();
+        private Department department;
 
-        private Optional<? extends Branch> branch = Optional.empty();
+        private Branch branch;
 
-        private JsonNullable<? extends List<String>> recruiters = JsonNullable.undefined();
+        private JsonNullable<List<String>> recruiters;
 
-        private Optional<? extends List<String>> hiringManagers = Optional.empty();
+        private List<String> hiringManagers;
 
-        private JsonNullable<? extends List<String>> followers = JsonNullable.undefined();
+        private JsonNullable<List<String>> followers;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> descriptionHtml = JsonNullable.undefined();
+        private JsonNullable<String> descriptionHtml;
 
-        private Optional<? extends List<Blocks>> blocks = Optional.empty();
+        private List<Blocks> blocks;
 
-        private JsonNullable<String> closing = JsonNullable.undefined();
+        private JsonNullable<String> closing;
 
-        private JsonNullable<String> closingHtml = JsonNullable.undefined();
+        private JsonNullable<String> closingHtml;
 
-        private JsonNullable<LocalDate> closingDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> closingDate;
 
-        private Optional<? extends Salary> salary = Optional.empty();
-
-        @Deprecated
-        private JsonNullable<String> url = JsonNullable.undefined();
+        private Salary salary;
 
         @Deprecated
-        private JsonNullable<String> jobPortalUrl = JsonNullable.undefined();
+        private JsonNullable<String> url;
 
         @Deprecated
-        private JsonNullable<String> recordUrl = JsonNullable.undefined();
+        private JsonNullable<String> jobPortalUrl;
 
-        private Optional<? extends List<JobLinks>> links = Optional.empty();
+        @Deprecated
+        private JsonNullable<String> recordUrl;
 
-        private Optional<Boolean> confidential = Optional.empty();
+        private List<JobLinks> links;
 
-        private Optional<Boolean> availableToEmployees = Optional.empty();
+        private Boolean confidential;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private Boolean availableToEmployees;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private JsonNullable<List<String>> tags;
 
-        private Optional<? extends List<CustomField>> customFields = Optional.empty();
+        private List<Address> addresses;
 
-        private JsonNullable<Boolean> deleted = JsonNullable.undefined();
+        private List<CustomField> customFields;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<Boolean> deleted;
 
-        private JsonNullable<OffsetDateTime> publishedAt = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> publishedAt;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
+
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
-        public Builder slug(String slug) {
-            Utils.checkNotNull(slug, "slug");
+        public Builder slug(@Nullable String slug) {
             this.slug = JsonNullable.of(slug);
             return this;
         }
 
-        public Builder slug(JsonNullable<String> slug) {
-            Utils.checkNotNull(slug, "slug");
-            this.slug = slug;
-            return this;
-        }
-
-
         /**
          * The job title of the person.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the person.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * Sequence in relation to other jobs.
          */
-        public Builder sequence(long sequence) {
-            Utils.checkNotNull(sequence, "sequence");
-            this.sequence = Optional.ofNullable(sequence);
-            return this;
-        }
-
-        /**
-         * Sequence in relation to other jobs.
-         */
-        public Builder sequence(Optional<Long> sequence) {
-            Utils.checkNotNull(sequence, "sequence");
+        public Builder sequence(@Nullable Long sequence) {
             this.sequence = sequence;
             return this;
         }
 
-
         /**
          * The visibility of the job
          */
-        public Builder visibility(Visibility visibility) {
-            Utils.checkNotNull(visibility, "visibility");
-            this.visibility = Optional.ofNullable(visibility);
-            return this;
-        }
-
-        /**
-         * The visibility of the job
-         */
-        public Builder visibility(Optional<? extends Visibility> visibility) {
-            Utils.checkNotNull(visibility, "visibility");
+        public Builder visibility(@Nullable Visibility visibility) {
             this.visibility = visibility;
             return this;
         }
 
-
         /**
          * The status of the job.
          */
-        public Builder status(JobStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The status of the job.
-         */
-        public Builder status(Optional<? extends JobStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable JobStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * The code of the job.
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
-            this.code = Optional.ofNullable(code);
-            return this;
-        }
-
-        /**
-         * The code of the job.
-         */
-        public Builder code(Optional<String> code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = code;
             return this;
         }
 
-
         /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder language(String language) {
-            Utils.checkNotNull(language, "language");
+        public Builder language(@Nullable String language) {
             this.language = JsonNullable.of(language);
             return this;
         }
 
-        /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder language(JsonNullable<String> language) {
-            Utils.checkNotNull(language, "language");
-            this.language = language;
-            return this;
-        }
-
-
-        public Builder employmentTerms(EmploymentTerms employmentTerms) {
-            Utils.checkNotNull(employmentTerms, "employmentTerms");
+        public Builder employmentTerms(@Nullable EmploymentTerms employmentTerms) {
             this.employmentTerms = JsonNullable.of(employmentTerms);
             return this;
         }
 
-        public Builder employmentTerms(JsonNullable<? extends EmploymentTerms> employmentTerms) {
-            Utils.checkNotNull(employmentTerms, "employmentTerms");
-            this.employmentTerms = employmentTerms;
-            return this;
-        }
-
-
         /**
          * Level of experience required for the job role.
          */
-        public Builder experience(String experience) {
-            Utils.checkNotNull(experience, "experience");
-            this.experience = Optional.ofNullable(experience);
-            return this;
-        }
-
-        /**
-         * Level of experience required for the job role.
-         */
-        public Builder experience(Optional<String> experience) {
-            Utils.checkNotNull(experience, "experience");
+        public Builder experience(@Nullable String experience) {
             this.experience = experience;
             return this;
         }
 
-
         /**
          * Specifies the location for the job posting.
          */
-        public Builder location(String location) {
-            Utils.checkNotNull(location, "location");
+        public Builder location(@Nullable String location) {
             this.location = JsonNullable.of(location);
             return this;
         }
 
         /**
-         * Specifies the location for the job posting.
-         */
-        public Builder location(JsonNullable<String> location) {
-            Utils.checkNotNull(location, "location");
-            this.location = location;
-            return this;
-        }
-
-
-        /**
          * Specifies whether the posting is for a remote job.
          */
-        public Builder remote(boolean remote) {
-            Utils.checkNotNull(remote, "remote");
+        public Builder remote(@Nullable Boolean remote) {
             this.remote = JsonNullable.of(remote);
             return this;
         }
 
         /**
-         * Specifies whether the posting is for a remote job.
-         */
-        public Builder remote(JsonNullable<Boolean> remote) {
-            Utils.checkNotNull(remote, "remote");
-            this.remote = remote;
-            return this;
-        }
-
-
-        /**
          * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
          */
-        public Builder requisitionId(String requisitionId) {
-            Utils.checkNotNull(requisitionId, "requisitionId");
-            this.requisitionId = Optional.ofNullable(requisitionId);
-            return this;
-        }
-
-        /**
-         * A job's Requisition ID (Req ID) allows your organization to identify and track a job based on alphanumeric naming conventions unique to your company's internal processes.
-         */
-        public Builder requisitionId(Optional<String> requisitionId) {
-            Utils.checkNotNull(requisitionId, "requisitionId");
+        public Builder requisitionId(@Nullable String requisitionId) {
             this.requisitionId = requisitionId;
             return this;
         }
 
-
-        public Builder department(Department department) {
-            Utils.checkNotNull(department, "department");
-            this.department = Optional.ofNullable(department);
-            return this;
-        }
-
-        public Builder department(Optional<? extends Department> department) {
-            Utils.checkNotNull(department, "department");
+        public Builder department(@Nullable Department department) {
             this.department = department;
             return this;
         }
 
-
         /**
          * Details of the branch for which the job is created.
          */
-        public Builder branch(Branch branch) {
-            Utils.checkNotNull(branch, "branch");
-            this.branch = Optional.ofNullable(branch);
-            return this;
-        }
-
-        /**
-         * Details of the branch for which the job is created.
-         */
-        public Builder branch(Optional<? extends Branch> branch) {
-            Utils.checkNotNull(branch, "branch");
+        public Builder branch(@Nullable Branch branch) {
             this.branch = branch;
             return this;
         }
 
-
         /**
          * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
          */
-        public Builder recruiters(List<String> recruiters) {
-            Utils.checkNotNull(recruiters, "recruiters");
+        public Builder recruiters(@Nullable List<String> recruiters) {
             this.recruiters = JsonNullable.of(recruiters);
             return this;
         }
 
-        /**
-         * The recruiter is generally someone who is tasked to help the hiring manager find and screen qualified applicant
-         */
-        public Builder recruiters(JsonNullable<? extends List<String>> recruiters) {
-            Utils.checkNotNull(recruiters, "recruiters");
-            this.recruiters = recruiters;
-            return this;
-        }
-
-
-        public Builder hiringManagers(List<String> hiringManagers) {
-            Utils.checkNotNull(hiringManagers, "hiringManagers");
-            this.hiringManagers = Optional.ofNullable(hiringManagers);
-            return this;
-        }
-
-        public Builder hiringManagers(Optional<? extends List<String>> hiringManagers) {
-            Utils.checkNotNull(hiringManagers, "hiringManagers");
+        public Builder hiringManagers(@Nullable List<String> hiringManagers) {
             this.hiringManagers = hiringManagers;
             return this;
         }
 
-
-        public Builder followers(List<String> followers) {
-            Utils.checkNotNull(followers, "followers");
+        public Builder followers(@Nullable List<String> followers) {
             this.followers = JsonNullable.of(followers);
             return this;
         }
 
-        public Builder followers(JsonNullable<? extends List<String>> followers) {
-            Utils.checkNotNull(followers, "followers");
-            this.followers = followers;
-            return this;
-        }
-
-
         /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The job description in HTML format
          */
-        public Builder descriptionHtml(String descriptionHtml) {
-            Utils.checkNotNull(descriptionHtml, "descriptionHtml");
+        public Builder descriptionHtml(@Nullable String descriptionHtml) {
             this.descriptionHtml = JsonNullable.of(descriptionHtml);
             return this;
         }
 
-        /**
-         * The job description in HTML format
-         */
-        public Builder descriptionHtml(JsonNullable<String> descriptionHtml) {
-            Utils.checkNotNull(descriptionHtml, "descriptionHtml");
-            this.descriptionHtml = descriptionHtml;
-            return this;
-        }
-
-
-        public Builder blocks(List<Blocks> blocks) {
-            Utils.checkNotNull(blocks, "blocks");
-            this.blocks = Optional.ofNullable(blocks);
-            return this;
-        }
-
-        public Builder blocks(Optional<? extends List<Blocks>> blocks) {
-            Utils.checkNotNull(blocks, "blocks");
+        public Builder blocks(@Nullable List<Blocks> blocks) {
             this.blocks = blocks;
             return this;
         }
 
-
-        public Builder closing(String closing) {
-            Utils.checkNotNull(closing, "closing");
+        public Builder closing(@Nullable String closing) {
             this.closing = JsonNullable.of(closing);
             return this;
         }
 
-        public Builder closing(JsonNullable<String> closing) {
-            Utils.checkNotNull(closing, "closing");
-            this.closing = closing;
-            return this;
-        }
-
-
         /**
          * The closing section of the job description in HTML format
          */
-        public Builder closingHtml(String closingHtml) {
-            Utils.checkNotNull(closingHtml, "closingHtml");
+        public Builder closingHtml(@Nullable String closingHtml) {
             this.closingHtml = JsonNullable.of(closingHtml);
             return this;
         }
 
-        /**
-         * The closing section of the job description in HTML format
-         */
-        public Builder closingHtml(JsonNullable<String> closingHtml) {
-            Utils.checkNotNull(closingHtml, "closingHtml");
-            this.closingHtml = closingHtml;
-            return this;
-        }
-
-
-        public Builder closingDate(LocalDate closingDate) {
-            Utils.checkNotNull(closingDate, "closingDate");
+        public Builder closingDate(@Nullable LocalDate closingDate) {
             this.closingDate = JsonNullable.of(closingDate);
             return this;
         }
 
-        public Builder closingDate(JsonNullable<LocalDate> closingDate) {
-            Utils.checkNotNull(closingDate, "closingDate");
-            this.closingDate = closingDate;
-            return this;
-        }
-
-
-        public Builder salary(Salary salary) {
-            Utils.checkNotNull(salary, "salary");
-            this.salary = Optional.ofNullable(salary);
-            return this;
-        }
-
-        public Builder salary(Optional<? extends Salary> salary) {
-            Utils.checkNotNull(salary, "salary");
+        public Builder salary(@Nullable Salary salary) {
             this.salary = salary;
             return this;
         }
-
 
         /**
          * URL of the job description
@@ -2093,298 +1414,124 @@ public class Job {
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = JsonNullable.of(url);
             return this;
         }
 
         /**
-         * URL of the job description
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder url(JsonNullable<String> url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
-            return this;
-        }
-
-
-        /**
          * URL of the job portal
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder jobPortalUrl(String jobPortalUrl) {
-            Utils.checkNotNull(jobPortalUrl, "jobPortalUrl");
+        public Builder jobPortalUrl(@Nullable String jobPortalUrl) {
             this.jobPortalUrl = JsonNullable.of(jobPortalUrl);
             return this;
         }
 
         /**
-         * URL of the job portal
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder jobPortalUrl(JsonNullable<String> jobPortalUrl) {
-            Utils.checkNotNull(jobPortalUrl, "jobPortalUrl");
-            this.jobPortalUrl = jobPortalUrl;
-            return this;
-        }
-
-
-        /**
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder recordUrl(String recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
+        public Builder recordUrl(@Nullable String recordUrl) {
             this.recordUrl = JsonNullable.of(recordUrl);
             return this;
         }
 
-        /**
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder recordUrl(JsonNullable<String> recordUrl) {
-            Utils.checkNotNull(recordUrl, "recordUrl");
-            this.recordUrl = recordUrl;
-            return this;
-        }
-
-
-        public Builder links(List<JobLinks> links) {
-            Utils.checkNotNull(links, "links");
-            this.links = Optional.ofNullable(links);
-            return this;
-        }
-
-        public Builder links(Optional<? extends List<JobLinks>> links) {
-            Utils.checkNotNull(links, "links");
+        public Builder links(@Nullable List<JobLinks> links) {
             this.links = links;
             return this;
         }
 
-
-        public Builder confidential(boolean confidential) {
-            Utils.checkNotNull(confidential, "confidential");
-            this.confidential = Optional.ofNullable(confidential);
-            return this;
-        }
-
-        public Builder confidential(Optional<Boolean> confidential) {
-            Utils.checkNotNull(confidential, "confidential");
+        public Builder confidential(@Nullable Boolean confidential) {
             this.confidential = confidential;
             return this;
         }
 
-
         /**
          * Specifies whether an employee of the organization can apply for the job.
          */
-        public Builder availableToEmployees(boolean availableToEmployees) {
-            Utils.checkNotNull(availableToEmployees, "availableToEmployees");
-            this.availableToEmployees = Optional.ofNullable(availableToEmployees);
-            return this;
-        }
-
-        /**
-         * Specifies whether an employee of the organization can apply for the job.
-         */
-        public Builder availableToEmployees(Optional<Boolean> availableToEmployees) {
-            Utils.checkNotNull(availableToEmployees, "availableToEmployees");
+        public Builder availableToEmployees(@Nullable Boolean availableToEmployees) {
             this.availableToEmployees = availableToEmployees;
             return this;
         }
 
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = Optional.ofNullable(customFields);
-            return this;
-        }
-
-        public Builder customFields(Optional<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = customFields;
             return this;
         }
 
-
         /**
          * Flag to indicate if the object is deleted.
          */
-        public Builder deleted(boolean deleted) {
-            Utils.checkNotNull(deleted, "deleted");
+        public Builder deleted(@Nullable Boolean deleted) {
             this.deleted = JsonNullable.of(deleted);
             return this;
         }
 
-        /**
-         * Flag to indicate if the object is deleted.
-         */
-        public Builder deleted(JsonNullable<Boolean> deleted) {
-            Utils.checkNotNull(deleted, "deleted");
-            this.deleted = deleted;
-            return this;
-        }
-
-
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        public Builder publishedAt(OffsetDateTime publishedAt) {
-            Utils.checkNotNull(publishedAt, "publishedAt");
+        public Builder publishedAt(@Nullable OffsetDateTime publishedAt) {
             this.publishedAt = JsonNullable.of(publishedAt);
             return this;
         }
 
-        public Builder publishedAt(JsonNullable<OffsetDateTime> publishedAt) {
-            Utils.checkNotNull(publishedAt, "publishedAt");
-            this.publishedAt = publishedAt;
-            return this;
-        }
-
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The user who last updated the object.
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The user who last updated the object.
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The user who created the object.
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The user who created the object.
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public Job build() {
-
             return new Job(
                 id, slug, title,
                 sequence, visibility, status,

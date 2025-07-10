@@ -18,6 +18,8 @@ List Categories
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.CategoriesFilter;
+import com.apideck.unify.models.components.CategoriesFilterType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesAllRequest;
 import com.apideck.unify.models.operations.AccountingCategoriesAllResponse;
@@ -36,6 +38,9 @@ public class Application {
         AccountingCategoriesAllRequest req = AccountingCategoriesAllRequest.builder()
                 .serviceId("salesforce")
                 .fields("id,updated_at")
+                .filter(CategoriesFilter.builder()
+                    .type(CategoriesFilterType.EXPENSE)
+                    .build())
                 .build();
 
         sdk.accounting().categories().list()
@@ -80,6 +85,8 @@ Get Category
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.CategoriesFilter;
+import com.apideck.unify.models.components.CategoriesFilterType;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.AccountingCategoriesOneRequest;
 import com.apideck.unify.models.operations.AccountingCategoriesOneResponse;
@@ -99,6 +106,9 @@ public class Application {
                 .id("<id>")
                 .serviceId("salesforce")
                 .fields("id,updated_at")
+                .filter(CategoriesFilter.builder()
+                    .type(CategoriesFilterType.EXPENSE)
+                    .build())
                 .build();
 
         AccountingCategoriesOneResponse res = sdk.accounting().categories().get()

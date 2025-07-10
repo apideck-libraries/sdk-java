@@ -5,12 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -38,43 +39,40 @@ public class LinkedInvoiceItem {
 
     @JsonCreator
     public LinkedInvoiceItem(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("code") JsonNullable<String> code,
-            @JsonProperty("name") JsonNullable<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(code, "code");
-        Utils.checkNotNull(name, "name");
-        this.id = id;
-        this.code = code;
-        this.name = name;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("code") @Nullable JsonNullable<String> code,
+            @JsonProperty("name") @Nullable JsonNullable<String> name) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.code = Optional.ofNullable(code)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
     }
     
     public LinkedInvoiceItem() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * User defined item code
      */
-    @JsonIgnore
     public JsonNullable<String> code() {
-        return code;
+        return this.code;
     }
 
     /**
      * User defined item name
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     public static Builder builder() {
@@ -85,56 +83,29 @@ public class LinkedInvoiceItem {
     /**
      * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
      */
-    public LinkedInvoiceItem withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedInvoiceItem withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
-     */
-    public LinkedInvoiceItem withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * User defined item code
      */
-    public LinkedInvoiceItem withCode(String code) {
-        Utils.checkNotNull(code, "code");
+    public LinkedInvoiceItem withCode(@Nullable String code) {
         this.code = JsonNullable.of(code);
         return this;
     }
 
-    /**
-     * User defined item code
-     */
-    public LinkedInvoiceItem withCode(JsonNullable<String> code) {
-        Utils.checkNotNull(code, "code");
-        this.code = code;
-        return this;
-    }
 
     /**
      * User defined item name
      */
-    public LinkedInvoiceItem withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedInvoiceItem withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * User defined item name
-     */
-    public LinkedInvoiceItem withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -168,75 +139,41 @@ public class LinkedInvoiceItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> code = JsonNullable.undefined();
+        private JsonNullable<String> code;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * ID of the linked item. A reference to the [invoice item](https://developers.apideck.com/apis/accounting/reference#tag/Invoice-Items) that was used to create this line item
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * User defined item code
          */
-        public Builder code(String code) {
-            Utils.checkNotNull(code, "code");
+        public Builder code(@Nullable String code) {
             this.code = JsonNullable.of(code);
             return this;
         }
 
         /**
-         * User defined item code
-         */
-        public Builder code(JsonNullable<String> code) {
-            Utils.checkNotNull(code, "code");
-            this.code = code;
-            return this;
-        }
-
-
-        /**
          * User defined item name
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * User defined item name
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
         public LinkedInvoiceItem build() {
-
             return new LinkedInvoiceItem(
                 id, code, name);
         }

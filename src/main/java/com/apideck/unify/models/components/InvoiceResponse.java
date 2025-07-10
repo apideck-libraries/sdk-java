@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -21,7 +21,7 @@ public class InvoiceResponse {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The third-party API ID of original entity
@@ -32,32 +32,29 @@ public class InvoiceResponse {
 
     @JsonCreator
     public InvoiceResponse(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("downstream_id") JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(downstreamId, "downstreamId");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("downstream_id") @Nullable JsonNullable<String> downstreamId) {
         this.id = id;
-        this.downstreamId = downstreamId;
+        this.downstreamId = Optional.ofNullable(downstreamId)
+            .orElse(JsonNullable.undefined());
     }
     
     public InvoiceResponse() {
-        this(Optional.empty(), JsonNullable.undefined());
+        this(null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The third-party API ID of original entity
      */
-    @JsonIgnore
     public JsonNullable<String> downstreamId() {
-        return downstreamId;
+        return this.downstreamId;
     }
 
     public static Builder builder() {
@@ -68,39 +65,20 @@ public class InvoiceResponse {
     /**
      * A unique identifier for an object.
      */
-    public InvoiceResponse withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public InvoiceResponse withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public InvoiceResponse withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The third-party API ID of original entity
-     */
-    public InvoiceResponse withDownstreamId(String downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = JsonNullable.of(downstreamId);
-        return this;
-    }
 
     /**
      * The third-party API ID of original entity
      */
-    public InvoiceResponse withDownstreamId(JsonNullable<String> downstreamId) {
-        Utils.checkNotNull(downstreamId, "downstreamId");
-        this.downstreamId = downstreamId;
+    public InvoiceResponse withDownstreamId(@Nullable String downstreamId) {
+        this.downstreamId = JsonNullable.of(downstreamId);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -132,54 +110,31 @@ public class InvoiceResponse {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> downstreamId = JsonNullable.undefined();
+        private JsonNullable<String> downstreamId;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The third-party API ID of original entity
          */
-        public Builder downstreamId(String downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
+        public Builder downstreamId(@Nullable String downstreamId) {
             this.downstreamId = JsonNullable.of(downstreamId);
             return this;
         }
 
-        /**
-         * The third-party API ID of original entity
-         */
-        public Builder downstreamId(JsonNullable<String> downstreamId) {
-            Utils.checkNotNull(downstreamId, "downstreamId");
-            this.downstreamId = downstreamId;
-            return this;
-        }
-
         public InvoiceResponse build() {
-
             return new InvoiceResponse(
                 id, downstreamId);
         }

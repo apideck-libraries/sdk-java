@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -21,25 +22,25 @@ public class AccountingSubsidiariesAddRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -47,64 +48,56 @@ public class AccountingSubsidiariesAddRequest {
 
     @JsonCreator
     public AccountingSubsidiariesAddRequest(
-            Optional<Boolean> raw,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            SubsidiaryInput subsidiary) {
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(subsidiary, "subsidiary");
-        this.raw = raw;
+            @Nullable Boolean raw,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nonnull SubsidiaryInput subsidiary) {
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.subsidiary = subsidiary;
+        this.subsidiary = Optional.ofNullable(subsidiary)
+            .orElseThrow(() -> new IllegalArgumentException("subsidiary cannot be null"));
     }
     
     public AccountingSubsidiariesAddRequest(
-            SubsidiaryInput subsidiary) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), subsidiary);
+            @Nonnull SubsidiaryInput subsidiary) {
+        this(null, null, null,
+            null, subsidiary);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
-    @JsonIgnore
     public SubsidiaryInput subsidiary() {
-        return subsidiary;
+        return this.subsidiary;
     }
 
     public static Builder builder() {
@@ -115,84 +108,44 @@ public class AccountingSubsidiariesAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public AccountingSubsidiariesAddRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public AccountingSubsidiariesAddRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public AccountingSubsidiariesAddRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public AccountingSubsidiariesAddRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingSubsidiariesAddRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public AccountingSubsidiariesAddRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public AccountingSubsidiariesAddRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public AccountingSubsidiariesAddRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public AccountingSubsidiariesAddRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public AccountingSubsidiariesAddRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public AccountingSubsidiariesAddRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public AccountingSubsidiariesAddRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public AccountingSubsidiariesAddRequest withSubsidiary(SubsidiaryInput subsidiary) {
-        Utils.checkNotNull(subsidiary, "subsidiary");
-        this.subsidiary = subsidiary;
+
+    public AccountingSubsidiariesAddRequest withSubsidiary(@Nonnull SubsidiaryInput subsidiary) {
+        this.subsidiary = Utils.checkNotNull(subsidiary, "subsidiary");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -231,13 +184,13 @@ public class AccountingSubsidiariesAddRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
         private SubsidiaryInput subsidiary;
 
@@ -245,104 +198,54 @@ public class AccountingSubsidiariesAddRequest {
           // force use of static builder() method
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
-        public Builder subsidiary(SubsidiaryInput subsidiary) {
-            Utils.checkNotNull(subsidiary, "subsidiary");
-            this.subsidiary = subsidiary;
+        public Builder subsidiary(@Nonnull SubsidiaryInput subsidiary) {
+            this.subsidiary = Utils.checkNotNull(subsidiary, "subsidiary");
             return this;
         }
 
         public AccountingSubsidiariesAddRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new AccountingSubsidiariesAddRequest(
                 raw, consumerId, appId,
                 serviceId, subsidiary);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

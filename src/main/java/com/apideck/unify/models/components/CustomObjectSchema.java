@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,7 +23,7 @@ public class CustomObjectSchema {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The name of the custom object schema
@@ -45,7 +44,7 @@ public class CustomObjectSchema {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
-    private Optional<? extends List<Fields>> fields;
+    private List<Fields> fields;
 
     /**
      * Whether the custom object schema is visible in the UI
@@ -94,140 +93,124 @@ public class CustomObjectSchema {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public CustomObjectSchema(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("fields") Optional<? extends List<Fields>> fields,
-            @JsonProperty("visible") JsonNullable<Boolean> visible,
-            @JsonProperty("active") JsonNullable<Boolean> active,
-            @JsonProperty("created_by") JsonNullable<String> createdBy,
-            @JsonProperty("updated_by") JsonNullable<String> updatedBy,
-            @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("created_at") JsonNullable<String> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(fields, "fields");
-        Utils.checkNotNull(visible, "visible");
-        Utils.checkNotNull(active, "active");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("fields") @Nullable List<Fields> fields,
+            @JsonProperty("visible") @Nullable JsonNullable<Boolean> visible,
+            @JsonProperty("active") @Nullable JsonNullable<Boolean> active,
+            @JsonProperty("created_by") @Nullable JsonNullable<String> createdBy,
+            @JsonProperty("updated_by") @Nullable JsonNullable<String> updatedBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<String> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<String> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.fields = fields;
-        this.visible = visible;
-        this.active = active;
-        this.createdBy = createdBy;
-        this.updatedBy = updatedBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.visible = Optional.ofNullable(visible)
+            .orElse(JsonNullable.undefined());
+        this.active = Optional.ofNullable(active)
+            .orElse(JsonNullable.undefined());
+        this.createdBy = Optional.ofNullable(createdBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedBy = Optional.ofNullable(updatedBy)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public CustomObjectSchema() {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null);
     }
 
     /**
      * The unique identifier of the custom object schema
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The name of the custom object schema
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The description of the custom object schema
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The fields defined in the schema
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Fields>> fields() {
-        return (Optional<List<Fields>>) fields;
+        return Optional.ofNullable(this.fields);
     }
 
     /**
      * Whether the custom object schema is visible in the UI
      */
-    @JsonIgnore
     public JsonNullable<Boolean> visible() {
-        return visible;
+        return this.visible;
     }
 
     /**
      * Whether the custom object schema is active
      */
-    @JsonIgnore
     public JsonNullable<Boolean> active() {
-        return active;
+        return this.active;
     }
 
     /**
      * The ID of the user who created the custom object schema
      */
-    @JsonIgnore
     public JsonNullable<String> createdBy() {
-        return createdBy;
+        return this.createdBy;
     }
 
     /**
      * The ID of the user who last updated the custom object schema
      */
-    @JsonIgnore
     public JsonNullable<String> updatedBy() {
-        return updatedBy;
+        return this.updatedBy;
     }
 
     /**
      * The timestamp when the custom object schema was last updated
      */
-    @JsonIgnore
     public JsonNullable<String> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The timestamp when the custom object schema was created
      */
-    @JsonIgnore
     public JsonNullable<String> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -238,203 +221,101 @@ public class CustomObjectSchema {
     /**
      * The unique identifier of the custom object schema
      */
-    public CustomObjectSchema withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the custom object schema
-     */
-    public CustomObjectSchema withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public CustomObjectSchema withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The name of the custom object schema
      */
-    public CustomObjectSchema withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public CustomObjectSchema withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the custom object schema
-     */
-    public CustomObjectSchema withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
     /**
      * The description of the custom object schema
      */
-    public CustomObjectSchema withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public CustomObjectSchema withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The description of the custom object schema
-     */
-    public CustomObjectSchema withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The fields defined in the schema
      */
-    public CustomObjectSchema withFields(List<Fields> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = Optional.ofNullable(fields);
-        return this;
-    }
-
-
-    /**
-     * The fields defined in the schema
-     */
-    public CustomObjectSchema withFields(Optional<? extends List<Fields>> fields) {
-        Utils.checkNotNull(fields, "fields");
+    public CustomObjectSchema withFields(@Nullable List<Fields> fields) {
         this.fields = fields;
         return this;
     }
 
+
     /**
      * Whether the custom object schema is visible in the UI
      */
-    public CustomObjectSchema withVisible(boolean visible) {
-        Utils.checkNotNull(visible, "visible");
+    public CustomObjectSchema withVisible(@Nullable Boolean visible) {
         this.visible = JsonNullable.of(visible);
         return this;
     }
 
-    /**
-     * Whether the custom object schema is visible in the UI
-     */
-    public CustomObjectSchema withVisible(JsonNullable<Boolean> visible) {
-        Utils.checkNotNull(visible, "visible");
-        this.visible = visible;
-        return this;
-    }
 
     /**
      * Whether the custom object schema is active
      */
-    public CustomObjectSchema withActive(boolean active) {
-        Utils.checkNotNull(active, "active");
+    public CustomObjectSchema withActive(@Nullable Boolean active) {
         this.active = JsonNullable.of(active);
         return this;
     }
 
-    /**
-     * Whether the custom object schema is active
-     */
-    public CustomObjectSchema withActive(JsonNullable<Boolean> active) {
-        Utils.checkNotNull(active, "active");
-        this.active = active;
-        return this;
-    }
 
     /**
      * The ID of the user who created the custom object schema
      */
-    public CustomObjectSchema withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public CustomObjectSchema withCreatedBy(@Nullable String createdBy) {
         this.createdBy = JsonNullable.of(createdBy);
         return this;
     }
 
-    /**
-     * The ID of the user who created the custom object schema
-     */
-    public CustomObjectSchema withCreatedBy(JsonNullable<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = createdBy;
-        return this;
-    }
 
     /**
      * The ID of the user who last updated the custom object schema
      */
-    public CustomObjectSchema withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public CustomObjectSchema withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = JsonNullable.of(updatedBy);
         return this;
     }
 
-    /**
-     * The ID of the user who last updated the custom object schema
-     */
-    public CustomObjectSchema withUpdatedBy(JsonNullable<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = updatedBy;
-        return this;
-    }
 
     /**
      * The timestamp when the custom object schema was last updated
      */
-    public CustomObjectSchema withUpdatedAt(String updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public CustomObjectSchema withUpdatedAt(@Nullable String updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The timestamp when the custom object schema was last updated
-     */
-    public CustomObjectSchema withUpdatedAt(JsonNullable<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The timestamp when the custom object schema was created
      */
-    public CustomObjectSchema withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public CustomObjectSchema withCreatedAt(@Nullable String createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The timestamp when the custom object schema was created
-     */
-    public CustomObjectSchema withCreatedAt(JsonNullable<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public CustomObjectSchema withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public CustomObjectSchema withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public CustomObjectSchema withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -487,243 +368,121 @@ public class CustomObjectSchema {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends List<Fields>> fields = Optional.empty();
+        private List<Fields> fields;
 
-        private JsonNullable<Boolean> visible = JsonNullable.undefined();
+        private JsonNullable<Boolean> visible;
 
-        private JsonNullable<Boolean> active = JsonNullable.undefined();
+        private JsonNullable<Boolean> active;
 
-        private JsonNullable<String> createdBy = JsonNullable.undefined();
+        private JsonNullable<String> createdBy;
 
-        private JsonNullable<String> updatedBy = JsonNullable.undefined();
+        private JsonNullable<String> updatedBy;
 
-        private JsonNullable<String> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> updatedAt;
 
-        private JsonNullable<String> createdAt = JsonNullable.undefined();
+        private JsonNullable<String> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the custom object schema
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the custom object schema
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The name of the custom object schema
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
         /**
-         * The name of the custom object schema
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        /**
          * The description of the custom object schema
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * The description of the custom object schema
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The fields defined in the schema
          */
-        public Builder fields(List<Fields> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = Optional.ofNullable(fields);
-            return this;
-        }
-
-        /**
-         * The fields defined in the schema
-         */
-        public Builder fields(Optional<? extends List<Fields>> fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable List<Fields> fields) {
             this.fields = fields;
             return this;
         }
 
-
         /**
          * Whether the custom object schema is visible in the UI
          */
-        public Builder visible(boolean visible) {
-            Utils.checkNotNull(visible, "visible");
+        public Builder visible(@Nullable Boolean visible) {
             this.visible = JsonNullable.of(visible);
             return this;
         }
 
         /**
-         * Whether the custom object schema is visible in the UI
-         */
-        public Builder visible(JsonNullable<Boolean> visible) {
-            Utils.checkNotNull(visible, "visible");
-            this.visible = visible;
-            return this;
-        }
-
-
-        /**
          * Whether the custom object schema is active
          */
-        public Builder active(boolean active) {
-            Utils.checkNotNull(active, "active");
+        public Builder active(@Nullable Boolean active) {
             this.active = JsonNullable.of(active);
             return this;
         }
 
         /**
-         * Whether the custom object schema is active
-         */
-        public Builder active(JsonNullable<Boolean> active) {
-            Utils.checkNotNull(active, "active");
-            this.active = active;
-            return this;
-        }
-
-
-        /**
          * The ID of the user who created the custom object schema
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = JsonNullable.of(createdBy);
             return this;
         }
 
         /**
-         * The ID of the user who created the custom object schema
-         */
-        public Builder createdBy(JsonNullable<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = createdBy;
-            return this;
-        }
-
-
-        /**
          * The ID of the user who last updated the custom object schema
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = JsonNullable.of(updatedBy);
             return this;
         }
 
         /**
-         * The ID of the user who last updated the custom object schema
-         */
-        public Builder updatedBy(JsonNullable<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = updatedBy;
-            return this;
-        }
-
-
-        /**
          * The timestamp when the custom object schema was last updated
          */
-        public Builder updatedAt(String updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable String updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The timestamp when the custom object schema was last updated
-         */
-        public Builder updatedAt(JsonNullable<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The timestamp when the custom object schema was created
          */
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable String createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The timestamp when the custom object schema was created
-         */
-        public Builder createdAt(JsonNullable<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public CustomObjectSchema build() {
-
             return new CustomObjectSchema(
                 id, name, description,
                 fields, visible, active,

@@ -7,13 +7,13 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -30,31 +30,31 @@ public class HrisEmployeeSchedulesAllRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=pass_through")
-    private Optional<? extends Map<String, Object>> passThrough;
+    private Map<String, Object> passThrough;
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
@@ -64,91 +64,79 @@ public class HrisEmployeeSchedulesAllRequest {
 
     @JsonCreator
     public HrisEmployeeSchedulesAllRequest(
-            String employeeId,
-            Optional<Boolean> raw,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<? extends Map<String, Object>> passThrough,
-            JsonNullable<String> fields) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(passThrough, "passThrough");
-        Utils.checkNotNull(fields, "fields");
-        this.employeeId = employeeId;
-        this.raw = raw;
+            @Nonnull String employeeId,
+            @Nullable Boolean raw,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Map<String, Object> passThrough,
+            @Nullable JsonNullable<String> fields) {
+        this.employeeId = Optional.ofNullable(employeeId)
+            .orElseThrow(() -> new IllegalArgumentException("employeeId cannot be null"));
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.passThrough = passThrough;
-        this.fields = fields;
+        this.fields = Optional.ofNullable(fields)
+            .orElse(JsonNullable.undefined());
     }
     
     public HrisEmployeeSchedulesAllRequest(
-            String employeeId) {
-        this(employeeId, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined());
+            @Nonnull String employeeId) {
+        this(employeeId, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * ID of the employee you are acting upon.
      */
-    @JsonIgnore
     public String employeeId() {
-        return employeeId;
+        return this.employeeId;
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Map<String, Object>> passThrough() {
-        return (Optional<Map<String, Object>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    @JsonIgnore
     public JsonNullable<String> fields() {
-        return fields;
+        return this.fields;
     }
 
     public static Builder builder() {
@@ -159,18 +147,8 @@ public class HrisEmployeeSchedulesAllRequest {
     /**
      * ID of the employee you are acting upon.
      */
-    public HrisEmployeeSchedulesAllRequest withEmployeeId(String employeeId) {
-        Utils.checkNotNull(employeeId, "employeeId");
-        this.employeeId = employeeId;
-        return this;
-    }
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public HrisEmployeeSchedulesAllRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
+    public HrisEmployeeSchedulesAllRequest withEmployeeId(@Nonnull String employeeId) {
+        this.employeeId = Utils.checkNotNull(employeeId, "employeeId");
         return this;
     }
 
@@ -178,105 +156,56 @@ public class HrisEmployeeSchedulesAllRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public HrisEmployeeSchedulesAllRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public HrisEmployeeSchedulesAllRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public HrisEmployeeSchedulesAllRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public HrisEmployeeSchedulesAllRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public HrisEmployeeSchedulesAllRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public HrisEmployeeSchedulesAllRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public HrisEmployeeSchedulesAllRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public HrisEmployeeSchedulesAllRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public HrisEmployeeSchedulesAllRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public HrisEmployeeSchedulesAllRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public HrisEmployeeSchedulesAllRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
-     */
-    public HrisEmployeeSchedulesAllRequest withPassThrough(Map<String, Object> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
 
     /**
      * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
      */
-    public HrisEmployeeSchedulesAllRequest withPassThrough(Optional<? extends Map<String, Object>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public HrisEmployeeSchedulesAllRequest withPassThrough(@Nullable Map<String, Object> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
 
-    /**
-     * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-     */
-    public HrisEmployeeSchedulesAllRequest withFields(String fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = JsonNullable.of(fields);
-        return this;
-    }
 
     /**
      * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
      */
-    public HrisEmployeeSchedulesAllRequest withFields(JsonNullable<String> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = fields;
+    public HrisEmployeeSchedulesAllRequest withFields(@Nullable String fields) {
+        this.fields = JsonNullable.of(fields);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -322,151 +251,79 @@ public class HrisEmployeeSchedulesAllRequest {
 
         private String employeeId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<? extends Map<String, Object>> passThrough = Optional.empty();
+        private Map<String, Object> passThrough;
 
-        private JsonNullable<String> fields = JsonNullable.undefined();
+        private JsonNullable<String> fields;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the employee you are acting upon.
          */
-        public Builder employeeId(String employeeId) {
-            Utils.checkNotNull(employeeId, "employeeId");
-            this.employeeId = employeeId;
-            return this;
-        }
-
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
+        public Builder employeeId(@Nonnull String employeeId) {
+            this.employeeId = Utils.checkNotNull(employeeId, "employeeId");
             return this;
         }
 
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
          */
-        public Builder passThrough(Map<String, Object> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * Optional unmapped key/values that will be passed through to downstream as query parameters. Ie: ?pass_through[search]=leads becomes ?search=leads
-         */
-        public Builder passThrough(Optional<? extends Map<String, Object>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable Map<String, Object> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
-
         /**
          * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
          */
-        public Builder fields(String fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable String fields) {
             this.fields = JsonNullable.of(fields);
             return this;
         }
 
-        /**
-         * The 'fields' parameter allows API users to specify the fields they want to include in the API response. If this parameter is not present, the API will return all available fields. If this parameter is present, only the fields specified in the comma-separated string will be included in the response. Nested properties can also be requested by using a dot notation. &lt;br /&gt;&lt;br /&gt;Example: `fields=name,email,addresses.city`&lt;br /&gt;&lt;br /&gt;In the example above, the response will only include the fields "name", "email" and "addresses.city". If any other fields are available, they will be excluded.
-         */
-        public Builder fields(JsonNullable<String> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = fields;
-            return this;
-        }
-
         public HrisEmployeeSchedulesAllRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new HrisEmployeeSchedulesAllRequest(
                 employeeId, raw, consumerId,
                 appId, serviceId, passThrough,
@@ -474,10 +331,10 @@ public class HrisEmployeeSchedulesAllRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

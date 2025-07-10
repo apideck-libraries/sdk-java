@@ -6,7 +6,7 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -16,51 +16,45 @@ import java.util.Optional;
 public class InvoicesFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
 
     @SpeakeasyMetadata("queryParam:name=created_since")
-    private Optional<OffsetDateTime> createdSince;
+    private OffsetDateTime createdSince;
 
     /**
      * Invoice number to search for
      */
     @SpeakeasyMetadata("queryParam:name=number")
-    private Optional<String> number;
+    private String number;
 
     @JsonCreator
     public InvoicesFilter(
-            Optional<OffsetDateTime> updatedSince,
-            Optional<OffsetDateTime> createdSince,
-            Optional<String> number) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(createdSince, "createdSince");
-        Utils.checkNotNull(number, "number");
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable OffsetDateTime createdSince,
+            @Nullable String number) {
         this.updatedSince = updatedSince;
         this.createdSince = createdSince;
         this.number = number;
     }
     
     public InvoicesFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> createdSince() {
-        return createdSince;
+        return Optional.ofNullable(this.createdSince);
     }
 
     /**
      * Invoice number to search for
      */
-    @JsonIgnore
     public Optional<String> number() {
-        return number;
+        return Optional.ofNullable(this.number);
     }
 
     public static Builder builder() {
@@ -68,50 +62,26 @@ public class InvoicesFilter {
     }
 
 
-    public InvoicesFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
-
-    public InvoicesFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public InvoicesFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    public InvoicesFilter withCreatedSince(OffsetDateTime createdSince) {
-        Utils.checkNotNull(createdSince, "createdSince");
-        this.createdSince = Optional.ofNullable(createdSince);
-        return this;
-    }
 
-
-    public InvoicesFilter withCreatedSince(Optional<OffsetDateTime> createdSince) {
-        Utils.checkNotNull(createdSince, "createdSince");
+    public InvoicesFilter withCreatedSince(@Nullable OffsetDateTime createdSince) {
         this.createdSince = createdSince;
         return this;
     }
 
-    /**
-     * Invoice number to search for
-     */
-    public InvoicesFilter withNumber(String number) {
-        Utils.checkNotNull(number, "number");
-        this.number = Optional.ofNullable(number);
-        return this;
-    }
-
 
     /**
      * Invoice number to search for
      */
-    public InvoicesFilter withNumber(Optional<String> number) {
-        Utils.checkNotNull(number, "number");
+    public InvoicesFilter withNumber(@Nullable String number) {
         this.number = number;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -145,63 +115,35 @@ public class InvoicesFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<OffsetDateTime> createdSince = Optional.empty();
+        private OffsetDateTime createdSince;
 
-        private Optional<String> number = Optional.empty();
+        private String number;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
-        public Builder createdSince(OffsetDateTime createdSince) {
-            Utils.checkNotNull(createdSince, "createdSince");
-            this.createdSince = Optional.ofNullable(createdSince);
-            return this;
-        }
-
-        public Builder createdSince(Optional<OffsetDateTime> createdSince) {
-            Utils.checkNotNull(createdSince, "createdSince");
+        public Builder createdSince(@Nullable OffsetDateTime createdSince) {
             this.createdSince = createdSince;
             return this;
         }
 
-
         /**
          * Invoice number to search for
          */
-        public Builder number(String number) {
-            Utils.checkNotNull(number, "number");
-            this.number = Optional.ofNullable(number);
-            return this;
-        }
-
-        /**
-         * Invoice number to search for
-         */
-        public Builder number(Optional<String> number) {
-            Utils.checkNotNull(number, "number");
+        public Builder number(@Nullable String number) {
             this.number = number;
             return this;
         }
 
         public InvoicesFilter build() {
-
             return new InvoicesFilter(
                 updatedSince, createdSince, number);
         }

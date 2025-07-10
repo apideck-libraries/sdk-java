@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmOpportunitiesDeleteOperation;
 import com.apideck.unify.operations.CrmOpportunitiesOneOperation;
 import com.apideck.unify.operations.CrmOpportunitiesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesAllResponse list(CrmOpportunitiesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmOpportunitiesAllResponse list(@Nonnull CrmOpportunitiesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Opportunities {
      * @throws Exception if the API call fails
      */
     public CrmOpportunitiesAllResponse list(
-            CrmOpportunitiesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmOpportunitiesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
               = new CrmOpportunitiesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesAddResponse create(CrmOpportunitiesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmOpportunitiesAddResponse create(@Nonnull CrmOpportunitiesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Opportunities {
      * @throws Exception if the API call fails
      */
     public CrmOpportunitiesAddResponse create(
-            CrmOpportunitiesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmOpportunitiesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
               = new CrmOpportunitiesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesOneResponse get(CrmOpportunitiesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmOpportunitiesOneResponse get(@Nonnull CrmOpportunitiesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Opportunities {
      * @throws Exception if the API call fails
      */
     public CrmOpportunitiesOneResponse get(
-            CrmOpportunitiesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmOpportunitiesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
               = new CrmOpportunitiesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesUpdateResponse update(CrmOpportunitiesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmOpportunitiesUpdateResponse update(@Nonnull CrmOpportunitiesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Opportunities {
      * @throws Exception if the API call fails
      */
     public CrmOpportunitiesUpdateResponse update(
-            CrmOpportunitiesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmOpportunitiesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
               = new CrmOpportunitiesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesDeleteResponse delete(CrmOpportunitiesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmOpportunitiesDeleteResponse delete(@Nonnull CrmOpportunitiesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Opportunities {
      * @throws Exception if the API call fails
      */
     public CrmOpportunitiesDeleteResponse delete(
-            CrmOpportunitiesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmOpportunitiesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation
               = new CrmOpportunitiesDeleteOperation(
                 sdkConfiguration,

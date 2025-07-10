@@ -7,10 +7,10 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
-import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -27,19 +27,19 @@ public class FileStorageUploadSessionsUploadRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Part number of the file part being uploaded.
@@ -51,13 +51,13 @@ public class FileStorageUploadSessionsUploadRequest {
      * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=digest")
-    private Optional<String> digest;
+    private String digest;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
 
     @SpeakeasyMetadata("request:mediaType=*/*")
@@ -65,100 +65,87 @@ public class FileStorageUploadSessionsUploadRequest {
 
     @JsonCreator
     public FileStorageUploadSessionsUploadRequest(
-            String id,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
+            @Nonnull String id,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
             double partNumber,
-            Optional<String> digest,
-            Optional<Boolean> raw,
-            byte[] requestBody) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(partNumber, "partNumber");
-        Utils.checkNotNull(digest, "digest");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.id = id;
+            @Nullable String digest,
+            @Nullable Boolean raw,
+            @Nonnull byte[] requestBody) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.partNumber = partNumber;
         this.digest = digest;
-        this.raw = raw;
-        this.requestBody = requestBody;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.requestBody = Optional.ofNullable(requestBody)
+            .orElseThrow(() -> new IllegalArgumentException("requestBody cannot be null"));
     }
     
     public FileStorageUploadSessionsUploadRequest(
-            String id,
+            @Nonnull String id,
             double partNumber,
-            byte[] requestBody) {
-        this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), partNumber, Optional.empty(),
-            Optional.empty(), requestBody);
+            @Nonnull byte[] requestBody) {
+        this(id, null, null,
+            null, partNumber, null,
+            null, requestBody);
     }
 
     /**
      * ID of the record you are acting upon.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Part number of the file part being uploaded.
      */
-    @JsonIgnore
     public double partNumber() {
-        return partNumber;
+        return this.partNumber;
     }
 
     /**
      * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
-    @JsonIgnore
     public Optional<String> digest() {
-        return digest;
+        return Optional.ofNullable(this.digest);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
-    @JsonIgnore
     public byte[] requestBody() {
-        return requestBody;
+        return this.requestBody;
     }
 
     public static Builder builder() {
@@ -169,18 +156,8 @@ public class FileStorageUploadSessionsUploadRequest {
     /**
      * ID of the record you are acting upon.
      */
-    public FileStorageUploadSessionsUploadRequest withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public FileStorageUploadSessionsUploadRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public FileStorageUploadSessionsUploadRequest withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
 
@@ -188,102 +165,62 @@ public class FileStorageUploadSessionsUploadRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageUploadSessionsUploadRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public FileStorageUploadSessionsUploadRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public FileStorageUploadSessionsUploadRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public FileStorageUploadSessionsUploadRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public FileStorageUploadSessionsUploadRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public FileStorageUploadSessionsUploadRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public FileStorageUploadSessionsUploadRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public FileStorageUploadSessionsUploadRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
+
 
     /**
      * Part number of the file part being uploaded.
      */
     public FileStorageUploadSessionsUploadRequest withPartNumber(double partNumber) {
-        Utils.checkNotNull(partNumber, "partNumber");
         this.partNumber = partNumber;
         return this;
     }
 
-    /**
-     * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
-     */
-    public FileStorageUploadSessionsUploadRequest withDigest(String digest) {
-        Utils.checkNotNull(digest, "digest");
-        this.digest = Optional.ofNullable(digest);
-        return this;
-    }
-
 
     /**
      * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
      */
-    public FileStorageUploadSessionsUploadRequest withDigest(Optional<String> digest) {
-        Utils.checkNotNull(digest, "digest");
+    public FileStorageUploadSessionsUploadRequest withDigest(@Nullable String digest) {
         this.digest = digest;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public FileStorageUploadSessionsUploadRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public FileStorageUploadSessionsUploadRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public FileStorageUploadSessionsUploadRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    public FileStorageUploadSessionsUploadRequest withRequestBody(byte[] requestBody) {
-        Utils.checkNotNull(requestBody, "requestBody");
-        this.requestBody = requestBody;
+
+    public FileStorageUploadSessionsUploadRequest withRequestBody(@Nonnull byte[] requestBody) {
+        this.requestBody = Utils.checkNotNull(requestBody, "requestBody");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -331,17 +268,17 @@ public class FileStorageUploadSessionsUploadRequest {
 
         private String id;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Double partNumber;
+        private double partNumber;
 
-        private Optional<String> digest = Optional.empty();
+        private String digest;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
         private byte[] requestBody;
 
@@ -349,133 +286,68 @@ public class FileStorageUploadSessionsUploadRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the record you are acting upon.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
-
 
         /**
          * Part number of the file part being uploaded.
          */
         public Builder partNumber(double partNumber) {
-            Utils.checkNotNull(partNumber, "partNumber");
             this.partNumber = partNumber;
             return this;
         }
 
-
         /**
          * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
          */
-        public Builder digest(String digest) {
-            Utils.checkNotNull(digest, "digest");
-            this.digest = Optional.ofNullable(digest);
-            return this;
-        }
-
-        /**
-         * The RFC3230 message digest of the uploaded part. Only required for the Box connector. More information on the Box API docs [here](https://developer.box.com/reference/put-files-upload-sessions-id/#param-digest)
-         */
-        public Builder digest(Optional<String> digest) {
-            Utils.checkNotNull(digest, "digest");
+        public Builder digest(@Nullable String digest) {
             this.digest = digest;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
-        public Builder requestBody(byte[] requestBody) {
-            Utils.checkNotNull(requestBody, "requestBody");
-            this.requestBody = requestBody;
+        public Builder requestBody(@Nonnull byte[] requestBody) {
+            this.requestBody = Utils.checkNotNull(requestBody, "requestBody");
             return this;
         }
 
         public FileStorageUploadSessionsUploadRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new FileStorageUploadSessionsUploadRequest(
                 id, consumerId, appId,
                 serviceId, partNumber, digest,
@@ -483,10 +355,10 @@ public class FileStorageUploadSessionsUploadRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -24,43 +24,39 @@ public class Branch {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the branch.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     @JsonCreator
     public Branch(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name) {
         this.id = id;
         this.name = name;
     }
     
     public Branch() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the branch.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     public static Builder builder() {
@@ -71,40 +67,20 @@ public class Branch {
     /**
      * A unique identifier for an object.
      */
-    public Branch withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public Branch withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Branch withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the branch.
-     */
-    public Branch withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the branch.
      */
-    public Branch withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Branch withName(@Nullable String name) {
         this.name = name;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -136,54 +112,31 @@ public class Branch {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the branch.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the branch.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
         public Branch build() {
-
             return new Branch(
                 id, name);
         }

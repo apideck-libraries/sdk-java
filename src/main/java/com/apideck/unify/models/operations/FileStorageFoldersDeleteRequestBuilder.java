@@ -10,47 +10,46 @@ import com.apideck.unify.operations.FileStorageFoldersDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class FileStorageFoldersDeleteRequestBuilder {
-
-    private FileStorageFoldersDeleteRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private FileStorageFoldersDeleteRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public FileStorageFoldersDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public FileStorageFoldersDeleteRequestBuilder request(FileStorageFoldersDeleteRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public FileStorageFoldersDeleteRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public FileStorageFoldersDeleteRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public FileStorageFoldersDeleteRequestBuilder request(@Nonnull FileStorageFoldersDeleteRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private FileStorageFoldersDeleteRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public FileStorageFoldersDeleteResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
               = new FileStorageFoldersDeleteOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

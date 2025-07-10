@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -18,26 +17,23 @@ public class ApisFilter {
      * Status of the API. APIs with status live or beta are callable.
      */
     @SpeakeasyMetadata("queryParam:name=status")
-    private Optional<? extends ApiStatus> status;
+    private ApiStatus status;
 
     @JsonCreator
     public ApisFilter(
-            Optional<? extends ApiStatus> status) {
-        Utils.checkNotNull(status, "status");
+            @Nullable ApiStatus status) {
         this.status = status;
     }
     
     public ApisFilter() {
-        this(Optional.empty());
+        this(null);
     }
 
     /**
      * Status of the API. APIs with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ApiStatus> status() {
-        return (Optional<ApiStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     public static Builder builder() {
@@ -48,21 +44,11 @@ public class ApisFilter {
     /**
      * Status of the API. APIs with status live or beta are callable.
      */
-    public ApisFilter withStatus(ApiStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
-
-    /**
-     * Status of the API. APIs with status live or beta are callable.
-     */
-    public ApisFilter withStatus(Optional<? extends ApiStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public ApisFilter withStatus(@Nullable ApiStatus status) {
         this.status = status;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -92,33 +78,21 @@ public class ApisFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends ApiStatus> status = Optional.empty();
+        private ApiStatus status;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Status of the API. APIs with status live or beta are callable.
          */
-        public Builder status(ApiStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the API. APIs with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ApiStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ApiStatus status) {
             this.status = status;
             return this;
         }
 
         public ApisFilter build() {
-
             return new ApisFilter(
                 status);
         }

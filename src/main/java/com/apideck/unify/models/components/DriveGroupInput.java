@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -43,61 +43,55 @@ public class DriveGroupInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public DriveGroupInput(
-            @JsonProperty("name") String name,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.name = name;
-        this.displayName = displayName;
-        this.description = description;
+            @JsonProperty("name") @Nonnull String name,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public DriveGroupInput(
-            String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            @Nonnull String name) {
+        this(name, null, null,
+            null);
     }
 
     /**
      * The name of the drive group
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The display name of the drive group
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -108,66 +102,38 @@ public class DriveGroupInput {
     /**
      * The name of the drive group
      */
-    public DriveGroupInput withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public DriveGroupInput withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
+
 
     /**
      * The display name of the drive group
      */
-    public DriveGroupInput withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public DriveGroupInput withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The display name of the drive group
-     */
-    public DriveGroupInput withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
     /**
      * A description of the object.
      */
-    public DriveGroupInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public DriveGroupInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public DriveGroupInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public DriveGroupInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public DriveGroupInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public DriveGroupInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -206,85 +172,49 @@ public class DriveGroupInput {
 
         private String name;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The name of the drive group
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
-
 
         /**
          * The display name of the drive group
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
         /**
-         * The display name of the drive group
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public DriveGroupInput build() {
-
             return new DriveGroupInput(
                 name, displayName, description,
                 passThrough);

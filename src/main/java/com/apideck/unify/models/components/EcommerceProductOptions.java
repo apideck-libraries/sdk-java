@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -35,45 +34,40 @@ public class EcommerceProductOptions {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("values")
-    private Optional<? extends List<String>> values;
+    private List<String> values;
 
     @JsonCreator
     public EcommerceProductOptions(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("values") Optional<? extends List<String>> values) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(values, "values");
-        this.id = id;
-        this.name = name;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("values") @Nullable List<String> values) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
         this.values = values;
     }
     
     public EcommerceProductOptions() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * A unique identifier for the option of the product.
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The name of the option for the product.
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> values() {
-        return (Optional<List<String>>) values;
+        return Optional.ofNullable(this.values);
     }
 
     public static Builder builder() {
@@ -84,51 +78,26 @@ public class EcommerceProductOptions {
     /**
      * A unique identifier for the option of the product.
      */
-    public EcommerceProductOptions withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public EcommerceProductOptions withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * A unique identifier for the option of the product.
-     */
-    public EcommerceProductOptions withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The name of the option for the product.
      */
-    public EcommerceProductOptions withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public EcommerceProductOptions withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the option for the product.
-     */
-    public EcommerceProductOptions withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
-    public EcommerceProductOptions withValues(List<String> values) {
-        Utils.checkNotNull(values, "values");
-        this.values = Optional.ofNullable(values);
-        return this;
-    }
-
-
-    public EcommerceProductOptions withValues(Optional<? extends List<String>> values) {
-        Utils.checkNotNull(values, "values");
+    public EcommerceProductOptions withValues(@Nullable List<String> values) {
         this.values = values;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -162,69 +131,38 @@ public class EcommerceProductOptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private Optional<? extends List<String>> values = Optional.empty();
+        private List<String> values;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for the option of the product.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * A unique identifier for the option of the product.
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The name of the option for the product.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * The name of the option for the product.
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        public Builder values(List<String> values) {
-            Utils.checkNotNull(values, "values");
-            this.values = Optional.ofNullable(values);
-            return this;
-        }
-
-        public Builder values(Optional<? extends List<String>> values) {
-            Utils.checkNotNull(values, "values");
+        public Builder values(@Nullable List<String> values) {
             this.values = values;
             return this;
         }
 
         public EcommerceProductOptions build() {
-
             return new EcommerceProductOptions(
                 id, name, values);
         }

@@ -15,56 +15,55 @@ import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
 import com.apideck.unify.utils.pagination.CursorTracker;
 import com.apideck.unify.utils.pagination.Paginator;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Iterable;
 import java.lang.String;
 import java.net.http.HttpResponse;
 import java.util.Iterator;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 public class AtsApplicationsAllRequestBuilder {
-
-    private AtsApplicationsAllRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private AtsApplicationsAllRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public AtsApplicationsAllRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public AtsApplicationsAllRequestBuilder request(AtsApplicationsAllRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public AtsApplicationsAllRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public AtsApplicationsAllRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public AtsApplicationsAllRequestBuilder request(@Nonnull AtsApplicationsAllRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private AtsApplicationsAllRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public AtsApplicationsAllResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
               = new AtsApplicationsAllOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
-
+    
     /**
     * Returns an iterable that performs next page calls till no more pages
     * are returned.
@@ -79,29 +78,27 @@ public class AtsApplicationsAllRequestBuilder {
     * @return An iterable that can be used to iterate through all pages
     */
     public Iterable<AtsApplicationsAllResponse> callAsIterable() {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
-        RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
-              = new AtsApplicationsAllOperation(
-                sdkConfiguration,
-                options);
+        AtsApplicationsAllRequest request = this.request;
+        Options options = optionsBuilder.build();
+        RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation =
+                new AtsApplicationsAllOperation(
+                    sdkConfiguration,
+                    options);
+        
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),
-                AtsApplicationsAllRequest::withCursor,
+            AtsApplicationsAllRequest::withCursor,
             nextRequest -> unchecked(() -> operation.doRequest(request)).get());
-        
+
         return () -> transform(iterator, operation::handleResponse);
     }
 
     /**
-     * Returns a stream that performs next page calls till no more pages
-     * are returned.
-     **/  
+    * Returns a stream that performs next page calls till no more pages
+    * are returned.
+    **/  
     public Stream<AtsApplicationsAllResponse> callAsStream() {
         return toStream(callAsIterable());
     }
-
 }

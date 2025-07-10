@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -24,84 +23,75 @@ public class BankFeedStatementInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("bank_feed_account_id")
-    private Optional<String> bankFeedAccountId;
+    private String bankFeedAccountId;
 
     /**
      * The current status of the bank feed statement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends StatementStatus> status;
+    private StatementStatus status;
 
     /**
      * Start date of the bank feed statement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_date")
-    private Optional<OffsetDateTime> startDate;
+    private OffsetDateTime startDate;
 
     /**
      * End date of the bank feed statement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_date")
-    private Optional<OffsetDateTime> endDate;
+    private OffsetDateTime endDate;
 
     /**
      * Balance amount at the start of the period.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_balance")
-    private Optional<Double> startBalance;
+    private Double startBalance;
 
     /**
      * Whether the amount is a credit or debit.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("start_balance_credit_or_debit")
-    private Optional<? extends CreditOrDebit> startBalanceCreditOrDebit;
+    private CreditOrDebit startBalanceCreditOrDebit;
 
     /**
      * Balance amount at the end of the period.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_balance")
-    private Optional<Double> endBalance;
+    private Double endBalance;
 
     /**
      * Whether the amount is a credit or debit.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("end_balance_credit_or_debit")
-    private Optional<? extends CreditOrDebit> endBalanceCreditOrDebit;
+    private CreditOrDebit endBalanceCreditOrDebit;
 
     /**
      * List of transactions in the bank feed statement.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("transactions")
-    private Optional<? extends List<Transactions>> transactions;
+    private List<Transactions> transactions;
 
     @JsonCreator
     public BankFeedStatementInput(
-            @JsonProperty("bank_feed_account_id") Optional<String> bankFeedAccountId,
-            @JsonProperty("status") Optional<? extends StatementStatus> status,
-            @JsonProperty("start_date") Optional<OffsetDateTime> startDate,
-            @JsonProperty("end_date") Optional<OffsetDateTime> endDate,
-            @JsonProperty("start_balance") Optional<Double> startBalance,
-            @JsonProperty("start_balance_credit_or_debit") Optional<? extends CreditOrDebit> startBalanceCreditOrDebit,
-            @JsonProperty("end_balance") Optional<Double> endBalance,
-            @JsonProperty("end_balance_credit_or_debit") Optional<? extends CreditOrDebit> endBalanceCreditOrDebit,
-            @JsonProperty("transactions") Optional<? extends List<Transactions>> transactions) {
-        Utils.checkNotNull(bankFeedAccountId, "bankFeedAccountId");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(startBalance, "startBalance");
-        Utils.checkNotNull(startBalanceCreditOrDebit, "startBalanceCreditOrDebit");
-        Utils.checkNotNull(endBalance, "endBalance");
-        Utils.checkNotNull(endBalanceCreditOrDebit, "endBalanceCreditOrDebit");
-        Utils.checkNotNull(transactions, "transactions");
+            @JsonProperty("bank_feed_account_id") @Nullable String bankFeedAccountId,
+            @JsonProperty("status") @Nullable StatementStatus status,
+            @JsonProperty("start_date") @Nullable OffsetDateTime startDate,
+            @JsonProperty("end_date") @Nullable OffsetDateTime endDate,
+            @JsonProperty("start_balance") @Nullable Double startBalance,
+            @JsonProperty("start_balance_credit_or_debit") @Nullable CreditOrDebit startBalanceCreditOrDebit,
+            @JsonProperty("end_balance") @Nullable Double endBalance,
+            @JsonProperty("end_balance_credit_or_debit") @Nullable CreditOrDebit endBalanceCreditOrDebit,
+            @JsonProperty("transactions") @Nullable List<Transactions> transactions) {
         this.bankFeedAccountId = bankFeedAccountId;
         this.status = status;
         this.startDate = startDate;
@@ -114,85 +104,72 @@ public class BankFeedStatementInput {
     }
     
     public BankFeedStatementInput() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The ID of the bank feed account this statement belongs to.
      */
-    @JsonIgnore
     public Optional<String> bankFeedAccountId() {
-        return bankFeedAccountId;
+        return Optional.ofNullable(this.bankFeedAccountId);
     }
 
     /**
      * The current status of the bank feed statement.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<StatementStatus> status() {
-        return (Optional<StatementStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * Start date of the bank feed statement.
      */
-    @JsonIgnore
     public Optional<OffsetDateTime> startDate() {
-        return startDate;
+        return Optional.ofNullable(this.startDate);
     }
 
     /**
      * End date of the bank feed statement.
      */
-    @JsonIgnore
     public Optional<OffsetDateTime> endDate() {
-        return endDate;
+        return Optional.ofNullable(this.endDate);
     }
 
     /**
      * Balance amount at the start of the period.
      */
-    @JsonIgnore
     public Optional<Double> startBalance() {
-        return startBalance;
+        return Optional.ofNullable(this.startBalance);
     }
 
     /**
      * Whether the amount is a credit or debit.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CreditOrDebit> startBalanceCreditOrDebit() {
-        return (Optional<CreditOrDebit>) startBalanceCreditOrDebit;
+        return Optional.ofNullable(this.startBalanceCreditOrDebit);
     }
 
     /**
      * Balance amount at the end of the period.
      */
-    @JsonIgnore
     public Optional<Double> endBalance() {
-        return endBalance;
+        return Optional.ofNullable(this.endBalance);
     }
 
     /**
      * Whether the amount is a credit or debit.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CreditOrDebit> endBalanceCreditOrDebit() {
-        return (Optional<CreditOrDebit>) endBalanceCreditOrDebit;
+        return Optional.ofNullable(this.endBalanceCreditOrDebit);
     }
 
     /**
      * List of transactions in the bank feed statement.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Transactions>> transactions() {
-        return (Optional<List<Transactions>>) transactions;
+        return Optional.ofNullable(this.transactions);
     }
 
     public static Builder builder() {
@@ -203,173 +180,83 @@ public class BankFeedStatementInput {
     /**
      * The ID of the bank feed account this statement belongs to.
      */
-    public BankFeedStatementInput withBankFeedAccountId(String bankFeedAccountId) {
-        Utils.checkNotNull(bankFeedAccountId, "bankFeedAccountId");
-        this.bankFeedAccountId = Optional.ofNullable(bankFeedAccountId);
-        return this;
-    }
-
-
-    /**
-     * The ID of the bank feed account this statement belongs to.
-     */
-    public BankFeedStatementInput withBankFeedAccountId(Optional<String> bankFeedAccountId) {
-        Utils.checkNotNull(bankFeedAccountId, "bankFeedAccountId");
+    public BankFeedStatementInput withBankFeedAccountId(@Nullable String bankFeedAccountId) {
         this.bankFeedAccountId = bankFeedAccountId;
         return this;
     }
 
-    /**
-     * The current status of the bank feed statement.
-     */
-    public BankFeedStatementInput withStatus(StatementStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * The current status of the bank feed statement.
      */
-    public BankFeedStatementInput withStatus(Optional<? extends StatementStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public BankFeedStatementInput withStatus(@Nullable StatementStatus status) {
         this.status = status;
         return this;
     }
 
-    /**
-     * Start date of the bank feed statement.
-     */
-    public BankFeedStatementInput withStartDate(OffsetDateTime startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = Optional.ofNullable(startDate);
-        return this;
-    }
-
 
     /**
      * Start date of the bank feed statement.
      */
-    public BankFeedStatementInput withStartDate(Optional<OffsetDateTime> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public BankFeedStatementInput withStartDate(@Nullable OffsetDateTime startDate) {
         this.startDate = startDate;
         return this;
     }
 
-    /**
-     * End date of the bank feed statement.
-     */
-    public BankFeedStatementInput withEndDate(OffsetDateTime endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = Optional.ofNullable(endDate);
-        return this;
-    }
-
 
     /**
      * End date of the bank feed statement.
      */
-    public BankFeedStatementInput withEndDate(Optional<OffsetDateTime> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public BankFeedStatementInput withEndDate(@Nullable OffsetDateTime endDate) {
         this.endDate = endDate;
         return this;
     }
 
-    /**
-     * Balance amount at the start of the period.
-     */
-    public BankFeedStatementInput withStartBalance(double startBalance) {
-        Utils.checkNotNull(startBalance, "startBalance");
-        this.startBalance = Optional.ofNullable(startBalance);
-        return this;
-    }
-
 
     /**
      * Balance amount at the start of the period.
      */
-    public BankFeedStatementInput withStartBalance(Optional<Double> startBalance) {
-        Utils.checkNotNull(startBalance, "startBalance");
+    public BankFeedStatementInput withStartBalance(@Nullable Double startBalance) {
         this.startBalance = startBalance;
         return this;
     }
 
-    /**
-     * Whether the amount is a credit or debit.
-     */
-    public BankFeedStatementInput withStartBalanceCreditOrDebit(CreditOrDebit startBalanceCreditOrDebit) {
-        Utils.checkNotNull(startBalanceCreditOrDebit, "startBalanceCreditOrDebit");
-        this.startBalanceCreditOrDebit = Optional.ofNullable(startBalanceCreditOrDebit);
-        return this;
-    }
-
 
     /**
      * Whether the amount is a credit or debit.
      */
-    public BankFeedStatementInput withStartBalanceCreditOrDebit(Optional<? extends CreditOrDebit> startBalanceCreditOrDebit) {
-        Utils.checkNotNull(startBalanceCreditOrDebit, "startBalanceCreditOrDebit");
+    public BankFeedStatementInput withStartBalanceCreditOrDebit(@Nullable CreditOrDebit startBalanceCreditOrDebit) {
         this.startBalanceCreditOrDebit = startBalanceCreditOrDebit;
         return this;
     }
 
-    /**
-     * Balance amount at the end of the period.
-     */
-    public BankFeedStatementInput withEndBalance(double endBalance) {
-        Utils.checkNotNull(endBalance, "endBalance");
-        this.endBalance = Optional.ofNullable(endBalance);
-        return this;
-    }
-
 
     /**
      * Balance amount at the end of the period.
      */
-    public BankFeedStatementInput withEndBalance(Optional<Double> endBalance) {
-        Utils.checkNotNull(endBalance, "endBalance");
+    public BankFeedStatementInput withEndBalance(@Nullable Double endBalance) {
         this.endBalance = endBalance;
         return this;
     }
 
-    /**
-     * Whether the amount is a credit or debit.
-     */
-    public BankFeedStatementInput withEndBalanceCreditOrDebit(CreditOrDebit endBalanceCreditOrDebit) {
-        Utils.checkNotNull(endBalanceCreditOrDebit, "endBalanceCreditOrDebit");
-        this.endBalanceCreditOrDebit = Optional.ofNullable(endBalanceCreditOrDebit);
-        return this;
-    }
-
 
     /**
      * Whether the amount is a credit or debit.
      */
-    public BankFeedStatementInput withEndBalanceCreditOrDebit(Optional<? extends CreditOrDebit> endBalanceCreditOrDebit) {
-        Utils.checkNotNull(endBalanceCreditOrDebit, "endBalanceCreditOrDebit");
+    public BankFeedStatementInput withEndBalanceCreditOrDebit(@Nullable CreditOrDebit endBalanceCreditOrDebit) {
         this.endBalanceCreditOrDebit = endBalanceCreditOrDebit;
         return this;
     }
 
-    /**
-     * List of transactions in the bank feed statement.
-     */
-    public BankFeedStatementInput withTransactions(List<Transactions> transactions) {
-        Utils.checkNotNull(transactions, "transactions");
-        this.transactions = Optional.ofNullable(transactions);
-        return this;
-    }
-
 
     /**
      * List of transactions in the bank feed statement.
      */
-    public BankFeedStatementInput withTransactions(Optional<? extends List<Transactions>> transactions) {
-        Utils.checkNotNull(transactions, "transactions");
+    public BankFeedStatementInput withTransactions(@Nullable List<Transactions> transactions) {
         this.transactions = transactions;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -417,201 +304,101 @@ public class BankFeedStatementInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> bankFeedAccountId = Optional.empty();
+        private String bankFeedAccountId;
 
-        private Optional<? extends StatementStatus> status = Optional.empty();
+        private StatementStatus status;
 
-        private Optional<OffsetDateTime> startDate = Optional.empty();
+        private OffsetDateTime startDate;
 
-        private Optional<OffsetDateTime> endDate = Optional.empty();
+        private OffsetDateTime endDate;
 
-        private Optional<Double> startBalance = Optional.empty();
+        private Double startBalance;
 
-        private Optional<? extends CreditOrDebit> startBalanceCreditOrDebit = Optional.empty();
+        private CreditOrDebit startBalanceCreditOrDebit;
 
-        private Optional<Double> endBalance = Optional.empty();
+        private Double endBalance;
 
-        private Optional<? extends CreditOrDebit> endBalanceCreditOrDebit = Optional.empty();
+        private CreditOrDebit endBalanceCreditOrDebit;
 
-        private Optional<? extends List<Transactions>> transactions = Optional.empty();
+        private List<Transactions> transactions;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the bank feed account this statement belongs to.
          */
-        public Builder bankFeedAccountId(String bankFeedAccountId) {
-            Utils.checkNotNull(bankFeedAccountId, "bankFeedAccountId");
-            this.bankFeedAccountId = Optional.ofNullable(bankFeedAccountId);
-            return this;
-        }
-
-        /**
-         * The ID of the bank feed account this statement belongs to.
-         */
-        public Builder bankFeedAccountId(Optional<String> bankFeedAccountId) {
-            Utils.checkNotNull(bankFeedAccountId, "bankFeedAccountId");
+        public Builder bankFeedAccountId(@Nullable String bankFeedAccountId) {
             this.bankFeedAccountId = bankFeedAccountId;
             return this;
         }
 
-
         /**
          * The current status of the bank feed statement.
          */
-        public Builder status(StatementStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * The current status of the bank feed statement.
-         */
-        public Builder status(Optional<? extends StatementStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable StatementStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * Start date of the bank feed statement.
          */
-        public Builder startDate(OffsetDateTime startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = Optional.ofNullable(startDate);
-            return this;
-        }
-
-        /**
-         * Start date of the bank feed statement.
-         */
-        public Builder startDate(Optional<OffsetDateTime> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable OffsetDateTime startDate) {
             this.startDate = startDate;
             return this;
         }
 
-
         /**
          * End date of the bank feed statement.
          */
-        public Builder endDate(OffsetDateTime endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = Optional.ofNullable(endDate);
-            return this;
-        }
-
-        /**
-         * End date of the bank feed statement.
-         */
-        public Builder endDate(Optional<OffsetDateTime> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable OffsetDateTime endDate) {
             this.endDate = endDate;
             return this;
         }
 
-
         /**
          * Balance amount at the start of the period.
          */
-        public Builder startBalance(double startBalance) {
-            Utils.checkNotNull(startBalance, "startBalance");
-            this.startBalance = Optional.ofNullable(startBalance);
-            return this;
-        }
-
-        /**
-         * Balance amount at the start of the period.
-         */
-        public Builder startBalance(Optional<Double> startBalance) {
-            Utils.checkNotNull(startBalance, "startBalance");
+        public Builder startBalance(@Nullable Double startBalance) {
             this.startBalance = startBalance;
             return this;
         }
 
-
         /**
          * Whether the amount is a credit or debit.
          */
-        public Builder startBalanceCreditOrDebit(CreditOrDebit startBalanceCreditOrDebit) {
-            Utils.checkNotNull(startBalanceCreditOrDebit, "startBalanceCreditOrDebit");
-            this.startBalanceCreditOrDebit = Optional.ofNullable(startBalanceCreditOrDebit);
-            return this;
-        }
-
-        /**
-         * Whether the amount is a credit or debit.
-         */
-        public Builder startBalanceCreditOrDebit(Optional<? extends CreditOrDebit> startBalanceCreditOrDebit) {
-            Utils.checkNotNull(startBalanceCreditOrDebit, "startBalanceCreditOrDebit");
+        public Builder startBalanceCreditOrDebit(@Nullable CreditOrDebit startBalanceCreditOrDebit) {
             this.startBalanceCreditOrDebit = startBalanceCreditOrDebit;
             return this;
         }
 
-
         /**
          * Balance amount at the end of the period.
          */
-        public Builder endBalance(double endBalance) {
-            Utils.checkNotNull(endBalance, "endBalance");
-            this.endBalance = Optional.ofNullable(endBalance);
-            return this;
-        }
-
-        /**
-         * Balance amount at the end of the period.
-         */
-        public Builder endBalance(Optional<Double> endBalance) {
-            Utils.checkNotNull(endBalance, "endBalance");
+        public Builder endBalance(@Nullable Double endBalance) {
             this.endBalance = endBalance;
             return this;
         }
 
-
         /**
          * Whether the amount is a credit or debit.
          */
-        public Builder endBalanceCreditOrDebit(CreditOrDebit endBalanceCreditOrDebit) {
-            Utils.checkNotNull(endBalanceCreditOrDebit, "endBalanceCreditOrDebit");
-            this.endBalanceCreditOrDebit = Optional.ofNullable(endBalanceCreditOrDebit);
-            return this;
-        }
-
-        /**
-         * Whether the amount is a credit or debit.
-         */
-        public Builder endBalanceCreditOrDebit(Optional<? extends CreditOrDebit> endBalanceCreditOrDebit) {
-            Utils.checkNotNull(endBalanceCreditOrDebit, "endBalanceCreditOrDebit");
+        public Builder endBalanceCreditOrDebit(@Nullable CreditOrDebit endBalanceCreditOrDebit) {
             this.endBalanceCreditOrDebit = endBalanceCreditOrDebit;
             return this;
         }
 
-
         /**
          * List of transactions in the bank feed statement.
          */
-        public Builder transactions(List<Transactions> transactions) {
-            Utils.checkNotNull(transactions, "transactions");
-            this.transactions = Optional.ofNullable(transactions);
-            return this;
-        }
-
-        /**
-         * List of transactions in the bank feed statement.
-         */
-        public Builder transactions(Optional<? extends List<Transactions>> transactions) {
-            Utils.checkNotNull(transactions, "transactions");
+        public Builder transactions(@Nullable List<Transactions> transactions) {
             this.transactions = transactions;
             return this;
         }
 
         public BankFeedStatementInput build() {
-
             return new BankFeedStatementInput(
                 bankFeedAccountId, status, startDate,
                 endDate, startBalance, startBalanceCreditOrDebit,

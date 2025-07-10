@@ -49,7 +49,6 @@ public class VaultValidateConnectionStateRequestBody {
         }
 
         public VaultValidateConnectionStateRequestBody build() {
-
             return new VaultValidateConnectionStateRequestBody(
                 );
         }

@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +22,7 @@ public class Webhook {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * A description of the object.
@@ -48,7 +48,7 @@ public class Webhook {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("disabled_reason")
-    private Optional<? extends DisabledReason> disabledReason;
+    private DisabledReason disabledReason;
 
     /**
      * The delivery url of the webhook endpoint.
@@ -84,126 +84,113 @@ public class Webhook {
 
     @JsonCreator
     public Webhook(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("unified_api") UnifiedApiId unifiedApi,
-            @JsonProperty("status") Status status,
-            @JsonProperty("disabled_reason") Optional<? extends DisabledReason> disabledReason,
-            @JsonProperty("delivery_url") String deliveryUrl,
-            @JsonProperty("execute_base_url") String executeBaseUrl,
-            @JsonProperty("events") List<WebhookEventType> events,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(disabledReason, "disabledReason");
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
-        Utils.checkNotNull(events, "events");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("unified_api") @Nonnull UnifiedApiId unifiedApi,
+            @JsonProperty("status") @Nonnull Status status,
+            @JsonProperty("disabled_reason") @Nullable DisabledReason disabledReason,
+            @JsonProperty("delivery_url") @Nonnull String deliveryUrl,
+            @JsonProperty("execute_base_url") @Nonnull String executeBaseUrl,
+            @JsonProperty("events") @Nonnull List<WebhookEventType> events,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt) {
         this.id = id;
-        this.description = description;
-        this.unifiedApi = unifiedApi;
-        this.status = status;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
+        this.status = Optional.ofNullable(status)
+            .orElseThrow(() -> new IllegalArgumentException("status cannot be null"));
         this.disabledReason = disabledReason;
-        this.deliveryUrl = deliveryUrl;
-        this.executeBaseUrl = executeBaseUrl;
-        this.events = events;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.deliveryUrl = Optional.ofNullable(deliveryUrl)
+            .orElseThrow(() -> new IllegalArgumentException("deliveryUrl cannot be null"));
+        this.executeBaseUrl = Optional.ofNullable(executeBaseUrl)
+            .orElseThrow(() -> new IllegalArgumentException("executeBaseUrl cannot be null"));
+        this.events = Optional.ofNullable(events)
+            .orElseThrow(() -> new IllegalArgumentException("events cannot be null"));
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public Webhook(
-            UnifiedApiId unifiedApi,
-            Status status,
-            String deliveryUrl,
-            String executeBaseUrl,
-            List<WebhookEventType> events) {
-        this(Optional.empty(), JsonNullable.undefined(), unifiedApi,
-            status, Optional.empty(), deliveryUrl,
-            executeBaseUrl, events, JsonNullable.undefined(),
-            JsonNullable.undefined());
+            @Nonnull UnifiedApiId unifiedApi,
+            @Nonnull Status status,
+            @Nonnull String deliveryUrl,
+            @Nonnull String executeBaseUrl,
+            @Nonnull List<WebhookEventType> events) {
+        this(null, null, unifiedApi,
+            status, null, deliveryUrl,
+            executeBaseUrl, events, null,
+            null);
     }
 
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Name of Apideck Unified API
      */
-    @JsonIgnore
     public UnifiedApiId unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     /**
      * The status of the webhook.
      */
-    @JsonIgnore
     public Status status() {
-        return status;
+        return this.status;
     }
 
     /**
      * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<DisabledReason> disabledReason() {
-        return (Optional<DisabledReason>) disabledReason;
+        return Optional.ofNullable(this.disabledReason);
     }
 
     /**
      * The delivery url of the webhook endpoint.
      */
-    @JsonIgnore
     public String deliveryUrl() {
-        return deliveryUrl;
+        return this.deliveryUrl;
     }
 
     /**
      * The Unify Base URL events from connectors will be sent to after service id is appended.
      */
-    @JsonIgnore
     public String executeBaseUrl() {
-        return executeBaseUrl;
+        return this.executeBaseUrl;
     }
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    @JsonIgnore
     public List<WebhookEventType> events() {
-        return events;
+        return this.events;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public static Builder builder() {
@@ -211,61 +198,35 @@ public class Webhook {
     }
 
 
-    public Webhook withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    public Webhook withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Webhook withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * A description of the object.
      */
-    public Webhook withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Webhook withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public Webhook withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Name of Apideck Unified API
      */
-    public Webhook withUnifiedApi(UnifiedApiId unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public Webhook withUnifiedApi(@Nonnull UnifiedApiId unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     /**
      * The status of the webhook.
      */
-    public Webhook withStatus(Status status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
-
-    /**
-     * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
-     */
-    public Webhook withDisabledReason(DisabledReason disabledReason) {
-        Utils.checkNotNull(disabledReason, "disabledReason");
-        this.disabledReason = Optional.ofNullable(disabledReason);
+    public Webhook withStatus(@Nonnull Status status) {
+        this.status = Utils.checkNotNull(status, "status");
         return this;
     }
 
@@ -273,74 +234,56 @@ public class Webhook {
     /**
      * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
      */
-    public Webhook withDisabledReason(Optional<? extends DisabledReason> disabledReason) {
-        Utils.checkNotNull(disabledReason, "disabledReason");
+    public Webhook withDisabledReason(@Nullable DisabledReason disabledReason) {
         this.disabledReason = disabledReason;
         return this;
     }
 
+
     /**
      * The delivery url of the webhook endpoint.
      */
-    public Webhook withDeliveryUrl(String deliveryUrl) {
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        this.deliveryUrl = deliveryUrl;
+    public Webhook withDeliveryUrl(@Nonnull String deliveryUrl) {
+        this.deliveryUrl = Utils.checkNotNull(deliveryUrl, "deliveryUrl");
         return this;
     }
+
 
     /**
      * The Unify Base URL events from connectors will be sent to after service id is appended.
      */
-    public Webhook withExecuteBaseUrl(String executeBaseUrl) {
-        Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
-        this.executeBaseUrl = executeBaseUrl;
+    public Webhook withExecuteBaseUrl(@Nonnull String executeBaseUrl) {
+        this.executeBaseUrl = Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
         return this;
     }
+
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    public Webhook withEvents(List<WebhookEventType> events) {
-        Utils.checkNotNull(events, "events");
-        this.events = events;
+    public Webhook withEvents(@Nonnull List<WebhookEventType> events) {
+        this.events = Utils.checkNotNull(events, "events");
         return this;
     }
+
 
     /**
      * The date and time when the object was last updated.
      */
-    public Webhook withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public Webhook withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public Webhook withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public Webhook withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public Webhook withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public Webhook withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -391,15 +334,15 @@ public class Webhook {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
         private UnifiedApiId unifiedApi;
 
         private Status status;
 
-        private Optional<? extends DisabledReason> disabledReason = Optional.empty();
+        private DisabledReason disabledReason;
 
         private String deliveryUrl;
 
@@ -407,155 +350,92 @@ public class Webhook {
 
         private List<WebhookEventType> events;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Name of Apideck Unified API
          */
-        public Builder unifiedApi(UnifiedApiId unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull UnifiedApiId unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
-
 
         /**
          * The status of the webhook.
          */
-        public Builder status(Status status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
-         * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
-         */
-        public Builder disabledReason(DisabledReason disabledReason) {
-            Utils.checkNotNull(disabledReason, "disabledReason");
-            this.disabledReason = Optional.ofNullable(disabledReason);
+        public Builder status(@Nonnull Status status) {
+            this.status = Utils.checkNotNull(status, "status");
             return this;
         }
 
         /**
          * Indicates if the webhook has has been disabled as it reached its retry limit or if account is over the usage allocated by it's plan.
          */
-        public Builder disabledReason(Optional<? extends DisabledReason> disabledReason) {
-            Utils.checkNotNull(disabledReason, "disabledReason");
+        public Builder disabledReason(@Nullable DisabledReason disabledReason) {
             this.disabledReason = disabledReason;
             return this;
         }
 
-
         /**
          * The delivery url of the webhook endpoint.
          */
-        public Builder deliveryUrl(String deliveryUrl) {
-            Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-            this.deliveryUrl = deliveryUrl;
+        public Builder deliveryUrl(@Nonnull String deliveryUrl) {
+            this.deliveryUrl = Utils.checkNotNull(deliveryUrl, "deliveryUrl");
             return this;
         }
-
 
         /**
          * The Unify Base URL events from connectors will be sent to after service id is appended.
          */
-        public Builder executeBaseUrl(String executeBaseUrl) {
-            Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
-            this.executeBaseUrl = executeBaseUrl;
+        public Builder executeBaseUrl(@Nonnull String executeBaseUrl) {
+            this.executeBaseUrl = Utils.checkNotNull(executeBaseUrl, "executeBaseUrl");
             return this;
         }
-
 
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
-        public Builder events(List<WebhookEventType> events) {
-            Utils.checkNotNull(events, "events");
-            this.events = events;
+        public Builder events(@Nonnull List<WebhookEventType> events) {
+            this.events = Utils.checkNotNull(events, "events");
             return this;
         }
-
 
         /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
         public Webhook build() {
-
             return new Webhook(
                 id, description, unifiedApi,
                 status, disabledReason, deliveryUrl,

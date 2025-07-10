@@ -5,16 +5,16 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -26,7 +26,7 @@ public class JournalEntryLineItem {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * User defined description
@@ -65,7 +65,7 @@ public class JournalEntryLineItem {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRate> taxRate;
+    private LinkedTaxRate taxRate;
 
     /**
      * 
@@ -74,33 +74,33 @@ public class JournalEntryLineItem {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_category")
     @Deprecated
-    private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory;
+    private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
     /**
      * A list of linked tracking categories.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking_categories")
-    private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
+    private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
 
     @JsonInclude(Include.ALWAYS)
     @JsonProperty("ledger_account")
-    private Optional<? extends LinkedLedgerAccount> ledgerAccount;
+    private JsonNullable<LinkedLedgerAccount> ledgerAccount;
 
     /**
      * The customer this entity is linked to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private JsonNullable<? extends LinkedCustomer> customer;
+    private JsonNullable<LinkedCustomer> customer;
 
     /**
      * The supplier this entity is linked to.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supplier")
-    private JsonNullable<? extends LinkedSupplier> supplier;
+    private JsonNullable<LinkedSupplier> supplier;
 
     /**
      * The ID of the department
@@ -125,114 +125,103 @@ public class JournalEntryLineItem {
 
     @JsonCreator
     public JournalEntryLineItem(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("tax_amount") JsonNullable<Double> taxAmount,
-            @JsonProperty("sub_total") JsonNullable<Double> subTotal,
-            @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
-            @JsonProperty("type") JournalEntryLineItemType type,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate,
-            @JsonProperty("tracking_category") JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory,
-            @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
-            @JsonProperty("ledger_account") Optional<? extends LinkedLedgerAccount> ledgerAccount,
-            @JsonProperty("customer") JsonNullable<? extends LinkedCustomer> customer,
-            @JsonProperty("supplier") JsonNullable<? extends LinkedSupplier> supplier,
-            @JsonProperty("department_id") JsonNullable<String> departmentId,
-            @JsonProperty("location_id") JsonNullable<String> locationId,
-            @JsonProperty("line_number") JsonNullable<Long> lineNumber) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        Utils.checkNotNull(subTotal, "subTotal");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(taxRate, "taxRate");
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        Utils.checkNotNull(customer, "customer");
-        Utils.checkNotNull(supplier, "supplier");
-        Utils.checkNotNull(departmentId, "departmentId");
-        Utils.checkNotNull(locationId, "locationId");
-        Utils.checkNotNull(lineNumber, "lineNumber");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("tax_amount") @Nullable JsonNullable<Double> taxAmount,
+            @JsonProperty("sub_total") @Nullable JsonNullable<Double> subTotal,
+            @JsonProperty("total_amount") @Nullable JsonNullable<Double> totalAmount,
+            @JsonProperty("type") @Nonnull JournalEntryLineItemType type,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRate taxRate,
+            @JsonProperty("tracking_category") @Nullable JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory,
+            @JsonProperty("tracking_categories") @Nullable JsonNullable<List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("ledger_account") @Nullable LinkedLedgerAccount ledgerAccount,
+            @JsonProperty("customer") @Nullable JsonNullable<LinkedCustomer> customer,
+            @JsonProperty("supplier") @Nullable JsonNullable<LinkedSupplier> supplier,
+            @JsonProperty("department_id") @Nullable JsonNullable<String> departmentId,
+            @JsonProperty("location_id") @Nullable JsonNullable<String> locationId,
+            @JsonProperty("line_number") @Nullable JsonNullable<Long> lineNumber) {
         this.id = id;
-        this.description = description;
-        this.taxAmount = taxAmount;
-        this.subTotal = subTotal;
-        this.totalAmount = totalAmount;
-        this.type = type;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.taxAmount = Optional.ofNullable(taxAmount)
+            .orElse(JsonNullable.undefined());
+        this.subTotal = Optional.ofNullable(subTotal)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = Optional.ofNullable(totalAmount)
+            .orElse(JsonNullable.undefined());
+        this.type = Optional.ofNullable(type)
+            .orElseThrow(() -> new IllegalArgumentException("type cannot be null"));
         this.taxRate = taxRate;
-        this.trackingCategory = trackingCategory;
-        this.trackingCategories = trackingCategories;
-        this.ledgerAccount = ledgerAccount;
-        this.customer = customer;
-        this.supplier = supplier;
-        this.departmentId = departmentId;
-        this.locationId = locationId;
-        this.lineNumber = lineNumber;
+        this.trackingCategory = Optional.ofNullable(trackingCategory)
+            .orElse(JsonNullable.undefined());
+        this.trackingCategories = Optional.ofNullable(trackingCategories)
+            .orElse(JsonNullable.undefined());
+        this.ledgerAccount = JsonNullable.of(ledgerAccount);
+        this.customer = Optional.ofNullable(customer)
+            .orElse(JsonNullable.undefined());
+        this.supplier = Optional.ofNullable(supplier)
+            .orElse(JsonNullable.undefined());
+        this.departmentId = Optional.ofNullable(departmentId)
+            .orElse(JsonNullable.undefined());
+        this.locationId = Optional.ofNullable(locationId)
+            .orElse(JsonNullable.undefined());
+        this.lineNumber = Optional.ofNullable(lineNumber)
+            .orElse(JsonNullable.undefined());
     }
     
     public JournalEntryLineItem(
-            JournalEntryLineItemType type) {
-        this(Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), type,
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+            @Nonnull JournalEntryLineItemType type) {
+        this(null, null, null,
+            null, null, type,
+            null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * User defined description
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Tax amount
      */
-    @JsonIgnore
     public JsonNullable<Double> taxAmount() {
-        return taxAmount;
+        return this.taxAmount;
     }
 
     /**
      * Sub-total amount, normally before tax.
      */
-    @JsonIgnore
     public JsonNullable<Double> subTotal() {
-        return subTotal;
+        return this.subTotal;
     }
 
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
-    @JsonIgnore
     public JsonNullable<Double> totalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
-    @JsonIgnore
     public JournalEntryLineItemType type() {
-        return type;
+        return this.type;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
-        return (Optional<LinkedTaxRate>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
     /**
@@ -240,67 +229,54 @@ public class JournalEntryLineItem {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory() {
-        return (JsonNullable<DeprecatedLinkedTrackingCategory>) trackingCategory;
+        return this.trackingCategory;
     }
 
     /**
      * A list of linked tracking categories.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
-        return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+        return this.trackingCategories;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<LinkedLedgerAccount> ledgerAccount() {
-        return (Optional<LinkedLedgerAccount>) ledgerAccount;
+    public JsonNullable<LinkedLedgerAccount> ledgerAccount() {
+        return this.ledgerAccount;
     }
 
     /**
      * The customer this entity is linked to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedCustomer> customer() {
-        return (JsonNullable<LinkedCustomer>) customer;
+        return this.customer;
     }
 
     /**
      * The supplier this entity is linked to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<LinkedSupplier> supplier() {
-        return (JsonNullable<LinkedSupplier>) supplier;
+        return this.supplier;
     }
 
     /**
      * The ID of the department
      */
-    @JsonIgnore
     public JsonNullable<String> departmentId() {
-        return departmentId;
+        return this.departmentId;
     }
 
     /**
      * The ID of the location
      */
-    @JsonIgnore
     public JsonNullable<String> locationId() {
-        return locationId;
+        return this.locationId;
     }
 
     /**
      * Line number of the resource
      */
-    @JsonIgnore
     public JsonNullable<Long> lineNumber() {
-        return lineNumber;
+        return this.lineNumber;
     }
 
     public static Builder builder() {
@@ -311,258 +287,133 @@ public class JournalEntryLineItem {
     /**
      * A unique identifier for an object.
      */
-    public JournalEntryLineItem withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * A unique identifier for an object.
-     */
-    public JournalEntryLineItem withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public JournalEntryLineItem withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * User defined description
      */
-    public JournalEntryLineItem withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public JournalEntryLineItem withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * User defined description
-     */
-    public JournalEntryLineItem withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Tax amount
      */
-    public JournalEntryLineItem withTaxAmount(double taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
+    public JournalEntryLineItem withTaxAmount(@Nullable Double taxAmount) {
         this.taxAmount = JsonNullable.of(taxAmount);
         return this;
     }
 
-    /**
-     * Tax amount
-     */
-    public JournalEntryLineItem withTaxAmount(JsonNullable<Double> taxAmount) {
-        Utils.checkNotNull(taxAmount, "taxAmount");
-        this.taxAmount = taxAmount;
-        return this;
-    }
 
     /**
      * Sub-total amount, normally before tax.
      */
-    public JournalEntryLineItem withSubTotal(double subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
+    public JournalEntryLineItem withSubTotal(@Nullable Double subTotal) {
         this.subTotal = JsonNullable.of(subTotal);
         return this;
     }
 
-    /**
-     * Sub-total amount, normally before tax.
-     */
-    public JournalEntryLineItem withSubTotal(JsonNullable<Double> subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
-        this.subTotal = subTotal;
-        return this;
-    }
 
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
-    public JournalEntryLineItem withTotalAmount(double totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
+    public JournalEntryLineItem withTotalAmount(@Nullable Double totalAmount) {
         this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
-    /**
-     * Debit entries are considered positive, and credit entries are considered negative.
-     */
-    public JournalEntryLineItem withTotalAmount(JsonNullable<Double> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
 
     /**
      * Debit entries are considered positive, and credit entries are considered negative.
      */
-    public JournalEntryLineItem withType(JournalEntryLineItemType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
-
-    public JournalEntryLineItem withTaxRate(LinkedTaxRate taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
+    public JournalEntryLineItem withType(@Nonnull JournalEntryLineItemType type) {
+        this.type = Utils.checkNotNull(type, "type");
         return this;
     }
 
 
-    public JournalEntryLineItem withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public JournalEntryLineItem withTaxRate(@Nullable LinkedTaxRate taxRate) {
         this.taxRate = taxRate;
         return this;
     }
 
+
     /**
      * 
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public JournalEntryLineItem withTrackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
+    public JournalEntryLineItem withTrackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
         this.trackingCategory = JsonNullable.of(trackingCategory);
         return this;
     }
 
-    /**
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public JournalEntryLineItem withTrackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-        Utils.checkNotNull(trackingCategory, "trackingCategory");
-        this.trackingCategory = trackingCategory;
-        return this;
-    }
 
     /**
      * A list of linked tracking categories.
      */
-    public JournalEntryLineItem withTrackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
+    public JournalEntryLineItem withTrackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
         this.trackingCategories = JsonNullable.of(trackingCategories);
         return this;
     }
 
-    /**
-     * A list of linked tracking categories.
-     */
-    public JournalEntryLineItem withTrackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-        Utils.checkNotNull(trackingCategories, "trackingCategories");
-        this.trackingCategories = trackingCategories;
+
+    public JournalEntryLineItem withLedgerAccount(@Nullable LinkedLedgerAccount ledgerAccount) {
+        this.ledgerAccount = JsonNullable.of(ledgerAccount);
         return this;
     }
 
-    public JournalEntryLineItem withLedgerAccount(LinkedLedgerAccount ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        this.ledgerAccount = Optional.ofNullable(ledgerAccount);
-        return this;
-    }
-
-
-    public JournalEntryLineItem withLedgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
-        Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-        this.ledgerAccount = ledgerAccount;
-        return this;
-    }
 
     /**
      * The customer this entity is linked to.
      */
-    public JournalEntryLineItem withCustomer(LinkedCustomer customer) {
-        Utils.checkNotNull(customer, "customer");
+    public JournalEntryLineItem withCustomer(@Nullable LinkedCustomer customer) {
         this.customer = JsonNullable.of(customer);
         return this;
     }
 
-    /**
-     * The customer this entity is linked to.
-     */
-    public JournalEntryLineItem withCustomer(JsonNullable<? extends LinkedCustomer> customer) {
-        Utils.checkNotNull(customer, "customer");
-        this.customer = customer;
-        return this;
-    }
 
     /**
      * The supplier this entity is linked to.
      */
-    public JournalEntryLineItem withSupplier(LinkedSupplier supplier) {
-        Utils.checkNotNull(supplier, "supplier");
+    public JournalEntryLineItem withSupplier(@Nullable LinkedSupplier supplier) {
         this.supplier = JsonNullable.of(supplier);
         return this;
     }
 
-    /**
-     * The supplier this entity is linked to.
-     */
-    public JournalEntryLineItem withSupplier(JsonNullable<? extends LinkedSupplier> supplier) {
-        Utils.checkNotNull(supplier, "supplier");
-        this.supplier = supplier;
-        return this;
-    }
 
     /**
      * The ID of the department
      */
-    public JournalEntryLineItem withDepartmentId(String departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
+    public JournalEntryLineItem withDepartmentId(@Nullable String departmentId) {
         this.departmentId = JsonNullable.of(departmentId);
         return this;
     }
 
-    /**
-     * The ID of the department
-     */
-    public JournalEntryLineItem withDepartmentId(JsonNullable<String> departmentId) {
-        Utils.checkNotNull(departmentId, "departmentId");
-        this.departmentId = departmentId;
-        return this;
-    }
 
     /**
      * The ID of the location
      */
-    public JournalEntryLineItem withLocationId(String locationId) {
-        Utils.checkNotNull(locationId, "locationId");
+    public JournalEntryLineItem withLocationId(@Nullable String locationId) {
         this.locationId = JsonNullable.of(locationId);
         return this;
     }
 
-    /**
-     * The ID of the location
-     */
-    public JournalEntryLineItem withLocationId(JsonNullable<String> locationId) {
-        Utils.checkNotNull(locationId, "locationId");
-        this.locationId = locationId;
-        return this;
-    }
 
     /**
      * Line number of the resource
      */
-    public JournalEntryLineItem withLineNumber(long lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
+    public JournalEntryLineItem withLineNumber(@Nullable Long lineNumber) {
         this.lineNumber = JsonNullable.of(lineNumber);
         return this;
     }
 
-    /**
-     * Line number of the resource
-     */
-    public JournalEntryLineItem withLineNumber(JsonNullable<Long> lineNumber) {
-        Utils.checkNotNull(lineNumber, "lineNumber");
-        this.lineNumber = lineNumber;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -624,123 +475,77 @@ public class JournalEntryLineItem {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<Double> taxAmount = JsonNullable.undefined();
+        private JsonNullable<Double> taxAmount;
 
-        private JsonNullable<Double> subTotal = JsonNullable.undefined();
+        private JsonNullable<Double> subTotal;
 
-        private JsonNullable<Double> totalAmount = JsonNullable.undefined();
+        private JsonNullable<Double> totalAmount;
 
         private JournalEntryLineItemType type;
 
-        private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+        private LinkedTaxRate taxRate;
 
         @Deprecated
-        private JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory = JsonNullable.undefined();
+        private JsonNullable<DeprecatedLinkedTrackingCategory> trackingCategory;
 
-        private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+        private JsonNullable<List<LinkedTrackingCategory>> trackingCategories;
 
-        private Optional<? extends LinkedLedgerAccount> ledgerAccount = Optional.empty();
+        private LinkedLedgerAccount ledgerAccount;
 
-        private JsonNullable<? extends LinkedCustomer> customer = JsonNullable.undefined();
+        private JsonNullable<LinkedCustomer> customer;
 
-        private JsonNullable<? extends LinkedSupplier> supplier = JsonNullable.undefined();
+        private JsonNullable<LinkedSupplier> supplier;
 
-        private JsonNullable<String> departmentId = JsonNullable.undefined();
+        private JsonNullable<String> departmentId;
 
-        private JsonNullable<String> locationId = JsonNullable.undefined();
+        private JsonNullable<String> locationId;
 
-        private JsonNullable<Long> lineNumber = JsonNullable.undefined();
+        private JsonNullable<Long> lineNumber;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * A unique identifier for an object.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * User defined description
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * User defined description
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Tax amount
          */
-        public Builder taxAmount(double taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
+        public Builder taxAmount(@Nullable Double taxAmount) {
             this.taxAmount = JsonNullable.of(taxAmount);
             return this;
         }
 
         /**
-         * Tax amount
-         */
-        public Builder taxAmount(JsonNullable<Double> taxAmount) {
-            Utils.checkNotNull(taxAmount, "taxAmount");
-            this.taxAmount = taxAmount;
-            return this;
-        }
-
-
-        /**
          * Sub-total amount, normally before tax.
          */
-        public Builder subTotal(double subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
+        public Builder subTotal(@Nullable Double subTotal) {
             this.subTotal = JsonNullable.of(subTotal);
             return this;
         }
 
         /**
-         * Sub-total amount, normally before tax.
-         */
-        public Builder subTotal(JsonNullable<Double> subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
-            this.subTotal = subTotal;
-            return this;
-        }
-
-
-        /**
          * Debit entries are considered positive, and credit entries are considered negative.
          */
-        public Builder totalAmount(double totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable Double totalAmount) {
             this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
@@ -748,187 +553,80 @@ public class JournalEntryLineItem {
         /**
          * Debit entries are considered positive, and credit entries are considered negative.
          */
-        public Builder totalAmount(JsonNullable<Double> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = totalAmount;
+        public Builder type(@Nonnull JournalEntryLineItemType type) {
+            this.type = Utils.checkNotNull(type, "type");
             return this;
         }
 
-
-        /**
-         * Debit entries are considered positive, and credit entries are considered negative.
-         */
-        public Builder type(JournalEntryLineItemType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
-
-        public Builder taxRate(LinkedTaxRate taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRate taxRate) {
             this.taxRate = taxRate;
             return this;
         }
-
 
         /**
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder trackingCategory(DeprecatedLinkedTrackingCategory trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
+        public Builder trackingCategory(@Nullable DeprecatedLinkedTrackingCategory trackingCategory) {
             this.trackingCategory = JsonNullable.of(trackingCategory);
             return this;
         }
 
         /**
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder trackingCategory(JsonNullable<? extends DeprecatedLinkedTrackingCategory> trackingCategory) {
-            Utils.checkNotNull(trackingCategory, "trackingCategory");
-            this.trackingCategory = trackingCategory;
-            return this;
-        }
-
-
-        /**
          * A list of linked tracking categories.
          */
-        public Builder trackingCategories(List<LinkedTrackingCategory> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
+        public Builder trackingCategories(@Nullable List<LinkedTrackingCategory> trackingCategories) {
             this.trackingCategories = JsonNullable.of(trackingCategories);
             return this;
         }
 
-        /**
-         * A list of linked tracking categories.
-         */
-        public Builder trackingCategories(JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories) {
-            Utils.checkNotNull(trackingCategories, "trackingCategories");
-            this.trackingCategories = trackingCategories;
-            return this;
-        }
-
-
-        public Builder ledgerAccount(LinkedLedgerAccount ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
-            this.ledgerAccount = Optional.ofNullable(ledgerAccount);
-            return this;
-        }
-
-        public Builder ledgerAccount(Optional<? extends LinkedLedgerAccount> ledgerAccount) {
-            Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        public Builder ledgerAccount(@Nullable LinkedLedgerAccount ledgerAccount) {
             this.ledgerAccount = ledgerAccount;
             return this;
         }
 
-
         /**
          * The customer this entity is linked to.
          */
-        public Builder customer(LinkedCustomer customer) {
-            Utils.checkNotNull(customer, "customer");
+        public Builder customer(@Nullable LinkedCustomer customer) {
             this.customer = JsonNullable.of(customer);
             return this;
         }
 
         /**
-         * The customer this entity is linked to.
-         */
-        public Builder customer(JsonNullable<? extends LinkedCustomer> customer) {
-            Utils.checkNotNull(customer, "customer");
-            this.customer = customer;
-            return this;
-        }
-
-
-        /**
          * The supplier this entity is linked to.
          */
-        public Builder supplier(LinkedSupplier supplier) {
-            Utils.checkNotNull(supplier, "supplier");
+        public Builder supplier(@Nullable LinkedSupplier supplier) {
             this.supplier = JsonNullable.of(supplier);
             return this;
         }
 
         /**
-         * The supplier this entity is linked to.
-         */
-        public Builder supplier(JsonNullable<? extends LinkedSupplier> supplier) {
-            Utils.checkNotNull(supplier, "supplier");
-            this.supplier = supplier;
-            return this;
-        }
-
-
-        /**
          * The ID of the department
          */
-        public Builder departmentId(String departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
+        public Builder departmentId(@Nullable String departmentId) {
             this.departmentId = JsonNullable.of(departmentId);
             return this;
         }
 
         /**
-         * The ID of the department
-         */
-        public Builder departmentId(JsonNullable<String> departmentId) {
-            Utils.checkNotNull(departmentId, "departmentId");
-            this.departmentId = departmentId;
-            return this;
-        }
-
-
-        /**
          * The ID of the location
          */
-        public Builder locationId(String locationId) {
-            Utils.checkNotNull(locationId, "locationId");
+        public Builder locationId(@Nullable String locationId) {
             this.locationId = JsonNullable.of(locationId);
             return this;
         }
 
         /**
-         * The ID of the location
-         */
-        public Builder locationId(JsonNullable<String> locationId) {
-            Utils.checkNotNull(locationId, "locationId");
-            this.locationId = locationId;
-            return this;
-        }
-
-
-        /**
          * Line number of the resource
          */
-        public Builder lineNumber(long lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
+        public Builder lineNumber(@Nullable Long lineNumber) {
             this.lineNumber = JsonNullable.of(lineNumber);
             return this;
         }
 
-        /**
-         * Line number of the resource
-         */
-        public Builder lineNumber(JsonNullable<Long> lineNumber) {
-            Utils.checkNotNull(lineNumber, "lineNumber");
-            this.lineNumber = lineNumber;
-            return this;
-        }
-
         public JournalEntryLineItem build() {
-
             return new JournalEntryLineItem(
                 id, description, taxAmount,
                 subTotal, totalAmount, type,

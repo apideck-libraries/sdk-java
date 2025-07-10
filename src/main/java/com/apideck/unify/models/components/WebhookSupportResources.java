@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,23 +19,20 @@ public class WebhookSupportResources {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("events")
-    private Optional<? extends List<String>> events;
+    private List<String> events;
 
     @JsonCreator
     public WebhookSupportResources(
-            @JsonProperty("events") Optional<? extends List<String>> events) {
-        Utils.checkNotNull(events, "events");
+            @JsonProperty("events") @Nullable List<String> events) {
         this.events = events;
     }
     
     public WebhookSupportResources() {
-        this(Optional.empty());
+        this(null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> events() {
-        return (Optional<List<String>>) events;
+        return Optional.ofNullable(this.events);
     }
 
     public static Builder builder() {
@@ -44,18 +40,11 @@ public class WebhookSupportResources {
     }
 
 
-    public WebhookSupportResources withEvents(List<String> events) {
-        Utils.checkNotNull(events, "events");
-        this.events = Optional.ofNullable(events);
-        return this;
-    }
-
-
-    public WebhookSupportResources withEvents(Optional<? extends List<String>> events) {
-        Utils.checkNotNull(events, "events");
+    public WebhookSupportResources withEvents(@Nullable List<String> events) {
         this.events = events;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -85,27 +74,18 @@ public class WebhookSupportResources {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends List<String>> events = Optional.empty();
+        private List<String> events;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder events(List<String> events) {
-            Utils.checkNotNull(events, "events");
-            this.events = Optional.ofNullable(events);
-            return this;
-        }
-
-        public Builder events(Optional<? extends List<String>> events) {
-            Utils.checkNotNull(events, "events");
+        public Builder events(@Nullable List<String> events) {
             this.events = events;
             return this;
         }
 
         public WebhookSupportResources build() {
-
             return new WebhookSupportResources(
                 events);
         }

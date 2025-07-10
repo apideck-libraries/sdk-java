@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UnexpectedErrorResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingPurchaseOrdersAllResponse implements Response {
     /**
      * PurchaseOrders
      */
-    private Optional<? extends GetPurchaseOrdersResponse> getPurchaseOrdersResponse;
+    private GetPurchaseOrdersResponse getPurchaseOrdersResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingPurchaseOrdersAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends GetPurchaseOrdersResponse> getPurchaseOrdersResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(getPurchaseOrdersResponse, "getPurchaseOrdersResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable GetPurchaseOrdersResponse getPurchaseOrdersResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.getPurchaseOrdersResponse = getPurchaseOrdersResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingPurchaseOrdersAllResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * PurchaseOrders
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<GetPurchaseOrdersResponse> getPurchaseOrdersResponse() {
-        return (Optional<GetPurchaseOrdersResponse>) getPurchaseOrdersResponse;
+        return Optional.ofNullable(this.getPurchaseOrdersResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingPurchaseOrdersAllResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingPurchaseOrdersAllResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingPurchaseOrdersAllResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingPurchaseOrdersAllResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingPurchaseOrdersAllResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * PurchaseOrders
-     */
-    public AccountingPurchaseOrdersAllResponse withGetPurchaseOrdersResponse(GetPurchaseOrdersResponse getPurchaseOrdersResponse) {
-        Utils.checkNotNull(getPurchaseOrdersResponse, "getPurchaseOrdersResponse");
-        this.getPurchaseOrdersResponse = Optional.ofNullable(getPurchaseOrdersResponse);
+    public AccountingPurchaseOrdersAllResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingPurchaseOrdersAllResponse implements Response {
     /**
      * PurchaseOrders
      */
-    public AccountingPurchaseOrdersAllResponse withGetPurchaseOrdersResponse(Optional<? extends GetPurchaseOrdersResponse> getPurchaseOrdersResponse) {
-        Utils.checkNotNull(getPurchaseOrdersResponse, "getPurchaseOrdersResponse");
+    public AccountingPurchaseOrdersAllResponse withGetPurchaseOrdersResponse(@Nullable GetPurchaseOrdersResponse getPurchaseOrdersResponse) {
         this.getPurchaseOrdersResponse = getPurchaseOrdersResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingPurchaseOrdersAllResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingPurchaseOrdersAllResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingPurchaseOrdersAllResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingPurchaseOrdersAllResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends GetPurchaseOrdersResponse> getPurchaseOrdersResponse = Optional.empty();
+        private GetPurchaseOrdersResponse getPurchaseOrdersResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * PurchaseOrders
-         */
-        public Builder getPurchaseOrdersResponse(GetPurchaseOrdersResponse getPurchaseOrdersResponse) {
-            Utils.checkNotNull(getPurchaseOrdersResponse, "getPurchaseOrdersResponse");
-            this.getPurchaseOrdersResponse = Optional.ofNullable(getPurchaseOrdersResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * PurchaseOrders
          */
-        public Builder getPurchaseOrdersResponse(Optional<? extends GetPurchaseOrdersResponse> getPurchaseOrdersResponse) {
-            Utils.checkNotNull(getPurchaseOrdersResponse, "getPurchaseOrdersResponse");
+        public Builder getPurchaseOrdersResponse(@Nullable GetPurchaseOrdersResponse getPurchaseOrdersResponse) {
             this.getPurchaseOrdersResponse = getPurchaseOrdersResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingPurchaseOrdersAllResponse build() {
-
             return new AccountingPurchaseOrdersAllResponse(
                 contentType, statusCode, rawResponse,
                 getPurchaseOrdersResponse, unexpectedErrorResponse);

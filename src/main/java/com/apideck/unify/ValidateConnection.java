@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.VaultValidateConnectionStateRequestBu
 import com.apideck.unify.models.operations.VaultValidateConnectionStateResponse;
 import com.apideck.unify.operations.VaultValidateConnectionStateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -51,8 +53,8 @@ public class ValidateConnection {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultValidateConnectionStateResponse state(VaultValidateConnectionStateRequest request) throws Exception {
-        return state(request, Optional.empty());
+    public VaultValidateConnectionStateResponse state(@Nonnull VaultValidateConnectionStateRequest request) throws Exception {
+        return state(request, null);
     }
 
     /**
@@ -71,8 +73,8 @@ public class ValidateConnection {
      * @throws Exception if the API call fails
      */
     public VaultValidateConnectionStateResponse state(
-            VaultValidateConnectionStateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull VaultValidateConnectionStateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
               = new VaultValidateConnectionStateOperation(
                 sdkConfiguration,

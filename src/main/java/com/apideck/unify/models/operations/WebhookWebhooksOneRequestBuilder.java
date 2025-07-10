@@ -10,71 +10,59 @@ import com.apideck.unify.operations.WebhookWebhooksOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class WebhookWebhooksOneRequestBuilder {
-
-    private String id;
-    private Optional<String> appId = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final WebhookWebhooksOneRequest.Builder pojoBuilder;
+    private WebhookWebhooksOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public WebhookWebhooksOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = WebhookWebhooksOneRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
 
-    public WebhookWebhooksOneRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-                
-    public WebhookWebhooksOneRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public WebhookWebhooksOneRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksOneRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public WebhookWebhooksOneRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
-                
+
     public WebhookWebhooksOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public WebhookWebhooksOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private WebhookWebhooksOneRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private WebhookWebhooksOneRequest buildRequest() {
-
-        WebhookWebhooksOneRequest request = new WebhookWebhooksOneRequest(id,
-            appId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public WebhookWebhooksOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
               = new WebhookWebhooksOneOperation(
                 sdkConfiguration,
                 options);
-        WebhookWebhooksOneRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

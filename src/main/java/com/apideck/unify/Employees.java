@@ -26,6 +26,8 @@ import com.apideck.unify.operations.HrisEmployeesDeleteOperation;
 import com.apideck.unify.operations.HrisEmployeesOneOperation;
 import com.apideck.unify.operations.HrisEmployeesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public HrisEmployeesAllResponse list(@Nonnull HrisEmployeesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Employees {
      * @throws Exception if the API call fails
      */
     public HrisEmployeesAllResponse list(
-            HrisEmployeesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
               = new HrisEmployeesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public HrisEmployeesAddResponse create(@Nonnull HrisEmployeesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Employees {
      * @throws Exception if the API call fails
      */
     public HrisEmployeesAddResponse create(
-            HrisEmployeesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
               = new HrisEmployeesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public HrisEmployeesOneResponse get(@Nonnull HrisEmployeesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Employees {
      * @throws Exception if the API call fails
      */
     public HrisEmployeesOneResponse get(
-            HrisEmployeesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
               = new HrisEmployeesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public HrisEmployeesUpdateResponse update(@Nonnull HrisEmployeesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Employees {
      * @throws Exception if the API call fails
      */
     public HrisEmployeesUpdateResponse update(
-            HrisEmployeesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
               = new HrisEmployeesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public HrisEmployeesDeleteResponse delete(@Nonnull HrisEmployeesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Employees {
      * @throws Exception if the API call fails
      */
     public HrisEmployeesDeleteResponse delete(
-            HrisEmployeesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisEmployeesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
               = new HrisEmployeesDeleteOperation(
                 sdkConfiguration,

@@ -10,47 +10,46 @@ import com.apideck.unify.operations.CrmCustomObjectsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class CrmCustomObjectsAddRequestBuilder {
-
-    private CrmCustomObjectsAddRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private CrmCustomObjectsAddRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public CrmCustomObjectsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public CrmCustomObjectsAddRequestBuilder request(CrmCustomObjectsAddRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public CrmCustomObjectsAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public CrmCustomObjectsAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public CrmCustomObjectsAddRequestBuilder request(@Nonnull CrmCustomObjectsAddRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private CrmCustomObjectsAddRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public CrmCustomObjectsAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
               = new CrmCustomObjectsAddOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

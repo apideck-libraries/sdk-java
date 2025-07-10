@@ -5,13 +5,15 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -49,70 +51,65 @@ public class CreateWebhookRequest {
 
     @JsonCreator
     public CreateWebhookRequest(
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("unified_api") UnifiedApiId unifiedApi,
-            @JsonProperty("status") Status status,
-            @JsonProperty("delivery_url") String deliveryUrl,
-            @JsonProperty("events") List<WebhookEventType> events) {
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        Utils.checkNotNull(events, "events");
-        this.description = description;
-        this.unifiedApi = unifiedApi;
-        this.status = status;
-        this.deliveryUrl = deliveryUrl;
-        this.events = events;
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("unified_api") @Nonnull UnifiedApiId unifiedApi,
+            @JsonProperty("status") @Nonnull Status status,
+            @JsonProperty("delivery_url") @Nonnull String deliveryUrl,
+            @JsonProperty("events") @Nonnull List<WebhookEventType> events) {
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.unifiedApi = Optional.ofNullable(unifiedApi)
+            .orElseThrow(() -> new IllegalArgumentException("unifiedApi cannot be null"));
+        this.status = Optional.ofNullable(status)
+            .orElseThrow(() -> new IllegalArgumentException("status cannot be null"));
+        this.deliveryUrl = Optional.ofNullable(deliveryUrl)
+            .orElseThrow(() -> new IllegalArgumentException("deliveryUrl cannot be null"));
+        this.events = Optional.ofNullable(events)
+            .orElseThrow(() -> new IllegalArgumentException("events cannot be null"));
     }
     
     public CreateWebhookRequest(
-            UnifiedApiId unifiedApi,
-            Status status,
-            String deliveryUrl,
-            List<WebhookEventType> events) {
-        this(JsonNullable.undefined(), unifiedApi, status,
+            @Nonnull UnifiedApiId unifiedApi,
+            @Nonnull Status status,
+            @Nonnull String deliveryUrl,
+            @Nonnull List<WebhookEventType> events) {
+        this(null, unifiedApi, status,
             deliveryUrl, events);
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Name of Apideck Unified API
      */
-    @JsonIgnore
     public UnifiedApiId unifiedApi() {
-        return unifiedApi;
+        return this.unifiedApi;
     }
 
     /**
      * The status of the webhook.
      */
-    @JsonIgnore
     public Status status() {
-        return status;
+        return this.status;
     }
 
     /**
      * The delivery url of the webhook endpoint.
      */
-    @JsonIgnore
     public String deliveryUrl() {
-        return deliveryUrl;
+        return this.deliveryUrl;
     }
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    @JsonIgnore
     public List<WebhookEventType> events() {
-        return events;
+        return this.events;
     }
 
     public static Builder builder() {
@@ -123,56 +120,47 @@ public class CreateWebhookRequest {
     /**
      * A description of the object.
      */
-    public CreateWebhookRequest withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public CreateWebhookRequest withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public CreateWebhookRequest withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Name of Apideck Unified API
      */
-    public CreateWebhookRequest withUnifiedApi(UnifiedApiId unifiedApi) {
-        Utils.checkNotNull(unifiedApi, "unifiedApi");
-        this.unifiedApi = unifiedApi;
+    public CreateWebhookRequest withUnifiedApi(@Nonnull UnifiedApiId unifiedApi) {
+        this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
         return this;
     }
+
 
     /**
      * The status of the webhook.
      */
-    public CreateWebhookRequest withStatus(Status status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
+    public CreateWebhookRequest withStatus(@Nonnull Status status) {
+        this.status = Utils.checkNotNull(status, "status");
         return this;
     }
+
 
     /**
      * The delivery url of the webhook endpoint.
      */
-    public CreateWebhookRequest withDeliveryUrl(String deliveryUrl) {
-        Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-        this.deliveryUrl = deliveryUrl;
+    public CreateWebhookRequest withDeliveryUrl(@Nonnull String deliveryUrl) {
+        this.deliveryUrl = Utils.checkNotNull(deliveryUrl, "deliveryUrl");
         return this;
     }
+
 
     /**
      * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
      */
-    public CreateWebhookRequest withEvents(List<WebhookEventType> events) {
-        Utils.checkNotNull(events, "events");
-        this.events = events;
+    public CreateWebhookRequest withEvents(@Nonnull List<WebhookEventType> events) {
+        this.events = Utils.checkNotNull(events, "events");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -211,7 +199,7 @@ public class CreateWebhookRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
         private UnifiedApiId unifiedApi;
 
@@ -225,67 +213,47 @@ public class CreateWebhookRequest {
           // force use of static builder() method
         }
 
-
         /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Name of Apideck Unified API
          */
-        public Builder unifiedApi(UnifiedApiId unifiedApi) {
-            Utils.checkNotNull(unifiedApi, "unifiedApi");
-            this.unifiedApi = unifiedApi;
+        public Builder unifiedApi(@Nonnull UnifiedApiId unifiedApi) {
+            this.unifiedApi = Utils.checkNotNull(unifiedApi, "unifiedApi");
             return this;
         }
-
 
         /**
          * The status of the webhook.
          */
-        public Builder status(Status status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
+        public Builder status(@Nonnull Status status) {
+            this.status = Utils.checkNotNull(status, "status");
             return this;
         }
-
 
         /**
          * The delivery url of the webhook endpoint.
          */
-        public Builder deliveryUrl(String deliveryUrl) {
-            Utils.checkNotNull(deliveryUrl, "deliveryUrl");
-            this.deliveryUrl = deliveryUrl;
+        public Builder deliveryUrl(@Nonnull String deliveryUrl) {
+            this.deliveryUrl = Utils.checkNotNull(deliveryUrl, "deliveryUrl");
             return this;
         }
-
 
         /**
          * The list of subscribed events for this webhook. [`*`] indicates that all events are enabled.
          */
-        public Builder events(List<WebhookEventType> events) {
-            Utils.checkNotNull(events, "events");
-            this.events = events;
+        public Builder events(@Nonnull List<WebhookEventType> events) {
+            this.events = Utils.checkNotNull(events, "events");
             return this;
         }
 
         public CreateWebhookRequest build() {
-
             return new CreateWebhookRequest(
                 description, unifiedApi, status,
                 deliveryUrl, events);

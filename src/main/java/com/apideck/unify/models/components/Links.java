@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -32,7 +32,7 @@ public class Links {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("current")
-    private Optional<String> current;
+    private String current;
 
     /**
      * Link to navigate to the previous page through the API
@@ -43,43 +43,39 @@ public class Links {
 
     @JsonCreator
     public Links(
-            @JsonProperty("previous") JsonNullable<String> previous,
-            @JsonProperty("current") Optional<String> current,
-            @JsonProperty("next") JsonNullable<String> next) {
-        Utils.checkNotNull(previous, "previous");
-        Utils.checkNotNull(current, "current");
-        Utils.checkNotNull(next, "next");
-        this.previous = previous;
+            @JsonProperty("previous") @Nullable JsonNullable<String> previous,
+            @JsonProperty("current") @Nullable String current,
+            @JsonProperty("next") @Nullable JsonNullable<String> next) {
+        this.previous = Optional.ofNullable(previous)
+            .orElse(JsonNullable.undefined());
         this.current = current;
-        this.next = next;
+        this.next = Optional.ofNullable(next)
+            .orElse(JsonNullable.undefined());
     }
     
     public Links() {
-        this(JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+        this(null, null, null);
     }
 
     /**
      * Link to navigate to the previous page through the API
      */
-    @JsonIgnore
     public JsonNullable<String> previous() {
-        return previous;
+        return this.previous;
     }
 
     /**
      * Link to navigate to the current page through the API
      */
-    @JsonIgnore
     public Optional<String> current() {
-        return current;
+        return Optional.ofNullable(this.current);
     }
 
     /**
      * Link to navigate to the previous page through the API
      */
-    @JsonIgnore
     public JsonNullable<String> next() {
-        return next;
+        return this.next;
     }
 
     public static Builder builder() {
@@ -90,57 +86,29 @@ public class Links {
     /**
      * Link to navigate to the previous page through the API
      */
-    public Links withPrevious(String previous) {
-        Utils.checkNotNull(previous, "previous");
+    public Links withPrevious(@Nullable String previous) {
         this.previous = JsonNullable.of(previous);
         return this;
     }
 
-    /**
-     * Link to navigate to the previous page through the API
-     */
-    public Links withPrevious(JsonNullable<String> previous) {
-        Utils.checkNotNull(previous, "previous");
-        this.previous = previous;
-        return this;
-    }
 
     /**
      * Link to navigate to the current page through the API
      */
-    public Links withCurrent(String current) {
-        Utils.checkNotNull(current, "current");
-        this.current = Optional.ofNullable(current);
-        return this;
-    }
-
-
-    /**
-     * Link to navigate to the current page through the API
-     */
-    public Links withCurrent(Optional<String> current) {
-        Utils.checkNotNull(current, "current");
+    public Links withCurrent(@Nullable String current) {
         this.current = current;
         return this;
     }
 
-    /**
-     * Link to navigate to the previous page through the API
-     */
-    public Links withNext(String next) {
-        Utils.checkNotNull(next, "next");
-        this.next = JsonNullable.of(next);
-        return this;
-    }
 
     /**
      * Link to navigate to the previous page through the API
      */
-    public Links withNext(JsonNullable<String> next) {
-        Utils.checkNotNull(next, "next");
-        this.next = next;
+    public Links withNext(@Nullable String next) {
+        this.next = JsonNullable.of(next);
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -174,75 +142,41 @@ public class Links {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> previous = JsonNullable.undefined();
+        private JsonNullable<String> previous;
 
-        private Optional<String> current = Optional.empty();
+        private String current;
 
-        private JsonNullable<String> next = JsonNullable.undefined();
+        private JsonNullable<String> next;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Link to navigate to the previous page through the API
          */
-        public Builder previous(String previous) {
-            Utils.checkNotNull(previous, "previous");
+        public Builder previous(@Nullable String previous) {
             this.previous = JsonNullable.of(previous);
             return this;
         }
 
         /**
-         * Link to navigate to the previous page through the API
-         */
-        public Builder previous(JsonNullable<String> previous) {
-            Utils.checkNotNull(previous, "previous");
-            this.previous = previous;
-            return this;
-        }
-
-
-        /**
          * Link to navigate to the current page through the API
          */
-        public Builder current(String current) {
-            Utils.checkNotNull(current, "current");
-            this.current = Optional.ofNullable(current);
-            return this;
-        }
-
-        /**
-         * Link to navigate to the current page through the API
-         */
-        public Builder current(Optional<String> current) {
-            Utils.checkNotNull(current, "current");
+        public Builder current(@Nullable String current) {
             this.current = current;
             return this;
         }
 
-
         /**
          * Link to navigate to the previous page through the API
          */
-        public Builder next(String next) {
-            Utils.checkNotNull(next, "next");
+        public Builder next(@Nullable String next) {
             this.next = JsonNullable.of(next);
             return this;
         }
 
-        /**
-         * Link to navigate to the previous page through the API
-         */
-        public Builder next(JsonNullable<String> next) {
-            Utils.checkNotNull(next, "next");
-            this.next = next;
-            return this;
-        }
-
         public Links build() {
-
             return new Links(
                 previous, current, next);
         }

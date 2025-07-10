@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmCustomObjectsDeleteOperation;
 import com.apideck.unify.operations.CrmCustomObjectsOneOperation;
 import com.apideck.unify.operations.CrmCustomObjectsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmCustomObjectsAllResponse list(@Nonnull CrmCustomObjectsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class CustomObjects {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectsAllResponse list(
-            CrmCustomObjectsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
               = new CrmCustomObjectsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmCustomObjectsAddResponse create(@Nonnull CrmCustomObjectsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class CustomObjects {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectsAddResponse create(
-            CrmCustomObjectsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
               = new CrmCustomObjectsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmCustomObjectsOneResponse get(@Nonnull CrmCustomObjectsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class CustomObjects {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectsOneResponse get(
-            CrmCustomObjectsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
               = new CrmCustomObjectsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmCustomObjectsUpdateResponse update(@Nonnull CrmCustomObjectsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class CustomObjects {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectsUpdateResponse update(
-            CrmCustomObjectsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
               = new CrmCustomObjectsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmCustomObjectsDeleteResponse delete(@Nonnull CrmCustomObjectsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class CustomObjects {
      * @throws Exception if the API call fails
      */
     public CrmCustomObjectsDeleteResponse delete(
-            CrmCustomObjectsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmCustomObjectsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
               = new CrmCustomObjectsDeleteOperation(
                 sdkConfiguration,

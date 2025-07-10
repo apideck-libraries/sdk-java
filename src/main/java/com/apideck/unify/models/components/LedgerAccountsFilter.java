@@ -6,10 +6,9 @@ package com.apideck.unify.models.components;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
@@ -17,40 +16,35 @@ import java.util.Optional;
 public class LedgerAccountsFilter {
 
     @SpeakeasyMetadata("queryParam:name=updated_since")
-    private Optional<OffsetDateTime> updatedSince;
+    private OffsetDateTime updatedSince;
 
     /**
      * Filter by account classification.
      */
     @SpeakeasyMetadata("queryParam:name=classification")
-    private Optional<? extends Classification> classification;
+    private Classification classification;
 
     @JsonCreator
     public LedgerAccountsFilter(
-            Optional<OffsetDateTime> updatedSince,
-            Optional<? extends Classification> classification) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        Utils.checkNotNull(classification, "classification");
+            @Nullable OffsetDateTime updatedSince,
+            @Nullable Classification classification) {
         this.updatedSince = updatedSince;
         this.classification = classification;
     }
     
     public LedgerAccountsFilter() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<OffsetDateTime> updatedSince() {
-        return updatedSince;
+        return Optional.ofNullable(this.updatedSince);
     }
 
     /**
      * Filter by account classification.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Classification> classification() {
-        return (Optional<Classification>) classification;
+        return Optional.ofNullable(this.classification);
     }
 
     public static Builder builder() {
@@ -58,37 +52,20 @@ public class LedgerAccountsFilter {
     }
 
 
-    public LedgerAccountsFilter withUpdatedSince(OffsetDateTime updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
-        this.updatedSince = Optional.ofNullable(updatedSince);
-        return this;
-    }
-
-
-    public LedgerAccountsFilter withUpdatedSince(Optional<OffsetDateTime> updatedSince) {
-        Utils.checkNotNull(updatedSince, "updatedSince");
+    public LedgerAccountsFilter withUpdatedSince(@Nullable OffsetDateTime updatedSince) {
         this.updatedSince = updatedSince;
         return this;
     }
 
-    /**
-     * Filter by account classification.
-     */
-    public LedgerAccountsFilter withClassification(Classification classification) {
-        Utils.checkNotNull(classification, "classification");
-        this.classification = Optional.ofNullable(classification);
-        return this;
-    }
-
 
     /**
      * Filter by account classification.
      */
-    public LedgerAccountsFilter withClassification(Optional<? extends Classification> classification) {
-        Utils.checkNotNull(classification, "classification");
+    public LedgerAccountsFilter withClassification(@Nullable Classification classification) {
         this.classification = classification;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -120,48 +97,28 @@ public class LedgerAccountsFilter {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<OffsetDateTime> updatedSince = Optional.empty();
+        private OffsetDateTime updatedSince;
 
-        private Optional<? extends Classification> classification = Optional.empty();
+        private Classification classification;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder updatedSince(OffsetDateTime updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
-            this.updatedSince = Optional.ofNullable(updatedSince);
-            return this;
-        }
-
-        public Builder updatedSince(Optional<OffsetDateTime> updatedSince) {
-            Utils.checkNotNull(updatedSince, "updatedSince");
+        public Builder updatedSince(@Nullable OffsetDateTime updatedSince) {
             this.updatedSince = updatedSince;
             return this;
         }
 
-
         /**
          * Filter by account classification.
          */
-        public Builder classification(Classification classification) {
-            Utils.checkNotNull(classification, "classification");
-            this.classification = Optional.ofNullable(classification);
-            return this;
-        }
-
-        /**
-         * Filter by account classification.
-         */
-        public Builder classification(Optional<? extends Classification> classification) {
-            Utils.checkNotNull(classification, "classification");
+        public Builder classification(@Nullable Classification classification) {
             this.classification = classification;
             return this;
         }
 
         public LedgerAccountsFilter build() {
-
             return new LedgerAccountsFilter(
                 updatedSince, classification);
         }

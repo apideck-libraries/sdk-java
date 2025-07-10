@@ -8,12 +8,11 @@ import com.apideck.unify.models.components.UpdateBillPaymentResponse;
 import com.apideck.unify.utils.Response;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.io.InputStream;
-import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
@@ -37,80 +36,70 @@ public class AccountingBillPaymentsUpdateResponse implements Response {
     /**
      * Bill Payment updated
      */
-    private Optional<? extends UpdateBillPaymentResponse> updateBillPaymentResponse;
+    private UpdateBillPaymentResponse updateBillPaymentResponse;
 
     /**
      * Unexpected error
      */
-    private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse;
+    private UnexpectedErrorResponse unexpectedErrorResponse;
 
     @JsonCreator
     public AccountingBillPaymentsUpdateResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends UpdateBillPaymentResponse> updateBillPaymentResponse,
-            Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(updateBillPaymentResponse, "updateBillPaymentResponse");
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.contentType = contentType;
+            @Nonnull HttpResponse<InputStream> rawResponse,
+            @Nullable UpdateBillPaymentResponse updateBillPaymentResponse,
+            @Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
+        this.contentType = Optional.ofNullable(contentType)
+            .orElseThrow(() -> new IllegalArgumentException("contentType cannot be null"));
         this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
+        this.rawResponse = Optional.ofNullable(rawResponse)
+            .orElseThrow(() -> new IllegalArgumentException("rawResponse cannot be null"));
         this.updateBillPaymentResponse = updateBillPaymentResponse;
         this.unexpectedErrorResponse = unexpectedErrorResponse;
     }
     
     public AccountingBillPaymentsUpdateResponse(
-            String contentType,
+            @Nonnull String contentType,
             int statusCode,
-            HttpResponse<InputStream> rawResponse) {
+            @Nonnull HttpResponse<InputStream> rawResponse) {
         this(contentType, statusCode, rawResponse,
-            Optional.empty(), Optional.empty());
+            null, null);
     }
 
     /**
      * HTTP response content type for this operation
      */
-    @JsonIgnore
     public String contentType() {
-        return contentType;
+        return this.contentType;
     }
 
     /**
      * HTTP response status code for this operation
      */
-    @JsonIgnore
     public int statusCode() {
-        return statusCode;
+        return this.statusCode;
     }
 
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
-        return rawResponse;
+        return this.rawResponse;
     }
 
     /**
      * Bill Payment updated
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UpdateBillPaymentResponse> updateBillPaymentResponse() {
-        return (Optional<UpdateBillPaymentResponse>) updateBillPaymentResponse;
+        return Optional.ofNullable(this.updateBillPaymentResponse);
     }
 
     /**
      * Unexpected error
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<UnexpectedErrorResponse> unexpectedErrorResponse() {
-        return (Optional<UnexpectedErrorResponse>) unexpectedErrorResponse;
+        return Optional.ofNullable(this.unexpectedErrorResponse);
     }
 
     public static Builder builder() {
@@ -121,36 +110,26 @@ public class AccountingBillPaymentsUpdateResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public AccountingBillPaymentsUpdateResponse withContentType(String contentType) {
-        Utils.checkNotNull(contentType, "contentType");
-        this.contentType = contentType;
+    public AccountingBillPaymentsUpdateResponse withContentType(@Nonnull String contentType) {
+        this.contentType = Utils.checkNotNull(contentType, "contentType");
         return this;
     }
+
 
     /**
      * HTTP response status code for this operation
      */
     public AccountingBillPaymentsUpdateResponse withStatusCode(int statusCode) {
-        Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
     }
 
+
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public AccountingBillPaymentsUpdateResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * Bill Payment updated
-     */
-    public AccountingBillPaymentsUpdateResponse withUpdateBillPaymentResponse(UpdateBillPaymentResponse updateBillPaymentResponse) {
-        Utils.checkNotNull(updateBillPaymentResponse, "updateBillPaymentResponse");
-        this.updateBillPaymentResponse = Optional.ofNullable(updateBillPaymentResponse);
+    public AccountingBillPaymentsUpdateResponse withRawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+        this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
         return this;
     }
 
@@ -158,30 +137,20 @@ public class AccountingBillPaymentsUpdateResponse implements Response {
     /**
      * Bill Payment updated
      */
-    public AccountingBillPaymentsUpdateResponse withUpdateBillPaymentResponse(Optional<? extends UpdateBillPaymentResponse> updateBillPaymentResponse) {
-        Utils.checkNotNull(updateBillPaymentResponse, "updateBillPaymentResponse");
+    public AccountingBillPaymentsUpdateResponse withUpdateBillPaymentResponse(@Nullable UpdateBillPaymentResponse updateBillPaymentResponse) {
         this.updateBillPaymentResponse = updateBillPaymentResponse;
         return this;
     }
 
-    /**
-     * Unexpected error
-     */
-    public AccountingBillPaymentsUpdateResponse withUnexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-        this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-        return this;
-    }
-
 
     /**
      * Unexpected error
      */
-    public AccountingBillPaymentsUpdateResponse withUnexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-        Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+    public AccountingBillPaymentsUpdateResponse withUnexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
         this.unexpectedErrorResponse = unexpectedErrorResponse;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -222,88 +191,59 @@ public class AccountingBillPaymentsUpdateResponse implements Response {
 
         private String contentType;
 
-        private Integer statusCode;
+        private int statusCode;
 
         private HttpResponse<InputStream> rawResponse;
 
-        private Optional<? extends UpdateBillPaymentResponse> updateBillPaymentResponse = Optional.empty();
+        private UpdateBillPaymentResponse updateBillPaymentResponse;
 
-        private Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse = Optional.empty();
+        private UnexpectedErrorResponse unexpectedErrorResponse;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * HTTP response content type for this operation
          */
-        public Builder contentType(String contentType) {
-            Utils.checkNotNull(contentType, "contentType");
-            this.contentType = contentType;
+        public Builder contentType(@Nonnull String contentType) {
+            this.contentType = Utils.checkNotNull(contentType, "contentType");
             return this;
         }
-
 
         /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
-            Utils.checkNotNull(statusCode, "statusCode");
             this.statusCode = statusCode;
             return this;
         }
 
-
         /**
          * Raw HTTP response; suitable for custom response parsing
          */
-        public Builder rawResponse(HttpResponse<InputStream> rawResponse) {
-            Utils.checkNotNull(rawResponse, "rawResponse");
-            this.rawResponse = rawResponse;
-            return this;
-        }
-
-
-        /**
-         * Bill Payment updated
-         */
-        public Builder updateBillPaymentResponse(UpdateBillPaymentResponse updateBillPaymentResponse) {
-            Utils.checkNotNull(updateBillPaymentResponse, "updateBillPaymentResponse");
-            this.updateBillPaymentResponse = Optional.ofNullable(updateBillPaymentResponse);
+        public Builder rawResponse(@Nonnull HttpResponse<InputStream> rawResponse) {
+            this.rawResponse = Utils.checkNotNull(rawResponse, "rawResponse");
             return this;
         }
 
         /**
          * Bill Payment updated
          */
-        public Builder updateBillPaymentResponse(Optional<? extends UpdateBillPaymentResponse> updateBillPaymentResponse) {
-            Utils.checkNotNull(updateBillPaymentResponse, "updateBillPaymentResponse");
+        public Builder updateBillPaymentResponse(@Nullable UpdateBillPaymentResponse updateBillPaymentResponse) {
             this.updateBillPaymentResponse = updateBillPaymentResponse;
             return this;
         }
 
-
         /**
          * Unexpected error
          */
-        public Builder unexpectedErrorResponse(UnexpectedErrorResponse unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
-            this.unexpectedErrorResponse = Optional.ofNullable(unexpectedErrorResponse);
-            return this;
-        }
-
-        /**
-         * Unexpected error
-         */
-        public Builder unexpectedErrorResponse(Optional<? extends UnexpectedErrorResponse> unexpectedErrorResponse) {
-            Utils.checkNotNull(unexpectedErrorResponse, "unexpectedErrorResponse");
+        public Builder unexpectedErrorResponse(@Nullable UnexpectedErrorResponse unexpectedErrorResponse) {
             this.unexpectedErrorResponse = unexpectedErrorResponse;
             return this;
         }
 
         public AccountingBillPaymentsUpdateResponse build() {
-
             return new AccountingBillPaymentsUpdateResponse(
                 contentType, statusCode, rawResponse,
                 updateBillPaymentResponse, unexpectedErrorResponse);

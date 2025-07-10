@@ -10,71 +10,59 @@ import com.apideck.unify.operations.WebhookWebhooksDeleteOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class WebhookWebhooksDeleteRequestBuilder {
-
-    private String id;
-    private Optional<String> appId = Optional.empty();
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final WebhookWebhooksDeleteRequest.Builder pojoBuilder;
+    private WebhookWebhooksDeleteRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public WebhookWebhooksDeleteRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = WebhookWebhooksDeleteRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
 
-    public WebhookWebhooksDeleteRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-                
-    public WebhookWebhooksDeleteRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public WebhookWebhooksDeleteRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksDeleteRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public WebhookWebhooksDeleteRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
-                
+
     public WebhookWebhooksDeleteRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public WebhookWebhooksDeleteRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private WebhookWebhooksDeleteRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private WebhookWebhooksDeleteRequest buildRequest() {
-
-        WebhookWebhooksDeleteRequest request = new WebhookWebhooksDeleteRequest(id,
-            appId);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public WebhookWebhooksDeleteResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
               = new WebhookWebhooksDeleteOperation(
                 sdkConfiguration,
                 options);
-        WebhookWebhooksDeleteRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

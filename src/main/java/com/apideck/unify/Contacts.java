@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmContactsDeleteOperation;
 import com.apideck.unify.operations.CrmContactsOneOperation;
 import com.apideck.unify.operations.CrmContactsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsAllResponse list(CrmContactsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmContactsAllResponse list(@Nonnull CrmContactsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Contacts {
      * @throws Exception if the API call fails
      */
     public CrmContactsAllResponse list(
-            CrmContactsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmContactsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
               = new CrmContactsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsAddResponse create(CrmContactsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmContactsAddResponse create(@Nonnull CrmContactsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Contacts {
      * @throws Exception if the API call fails
      */
     public CrmContactsAddResponse create(
-            CrmContactsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmContactsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
               = new CrmContactsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsOneResponse get(CrmContactsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmContactsOneResponse get(@Nonnull CrmContactsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Contacts {
      * @throws Exception if the API call fails
      */
     public CrmContactsOneResponse get(
-            CrmContactsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmContactsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
               = new CrmContactsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmContactsUpdateResponse update(@Nonnull CrmContactsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Contacts {
      * @throws Exception if the API call fails
      */
     public CrmContactsUpdateResponse update(
-            CrmContactsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmContactsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
               = new CrmContactsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmContactsDeleteResponse delete(@Nonnull CrmContactsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Contacts {
      * @throws Exception if the API call fails
      */
     public CrmContactsDeleteResponse delete(
-            CrmContactsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmContactsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
               = new CrmContactsDeleteOperation(
                 sdkConfiguration,

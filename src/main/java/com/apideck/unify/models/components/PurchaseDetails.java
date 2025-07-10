@@ -5,15 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -41,54 +40,48 @@ public class PurchaseDetails {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_rate")
-    private Optional<? extends LinkedTaxRate> taxRate;
+    private LinkedTaxRate taxRate;
 
     @JsonCreator
     public PurchaseDetails(
-            @JsonProperty("unit_price") JsonNullable<Double> unitPrice,
-            @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
-            @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
-            @JsonProperty("tax_rate") Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.unitPrice = unitPrice;
-        this.unitOfMeasure = unitOfMeasure;
-        this.taxInclusive = taxInclusive;
+            @JsonProperty("unit_price") @Nullable JsonNullable<Double> unitPrice,
+            @JsonProperty("unit_of_measure") @Nullable JsonNullable<String> unitOfMeasure,
+            @JsonProperty("tax_inclusive") @Nullable JsonNullable<Boolean> taxInclusive,
+            @JsonProperty("tax_rate") @Nullable LinkedTaxRate taxRate) {
+        this.unitPrice = Optional.ofNullable(unitPrice)
+            .orElse(JsonNullable.undefined());
+        this.unitOfMeasure = Optional.ofNullable(unitOfMeasure)
+            .orElse(JsonNullable.undefined());
+        this.taxInclusive = Optional.ofNullable(taxInclusive)
+            .orElse(JsonNullable.undefined());
         this.taxRate = taxRate;
     }
     
     public PurchaseDetails() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
-    @JsonIgnore
     public JsonNullable<Double> unitPrice() {
-        return unitPrice;
+        return this.unitPrice;
     }
 
     /**
      * Description of the unit type the item is sold as, ie: kg, hour.
      */
-    @JsonIgnore
     public JsonNullable<String> unitOfMeasure() {
-        return unitOfMeasure;
+        return this.unitOfMeasure;
     }
 
     /**
      * Amounts are including tax
      */
-    @JsonIgnore
     public JsonNullable<Boolean> taxInclusive() {
-        return taxInclusive;
+        return this.taxInclusive;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedTaxRate> taxRate() {
-        return (Optional<LinkedTaxRate>) taxRate;
+        return Optional.ofNullable(this.taxRate);
     }
 
     public static Builder builder() {
@@ -96,66 +89,35 @@ public class PurchaseDetails {
     }
 
 
-    public PurchaseDetails withUnitPrice(double unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
+    public PurchaseDetails withUnitPrice(@Nullable Double unitPrice) {
         this.unitPrice = JsonNullable.of(unitPrice);
         return this;
     }
 
-    public PurchaseDetails withUnitPrice(JsonNullable<Double> unitPrice) {
-        Utils.checkNotNull(unitPrice, "unitPrice");
-        this.unitPrice = unitPrice;
-        return this;
-    }
 
     /**
      * Description of the unit type the item is sold as, ie: kg, hour.
      */
-    public PurchaseDetails withUnitOfMeasure(String unitOfMeasure) {
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+    public PurchaseDetails withUnitOfMeasure(@Nullable String unitOfMeasure) {
         this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
         return this;
     }
 
-    /**
-     * Description of the unit type the item is sold as, ie: kg, hour.
-     */
-    public PurchaseDetails withUnitOfMeasure(JsonNullable<String> unitOfMeasure) {
-        Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-        this.unitOfMeasure = unitOfMeasure;
-        return this;
-    }
 
     /**
      * Amounts are including tax
      */
-    public PurchaseDetails withTaxInclusive(boolean taxInclusive) {
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
+    public PurchaseDetails withTaxInclusive(@Nullable Boolean taxInclusive) {
         this.taxInclusive = JsonNullable.of(taxInclusive);
         return this;
     }
 
-    /**
-     * Amounts are including tax
-     */
-    public PurchaseDetails withTaxInclusive(JsonNullable<Boolean> taxInclusive) {
-        Utils.checkNotNull(taxInclusive, "taxInclusive");
-        this.taxInclusive = taxInclusive;
-        return this;
-    }
 
-    public PurchaseDetails withTaxRate(LinkedTaxRate taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
-        this.taxRate = Optional.ofNullable(taxRate);
-        return this;
-    }
-
-
-    public PurchaseDetails withTaxRate(Optional<? extends LinkedTaxRate> taxRate) {
-        Utils.checkNotNull(taxRate, "taxRate");
+    public PurchaseDetails withTaxRate(@Nullable LinkedTaxRate taxRate) {
         this.taxRate = taxRate;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -192,84 +154,45 @@ public class PurchaseDetails {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Double> unitPrice = JsonNullable.undefined();
+        private JsonNullable<Double> unitPrice;
 
-        private JsonNullable<String> unitOfMeasure = JsonNullable.undefined();
+        private JsonNullable<String> unitOfMeasure;
 
-        private JsonNullable<Boolean> taxInclusive = JsonNullable.undefined();
+        private JsonNullable<Boolean> taxInclusive;
 
-        private Optional<? extends LinkedTaxRate> taxRate = Optional.empty();
+        private LinkedTaxRate taxRate;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder unitPrice(double unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
+        public Builder unitPrice(@Nullable Double unitPrice) {
             this.unitPrice = JsonNullable.of(unitPrice);
             return this;
         }
 
-        public Builder unitPrice(JsonNullable<Double> unitPrice) {
-            Utils.checkNotNull(unitPrice, "unitPrice");
-            this.unitPrice = unitPrice;
-            return this;
-        }
-
-
         /**
          * Description of the unit type the item is sold as, ie: kg, hour.
          */
-        public Builder unitOfMeasure(String unitOfMeasure) {
-            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
+        public Builder unitOfMeasure(@Nullable String unitOfMeasure) {
             this.unitOfMeasure = JsonNullable.of(unitOfMeasure);
             return this;
         }
 
         /**
-         * Description of the unit type the item is sold as, ie: kg, hour.
-         */
-        public Builder unitOfMeasure(JsonNullable<String> unitOfMeasure) {
-            Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
-            this.unitOfMeasure = unitOfMeasure;
-            return this;
-        }
-
-
-        /**
          * Amounts are including tax
          */
-        public Builder taxInclusive(boolean taxInclusive) {
-            Utils.checkNotNull(taxInclusive, "taxInclusive");
+        public Builder taxInclusive(@Nullable Boolean taxInclusive) {
             this.taxInclusive = JsonNullable.of(taxInclusive);
             return this;
         }
 
-        /**
-         * Amounts are including tax
-         */
-        public Builder taxInclusive(JsonNullable<Boolean> taxInclusive) {
-            Utils.checkNotNull(taxInclusive, "taxInclusive");
-            this.taxInclusive = taxInclusive;
-            return this;
-        }
-
-
-        public Builder taxRate(LinkedTaxRate taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
-            this.taxRate = Optional.ofNullable(taxRate);
-            return this;
-        }
-
-        public Builder taxRate(Optional<? extends LinkedTaxRate> taxRate) {
-            Utils.checkNotNull(taxRate, "taxRate");
+        public Builder taxRate(@Nullable LinkedTaxRate taxRate) {
             this.taxRate = taxRate;
             return this;
         }
 
         public PurchaseDetails build() {
-
             return new PurchaseDetails(
                 unitPrice, unitOfMeasure, taxInclusive,
                 taxRate);

@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -21,25 +22,25 @@ public class FileStorageDriveGroupsAddRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -47,64 +48,56 @@ public class FileStorageDriveGroupsAddRequest {
 
     @JsonCreator
     public FileStorageDriveGroupsAddRequest(
-            Optional<Boolean> raw,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            DriveGroupInput driveGroup) {
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(driveGroup, "driveGroup");
-        this.raw = raw;
+            @Nullable Boolean raw,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nonnull DriveGroupInput driveGroup) {
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.driveGroup = driveGroup;
+        this.driveGroup = Optional.ofNullable(driveGroup)
+            .orElseThrow(() -> new IllegalArgumentException("driveGroup cannot be null"));
     }
     
     public FileStorageDriveGroupsAddRequest(
-            DriveGroupInput driveGroup) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), driveGroup);
+            @Nonnull DriveGroupInput driveGroup) {
+        this(null, null, null,
+            null, driveGroup);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
-    @JsonIgnore
     public DriveGroupInput driveGroup() {
-        return driveGroup;
+        return this.driveGroup;
     }
 
     public static Builder builder() {
@@ -115,84 +108,44 @@ public class FileStorageDriveGroupsAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public FileStorageDriveGroupsAddRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public FileStorageDriveGroupsAddRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public FileStorageDriveGroupsAddRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public FileStorageDriveGroupsAddRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public FileStorageDriveGroupsAddRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public FileStorageDriveGroupsAddRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public FileStorageDriveGroupsAddRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public FileStorageDriveGroupsAddRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public FileStorageDriveGroupsAddRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public FileStorageDriveGroupsAddRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public FileStorageDriveGroupsAddRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public FileStorageDriveGroupsAddRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public FileStorageDriveGroupsAddRequest withDriveGroup(DriveGroupInput driveGroup) {
-        Utils.checkNotNull(driveGroup, "driveGroup");
-        this.driveGroup = driveGroup;
+
+    public FileStorageDriveGroupsAddRequest withDriveGroup(@Nonnull DriveGroupInput driveGroup) {
+        this.driveGroup = Utils.checkNotNull(driveGroup, "driveGroup");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -231,13 +184,13 @@ public class FileStorageDriveGroupsAddRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
         private DriveGroupInput driveGroup;
 
@@ -245,104 +198,54 @@ public class FileStorageDriveGroupsAddRequest {
           // force use of static builder() method
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
-        public Builder driveGroup(DriveGroupInput driveGroup) {
-            Utils.checkNotNull(driveGroup, "driveGroup");
-            this.driveGroup = driveGroup;
+        public Builder driveGroup(@Nonnull DriveGroupInput driveGroup) {
+            this.driveGroup = Utils.checkNotNull(driveGroup, "driveGroup");
             return this;
         }
 
         public FileStorageDriveGroupsAddRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new FileStorageDriveGroupsAddRequest(
                 raw, consumerId, appId,
                 serviceId, driveGroup);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

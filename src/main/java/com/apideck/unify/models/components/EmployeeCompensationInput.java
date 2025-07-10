@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -29,21 +29,21 @@ public class EmployeeCompensationInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_unit")
-    private JsonNullable<? extends PaymentUnit> paymentUnit;
+    private JsonNullable<PaymentUnit> paymentUnit;
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The FLSA status for this compensation.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("flsa_status")
-    private JsonNullable<? extends FlsaStatus> flsaStatus;
+    private JsonNullable<FlsaStatus> flsaStatus;
 
     /**
      * The date on which a change to an employee's compensation takes effect.
@@ -57,85 +57,75 @@ public class EmployeeCompensationInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_frequency")
-    private JsonNullable<? extends PaymentFrequency> paymentFrequency;
+    private JsonNullable<PaymentFrequency> paymentFrequency;
 
     @JsonCreator
     public EmployeeCompensationInput(
-            @JsonProperty("rate") JsonNullable<Double> rate,
-            @JsonProperty("payment_unit") JsonNullable<? extends PaymentUnit> paymentUnit,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("flsa_status") JsonNullable<? extends FlsaStatus> flsaStatus,
-            @JsonProperty("effective_date") JsonNullable<String> effectiveDate,
-            @JsonProperty("payment_frequency") JsonNullable<? extends PaymentFrequency> paymentFrequency) {
-        Utils.checkNotNull(rate, "rate");
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(flsaStatus, "flsaStatus");
-        Utils.checkNotNull(effectiveDate, "effectiveDate");
-        Utils.checkNotNull(paymentFrequency, "paymentFrequency");
-        this.rate = rate;
-        this.paymentUnit = paymentUnit;
-        this.currency = currency;
-        this.flsaStatus = flsaStatus;
-        this.effectiveDate = effectiveDate;
-        this.paymentFrequency = paymentFrequency;
+            @JsonProperty("rate") @Nullable JsonNullable<Double> rate,
+            @JsonProperty("payment_unit") @Nullable JsonNullable<PaymentUnit> paymentUnit,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("flsa_status") @Nullable JsonNullable<FlsaStatus> flsaStatus,
+            @JsonProperty("effective_date") @Nullable JsonNullable<String> effectiveDate,
+            @JsonProperty("payment_frequency") @Nullable JsonNullable<PaymentFrequency> paymentFrequency) {
+        this.rate = Optional.ofNullable(rate)
+            .orElse(JsonNullable.undefined());
+        this.paymentUnit = Optional.ofNullable(paymentUnit)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.flsaStatus = Optional.ofNullable(flsaStatus)
+            .orElse(JsonNullable.undefined());
+        this.effectiveDate = Optional.ofNullable(effectiveDate)
+            .orElse(JsonNullable.undefined());
+        this.paymentFrequency = Optional.ofNullable(paymentFrequency)
+            .orElse(JsonNullable.undefined());
     }
     
     public EmployeeCompensationInput() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null);
     }
 
     /**
      * The amount paid per payment unit.
      */
-    @JsonIgnore
     public JsonNullable<Double> rate() {
-        return rate;
+        return this.rate;
     }
 
     /**
      * Unit of measurement for employee compensation.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<PaymentUnit> paymentUnit() {
-        return (JsonNullable<PaymentUnit>) paymentUnit;
+        return this.paymentUnit;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The FLSA status for this compensation.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<FlsaStatus> flsaStatus() {
-        return (JsonNullable<FlsaStatus>) flsaStatus;
+        return this.flsaStatus;
     }
 
     /**
      * The date on which a change to an employee's compensation takes effect.
      */
-    @JsonIgnore
     public JsonNullable<String> effectiveDate() {
-        return effectiveDate;
+        return this.effectiveDate;
     }
 
     /**
      * Frequency of employee compensation.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<PaymentFrequency> paymentFrequency() {
-        return (JsonNullable<PaymentFrequency>) paymentFrequency;
+        return this.paymentFrequency;
     }
 
     public static Builder builder() {
@@ -146,110 +136,56 @@ public class EmployeeCompensationInput {
     /**
      * The amount paid per payment unit.
      */
-    public EmployeeCompensationInput withRate(double rate) {
-        Utils.checkNotNull(rate, "rate");
+    public EmployeeCompensationInput withRate(@Nullable Double rate) {
         this.rate = JsonNullable.of(rate);
         return this;
     }
 
-    /**
-     * The amount paid per payment unit.
-     */
-    public EmployeeCompensationInput withRate(JsonNullable<Double> rate) {
-        Utils.checkNotNull(rate, "rate");
-        this.rate = rate;
-        return this;
-    }
 
     /**
      * Unit of measurement for employee compensation.
      */
-    public EmployeeCompensationInput withPaymentUnit(PaymentUnit paymentUnit) {
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
+    public EmployeeCompensationInput withPaymentUnit(@Nullable PaymentUnit paymentUnit) {
         this.paymentUnit = JsonNullable.of(paymentUnit);
         return this;
     }
 
-    /**
-     * Unit of measurement for employee compensation.
-     */
-    public EmployeeCompensationInput withPaymentUnit(JsonNullable<? extends PaymentUnit> paymentUnit) {
-        Utils.checkNotNull(paymentUnit, "paymentUnit");
-        this.paymentUnit = paymentUnit;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public EmployeeCompensationInput withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public EmployeeCompensationInput withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public EmployeeCompensationInput withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The FLSA status for this compensation.
      */
-    public EmployeeCompensationInput withFlsaStatus(FlsaStatus flsaStatus) {
-        Utils.checkNotNull(flsaStatus, "flsaStatus");
+    public EmployeeCompensationInput withFlsaStatus(@Nullable FlsaStatus flsaStatus) {
         this.flsaStatus = JsonNullable.of(flsaStatus);
         return this;
     }
 
-    /**
-     * The FLSA status for this compensation.
-     */
-    public EmployeeCompensationInput withFlsaStatus(JsonNullable<? extends FlsaStatus> flsaStatus) {
-        Utils.checkNotNull(flsaStatus, "flsaStatus");
-        this.flsaStatus = flsaStatus;
-        return this;
-    }
 
     /**
      * The date on which a change to an employee's compensation takes effect.
      */
-    public EmployeeCompensationInput withEffectiveDate(String effectiveDate) {
-        Utils.checkNotNull(effectiveDate, "effectiveDate");
+    public EmployeeCompensationInput withEffectiveDate(@Nullable String effectiveDate) {
         this.effectiveDate = JsonNullable.of(effectiveDate);
         return this;
     }
 
-    /**
-     * The date on which a change to an employee's compensation takes effect.
-     */
-    public EmployeeCompensationInput withEffectiveDate(JsonNullable<String> effectiveDate) {
-        Utils.checkNotNull(effectiveDate, "effectiveDate");
-        this.effectiveDate = effectiveDate;
-        return this;
-    }
 
     /**
      * Frequency of employee compensation.
      */
-    public EmployeeCompensationInput withPaymentFrequency(PaymentFrequency paymentFrequency) {
-        Utils.checkNotNull(paymentFrequency, "paymentFrequency");
+    public EmployeeCompensationInput withPaymentFrequency(@Nullable PaymentFrequency paymentFrequency) {
         this.paymentFrequency = JsonNullable.of(paymentFrequency);
         return this;
     }
 
-    /**
-     * Frequency of employee compensation.
-     */
-    public EmployeeCompensationInput withPaymentFrequency(JsonNullable<? extends PaymentFrequency> paymentFrequency) {
-        Utils.checkNotNull(paymentFrequency, "paymentFrequency");
-        this.paymentFrequency = paymentFrequency;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -290,138 +226,71 @@ public class EmployeeCompensationInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Double> rate = JsonNullable.undefined();
+        private JsonNullable<Double> rate;
 
-        private JsonNullable<? extends PaymentUnit> paymentUnit = JsonNullable.undefined();
+        private JsonNullable<PaymentUnit> paymentUnit;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<? extends FlsaStatus> flsaStatus = JsonNullable.undefined();
+        private JsonNullable<FlsaStatus> flsaStatus;
 
-        private JsonNullable<String> effectiveDate = JsonNullable.undefined();
+        private JsonNullable<String> effectiveDate;
 
-        private JsonNullable<? extends PaymentFrequency> paymentFrequency = JsonNullable.undefined();
+        private JsonNullable<PaymentFrequency> paymentFrequency;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The amount paid per payment unit.
          */
-        public Builder rate(double rate) {
-            Utils.checkNotNull(rate, "rate");
+        public Builder rate(@Nullable Double rate) {
             this.rate = JsonNullable.of(rate);
             return this;
         }
 
         /**
-         * The amount paid per payment unit.
-         */
-        public Builder rate(JsonNullable<Double> rate) {
-            Utils.checkNotNull(rate, "rate");
-            this.rate = rate;
-            return this;
-        }
-
-
-        /**
          * Unit of measurement for employee compensation.
          */
-        public Builder paymentUnit(PaymentUnit paymentUnit) {
-            Utils.checkNotNull(paymentUnit, "paymentUnit");
+        public Builder paymentUnit(@Nullable PaymentUnit paymentUnit) {
             this.paymentUnit = JsonNullable.of(paymentUnit);
             return this;
         }
 
         /**
-         * Unit of measurement for employee compensation.
-         */
-        public Builder paymentUnit(JsonNullable<? extends PaymentUnit> paymentUnit) {
-            Utils.checkNotNull(paymentUnit, "paymentUnit");
-            this.paymentUnit = paymentUnit;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The FLSA status for this compensation.
          */
-        public Builder flsaStatus(FlsaStatus flsaStatus) {
-            Utils.checkNotNull(flsaStatus, "flsaStatus");
+        public Builder flsaStatus(@Nullable FlsaStatus flsaStatus) {
             this.flsaStatus = JsonNullable.of(flsaStatus);
             return this;
         }
 
         /**
-         * The FLSA status for this compensation.
-         */
-        public Builder flsaStatus(JsonNullable<? extends FlsaStatus> flsaStatus) {
-            Utils.checkNotNull(flsaStatus, "flsaStatus");
-            this.flsaStatus = flsaStatus;
-            return this;
-        }
-
-
-        /**
          * The date on which a change to an employee's compensation takes effect.
          */
-        public Builder effectiveDate(String effectiveDate) {
-            Utils.checkNotNull(effectiveDate, "effectiveDate");
+        public Builder effectiveDate(@Nullable String effectiveDate) {
             this.effectiveDate = JsonNullable.of(effectiveDate);
             return this;
         }
 
         /**
-         * The date on which a change to an employee's compensation takes effect.
-         */
-        public Builder effectiveDate(JsonNullable<String> effectiveDate) {
-            Utils.checkNotNull(effectiveDate, "effectiveDate");
-            this.effectiveDate = effectiveDate;
-            return this;
-        }
-
-
-        /**
          * Frequency of employee compensation.
          */
-        public Builder paymentFrequency(PaymentFrequency paymentFrequency) {
-            Utils.checkNotNull(paymentFrequency, "paymentFrequency");
+        public Builder paymentFrequency(@Nullable PaymentFrequency paymentFrequency) {
             this.paymentFrequency = JsonNullable.of(paymentFrequency);
             return this;
         }
 
-        /**
-         * Frequency of employee compensation.
-         */
-        public Builder paymentFrequency(JsonNullable<? extends PaymentFrequency> paymentFrequency) {
-            Utils.checkNotNull(paymentFrequency, "paymentFrequency");
-            this.paymentFrequency = paymentFrequency;
-            return this;
-        }
-
         public EmployeeCompensationInput build() {
-
             return new EmployeeCompensationInput(
                 rate, paymentUnit, currency,
                 flsaStatus, effectiveDate, paymentFrequency);

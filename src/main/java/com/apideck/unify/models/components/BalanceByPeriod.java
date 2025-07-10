@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -39,62 +38,55 @@ public class BalanceByPeriod {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("total_amount")
-    private Optional<Double> totalAmount;
+    private Double totalAmount;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("balances_by_transaction")
-    private Optional<? extends List<BalanceByTransaction>> balancesByTransaction;
+    private List<BalanceByTransaction> balancesByTransaction;
 
     @JsonCreator
     public BalanceByPeriod(
-            @JsonProperty("start_date") JsonNullable<LocalDate> startDate,
-            @JsonProperty("end_date") JsonNullable<LocalDate> endDate,
-            @JsonProperty("total_amount") Optional<Double> totalAmount,
-            @JsonProperty("balances_by_transaction") Optional<? extends List<BalanceByTransaction>> balancesByTransaction) {
-        Utils.checkNotNull(startDate, "startDate");
-        Utils.checkNotNull(endDate, "endDate");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
-        this.startDate = startDate;
-        this.endDate = endDate;
+            @JsonProperty("start_date") @Nullable JsonNullable<LocalDate> startDate,
+            @JsonProperty("end_date") @Nullable JsonNullable<LocalDate> endDate,
+            @JsonProperty("total_amount") @Nullable Double totalAmount,
+            @JsonProperty("balances_by_transaction") @Nullable List<BalanceByTransaction> balancesByTransaction) {
+        this.startDate = Optional.ofNullable(startDate)
+            .orElse(JsonNullable.undefined());
+        this.endDate = Optional.ofNullable(endDate)
+            .orElse(JsonNullable.undefined());
         this.totalAmount = totalAmount;
         this.balancesByTransaction = balancesByTransaction;
     }
     
     public BalanceByPeriod() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> startDate() {
-        return startDate;
+        return this.startDate;
     }
 
     /**
      * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
-    @JsonIgnore
     public JsonNullable<LocalDate> endDate() {
-        return endDate;
+        return this.endDate;
     }
 
     /**
      * Total amount of the period.
      */
-    @JsonIgnore
     public Optional<Double> totalAmount() {
-        return totalAmount;
+        return Optional.ofNullable(this.totalAmount);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<BalanceByTransaction>> balancesByTransaction() {
-        return (Optional<List<BalanceByTransaction>>) balancesByTransaction;
+        return Optional.ofNullable(this.balancesByTransaction);
     }
 
     public static Builder builder() {
@@ -105,70 +97,35 @@ public class BalanceByPeriod {
     /**
      * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
      */
-    public BalanceByPeriod withStartDate(LocalDate startDate) {
-        Utils.checkNotNull(startDate, "startDate");
+    public BalanceByPeriod withStartDate(@Nullable LocalDate startDate) {
         this.startDate = JsonNullable.of(startDate);
         return this;
     }
 
-    /**
-     * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
-     */
-    public BalanceByPeriod withStartDate(JsonNullable<LocalDate> startDate) {
-        Utils.checkNotNull(startDate, "startDate");
-        this.startDate = startDate;
-        return this;
-    }
 
     /**
      * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
      */
-    public BalanceByPeriod withEndDate(LocalDate endDate) {
-        Utils.checkNotNull(endDate, "endDate");
+    public BalanceByPeriod withEndDate(@Nullable LocalDate endDate) {
         this.endDate = JsonNullable.of(endDate);
         return this;
     }
 
-    /**
-     * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
-     */
-    public BalanceByPeriod withEndDate(JsonNullable<LocalDate> endDate) {
-        Utils.checkNotNull(endDate, "endDate");
-        this.endDate = endDate;
-        return this;
-    }
 
     /**
      * Total amount of the period.
      */
-    public BalanceByPeriod withTotalAmount(double totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = Optional.ofNullable(totalAmount);
-        return this;
-    }
-
-
-    /**
-     * Total amount of the period.
-     */
-    public BalanceByPeriod withTotalAmount(Optional<Double> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
+    public BalanceByPeriod withTotalAmount(@Nullable Double totalAmount) {
         this.totalAmount = totalAmount;
         return this;
     }
 
-    public BalanceByPeriod withBalancesByTransaction(List<BalanceByTransaction> balancesByTransaction) {
-        Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
-        this.balancesByTransaction = Optional.ofNullable(balancesByTransaction);
-        return this;
-    }
 
-
-    public BalanceByPeriod withBalancesByTransaction(Optional<? extends List<BalanceByTransaction>> balancesByTransaction) {
-        Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
+    public BalanceByPeriod withBalancesByTransaction(@Nullable List<BalanceByTransaction> balancesByTransaction) {
         this.balancesByTransaction = balancesByTransaction;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -205,90 +162,48 @@ public class BalanceByPeriod {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<LocalDate> startDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> startDate;
 
-        private JsonNullable<LocalDate> endDate = JsonNullable.undefined();
+        private JsonNullable<LocalDate> endDate;
 
-        private Optional<Double> totalAmount = Optional.empty();
+        private Double totalAmount;
 
-        private Optional<? extends List<BalanceByTransaction>> balancesByTransaction = Optional.empty();
+        private List<BalanceByTransaction> balancesByTransaction;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
          */
-        public Builder startDate(LocalDate startDate) {
-            Utils.checkNotNull(startDate, "startDate");
+        public Builder startDate(@Nullable LocalDate startDate) {
             this.startDate = JsonNullable.of(startDate);
             return this;
         }
 
         /**
-         * The starting date of the period. If not provided, it represents the oldest period, where all transactions due before the specified `end_date` are included.
-         */
-        public Builder startDate(JsonNullable<LocalDate> startDate) {
-            Utils.checkNotNull(startDate, "startDate");
-            this.startDate = startDate;
-            return this;
-        }
-
-
-        /**
          * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
          */
-        public Builder endDate(LocalDate endDate) {
-            Utils.checkNotNull(endDate, "endDate");
+        public Builder endDate(@Nullable LocalDate endDate) {
             this.endDate = JsonNullable.of(endDate);
             return this;
         }
 
         /**
-         * The ending date of the period. If not provided, it represents an open-ended period starting from the `start_date`, typically capturing future-dated transactions that are not yet aged.
-         */
-        public Builder endDate(JsonNullable<LocalDate> endDate) {
-            Utils.checkNotNull(endDate, "endDate");
-            this.endDate = endDate;
-            return this;
-        }
-
-
-        /**
          * Total amount of the period.
          */
-        public Builder totalAmount(double totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = Optional.ofNullable(totalAmount);
-            return this;
-        }
-
-        /**
-         * Total amount of the period.
-         */
-        public Builder totalAmount(Optional<Double> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable Double totalAmount) {
             this.totalAmount = totalAmount;
             return this;
         }
 
-
-        public Builder balancesByTransaction(List<BalanceByTransaction> balancesByTransaction) {
-            Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
-            this.balancesByTransaction = Optional.ofNullable(balancesByTransaction);
-            return this;
-        }
-
-        public Builder balancesByTransaction(Optional<? extends List<BalanceByTransaction>> balancesByTransaction) {
-            Utils.checkNotNull(balancesByTransaction, "balancesByTransaction");
+        public Builder balancesByTransaction(@Nullable List<BalanceByTransaction> balancesByTransaction) {
             this.balancesByTransaction = balancesByTransaction;
             return this;
         }
 
         public BalanceByPeriod build() {
-
             return new BalanceByPeriod(
                 startDate, endDate, totalAmount,
                 balancesByTransaction);

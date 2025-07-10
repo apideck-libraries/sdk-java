@@ -14,6 +14,8 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionUsersOneRespon
 import com.apideck.unify.operations.IssueTrackingCollectionUsersAllOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionUsersOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -45,8 +47,8 @@ public class CollectionUsers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionUsersAllResponse list(IssueTrackingCollectionUsersAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public IssueTrackingCollectionUsersAllResponse list(@Nonnull IssueTrackingCollectionUsersAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class CollectionUsers {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionUsersAllResponse list(
-            IssueTrackingCollectionUsersAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionUsersAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersAllRequest, IssueTrackingCollectionUsersAllResponse> operation
               = new IssueTrackingCollectionUsersAllOperation(
                 sdkConfiguration,
@@ -89,8 +91,8 @@ public class CollectionUsers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionUsersOneResponse get(IssueTrackingCollectionUsersOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public IssueTrackingCollectionUsersOneResponse get(@Nonnull IssueTrackingCollectionUsersOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -104,8 +106,8 @@ public class CollectionUsers {
      * @throws Exception if the API call fails
      */
     public IssueTrackingCollectionUsersOneResponse get(
-            IssueTrackingCollectionUsersOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull IssueTrackingCollectionUsersOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersOneRequest, IssueTrackingCollectionUsersOneResponse> operation
               = new IssueTrackingCollectionUsersOneOperation(
                 sdkConfiguration,

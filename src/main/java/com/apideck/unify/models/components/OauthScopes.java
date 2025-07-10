@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,62 +21,55 @@ public class OauthScopes {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Label of the OAuth scope.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     /**
      * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default_apis")
-    private Optional<? extends List<String>> defaultApis;
+    private List<String> defaultApis;
 
     @JsonCreator
     public OauthScopes(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("label") Optional<String> label,
-            @JsonProperty("default_apis") Optional<? extends List<String>> defaultApis) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(label, "label");
-        Utils.checkNotNull(defaultApis, "defaultApis");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("label") @Nullable String label,
+            @JsonProperty("default_apis") @Nullable List<String> defaultApis) {
         this.id = id;
         this.label = label;
         this.defaultApis = defaultApis;
     }
     
     public OauthScopes() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(null, null, null);
     }
 
     /**
      * ID of the OAuth scope.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Label of the OAuth scope.
      */
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
     /**
      * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> defaultApis() {
-        return (Optional<List<String>>) defaultApis;
+        return Optional.ofNullable(this.defaultApis);
     }
 
     public static Builder builder() {
@@ -88,59 +80,29 @@ public class OauthScopes {
     /**
      * ID of the OAuth scope.
      */
-    public OauthScopes withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the OAuth scope.
-     */
-    public OauthScopes withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public OauthScopes withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Label of the OAuth scope.
-     */
-    public OauthScopes withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
-
 
     /**
      * Label of the OAuth scope.
      */
-    public OauthScopes withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public OauthScopes withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
 
-    /**
-     * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
-     */
-    public OauthScopes withDefaultApis(List<String> defaultApis) {
-        Utils.checkNotNull(defaultApis, "defaultApis");
-        this.defaultApis = Optional.ofNullable(defaultApis);
-        return this;
-    }
-
 
     /**
      * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
      */
-    public OauthScopes withDefaultApis(Optional<? extends List<String>> defaultApis) {
-        Utils.checkNotNull(defaultApis, "defaultApis");
+    public OauthScopes withDefaultApis(@Nullable List<String> defaultApis) {
         this.defaultApis = defaultApis;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -174,75 +136,41 @@ public class OauthScopes {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
-        private Optional<? extends List<String>> defaultApis = Optional.empty();
+        private List<String> defaultApis;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the OAuth scope.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the OAuth scope.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Label of the OAuth scope.
          */
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        /**
-         * Label of the OAuth scope.
-         */
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
-
         /**
          * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
          */
-        public Builder defaultApis(List<String> defaultApis) {
-            Utils.checkNotNull(defaultApis, "defaultApis");
-            this.defaultApis = Optional.ofNullable(defaultApis);
-            return this;
-        }
-
-        /**
-         * List of Unified APIs that request this OAuth Scope by default. Application owners can customize the requested scopes.
-         */
-        public Builder defaultApis(Optional<? extends List<String>> defaultApis) {
-            Utils.checkNotNull(defaultApis, "defaultApis");
+        public Builder defaultApis(@Nullable List<String> defaultApis) {
             this.defaultApis = defaultApis;
             return this;
         }
 
         public OauthScopes build() {
-
             return new OauthScopes(
                 id, label, defaultApis);
         }

@@ -26,6 +26,8 @@ import com.apideck.unify.operations.FileStorageDriveGroupsDeleteOperation;
 import com.apideck.unify.operations.FileStorageDriveGroupsOneOperation;
 import com.apideck.unify.operations.FileStorageDriveGroupsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class DriveGroups {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDriveGroupsAllResponse list(FileStorageDriveGroupsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public FileStorageDriveGroupsAllResponse list(@Nonnull FileStorageDriveGroupsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class DriveGroups {
      * @throws Exception if the API call fails
      */
     public FileStorageDriveGroupsAllResponse list(
-            FileStorageDriveGroupsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDriveGroupsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAllRequest, FileStorageDriveGroupsAllResponse> operation
               = new FileStorageDriveGroupsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class DriveGroups {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDriveGroupsAddResponse create(FileStorageDriveGroupsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public FileStorageDriveGroupsAddResponse create(@Nonnull FileStorageDriveGroupsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class DriveGroups {
      * @throws Exception if the API call fails
      */
     public FileStorageDriveGroupsAddResponse create(
-            FileStorageDriveGroupsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDriveGroupsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDriveGroupsAddRequest, FileStorageDriveGroupsAddResponse> operation
               = new FileStorageDriveGroupsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class DriveGroups {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDriveGroupsOneResponse get(FileStorageDriveGroupsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public FileStorageDriveGroupsOneResponse get(@Nonnull FileStorageDriveGroupsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class DriveGroups {
      * @throws Exception if the API call fails
      */
     public FileStorageDriveGroupsOneResponse get(
-            FileStorageDriveGroupsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDriveGroupsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDriveGroupsOneRequest, FileStorageDriveGroupsOneResponse> operation
               = new FileStorageDriveGroupsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class DriveGroups {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDriveGroupsUpdateResponse update(FileStorageDriveGroupsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public FileStorageDriveGroupsUpdateResponse update(@Nonnull FileStorageDriveGroupsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class DriveGroups {
      * @throws Exception if the API call fails
      */
     public FileStorageDriveGroupsUpdateResponse update(
-            FileStorageDriveGroupsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDriveGroupsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDriveGroupsUpdateRequest, FileStorageDriveGroupsUpdateResponse> operation
               = new FileStorageDriveGroupsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class DriveGroups {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDriveGroupsDeleteResponse delete(FileStorageDriveGroupsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public FileStorageDriveGroupsDeleteResponse delete(@Nonnull FileStorageDriveGroupsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class DriveGroups {
      * @throws Exception if the API call fails
      */
     public FileStorageDriveGroupsDeleteResponse delete(
-            FileStorageDriveGroupsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull FileStorageDriveGroupsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<FileStorageDriveGroupsDeleteRequest, FileStorageDriveGroupsDeleteResponse> operation
               = new FileStorageDriveGroupsDeleteOperation(
                 sdkConfiguration,

@@ -10,47 +10,46 @@ import com.apideck.unify.operations.FileStorageDriveGroupsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class FileStorageDriveGroupsUpdateRequestBuilder {
-
-    private FileStorageDriveGroupsUpdateRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private FileStorageDriveGroupsUpdateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public FileStorageDriveGroupsUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public FileStorageDriveGroupsUpdateRequestBuilder request(FileStorageDriveGroupsUpdateRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public FileStorageDriveGroupsUpdateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public FileStorageDriveGroupsUpdateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public FileStorageDriveGroupsUpdateRequestBuilder request(@Nonnull FileStorageDriveGroupsUpdateRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private FileStorageDriveGroupsUpdateRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public FileStorageDriveGroupsUpdateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<FileStorageDriveGroupsUpdateRequest, FileStorageDriveGroupsUpdateResponse> operation
               = new FileStorageDriveGroupsUpdateOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

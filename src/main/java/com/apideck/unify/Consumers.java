@@ -28,6 +28,8 @@ import com.apideck.unify.operations.VaultConsumersDeleteOperation;
 import com.apideck.unify.operations.VaultConsumersOneOperation;
 import com.apideck.unify.operations.VaultConsumersUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
@@ -62,8 +64,8 @@ public class Consumers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConsumersAddResponse create(ConsumerInput consumer) throws Exception {
-        return create(Optional.empty(), consumer, Optional.empty());
+    public VaultConsumersAddResponse create(@Nonnull ConsumerInput consumer) throws Exception {
+        return create(null, consumer, null);
     }
 
     /**
@@ -78,15 +80,12 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersAddResponse create(
-            Optional<String> appId,
-            ConsumerInput consumer,
-            Optional<Options> options) throws Exception {
-        VaultConsumersAddRequest request =
-            VaultConsumersAddRequest
-                .builder()
-                .appId(appId)
-                .consumer(consumer)
-                .build();
+            @Nullable String appId,
+            @Nonnull ConsumerInput consumer,
+            @Nullable Options options) throws Exception {
+        VaultConsumersAddRequest request = new VaultConsumersAddRequest(
+            appId,
+            consumer);
         RequestOperation<VaultConsumersAddRequest, VaultConsumersAddResponse> operation
               = new VaultConsumersAddOperation(
                 sdkConfiguration,
@@ -114,8 +113,8 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        return list(null, JsonNullable.undefined(), null,
+            null);
     }
 
     /**
@@ -131,17 +130,14 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<Options> options) throws Exception {
-        VaultConsumersAllRequest request =
-            VaultConsumersAllRequest
-                .builder()
-                .appId(appId)
-                .cursor(cursor)
-                .limit(limit)
-                .build();
+            @Nullable String appId,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit,
+            @Nullable Options options) throws Exception {
+        VaultConsumersAllRequest request = new VaultConsumersAllRequest(
+            appId,
+            cursor,
+            limit);
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
               = new VaultConsumersAllOperation(
                 sdkConfiguration,
@@ -169,8 +165,8 @@ public class Consumers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConsumersOneResponse get(String consumerId) throws Exception {
-        return get(Optional.empty(), consumerId, Optional.empty());
+    public VaultConsumersOneResponse get(@Nonnull String consumerId) throws Exception {
+        return get(null, consumerId, null);
     }
 
     /**
@@ -185,15 +181,12 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersOneResponse get(
-            Optional<String> appId,
-            String consumerId,
-            Optional<Options> options) throws Exception {
-        VaultConsumersOneRequest request =
-            VaultConsumersOneRequest
-                .builder()
-                .appId(appId)
-                .consumerId(consumerId)
-                .build();
+            @Nullable String appId,
+            @Nonnull String consumerId,
+            @Nullable Options options) throws Exception {
+        VaultConsumersOneRequest request = new VaultConsumersOneRequest(
+            appId,
+            consumerId);
         RequestOperation<VaultConsumersOneRequest, VaultConsumersOneResponse> operation
               = new VaultConsumersOneOperation(
                 sdkConfiguration,
@@ -223,10 +216,10 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersUpdateResponse update(
-            String consumerId,
-            UpdateConsumerRequest updateConsumerRequest) throws Exception {
-        return update(Optional.empty(), consumerId, updateConsumerRequest,
-            Optional.empty());
+            @Nonnull String consumerId,
+            @Nonnull UpdateConsumerRequest updateConsumerRequest) throws Exception {
+        return update(null, consumerId, updateConsumerRequest,
+            null);
     }
 
     /**
@@ -242,17 +235,14 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersUpdateResponse update(
-            Optional<String> appId,
-            String consumerId,
-            UpdateConsumerRequest updateConsumerRequest,
-            Optional<Options> options) throws Exception {
-        VaultConsumersUpdateRequest request =
-            VaultConsumersUpdateRequest
-                .builder()
-                .appId(appId)
-                .consumerId(consumerId)
-                .updateConsumerRequest(updateConsumerRequest)
-                .build();
+            @Nullable String appId,
+            @Nonnull String consumerId,
+            @Nonnull UpdateConsumerRequest updateConsumerRequest,
+            @Nullable Options options) throws Exception {
+        VaultConsumersUpdateRequest request = new VaultConsumersUpdateRequest(
+            appId,
+            consumerId,
+            updateConsumerRequest);
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
               = new VaultConsumersUpdateOperation(
                 sdkConfiguration,
@@ -280,8 +270,8 @@ public class Consumers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConsumersDeleteResponse delete(String consumerId) throws Exception {
-        return delete(Optional.empty(), consumerId, Optional.empty());
+    public VaultConsumersDeleteResponse delete(@Nonnull String consumerId) throws Exception {
+        return delete(null, consumerId, null);
     }
 
     /**
@@ -296,15 +286,12 @@ public class Consumers {
      * @throws Exception if the API call fails
      */
     public VaultConsumersDeleteResponse delete(
-            Optional<String> appId,
-            String consumerId,
-            Optional<Options> options) throws Exception {
-        VaultConsumersDeleteRequest request =
-            VaultConsumersDeleteRequest
-                .builder()
-                .appId(appId)
-                .consumerId(consumerId)
-                .build();
+            @Nullable String appId,
+            @Nonnull String consumerId,
+            @Nullable Options options) throws Exception {
+        VaultConsumersDeleteRequest request = new VaultConsumersDeleteRequest(
+            appId,
+            consumerId);
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
               = new VaultConsumersDeleteOperation(
                 sdkConfiguration,

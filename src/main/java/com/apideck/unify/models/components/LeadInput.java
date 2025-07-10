@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -126,7 +126,7 @@ public class LeadInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
     /**
      * The fax number of the lead.
@@ -138,320 +138,280 @@ public class LeadInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("websites")
-    private Optional<? extends List<Website>> websites;
+    private List<Website> websites;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("addresses")
-    private Optional<? extends List<Address>> addresses;
+    private List<Address> addresses;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("social_links")
-    private Optional<? extends List<SocialLink>> socialLinks;
+    private List<SocialLink> socialLinks;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("phone_numbers")
-    private Optional<? extends List<PhoneNumber>> phoneNumbers;
+    private List<PhoneNumber> phoneNumbers;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("emails")
-    private Optional<? extends List<Email>> emails;
+    private List<Email> emails;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
-    private JsonNullable<? extends List<CustomField>> customFields;
+    private JsonNullable<List<CustomField>> customFields;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tags")
-    private JsonNullable<? extends List<String>> tags;
+    private JsonNullable<List<String>> tags;
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public LeadInput(
-            @JsonProperty("name") String name,
-            @JsonProperty("company_name") JsonNullable<String> companyName,
-            @JsonProperty("owner_id") JsonNullable<String> ownerId,
-            @JsonProperty("owner_name") JsonNullable<String> ownerName,
-            @JsonProperty("company_id") JsonNullable<String> companyId,
-            @JsonProperty("lead_id") JsonNullable<String> leadId,
-            @JsonProperty("lead_source") JsonNullable<String> leadSource,
-            @JsonProperty("first_name") JsonNullable<String> firstName,
-            @JsonProperty("last_name") JsonNullable<String> lastName,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("prefix") JsonNullable<String> prefix,
-            @JsonProperty("title") JsonNullable<String> title,
-            @JsonProperty("language") JsonNullable<String> language,
-            @JsonProperty("status") JsonNullable<String> status,
-            @JsonProperty("monetary_amount") JsonNullable<Double> monetaryAmount,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("fax") JsonNullable<String> fax,
-            @JsonProperty("websites") Optional<? extends List<Website>> websites,
-            @JsonProperty("addresses") Optional<? extends List<Address>> addresses,
-            @JsonProperty("social_links") Optional<? extends List<SocialLink>> socialLinks,
-            @JsonProperty("phone_numbers") Optional<? extends List<PhoneNumber>> phoneNumbers,
-            @JsonProperty("emails") Optional<? extends List<Email>> emails,
-            @JsonProperty("custom_fields") JsonNullable<? extends List<CustomField>> customFields,
-            @JsonProperty("tags") JsonNullable<? extends List<String>> tags,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(companyName, "companyName");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(ownerName, "ownerName");
-        Utils.checkNotNull(companyId, "companyId");
-        Utils.checkNotNull(leadId, "leadId");
-        Utils.checkNotNull(leadSource, "leadSource");
-        Utils.checkNotNull(firstName, "firstName");
-        Utils.checkNotNull(lastName, "lastName");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(prefix, "prefix");
-        Utils.checkNotNull(title, "title");
-        Utils.checkNotNull(language, "language");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(fax, "fax");
-        Utils.checkNotNull(websites, "websites");
-        Utils.checkNotNull(addresses, "addresses");
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        Utils.checkNotNull(emails, "emails");
-        Utils.checkNotNull(customFields, "customFields");
-        Utils.checkNotNull(tags, "tags");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.name = name;
-        this.companyName = companyName;
-        this.ownerId = ownerId;
-        this.ownerName = ownerName;
-        this.companyId = companyId;
-        this.leadId = leadId;
-        this.leadSource = leadSource;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.description = description;
-        this.prefix = prefix;
-        this.title = title;
-        this.language = language;
-        this.status = status;
-        this.monetaryAmount = monetaryAmount;
-        this.currency = currency;
-        this.fax = fax;
+            @JsonProperty("name") @Nonnull String name,
+            @JsonProperty("company_name") @Nullable JsonNullable<String> companyName,
+            @JsonProperty("owner_id") @Nullable JsonNullable<String> ownerId,
+            @JsonProperty("owner_name") @Nullable JsonNullable<String> ownerName,
+            @JsonProperty("company_id") @Nullable JsonNullable<String> companyId,
+            @JsonProperty("lead_id") @Nullable JsonNullable<String> leadId,
+            @JsonProperty("lead_source") @Nullable JsonNullable<String> leadSource,
+            @JsonProperty("first_name") @Nullable JsonNullable<String> firstName,
+            @JsonProperty("last_name") @Nullable JsonNullable<String> lastName,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("prefix") @Nullable JsonNullable<String> prefix,
+            @JsonProperty("title") @Nullable JsonNullable<String> title,
+            @JsonProperty("language") @Nullable JsonNullable<String> language,
+            @JsonProperty("status") @Nullable JsonNullable<String> status,
+            @JsonProperty("monetary_amount") @Nullable JsonNullable<Double> monetaryAmount,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("fax") @Nullable JsonNullable<String> fax,
+            @JsonProperty("websites") @Nullable List<Website> websites,
+            @JsonProperty("addresses") @Nullable List<Address> addresses,
+            @JsonProperty("social_links") @Nullable List<SocialLink> socialLinks,
+            @JsonProperty("phone_numbers") @Nullable List<PhoneNumber> phoneNumbers,
+            @JsonProperty("emails") @Nullable List<Email> emails,
+            @JsonProperty("custom_fields") @Nullable JsonNullable<List<CustomField>> customFields,
+            @JsonProperty("tags") @Nullable JsonNullable<List<String>> tags,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.name = Optional.ofNullable(name)
+            .orElseThrow(() -> new IllegalArgumentException("name cannot be null"));
+        this.companyName = Optional.ofNullable(companyName)
+            .orElse(JsonNullable.undefined());
+        this.ownerId = Optional.ofNullable(ownerId)
+            .orElse(JsonNullable.undefined());
+        this.ownerName = Optional.ofNullable(ownerName)
+            .orElse(JsonNullable.undefined());
+        this.companyId = Optional.ofNullable(companyId)
+            .orElse(JsonNullable.undefined());
+        this.leadId = Optional.ofNullable(leadId)
+            .orElse(JsonNullable.undefined());
+        this.leadSource = Optional.ofNullable(leadSource)
+            .orElse(JsonNullable.undefined());
+        this.firstName = Optional.ofNullable(firstName)
+            .orElse(JsonNullable.undefined());
+        this.lastName = Optional.ofNullable(lastName)
+            .orElse(JsonNullable.undefined());
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
+        this.prefix = Optional.ofNullable(prefix)
+            .orElse(JsonNullable.undefined());
+        this.title = Optional.ofNullable(title)
+            .orElse(JsonNullable.undefined());
+        this.language = Optional.ofNullable(language)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.monetaryAmount = Optional.ofNullable(monetaryAmount)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
+        this.fax = Optional.ofNullable(fax)
+            .orElse(JsonNullable.undefined());
         this.websites = websites;
         this.addresses = addresses;
         this.socialLinks = socialLinks;
         this.phoneNumbers = phoneNumbers;
         this.emails = emails;
-        this.customFields = customFields;
-        this.tags = tags;
+        this.customFields = Optional.ofNullable(customFields)
+            .orElse(JsonNullable.undefined());
+        this.tags = Optional.ofNullable(tags)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public LeadInput(
-            String name) {
-        this(name, JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            @Nonnull String name) {
+        this(name, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * Full name of the lead.
      */
-    @JsonIgnore
     public String name() {
-        return name;
+        return this.name;
     }
 
     /**
      * The name of the company the lead is associated with.
      */
-    @JsonIgnore
     public JsonNullable<String> companyName() {
-        return companyName;
+        return this.companyName;
     }
 
     /**
      * The owner of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> ownerId() {
-        return ownerId;
+        return this.ownerId;
     }
 
     /**
      * The name of the owner of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> ownerName() {
-        return ownerName;
+        return this.ownerName;
     }
 
     /**
      * The company the lead is associated with.
      */
-    @JsonIgnore
     public JsonNullable<String> companyId() {
-        return companyId;
+        return this.companyId;
     }
 
     /**
      * The identifier of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> leadId() {
-        return leadId;
+        return this.leadId;
     }
 
     /**
      * The source of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> leadSource() {
-        return leadSource;
+        return this.leadSource;
     }
 
     /**
      * The first name of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> firstName() {
-        return firstName;
+        return this.firstName;
     }
 
     /**
      * The last name of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> lastName() {
-        return lastName;
+        return this.lastName;
     }
 
     /**
      * The description of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * The prefix of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> prefix() {
-        return prefix;
+        return this.prefix;
     }
 
     /**
      * The job title of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> title() {
-        return title;
+        return this.title;
     }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    @JsonIgnore
     public JsonNullable<String> language() {
-        return language;
+        return this.language;
     }
 
-    @JsonIgnore
     public JsonNullable<String> status() {
-        return status;
+        return this.status;
     }
 
     /**
      * The monetary amount of the lead.
      */
-    @JsonIgnore
     public JsonNullable<Double> monetaryAmount() {
-        return monetaryAmount;
+        return this.monetaryAmount;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
     /**
      * The fax number of the lead.
      */
-    @JsonIgnore
     public JsonNullable<String> fax() {
-        return fax;
+        return this.fax;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Website>> websites() {
-        return (Optional<List<Website>>) websites;
+        return Optional.ofNullable(this.websites);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Address>> addresses() {
-        return (Optional<List<Address>>) addresses;
+        return Optional.ofNullable(this.addresses);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<SocialLink>> socialLinks() {
-        return (Optional<List<SocialLink>>) socialLinks;
+        return Optional.ofNullable(this.socialLinks);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PhoneNumber>> phoneNumbers() {
-        return (Optional<List<PhoneNumber>>) phoneNumbers;
+        return Optional.ofNullable(this.phoneNumbers);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<Email>> emails() {
-        return (Optional<List<Email>>) emails;
+        return Optional.ofNullable(this.emails);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<CustomField>> customFields() {
-        return (JsonNullable<List<CustomField>>) customFields;
+        return this.customFields;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<List<String>> tags() {
-        return (JsonNullable<List<String>>) tags;
+        return this.tags;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -462,401 +422,203 @@ public class LeadInput {
     /**
      * Full name of the lead.
      */
-    public LeadInput withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
+    public LeadInput withName(@Nonnull String name) {
+        this.name = Utils.checkNotNull(name, "name");
         return this;
     }
+
 
     /**
      * The name of the company the lead is associated with.
      */
-    public LeadInput withCompanyName(String companyName) {
-        Utils.checkNotNull(companyName, "companyName");
+    public LeadInput withCompanyName(@Nullable String companyName) {
         this.companyName = JsonNullable.of(companyName);
         return this;
     }
 
-    /**
-     * The name of the company the lead is associated with.
-     */
-    public LeadInput withCompanyName(JsonNullable<String> companyName) {
-        Utils.checkNotNull(companyName, "companyName");
-        this.companyName = companyName;
-        return this;
-    }
 
     /**
      * The owner of the lead.
      */
-    public LeadInput withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public LeadInput withOwnerId(@Nullable String ownerId) {
         this.ownerId = JsonNullable.of(ownerId);
         return this;
     }
 
-    /**
-     * The owner of the lead.
-     */
-    public LeadInput withOwnerId(JsonNullable<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = ownerId;
-        return this;
-    }
 
     /**
      * The name of the owner of the lead.
      */
-    public LeadInput withOwnerName(String ownerName) {
-        Utils.checkNotNull(ownerName, "ownerName");
+    public LeadInput withOwnerName(@Nullable String ownerName) {
         this.ownerName = JsonNullable.of(ownerName);
         return this;
     }
 
-    /**
-     * The name of the owner of the lead.
-     */
-    public LeadInput withOwnerName(JsonNullable<String> ownerName) {
-        Utils.checkNotNull(ownerName, "ownerName");
-        this.ownerName = ownerName;
-        return this;
-    }
 
     /**
      * The company the lead is associated with.
      */
-    public LeadInput withCompanyId(String companyId) {
-        Utils.checkNotNull(companyId, "companyId");
+    public LeadInput withCompanyId(@Nullable String companyId) {
         this.companyId = JsonNullable.of(companyId);
         return this;
     }
 
-    /**
-     * The company the lead is associated with.
-     */
-    public LeadInput withCompanyId(JsonNullable<String> companyId) {
-        Utils.checkNotNull(companyId, "companyId");
-        this.companyId = companyId;
-        return this;
-    }
 
     /**
      * The identifier of the lead.
      */
-    public LeadInput withLeadId(String leadId) {
-        Utils.checkNotNull(leadId, "leadId");
+    public LeadInput withLeadId(@Nullable String leadId) {
         this.leadId = JsonNullable.of(leadId);
         return this;
     }
 
-    /**
-     * The identifier of the lead.
-     */
-    public LeadInput withLeadId(JsonNullable<String> leadId) {
-        Utils.checkNotNull(leadId, "leadId");
-        this.leadId = leadId;
-        return this;
-    }
 
     /**
      * The source of the lead.
      */
-    public LeadInput withLeadSource(String leadSource) {
-        Utils.checkNotNull(leadSource, "leadSource");
+    public LeadInput withLeadSource(@Nullable String leadSource) {
         this.leadSource = JsonNullable.of(leadSource);
         return this;
     }
 
-    /**
-     * The source of the lead.
-     */
-    public LeadInput withLeadSource(JsonNullable<String> leadSource) {
-        Utils.checkNotNull(leadSource, "leadSource");
-        this.leadSource = leadSource;
-        return this;
-    }
 
     /**
      * The first name of the lead.
      */
-    public LeadInput withFirstName(String firstName) {
-        Utils.checkNotNull(firstName, "firstName");
+    public LeadInput withFirstName(@Nullable String firstName) {
         this.firstName = JsonNullable.of(firstName);
         return this;
     }
 
-    /**
-     * The first name of the lead.
-     */
-    public LeadInput withFirstName(JsonNullable<String> firstName) {
-        Utils.checkNotNull(firstName, "firstName");
-        this.firstName = firstName;
-        return this;
-    }
 
     /**
      * The last name of the lead.
      */
-    public LeadInput withLastName(String lastName) {
-        Utils.checkNotNull(lastName, "lastName");
+    public LeadInput withLastName(@Nullable String lastName) {
         this.lastName = JsonNullable.of(lastName);
         return this;
     }
 
-    /**
-     * The last name of the lead.
-     */
-    public LeadInput withLastName(JsonNullable<String> lastName) {
-        Utils.checkNotNull(lastName, "lastName");
-        this.lastName = lastName;
-        return this;
-    }
 
     /**
      * The description of the lead.
      */
-    public LeadInput withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public LeadInput withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * The description of the lead.
-     */
-    public LeadInput withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * The prefix of the lead.
      */
-    public LeadInput withPrefix(String prefix) {
-        Utils.checkNotNull(prefix, "prefix");
+    public LeadInput withPrefix(@Nullable String prefix) {
         this.prefix = JsonNullable.of(prefix);
         return this;
     }
 
-    /**
-     * The prefix of the lead.
-     */
-    public LeadInput withPrefix(JsonNullable<String> prefix) {
-        Utils.checkNotNull(prefix, "prefix");
-        this.prefix = prefix;
-        return this;
-    }
 
     /**
      * The job title of the lead.
      */
-    public LeadInput withTitle(String title) {
-        Utils.checkNotNull(title, "title");
+    public LeadInput withTitle(@Nullable String title) {
         this.title = JsonNullable.of(title);
         return this;
     }
 
-    /**
-     * The job title of the lead.
-     */
-    public LeadInput withTitle(JsonNullable<String> title) {
-        Utils.checkNotNull(title, "title");
-        this.title = title;
-        return this;
-    }
 
     /**
      * language code according to ISO 639-1. For the United States - EN
      */
-    public LeadInput withLanguage(String language) {
-        Utils.checkNotNull(language, "language");
+    public LeadInput withLanguage(@Nullable String language) {
         this.language = JsonNullable.of(language);
         return this;
     }
 
-    /**
-     * language code according to ISO 639-1. For the United States - EN
-     */
-    public LeadInput withLanguage(JsonNullable<String> language) {
-        Utils.checkNotNull(language, "language");
-        this.language = language;
-        return this;
-    }
 
-    public LeadInput withStatus(String status) {
-        Utils.checkNotNull(status, "status");
+    public LeadInput withStatus(@Nullable String status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    public LeadInput withStatus(JsonNullable<String> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * The monetary amount of the lead.
      */
-    public LeadInput withMonetaryAmount(double monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+    public LeadInput withMonetaryAmount(@Nullable Double monetaryAmount) {
         this.monetaryAmount = JsonNullable.of(monetaryAmount);
         return this;
     }
 
-    /**
-     * The monetary amount of the lead.
-     */
-    public LeadInput withMonetaryAmount(JsonNullable<Double> monetaryAmount) {
-        Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-        this.monetaryAmount = monetaryAmount;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public LeadInput withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public LeadInput withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public LeadInput withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
     /**
      * The fax number of the lead.
      */
-    public LeadInput withFax(String fax) {
-        Utils.checkNotNull(fax, "fax");
+    public LeadInput withFax(@Nullable String fax) {
         this.fax = JsonNullable.of(fax);
         return this;
     }
 
-    /**
-     * The fax number of the lead.
-     */
-    public LeadInput withFax(JsonNullable<String> fax) {
-        Utils.checkNotNull(fax, "fax");
-        this.fax = fax;
-        return this;
-    }
 
-    public LeadInput withWebsites(List<Website> websites) {
-        Utils.checkNotNull(websites, "websites");
-        this.websites = Optional.ofNullable(websites);
-        return this;
-    }
-
-
-    public LeadInput withWebsites(Optional<? extends List<Website>> websites) {
-        Utils.checkNotNull(websites, "websites");
+    public LeadInput withWebsites(@Nullable List<Website> websites) {
         this.websites = websites;
         return this;
     }
 
-    public LeadInput withAddresses(List<Address> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
-        this.addresses = Optional.ofNullable(addresses);
-        return this;
-    }
 
-
-    public LeadInput withAddresses(Optional<? extends List<Address>> addresses) {
-        Utils.checkNotNull(addresses, "addresses");
+    public LeadInput withAddresses(@Nullable List<Address> addresses) {
         this.addresses = addresses;
         return this;
     }
 
-    public LeadInput withSocialLinks(List<SocialLink> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
-        this.socialLinks = Optional.ofNullable(socialLinks);
-        return this;
-    }
 
-
-    public LeadInput withSocialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-        Utils.checkNotNull(socialLinks, "socialLinks");
+    public LeadInput withSocialLinks(@Nullable List<SocialLink> socialLinks) {
         this.socialLinks = socialLinks;
         return this;
     }
 
-    public LeadInput withPhoneNumbers(List<PhoneNumber> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-        this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-        return this;
-    }
 
-
-    public LeadInput withPhoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-        Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+    public LeadInput withPhoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
         this.phoneNumbers = phoneNumbers;
         return this;
     }
 
-    public LeadInput withEmails(List<Email> emails) {
-        Utils.checkNotNull(emails, "emails");
-        this.emails = Optional.ofNullable(emails);
-        return this;
-    }
 
-
-    public LeadInput withEmails(Optional<? extends List<Email>> emails) {
-        Utils.checkNotNull(emails, "emails");
+    public LeadInput withEmails(@Nullable List<Email> emails) {
         this.emails = emails;
         return this;
     }
 
-    public LeadInput withCustomFields(List<CustomField> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
+
+    public LeadInput withCustomFields(@Nullable List<CustomField> customFields) {
         this.customFields = JsonNullable.of(customFields);
         return this;
     }
 
-    public LeadInput withCustomFields(JsonNullable<? extends List<CustomField>> customFields) {
-        Utils.checkNotNull(customFields, "customFields");
-        this.customFields = customFields;
-        return this;
-    }
 
-    public LeadInput withTags(List<String> tags) {
-        Utils.checkNotNull(tags, "tags");
+    public LeadInput withTags(@Nullable List<String> tags) {
         this.tags = JsonNullable.of(tags);
         return this;
     }
 
-    public LeadInput withTags(JsonNullable<? extends List<String>> tags) {
-        Utils.checkNotNull(tags, "tags");
-        this.tags = tags;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public LeadInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public LeadInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public LeadInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -944,478 +706,235 @@ public class LeadInput {
 
         private String name;
 
-        private JsonNullable<String> companyName = JsonNullable.undefined();
+        private JsonNullable<String> companyName;
 
-        private JsonNullable<String> ownerId = JsonNullable.undefined();
+        private JsonNullable<String> ownerId;
 
-        private JsonNullable<String> ownerName = JsonNullable.undefined();
+        private JsonNullable<String> ownerName;
 
-        private JsonNullable<String> companyId = JsonNullable.undefined();
+        private JsonNullable<String> companyId;
 
-        private JsonNullable<String> leadId = JsonNullable.undefined();
+        private JsonNullable<String> leadId;
 
-        private JsonNullable<String> leadSource = JsonNullable.undefined();
+        private JsonNullable<String> leadSource;
 
-        private JsonNullable<String> firstName = JsonNullable.undefined();
+        private JsonNullable<String> firstName;
 
-        private JsonNullable<String> lastName = JsonNullable.undefined();
+        private JsonNullable<String> lastName;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private JsonNullable<String> prefix = JsonNullable.undefined();
+        private JsonNullable<String> prefix;
 
-        private JsonNullable<String> title = JsonNullable.undefined();
+        private JsonNullable<String> title;
 
-        private JsonNullable<String> language = JsonNullable.undefined();
+        private JsonNullable<String> language;
 
-        private JsonNullable<String> status = JsonNullable.undefined();
+        private JsonNullable<String> status;
 
-        private JsonNullable<Double> monetaryAmount = JsonNullable.undefined();
+        private JsonNullable<Double> monetaryAmount;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private JsonNullable<String> fax = JsonNullable.undefined();
+        private JsonNullable<String> fax;
 
-        private Optional<? extends List<Website>> websites = Optional.empty();
+        private List<Website> websites;
 
-        private Optional<? extends List<Address>> addresses = Optional.empty();
+        private List<Address> addresses;
 
-        private Optional<? extends List<SocialLink>> socialLinks = Optional.empty();
+        private List<SocialLink> socialLinks;
 
-        private Optional<? extends List<PhoneNumber>> phoneNumbers = Optional.empty();
+        private List<PhoneNumber> phoneNumbers;
 
-        private Optional<? extends List<Email>> emails = Optional.empty();
+        private List<Email> emails;
 
-        private JsonNullable<? extends List<CustomField>> customFields = JsonNullable.undefined();
+        private JsonNullable<List<CustomField>> customFields;
 
-        private JsonNullable<? extends List<String>> tags = JsonNullable.undefined();
+        private JsonNullable<List<String>> tags;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Full name of the lead.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
+        public Builder name(@Nonnull String name) {
+            this.name = Utils.checkNotNull(name, "name");
             return this;
         }
-
 
         /**
          * The name of the company the lead is associated with.
          */
-        public Builder companyName(String companyName) {
-            Utils.checkNotNull(companyName, "companyName");
+        public Builder companyName(@Nullable String companyName) {
             this.companyName = JsonNullable.of(companyName);
             return this;
         }
 
         /**
-         * The name of the company the lead is associated with.
-         */
-        public Builder companyName(JsonNullable<String> companyName) {
-            Utils.checkNotNull(companyName, "companyName");
-            this.companyName = companyName;
-            return this;
-        }
-
-
-        /**
          * The owner of the lead.
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = JsonNullable.of(ownerId);
             return this;
         }
 
         /**
-         * The owner of the lead.
-         */
-        public Builder ownerId(JsonNullable<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = ownerId;
-            return this;
-        }
-
-
-        /**
          * The name of the owner of the lead.
          */
-        public Builder ownerName(String ownerName) {
-            Utils.checkNotNull(ownerName, "ownerName");
+        public Builder ownerName(@Nullable String ownerName) {
             this.ownerName = JsonNullable.of(ownerName);
             return this;
         }
 
         /**
-         * The name of the owner of the lead.
-         */
-        public Builder ownerName(JsonNullable<String> ownerName) {
-            Utils.checkNotNull(ownerName, "ownerName");
-            this.ownerName = ownerName;
-            return this;
-        }
-
-
-        /**
          * The company the lead is associated with.
          */
-        public Builder companyId(String companyId) {
-            Utils.checkNotNull(companyId, "companyId");
+        public Builder companyId(@Nullable String companyId) {
             this.companyId = JsonNullable.of(companyId);
             return this;
         }
 
         /**
-         * The company the lead is associated with.
-         */
-        public Builder companyId(JsonNullable<String> companyId) {
-            Utils.checkNotNull(companyId, "companyId");
-            this.companyId = companyId;
-            return this;
-        }
-
-
-        /**
          * The identifier of the lead.
          */
-        public Builder leadId(String leadId) {
-            Utils.checkNotNull(leadId, "leadId");
+        public Builder leadId(@Nullable String leadId) {
             this.leadId = JsonNullable.of(leadId);
             return this;
         }
 
         /**
-         * The identifier of the lead.
-         */
-        public Builder leadId(JsonNullable<String> leadId) {
-            Utils.checkNotNull(leadId, "leadId");
-            this.leadId = leadId;
-            return this;
-        }
-
-
-        /**
          * The source of the lead.
          */
-        public Builder leadSource(String leadSource) {
-            Utils.checkNotNull(leadSource, "leadSource");
+        public Builder leadSource(@Nullable String leadSource) {
             this.leadSource = JsonNullable.of(leadSource);
             return this;
         }
 
         /**
-         * The source of the lead.
-         */
-        public Builder leadSource(JsonNullable<String> leadSource) {
-            Utils.checkNotNull(leadSource, "leadSource");
-            this.leadSource = leadSource;
-            return this;
-        }
-
-
-        /**
          * The first name of the lead.
          */
-        public Builder firstName(String firstName) {
-            Utils.checkNotNull(firstName, "firstName");
+        public Builder firstName(@Nullable String firstName) {
             this.firstName = JsonNullable.of(firstName);
             return this;
         }
 
         /**
-         * The first name of the lead.
-         */
-        public Builder firstName(JsonNullable<String> firstName) {
-            Utils.checkNotNull(firstName, "firstName");
-            this.firstName = firstName;
-            return this;
-        }
-
-
-        /**
          * The last name of the lead.
          */
-        public Builder lastName(String lastName) {
-            Utils.checkNotNull(lastName, "lastName");
+        public Builder lastName(@Nullable String lastName) {
             this.lastName = JsonNullable.of(lastName);
             return this;
         }
 
         /**
-         * The last name of the lead.
-         */
-        public Builder lastName(JsonNullable<String> lastName) {
-            Utils.checkNotNull(lastName, "lastName");
-            this.lastName = lastName;
-            return this;
-        }
-
-
-        /**
          * The description of the lead.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * The description of the lead.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * The prefix of the lead.
          */
-        public Builder prefix(String prefix) {
-            Utils.checkNotNull(prefix, "prefix");
+        public Builder prefix(@Nullable String prefix) {
             this.prefix = JsonNullable.of(prefix);
             return this;
         }
 
         /**
-         * The prefix of the lead.
-         */
-        public Builder prefix(JsonNullable<String> prefix) {
-            Utils.checkNotNull(prefix, "prefix");
-            this.prefix = prefix;
-            return this;
-        }
-
-
-        /**
          * The job title of the lead.
          */
-        public Builder title(String title) {
-            Utils.checkNotNull(title, "title");
+        public Builder title(@Nullable String title) {
             this.title = JsonNullable.of(title);
             return this;
         }
 
         /**
-         * The job title of the lead.
-         */
-        public Builder title(JsonNullable<String> title) {
-            Utils.checkNotNull(title, "title");
-            this.title = title;
-            return this;
-        }
-
-
-        /**
          * language code according to ISO 639-1. For the United States - EN
          */
-        public Builder language(String language) {
-            Utils.checkNotNull(language, "language");
+        public Builder language(@Nullable String language) {
             this.language = JsonNullable.of(language);
             return this;
         }
 
-        /**
-         * language code according to ISO 639-1. For the United States - EN
-         */
-        public Builder language(JsonNullable<String> language) {
-            Utils.checkNotNull(language, "language");
-            this.language = language;
-            return this;
-        }
-
-
-        public Builder status(String status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable String status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
-        public Builder status(JsonNullable<String> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
         /**
          * The monetary amount of the lead.
          */
-        public Builder monetaryAmount(double monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
+        public Builder monetaryAmount(@Nullable Double monetaryAmount) {
             this.monetaryAmount = JsonNullable.of(monetaryAmount);
             return this;
         }
 
         /**
-         * The monetary amount of the lead.
-         */
-        public Builder monetaryAmount(JsonNullable<Double> monetaryAmount) {
-            Utils.checkNotNull(monetaryAmount, "monetaryAmount");
-            this.monetaryAmount = monetaryAmount;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
         /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        /**
          * The fax number of the lead.
          */
-        public Builder fax(String fax) {
-            Utils.checkNotNull(fax, "fax");
+        public Builder fax(@Nullable String fax) {
             this.fax = JsonNullable.of(fax);
             return this;
         }
 
-        /**
-         * The fax number of the lead.
-         */
-        public Builder fax(JsonNullable<String> fax) {
-            Utils.checkNotNull(fax, "fax");
-            this.fax = fax;
-            return this;
-        }
-
-
-        public Builder websites(List<Website> websites) {
-            Utils.checkNotNull(websites, "websites");
-            this.websites = Optional.ofNullable(websites);
-            return this;
-        }
-
-        public Builder websites(Optional<? extends List<Website>> websites) {
-            Utils.checkNotNull(websites, "websites");
+        public Builder websites(@Nullable List<Website> websites) {
             this.websites = websites;
             return this;
         }
 
-
-        public Builder addresses(List<Address> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
-            this.addresses = Optional.ofNullable(addresses);
-            return this;
-        }
-
-        public Builder addresses(Optional<? extends List<Address>> addresses) {
-            Utils.checkNotNull(addresses, "addresses");
+        public Builder addresses(@Nullable List<Address> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-
-        public Builder socialLinks(List<SocialLink> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
-            this.socialLinks = Optional.ofNullable(socialLinks);
-            return this;
-        }
-
-        public Builder socialLinks(Optional<? extends List<SocialLink>> socialLinks) {
-            Utils.checkNotNull(socialLinks, "socialLinks");
+        public Builder socialLinks(@Nullable List<SocialLink> socialLinks) {
             this.socialLinks = socialLinks;
             return this;
         }
 
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
-            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
-            return this;
-        }
-
-        public Builder phoneNumbers(Optional<? extends List<PhoneNumber>> phoneNumbers) {
-            Utils.checkNotNull(phoneNumbers, "phoneNumbers");
+        public Builder phoneNumbers(@Nullable List<PhoneNumber> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
             return this;
         }
 
-
-        public Builder emails(List<Email> emails) {
-            Utils.checkNotNull(emails, "emails");
-            this.emails = Optional.ofNullable(emails);
-            return this;
-        }
-
-        public Builder emails(Optional<? extends List<Email>> emails) {
-            Utils.checkNotNull(emails, "emails");
+        public Builder emails(@Nullable List<Email> emails) {
             this.emails = emails;
             return this;
         }
 
-
-        public Builder customFields(List<CustomField> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
+        public Builder customFields(@Nullable List<CustomField> customFields) {
             this.customFields = JsonNullable.of(customFields);
             return this;
         }
 
-        public Builder customFields(JsonNullable<? extends List<CustomField>> customFields) {
-            Utils.checkNotNull(customFields, "customFields");
-            this.customFields = customFields;
-            return this;
-        }
-
-
-        public Builder tags(List<String> tags) {
-            Utils.checkNotNull(tags, "tags");
+        public Builder tags(@Nullable List<String> tags) {
             this.tags = JsonNullable.of(tags);
             return this;
         }
 
-        public Builder tags(JsonNullable<? extends List<String>> tags) {
-            Utils.checkNotNull(tags, "tags");
-            this.tags = tags;
-            return this;
-        }
-
-
         /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public LeadInput build() {
-
             return new LeadInput(
                 name, companyName, ownerId,
                 ownerName, companyId, leadId,

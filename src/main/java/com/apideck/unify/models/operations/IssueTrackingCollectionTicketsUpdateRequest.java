@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -27,25 +28,25 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * The collection ID
@@ -59,89 +60,79 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
 
     @JsonCreator
     public IssueTrackingCollectionTicketsUpdateRequest(
-            String ticketId,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            Optional<Boolean> raw,
-            String collectionId,
-            TicketInput ticket) {
-        Utils.checkNotNull(ticketId, "ticketId");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(collectionId, "collectionId");
-        Utils.checkNotNull(ticket, "ticket");
-        this.ticketId = ticketId;
+            @Nonnull String ticketId,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nullable Boolean raw,
+            @Nonnull String collectionId,
+            @Nonnull TicketInput ticket) {
+        this.ticketId = Optional.ofNullable(ticketId)
+            .orElseThrow(() -> new IllegalArgumentException("ticketId cannot be null"));
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.raw = raw;
-        this.collectionId = collectionId;
-        this.ticket = ticket;
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
+        this.collectionId = Optional.ofNullable(collectionId)
+            .orElseThrow(() -> new IllegalArgumentException("collectionId cannot be null"));
+        this.ticket = Optional.ofNullable(ticket)
+            .orElseThrow(() -> new IllegalArgumentException("ticket cannot be null"));
     }
     
     public IssueTrackingCollectionTicketsUpdateRequest(
-            String ticketId,
-            String collectionId,
-            TicketInput ticket) {
-        this(ticketId, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), collectionId,
+            @Nonnull String ticketId,
+            @Nonnull String collectionId,
+            @Nonnull TicketInput ticket) {
+        this(ticketId, null, null,
+            null, null, collectionId,
             ticket);
     }
 
     /**
      * ID of the ticket you are acting upon.
      */
-    @JsonIgnore
     public String ticketId() {
-        return ticketId;
+        return this.ticketId;
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * The collection ID
      */
-    @JsonIgnore
     public String collectionId() {
-        return collectionId;
+        return this.collectionId;
     }
 
-    @JsonIgnore
     public TicketInput ticket() {
-        return ticket;
+        return this.ticket;
     }
 
     public static Builder builder() {
@@ -152,18 +143,8 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
     /**
      * ID of the ticket you are acting upon.
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withTicketId(String ticketId) {
-        Utils.checkNotNull(ticketId, "ticketId");
-        this.ticketId = ticketId;
-        return this;
-    }
-
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public IssueTrackingCollectionTicketsUpdateRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
+    public IssueTrackingCollectionTicketsUpdateRequest withTicketId(@Nonnull String ticketId) {
+        this.ticketId = Utils.checkNotNull(ticketId, "ticketId");
         return this;
     }
 
@@ -171,83 +152,53 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public IssueTrackingCollectionTicketsUpdateRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public IssueTrackingCollectionTicketsUpdateRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public IssueTrackingCollectionTicketsUpdateRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public IssueTrackingCollectionTicketsUpdateRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public IssueTrackingCollectionTicketsUpdateRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public IssueTrackingCollectionTicketsUpdateRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public IssueTrackingCollectionTicketsUpdateRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
+
     /**
      * The collection ID
      */
-    public IssueTrackingCollectionTicketsUpdateRequest withCollectionId(String collectionId) {
-        Utils.checkNotNull(collectionId, "collectionId");
-        this.collectionId = collectionId;
+    public IssueTrackingCollectionTicketsUpdateRequest withCollectionId(@Nonnull String collectionId) {
+        this.collectionId = Utils.checkNotNull(collectionId, "collectionId");
         return this;
     }
 
-    public IssueTrackingCollectionTicketsUpdateRequest withTicket(TicketInput ticket) {
-        Utils.checkNotNull(ticket, "ticket");
-        this.ticket = ticket;
+
+    public IssueTrackingCollectionTicketsUpdateRequest withTicket(@Nonnull TicketInput ticket) {
+        this.ticket = Utils.checkNotNull(ticket, "ticket");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -293,13 +244,13 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
 
         private String ticketId;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
         private String collectionId;
 
@@ -309,114 +260,60 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the ticket you are acting upon.
          */
-        public Builder ticketId(String ticketId) {
-            Utils.checkNotNull(ticketId, "ticketId");
-            this.ticketId = ticketId;
-            return this;
-        }
-
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
+        public Builder ticketId(@Nonnull String ticketId) {
+            this.ticketId = Utils.checkNotNull(ticketId, "ticketId");
             return this;
         }
 
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * The collection ID
          */
-        public Builder collectionId(String collectionId) {
-            Utils.checkNotNull(collectionId, "collectionId");
-            this.collectionId = collectionId;
+        public Builder collectionId(@Nonnull String collectionId) {
+            this.collectionId = Utils.checkNotNull(collectionId, "collectionId");
             return this;
         }
 
-
-        public Builder ticket(TicketInput ticket) {
-            Utils.checkNotNull(ticket, "ticket");
-            this.ticket = ticket;
+        public Builder ticket(@Nonnull TicketInput ticket) {
+            this.ticket = Utils.checkNotNull(ticket, "ticket");
             return this;
         }
 
         public IssueTrackingCollectionTicketsUpdateRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new IssueTrackingCollectionTicketsUpdateRequest(
                 ticketId, consumerId, appId,
                 serviceId, raw, collectionId,
@@ -424,10 +321,10 @@ public class IssueTrackingCollectionTicketsUpdateRequest {
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

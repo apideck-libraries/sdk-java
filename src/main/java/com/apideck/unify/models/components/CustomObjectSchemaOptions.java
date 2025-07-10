@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,35 +18,31 @@ public class CustomObjectSchemaOptions {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("value")
-    private Optional<String> value;
+    private String value;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("label")
-    private Optional<String> label;
+    private String label;
 
     @JsonCreator
     public CustomObjectSchemaOptions(
-            @JsonProperty("value") Optional<String> value,
-            @JsonProperty("label") Optional<String> label) {
-        Utils.checkNotNull(value, "value");
-        Utils.checkNotNull(label, "label");
+            @JsonProperty("value") @Nullable String value,
+            @JsonProperty("label") @Nullable String label) {
         this.value = value;
         this.label = label;
     }
     
     public CustomObjectSchemaOptions() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @JsonIgnore
     public Optional<String> value() {
-        return value;
+        return Optional.ofNullable(this.value);
     }
 
-    @JsonIgnore
     public Optional<String> label() {
-        return label;
+        return Optional.ofNullable(this.label);
     }
 
     public static Builder builder() {
@@ -54,31 +50,17 @@ public class CustomObjectSchemaOptions {
     }
 
 
-    public CustomObjectSchemaOptions withValue(String value) {
-        Utils.checkNotNull(value, "value");
-        this.value = Optional.ofNullable(value);
-        return this;
-    }
-
-
-    public CustomObjectSchemaOptions withValue(Optional<String> value) {
-        Utils.checkNotNull(value, "value");
+    public CustomObjectSchemaOptions withValue(@Nullable String value) {
         this.value = value;
         return this;
     }
 
-    public CustomObjectSchemaOptions withLabel(String label) {
-        Utils.checkNotNull(label, "label");
-        this.label = Optional.ofNullable(label);
-        return this;
-    }
 
-
-    public CustomObjectSchemaOptions withLabel(Optional<String> label) {
-        Utils.checkNotNull(label, "label");
+    public CustomObjectSchemaOptions withLabel(@Nullable String label) {
         this.label = label;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -110,42 +92,25 @@ public class CustomObjectSchemaOptions {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> value = Optional.empty();
+        private String value;
 
-        private Optional<String> label = Optional.empty();
+        private String label;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder value(String value) {
-            Utils.checkNotNull(value, "value");
-            this.value = Optional.ofNullable(value);
-            return this;
-        }
-
-        public Builder value(Optional<String> value) {
-            Utils.checkNotNull(value, "value");
+        public Builder value(@Nullable String value) {
             this.value = value;
             return this;
         }
 
-
-        public Builder label(String label) {
-            Utils.checkNotNull(label, "label");
-            this.label = Optional.ofNullable(label);
-            return this;
-        }
-
-        public Builder label(Optional<String> label) {
-            Utils.checkNotNull(label, "label");
+        public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
 
         public CustomObjectSchemaOptions build() {
-
             return new CustomObjectSchemaOptions(
                 value, label);
         }

@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -19,36 +18,31 @@ public class JobLinks {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private Optional<? extends JobType> type;
+    private JobType type;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("url")
-    private Optional<String> url;
+    private String url;
 
     @JsonCreator
     public JobLinks(
-            @JsonProperty("type") Optional<? extends JobType> type,
-            @JsonProperty("url") Optional<String> url) {
-        Utils.checkNotNull(type, "type");
-        Utils.checkNotNull(url, "url");
+            @JsonProperty("type") @Nullable JobType type,
+            @JsonProperty("url") @Nullable String url) {
         this.type = type;
         this.url = url;
     }
     
     public JobLinks() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<JobType> type() {
-        return (Optional<JobType>) type;
+        return Optional.ofNullable(this.type);
     }
 
-    @JsonIgnore
     public Optional<String> url() {
-        return url;
+        return Optional.ofNullable(this.url);
     }
 
     public static Builder builder() {
@@ -56,31 +50,17 @@ public class JobLinks {
     }
 
 
-    public JobLinks withType(JobType type) {
-        Utils.checkNotNull(type, "type");
-        this.type = Optional.ofNullable(type);
-        return this;
-    }
-
-
-    public JobLinks withType(Optional<? extends JobType> type) {
-        Utils.checkNotNull(type, "type");
+    public JobLinks withType(@Nullable JobType type) {
         this.type = type;
         return this;
     }
 
-    public JobLinks withUrl(String url) {
-        Utils.checkNotNull(url, "url");
-        this.url = Optional.ofNullable(url);
-        return this;
-    }
 
-
-    public JobLinks withUrl(Optional<String> url) {
-        Utils.checkNotNull(url, "url");
+    public JobLinks withUrl(@Nullable String url) {
         this.url = url;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,42 +92,25 @@ public class JobLinks {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends JobType> type = Optional.empty();
+        private JobType type;
 
-        private Optional<String> url = Optional.empty();
+        private String url;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
-        public Builder type(JobType type) {
-            Utils.checkNotNull(type, "type");
-            this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        public Builder type(Optional<? extends JobType> type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable JobType type) {
             this.type = type;
             return this;
         }
 
-
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
-            this.url = Optional.ofNullable(url);
-            return this;
-        }
-
-        public Builder url(Optional<String> url) {
-            Utils.checkNotNull(url, "url");
+        public Builder url(@Nullable String url) {
             this.url = url;
             return this;
         }
 
         public JobLinks build() {
-
             return new JobLinks(
                 type, url);
         }

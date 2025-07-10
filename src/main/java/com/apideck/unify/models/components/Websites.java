@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
@@ -34,49 +35,45 @@ public class Websites {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("type")
-    private JsonNullable<? extends ApplicantType> type;
+    private JsonNullable<ApplicantType> type;
 
     @JsonCreator
     public Websites(
-            @JsonProperty("id") JsonNullable<String> id,
-            @JsonProperty("url") String url,
-            @JsonProperty("type") JsonNullable<? extends ApplicantType> type) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(url, "url");
-        Utils.checkNotNull(type, "type");
-        this.id = id;
-        this.url = url;
-        this.type = type;
+            @JsonProperty("id") @Nullable JsonNullable<String> id,
+            @JsonProperty("url") @Nonnull String url,
+            @JsonProperty("type") @Nullable JsonNullable<ApplicantType> type) {
+        this.id = Optional.ofNullable(id)
+            .orElse(JsonNullable.undefined());
+        this.url = Optional.ofNullable(url)
+            .orElseThrow(() -> new IllegalArgumentException("url cannot be null"));
+        this.type = Optional.ofNullable(type)
+            .orElse(JsonNullable.undefined());
     }
     
     public Websites(
-            String url) {
-        this(JsonNullable.undefined(), url, JsonNullable.undefined());
+            @Nonnull String url) {
+        this(null, url, null);
     }
 
     /**
      * Unique identifier for the website
      */
-    @JsonIgnore
     public JsonNullable<String> id() {
-        return id;
+        return this.id;
     }
 
     /**
      * The website URL
      */
-    @JsonIgnore
     public String url() {
-        return url;
+        return this.url;
     }
 
     /**
      * The type of website
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<ApplicantType> type() {
-        return (JsonNullable<ApplicantType>) type;
+        return this.type;
     }
 
     public static Builder builder() {
@@ -87,47 +84,29 @@ public class Websites {
     /**
      * Unique identifier for the website
      */
-    public Websites withId(String id) {
-        Utils.checkNotNull(id, "id");
+    public Websites withId(@Nullable String id) {
         this.id = JsonNullable.of(id);
         return this;
     }
 
-    /**
-     * Unique identifier for the website
-     */
-    public Websites withId(JsonNullable<String> id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
 
     /**
      * The website URL
      */
-    public Websites withUrl(String url) {
-        Utils.checkNotNull(url, "url");
-        this.url = url;
+    public Websites withUrl(@Nonnull String url) {
+        this.url = Utils.checkNotNull(url, "url");
         return this;
     }
+
 
     /**
      * The type of website
      */
-    public Websites withType(ApplicantType type) {
-        Utils.checkNotNull(type, "type");
+    public Websites withType(@Nullable ApplicantType type) {
         this.type = JsonNullable.of(type);
         return this;
     }
 
-    /**
-     * The type of website
-     */
-    public Websites withType(JsonNullable<? extends ApplicantType> type) {
-        Utils.checkNotNull(type, "type");
-        this.type = type;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -161,66 +140,41 @@ public class Websites {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> id = JsonNullable.undefined();
+        private JsonNullable<String> id;
 
         private String url;
 
-        private JsonNullable<? extends ApplicantType> type = JsonNullable.undefined();
+        private JsonNullable<ApplicantType> type;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Unique identifier for the website
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = JsonNullable.of(id);
             return this;
         }
 
         /**
-         * Unique identifier for the website
-         */
-        public Builder id(JsonNullable<String> id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
-            return this;
-        }
-
-
-        /**
          * The website URL
          */
-        public Builder url(String url) {
-            Utils.checkNotNull(url, "url");
-            this.url = url;
+        public Builder url(@Nonnull String url) {
+            this.url = Utils.checkNotNull(url, "url");
             return this;
         }
-
 
         /**
          * The type of website
          */
-        public Builder type(ApplicantType type) {
-            Utils.checkNotNull(type, "type");
+        public Builder type(@Nullable ApplicantType type) {
             this.type = JsonNullable.of(type);
             return this;
         }
 
-        /**
-         * The type of website
-         */
-        public Builder type(JsonNullable<? extends ApplicantType> type) {
-            Utils.checkNotNull(type, "type");
-            this.type = type;
-            return this;
-        }
-
         public Websites build() {
-
             return new Websites(
                 id, url, type);
         }

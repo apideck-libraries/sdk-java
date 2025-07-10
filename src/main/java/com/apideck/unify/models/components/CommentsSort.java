@@ -7,11 +7,10 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -20,44 +19,39 @@ public class CommentsSort {
      * The field on which to sort the Comments
      */
     @SpeakeasyMetadata("queryParam:name=by")
-    private Optional<? extends CommentsSortBy> by;
+    private CommentsSortBy by;
 
     /**
      * The direction in which to sort the results
      */
     @SpeakeasyMetadata("queryParam:name=direction")
-    private Optional<? extends SortDirection> direction;
+    private SortDirection direction;
 
     @JsonCreator
     public CommentsSort(
-            Optional<? extends CommentsSortBy> by,
-            Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(by, "by");
-        Utils.checkNotNull(direction, "direction");
+            @Nullable CommentsSortBy by,
+            @Nullable SortDirection direction) {
         this.by = by;
-        this.direction = direction;
+        this.direction = Optional.ofNullable(direction)
+            .orElse(Builder._SINGLETON_VALUE_Direction.value());
     }
     
     public CommentsSort() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The field on which to sort the Comments
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<CommentsSortBy> by() {
-        return (Optional<CommentsSortBy>) by;
+        return Optional.ofNullable(this.by);
     }
 
     /**
      * The direction in which to sort the results
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SortDirection> direction() {
-        return (Optional<SortDirection>) direction;
+        return Optional.ofNullable(this.direction);
     }
 
     public static Builder builder() {
@@ -68,40 +62,20 @@ public class CommentsSort {
     /**
      * The field on which to sort the Comments
      */
-    public CommentsSort withBy(CommentsSortBy by) {
-        Utils.checkNotNull(by, "by");
-        this.by = Optional.ofNullable(by);
-        return this;
-    }
-
-
-    /**
-     * The field on which to sort the Comments
-     */
-    public CommentsSort withBy(Optional<? extends CommentsSortBy> by) {
-        Utils.checkNotNull(by, "by");
+    public CommentsSort withBy(@Nullable CommentsSortBy by) {
         this.by = by;
         return this;
     }
 
-    /**
-     * The direction in which to sort the results
-     */
-    public CommentsSort withDirection(SortDirection direction) {
-        Utils.checkNotNull(direction, "direction");
-        this.direction = Optional.ofNullable(direction);
-        return this;
-    }
-
 
     /**
      * The direction in which to sort the results
      */
-    public CommentsSort withDirection(Optional<? extends SortDirection> direction) {
-        Utils.checkNotNull(direction, "direction");
+    public CommentsSort withDirection(@Nullable SortDirection direction) {
         this.direction = direction;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -133,66 +107,40 @@ public class CommentsSort {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<? extends CommentsSortBy> by = Optional.empty();
+        private CommentsSortBy by;
 
-        private Optional<? extends SortDirection> direction;
+        private SortDirection direction;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The field on which to sort the Comments
          */
-        public Builder by(CommentsSortBy by) {
-            Utils.checkNotNull(by, "by");
-            this.by = Optional.ofNullable(by);
-            return this;
-        }
-
-        /**
-         * The field on which to sort the Comments
-         */
-        public Builder by(Optional<? extends CommentsSortBy> by) {
-            Utils.checkNotNull(by, "by");
+        public Builder by(@Nullable CommentsSortBy by) {
             this.by = by;
             return this;
         }
 
-
         /**
          * The direction in which to sort the results
          */
-        public Builder direction(SortDirection direction) {
-            Utils.checkNotNull(direction, "direction");
-            this.direction = Optional.ofNullable(direction);
-            return this;
-        }
-
-        /**
-         * The direction in which to sort the results
-         */
-        public Builder direction(Optional<? extends SortDirection> direction) {
-            Utils.checkNotNull(direction, "direction");
+        public Builder direction(@Nullable SortDirection direction) {
             this.direction = direction;
             return this;
         }
 
         public CommentsSort build() {
-            if (direction == null) {
-                direction = _SINGLETON_VALUE_Direction.value();
-            }
-
             return new CommentsSort(
                 by, direction);
         }
 
 
-        private static final LazySingletonValue<Optional<? extends SortDirection>> _SINGLETON_VALUE_Direction =
+        private static final LazySingletonValue<SortDirection> _SINGLETON_VALUE_Direction =
                 new LazySingletonValue<>(
                         "direction",
                         "\"asc\"",
-                        new TypeReference<Optional<? extends SortDirection>>() {});
+                        new TypeReference<SortDirection>() {});
     }
 }

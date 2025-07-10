@@ -26,6 +26,8 @@ import com.apideck.unify.operations.AccountingExpensesDeleteOperation;
 import com.apideck.unify.operations.AccountingExpensesOneOperation;
 import com.apideck.unify.operations.AccountingExpensesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Expenses {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingExpensesAllResponse list(AccountingExpensesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public AccountingExpensesAllResponse list(@Nonnull AccountingExpensesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Expenses {
      * @throws Exception if the API call fails
      */
     public AccountingExpensesAllResponse list(
-            AccountingExpensesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingExpensesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingExpensesAllRequest, AccountingExpensesAllResponse> operation
               = new AccountingExpensesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Expenses {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingExpensesAddResponse create(AccountingExpensesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public AccountingExpensesAddResponse create(@Nonnull AccountingExpensesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Expenses {
      * @throws Exception if the API call fails
      */
     public AccountingExpensesAddResponse create(
-            AccountingExpensesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingExpensesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingExpensesAddRequest, AccountingExpensesAddResponse> operation
               = new AccountingExpensesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Expenses {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingExpensesOneResponse get(AccountingExpensesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingExpensesOneResponse get(@Nonnull AccountingExpensesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Expenses {
      * @throws Exception if the API call fails
      */
     public AccountingExpensesOneResponse get(
-            AccountingExpensesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingExpensesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingExpensesOneRequest, AccountingExpensesOneResponse> operation
               = new AccountingExpensesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Expenses {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingExpensesUpdateResponse update(AccountingExpensesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public AccountingExpensesUpdateResponse update(@Nonnull AccountingExpensesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Expenses {
      * @throws Exception if the API call fails
      */
     public AccountingExpensesUpdateResponse update(
-            AccountingExpensesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingExpensesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingExpensesUpdateRequest, AccountingExpensesUpdateResponse> operation
               = new AccountingExpensesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Expenses {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingExpensesDeleteResponse delete(AccountingExpensesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public AccountingExpensesDeleteResponse delete(@Nonnull AccountingExpensesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Expenses {
      * @throws Exception if the API call fails
      */
     public AccountingExpensesDeleteResponse delete(
-            AccountingExpensesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingExpensesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation
               = new AccountingExpensesDeleteOperation(
                 sdkConfiguration,

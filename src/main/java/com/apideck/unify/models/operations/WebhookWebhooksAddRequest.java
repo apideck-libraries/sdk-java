@@ -7,7 +7,8 @@ import com.apideck.unify.models.components.CreateWebhookRequest;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Optional;
@@ -18,7 +19,7 @@ public class WebhookWebhooksAddRequest {
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -26,30 +27,27 @@ public class WebhookWebhooksAddRequest {
 
     @JsonCreator
     public WebhookWebhooksAddRequest(
-            Optional<String> appId,
-            CreateWebhookRequest createWebhookRequest) {
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
+            @Nullable String appId,
+            @Nonnull CreateWebhookRequest createWebhookRequest) {
         this.appId = appId;
-        this.createWebhookRequest = createWebhookRequest;
+        this.createWebhookRequest = Optional.ofNullable(createWebhookRequest)
+            .orElseThrow(() -> new IllegalArgumentException("createWebhookRequest cannot be null"));
     }
     
     public WebhookWebhooksAddRequest(
-            CreateWebhookRequest createWebhookRequest) {
-        this(Optional.empty(), createWebhookRequest);
+            @Nonnull CreateWebhookRequest createWebhookRequest) {
+        this(null, createWebhookRequest);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
-    @JsonIgnore
     public CreateWebhookRequest createWebhookRequest() {
-        return createWebhookRequest;
+        return this.createWebhookRequest;
     }
 
     public static Builder builder() {
@@ -60,27 +58,17 @@ public class WebhookWebhooksAddRequest {
     /**
      * The ID of your Unify application
      */
-    public WebhookWebhooksAddRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
-
-    /**
-     * The ID of your Unify application
-     */
-    public WebhookWebhooksAddRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public WebhookWebhooksAddRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    public WebhookWebhooksAddRequest withCreateWebhookRequest(CreateWebhookRequest createWebhookRequest) {
-        Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
-        this.createWebhookRequest = createWebhookRequest;
+
+    public WebhookWebhooksAddRequest withCreateWebhookRequest(@Nonnull CreateWebhookRequest createWebhookRequest) {
+        this.createWebhookRequest = Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -112,7 +100,7 @@ public class WebhookWebhooksAddRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
         private CreateWebhookRequest createWebhookRequest;
 
@@ -120,34 +108,20 @@ public class WebhookWebhooksAddRequest {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
-        public Builder createWebhookRequest(CreateWebhookRequest createWebhookRequest) {
-            Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
-            this.createWebhookRequest = createWebhookRequest;
+        public Builder createWebhookRequest(@Nonnull CreateWebhookRequest createWebhookRequest) {
+            this.createWebhookRequest = Utils.checkNotNull(createWebhookRequest, "createWebhookRequest");
             return this;
         }
 
         public WebhookWebhooksAddRequest build() {
-
             return new WebhookWebhooksAddRequest(
                 appId, createWebhookRequest);
         }

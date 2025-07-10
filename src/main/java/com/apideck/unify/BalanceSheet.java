@@ -10,6 +10,8 @@ import com.apideck.unify.models.operations.AccountingBalanceSheetOneRequestBuild
 import com.apideck.unify.models.operations.AccountingBalanceSheetOneResponse;
 import com.apideck.unify.operations.AccountingBalanceSheetOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -41,8 +43,8 @@ public class BalanceSheet {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBalanceSheetOneResponse get(AccountingBalanceSheetOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public AccountingBalanceSheetOneResponse get(@Nonnull AccountingBalanceSheetOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -56,8 +58,8 @@ public class BalanceSheet {
      * @throws Exception if the API call fails
      */
     public AccountingBalanceSheetOneResponse get(
-            AccountingBalanceSheetOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull AccountingBalanceSheetOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
               = new AccountingBalanceSheetOneOperation(
                 sdkConfiguration,

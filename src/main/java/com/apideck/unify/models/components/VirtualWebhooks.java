@@ -5,13 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Map;
 import java.util.Optional;
 
@@ -32,38 +32,34 @@ public class VirtualWebhooks {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("resources")
-    private Optional<? extends Map<String, WebhookSupportResources>> resources;
+    private Map<String, WebhookSupportResources> resources;
 
     @JsonCreator
     public VirtualWebhooks(
-            @JsonProperty("request_rate") RequestRate requestRate,
-            @JsonProperty("resources") Optional<? extends Map<String, WebhookSupportResources>> resources) {
-        Utils.checkNotNull(requestRate, "requestRate");
-        Utils.checkNotNull(resources, "resources");
-        this.requestRate = requestRate;
+            @JsonProperty("request_rate") @Nonnull RequestRate requestRate,
+            @JsonProperty("resources") @Nullable Map<String, WebhookSupportResources> resources) {
+        this.requestRate = Optional.ofNullable(requestRate)
+            .orElseThrow(() -> new IllegalArgumentException("requestRate cannot be null"));
         this.resources = resources;
     }
     
     public VirtualWebhooks(
-            RequestRate requestRate) {
-        this(requestRate, Optional.empty());
+            @Nonnull RequestRate requestRate) {
+        this(requestRate, null);
     }
 
     /**
      * The rate at which requests for resources will be made to downstream.
      */
-    @JsonIgnore
     public RequestRate requestRate() {
-        return requestRate;
+        return this.requestRate;
     }
 
     /**
      * The resources that will be requested from downstream.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Map<String, WebhookSupportResources>> resources() {
-        return (Optional<Map<String, WebhookSupportResources>>) resources;
+        return Optional.ofNullable(this.resources);
     }
 
     public static Builder builder() {
@@ -74,18 +70,8 @@ public class VirtualWebhooks {
     /**
      * The rate at which requests for resources will be made to downstream.
      */
-    public VirtualWebhooks withRequestRate(RequestRate requestRate) {
-        Utils.checkNotNull(requestRate, "requestRate");
-        this.requestRate = requestRate;
-        return this;
-    }
-
-    /**
-     * The resources that will be requested from downstream.
-     */
-    public VirtualWebhooks withResources(Map<String, WebhookSupportResources> resources) {
-        Utils.checkNotNull(resources, "resources");
-        this.resources = Optional.ofNullable(resources);
+    public VirtualWebhooks withRequestRate(@Nonnull RequestRate requestRate) {
+        this.requestRate = Utils.checkNotNull(requestRate, "requestRate");
         return this;
     }
 
@@ -93,11 +79,11 @@ public class VirtualWebhooks {
     /**
      * The resources that will be requested from downstream.
      */
-    public VirtualWebhooks withResources(Optional<? extends Map<String, WebhookSupportResources>> resources) {
-        Utils.checkNotNull(resources, "resources");
+    public VirtualWebhooks withResources(@Nullable Map<String, WebhookSupportResources> resources) {
         this.resources = resources;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,43 +117,29 @@ public class VirtualWebhooks {
 
         private RequestRate requestRate;
 
-        private Optional<? extends Map<String, WebhookSupportResources>> resources = Optional.empty();
+        private Map<String, WebhookSupportResources> resources;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The rate at which requests for resources will be made to downstream.
          */
-        public Builder requestRate(RequestRate requestRate) {
-            Utils.checkNotNull(requestRate, "requestRate");
-            this.requestRate = requestRate;
-            return this;
-        }
-
-
-        /**
-         * The resources that will be requested from downstream.
-         */
-        public Builder resources(Map<String, WebhookSupportResources> resources) {
-            Utils.checkNotNull(resources, "resources");
-            this.resources = Optional.ofNullable(resources);
+        public Builder requestRate(@Nonnull RequestRate requestRate) {
+            this.requestRate = Utils.checkNotNull(requestRate, "requestRate");
             return this;
         }
 
         /**
          * The resources that will be requested from downstream.
          */
-        public Builder resources(Optional<? extends Map<String, WebhookSupportResources>> resources) {
-            Utils.checkNotNull(resources, "resources");
+        public Builder resources(@Nullable Map<String, WebhookSupportResources> resources) {
             this.resources = resources;
             return this;
         }
 
         public VirtualWebhooks build() {
-
             return new VirtualWebhooks(
                 requestRate, resources);
         }

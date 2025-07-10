@@ -10,71 +10,59 @@ import com.apideck.unify.operations.ConnectorApisOneOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class ConnectorApisOneRequestBuilder {
-
-    private Optional<String> appId = Optional.empty();
-    private String id;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final ConnectorApisOneRequest.Builder pojoBuilder;
+    private ConnectorApisOneRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public ConnectorApisOneRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = ConnectorApisOneRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
-                
-    public ConnectorApisOneRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+
+    public ConnectorApisOneRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApisOneRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public ConnectorApisOneRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public ConnectorApisOneRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-                
     public ConnectorApisOneRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public ConnectorApisOneRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private ConnectorApisOneRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private ConnectorApisOneRequest buildRequest() {
-
-        ConnectorApisOneRequest request = new ConnectorApisOneRequest(appId,
-            id);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public ConnectorApisOneResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
               = new ConnectorApisOneOperation(
                 sdkConfiguration,
                 options);
-        ConnectorApisOneRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

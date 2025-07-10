@@ -8,8 +8,9 @@ import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
@@ -21,25 +22,25 @@ public class AccountingBankFeedAccountsAddRequest {
      * Include raw response. Mostly used for debugging purposes
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=raw")
-    private Optional<Boolean> raw;
+    private Boolean raw;
 
     /**
      * ID of the consumer which you want to get or push data from
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-consumer-id")
-    private Optional<String> consumerId;
+    private String consumerId;
 
     /**
      * The ID of your Unify application
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-app-id")
-    private Optional<String> appId;
+    private String appId;
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
     @SpeakeasyMetadata("header:style=simple,explode=false,name=x-apideck-service-id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -47,64 +48,56 @@ public class AccountingBankFeedAccountsAddRequest {
 
     @JsonCreator
     public AccountingBankFeedAccountsAddRequest(
-            Optional<Boolean> raw,
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> serviceId,
-            BankFeedAccountInput bankFeedAccount) {
-        Utils.checkNotNull(raw, "raw");
-        Utils.checkNotNull(consumerId, "consumerId");
-        Utils.checkNotNull(appId, "appId");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(bankFeedAccount, "bankFeedAccount");
-        this.raw = raw;
+            @Nullable Boolean raw,
+            @Nullable String consumerId,
+            @Nullable String appId,
+            @Nullable String serviceId,
+            @Nonnull BankFeedAccountInput bankFeedAccount) {
+        this.raw = Optional.ofNullable(raw)
+            .orElse(Builder._SINGLETON_VALUE_Raw.value());
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
-        this.bankFeedAccount = bankFeedAccount;
+        this.bankFeedAccount = Optional.ofNullable(bankFeedAccount)
+            .orElseThrow(() -> new IllegalArgumentException("bankFeedAccount cannot be null"));
     }
     
     public AccountingBankFeedAccountsAddRequest(
-            BankFeedAccountInput bankFeedAccount) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), bankFeedAccount);
+            @Nonnull BankFeedAccountInput bankFeedAccount) {
+        this(null, null, null,
+            null, bankFeedAccount);
     }
 
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    @JsonIgnore
     public Optional<Boolean> raw() {
-        return raw;
+        return Optional.ofNullable(this.raw);
     }
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    @JsonIgnore
     public Optional<String> consumerId() {
-        return consumerId;
+        return Optional.ofNullable(this.consumerId);
     }
 
     /**
      * The ID of your Unify application
      */
-    @JsonIgnore
     public Optional<String> appId() {
-        return appId;
+        return Optional.ofNullable(this.appId);
     }
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
-    @JsonIgnore
     public BankFeedAccountInput bankFeedAccount() {
-        return bankFeedAccount;
+        return this.bankFeedAccount;
     }
 
     public static Builder builder() {
@@ -115,84 +108,44 @@ public class AccountingBankFeedAccountsAddRequest {
     /**
      * Include raw response. Mostly used for debugging purposes
      */
-    public AccountingBankFeedAccountsAddRequest withRaw(boolean raw) {
-        Utils.checkNotNull(raw, "raw");
-        this.raw = Optional.ofNullable(raw);
-        return this;
-    }
-
-
-    /**
-     * Include raw response. Mostly used for debugging purposes
-     */
-    public AccountingBankFeedAccountsAddRequest withRaw(Optional<Boolean> raw) {
-        Utils.checkNotNull(raw, "raw");
+    public AccountingBankFeedAccountsAddRequest withRaw(@Nullable Boolean raw) {
         this.raw = raw;
         return this;
     }
 
-    /**
-     * ID of the consumer which you want to get or push data from
-     */
-    public AccountingBankFeedAccountsAddRequest withConsumerId(String consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
-        this.consumerId = Optional.ofNullable(consumerId);
-        return this;
-    }
-
 
     /**
      * ID of the consumer which you want to get or push data from
      */
-    public AccountingBankFeedAccountsAddRequest withConsumerId(Optional<String> consumerId) {
-        Utils.checkNotNull(consumerId, "consumerId");
+    public AccountingBankFeedAccountsAddRequest withConsumerId(@Nullable String consumerId) {
         this.consumerId = consumerId;
         return this;
     }
 
-    /**
-     * The ID of your Unify application
-     */
-    public AccountingBankFeedAccountsAddRequest withAppId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.ofNullable(appId);
-        return this;
-    }
-
 
     /**
      * The ID of your Unify application
      */
-    public AccountingBankFeedAccountsAddRequest withAppId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
+    public AccountingBankFeedAccountsAddRequest withAppId(@Nullable String appId) {
         this.appId = appId;
         return this;
     }
 
-    /**
-     * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-     */
-    public AccountingBankFeedAccountsAddRequest withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
      */
-    public AccountingBankFeedAccountsAddRequest withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public AccountingBankFeedAccountsAddRequest withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    public AccountingBankFeedAccountsAddRequest withBankFeedAccount(BankFeedAccountInput bankFeedAccount) {
-        Utils.checkNotNull(bankFeedAccount, "bankFeedAccount");
-        this.bankFeedAccount = bankFeedAccount;
+
+    public AccountingBankFeedAccountsAddRequest withBankFeedAccount(@Nonnull BankFeedAccountInput bankFeedAccount) {
+        this.bankFeedAccount = Utils.checkNotNull(bankFeedAccount, "bankFeedAccount");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -231,13 +184,13 @@ public class AccountingBankFeedAccountsAddRequest {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<Boolean> raw;
+        private Boolean raw;
 
-        private Optional<String> consumerId = Optional.empty();
+        private String consumerId;
 
-        private Optional<String> appId = Optional.empty();
+        private String appId;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
         private BankFeedAccountInput bankFeedAccount;
 
@@ -245,104 +198,54 @@ public class AccountingBankFeedAccountsAddRequest {
           // force use of static builder() method
         }
 
-
         /**
          * Include raw response. Mostly used for debugging purposes
          */
-        public Builder raw(boolean raw) {
-            Utils.checkNotNull(raw, "raw");
-            this.raw = Optional.ofNullable(raw);
-            return this;
-        }
-
-        /**
-         * Include raw response. Mostly used for debugging purposes
-         */
-        public Builder raw(Optional<Boolean> raw) {
-            Utils.checkNotNull(raw, "raw");
+        public Builder raw(@Nullable Boolean raw) {
             this.raw = raw;
             return this;
         }
 
-
         /**
          * ID of the consumer which you want to get or push data from
          */
-        public Builder consumerId(String consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
-            this.consumerId = Optional.ofNullable(consumerId);
-            return this;
-        }
-
-        /**
-         * ID of the consumer which you want to get or push data from
-         */
-        public Builder consumerId(Optional<String> consumerId) {
-            Utils.checkNotNull(consumerId, "consumerId");
+        public Builder consumerId(@Nullable String consumerId) {
             this.consumerId = consumerId;
             return this;
         }
 
-
         /**
          * The ID of your Unify application
          */
-        public Builder appId(String appId) {
-            Utils.checkNotNull(appId, "appId");
-            this.appId = Optional.ofNullable(appId);
-            return this;
-        }
-
-        /**
-         * The ID of your Unify application
-         */
-        public Builder appId(Optional<String> appId) {
-            Utils.checkNotNull(appId, "appId");
+        public Builder appId(@Nullable String appId) {
             this.appId = appId;
             return this;
         }
 
-
         /**
          * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Provide the service id you want to call (e.g., pipedrive). Only needed when a consumer has activated multiple integrations for a Unified API.
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
-        public Builder bankFeedAccount(BankFeedAccountInput bankFeedAccount) {
-            Utils.checkNotNull(bankFeedAccount, "bankFeedAccount");
-            this.bankFeedAccount = bankFeedAccount;
+        public Builder bankFeedAccount(@Nonnull BankFeedAccountInput bankFeedAccount) {
+            this.bankFeedAccount = Utils.checkNotNull(bankFeedAccount, "bankFeedAccount");
             return this;
         }
 
         public AccountingBankFeedAccountsAddRequest build() {
-            if (raw == null) {
-                raw = _SINGLETON_VALUE_Raw.value();
-            }
-
             return new AccountingBankFeedAccountsAddRequest(
                 raw, consumerId, appId,
                 serviceId, bankFeedAccount);
         }
 
 
-        private static final LazySingletonValue<Optional<Boolean>> _SINGLETON_VALUE_Raw =
+        private static final LazySingletonValue<Boolean> _SINGLETON_VALUE_Raw =
                 new LazySingletonValue<>(
                         "raw",
                         "false",
-                        new TypeReference<Optional<Boolean>>() {});
+                        new TypeReference<Boolean>() {});
     }
 }

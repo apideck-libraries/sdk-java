@@ -5,10 +5,11 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 
 
 public class AssigneeInput {
@@ -20,17 +21,16 @@ public class AssigneeInput {
 
     @JsonCreator
     public AssigneeInput(
-            @JsonProperty("id") String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+            @JsonProperty("id") @Nonnull String id) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     public static Builder builder() {
@@ -41,11 +41,11 @@ public class AssigneeInput {
     /**
      * A unique identifier for an object.
      */
-    public AssigneeInput withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public AssigneeInput withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -81,18 +81,15 @@ public class AssigneeInput {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
 
         public AssigneeInput build() {
-
             return new AssigneeInput(
                 id);
         }

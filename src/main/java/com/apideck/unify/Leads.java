@@ -26,6 +26,8 @@ import com.apideck.unify.operations.CrmLeadsDeleteOperation;
 import com.apideck.unify.operations.CrmLeadsOneOperation;
 import com.apideck.unify.operations.CrmLeadsUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class Leads {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmLeadsAllResponse list(CrmLeadsAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public CrmLeadsAllResponse list(@Nonnull CrmLeadsAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class Leads {
      * @throws Exception if the API call fails
      */
     public CrmLeadsAllResponse list(
-            CrmLeadsAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmLeadsAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmLeadsAllRequest, CrmLeadsAllResponse> operation
               = new CrmLeadsAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class Leads {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmLeadsAddResponse create(CrmLeadsAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public CrmLeadsAddResponse create(@Nonnull CrmLeadsAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class Leads {
      * @throws Exception if the API call fails
      */
     public CrmLeadsAddResponse create(
-            CrmLeadsAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmLeadsAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmLeadsAddRequest, CrmLeadsAddResponse> operation
               = new CrmLeadsAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class Leads {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmLeadsOneResponse get(CrmLeadsOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public CrmLeadsOneResponse get(@Nonnull CrmLeadsOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class Leads {
      * @throws Exception if the API call fails
      */
     public CrmLeadsOneResponse get(
-            CrmLeadsOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmLeadsOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmLeadsOneRequest, CrmLeadsOneResponse> operation
               = new CrmLeadsOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class Leads {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmLeadsUpdateResponse update(CrmLeadsUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public CrmLeadsUpdateResponse update(@Nonnull CrmLeadsUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class Leads {
      * @throws Exception if the API call fails
      */
     public CrmLeadsUpdateResponse update(
-            CrmLeadsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmLeadsUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
               = new CrmLeadsUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class Leads {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmLeadsDeleteResponse delete(CrmLeadsDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public CrmLeadsDeleteResponse delete(@Nonnull CrmLeadsDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class Leads {
      * @throws Exception if the API call fails
      */
     public CrmLeadsDeleteResponse delete(
-            CrmLeadsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull CrmLeadsDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<CrmLeadsDeleteRequest, CrmLeadsDeleteResponse> operation
               = new CrmLeadsDeleteOperation(
                 sdkConfiguration,

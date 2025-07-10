@@ -10,47 +10,46 @@ import com.apideck.unify.operations.AccountingLedgerAccountsAddOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
-import java.util.Optional;
 
 public class AccountingLedgerAccountsAddRequestBuilder {
-
-    private AccountingLedgerAccountsAddRequest request;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private AccountingLedgerAccountsAddRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public AccountingLedgerAccountsAddRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.optionsBuilder = Options.builder();
     }
 
-    public AccountingLedgerAccountsAddRequestBuilder request(AccountingLedgerAccountsAddRequest request) {
-        Utils.checkNotNull(request, "request");
-        this.request = request;
-        return this;
-    }
-                
     public AccountingLedgerAccountsAddRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public AccountingLedgerAccountsAddRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
+    public AccountingLedgerAccountsAddRequestBuilder request(@Nonnull AccountingLedgerAccountsAddRequest request) {
+        this.request = Utils.checkNotNull(request, "request");
         return this;
     }
 
+    private AccountingLedgerAccountsAddRequest _buildRequest() {
+        return this.request;
+    }
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public AccountingLedgerAccountsAddResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
               = new AccountingLedgerAccountsAddOperation(
                 sdkConfiguration,
                 options);
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

@@ -15,6 +15,8 @@ import com.apideck.unify.models.operations.ConnectorConnectorsOneResponse;
 import com.apideck.unify.operations.ConnectorConnectorsAllOperation;
 import com.apideck.unify.operations.ConnectorConnectorsOneOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
@@ -49,8 +51,8 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsAllResponse listDirect() throws Exception {
-        return list(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), Optional.empty());
+        return list(null, JsonNullable.undefined(), null,
+            null, null);
     }
 
     /**
@@ -67,19 +69,16 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<? extends ConnectorsFilter> filter,
-            Optional<Options> options) throws Exception {
-        ConnectorConnectorsAllRequest request =
-            ConnectorConnectorsAllRequest
-                .builder()
-                .appId(appId)
-                .cursor(cursor)
-                .limit(limit)
-                .filter(filter)
-                .build();
+            @Nullable String appId,
+            @Nullable JsonNullable<String> cursor,
+            @Nullable Long limit,
+            @Nullable ConnectorsFilter filter,
+            @Nullable Options options) throws Exception {
+        ConnectorConnectorsAllRequest request = new ConnectorConnectorsAllRequest(
+            appId,
+            cursor,
+            limit,
+            filter);
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
               = new ConnectorConnectorsAllOperation(
                 sdkConfiguration,
@@ -107,8 +106,8 @@ public class Connectors {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorConnectorsOneResponse get(String id) throws Exception {
-        return get(Optional.empty(), id, Optional.empty());
+    public ConnectorConnectorsOneResponse get(@Nonnull String id) throws Exception {
+        return get(null, id, null);
     }
 
     /**
@@ -123,15 +122,12 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsOneResponse get(
-            Optional<String> appId,
-            String id,
-            Optional<Options> options) throws Exception {
-        ConnectorConnectorsOneRequest request =
-            ConnectorConnectorsOneRequest
-                .builder()
-                .appId(appId)
-                .id(id)
-                .build();
+            @Nullable String appId,
+            @Nonnull String id,
+            @Nullable Options options) throws Exception {
+        ConnectorConnectorsOneRequest request = new ConnectorConnectorsOneRequest(
+            appId,
+            id);
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
               = new ConnectorConnectorsOneOperation(
                 sdkConfiguration,

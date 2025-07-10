@@ -5,14 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -39,12 +39,12 @@ public class EcommerceOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("currency")
-    private JsonNullable<? extends Currency> currency;
+    private JsonNullable<Currency> currency;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("discounts")
-    private Optional<? extends List<EcommerceDiscount>> discounts;
+    private List<EcommerceDiscount> discounts;
 
     /**
      * Sub-total amount, normally before tax.
@@ -100,21 +100,21 @@ public class EcommerceOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private JsonNullable<? extends EcommerceOrderStatus> status;
+    private JsonNullable<EcommerceOrderStatus> status;
 
     /**
      * Current payment status of the order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("payment_status")
-    private JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus;
+    private JsonNullable<EcommerceOrderPaymentStatus> paymentStatus;
 
     /**
      * Current fulfillment status of the order.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fulfillment_status")
-    private JsonNullable<? extends FulfillmentStatus> fulfillmentStatus;
+    private JsonNullable<FulfillmentStatus> fulfillmentStatus;
 
     /**
      * Payment method used for this order.
@@ -128,31 +128,31 @@ public class EcommerceOrder {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("customer")
-    private Optional<? extends LinkedEcommerceCustomer> customer;
+    private LinkedEcommerceCustomer customer;
 
     /**
      * An object representing a shipping or billing address.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("billing_address")
-    private Optional<? extends EcommerceAddress> billingAddress;
+    private EcommerceAddress billingAddress;
 
     /**
      * An object representing a shipping or billing address.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
-    private Optional<? extends EcommerceAddress> shippingAddress;
+    private EcommerceAddress shippingAddress;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tracking")
-    private Optional<? extends List<TrackingItem>> tracking;
+    private List<TrackingItem> tracking;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("line_items")
-    private Optional<? extends List<EcommerceOrderLineItem>> lineItems;
+    private List<EcommerceOrderLineItem> lineItems;
 
     /**
      * Note for the order.
@@ -164,14 +164,14 @@ public class EcommerceOrder {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("refunds")
-    private Optional<? extends List<EcommerceOrderRefund>> refunds;
+    private List<EcommerceOrderRefund> refunds;
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_mappings")
-    private JsonNullable<? extends Map<String, Object>> customMappings;
+    private JsonNullable<Map<String, Object>> customMappings;
 
     /**
      * The date and time when the object was created.
@@ -189,294 +189,250 @@ public class EcommerceOrder {
 
     @JsonCreator
     public EcommerceOrder(
-            @JsonProperty("id") String id,
-            @JsonProperty("order_number") JsonNullable<String> orderNumber,
-            @JsonProperty("currency") JsonNullable<? extends Currency> currency,
-            @JsonProperty("discounts") Optional<? extends List<EcommerceDiscount>> discounts,
-            @JsonProperty("sub_total") JsonNullable<String> subTotal,
-            @JsonProperty("shipping_cost") JsonNullable<String> shippingCost,
-            @JsonProperty("coupon_discount") JsonNullable<String> couponDiscount,
-            @JsonProperty("total_discount") JsonNullable<String> totalDiscount,
-            @JsonProperty("total_tax") JsonNullable<String> totalTax,
-            @JsonProperty("total_amount") JsonNullable<String> totalAmount,
-            @JsonProperty("refunded_amount") JsonNullable<String> refundedAmount,
-            @JsonProperty("status") JsonNullable<? extends EcommerceOrderStatus> status,
-            @JsonProperty("payment_status") JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus,
-            @JsonProperty("fulfillment_status") JsonNullable<? extends FulfillmentStatus> fulfillmentStatus,
-            @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
-            @JsonProperty("customer") Optional<? extends LinkedEcommerceCustomer> customer,
-            @JsonProperty("billing_address") Optional<? extends EcommerceAddress> billingAddress,
-            @JsonProperty("shipping_address") Optional<? extends EcommerceAddress> shippingAddress,
-            @JsonProperty("tracking") Optional<? extends List<TrackingItem>> tracking,
-            @JsonProperty("line_items") Optional<? extends List<EcommerceOrderLineItem>> lineItems,
-            @JsonProperty("note") JsonNullable<String> note,
-            @JsonProperty("refunds") Optional<? extends List<EcommerceOrderRefund>> refunds,
-            @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
-            @JsonProperty("created_at") JsonNullable<OffsetDateTime> createdAt,
-            @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(orderNumber, "orderNumber");
-        Utils.checkNotNull(currency, "currency");
-        Utils.checkNotNull(discounts, "discounts");
-        Utils.checkNotNull(subTotal, "subTotal");
-        Utils.checkNotNull(shippingCost, "shippingCost");
-        Utils.checkNotNull(couponDiscount, "couponDiscount");
-        Utils.checkNotNull(totalDiscount, "totalDiscount");
-        Utils.checkNotNull(totalTax, "totalTax");
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        Utils.checkNotNull(customer, "customer");
-        Utils.checkNotNull(billingAddress, "billingAddress");
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
-        Utils.checkNotNull(tracking, "tracking");
-        Utils.checkNotNull(lineItems, "lineItems");
-        Utils.checkNotNull(note, "note");
-        Utils.checkNotNull(refunds, "refunds");
-        Utils.checkNotNull(customMappings, "customMappings");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.id = id;
-        this.orderNumber = orderNumber;
-        this.currency = currency;
+            @JsonProperty("id") @Nonnull String id,
+            @JsonProperty("order_number") @Nullable JsonNullable<String> orderNumber,
+            @JsonProperty("currency") @Nullable JsonNullable<Currency> currency,
+            @JsonProperty("discounts") @Nullable List<EcommerceDiscount> discounts,
+            @JsonProperty("sub_total") @Nullable JsonNullable<String> subTotal,
+            @JsonProperty("shipping_cost") @Nullable JsonNullable<String> shippingCost,
+            @JsonProperty("coupon_discount") @Nullable JsonNullable<String> couponDiscount,
+            @JsonProperty("total_discount") @Nullable JsonNullable<String> totalDiscount,
+            @JsonProperty("total_tax") @Nullable JsonNullable<String> totalTax,
+            @JsonProperty("total_amount") @Nullable JsonNullable<String> totalAmount,
+            @JsonProperty("refunded_amount") @Nullable JsonNullable<String> refundedAmount,
+            @JsonProperty("status") @Nullable JsonNullable<EcommerceOrderStatus> status,
+            @JsonProperty("payment_status") @Nullable JsonNullable<EcommerceOrderPaymentStatus> paymentStatus,
+            @JsonProperty("fulfillment_status") @Nullable JsonNullable<FulfillmentStatus> fulfillmentStatus,
+            @JsonProperty("payment_method") @Nullable JsonNullable<String> paymentMethod,
+            @JsonProperty("customer") @Nullable LinkedEcommerceCustomer customer,
+            @JsonProperty("billing_address") @Nullable EcommerceAddress billingAddress,
+            @JsonProperty("shipping_address") @Nullable EcommerceAddress shippingAddress,
+            @JsonProperty("tracking") @Nullable List<TrackingItem> tracking,
+            @JsonProperty("line_items") @Nullable List<EcommerceOrderLineItem> lineItems,
+            @JsonProperty("note") @Nullable JsonNullable<String> note,
+            @JsonProperty("refunds") @Nullable List<EcommerceOrderRefund> refunds,
+            @JsonProperty("custom_mappings") @Nullable JsonNullable<Map<String, Object>> customMappings,
+            @JsonProperty("created_at") @Nullable JsonNullable<OffsetDateTime> createdAt,
+            @JsonProperty("updated_at") @Nullable JsonNullable<OffsetDateTime> updatedAt) {
+        this.id = Optional.ofNullable(id)
+            .orElseThrow(() -> new IllegalArgumentException("id cannot be null"));
+        this.orderNumber = Optional.ofNullable(orderNumber)
+            .orElse(JsonNullable.undefined());
+        this.currency = Optional.ofNullable(currency)
+            .orElse(JsonNullable.undefined());
         this.discounts = discounts;
-        this.subTotal = subTotal;
-        this.shippingCost = shippingCost;
-        this.couponDiscount = couponDiscount;
-        this.totalDiscount = totalDiscount;
-        this.totalTax = totalTax;
-        this.totalAmount = totalAmount;
-        this.refundedAmount = refundedAmount;
-        this.status = status;
-        this.paymentStatus = paymentStatus;
-        this.fulfillmentStatus = fulfillmentStatus;
-        this.paymentMethod = paymentMethod;
+        this.subTotal = Optional.ofNullable(subTotal)
+            .orElse(JsonNullable.undefined());
+        this.shippingCost = Optional.ofNullable(shippingCost)
+            .orElse(JsonNullable.undefined());
+        this.couponDiscount = Optional.ofNullable(couponDiscount)
+            .orElse(JsonNullable.undefined());
+        this.totalDiscount = Optional.ofNullable(totalDiscount)
+            .orElse(JsonNullable.undefined());
+        this.totalTax = Optional.ofNullable(totalTax)
+            .orElse(JsonNullable.undefined());
+        this.totalAmount = Optional.ofNullable(totalAmount)
+            .orElse(JsonNullable.undefined());
+        this.refundedAmount = Optional.ofNullable(refundedAmount)
+            .orElse(JsonNullable.undefined());
+        this.status = Optional.ofNullable(status)
+            .orElse(JsonNullable.undefined());
+        this.paymentStatus = Optional.ofNullable(paymentStatus)
+            .orElse(JsonNullable.undefined());
+        this.fulfillmentStatus = Optional.ofNullable(fulfillmentStatus)
+            .orElse(JsonNullable.undefined());
+        this.paymentMethod = Optional.ofNullable(paymentMethod)
+            .orElse(JsonNullable.undefined());
         this.customer = customer;
         this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.tracking = tracking;
         this.lineItems = lineItems;
-        this.note = note;
+        this.note = Optional.ofNullable(note)
+            .orElse(JsonNullable.undefined());
         this.refunds = refunds;
-        this.customMappings = customMappings;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
+        this.customMappings = Optional.ofNullable(customMappings)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
     }
     
     public EcommerceOrder(
-            String id) {
-        this(id, JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            @Nonnull String id) {
+        this(id, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * A unique identifier for an object.
      */
-    @JsonIgnore
     public String id() {
-        return id;
+        return this.id;
     }
 
     /**
      * Order number, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> orderNumber() {
-        return orderNumber;
+        return this.orderNumber;
     }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Currency> currency() {
-        return (JsonNullable<Currency>) currency;
+        return this.currency;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceDiscount>> discounts() {
-        return (Optional<List<EcommerceDiscount>>) discounts;
+        return Optional.ofNullable(this.discounts);
     }
 
     /**
      * Sub-total amount, normally before tax.
      */
-    @JsonIgnore
     public JsonNullable<String> subTotal() {
-        return subTotal;
+        return this.subTotal;
     }
 
     /**
      * Shipping cost, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> shippingCost() {
-        return shippingCost;
+        return this.shippingCost;
     }
 
     /**
      * Coupon discount, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> couponDiscount() {
-        return couponDiscount;
+        return this.couponDiscount;
     }
 
     /**
      * Total discount, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> totalDiscount() {
-        return totalDiscount;
+        return this.totalDiscount;
     }
 
     /**
      * Total tax, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> totalTax() {
-        return totalTax;
+        return this.totalTax;
     }
 
     /**
      * Total amount due.
      */
-    @JsonIgnore
     public JsonNullable<String> totalAmount() {
-        return totalAmount;
+        return this.totalAmount;
     }
 
     /**
      * Refunded amount, if any.
      */
-    @JsonIgnore
     public JsonNullable<String> refundedAmount() {
-        return refundedAmount;
+        return this.refundedAmount;
     }
 
     /**
      * Current status of the order.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EcommerceOrderStatus> status() {
-        return (JsonNullable<EcommerceOrderStatus>) status;
+        return this.status;
     }
 
     /**
      * Current payment status of the order.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<EcommerceOrderPaymentStatus> paymentStatus() {
-        return (JsonNullable<EcommerceOrderPaymentStatus>) paymentStatus;
+        return this.paymentStatus;
     }
 
     /**
      * Current fulfillment status of the order.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<FulfillmentStatus> fulfillmentStatus() {
-        return (JsonNullable<FulfillmentStatus>) fulfillmentStatus;
+        return this.fulfillmentStatus;
     }
 
     /**
      * Payment method used for this order.
      */
-    @JsonIgnore
     public JsonNullable<String> paymentMethod() {
-        return paymentMethod;
+        return this.paymentMethod;
     }
 
     /**
      * The customer this entity is linked to.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<LinkedEcommerceCustomer> customer() {
-        return (Optional<LinkedEcommerceCustomer>) customer;
+        return Optional.ofNullable(this.customer);
     }
 
     /**
      * An object representing a shipping or billing address.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<EcommerceAddress> billingAddress() {
-        return (Optional<EcommerceAddress>) billingAddress;
+        return Optional.ofNullable(this.billingAddress);
     }
 
     /**
      * An object representing a shipping or billing address.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<EcommerceAddress> shippingAddress() {
-        return (Optional<EcommerceAddress>) shippingAddress;
+        return Optional.ofNullable(this.shippingAddress);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<TrackingItem>> tracking() {
-        return (Optional<List<TrackingItem>>) tracking;
+        return Optional.ofNullable(this.tracking);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceOrderLineItem>> lineItems() {
-        return (Optional<List<EcommerceOrderLineItem>>) lineItems;
+        return Optional.ofNullable(this.lineItems);
     }
 
     /**
      * Note for the order.
      */
-    @JsonIgnore
     public JsonNullable<String> note() {
-        return note;
+        return this.note;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<EcommerceOrderRefund>> refunds() {
-        return (Optional<List<EcommerceOrderRefund>>) refunds;
+        return Optional.ofNullable(this.refunds);
     }
 
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public JsonNullable<Map<String, Object>> customMappings() {
-        return (JsonNullable<Map<String, Object>>) customMappings;
+        return this.customMappings;
     }
 
     /**
      * The date and time when the object was created.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The date and time when the object was last updated.
      */
-    @JsonIgnore
     public JsonNullable<OffsetDateTime> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public static Builder builder() {
@@ -487,426 +443,215 @@ public class EcommerceOrder {
     /**
      * A unique identifier for an object.
      */
-    public EcommerceOrder withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
+    public EcommerceOrder withId(@Nonnull String id) {
+        this.id = Utils.checkNotNull(id, "id");
         return this;
     }
+
 
     /**
      * Order number, if any.
      */
-    public EcommerceOrder withOrderNumber(String orderNumber) {
-        Utils.checkNotNull(orderNumber, "orderNumber");
+    public EcommerceOrder withOrderNumber(@Nullable String orderNumber) {
         this.orderNumber = JsonNullable.of(orderNumber);
         return this;
     }
 
-    /**
-     * Order number, if any.
-     */
-    public EcommerceOrder withOrderNumber(JsonNullable<String> orderNumber) {
-        Utils.checkNotNull(orderNumber, "orderNumber");
-        this.orderNumber = orderNumber;
-        return this;
-    }
 
     /**
      * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
      */
-    public EcommerceOrder withCurrency(Currency currency) {
-        Utils.checkNotNull(currency, "currency");
+    public EcommerceOrder withCurrency(@Nullable Currency currency) {
         this.currency = JsonNullable.of(currency);
         return this;
     }
 
-    /**
-     * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-     */
-    public EcommerceOrder withCurrency(JsonNullable<? extends Currency> currency) {
-        Utils.checkNotNull(currency, "currency");
-        this.currency = currency;
-        return this;
-    }
 
-    public EcommerceOrder withDiscounts(List<EcommerceDiscount> discounts) {
-        Utils.checkNotNull(discounts, "discounts");
-        this.discounts = Optional.ofNullable(discounts);
-        return this;
-    }
-
-
-    public EcommerceOrder withDiscounts(Optional<? extends List<EcommerceDiscount>> discounts) {
-        Utils.checkNotNull(discounts, "discounts");
+    public EcommerceOrder withDiscounts(@Nullable List<EcommerceDiscount> discounts) {
         this.discounts = discounts;
         return this;
     }
 
+
     /**
      * Sub-total amount, normally before tax.
      */
-    public EcommerceOrder withSubTotal(String subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
+    public EcommerceOrder withSubTotal(@Nullable String subTotal) {
         this.subTotal = JsonNullable.of(subTotal);
         return this;
     }
 
-    /**
-     * Sub-total amount, normally before tax.
-     */
-    public EcommerceOrder withSubTotal(JsonNullable<String> subTotal) {
-        Utils.checkNotNull(subTotal, "subTotal");
-        this.subTotal = subTotal;
-        return this;
-    }
 
     /**
      * Shipping cost, if any.
      */
-    public EcommerceOrder withShippingCost(String shippingCost) {
-        Utils.checkNotNull(shippingCost, "shippingCost");
+    public EcommerceOrder withShippingCost(@Nullable String shippingCost) {
         this.shippingCost = JsonNullable.of(shippingCost);
         return this;
     }
 
-    /**
-     * Shipping cost, if any.
-     */
-    public EcommerceOrder withShippingCost(JsonNullable<String> shippingCost) {
-        Utils.checkNotNull(shippingCost, "shippingCost");
-        this.shippingCost = shippingCost;
-        return this;
-    }
 
     /**
      * Coupon discount, if any.
      */
-    public EcommerceOrder withCouponDiscount(String couponDiscount) {
-        Utils.checkNotNull(couponDiscount, "couponDiscount");
+    public EcommerceOrder withCouponDiscount(@Nullable String couponDiscount) {
         this.couponDiscount = JsonNullable.of(couponDiscount);
         return this;
     }
 
-    /**
-     * Coupon discount, if any.
-     */
-    public EcommerceOrder withCouponDiscount(JsonNullable<String> couponDiscount) {
-        Utils.checkNotNull(couponDiscount, "couponDiscount");
-        this.couponDiscount = couponDiscount;
-        return this;
-    }
 
     /**
      * Total discount, if any.
      */
-    public EcommerceOrder withTotalDiscount(String totalDiscount) {
-        Utils.checkNotNull(totalDiscount, "totalDiscount");
+    public EcommerceOrder withTotalDiscount(@Nullable String totalDiscount) {
         this.totalDiscount = JsonNullable.of(totalDiscount);
         return this;
     }
 
-    /**
-     * Total discount, if any.
-     */
-    public EcommerceOrder withTotalDiscount(JsonNullable<String> totalDiscount) {
-        Utils.checkNotNull(totalDiscount, "totalDiscount");
-        this.totalDiscount = totalDiscount;
-        return this;
-    }
 
     /**
      * Total tax, if any.
      */
-    public EcommerceOrder withTotalTax(String totalTax) {
-        Utils.checkNotNull(totalTax, "totalTax");
+    public EcommerceOrder withTotalTax(@Nullable String totalTax) {
         this.totalTax = JsonNullable.of(totalTax);
         return this;
     }
 
-    /**
-     * Total tax, if any.
-     */
-    public EcommerceOrder withTotalTax(JsonNullable<String> totalTax) {
-        Utils.checkNotNull(totalTax, "totalTax");
-        this.totalTax = totalTax;
-        return this;
-    }
 
     /**
      * Total amount due.
      */
-    public EcommerceOrder withTotalAmount(String totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
+    public EcommerceOrder withTotalAmount(@Nullable String totalAmount) {
         this.totalAmount = JsonNullable.of(totalAmount);
         return this;
     }
 
-    /**
-     * Total amount due.
-     */
-    public EcommerceOrder withTotalAmount(JsonNullable<String> totalAmount) {
-        Utils.checkNotNull(totalAmount, "totalAmount");
-        this.totalAmount = totalAmount;
-        return this;
-    }
 
     /**
      * Refunded amount, if any.
      */
-    public EcommerceOrder withRefundedAmount(String refundedAmount) {
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
+    public EcommerceOrder withRefundedAmount(@Nullable String refundedAmount) {
         this.refundedAmount = JsonNullable.of(refundedAmount);
         return this;
     }
 
-    /**
-     * Refunded amount, if any.
-     */
-    public EcommerceOrder withRefundedAmount(JsonNullable<String> refundedAmount) {
-        Utils.checkNotNull(refundedAmount, "refundedAmount");
-        this.refundedAmount = refundedAmount;
-        return this;
-    }
 
     /**
      * Current status of the order.
      */
-    public EcommerceOrder withStatus(EcommerceOrderStatus status) {
-        Utils.checkNotNull(status, "status");
+    public EcommerceOrder withStatus(@Nullable EcommerceOrderStatus status) {
         this.status = JsonNullable.of(status);
         return this;
     }
 
-    /**
-     * Current status of the order.
-     */
-    public EcommerceOrder withStatus(JsonNullable<? extends EcommerceOrderStatus> status) {
-        Utils.checkNotNull(status, "status");
-        this.status = status;
-        return this;
-    }
 
     /**
      * Current payment status of the order.
      */
-    public EcommerceOrder withPaymentStatus(EcommerceOrderPaymentStatus paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
+    public EcommerceOrder withPaymentStatus(@Nullable EcommerceOrderPaymentStatus paymentStatus) {
         this.paymentStatus = JsonNullable.of(paymentStatus);
         return this;
     }
 
-    /**
-     * Current payment status of the order.
-     */
-    public EcommerceOrder withPaymentStatus(JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus) {
-        Utils.checkNotNull(paymentStatus, "paymentStatus");
-        this.paymentStatus = paymentStatus;
-        return this;
-    }
 
     /**
      * Current fulfillment status of the order.
      */
-    public EcommerceOrder withFulfillmentStatus(FulfillmentStatus fulfillmentStatus) {
-        Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
+    public EcommerceOrder withFulfillmentStatus(@Nullable FulfillmentStatus fulfillmentStatus) {
         this.fulfillmentStatus = JsonNullable.of(fulfillmentStatus);
         return this;
     }
 
-    /**
-     * Current fulfillment status of the order.
-     */
-    public EcommerceOrder withFulfillmentStatus(JsonNullable<? extends FulfillmentStatus> fulfillmentStatus) {
-        Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
-        this.fulfillmentStatus = fulfillmentStatus;
-        return this;
-    }
 
     /**
      * Payment method used for this order.
      */
-    public EcommerceOrder withPaymentMethod(String paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
+    public EcommerceOrder withPaymentMethod(@Nullable String paymentMethod) {
         this.paymentMethod = JsonNullable.of(paymentMethod);
         return this;
     }
 
-    /**
-     * Payment method used for this order.
-     */
-    public EcommerceOrder withPaymentMethod(JsonNullable<String> paymentMethod) {
-        Utils.checkNotNull(paymentMethod, "paymentMethod");
-        this.paymentMethod = paymentMethod;
-        return this;
-    }
 
     /**
      * The customer this entity is linked to.
      */
-    public EcommerceOrder withCustomer(LinkedEcommerceCustomer customer) {
-        Utils.checkNotNull(customer, "customer");
-        this.customer = Optional.ofNullable(customer);
-        return this;
-    }
-
-
-    /**
-     * The customer this entity is linked to.
-     */
-    public EcommerceOrder withCustomer(Optional<? extends LinkedEcommerceCustomer> customer) {
-        Utils.checkNotNull(customer, "customer");
+    public EcommerceOrder withCustomer(@Nullable LinkedEcommerceCustomer customer) {
         this.customer = customer;
         return this;
     }
 
-    /**
-     * An object representing a shipping or billing address.
-     */
-    public EcommerceOrder withBillingAddress(EcommerceAddress billingAddress) {
-        Utils.checkNotNull(billingAddress, "billingAddress");
-        this.billingAddress = Optional.ofNullable(billingAddress);
-        return this;
-    }
-
 
     /**
      * An object representing a shipping or billing address.
      */
-    public EcommerceOrder withBillingAddress(Optional<? extends EcommerceAddress> billingAddress) {
-        Utils.checkNotNull(billingAddress, "billingAddress");
+    public EcommerceOrder withBillingAddress(@Nullable EcommerceAddress billingAddress) {
         this.billingAddress = billingAddress;
         return this;
     }
 
-    /**
-     * An object representing a shipping or billing address.
-     */
-    public EcommerceOrder withShippingAddress(EcommerceAddress shippingAddress) {
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
-        this.shippingAddress = Optional.ofNullable(shippingAddress);
-        return this;
-    }
-
 
     /**
      * An object representing a shipping or billing address.
      */
-    public EcommerceOrder withShippingAddress(Optional<? extends EcommerceAddress> shippingAddress) {
-        Utils.checkNotNull(shippingAddress, "shippingAddress");
+    public EcommerceOrder withShippingAddress(@Nullable EcommerceAddress shippingAddress) {
         this.shippingAddress = shippingAddress;
         return this;
     }
 
-    public EcommerceOrder withTracking(List<TrackingItem> tracking) {
-        Utils.checkNotNull(tracking, "tracking");
-        this.tracking = Optional.ofNullable(tracking);
-        return this;
-    }
 
-
-    public EcommerceOrder withTracking(Optional<? extends List<TrackingItem>> tracking) {
-        Utils.checkNotNull(tracking, "tracking");
+    public EcommerceOrder withTracking(@Nullable List<TrackingItem> tracking) {
         this.tracking = tracking;
         return this;
     }
 
-    public EcommerceOrder withLineItems(List<EcommerceOrderLineItem> lineItems) {
-        Utils.checkNotNull(lineItems, "lineItems");
-        this.lineItems = Optional.ofNullable(lineItems);
-        return this;
-    }
 
-
-    public EcommerceOrder withLineItems(Optional<? extends List<EcommerceOrderLineItem>> lineItems) {
-        Utils.checkNotNull(lineItems, "lineItems");
+    public EcommerceOrder withLineItems(@Nullable List<EcommerceOrderLineItem> lineItems) {
         this.lineItems = lineItems;
         return this;
     }
 
+
     /**
      * Note for the order.
      */
-    public EcommerceOrder withNote(String note) {
-        Utils.checkNotNull(note, "note");
+    public EcommerceOrder withNote(@Nullable String note) {
         this.note = JsonNullable.of(note);
         return this;
     }
 
-    /**
-     * Note for the order.
-     */
-    public EcommerceOrder withNote(JsonNullable<String> note) {
-        Utils.checkNotNull(note, "note");
-        this.note = note;
-        return this;
-    }
 
-    public EcommerceOrder withRefunds(List<EcommerceOrderRefund> refunds) {
-        Utils.checkNotNull(refunds, "refunds");
-        this.refunds = Optional.ofNullable(refunds);
-        return this;
-    }
-
-
-    public EcommerceOrder withRefunds(Optional<? extends List<EcommerceOrderRefund>> refunds) {
-        Utils.checkNotNull(refunds, "refunds");
+    public EcommerceOrder withRefunds(@Nullable List<EcommerceOrderRefund> refunds) {
         this.refunds = refunds;
         return this;
     }
 
+
     /**
      * When custom mappings are configured on the resource, the result is included here.
      */
-    public EcommerceOrder withCustomMappings(Map<String, Object> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
+    public EcommerceOrder withCustomMappings(@Nullable Map<String, Object> customMappings) {
         this.customMappings = JsonNullable.of(customMappings);
         return this;
     }
 
-    /**
-     * When custom mappings are configured on the resource, the result is included here.
-     */
-    public EcommerceOrder withCustomMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-        Utils.checkNotNull(customMappings, "customMappings");
-        this.customMappings = customMappings;
-        return this;
-    }
 
     /**
      * The date and time when the object was created.
      */
-    public EcommerceOrder withCreatedAt(OffsetDateTime createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public EcommerceOrder withCreatedAt(@Nullable OffsetDateTime createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was created.
-     */
-    public EcommerceOrder withCreatedAt(JsonNullable<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The date and time when the object was last updated.
      */
-    public EcommerceOrder withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public EcommerceOrder withUpdatedAt(@Nullable OffsetDateTime updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The date and time when the object was last updated.
-     */
-    public EcommerceOrder withUpdatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -994,502 +739,247 @@ public class EcommerceOrder {
 
         private String id;
 
-        private JsonNullable<String> orderNumber = JsonNullable.undefined();
+        private JsonNullable<String> orderNumber;
 
-        private JsonNullable<? extends Currency> currency = JsonNullable.undefined();
+        private JsonNullable<Currency> currency;
 
-        private Optional<? extends List<EcommerceDiscount>> discounts = Optional.empty();
+        private List<EcommerceDiscount> discounts;
 
-        private JsonNullable<String> subTotal = JsonNullable.undefined();
+        private JsonNullable<String> subTotal;
 
-        private JsonNullable<String> shippingCost = JsonNullable.undefined();
+        private JsonNullable<String> shippingCost;
 
-        private JsonNullable<String> couponDiscount = JsonNullable.undefined();
+        private JsonNullable<String> couponDiscount;
 
-        private JsonNullable<String> totalDiscount = JsonNullable.undefined();
+        private JsonNullable<String> totalDiscount;
 
-        private JsonNullable<String> totalTax = JsonNullable.undefined();
+        private JsonNullable<String> totalTax;
 
-        private JsonNullable<String> totalAmount = JsonNullable.undefined();
+        private JsonNullable<String> totalAmount;
 
-        private JsonNullable<String> refundedAmount = JsonNullable.undefined();
+        private JsonNullable<String> refundedAmount;
 
-        private JsonNullable<? extends EcommerceOrderStatus> status = JsonNullable.undefined();
+        private JsonNullable<EcommerceOrderStatus> status;
 
-        private JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus = JsonNullable.undefined();
+        private JsonNullable<EcommerceOrderPaymentStatus> paymentStatus;
 
-        private JsonNullable<? extends FulfillmentStatus> fulfillmentStatus = JsonNullable.undefined();
+        private JsonNullable<FulfillmentStatus> fulfillmentStatus;
 
-        private JsonNullable<String> paymentMethod = JsonNullable.undefined();
+        private JsonNullable<String> paymentMethod;
 
-        private Optional<? extends LinkedEcommerceCustomer> customer = Optional.empty();
+        private LinkedEcommerceCustomer customer;
 
-        private Optional<? extends EcommerceAddress> billingAddress = Optional.empty();
+        private EcommerceAddress billingAddress;
 
-        private Optional<? extends EcommerceAddress> shippingAddress = Optional.empty();
+        private EcommerceAddress shippingAddress;
 
-        private Optional<? extends List<TrackingItem>> tracking = Optional.empty();
+        private List<TrackingItem> tracking;
 
-        private Optional<? extends List<EcommerceOrderLineItem>> lineItems = Optional.empty();
+        private List<EcommerceOrderLineItem> lineItems;
 
-        private JsonNullable<String> note = JsonNullable.undefined();
+        private JsonNullable<String> note;
 
-        private Optional<? extends List<EcommerceOrderRefund>> refunds = Optional.empty();
+        private List<EcommerceOrderRefund> refunds;
 
-        private JsonNullable<? extends Map<String, Object>> customMappings = JsonNullable.undefined();
+        private JsonNullable<Map<String, Object>> customMappings;
 
-        private JsonNullable<OffsetDateTime> createdAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> createdAt;
 
-        private JsonNullable<OffsetDateTime> updatedAt = JsonNullable.undefined();
+        private JsonNullable<OffsetDateTime> updatedAt;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * A unique identifier for an object.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = id;
+        public Builder id(@Nonnull String id) {
+            this.id = Utils.checkNotNull(id, "id");
             return this;
         }
-
 
         /**
          * Order number, if any.
          */
-        public Builder orderNumber(String orderNumber) {
-            Utils.checkNotNull(orderNumber, "orderNumber");
+        public Builder orderNumber(@Nullable String orderNumber) {
             this.orderNumber = JsonNullable.of(orderNumber);
             return this;
         }
 
         /**
-         * Order number, if any.
-         */
-        public Builder orderNumber(JsonNullable<String> orderNumber) {
-            Utils.checkNotNull(orderNumber, "orderNumber");
-            this.orderNumber = orderNumber;
-            return this;
-        }
-
-
-        /**
          * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
          */
-        public Builder currency(Currency currency) {
-            Utils.checkNotNull(currency, "currency");
+        public Builder currency(@Nullable Currency currency) {
             this.currency = JsonNullable.of(currency);
             return this;
         }
 
-        /**
-         * Indicates the associated currency for an amount of money. Values correspond to [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217).
-         */
-        public Builder currency(JsonNullable<? extends Currency> currency) {
-            Utils.checkNotNull(currency, "currency");
-            this.currency = currency;
-            return this;
-        }
-
-
-        public Builder discounts(List<EcommerceDiscount> discounts) {
-            Utils.checkNotNull(discounts, "discounts");
-            this.discounts = Optional.ofNullable(discounts);
-            return this;
-        }
-
-        public Builder discounts(Optional<? extends List<EcommerceDiscount>> discounts) {
-            Utils.checkNotNull(discounts, "discounts");
+        public Builder discounts(@Nullable List<EcommerceDiscount> discounts) {
             this.discounts = discounts;
             return this;
         }
 
-
         /**
          * Sub-total amount, normally before tax.
          */
-        public Builder subTotal(String subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
+        public Builder subTotal(@Nullable String subTotal) {
             this.subTotal = JsonNullable.of(subTotal);
             return this;
         }
 
         /**
-         * Sub-total amount, normally before tax.
-         */
-        public Builder subTotal(JsonNullable<String> subTotal) {
-            Utils.checkNotNull(subTotal, "subTotal");
-            this.subTotal = subTotal;
-            return this;
-        }
-
-
-        /**
          * Shipping cost, if any.
          */
-        public Builder shippingCost(String shippingCost) {
-            Utils.checkNotNull(shippingCost, "shippingCost");
+        public Builder shippingCost(@Nullable String shippingCost) {
             this.shippingCost = JsonNullable.of(shippingCost);
             return this;
         }
 
         /**
-         * Shipping cost, if any.
-         */
-        public Builder shippingCost(JsonNullable<String> shippingCost) {
-            Utils.checkNotNull(shippingCost, "shippingCost");
-            this.shippingCost = shippingCost;
-            return this;
-        }
-
-
-        /**
          * Coupon discount, if any.
          */
-        public Builder couponDiscount(String couponDiscount) {
-            Utils.checkNotNull(couponDiscount, "couponDiscount");
+        public Builder couponDiscount(@Nullable String couponDiscount) {
             this.couponDiscount = JsonNullable.of(couponDiscount);
             return this;
         }
 
         /**
-         * Coupon discount, if any.
-         */
-        public Builder couponDiscount(JsonNullable<String> couponDiscount) {
-            Utils.checkNotNull(couponDiscount, "couponDiscount");
-            this.couponDiscount = couponDiscount;
-            return this;
-        }
-
-
-        /**
          * Total discount, if any.
          */
-        public Builder totalDiscount(String totalDiscount) {
-            Utils.checkNotNull(totalDiscount, "totalDiscount");
+        public Builder totalDiscount(@Nullable String totalDiscount) {
             this.totalDiscount = JsonNullable.of(totalDiscount);
             return this;
         }
 
         /**
-         * Total discount, if any.
-         */
-        public Builder totalDiscount(JsonNullable<String> totalDiscount) {
-            Utils.checkNotNull(totalDiscount, "totalDiscount");
-            this.totalDiscount = totalDiscount;
-            return this;
-        }
-
-
-        /**
          * Total tax, if any.
          */
-        public Builder totalTax(String totalTax) {
-            Utils.checkNotNull(totalTax, "totalTax");
+        public Builder totalTax(@Nullable String totalTax) {
             this.totalTax = JsonNullable.of(totalTax);
             return this;
         }
 
         /**
-         * Total tax, if any.
-         */
-        public Builder totalTax(JsonNullable<String> totalTax) {
-            Utils.checkNotNull(totalTax, "totalTax");
-            this.totalTax = totalTax;
-            return this;
-        }
-
-
-        /**
          * Total amount due.
          */
-        public Builder totalAmount(String totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
+        public Builder totalAmount(@Nullable String totalAmount) {
             this.totalAmount = JsonNullable.of(totalAmount);
             return this;
         }
 
         /**
-         * Total amount due.
-         */
-        public Builder totalAmount(JsonNullable<String> totalAmount) {
-            Utils.checkNotNull(totalAmount, "totalAmount");
-            this.totalAmount = totalAmount;
-            return this;
-        }
-
-
-        /**
          * Refunded amount, if any.
          */
-        public Builder refundedAmount(String refundedAmount) {
-            Utils.checkNotNull(refundedAmount, "refundedAmount");
+        public Builder refundedAmount(@Nullable String refundedAmount) {
             this.refundedAmount = JsonNullable.of(refundedAmount);
             return this;
         }
 
         /**
-         * Refunded amount, if any.
-         */
-        public Builder refundedAmount(JsonNullable<String> refundedAmount) {
-            Utils.checkNotNull(refundedAmount, "refundedAmount");
-            this.refundedAmount = refundedAmount;
-            return this;
-        }
-
-
-        /**
          * Current status of the order.
          */
-        public Builder status(EcommerceOrderStatus status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable EcommerceOrderStatus status) {
             this.status = JsonNullable.of(status);
             return this;
         }
 
         /**
-         * Current status of the order.
-         */
-        public Builder status(JsonNullable<? extends EcommerceOrderStatus> status) {
-            Utils.checkNotNull(status, "status");
-            this.status = status;
-            return this;
-        }
-
-
-        /**
          * Current payment status of the order.
          */
-        public Builder paymentStatus(EcommerceOrderPaymentStatus paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
+        public Builder paymentStatus(@Nullable EcommerceOrderPaymentStatus paymentStatus) {
             this.paymentStatus = JsonNullable.of(paymentStatus);
             return this;
         }
 
         /**
-         * Current payment status of the order.
-         */
-        public Builder paymentStatus(JsonNullable<? extends EcommerceOrderPaymentStatus> paymentStatus) {
-            Utils.checkNotNull(paymentStatus, "paymentStatus");
-            this.paymentStatus = paymentStatus;
-            return this;
-        }
-
-
-        /**
          * Current fulfillment status of the order.
          */
-        public Builder fulfillmentStatus(FulfillmentStatus fulfillmentStatus) {
-            Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
+        public Builder fulfillmentStatus(@Nullable FulfillmentStatus fulfillmentStatus) {
             this.fulfillmentStatus = JsonNullable.of(fulfillmentStatus);
             return this;
         }
 
         /**
-         * Current fulfillment status of the order.
-         */
-        public Builder fulfillmentStatus(JsonNullable<? extends FulfillmentStatus> fulfillmentStatus) {
-            Utils.checkNotNull(fulfillmentStatus, "fulfillmentStatus");
-            this.fulfillmentStatus = fulfillmentStatus;
-            return this;
-        }
-
-
-        /**
          * Payment method used for this order.
          */
-        public Builder paymentMethod(String paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
+        public Builder paymentMethod(@Nullable String paymentMethod) {
             this.paymentMethod = JsonNullable.of(paymentMethod);
             return this;
         }
 
         /**
-         * Payment method used for this order.
-         */
-        public Builder paymentMethod(JsonNullable<String> paymentMethod) {
-            Utils.checkNotNull(paymentMethod, "paymentMethod");
-            this.paymentMethod = paymentMethod;
-            return this;
-        }
-
-
-        /**
          * The customer this entity is linked to.
          */
-        public Builder customer(LinkedEcommerceCustomer customer) {
-            Utils.checkNotNull(customer, "customer");
-            this.customer = Optional.ofNullable(customer);
-            return this;
-        }
-
-        /**
-         * The customer this entity is linked to.
-         */
-        public Builder customer(Optional<? extends LinkedEcommerceCustomer> customer) {
-            Utils.checkNotNull(customer, "customer");
+        public Builder customer(@Nullable LinkedEcommerceCustomer customer) {
             this.customer = customer;
             return this;
         }
 
-
         /**
          * An object representing a shipping or billing address.
          */
-        public Builder billingAddress(EcommerceAddress billingAddress) {
-            Utils.checkNotNull(billingAddress, "billingAddress");
-            this.billingAddress = Optional.ofNullable(billingAddress);
-            return this;
-        }
-
-        /**
-         * An object representing a shipping or billing address.
-         */
-        public Builder billingAddress(Optional<? extends EcommerceAddress> billingAddress) {
-            Utils.checkNotNull(billingAddress, "billingAddress");
+        public Builder billingAddress(@Nullable EcommerceAddress billingAddress) {
             this.billingAddress = billingAddress;
             return this;
         }
 
-
         /**
          * An object representing a shipping or billing address.
          */
-        public Builder shippingAddress(EcommerceAddress shippingAddress) {
-            Utils.checkNotNull(shippingAddress, "shippingAddress");
-            this.shippingAddress = Optional.ofNullable(shippingAddress);
-            return this;
-        }
-
-        /**
-         * An object representing a shipping or billing address.
-         */
-        public Builder shippingAddress(Optional<? extends EcommerceAddress> shippingAddress) {
-            Utils.checkNotNull(shippingAddress, "shippingAddress");
+        public Builder shippingAddress(@Nullable EcommerceAddress shippingAddress) {
             this.shippingAddress = shippingAddress;
             return this;
         }
 
-
-        public Builder tracking(List<TrackingItem> tracking) {
-            Utils.checkNotNull(tracking, "tracking");
-            this.tracking = Optional.ofNullable(tracking);
-            return this;
-        }
-
-        public Builder tracking(Optional<? extends List<TrackingItem>> tracking) {
-            Utils.checkNotNull(tracking, "tracking");
+        public Builder tracking(@Nullable List<TrackingItem> tracking) {
             this.tracking = tracking;
             return this;
         }
 
-
-        public Builder lineItems(List<EcommerceOrderLineItem> lineItems) {
-            Utils.checkNotNull(lineItems, "lineItems");
-            this.lineItems = Optional.ofNullable(lineItems);
-            return this;
-        }
-
-        public Builder lineItems(Optional<? extends List<EcommerceOrderLineItem>> lineItems) {
-            Utils.checkNotNull(lineItems, "lineItems");
+        public Builder lineItems(@Nullable List<EcommerceOrderLineItem> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-
         /**
          * Note for the order.
          */
-        public Builder note(String note) {
-            Utils.checkNotNull(note, "note");
+        public Builder note(@Nullable String note) {
             this.note = JsonNullable.of(note);
             return this;
         }
 
-        /**
-         * Note for the order.
-         */
-        public Builder note(JsonNullable<String> note) {
-            Utils.checkNotNull(note, "note");
-            this.note = note;
-            return this;
-        }
-
-
-        public Builder refunds(List<EcommerceOrderRefund> refunds) {
-            Utils.checkNotNull(refunds, "refunds");
-            this.refunds = Optional.ofNullable(refunds);
-            return this;
-        }
-
-        public Builder refunds(Optional<? extends List<EcommerceOrderRefund>> refunds) {
-            Utils.checkNotNull(refunds, "refunds");
+        public Builder refunds(@Nullable List<EcommerceOrderRefund> refunds) {
             this.refunds = refunds;
             return this;
         }
 
-
         /**
          * When custom mappings are configured on the resource, the result is included here.
          */
-        public Builder customMappings(Map<String, Object> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
+        public Builder customMappings(@Nullable Map<String, Object> customMappings) {
             this.customMappings = JsonNullable.of(customMappings);
             return this;
         }
 
         /**
-         * When custom mappings are configured on the resource, the result is included here.
-         */
-        public Builder customMappings(JsonNullable<? extends Map<String, Object>> customMappings) {
-            Utils.checkNotNull(customMappings, "customMappings");
-            this.customMappings = customMappings;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was created.
          */
-        public Builder createdAt(OffsetDateTime createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable OffsetDateTime createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The date and time when the object was created.
-         */
-        public Builder createdAt(JsonNullable<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The date and time when the object was last updated.
          */
-        public Builder updatedAt(OffsetDateTime updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable OffsetDateTime updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
-        /**
-         * The date and time when the object was last updated.
-         */
-        public Builder updatedAt(JsonNullable<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
         public EcommerceOrder build() {
-
             return new EcommerceOrder(
                 id, orderNumber, currency,
                 discounts, subTotal, shippingCost,

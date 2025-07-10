@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 
 
@@ -21,44 +20,39 @@ public class ValidateConnectionStateResponseData {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("state")
-    private Optional<? extends ConnectionState> state;
+    private ConnectionState state;
 
     @JsonCreator
     public ValidateConnectionStateResponseData(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("state") Optional<? extends ConnectionState> state) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(state, "state");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("state") @Nullable ConnectionState state) {
         this.id = id;
         this.state = state;
     }
     
     public ValidateConnectionStateResponseData() {
-        this(Optional.empty(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The unique identifier of the connection.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectionState> state() {
-        return (Optional<ConnectionState>) state;
+        return Optional.ofNullable(this.state);
     }
 
     public static Builder builder() {
@@ -69,40 +63,20 @@ public class ValidateConnectionStateResponseData {
     /**
      * The unique identifier of the connection.
      */
-    public ValidateConnectionStateResponseData withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the connection.
-     */
-    public ValidateConnectionStateResponseData withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public ValidateConnectionStateResponseData withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * [Connection state flow](#section/Connection-state)
-     */
-    public ValidateConnectionStateResponseData withState(ConnectionState state) {
-        Utils.checkNotNull(state, "state");
-        this.state = Optional.ofNullable(state);
-        return this;
-    }
-
 
     /**
      * [Connection state flow](#section/Connection-state)
      */
-    public ValidateConnectionStateResponseData withState(Optional<? extends ConnectionState> state) {
-        Utils.checkNotNull(state, "state");
+    public ValidateConnectionStateResponseData withState(@Nullable ConnectionState state) {
         this.state = state;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -134,54 +108,31 @@ public class ValidateConnectionStateResponseData {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<? extends ConnectionState> state = Optional.empty();
+        private ConnectionState state;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the connection.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the connection.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * [Connection state flow](#section/Connection-state)
          */
-        public Builder state(ConnectionState state) {
-            Utils.checkNotNull(state, "state");
-            this.state = Optional.ofNullable(state);
-            return this;
-        }
-
-        /**
-         * [Connection state flow](#section/Connection-state)
-         */
-        public Builder state(Optional<? extends ConnectionState> state) {
-            Utils.checkNotNull(state, "state");
+        public Builder state(@Nullable ConnectionState state) {
             this.state = state;
             return this;
         }
 
         public ValidateConnectionStateResponseData build() {
-
             return new ValidateConnectionStateResponseData(
                 id, state);
         }

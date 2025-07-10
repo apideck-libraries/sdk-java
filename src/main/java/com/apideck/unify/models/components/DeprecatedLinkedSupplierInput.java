@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -35,34 +34,30 @@ public class DeprecatedLinkedSupplierInput {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("address")
-    private Optional<? extends Address> address;
+    private Address address;
 
     @JsonCreator
     public DeprecatedLinkedSupplierInput(
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("address") Optional<? extends Address> address) {
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(address, "address");
-        this.displayName = displayName;
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("address") @Nullable Address address) {
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
         this.address = address;
     }
     
     public DeprecatedLinkedSupplierInput() {
-        this(JsonNullable.undefined(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * The display name of the supplier.
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<Address> address() {
-        return (Optional<Address>) address;
+        return Optional.ofNullable(this.address);
     }
 
     public static Builder builder() {
@@ -73,33 +68,17 @@ public class DeprecatedLinkedSupplierInput {
     /**
      * The display name of the supplier.
      */
-    public DeprecatedLinkedSupplierInput withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public DeprecatedLinkedSupplierInput withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The display name of the supplier.
-     */
-    public DeprecatedLinkedSupplierInput withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
-    public DeprecatedLinkedSupplierInput withAddress(Address address) {
-        Utils.checkNotNull(address, "address");
-        this.address = Optional.ofNullable(address);
-        return this;
-    }
-
-
-    public DeprecatedLinkedSupplierInput withAddress(Optional<? extends Address> address) {
-        Utils.checkNotNull(address, "address");
+    public DeprecatedLinkedSupplierInput withAddress(@Nullable Address address) {
         this.address = address;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -131,48 +110,28 @@ public class DeprecatedLinkedSupplierInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
-        private Optional<? extends Address> address = Optional.empty();
+        private Address address;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The display name of the supplier.
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
-        /**
-         * The display name of the supplier.
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        public Builder address(Address address) {
-            Utils.checkNotNull(address, "address");
-            this.address = Optional.ofNullable(address);
-            return this;
-        }
-
-        public Builder address(Optional<? extends Address> address) {
-            Utils.checkNotNull(address, "address");
+        public Builder address(@Nullable Address address) {
             this.address = address;
             return this;
         }
 
         public DeprecatedLinkedSupplierInput build() {
-
             return new DeprecatedLinkedSupplierInput(
                 displayName, address);
         }

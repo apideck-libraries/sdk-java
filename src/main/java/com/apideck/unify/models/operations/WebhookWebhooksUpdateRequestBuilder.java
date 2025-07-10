@@ -11,79 +11,65 @@ import com.apideck.unify.operations.WebhookWebhooksUpdateOperation;
 import com.apideck.unify.utils.Options;
 import com.apideck.unify.utils.RetryConfig;
 import com.apideck.unify.utils.Utils;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.Optional;
 
 public class WebhookWebhooksUpdateRequestBuilder {
-
-    private String id;
-    private Optional<String> appId = Optional.empty();
-    private UpdateWebhookRequest updateWebhookRequest;
-    private Optional<RetryConfig> retryConfig = Optional.empty();
     private final SDKConfiguration sdkConfiguration;
+    private final WebhookWebhooksUpdateRequest.Builder pojoBuilder;
+    private WebhookWebhooksUpdateRequest request;
+    private final Options.Builder optionsBuilder;
+    private boolean _setterCalled;
 
     public WebhookWebhooksUpdateRequestBuilder(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
+        this.pojoBuilder = WebhookWebhooksUpdateRequest.builder();
+        this.optionsBuilder = Options.builder();
     }
 
-    public WebhookWebhooksUpdateRequestBuilder id(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = id;
-        return this;
-    }
-                
-    public WebhookWebhooksUpdateRequestBuilder appId(String appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = Optional.of(appId);
+    public WebhookWebhooksUpdateRequestBuilder id(@Nonnull String id) {
+        this.pojoBuilder.id(id);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksUpdateRequestBuilder appId(Optional<String> appId) {
-        Utils.checkNotNull(appId, "appId");
-        this.appId = appId;
+    public WebhookWebhooksUpdateRequestBuilder appId(@Nullable String appId) {
+        this.pojoBuilder.appId(appId);
+        this._setterCalled = true;
         return this;
     }
 
-    public WebhookWebhooksUpdateRequestBuilder updateWebhookRequest(UpdateWebhookRequest updateWebhookRequest) {
-        Utils.checkNotNull(updateWebhookRequest, "updateWebhookRequest");
-        this.updateWebhookRequest = updateWebhookRequest;
+    public WebhookWebhooksUpdateRequestBuilder updateWebhookRequest(@Nonnull UpdateWebhookRequest updateWebhookRequest) {
+        this.pojoBuilder.updateWebhookRequest(updateWebhookRequest);
+        this._setterCalled = true;
         return this;
     }
-                
+
     public WebhookWebhooksUpdateRequestBuilder retryConfig(RetryConfig retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = Optional.of(retryConfig);
+        this.optionsBuilder.retryConfig(retryConfig);
         return this;
     }
 
-    public WebhookWebhooksUpdateRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
-        Utils.checkNotNull(retryConfig, "retryConfig");
-        this.retryConfig = retryConfig;
-        return this;
+    private WebhookWebhooksUpdateRequest _buildRequest() {
+        if (this._setterCalled) {
+            this.request = this.pojoBuilder.build();
+        }
+        return this.request;
     }
-
-
-    private WebhookWebhooksUpdateRequest buildRequest() {
-
-        WebhookWebhooksUpdateRequest request = new WebhookWebhooksUpdateRequest(id,
-            appId,
-            updateWebhookRequest);
-
-        return request;
-    }
-
+    /**
+    * Executes the request and returns the response.
+    *
+    * @return The response from the server.
+    */
     public WebhookWebhooksUpdateResponse call() throws Exception {
-        Optional<Options> options = Optional.of(Options.builder()
-            .retryConfig(retryConfig)
-            .build());
-
+        Options options = optionsBuilder.build();
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
               = new WebhookWebhooksUpdateOperation(
                 sdkConfiguration,
                 options);
-        WebhookWebhooksUpdateRequest request = buildRequest();
 
-        return operation.handleResponse(operation.doRequest(request));
+        return operation.handleResponse(operation.doRequest(this._buildRequest()));
     }
 }

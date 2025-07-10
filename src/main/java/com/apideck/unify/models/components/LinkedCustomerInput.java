@@ -5,10 +5,10 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
@@ -26,7 +26,7 @@ public class LinkedCustomerInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The display name of the customer.
@@ -43,50 +43,45 @@ public class LinkedCustomerInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
     @Deprecated
-    private Optional<String> name;
+    private String name;
 
     /**
      * The email address of the customer.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("email")
-    private Optional<String> email;
+    private String email;
 
     @JsonCreator
     public LinkedCustomerInput(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("display_name") JsonNullable<String> displayName,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("email") Optional<String> email) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(displayName, "displayName");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(email, "email");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("display_name") @Nullable JsonNullable<String> displayName,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("email") @Nullable String email) {
         this.id = id;
-        this.displayName = displayName;
+        this.displayName = Optional.ofNullable(displayName)
+            .orElse(JsonNullable.undefined());
         this.name = name;
         this.email = email;
     }
     
     public LinkedCustomerInput() {
-        this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null);
     }
 
     /**
      * The ID of the customer this entity is linked to.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The display name of the customer.
      */
-    @JsonIgnore
     public JsonNullable<String> displayName() {
-        return displayName;
+        return this.displayName;
     }
 
     /**
@@ -95,17 +90,15 @@ public class LinkedCustomerInput {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * The email address of the customer.
      */
-    @JsonIgnore
     public Optional<String> email() {
-        return email;
+        return Optional.ofNullable(this.email);
     }
 
     public static Builder builder() {
@@ -116,39 +109,20 @@ public class LinkedCustomerInput {
     /**
      * The ID of the customer this entity is linked to.
      */
-    public LinkedCustomerInput withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The ID of the customer this entity is linked to.
-     */
-    public LinkedCustomerInput withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public LinkedCustomerInput withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
+
     /**
      * The display name of the customer.
      */
-    public LinkedCustomerInput withDisplayName(String displayName) {
-        Utils.checkNotNull(displayName, "displayName");
+    public LinkedCustomerInput withDisplayName(@Nullable String displayName) {
         this.displayName = JsonNullable.of(displayName);
         return this;
     }
 
-    /**
-     * The display name of the customer.
-     */
-    public LinkedCustomerInput withDisplayName(JsonNullable<String> displayName) {
-        Utils.checkNotNull(displayName, "displayName");
-        this.displayName = displayName;
-        return this;
-    }
 
     /**
      * The name of the customer. Deprecated, use display_name instead.
@@ -156,43 +130,20 @@ public class LinkedCustomerInput {
      * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
      */
     @Deprecated
-    public LinkedCustomerInput withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
-
-    /**
-     * The name of the customer. Deprecated, use display_name instead.
-     * 
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public LinkedCustomerInput withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public LinkedCustomerInput withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * The email address of the customer.
-     */
-    public LinkedCustomerInput withEmail(String email) {
-        Utils.checkNotNull(email, "email");
-        this.email = Optional.ofNullable(email);
-        return this;
-    }
-
 
     /**
      * The email address of the customer.
      */
-    public LinkedCustomerInput withEmail(Optional<String> email) {
-        Utils.checkNotNull(email, "email");
+    public LinkedCustomerInput withEmail(@Nullable String email) {
         this.email = email;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -229,103 +180,55 @@ public class LinkedCustomerInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private JsonNullable<String> displayName = JsonNullable.undefined();
+        private JsonNullable<String> displayName;
 
         @Deprecated
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<String> email = Optional.empty();
+        private String email;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The ID of the customer this entity is linked to.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The ID of the customer this entity is linked to.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The display name of the customer.
          */
-        public Builder displayName(String displayName) {
-            Utils.checkNotNull(displayName, "displayName");
+        public Builder displayName(@Nullable String displayName) {
             this.displayName = JsonNullable.of(displayName);
             return this;
         }
 
         /**
-         * The display name of the customer.
-         */
-        public Builder displayName(JsonNullable<String> displayName) {
-            Utils.checkNotNull(displayName, "displayName");
-            this.displayName = displayName;
-            return this;
-        }
-
-
-        /**
          * The name of the customer. Deprecated, use display_name instead.
          * 
          * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
          */
         @Deprecated
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * The name of the customer. Deprecated, use display_name instead.
-         * 
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * The email address of the customer.
          */
-        public Builder email(String email) {
-            Utils.checkNotNull(email, "email");
-            this.email = Optional.ofNullable(email);
-            return this;
-        }
-
-        /**
-         * The email address of the customer.
-         */
-        public Builder email(Optional<String> email) {
-            Utils.checkNotNull(email, "email");
+        public Builder email(@Nullable String email) {
             this.email = email;
             return this;
         }
 
         public LinkedCustomerInput build() {
-
             return new LinkedCustomerInput(
                 id, displayName, name,
                 email);

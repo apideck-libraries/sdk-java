@@ -5,13 +5,14 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Double;
 import java.lang.Override;
 import java.lang.String;
+import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
@@ -85,111 +86,102 @@ public class PayrollTotals {
 
     @JsonCreator
     public PayrollTotals(
-            @JsonProperty("company_debit") JsonNullable<Double> companyDebit,
-            @JsonProperty("tax_debit") JsonNullable<Double> taxDebit,
-            @JsonProperty("check_amount") JsonNullable<Double> checkAmount,
-            @JsonProperty("net_pay") JsonNullable<Double> netPay,
-            @JsonProperty("gross_pay") JsonNullable<Double> grossPay,
-            @JsonProperty("employer_taxes") JsonNullable<Double> employerTaxes,
-            @JsonProperty("employee_taxes") JsonNullable<Double> employeeTaxes,
-            @JsonProperty("employer_benefit_contributions") JsonNullable<Double> employerBenefitContributions,
-            @JsonProperty("employee_benefit_deductions") JsonNullable<Double> employeeBenefitDeductions) {
-        Utils.checkNotNull(companyDebit, "companyDebit");
-        Utils.checkNotNull(taxDebit, "taxDebit");
-        Utils.checkNotNull(checkAmount, "checkAmount");
-        Utils.checkNotNull(netPay, "netPay");
-        Utils.checkNotNull(grossPay, "grossPay");
-        Utils.checkNotNull(employerTaxes, "employerTaxes");
-        Utils.checkNotNull(employeeTaxes, "employeeTaxes");
-        Utils.checkNotNull(employerBenefitContributions, "employerBenefitContributions");
-        Utils.checkNotNull(employeeBenefitDeductions, "employeeBenefitDeductions");
-        this.companyDebit = companyDebit;
-        this.taxDebit = taxDebit;
-        this.checkAmount = checkAmount;
-        this.netPay = netPay;
-        this.grossPay = grossPay;
-        this.employerTaxes = employerTaxes;
-        this.employeeTaxes = employeeTaxes;
-        this.employerBenefitContributions = employerBenefitContributions;
-        this.employeeBenefitDeductions = employeeBenefitDeductions;
+            @JsonProperty("company_debit") @Nullable JsonNullable<Double> companyDebit,
+            @JsonProperty("tax_debit") @Nullable JsonNullable<Double> taxDebit,
+            @JsonProperty("check_amount") @Nullable JsonNullable<Double> checkAmount,
+            @JsonProperty("net_pay") @Nullable JsonNullable<Double> netPay,
+            @JsonProperty("gross_pay") @Nullable JsonNullable<Double> grossPay,
+            @JsonProperty("employer_taxes") @Nullable JsonNullable<Double> employerTaxes,
+            @JsonProperty("employee_taxes") @Nullable JsonNullable<Double> employeeTaxes,
+            @JsonProperty("employer_benefit_contributions") @Nullable JsonNullable<Double> employerBenefitContributions,
+            @JsonProperty("employee_benefit_deductions") @Nullable JsonNullable<Double> employeeBenefitDeductions) {
+        this.companyDebit = Optional.ofNullable(companyDebit)
+            .orElse(JsonNullable.undefined());
+        this.taxDebit = Optional.ofNullable(taxDebit)
+            .orElse(JsonNullable.undefined());
+        this.checkAmount = Optional.ofNullable(checkAmount)
+            .orElse(JsonNullable.undefined());
+        this.netPay = Optional.ofNullable(netPay)
+            .orElse(JsonNullable.undefined());
+        this.grossPay = Optional.ofNullable(grossPay)
+            .orElse(JsonNullable.undefined());
+        this.employerTaxes = Optional.ofNullable(employerTaxes)
+            .orElse(JsonNullable.undefined());
+        this.employeeTaxes = Optional.ofNullable(employeeTaxes)
+            .orElse(JsonNullable.undefined());
+        this.employerBenefitContributions = Optional.ofNullable(employerBenefitContributions)
+            .orElse(JsonNullable.undefined());
+        this.employeeBenefitDeductions = Optional.ofNullable(employeeBenefitDeductions)
+            .orElse(JsonNullable.undefined());
     }
     
     public PayrollTotals() {
-        this(JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The total company debit for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> companyDebit() {
-        return companyDebit;
+        return this.companyDebit;
     }
 
     /**
      * The total tax debit for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> taxDebit() {
-        return taxDebit;
+        return this.taxDebit;
     }
 
     /**
      * The total check amount for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> checkAmount() {
-        return checkAmount;
+        return this.checkAmount;
     }
 
     /**
      * The net pay amount for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> netPay() {
-        return netPay;
+        return this.netPay;
     }
 
     /**
      * The gross pay amount for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> grossPay() {
-        return grossPay;
+        return this.grossPay;
     }
 
     /**
      * The total amount of employer paid taxes for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> employerTaxes() {
-        return employerTaxes;
+        return this.employerTaxes;
     }
 
     /**
      * The total amount of employee paid taxes for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> employeeTaxes() {
-        return employeeTaxes;
+        return this.employeeTaxes;
     }
 
     /**
      * The total amount of company contributed benefits for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> employerBenefitContributions() {
-        return employerBenefitContributions;
+        return this.employerBenefitContributions;
     }
 
     /**
      * The total amount of employee deducted benefits for the payroll.
      */
-    @JsonIgnore
     public JsonNullable<Double> employeeBenefitDeductions() {
-        return employeeBenefitDeductions;
+        return this.employeeBenefitDeductions;
     }
 
     public static Builder builder() {
@@ -200,164 +192,83 @@ public class PayrollTotals {
     /**
      * The total company debit for the payroll.
      */
-    public PayrollTotals withCompanyDebit(double companyDebit) {
-        Utils.checkNotNull(companyDebit, "companyDebit");
+    public PayrollTotals withCompanyDebit(@Nullable Double companyDebit) {
         this.companyDebit = JsonNullable.of(companyDebit);
         return this;
     }
 
-    /**
-     * The total company debit for the payroll.
-     */
-    public PayrollTotals withCompanyDebit(JsonNullable<Double> companyDebit) {
-        Utils.checkNotNull(companyDebit, "companyDebit");
-        this.companyDebit = companyDebit;
-        return this;
-    }
 
     /**
      * The total tax debit for the payroll.
      */
-    public PayrollTotals withTaxDebit(double taxDebit) {
-        Utils.checkNotNull(taxDebit, "taxDebit");
+    public PayrollTotals withTaxDebit(@Nullable Double taxDebit) {
         this.taxDebit = JsonNullable.of(taxDebit);
         return this;
     }
 
-    /**
-     * The total tax debit for the payroll.
-     */
-    public PayrollTotals withTaxDebit(JsonNullable<Double> taxDebit) {
-        Utils.checkNotNull(taxDebit, "taxDebit");
-        this.taxDebit = taxDebit;
-        return this;
-    }
 
     /**
      * The total check amount for the payroll.
      */
-    public PayrollTotals withCheckAmount(double checkAmount) {
-        Utils.checkNotNull(checkAmount, "checkAmount");
+    public PayrollTotals withCheckAmount(@Nullable Double checkAmount) {
         this.checkAmount = JsonNullable.of(checkAmount);
         return this;
     }
 
-    /**
-     * The total check amount for the payroll.
-     */
-    public PayrollTotals withCheckAmount(JsonNullable<Double> checkAmount) {
-        Utils.checkNotNull(checkAmount, "checkAmount");
-        this.checkAmount = checkAmount;
-        return this;
-    }
 
     /**
      * The net pay amount for the payroll.
      */
-    public PayrollTotals withNetPay(double netPay) {
-        Utils.checkNotNull(netPay, "netPay");
+    public PayrollTotals withNetPay(@Nullable Double netPay) {
         this.netPay = JsonNullable.of(netPay);
         return this;
     }
 
-    /**
-     * The net pay amount for the payroll.
-     */
-    public PayrollTotals withNetPay(JsonNullable<Double> netPay) {
-        Utils.checkNotNull(netPay, "netPay");
-        this.netPay = netPay;
-        return this;
-    }
 
     /**
      * The gross pay amount for the payroll.
      */
-    public PayrollTotals withGrossPay(double grossPay) {
-        Utils.checkNotNull(grossPay, "grossPay");
+    public PayrollTotals withGrossPay(@Nullable Double grossPay) {
         this.grossPay = JsonNullable.of(grossPay);
         return this;
     }
 
-    /**
-     * The gross pay amount for the payroll.
-     */
-    public PayrollTotals withGrossPay(JsonNullable<Double> grossPay) {
-        Utils.checkNotNull(grossPay, "grossPay");
-        this.grossPay = grossPay;
-        return this;
-    }
 
     /**
      * The total amount of employer paid taxes for the payroll.
      */
-    public PayrollTotals withEmployerTaxes(double employerTaxes) {
-        Utils.checkNotNull(employerTaxes, "employerTaxes");
+    public PayrollTotals withEmployerTaxes(@Nullable Double employerTaxes) {
         this.employerTaxes = JsonNullable.of(employerTaxes);
         return this;
     }
 
-    /**
-     * The total amount of employer paid taxes for the payroll.
-     */
-    public PayrollTotals withEmployerTaxes(JsonNullable<Double> employerTaxes) {
-        Utils.checkNotNull(employerTaxes, "employerTaxes");
-        this.employerTaxes = employerTaxes;
-        return this;
-    }
 
     /**
      * The total amount of employee paid taxes for the payroll.
      */
-    public PayrollTotals withEmployeeTaxes(double employeeTaxes) {
-        Utils.checkNotNull(employeeTaxes, "employeeTaxes");
+    public PayrollTotals withEmployeeTaxes(@Nullable Double employeeTaxes) {
         this.employeeTaxes = JsonNullable.of(employeeTaxes);
         return this;
     }
 
-    /**
-     * The total amount of employee paid taxes for the payroll.
-     */
-    public PayrollTotals withEmployeeTaxes(JsonNullable<Double> employeeTaxes) {
-        Utils.checkNotNull(employeeTaxes, "employeeTaxes");
-        this.employeeTaxes = employeeTaxes;
-        return this;
-    }
 
     /**
      * The total amount of company contributed benefits for the payroll.
      */
-    public PayrollTotals withEmployerBenefitContributions(double employerBenefitContributions) {
-        Utils.checkNotNull(employerBenefitContributions, "employerBenefitContributions");
+    public PayrollTotals withEmployerBenefitContributions(@Nullable Double employerBenefitContributions) {
         this.employerBenefitContributions = JsonNullable.of(employerBenefitContributions);
         return this;
     }
 
-    /**
-     * The total amount of company contributed benefits for the payroll.
-     */
-    public PayrollTotals withEmployerBenefitContributions(JsonNullable<Double> employerBenefitContributions) {
-        Utils.checkNotNull(employerBenefitContributions, "employerBenefitContributions");
-        this.employerBenefitContributions = employerBenefitContributions;
-        return this;
-    }
 
     /**
      * The total amount of employee deducted benefits for the payroll.
      */
-    public PayrollTotals withEmployeeBenefitDeductions(double employeeBenefitDeductions) {
-        Utils.checkNotNull(employeeBenefitDeductions, "employeeBenefitDeductions");
+    public PayrollTotals withEmployeeBenefitDeductions(@Nullable Double employeeBenefitDeductions) {
         this.employeeBenefitDeductions = JsonNullable.of(employeeBenefitDeductions);
         return this;
     }
 
-    /**
-     * The total amount of employee deducted benefits for the payroll.
-     */
-    public PayrollTotals withEmployeeBenefitDeductions(JsonNullable<Double> employeeBenefitDeductions) {
-        Utils.checkNotNull(employeeBenefitDeductions, "employeeBenefitDeductions");
-        this.employeeBenefitDeductions = employeeBenefitDeductions;
-        return this;
-    }
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -405,201 +316,101 @@ public class PayrollTotals {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<Double> companyDebit = JsonNullable.undefined();
+        private JsonNullable<Double> companyDebit;
 
-        private JsonNullable<Double> taxDebit = JsonNullable.undefined();
+        private JsonNullable<Double> taxDebit;
 
-        private JsonNullable<Double> checkAmount = JsonNullable.undefined();
+        private JsonNullable<Double> checkAmount;
 
-        private JsonNullable<Double> netPay = JsonNullable.undefined();
+        private JsonNullable<Double> netPay;
 
-        private JsonNullable<Double> grossPay = JsonNullable.undefined();
+        private JsonNullable<Double> grossPay;
 
-        private JsonNullable<Double> employerTaxes = JsonNullable.undefined();
+        private JsonNullable<Double> employerTaxes;
 
-        private JsonNullable<Double> employeeTaxes = JsonNullable.undefined();
+        private JsonNullable<Double> employeeTaxes;
 
-        private JsonNullable<Double> employerBenefitContributions = JsonNullable.undefined();
+        private JsonNullable<Double> employerBenefitContributions;
 
-        private JsonNullable<Double> employeeBenefitDeductions = JsonNullable.undefined();
+        private JsonNullable<Double> employeeBenefitDeductions;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The total company debit for the payroll.
          */
-        public Builder companyDebit(double companyDebit) {
-            Utils.checkNotNull(companyDebit, "companyDebit");
+        public Builder companyDebit(@Nullable Double companyDebit) {
             this.companyDebit = JsonNullable.of(companyDebit);
             return this;
         }
 
         /**
-         * The total company debit for the payroll.
-         */
-        public Builder companyDebit(JsonNullable<Double> companyDebit) {
-            Utils.checkNotNull(companyDebit, "companyDebit");
-            this.companyDebit = companyDebit;
-            return this;
-        }
-
-
-        /**
          * The total tax debit for the payroll.
          */
-        public Builder taxDebit(double taxDebit) {
-            Utils.checkNotNull(taxDebit, "taxDebit");
+        public Builder taxDebit(@Nullable Double taxDebit) {
             this.taxDebit = JsonNullable.of(taxDebit);
             return this;
         }
 
         /**
-         * The total tax debit for the payroll.
-         */
-        public Builder taxDebit(JsonNullable<Double> taxDebit) {
-            Utils.checkNotNull(taxDebit, "taxDebit");
-            this.taxDebit = taxDebit;
-            return this;
-        }
-
-
-        /**
          * The total check amount for the payroll.
          */
-        public Builder checkAmount(double checkAmount) {
-            Utils.checkNotNull(checkAmount, "checkAmount");
+        public Builder checkAmount(@Nullable Double checkAmount) {
             this.checkAmount = JsonNullable.of(checkAmount);
             return this;
         }
 
         /**
-         * The total check amount for the payroll.
-         */
-        public Builder checkAmount(JsonNullable<Double> checkAmount) {
-            Utils.checkNotNull(checkAmount, "checkAmount");
-            this.checkAmount = checkAmount;
-            return this;
-        }
-
-
-        /**
          * The net pay amount for the payroll.
          */
-        public Builder netPay(double netPay) {
-            Utils.checkNotNull(netPay, "netPay");
+        public Builder netPay(@Nullable Double netPay) {
             this.netPay = JsonNullable.of(netPay);
             return this;
         }
 
         /**
-         * The net pay amount for the payroll.
-         */
-        public Builder netPay(JsonNullable<Double> netPay) {
-            Utils.checkNotNull(netPay, "netPay");
-            this.netPay = netPay;
-            return this;
-        }
-
-
-        /**
          * The gross pay amount for the payroll.
          */
-        public Builder grossPay(double grossPay) {
-            Utils.checkNotNull(grossPay, "grossPay");
+        public Builder grossPay(@Nullable Double grossPay) {
             this.grossPay = JsonNullable.of(grossPay);
             return this;
         }
 
         /**
-         * The gross pay amount for the payroll.
-         */
-        public Builder grossPay(JsonNullable<Double> grossPay) {
-            Utils.checkNotNull(grossPay, "grossPay");
-            this.grossPay = grossPay;
-            return this;
-        }
-
-
-        /**
          * The total amount of employer paid taxes for the payroll.
          */
-        public Builder employerTaxes(double employerTaxes) {
-            Utils.checkNotNull(employerTaxes, "employerTaxes");
+        public Builder employerTaxes(@Nullable Double employerTaxes) {
             this.employerTaxes = JsonNullable.of(employerTaxes);
             return this;
         }
 
         /**
-         * The total amount of employer paid taxes for the payroll.
-         */
-        public Builder employerTaxes(JsonNullable<Double> employerTaxes) {
-            Utils.checkNotNull(employerTaxes, "employerTaxes");
-            this.employerTaxes = employerTaxes;
-            return this;
-        }
-
-
-        /**
          * The total amount of employee paid taxes for the payroll.
          */
-        public Builder employeeTaxes(double employeeTaxes) {
-            Utils.checkNotNull(employeeTaxes, "employeeTaxes");
+        public Builder employeeTaxes(@Nullable Double employeeTaxes) {
             this.employeeTaxes = JsonNullable.of(employeeTaxes);
             return this;
         }
 
         /**
-         * The total amount of employee paid taxes for the payroll.
-         */
-        public Builder employeeTaxes(JsonNullable<Double> employeeTaxes) {
-            Utils.checkNotNull(employeeTaxes, "employeeTaxes");
-            this.employeeTaxes = employeeTaxes;
-            return this;
-        }
-
-
-        /**
          * The total amount of company contributed benefits for the payroll.
          */
-        public Builder employerBenefitContributions(double employerBenefitContributions) {
-            Utils.checkNotNull(employerBenefitContributions, "employerBenefitContributions");
+        public Builder employerBenefitContributions(@Nullable Double employerBenefitContributions) {
             this.employerBenefitContributions = JsonNullable.of(employerBenefitContributions);
             return this;
         }
 
         /**
-         * The total amount of company contributed benefits for the payroll.
-         */
-        public Builder employerBenefitContributions(JsonNullable<Double> employerBenefitContributions) {
-            Utils.checkNotNull(employerBenefitContributions, "employerBenefitContributions");
-            this.employerBenefitContributions = employerBenefitContributions;
-            return this;
-        }
-
-
-        /**
          * The total amount of employee deducted benefits for the payroll.
          */
-        public Builder employeeBenefitDeductions(double employeeBenefitDeductions) {
-            Utils.checkNotNull(employeeBenefitDeductions, "employeeBenefitDeductions");
+        public Builder employeeBenefitDeductions(@Nullable Double employeeBenefitDeductions) {
             this.employeeBenefitDeductions = JsonNullable.of(employeeBenefitDeductions);
             return this;
         }
 
-        /**
-         * The total amount of employee deducted benefits for the payroll.
-         */
-        public Builder employeeBenefitDeductions(JsonNullable<Double> employeeBenefitDeductions) {
-            Utils.checkNotNull(employeeBenefitDeductions, "employeeBenefitDeductions");
-            this.employeeBenefitDeductions = employeeBenefitDeductions;
-            return this;
-        }
-
         public PayrollTotals build() {
-
             return new PayrollTotals(
                 companyDebit, taxDebit, checkAmount,
                 netPay, grossPay, employerTaxes,

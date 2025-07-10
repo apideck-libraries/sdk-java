@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -30,37 +29,33 @@ public class CollectionTicketCommentInput {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public CollectionTicketCommentInput(
-            @JsonProperty("body") JsonNullable<String> body,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(body, "body");
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.body = body;
+            @JsonProperty("body") @Nullable JsonNullable<String> body,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
+        this.body = Optional.ofNullable(body)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public CollectionTicketCommentInput() {
-        this(JsonNullable.undefined(), Optional.empty());
+        this(null, null);
     }
 
     /**
      * Body of the comment
      */
-    @JsonIgnore
     public JsonNullable<String> body() {
-        return body;
+        return this.body;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -71,39 +66,20 @@ public class CollectionTicketCommentInput {
     /**
      * Body of the comment
      */
-    public CollectionTicketCommentInput withBody(String body) {
-        Utils.checkNotNull(body, "body");
+    public CollectionTicketCommentInput withBody(@Nullable String body) {
         this.body = JsonNullable.of(body);
         return this;
     }
 
-    /**
-     * Body of the comment
-     */
-    public CollectionTicketCommentInput withBody(JsonNullable<String> body) {
-        Utils.checkNotNull(body, "body");
-        this.body = body;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public CollectionTicketCommentInput withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public CollectionTicketCommentInput withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public CollectionTicketCommentInput withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -135,54 +111,31 @@ public class CollectionTicketCommentInput {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private JsonNullable<String> body = JsonNullable.undefined();
+        private JsonNullable<String> body;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * Body of the comment
          */
-        public Builder body(String body) {
-            Utils.checkNotNull(body, "body");
+        public Builder body(@Nullable String body) {
             this.body = JsonNullable.of(body);
             return this;
         }
 
         /**
-         * Body of the comment
-         */
-        public Builder body(JsonNullable<String> body) {
-            Utils.checkNotNull(body, "body");
-            this.body = body;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public CollectionTicketCommentInput build() {
-
             return new CollectionTicketCommentInput(
                 body, passThrough);
         }

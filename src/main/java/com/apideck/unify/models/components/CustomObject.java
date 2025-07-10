@@ -5,13 +5,12 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -23,14 +22,14 @@ public class CustomObject {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * The unique identifier of the owner of the custom object
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("owner_id")
-    private Optional<String> ownerId;
+    private String ownerId;
 
     /**
      * The name of the custom object
@@ -42,21 +41,21 @@ public class CustomObject {
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("fields")
-    private Optional<? extends List<CustomObjectFields>> fields;
+    private List<CustomObjectFields> fields;
 
     /**
      * The unique identifier of the user who last updated the custom object
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updated_by")
-    private Optional<String> updatedBy;
+    private String updatedBy;
 
     /**
      * The unique identifier of the user who created the custom object
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_by")
-    private Optional<String> createdBy;
+    private String createdBy;
 
     /**
      * The timestamp when the custom object was last updated
@@ -77,114 +76,97 @@ public class CustomObject {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pass_through")
-    private Optional<? extends List<PassThroughBody>> passThrough;
+    private List<PassThroughBody> passThrough;
 
     @JsonCreator
     public CustomObject(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("owner_id") Optional<String> ownerId,
-            @JsonProperty("name") JsonNullable<String> name,
-            @JsonProperty("fields") Optional<? extends List<CustomObjectFields>> fields,
-            @JsonProperty("updated_by") Optional<String> updatedBy,
-            @JsonProperty("created_by") Optional<String> createdBy,
-            @JsonProperty("updated_at") JsonNullable<String> updatedAt,
-            @JsonProperty("created_at") JsonNullable<String> createdAt,
-            @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(ownerId, "ownerId");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(fields, "fields");
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        Utils.checkNotNull(createdBy, "createdBy");
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        Utils.checkNotNull(createdAt, "createdAt");
-        Utils.checkNotNull(passThrough, "passThrough");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("owner_id") @Nullable String ownerId,
+            @JsonProperty("name") @Nullable JsonNullable<String> name,
+            @JsonProperty("fields") @Nullable List<CustomObjectFields> fields,
+            @JsonProperty("updated_by") @Nullable String updatedBy,
+            @JsonProperty("created_by") @Nullable String createdBy,
+            @JsonProperty("updated_at") @Nullable JsonNullable<String> updatedAt,
+            @JsonProperty("created_at") @Nullable JsonNullable<String> createdAt,
+            @JsonProperty("pass_through") @Nullable List<PassThroughBody> passThrough) {
         this.id = id;
         this.ownerId = ownerId;
-        this.name = name;
+        this.name = Optional.ofNullable(name)
+            .orElse(JsonNullable.undefined());
         this.fields = fields;
         this.updatedBy = updatedBy;
         this.createdBy = createdBy;
-        this.updatedAt = updatedAt;
-        this.createdAt = createdAt;
+        this.updatedAt = Optional.ofNullable(updatedAt)
+            .orElse(JsonNullable.undefined());
+        this.createdAt = Optional.ofNullable(createdAt)
+            .orElse(JsonNullable.undefined());
         this.passThrough = passThrough;
     }
     
     public CustomObject() {
-        this(Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null);
     }
 
     /**
      * The unique identifier of the custom object
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * The unique identifier of the owner of the custom object
      */
-    @JsonIgnore
     public Optional<String> ownerId() {
-        return ownerId;
+        return Optional.ofNullable(this.ownerId);
     }
 
     /**
      * The name of the custom object
      */
-    @JsonIgnore
     public JsonNullable<String> name() {
-        return name;
+        return this.name;
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<CustomObjectFields>> fields() {
-        return (Optional<List<CustomObjectFields>>) fields;
+        return Optional.ofNullable(this.fields);
     }
 
     /**
      * The unique identifier of the user who last updated the custom object
      */
-    @JsonIgnore
     public Optional<String> updatedBy() {
-        return updatedBy;
+        return Optional.ofNullable(this.updatedBy);
     }
 
     /**
      * The unique identifier of the user who created the custom object
      */
-    @JsonIgnore
     public Optional<String> createdBy() {
-        return createdBy;
+        return Optional.ofNullable(this.createdBy);
     }
 
     /**
      * The timestamp when the custom object was last updated
      */
-    @JsonIgnore
     public JsonNullable<String> updatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     /**
      * The timestamp when the custom object was created
      */
-    @JsonIgnore
     public JsonNullable<String> createdAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<PassThroughBody>> passThrough() {
-        return (Optional<List<PassThroughBody>>) passThrough;
+        return Optional.ofNullable(this.passThrough);
     }
 
     public static Builder builder() {
@@ -195,164 +177,80 @@ public class CustomObject {
     /**
      * The unique identifier of the custom object
      */
-    public CustomObject withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * The unique identifier of the custom object
-     */
-    public CustomObject withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public CustomObject withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * The unique identifier of the owner of the custom object
-     */
-    public CustomObject withOwnerId(String ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
-        this.ownerId = Optional.ofNullable(ownerId);
-        return this;
-    }
-
 
     /**
      * The unique identifier of the owner of the custom object
      */
-    public CustomObject withOwnerId(Optional<String> ownerId) {
-        Utils.checkNotNull(ownerId, "ownerId");
+    public CustomObject withOwnerId(@Nullable String ownerId) {
         this.ownerId = ownerId;
         return this;
     }
 
+
     /**
      * The name of the custom object
      */
-    public CustomObject withName(String name) {
-        Utils.checkNotNull(name, "name");
+    public CustomObject withName(@Nullable String name) {
         this.name = JsonNullable.of(name);
         return this;
     }
 
-    /**
-     * The name of the custom object
-     */
-    public CustomObject withName(JsonNullable<String> name) {
-        Utils.checkNotNull(name, "name");
-        this.name = name;
-        return this;
-    }
 
-    public CustomObject withFields(List<CustomObjectFields> fields) {
-        Utils.checkNotNull(fields, "fields");
-        this.fields = Optional.ofNullable(fields);
-        return this;
-    }
-
-
-    public CustomObject withFields(Optional<? extends List<CustomObjectFields>> fields) {
-        Utils.checkNotNull(fields, "fields");
+    public CustomObject withFields(@Nullable List<CustomObjectFields> fields) {
         this.fields = fields;
         return this;
     }
 
-    /**
-     * The unique identifier of the user who last updated the custom object
-     */
-    public CustomObject withUpdatedBy(String updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
-        this.updatedBy = Optional.ofNullable(updatedBy);
-        return this;
-    }
-
 
     /**
      * The unique identifier of the user who last updated the custom object
      */
-    public CustomObject withUpdatedBy(Optional<String> updatedBy) {
-        Utils.checkNotNull(updatedBy, "updatedBy");
+    public CustomObject withUpdatedBy(@Nullable String updatedBy) {
         this.updatedBy = updatedBy;
         return this;
     }
 
-    /**
-     * The unique identifier of the user who created the custom object
-     */
-    public CustomObject withCreatedBy(String createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
-        this.createdBy = Optional.ofNullable(createdBy);
-        return this;
-    }
-
 
     /**
      * The unique identifier of the user who created the custom object
      */
-    public CustomObject withCreatedBy(Optional<String> createdBy) {
-        Utils.checkNotNull(createdBy, "createdBy");
+    public CustomObject withCreatedBy(@Nullable String createdBy) {
         this.createdBy = createdBy;
         return this;
     }
 
+
     /**
      * The timestamp when the custom object was last updated
      */
-    public CustomObject withUpdatedAt(String updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
+    public CustomObject withUpdatedAt(@Nullable String updatedAt) {
         this.updatedAt = JsonNullable.of(updatedAt);
         return this;
     }
 
-    /**
-     * The timestamp when the custom object was last updated
-     */
-    public CustomObject withUpdatedAt(JsonNullable<String> updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = updatedAt;
-        return this;
-    }
 
     /**
      * The timestamp when the custom object was created
      */
-    public CustomObject withCreatedAt(String createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
+    public CustomObject withCreatedAt(@Nullable String createdAt) {
         this.createdAt = JsonNullable.of(createdAt);
         return this;
     }
 
-    /**
-     * The timestamp when the custom object was created
-     */
-    public CustomObject withCreatedAt(JsonNullable<String> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = createdAt;
-        return this;
-    }
 
     /**
      * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
      */
-    public CustomObject withPassThrough(List<PassThroughBody> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
-        this.passThrough = Optional.ofNullable(passThrough);
-        return this;
-    }
-
-
-    /**
-     * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-     */
-    public CustomObject withPassThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-        Utils.checkNotNull(passThrough, "passThrough");
+    public CustomObject withPassThrough(@Nullable List<PassThroughBody> passThrough) {
         this.passThrough = passThrough;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -400,195 +298,98 @@ public class CustomObject {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> ownerId = Optional.empty();
+        private String ownerId;
 
-        private JsonNullable<String> name = JsonNullable.undefined();
+        private JsonNullable<String> name;
 
-        private Optional<? extends List<CustomObjectFields>> fields = Optional.empty();
+        private List<CustomObjectFields> fields;
 
-        private Optional<String> updatedBy = Optional.empty();
+        private String updatedBy;
 
-        private Optional<String> createdBy = Optional.empty();
+        private String createdBy;
 
-        private JsonNullable<String> updatedAt = JsonNullable.undefined();
+        private JsonNullable<String> updatedAt;
 
-        private JsonNullable<String> createdAt = JsonNullable.undefined();
+        private JsonNullable<String> createdAt;
 
-        private Optional<? extends List<PassThroughBody>> passThrough = Optional.empty();
+        private List<PassThroughBody> passThrough;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * The unique identifier of the custom object
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the custom object
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * The unique identifier of the owner of the custom object
          */
-        public Builder ownerId(String ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
-            this.ownerId = Optional.ofNullable(ownerId);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the owner of the custom object
-         */
-        public Builder ownerId(Optional<String> ownerId) {
-            Utils.checkNotNull(ownerId, "ownerId");
+        public Builder ownerId(@Nullable String ownerId) {
             this.ownerId = ownerId;
             return this;
         }
 
-
         /**
          * The name of the custom object
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = JsonNullable.of(name);
             return this;
         }
 
-        /**
-         * The name of the custom object
-         */
-        public Builder name(JsonNullable<String> name) {
-            Utils.checkNotNull(name, "name");
-            this.name = name;
-            return this;
-        }
-
-
-        public Builder fields(List<CustomObjectFields> fields) {
-            Utils.checkNotNull(fields, "fields");
-            this.fields = Optional.ofNullable(fields);
-            return this;
-        }
-
-        public Builder fields(Optional<? extends List<CustomObjectFields>> fields) {
-            Utils.checkNotNull(fields, "fields");
+        public Builder fields(@Nullable List<CustomObjectFields> fields) {
             this.fields = fields;
             return this;
         }
 
-
         /**
          * The unique identifier of the user who last updated the custom object
          */
-        public Builder updatedBy(String updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
-            this.updatedBy = Optional.ofNullable(updatedBy);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the user who last updated the custom object
-         */
-        public Builder updatedBy(Optional<String> updatedBy) {
-            Utils.checkNotNull(updatedBy, "updatedBy");
+        public Builder updatedBy(@Nullable String updatedBy) {
             this.updatedBy = updatedBy;
             return this;
         }
 
-
         /**
          * The unique identifier of the user who created the custom object
          */
-        public Builder createdBy(String createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
-            this.createdBy = Optional.ofNullable(createdBy);
-            return this;
-        }
-
-        /**
-         * The unique identifier of the user who created the custom object
-         */
-        public Builder createdBy(Optional<String> createdBy) {
-            Utils.checkNotNull(createdBy, "createdBy");
+        public Builder createdBy(@Nullable String createdBy) {
             this.createdBy = createdBy;
             return this;
         }
 
-
         /**
          * The timestamp when the custom object was last updated
          */
-        public Builder updatedAt(String updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
+        public Builder updatedAt(@Nullable String updatedAt) {
             this.updatedAt = JsonNullable.of(updatedAt);
             return this;
         }
 
         /**
-         * The timestamp when the custom object was last updated
-         */
-        public Builder updatedAt(JsonNullable<String> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = updatedAt;
-            return this;
-        }
-
-
-        /**
          * The timestamp when the custom object was created
          */
-        public Builder createdAt(String createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
+        public Builder createdAt(@Nullable String createdAt) {
             this.createdAt = JsonNullable.of(createdAt);
             return this;
         }
 
         /**
-         * The timestamp when the custom object was created
-         */
-        public Builder createdAt(JsonNullable<String> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = createdAt;
-            return this;
-        }
-
-
-        /**
          * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
          */
-        public Builder passThrough(List<PassThroughBody> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
-            this.passThrough = Optional.ofNullable(passThrough);
-            return this;
-        }
-
-        /**
-         * The pass_through property allows passing service-specific, custom data or structured modifications in request body when creating or updating resources.
-         */
-        public Builder passThrough(Optional<? extends List<PassThroughBody>> passThrough) {
-            Utils.checkNotNull(passThrough, "passThrough");
+        public Builder passThrough(@Nullable List<PassThroughBody> passThrough) {
             this.passThrough = passThrough;
             return this;
         }
 
         public CustomObject build() {
-
             return new CustomObject(
                 id, ownerId, name,
                 fields, updatedBy, createdBy,

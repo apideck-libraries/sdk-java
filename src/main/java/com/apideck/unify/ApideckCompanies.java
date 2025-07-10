@@ -26,6 +26,8 @@ import com.apideck.unify.operations.HrisCompaniesDeleteOperation;
 import com.apideck.unify.operations.HrisCompaniesOneOperation;
 import com.apideck.unify.operations.HrisCompaniesUpdateOperation;
 import com.apideck.unify.utils.Options;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import java.lang.Exception;
 import java.util.List;
 import java.util.Optional;
@@ -57,8 +59,8 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request) throws Exception {
-        return list(request, Optional.empty());
+    public HrisCompaniesAllResponse list(@Nonnull HrisCompaniesAllRequest request) throws Exception {
+        return list(request, null);
     }
 
     /**
@@ -72,8 +74,8 @@ public class ApideckCompanies {
      * @throws Exception if the API call fails
      */
     public HrisCompaniesAllResponse list(
-            HrisCompaniesAllRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisCompaniesAllRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
               = new HrisCompaniesAllOperation(
                 sdkConfiguration,
@@ -101,8 +103,8 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request) throws Exception {
-        return create(request, Optional.empty());
+    public HrisCompaniesAddResponse create(@Nonnull HrisCompaniesAddRequest request) throws Exception {
+        return create(request, null);
     }
 
     /**
@@ -116,8 +118,8 @@ public class ApideckCompanies {
      * @throws Exception if the API call fails
      */
     public HrisCompaniesAddResponse create(
-            HrisCompaniesAddRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisCompaniesAddRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
               = new HrisCompaniesAddOperation(
                 sdkConfiguration,
@@ -145,8 +147,8 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request) throws Exception {
-        return get(request, Optional.empty());
+    public HrisCompaniesOneResponse get(@Nonnull HrisCompaniesOneRequest request) throws Exception {
+        return get(request, null);
     }
 
     /**
@@ -160,8 +162,8 @@ public class ApideckCompanies {
      * @throws Exception if the API call fails
      */
     public HrisCompaniesOneResponse get(
-            HrisCompaniesOneRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisCompaniesOneRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
               = new HrisCompaniesOneOperation(
                 sdkConfiguration,
@@ -189,8 +191,8 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request) throws Exception {
-        return update(request, Optional.empty());
+    public HrisCompaniesUpdateResponse update(@Nonnull HrisCompaniesUpdateRequest request) throws Exception {
+        return update(request, null);
     }
 
     /**
@@ -204,8 +206,8 @@ public class ApideckCompanies {
      * @throws Exception if the API call fails
      */
     public HrisCompaniesUpdateResponse update(
-            HrisCompaniesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisCompaniesUpdateRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
               = new HrisCompaniesUpdateOperation(
                 sdkConfiguration,
@@ -233,8 +235,8 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request) throws Exception {
-        return delete(request, Optional.empty());
+    public HrisCompaniesDeleteResponse delete(@Nonnull HrisCompaniesDeleteRequest request) throws Exception {
+        return delete(request, null);
     }
 
     /**
@@ -248,8 +250,8 @@ public class ApideckCompanies {
      * @throws Exception if the API call fails
      */
     public HrisCompaniesDeleteResponse delete(
-            HrisCompaniesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+            @Nonnull HrisCompaniesDeleteRequest request,
+            @Nullable Options options) throws Exception {
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
               = new HrisCompaniesDeleteOperation(
                 sdkConfiguration,

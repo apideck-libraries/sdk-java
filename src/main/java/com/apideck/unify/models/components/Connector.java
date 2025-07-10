@@ -5,14 +5,13 @@ package com.apideck.unify.models.components;
 
 import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.annotation.Nullable;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -24,21 +23,21 @@ public class Connector {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("id")
-    private Optional<String> id;
+    private String id;
 
     /**
      * Name of the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("name")
-    private Optional<String> name;
+    private String name;
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("status")
-    private Optional<? extends ConnectorStatus> status;
+    private ConnectorStatus status;
 
     /**
      * A description of the object.
@@ -52,225 +51,198 @@ public class Connector {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("icon_url")
-    private Optional<String> iconUrl;
+    private String iconUrl;
 
     /**
      * Link to the full logo for the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("logo_url")
-    private Optional<String> logoUrl;
+    private String logoUrl;
 
     /**
      * Link to the connector's website.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("website_url")
-    private Optional<String> websiteUrl;
+    private String websiteUrl;
 
     /**
      * Link to the connector's signup page.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("signup_url")
-    private Optional<String> signupUrl;
+    private String signupUrl;
 
     /**
      * Link to the connector's partner program signup page.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("partner_signup_url")
-    private Optional<String> partnerSignupUrl;
+    private String partnerSignupUrl;
 
     /**
      * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("free_trial_available")
-    private Optional<Boolean> freeTrialAvailable;
+    private Boolean freeTrialAvailable;
 
     /**
      * Type of authorization used by the connector
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_type")
-    private Optional<? extends ConnectorAuthType> authType;
+    private ConnectorAuthType authType;
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("auth_only")
-    private Optional<Boolean> authOnly;
+    private Boolean authOnly;
 
     /**
      * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("blind_mapped")
-    private Optional<Boolean> blindMapped;
+    private Boolean blindMapped;
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_grant_type")
-    private Optional<? extends ConnectorOauthGrantType> oauthGrantType;
+    private ConnectorOauthGrantType oauthGrantType;
 
     /**
      * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_credentials_source")
-    private Optional<? extends OauthCredentialsSource> oauthCredentialsSource;
+    private OauthCredentialsSource oauthCredentialsSource;
 
     /**
      * List of OAuth Scopes available for this connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("oauth_scopes")
-    private Optional<? extends List<OauthScopes>> oauthScopes;
+    private List<OauthScopes> oauthScopes;
 
     /**
      * Set to `true` when connector allows the definition of custom scopes.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_scopes")
-    private Optional<Boolean> customScopes;
+    private Boolean customScopes;
 
     /**
      * Indicates whether Apideck Sandbox OAuth credentials are available.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("has_sandbox_credentials")
-    private Optional<Boolean> hasSandboxCredentials;
+    private Boolean hasSandboxCredentials;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("settings")
-    private Optional<? extends List<ConnectorSetting>> settings;
+    private List<ConnectorSetting> settings;
 
     /**
      * Service provider identifier
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("service_id")
-    private Optional<String> serviceId;
+    private String serviceId;
 
     /**
      * List of Unified APIs that feature this connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("unified_apis")
-    private Optional<? extends List<UnifiedApis>> unifiedApis;
+    private List<UnifiedApis> unifiedApis;
 
     /**
      * List of resources that are supported on the connector.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_resources")
-    private Optional<? extends List<LinkedConnectorResource>> supportedResources;
+    private List<LinkedConnectorResource> supportedResources;
 
     /**
      * List of resources that have settings that can be configured.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("configurable_resources")
-    private Optional<? extends List<String>> configurableResources;
+    private List<String> configurableResources;
 
     /**
      * List of events that are supported on the connector across all Unified APIs.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("supported_events")
-    private Optional<? extends List<ConnectorEvent>> supportedEvents;
+    private List<ConnectorEvent> supportedEvents;
 
     /**
      * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("webhook_support")
-    private Optional<? extends WebhookSupport> webhookSupport;
+    private WebhookSupport webhookSupport;
 
     /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("schema_support")
-    private Optional<? extends SchemaSupport> schemaSupport;
+    private SchemaSupport schemaSupport;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("docs")
-    private Optional<? extends List<ConnectorDoc>> docs;
+    private List<ConnectorDoc> docs;
 
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tls_support")
-    private Optional<? extends TlsSupport> tlsSupport;
+    private TlsSupport tlsSupport;
 
     @JsonCreator
     public Connector(
-            @JsonProperty("id") Optional<String> id,
-            @JsonProperty("name") Optional<String> name,
-            @JsonProperty("status") Optional<? extends ConnectorStatus> status,
-            @JsonProperty("description") JsonNullable<String> description,
-            @JsonProperty("icon_url") Optional<String> iconUrl,
-            @JsonProperty("logo_url") Optional<String> logoUrl,
-            @JsonProperty("website_url") Optional<String> websiteUrl,
-            @JsonProperty("signup_url") Optional<String> signupUrl,
-            @JsonProperty("partner_signup_url") Optional<String> partnerSignupUrl,
-            @JsonProperty("free_trial_available") Optional<Boolean> freeTrialAvailable,
-            @JsonProperty("auth_type") Optional<? extends ConnectorAuthType> authType,
-            @JsonProperty("auth_only") Optional<Boolean> authOnly,
-            @JsonProperty("blind_mapped") Optional<Boolean> blindMapped,
-            @JsonProperty("oauth_grant_type") Optional<? extends ConnectorOauthGrantType> oauthGrantType,
-            @JsonProperty("oauth_credentials_source") Optional<? extends OauthCredentialsSource> oauthCredentialsSource,
-            @JsonProperty("oauth_scopes") Optional<? extends List<OauthScopes>> oauthScopes,
-            @JsonProperty("custom_scopes") Optional<Boolean> customScopes,
-            @JsonProperty("has_sandbox_credentials") Optional<Boolean> hasSandboxCredentials,
-            @JsonProperty("settings") Optional<? extends List<ConnectorSetting>> settings,
-            @JsonProperty("service_id") Optional<String> serviceId,
-            @JsonProperty("unified_apis") Optional<? extends List<UnifiedApis>> unifiedApis,
-            @JsonProperty("supported_resources") Optional<? extends List<LinkedConnectorResource>> supportedResources,
-            @JsonProperty("configurable_resources") Optional<? extends List<String>> configurableResources,
-            @JsonProperty("supported_events") Optional<? extends List<ConnectorEvent>> supportedEvents,
-            @JsonProperty("webhook_support") Optional<? extends WebhookSupport> webhookSupport,
-            @JsonProperty("schema_support") Optional<? extends SchemaSupport> schemaSupport,
-            @JsonProperty("docs") Optional<? extends List<ConnectorDoc>> docs,
-            @JsonProperty("tls_support") Optional<? extends TlsSupport> tlsSupport) {
-        Utils.checkNotNull(id, "id");
-        Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(status, "status");
-        Utils.checkNotNull(description, "description");
-        Utils.checkNotNull(iconUrl, "iconUrl");
-        Utils.checkNotNull(logoUrl, "logoUrl");
-        Utils.checkNotNull(websiteUrl, "websiteUrl");
-        Utils.checkNotNull(signupUrl, "signupUrl");
-        Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
-        Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
-        Utils.checkNotNull(authType, "authType");
-        Utils.checkNotNull(authOnly, "authOnly");
-        Utils.checkNotNull(blindMapped, "blindMapped");
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-        Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
-        Utils.checkNotNull(customScopes, "customScopes");
-        Utils.checkNotNull(hasSandboxCredentials, "hasSandboxCredentials");
-        Utils.checkNotNull(settings, "settings");
-        Utils.checkNotNull(serviceId, "serviceId");
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
-        Utils.checkNotNull(supportedResources, "supportedResources");
-        Utils.checkNotNull(configurableResources, "configurableResources");
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
-        Utils.checkNotNull(webhookSupport, "webhookSupport");
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
-        Utils.checkNotNull(docs, "docs");
-        Utils.checkNotNull(tlsSupport, "tlsSupport");
+            @JsonProperty("id") @Nullable String id,
+            @JsonProperty("name") @Nullable String name,
+            @JsonProperty("status") @Nullable ConnectorStatus status,
+            @JsonProperty("description") @Nullable JsonNullable<String> description,
+            @JsonProperty("icon_url") @Nullable String iconUrl,
+            @JsonProperty("logo_url") @Nullable String logoUrl,
+            @JsonProperty("website_url") @Nullable String websiteUrl,
+            @JsonProperty("signup_url") @Nullable String signupUrl,
+            @JsonProperty("partner_signup_url") @Nullable String partnerSignupUrl,
+            @JsonProperty("free_trial_available") @Nullable Boolean freeTrialAvailable,
+            @JsonProperty("auth_type") @Nullable ConnectorAuthType authType,
+            @JsonProperty("auth_only") @Nullable Boolean authOnly,
+            @JsonProperty("blind_mapped") @Nullable Boolean blindMapped,
+            @JsonProperty("oauth_grant_type") @Nullable ConnectorOauthGrantType oauthGrantType,
+            @JsonProperty("oauth_credentials_source") @Nullable OauthCredentialsSource oauthCredentialsSource,
+            @JsonProperty("oauth_scopes") @Nullable List<OauthScopes> oauthScopes,
+            @JsonProperty("custom_scopes") @Nullable Boolean customScopes,
+            @JsonProperty("has_sandbox_credentials") @Nullable Boolean hasSandboxCredentials,
+            @JsonProperty("settings") @Nullable List<ConnectorSetting> settings,
+            @JsonProperty("service_id") @Nullable String serviceId,
+            @JsonProperty("unified_apis") @Nullable List<UnifiedApis> unifiedApis,
+            @JsonProperty("supported_resources") @Nullable List<LinkedConnectorResource> supportedResources,
+            @JsonProperty("configurable_resources") @Nullable List<String> configurableResources,
+            @JsonProperty("supported_events") @Nullable List<ConnectorEvent> supportedEvents,
+            @JsonProperty("webhook_support") @Nullable WebhookSupport webhookSupport,
+            @JsonProperty("schema_support") @Nullable SchemaSupport schemaSupport,
+            @JsonProperty("docs") @Nullable List<ConnectorDoc> docs,
+            @JsonProperty("tls_support") @Nullable TlsSupport tlsSupport) {
         this.id = id;
         this.name = name;
         this.status = status;
-        this.description = description;
+        this.description = Optional.ofNullable(description)
+            .orElse(JsonNullable.undefined());
         this.iconUrl = iconUrl;
         this.logoUrl = logoUrl;
         this.websiteUrl = websiteUrl;
@@ -298,245 +270,203 @@ public class Connector {
     }
     
     public Connector() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+        this(null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null, null, null,
+            null);
     }
 
     /**
      * ID of the connector.
      */
-    @JsonIgnore
     public Optional<String> id() {
-        return id;
+        return Optional.ofNullable(this.id);
     }
 
     /**
      * Name of the connector.
      */
-    @JsonIgnore
     public Optional<String> name() {
-        return name;
+        return Optional.ofNullable(this.name);
     }
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectorStatus> status() {
-        return (Optional<ConnectorStatus>) status;
+        return Optional.ofNullable(this.status);
     }
 
     /**
      * A description of the object.
      */
-    @JsonIgnore
     public JsonNullable<String> description() {
-        return description;
+        return this.description;
     }
 
     /**
      * Link to a small square icon for the connector.
      */
-    @JsonIgnore
     public Optional<String> iconUrl() {
-        return iconUrl;
+        return Optional.ofNullable(this.iconUrl);
     }
 
     /**
      * Link to the full logo for the connector.
      */
-    @JsonIgnore
     public Optional<String> logoUrl() {
-        return logoUrl;
+        return Optional.ofNullable(this.logoUrl);
     }
 
     /**
      * Link to the connector's website.
      */
-    @JsonIgnore
     public Optional<String> websiteUrl() {
-        return websiteUrl;
+        return Optional.ofNullable(this.websiteUrl);
     }
 
     /**
      * Link to the connector's signup page.
      */
-    @JsonIgnore
     public Optional<String> signupUrl() {
-        return signupUrl;
+        return Optional.ofNullable(this.signupUrl);
     }
 
     /**
      * Link to the connector's partner program signup page.
      */
-    @JsonIgnore
     public Optional<String> partnerSignupUrl() {
-        return partnerSignupUrl;
+        return Optional.ofNullable(this.partnerSignupUrl);
     }
 
     /**
      * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
      */
-    @JsonIgnore
     public Optional<Boolean> freeTrialAvailable() {
-        return freeTrialAvailable;
+        return Optional.ofNullable(this.freeTrialAvailable);
     }
 
     /**
      * Type of authorization used by the connector
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectorAuthType> authType() {
-        return (Optional<ConnectorAuthType>) authType;
+        return Optional.ofNullable(this.authType);
     }
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
-    @JsonIgnore
     public Optional<Boolean> authOnly() {
-        return authOnly;
+        return Optional.ofNullable(this.authOnly);
     }
 
     /**
      * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
      */
-    @JsonIgnore
     public Optional<Boolean> blindMapped() {
-        return blindMapped;
+        return Optional.ofNullable(this.blindMapped);
     }
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<ConnectorOauthGrantType> oauthGrantType() {
-        return (Optional<ConnectorOauthGrantType>) oauthGrantType;
+        return Optional.ofNullable(this.oauthGrantType);
     }
 
     /**
      * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<OauthCredentialsSource> oauthCredentialsSource() {
-        return (Optional<OauthCredentialsSource>) oauthCredentialsSource;
+        return Optional.ofNullable(this.oauthCredentialsSource);
     }
 
     /**
      * List of OAuth Scopes available for this connector.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<OauthScopes>> oauthScopes() {
-        return (Optional<List<OauthScopes>>) oauthScopes;
+        return Optional.ofNullable(this.oauthScopes);
     }
 
     /**
      * Set to `true` when connector allows the definition of custom scopes.
      */
-    @JsonIgnore
     public Optional<Boolean> customScopes() {
-        return customScopes;
+        return Optional.ofNullable(this.customScopes);
     }
 
     /**
      * Indicates whether Apideck Sandbox OAuth credentials are available.
      */
-    @JsonIgnore
     public Optional<Boolean> hasSandboxCredentials() {
-        return hasSandboxCredentials;
+        return Optional.ofNullable(this.hasSandboxCredentials);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectorSetting>> settings() {
-        return (Optional<List<ConnectorSetting>>) settings;
+        return Optional.ofNullable(this.settings);
     }
 
     /**
      * Service provider identifier
      */
-    @JsonIgnore
     public Optional<String> serviceId() {
-        return serviceId;
+        return Optional.ofNullable(this.serviceId);
     }
 
     /**
      * List of Unified APIs that feature this connector.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<UnifiedApis>> unifiedApis() {
-        return (Optional<List<UnifiedApis>>) unifiedApis;
+        return Optional.ofNullable(this.unifiedApis);
     }
 
     /**
      * List of resources that are supported on the connector.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<LinkedConnectorResource>> supportedResources() {
-        return (Optional<List<LinkedConnectorResource>>) supportedResources;
+        return Optional.ofNullable(this.supportedResources);
     }
 
     /**
      * List of resources that have settings that can be configured.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<String>> configurableResources() {
-        return (Optional<List<String>>) configurableResources;
+        return Optional.ofNullable(this.configurableResources);
     }
 
     /**
      * List of events that are supported on the connector across all Unified APIs.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectorEvent>> supportedEvents() {
-        return (Optional<List<ConnectorEvent>>) supportedEvents;
+        return Optional.ofNullable(this.supportedEvents);
     }
 
     /**
      * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<WebhookSupport> webhookSupport() {
-        return (Optional<WebhookSupport>) webhookSupport;
+        return Optional.ofNullable(this.webhookSupport);
     }
 
     /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
      */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<SchemaSupport> schemaSupport() {
-        return (Optional<SchemaSupport>) schemaSupport;
+        return Optional.ofNullable(this.schemaSupport);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<List<ConnectorDoc>> docs() {
-        return (Optional<List<ConnectorDoc>>) docs;
+        return Optional.ofNullable(this.docs);
     }
 
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
     public Optional<TlsSupport> tlsSupport() {
-        return (Optional<TlsSupport>) tlsSupport;
+        return Optional.ofNullable(this.tlsSupport);
     }
 
     public static Builder builder() {
@@ -547,515 +477,245 @@ public class Connector {
     /**
      * ID of the connector.
      */
-    public Connector withId(String id) {
-        Utils.checkNotNull(id, "id");
-        this.id = Optional.ofNullable(id);
-        return this;
-    }
-
-
-    /**
-     * ID of the connector.
-     */
-    public Connector withId(Optional<String> id) {
-        Utils.checkNotNull(id, "id");
+    public Connector withId(@Nullable String id) {
         this.id = id;
         return this;
     }
 
-    /**
-     * Name of the connector.
-     */
-    public Connector withName(String name) {
-        Utils.checkNotNull(name, "name");
-        this.name = Optional.ofNullable(name);
-        return this;
-    }
-
 
     /**
      * Name of the connector.
      */
-    public Connector withName(Optional<String> name) {
-        Utils.checkNotNull(name, "name");
+    public Connector withName(@Nullable String name) {
         this.name = name;
         return this;
     }
 
-    /**
-     * Status of the connector. Connectors with status live or beta are callable.
-     */
-    public Connector withStatus(ConnectorStatus status) {
-        Utils.checkNotNull(status, "status");
-        this.status = Optional.ofNullable(status);
-        return this;
-    }
-
 
     /**
      * Status of the connector. Connectors with status live or beta are callable.
      */
-    public Connector withStatus(Optional<? extends ConnectorStatus> status) {
-        Utils.checkNotNull(status, "status");
+    public Connector withStatus(@Nullable ConnectorStatus status) {
         this.status = status;
         return this;
     }
 
+
     /**
      * A description of the object.
      */
-    public Connector withDescription(String description) {
-        Utils.checkNotNull(description, "description");
+    public Connector withDescription(@Nullable String description) {
         this.description = JsonNullable.of(description);
         return this;
     }
 
-    /**
-     * A description of the object.
-     */
-    public Connector withDescription(JsonNullable<String> description) {
-        Utils.checkNotNull(description, "description");
-        this.description = description;
-        return this;
-    }
 
     /**
      * Link to a small square icon for the connector.
      */
-    public Connector withIconUrl(String iconUrl) {
-        Utils.checkNotNull(iconUrl, "iconUrl");
-        this.iconUrl = Optional.ofNullable(iconUrl);
-        return this;
-    }
-
-
-    /**
-     * Link to a small square icon for the connector.
-     */
-    public Connector withIconUrl(Optional<String> iconUrl) {
-        Utils.checkNotNull(iconUrl, "iconUrl");
+    public Connector withIconUrl(@Nullable String iconUrl) {
         this.iconUrl = iconUrl;
         return this;
     }
 
-    /**
-     * Link to the full logo for the connector.
-     */
-    public Connector withLogoUrl(String logoUrl) {
-        Utils.checkNotNull(logoUrl, "logoUrl");
-        this.logoUrl = Optional.ofNullable(logoUrl);
-        return this;
-    }
-
 
     /**
      * Link to the full logo for the connector.
      */
-    public Connector withLogoUrl(Optional<String> logoUrl) {
-        Utils.checkNotNull(logoUrl, "logoUrl");
+    public Connector withLogoUrl(@Nullable String logoUrl) {
         this.logoUrl = logoUrl;
         return this;
     }
 
-    /**
-     * Link to the connector's website.
-     */
-    public Connector withWebsiteUrl(String websiteUrl) {
-        Utils.checkNotNull(websiteUrl, "websiteUrl");
-        this.websiteUrl = Optional.ofNullable(websiteUrl);
-        return this;
-    }
-
 
     /**
      * Link to the connector's website.
      */
-    public Connector withWebsiteUrl(Optional<String> websiteUrl) {
-        Utils.checkNotNull(websiteUrl, "websiteUrl");
+    public Connector withWebsiteUrl(@Nullable String websiteUrl) {
         this.websiteUrl = websiteUrl;
         return this;
     }
 
-    /**
-     * Link to the connector's signup page.
-     */
-    public Connector withSignupUrl(String signupUrl) {
-        Utils.checkNotNull(signupUrl, "signupUrl");
-        this.signupUrl = Optional.ofNullable(signupUrl);
-        return this;
-    }
-
 
     /**
      * Link to the connector's signup page.
      */
-    public Connector withSignupUrl(Optional<String> signupUrl) {
-        Utils.checkNotNull(signupUrl, "signupUrl");
+    public Connector withSignupUrl(@Nullable String signupUrl) {
         this.signupUrl = signupUrl;
         return this;
     }
 
-    /**
-     * Link to the connector's partner program signup page.
-     */
-    public Connector withPartnerSignupUrl(String partnerSignupUrl) {
-        Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
-        this.partnerSignupUrl = Optional.ofNullable(partnerSignupUrl);
-        return this;
-    }
-
 
     /**
      * Link to the connector's partner program signup page.
      */
-    public Connector withPartnerSignupUrl(Optional<String> partnerSignupUrl) {
-        Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
+    public Connector withPartnerSignupUrl(@Nullable String partnerSignupUrl) {
         this.partnerSignupUrl = partnerSignupUrl;
         return this;
     }
 
-    /**
-     * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
-     */
-    public Connector withFreeTrialAvailable(boolean freeTrialAvailable) {
-        Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
-        this.freeTrialAvailable = Optional.ofNullable(freeTrialAvailable);
-        return this;
-    }
-
 
     /**
      * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
      */
-    public Connector withFreeTrialAvailable(Optional<Boolean> freeTrialAvailable) {
-        Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
+    public Connector withFreeTrialAvailable(@Nullable Boolean freeTrialAvailable) {
         this.freeTrialAvailable = freeTrialAvailable;
         return this;
     }
 
-    /**
-     * Type of authorization used by the connector
-     */
-    public Connector withAuthType(ConnectorAuthType authType) {
-        Utils.checkNotNull(authType, "authType");
-        this.authType = Optional.ofNullable(authType);
-        return this;
-    }
-
 
     /**
      * Type of authorization used by the connector
      */
-    public Connector withAuthType(Optional<? extends ConnectorAuthType> authType) {
-        Utils.checkNotNull(authType, "authType");
+    public Connector withAuthType(@Nullable ConnectorAuthType authType) {
         this.authType = authType;
         return this;
     }
 
-    /**
-     * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
-     */
-    public Connector withAuthOnly(boolean authOnly) {
-        Utils.checkNotNull(authOnly, "authOnly");
-        this.authOnly = Optional.ofNullable(authOnly);
-        return this;
-    }
-
 
     /**
      * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
      */
-    public Connector withAuthOnly(Optional<Boolean> authOnly) {
-        Utils.checkNotNull(authOnly, "authOnly");
+    public Connector withAuthOnly(@Nullable Boolean authOnly) {
         this.authOnly = authOnly;
         return this;
     }
 
-    /**
-     * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
-     */
-    public Connector withBlindMapped(boolean blindMapped) {
-        Utils.checkNotNull(blindMapped, "blindMapped");
-        this.blindMapped = Optional.ofNullable(blindMapped);
-        return this;
-    }
-
 
     /**
      * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
      */
-    public Connector withBlindMapped(Optional<Boolean> blindMapped) {
-        Utils.checkNotNull(blindMapped, "blindMapped");
+    public Connector withBlindMapped(@Nullable Boolean blindMapped) {
         this.blindMapped = blindMapped;
         return this;
     }
 
-    /**
-     * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
-     */
-    public Connector withOauthGrantType(ConnectorOauthGrantType oauthGrantType) {
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-        this.oauthGrantType = Optional.ofNullable(oauthGrantType);
-        return this;
-    }
-
 
     /**
      * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
      */
-    public Connector withOauthGrantType(Optional<? extends ConnectorOauthGrantType> oauthGrantType) {
-        Utils.checkNotNull(oauthGrantType, "oauthGrantType");
+    public Connector withOauthGrantType(@Nullable ConnectorOauthGrantType oauthGrantType) {
         this.oauthGrantType = oauthGrantType;
         return this;
     }
 
-    /**
-     * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
-     */
-    public Connector withOauthCredentialsSource(OauthCredentialsSource oauthCredentialsSource) {
-        Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
-        this.oauthCredentialsSource = Optional.ofNullable(oauthCredentialsSource);
-        return this;
-    }
-
 
     /**
      * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
      */
-    public Connector withOauthCredentialsSource(Optional<? extends OauthCredentialsSource> oauthCredentialsSource) {
-        Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
+    public Connector withOauthCredentialsSource(@Nullable OauthCredentialsSource oauthCredentialsSource) {
         this.oauthCredentialsSource = oauthCredentialsSource;
         return this;
     }
 
-    /**
-     * List of OAuth Scopes available for this connector.
-     */
-    public Connector withOauthScopes(List<OauthScopes> oauthScopes) {
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
-        this.oauthScopes = Optional.ofNullable(oauthScopes);
-        return this;
-    }
-
 
     /**
      * List of OAuth Scopes available for this connector.
      */
-    public Connector withOauthScopes(Optional<? extends List<OauthScopes>> oauthScopes) {
-        Utils.checkNotNull(oauthScopes, "oauthScopes");
+    public Connector withOauthScopes(@Nullable List<OauthScopes> oauthScopes) {
         this.oauthScopes = oauthScopes;
         return this;
     }
 
-    /**
-     * Set to `true` when connector allows the definition of custom scopes.
-     */
-    public Connector withCustomScopes(boolean customScopes) {
-        Utils.checkNotNull(customScopes, "customScopes");
-        this.customScopes = Optional.ofNullable(customScopes);
-        return this;
-    }
-
 
     /**
      * Set to `true` when connector allows the definition of custom scopes.
      */
-    public Connector withCustomScopes(Optional<Boolean> customScopes) {
-        Utils.checkNotNull(customScopes, "customScopes");
+    public Connector withCustomScopes(@Nullable Boolean customScopes) {
         this.customScopes = customScopes;
         return this;
     }
 
-    /**
-     * Indicates whether Apideck Sandbox OAuth credentials are available.
-     */
-    public Connector withHasSandboxCredentials(boolean hasSandboxCredentials) {
-        Utils.checkNotNull(hasSandboxCredentials, "hasSandboxCredentials");
-        this.hasSandboxCredentials = Optional.ofNullable(hasSandboxCredentials);
-        return this;
-    }
-
 
     /**
      * Indicates whether Apideck Sandbox OAuth credentials are available.
      */
-    public Connector withHasSandboxCredentials(Optional<Boolean> hasSandboxCredentials) {
-        Utils.checkNotNull(hasSandboxCredentials, "hasSandboxCredentials");
+    public Connector withHasSandboxCredentials(@Nullable Boolean hasSandboxCredentials) {
         this.hasSandboxCredentials = hasSandboxCredentials;
         return this;
     }
 
-    public Connector withSettings(List<ConnectorSetting> settings) {
-        Utils.checkNotNull(settings, "settings");
-        this.settings = Optional.ofNullable(settings);
-        return this;
-    }
 
-
-    public Connector withSettings(Optional<? extends List<ConnectorSetting>> settings) {
-        Utils.checkNotNull(settings, "settings");
+    public Connector withSettings(@Nullable List<ConnectorSetting> settings) {
         this.settings = settings;
         return this;
     }
 
-    /**
-     * Service provider identifier
-     */
-    public Connector withServiceId(String serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
-        this.serviceId = Optional.ofNullable(serviceId);
-        return this;
-    }
-
 
     /**
      * Service provider identifier
      */
-    public Connector withServiceId(Optional<String> serviceId) {
-        Utils.checkNotNull(serviceId, "serviceId");
+    public Connector withServiceId(@Nullable String serviceId) {
         this.serviceId = serviceId;
         return this;
     }
 
-    /**
-     * List of Unified APIs that feature this connector.
-     */
-    public Connector withUnifiedApis(List<UnifiedApis> unifiedApis) {
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
-        this.unifiedApis = Optional.ofNullable(unifiedApis);
-        return this;
-    }
-
 
     /**
      * List of Unified APIs that feature this connector.
      */
-    public Connector withUnifiedApis(Optional<? extends List<UnifiedApis>> unifiedApis) {
-        Utils.checkNotNull(unifiedApis, "unifiedApis");
+    public Connector withUnifiedApis(@Nullable List<UnifiedApis> unifiedApis) {
         this.unifiedApis = unifiedApis;
         return this;
     }
 
-    /**
-     * List of resources that are supported on the connector.
-     */
-    public Connector withSupportedResources(List<LinkedConnectorResource> supportedResources) {
-        Utils.checkNotNull(supportedResources, "supportedResources");
-        this.supportedResources = Optional.ofNullable(supportedResources);
-        return this;
-    }
-
 
     /**
      * List of resources that are supported on the connector.
      */
-    public Connector withSupportedResources(Optional<? extends List<LinkedConnectorResource>> supportedResources) {
-        Utils.checkNotNull(supportedResources, "supportedResources");
+    public Connector withSupportedResources(@Nullable List<LinkedConnectorResource> supportedResources) {
         this.supportedResources = supportedResources;
         return this;
     }
 
-    /**
-     * List of resources that have settings that can be configured.
-     */
-    public Connector withConfigurableResources(List<String> configurableResources) {
-        Utils.checkNotNull(configurableResources, "configurableResources");
-        this.configurableResources = Optional.ofNullable(configurableResources);
-        return this;
-    }
-
 
     /**
      * List of resources that have settings that can be configured.
      */
-    public Connector withConfigurableResources(Optional<? extends List<String>> configurableResources) {
-        Utils.checkNotNull(configurableResources, "configurableResources");
+    public Connector withConfigurableResources(@Nullable List<String> configurableResources) {
         this.configurableResources = configurableResources;
         return this;
     }
 
-    /**
-     * List of events that are supported on the connector across all Unified APIs.
-     */
-    public Connector withSupportedEvents(List<ConnectorEvent> supportedEvents) {
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
-        this.supportedEvents = Optional.ofNullable(supportedEvents);
-        return this;
-    }
-
 
     /**
      * List of events that are supported on the connector across all Unified APIs.
      */
-    public Connector withSupportedEvents(Optional<? extends List<ConnectorEvent>> supportedEvents) {
-        Utils.checkNotNull(supportedEvents, "supportedEvents");
+    public Connector withSupportedEvents(@Nullable List<ConnectorEvent> supportedEvents) {
         this.supportedEvents = supportedEvents;
         return this;
     }
 
-    /**
-     * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
-     */
-    public Connector withWebhookSupport(WebhookSupport webhookSupport) {
-        Utils.checkNotNull(webhookSupport, "webhookSupport");
-        this.webhookSupport = Optional.ofNullable(webhookSupport);
-        return this;
-    }
-
 
     /**
      * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
      */
-    public Connector withWebhookSupport(Optional<? extends WebhookSupport> webhookSupport) {
-        Utils.checkNotNull(webhookSupport, "webhookSupport");
+    public Connector withWebhookSupport(@Nullable WebhookSupport webhookSupport) {
         this.webhookSupport = webhookSupport;
         return this;
     }
 
-    /**
-     * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
-     */
-    public Connector withSchemaSupport(SchemaSupport schemaSupport) {
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
-        this.schemaSupport = Optional.ofNullable(schemaSupport);
-        return this;
-    }
-
 
     /**
      * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
      */
-    public Connector withSchemaSupport(Optional<? extends SchemaSupport> schemaSupport) {
-        Utils.checkNotNull(schemaSupport, "schemaSupport");
+    public Connector withSchemaSupport(@Nullable SchemaSupport schemaSupport) {
         this.schemaSupport = schemaSupport;
         return this;
     }
 
-    public Connector withDocs(List<ConnectorDoc> docs) {
-        Utils.checkNotNull(docs, "docs");
-        this.docs = Optional.ofNullable(docs);
-        return this;
-    }
 
-
-    public Connector withDocs(Optional<? extends List<ConnectorDoc>> docs) {
-        Utils.checkNotNull(docs, "docs");
+    public Connector withDocs(@Nullable List<ConnectorDoc> docs) {
         this.docs = docs;
         return this;
     }
 
-    public Connector withTlsSupport(TlsSupport tlsSupport) {
-        Utils.checkNotNull(tlsSupport, "tlsSupport");
-        this.tlsSupport = Optional.ofNullable(tlsSupport);
-        return this;
-    }
 
-
-    public Connector withTlsSupport(Optional<? extends TlsSupport> tlsSupport) {
-        Utils.checkNotNull(tlsSupport, "tlsSupport");
+    public Connector withTlsSupport(@Nullable TlsSupport tlsSupport) {
         this.tlsSupport = tlsSupport;
         return this;
     }
+
 
     @Override
     public boolean equals(java.lang.Object o) {
@@ -1148,582 +808,282 @@ public class Connector {
     @SuppressWarnings("UnusedReturnValue")
     public final static class Builder {
 
-        private Optional<String> id = Optional.empty();
+        private String id;
 
-        private Optional<String> name = Optional.empty();
+        private String name;
 
-        private Optional<? extends ConnectorStatus> status = Optional.empty();
+        private ConnectorStatus status;
 
-        private JsonNullable<String> description = JsonNullable.undefined();
+        private JsonNullable<String> description;
 
-        private Optional<String> iconUrl = Optional.empty();
+        private String iconUrl;
 
-        private Optional<String> logoUrl = Optional.empty();
+        private String logoUrl;
 
-        private Optional<String> websiteUrl = Optional.empty();
+        private String websiteUrl;
 
-        private Optional<String> signupUrl = Optional.empty();
+        private String signupUrl;
 
-        private Optional<String> partnerSignupUrl = Optional.empty();
+        private String partnerSignupUrl;
 
-        private Optional<Boolean> freeTrialAvailable = Optional.empty();
+        private Boolean freeTrialAvailable;
 
-        private Optional<? extends ConnectorAuthType> authType = Optional.empty();
+        private ConnectorAuthType authType;
 
-        private Optional<Boolean> authOnly = Optional.empty();
+        private Boolean authOnly;
 
-        private Optional<Boolean> blindMapped = Optional.empty();
+        private Boolean blindMapped;
 
-        private Optional<? extends ConnectorOauthGrantType> oauthGrantType = Optional.empty();
+        private ConnectorOauthGrantType oauthGrantType;
 
-        private Optional<? extends OauthCredentialsSource> oauthCredentialsSource = Optional.empty();
+        private OauthCredentialsSource oauthCredentialsSource;
 
-        private Optional<? extends List<OauthScopes>> oauthScopes = Optional.empty();
+        private List<OauthScopes> oauthScopes;
 
-        private Optional<Boolean> customScopes = Optional.empty();
+        private Boolean customScopes;
 
-        private Optional<Boolean> hasSandboxCredentials = Optional.empty();
+        private Boolean hasSandboxCredentials;
 
-        private Optional<? extends List<ConnectorSetting>> settings = Optional.empty();
+        private List<ConnectorSetting> settings;
 
-        private Optional<String> serviceId = Optional.empty();
+        private String serviceId;
 
-        private Optional<? extends List<UnifiedApis>> unifiedApis = Optional.empty();
+        private List<UnifiedApis> unifiedApis;
 
-        private Optional<? extends List<LinkedConnectorResource>> supportedResources = Optional.empty();
+        private List<LinkedConnectorResource> supportedResources;
 
-        private Optional<? extends List<String>> configurableResources = Optional.empty();
+        private List<String> configurableResources;
 
-        private Optional<? extends List<ConnectorEvent>> supportedEvents = Optional.empty();
+        private List<ConnectorEvent> supportedEvents;
 
-        private Optional<? extends WebhookSupport> webhookSupport = Optional.empty();
+        private WebhookSupport webhookSupport;
 
-        private Optional<? extends SchemaSupport> schemaSupport = Optional.empty();
+        private SchemaSupport schemaSupport;
 
-        private Optional<? extends List<ConnectorDoc>> docs = Optional.empty();
+        private List<ConnectorDoc> docs;
 
-        private Optional<? extends TlsSupport> tlsSupport = Optional.empty();
+        private TlsSupport tlsSupport;
 
         private Builder() {
           // force use of static builder() method
         }
 
-
         /**
          * ID of the connector.
          */
-        public Builder id(String id) {
-            Utils.checkNotNull(id, "id");
-            this.id = Optional.ofNullable(id);
-            return this;
-        }
-
-        /**
-         * ID of the connector.
-         */
-        public Builder id(Optional<String> id) {
-            Utils.checkNotNull(id, "id");
+        public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
 
-
         /**
          * Name of the connector.
          */
-        public Builder name(String name) {
-            Utils.checkNotNull(name, "name");
-            this.name = Optional.ofNullable(name);
-            return this;
-        }
-
-        /**
-         * Name of the connector.
-         */
-        public Builder name(Optional<String> name) {
-            Utils.checkNotNull(name, "name");
+        public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
 
-
         /**
          * Status of the connector. Connectors with status live or beta are callable.
          */
-        public Builder status(ConnectorStatus status) {
-            Utils.checkNotNull(status, "status");
-            this.status = Optional.ofNullable(status);
-            return this;
-        }
-
-        /**
-         * Status of the connector. Connectors with status live or beta are callable.
-         */
-        public Builder status(Optional<? extends ConnectorStatus> status) {
-            Utils.checkNotNull(status, "status");
+        public Builder status(@Nullable ConnectorStatus status) {
             this.status = status;
             return this;
         }
 
-
         /**
          * A description of the object.
          */
-        public Builder description(String description) {
-            Utils.checkNotNull(description, "description");
+        public Builder description(@Nullable String description) {
             this.description = JsonNullable.of(description);
             return this;
         }
 
         /**
-         * A description of the object.
-         */
-        public Builder description(JsonNullable<String> description) {
-            Utils.checkNotNull(description, "description");
-            this.description = description;
-            return this;
-        }
-
-
-        /**
          * Link to a small square icon for the connector.
          */
-        public Builder iconUrl(String iconUrl) {
-            Utils.checkNotNull(iconUrl, "iconUrl");
-            this.iconUrl = Optional.ofNullable(iconUrl);
-            return this;
-        }
-
-        /**
-         * Link to a small square icon for the connector.
-         */
-        public Builder iconUrl(Optional<String> iconUrl) {
-            Utils.checkNotNull(iconUrl, "iconUrl");
+        public Builder iconUrl(@Nullable String iconUrl) {
             this.iconUrl = iconUrl;
             return this;
         }
 
-
         /**
          * Link to the full logo for the connector.
          */
-        public Builder logoUrl(String logoUrl) {
-            Utils.checkNotNull(logoUrl, "logoUrl");
-            this.logoUrl = Optional.ofNullable(logoUrl);
-            return this;
-        }
-
-        /**
-         * Link to the full logo for the connector.
-         */
-        public Builder logoUrl(Optional<String> logoUrl) {
-            Utils.checkNotNull(logoUrl, "logoUrl");
+        public Builder logoUrl(@Nullable String logoUrl) {
             this.logoUrl = logoUrl;
             return this;
         }
 
-
         /**
          * Link to the connector's website.
          */
-        public Builder websiteUrl(String websiteUrl) {
-            Utils.checkNotNull(websiteUrl, "websiteUrl");
-            this.websiteUrl = Optional.ofNullable(websiteUrl);
-            return this;
-        }
-
-        /**
-         * Link to the connector's website.
-         */
-        public Builder websiteUrl(Optional<String> websiteUrl) {
-            Utils.checkNotNull(websiteUrl, "websiteUrl");
+        public Builder websiteUrl(@Nullable String websiteUrl) {
             this.websiteUrl = websiteUrl;
             return this;
         }
 
-
         /**
          * Link to the connector's signup page.
          */
-        public Builder signupUrl(String signupUrl) {
-            Utils.checkNotNull(signupUrl, "signupUrl");
-            this.signupUrl = Optional.ofNullable(signupUrl);
-            return this;
-        }
-
-        /**
-         * Link to the connector's signup page.
-         */
-        public Builder signupUrl(Optional<String> signupUrl) {
-            Utils.checkNotNull(signupUrl, "signupUrl");
+        public Builder signupUrl(@Nullable String signupUrl) {
             this.signupUrl = signupUrl;
             return this;
         }
 
-
         /**
          * Link to the connector's partner program signup page.
          */
-        public Builder partnerSignupUrl(String partnerSignupUrl) {
-            Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
-            this.partnerSignupUrl = Optional.ofNullable(partnerSignupUrl);
-            return this;
-        }
-
-        /**
-         * Link to the connector's partner program signup page.
-         */
-        public Builder partnerSignupUrl(Optional<String> partnerSignupUrl) {
-            Utils.checkNotNull(partnerSignupUrl, "partnerSignupUrl");
+        public Builder partnerSignupUrl(@Nullable String partnerSignupUrl) {
             this.partnerSignupUrl = partnerSignupUrl;
             return this;
         }
 
-
         /**
          * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
          */
-        public Builder freeTrialAvailable(boolean freeTrialAvailable) {
-            Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
-            this.freeTrialAvailable = Optional.ofNullable(freeTrialAvailable);
-            return this;
-        }
-
-        /**
-         * Set to `true` when the connector offers a free trial. Use `signup_url` to sign up for a free trial
-         */
-        public Builder freeTrialAvailable(Optional<Boolean> freeTrialAvailable) {
-            Utils.checkNotNull(freeTrialAvailable, "freeTrialAvailable");
+        public Builder freeTrialAvailable(@Nullable Boolean freeTrialAvailable) {
             this.freeTrialAvailable = freeTrialAvailable;
             return this;
         }
 
-
         /**
          * Type of authorization used by the connector
          */
-        public Builder authType(ConnectorAuthType authType) {
-            Utils.checkNotNull(authType, "authType");
-            this.authType = Optional.ofNullable(authType);
-            return this;
-        }
-
-        /**
-         * Type of authorization used by the connector
-         */
-        public Builder authType(Optional<? extends ConnectorAuthType> authType) {
-            Utils.checkNotNull(authType, "authType");
+        public Builder authType(@Nullable ConnectorAuthType authType) {
             this.authType = authType;
             return this;
         }
 
-
         /**
          * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
          */
-        public Builder authOnly(boolean authOnly) {
-            Utils.checkNotNull(authOnly, "authOnly");
-            this.authOnly = Optional.ofNullable(authOnly);
-            return this;
-        }
-
-        /**
-         * Indicates whether a connector only supports authentication. In this case the connector is not mapped to a Unified API, but can be used with the Proxy API
-         */
-        public Builder authOnly(Optional<Boolean> authOnly) {
-            Utils.checkNotNull(authOnly, "authOnly");
+        public Builder authOnly(@Nullable Boolean authOnly) {
             this.authOnly = authOnly;
             return this;
         }
 
-
         /**
          * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
          */
-        public Builder blindMapped(boolean blindMapped) {
-            Utils.checkNotNull(blindMapped, "blindMapped");
-            this.blindMapped = Optional.ofNullable(blindMapped);
-            return this;
-        }
-
-        /**
-         * Set to `true` when connector was implemented from downstream docs only and without API access. This state indicates that integration will require Apideck support, and access to downstream API to validate mapping quality.
-         */
-        public Builder blindMapped(Optional<Boolean> blindMapped) {
-            Utils.checkNotNull(blindMapped, "blindMapped");
+        public Builder blindMapped(@Nullable Boolean blindMapped) {
             this.blindMapped = blindMapped;
             return this;
         }
 
-
         /**
          * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
          */
-        public Builder oauthGrantType(ConnectorOauthGrantType oauthGrantType) {
-            Utils.checkNotNull(oauthGrantType, "oauthGrantType");
-            this.oauthGrantType = Optional.ofNullable(oauthGrantType);
-            return this;
-        }
-
-        /**
-         * OAuth grant type used by the connector. More info: https://oauth.net/2/grant-types
-         */
-        public Builder oauthGrantType(Optional<? extends ConnectorOauthGrantType> oauthGrantType) {
-            Utils.checkNotNull(oauthGrantType, "oauthGrantType");
+        public Builder oauthGrantType(@Nullable ConnectorOauthGrantType oauthGrantType) {
             this.oauthGrantType = oauthGrantType;
             return this;
         }
 
-
         /**
          * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
          */
-        public Builder oauthCredentialsSource(OauthCredentialsSource oauthCredentialsSource) {
-            Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
-            this.oauthCredentialsSource = Optional.ofNullable(oauthCredentialsSource);
-            return this;
-        }
-
-        /**
-         * Location of the OAuth client credentials. For most connectors the OAuth client credentials are stored on integration and managed by the application owner. For others they are stored on connection and managed by the consumer in Vault.
-         */
-        public Builder oauthCredentialsSource(Optional<? extends OauthCredentialsSource> oauthCredentialsSource) {
-            Utils.checkNotNull(oauthCredentialsSource, "oauthCredentialsSource");
+        public Builder oauthCredentialsSource(@Nullable OauthCredentialsSource oauthCredentialsSource) {
             this.oauthCredentialsSource = oauthCredentialsSource;
             return this;
         }
 
-
         /**
          * List of OAuth Scopes available for this connector.
          */
-        public Builder oauthScopes(List<OauthScopes> oauthScopes) {
-            Utils.checkNotNull(oauthScopes, "oauthScopes");
-            this.oauthScopes = Optional.ofNullable(oauthScopes);
-            return this;
-        }
-
-        /**
-         * List of OAuth Scopes available for this connector.
-         */
-        public Builder oauthScopes(Optional<? extends List<OauthScopes>> oauthScopes) {
-            Utils.checkNotNull(oauthScopes, "oauthScopes");
+        public Builder oauthScopes(@Nullable List<OauthScopes> oauthScopes) {
             this.oauthScopes = oauthScopes;
             return this;
         }
 
-
         /**
          * Set to `true` when connector allows the definition of custom scopes.
          */
-        public Builder customScopes(boolean customScopes) {
-            Utils.checkNotNull(customScopes, "customScopes");
-            this.customScopes = Optional.ofNullable(customScopes);
-            return this;
-        }
-
-        /**
-         * Set to `true` when connector allows the definition of custom scopes.
-         */
-        public Builder customScopes(Optional<Boolean> customScopes) {
-            Utils.checkNotNull(customScopes, "customScopes");
+        public Builder customScopes(@Nullable Boolean customScopes) {
             this.customScopes = customScopes;
             return this;
         }
 
-
         /**
          * Indicates whether Apideck Sandbox OAuth credentials are available.
          */
-        public Builder hasSandboxCredentials(boolean hasSandboxCredentials) {
-            Utils.checkNotNull(hasSandboxCredentials, "hasSandboxCredentials");
-            this.hasSandboxCredentials = Optional.ofNullable(hasSandboxCredentials);
-            return this;
-        }
-
-        /**
-         * Indicates whether Apideck Sandbox OAuth credentials are available.
-         */
-        public Builder hasSandboxCredentials(Optional<Boolean> hasSandboxCredentials) {
-            Utils.checkNotNull(hasSandboxCredentials, "hasSandboxCredentials");
+        public Builder hasSandboxCredentials(@Nullable Boolean hasSandboxCredentials) {
             this.hasSandboxCredentials = hasSandboxCredentials;
             return this;
         }
 
-
-        public Builder settings(List<ConnectorSetting> settings) {
-            Utils.checkNotNull(settings, "settings");
-            this.settings = Optional.ofNullable(settings);
-            return this;
-        }
-
-        public Builder settings(Optional<? extends List<ConnectorSetting>> settings) {
-            Utils.checkNotNull(settings, "settings");
+        public Builder settings(@Nullable List<ConnectorSetting> settings) {
             this.settings = settings;
             return this;
         }
 
-
         /**
          * Service provider identifier
          */
-        public Builder serviceId(String serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
-            this.serviceId = Optional.ofNullable(serviceId);
-            return this;
-        }
-
-        /**
-         * Service provider identifier
-         */
-        public Builder serviceId(Optional<String> serviceId) {
-            Utils.checkNotNull(serviceId, "serviceId");
+        public Builder serviceId(@Nullable String serviceId) {
             this.serviceId = serviceId;
             return this;
         }
 
-
         /**
          * List of Unified APIs that feature this connector.
          */
-        public Builder unifiedApis(List<UnifiedApis> unifiedApis) {
-            Utils.checkNotNull(unifiedApis, "unifiedApis");
-            this.unifiedApis = Optional.ofNullable(unifiedApis);
-            return this;
-        }
-
-        /**
-         * List of Unified APIs that feature this connector.
-         */
-        public Builder unifiedApis(Optional<? extends List<UnifiedApis>> unifiedApis) {
-            Utils.checkNotNull(unifiedApis, "unifiedApis");
+        public Builder unifiedApis(@Nullable List<UnifiedApis> unifiedApis) {
             this.unifiedApis = unifiedApis;
             return this;
         }
 
-
         /**
          * List of resources that are supported on the connector.
          */
-        public Builder supportedResources(List<LinkedConnectorResource> supportedResources) {
-            Utils.checkNotNull(supportedResources, "supportedResources");
-            this.supportedResources = Optional.ofNullable(supportedResources);
-            return this;
-        }
-
-        /**
-         * List of resources that are supported on the connector.
-         */
-        public Builder supportedResources(Optional<? extends List<LinkedConnectorResource>> supportedResources) {
-            Utils.checkNotNull(supportedResources, "supportedResources");
+        public Builder supportedResources(@Nullable List<LinkedConnectorResource> supportedResources) {
             this.supportedResources = supportedResources;
             return this;
         }
 
-
         /**
          * List of resources that have settings that can be configured.
          */
-        public Builder configurableResources(List<String> configurableResources) {
-            Utils.checkNotNull(configurableResources, "configurableResources");
-            this.configurableResources = Optional.ofNullable(configurableResources);
-            return this;
-        }
-
-        /**
-         * List of resources that have settings that can be configured.
-         */
-        public Builder configurableResources(Optional<? extends List<String>> configurableResources) {
-            Utils.checkNotNull(configurableResources, "configurableResources");
+        public Builder configurableResources(@Nullable List<String> configurableResources) {
             this.configurableResources = configurableResources;
             return this;
         }
 
-
         /**
          * List of events that are supported on the connector across all Unified APIs.
          */
-        public Builder supportedEvents(List<ConnectorEvent> supportedEvents) {
-            Utils.checkNotNull(supportedEvents, "supportedEvents");
-            this.supportedEvents = Optional.ofNullable(supportedEvents);
-            return this;
-        }
-
-        /**
-         * List of events that are supported on the connector across all Unified APIs.
-         */
-        public Builder supportedEvents(Optional<? extends List<ConnectorEvent>> supportedEvents) {
-            Utils.checkNotNull(supportedEvents, "supportedEvents");
+        public Builder supportedEvents(@Nullable List<ConnectorEvent> supportedEvents) {
             this.supportedEvents = supportedEvents;
             return this;
         }
 
-
         /**
          * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
          */
-        public Builder webhookSupport(WebhookSupport webhookSupport) {
-            Utils.checkNotNull(webhookSupport, "webhookSupport");
-            this.webhookSupport = Optional.ofNullable(webhookSupport);
-            return this;
-        }
-
-        /**
-         * How webhooks are supported for the connector. Sometimes the connector natively supports webhooks, other times Apideck virtualizes them based on polling.
-         */
-        public Builder webhookSupport(Optional<? extends WebhookSupport> webhookSupport) {
-            Utils.checkNotNull(webhookSupport, "webhookSupport");
+        public Builder webhookSupport(@Nullable WebhookSupport webhookSupport) {
             this.webhookSupport = webhookSupport;
             return this;
         }
 
-
         /**
          * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
          */
-        public Builder schemaSupport(SchemaSupport schemaSupport) {
-            Utils.checkNotNull(schemaSupport, "schemaSupport");
-            this.schemaSupport = Optional.ofNullable(schemaSupport);
-            return this;
-        }
-
-        /**
-         * When a connector has schema_support, a call can be made to retrieve a json schema that describes a downstream resource.
-         */
-        public Builder schemaSupport(Optional<? extends SchemaSupport> schemaSupport) {
-            Utils.checkNotNull(schemaSupport, "schemaSupport");
+        public Builder schemaSupport(@Nullable SchemaSupport schemaSupport) {
             this.schemaSupport = schemaSupport;
             return this;
         }
 
-
-        public Builder docs(List<ConnectorDoc> docs) {
-            Utils.checkNotNull(docs, "docs");
-            this.docs = Optional.ofNullable(docs);
-            return this;
-        }
-
-        public Builder docs(Optional<? extends List<ConnectorDoc>> docs) {
-            Utils.checkNotNull(docs, "docs");
+        public Builder docs(@Nullable List<ConnectorDoc> docs) {
             this.docs = docs;
             return this;
         }
 
-
-        public Builder tlsSupport(TlsSupport tlsSupport) {
-            Utils.checkNotNull(tlsSupport, "tlsSupport");
-            this.tlsSupport = Optional.ofNullable(tlsSupport);
-            return this;
-        }
-
-        public Builder tlsSupport(Optional<? extends TlsSupport> tlsSupport) {
-            Utils.checkNotNull(tlsSupport, "tlsSupport");
+        public Builder tlsSupport(@Nullable TlsSupport tlsSupport) {
             this.tlsSupport = tlsSupport;
             return this;
         }
 
         public Connector build() {
-
             return new Connector(
                 id, name, status,
                 description, iconUrl, logoUrl,

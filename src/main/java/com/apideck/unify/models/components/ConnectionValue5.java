@@ -11,47 +11,35 @@ import com.apideck.unify.utils.Utils;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
-import java.util.List;
 
-@JsonDeserialize(using = SimpleFormFieldOptionValue._Deserializer.class)
-public class SimpleFormFieldOptionValue {
+@JsonDeserialize(using = ConnectionValue5._Deserializer.class)
+public class ConnectionValue5 {
 
     @JsonValue
     private TypedObject value;
     
-    private SimpleFormFieldOptionValue(TypedObject value) {
+    private ConnectionValue5(TypedObject value) {
         this.value = value;
     }
 
-    public static SimpleFormFieldOptionValue of(String value) {
+    public static ConnectionValue5 of(String value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<String>(){}));
     }
 
-    public static SimpleFormFieldOptionValue of(long value) {
+    public static ConnectionValue5 of(long value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Long>(){}));
     }
 
-    public static SimpleFormFieldOptionValue of(double value) {
+    public static ConnectionValue5 of(double value) {
         Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
-    }
-
-    public static SimpleFormFieldOptionValue of(boolean value) {
-        Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
-    }
-
-    public static SimpleFormFieldOptionValue of(List<Value5> value) {
-        Utils.checkNotNull(value, "value");
-        return new SimpleFormFieldOptionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Value5>>(){}));
+        return new ConnectionValue5(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Double>(){}));
     }
     
     /**
@@ -60,8 +48,6 @@ public class SimpleFormFieldOptionValue {
      * <li>{@code java.lang.String}</li>
      * <li>{@code long}</li>
      * <li>{@code double}</li>
-     * <li>{@code boolean}</li>
-     * <li>{@code java.util.List<com.apideck.unify.models.components.Value5>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -87,7 +73,7 @@ public class SimpleFormFieldOptionValue {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        SimpleFormFieldOptionValue other = (SimpleFormFieldOptionValue) o;
+        ConnectionValue5 other = (ConnectionValue5) o;
         return Utils.enhancedDeepEquals(this.value.value(), other.value.value()); 
     }
     
@@ -97,12 +83,10 @@ public class SimpleFormFieldOptionValue {
     }
     
     @SuppressWarnings("serial")
-    public static final class _Deserializer extends OneOfDeserializer<SimpleFormFieldOptionValue> {
+    public static final class _Deserializer extends OneOfDeserializer<ConnectionValue5> {
 
         public _Deserializer() {
-            super(SimpleFormFieldOptionValue.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Value5>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
+            super(ConnectionValue5.class, false,
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
@@ -111,7 +95,7 @@ public class SimpleFormFieldOptionValue {
     
     @Override
     public String toString() {
-        return Utils.toString(SimpleFormFieldOptionValue.class,
+        return Utils.toString(ConnectionValue5.class,
                 "value", value);
     }
  

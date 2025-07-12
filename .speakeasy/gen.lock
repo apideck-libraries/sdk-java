@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: 4ebd66f6415f48e48d4ff856025bbc34
-  docVersion: 10.18.1
-  speakeasyVersion: 1.580.0
-  generationVersion: 2.654.2
-  releaseVersion: 0.17.0
-  configChecksum: 42a88858ca56be2168e476dbf46b7468
+  docChecksum: a309a85446f6cd9732ce34745b5f0bbd
+  docVersion: 10.18.2
+  speakeasyVersion: 1.581.0
+  generationVersion: 2.656.5
+  releaseVersion: 0.18.0
+  configChecksum: c701cd6040d8d09a52b9cd461fe0863c
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -14,7 +14,7 @@ features:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.1
-    core: 3.43.0
+    core: 3.44.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     errors: 0.5.0
@@ -120,8 +120,11 @@ generatedFiles:
   - docs/models/components/Branch.md
   - docs/models/components/By.md
   - docs/models/components/Categories.md
+  - docs/models/components/CategoriesFilter.md
+  - docs/models/components/CategoriesFilterType.md
   - docs/models/components/Category.md
   - docs/models/components/CategoryStatus.md
+  - docs/models/components/CategoryType.md
   - docs/models/components/Classification.md
   - docs/models/components/Collection.md
   - docs/models/components/CollectionTag.md
@@ -152,6 +155,7 @@ generatedFiles:
   - docs/models/components/ConnectionState.md
   - docs/models/components/ConnectionStatus.md
   - docs/models/components/ConnectionValue.md
+  - docs/models/components/ConnectionValue5.md
   - docs/models/components/Connector.md
   - docs/models/components/ConnectorAuthType.md
   - docs/models/components/ConnectorDoc.md
@@ -394,7 +398,6 @@ generatedFiles:
   - docs/models/components/FormFieldOptionGroupOptionType.md
   - docs/models/components/FormFieldType.md
   - docs/models/components/Format.md
-  - docs/models/components/Four.md
   - docs/models/components/FulfillmentStatus.md
   - docs/models/components/Gender.md
   - docs/models/components/GetAccountingDepartmentResponse.md
@@ -697,7 +700,6 @@ generatedFiles:
   - docs/models/components/ShowAs.md
   - docs/models/components/SimpleFormFieldOption.md
   - docs/models/components/SimpleFormFieldOptionValue.md
-  - docs/models/components/Six.md
   - docs/models/components/SocialLink.md
   - docs/models/components/SocialLinks.md
   - docs/models/components/SortDirection.md
@@ -1686,8 +1688,11 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/Branch.java
   - src/main/java/com/apideck/unify/models/components/By.java
   - src/main/java/com/apideck/unify/models/components/Categories.java
+  - src/main/java/com/apideck/unify/models/components/CategoriesFilter.java
+  - src/main/java/com/apideck/unify/models/components/CategoriesFilterType.java
   - src/main/java/com/apideck/unify/models/components/Category.java
   - src/main/java/com/apideck/unify/models/components/CategoryStatus.java
+  - src/main/java/com/apideck/unify/models/components/CategoryType.java
   - src/main/java/com/apideck/unify/models/components/Classification.java
   - src/main/java/com/apideck/unify/models/components/Collection.java
   - src/main/java/com/apideck/unify/models/components/CollectionTag.java
@@ -1718,6 +1723,7 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ConnectionState.java
   - src/main/java/com/apideck/unify/models/components/ConnectionStatus.java
   - src/main/java/com/apideck/unify/models/components/ConnectionValue.java
+  - src/main/java/com/apideck/unify/models/components/ConnectionValue5.java
   - src/main/java/com/apideck/unify/models/components/Connector.java
   - src/main/java/com/apideck/unify/models/components/ConnectorAuthType.java
   - src/main/java/com/apideck/unify/models/components/ConnectorDoc.java
@@ -1960,7 +1966,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/FormFieldOptionGroupOptionType.java
   - src/main/java/com/apideck/unify/models/components/FormFieldType.java
   - src/main/java/com/apideck/unify/models/components/Format.java
-  - src/main/java/com/apideck/unify/models/components/Four.java
   - src/main/java/com/apideck/unify/models/components/FulfillmentStatus.java
   - src/main/java/com/apideck/unify/models/components/Gender.java
   - src/main/java/com/apideck/unify/models/components/GetAccountingDepartmentResponse.java
@@ -2263,7 +2268,6 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/ShowAs.java
   - src/main/java/com/apideck/unify/models/components/SimpleFormFieldOption.java
   - src/main/java/com/apideck/unify/models/components/SimpleFormFieldOptionValue.java
-  - src/main/java/com/apideck/unify/models/components/Six.java
   - src/main/java/com/apideck/unify/models/components/SocialLink.java
   - src/main/java/com/apideck/unify/models/components/SocialLinks.java
   - src/main/java/com/apideck/unify/models/components/SortDirection.java
@@ -6094,7 +6098,7 @@ examples:
       parameters:
         query:
           pass_through: {"search": "San Francisco"}
-          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31", "period_count": 3, "period_type": "month"}
+          filter: {"start_date": "2021-01-01", "end_date": "2021-12-31", "period_count": 3, "period_type": "month", "location_id": "123"}
           raw: false
         header:
           x-apideck-consumer-id: "test-consumer"
@@ -6146,7 +6150,7 @@ examples:
       parameters:
         query:
           raw: false
-          filter: {"customer_id": "123abc", "start_date": "2021-01-01", "end_date": "2021-12-31"}
+          filter: {"customer_id": "123abc", "start_date": "2021-01-01", "end_date": "2021-12-31", "location_id": "123"}
           pass_through: {"search": "San Francisco"}
           fields: "id,updated_at"
         header:
@@ -8409,7 +8413,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "201":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "add", "data": {"id": "12345"}}
@@ -8463,7 +8467,7 @@ examples:
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "one", "data": {"id": "12345", "number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "total_amount": 275, "line_items": [{"id": "12345", "tracking_categories": [{"id": "123456", "name": "New York"}], "account_id": "123456", "customer_id": "12345", "department_id": "12345", "location_id": "12345", "subsidiary_id": "12345", "tax_rate": {"id": "123456", "code": "N-T", "name": "GST on Purchases", "rate": 10}, "description": "Travel US.", "total_amount": 275, "billable": true, "line_number": 1}], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":
@@ -8515,7 +8519,7 @@ examples:
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       requestBody:
-        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
+        application/json: {"number": "OIT00546", "transaction_date": "2021-05-01T12:00:00.000Z", "account_id": "123456", "customer_id": "12345", "supplier_id": "12345", "company_id": "12345", "department_id": "12345", "payment_type": "cash", "currency": "USD", "currency_rate": 0.69, "type": "expense", "memo": "For travel expenses incurred on 2024-05-15", "tax_rate": {"id": "123456", "rate": 10}, "total_amount": 275, "line_items": [], "reference": "INV-2024-001", "source_document_url": "https://www.invoicesolution.com/expense/123456", "custom_fields": [{"id": "2389328923893298", "name": "employee_level", "description": "Employee Level", "value": "Uses Salesforce and Marketo"}], "row_version": "1-12345", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}
       responses:
         "200":
           application/json: {"status_code": 200, "status": "OK", "service": "quickbooks", "resource": "Expenses", "operation": "update", "data": {"id": "12345"}}
@@ -18555,6 +18559,7 @@ examples:
           raw: false
           limit: 20
           fields: "id,updated_at"
+          filter: {"type": "expense"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
@@ -18582,13 +18587,14 @@ examples:
         query:
           raw: false
           fields: "id,updated_at"
+          filter: {"type": "expense"}
         header:
           x-apideck-consumer-id: "test-consumer"
           x-apideck-app-id: "dSBdXd2H6Mqwfg0atXHXYcysLJE9qyn1VwBtXHX"
           x-apideck-service-id: "salesforce"
       responses:
         "200":
-          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "categories", "operation": "one", "data": {"id": "12345", "name": "Insurance", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
+          application/json: {"status_code": 200, "status": "OK", "service": "xero", "resource": "categories", "operation": "one", "data": {"id": "12345", "name": "Insurance", "type": "expense", "status": "active", "row_version": "1-12345", "updated_by": "12345", "created_by": "12345", "updated_at": "2020-09-30T07:43:32.000Z", "created_at": "2020-09-30T07:43:32.000Z", "pass_through": [{"service_id": "<id>", "extend_paths": [{"path": "$.nested.property", "value": {"TaxClassificationRef": {"value": "EUC-99990201-V1-00020000"}}}]}]}}
         "400":
           application/json: {"status_code": 400, "error": "Bad Request", "type_name": "RequestValidationError", "message": "Invalid Params", "detail": "Missing property foobar", "ref": "https://developers.apideck.com/errors#requestvalidationerror"}
         "401":

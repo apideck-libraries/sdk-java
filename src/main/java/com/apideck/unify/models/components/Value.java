@@ -13,10 +13,12 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import java.lang.Boolean;
 import java.lang.Double;
+import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
 import java.util.List;
+import java.util.Map;
 
 @JsonDeserialize(using = Value._Deserializer.class)
 public class Value {
@@ -43,19 +45,14 @@ public class Value {
         return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
     }
 
-    public static Value of(Four value) {
+    public static Value of(Map<String, Object> value) {
         Utils.checkNotNull(value, "value");
-        return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Four>(){}));
+        return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<Map<String, Object>>(){}));
     }
 
-    public static Value of5(List<String> value) {
+    public static Value of(List<Five> value) {
         Utils.checkNotNull(value, "value");
-        return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<String>>(){}));
-    }
-
-    public static Value of6(List<Six> value) {
-        Utils.checkNotNull(value, "value");
-        return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Six>>(){}));
+        return new Value(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Five>>(){}));
     }
     
     /**
@@ -64,9 +61,8 @@ public class Value {
      * <li>{@code java.lang.String}</li>
      * <li>{@code double}</li>
      * <li>{@code boolean}</li>
-     * <li>{@code com.apideck.unify.models.components.Four}</li>
-     * <li>{@code java.util.List<java.lang.String>}</li>
-     * <li>{@code java.util.List<com.apideck.unify.models.components.Six>}</li>
+     * <li>{@code java.util.Map<java.lang.String, java.lang.Object>}</li>
+     * <li>{@code java.util.List<com.apideck.unify.models.components.Five>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -106,12 +102,11 @@ public class Value {
 
         public _Deserializer() {
             super(Value.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Six>>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<List<String>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<List<Five>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<Map<String, Object>>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT),
-                  TypeReferenceWithShape.of(new TypeReference<Four>() {}, JsonShape.DEFAULT));
+                  TypeReferenceWithShape.of(new TypeReference<String>() {}, JsonShape.DEFAULT));
         }
     }
     

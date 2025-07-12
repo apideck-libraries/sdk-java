@@ -49,9 +49,9 @@ public class ConnectionValue {
         return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<java.lang.Boolean>(){}));
     }
 
-    public static ConnectionValue of(List<Value5> value) {
+    public static ConnectionValue of(List<ConnectionValue5> value) {
         Utils.checkNotNull(value, "value");
-        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<Value5>>(){}));
+        return new ConnectionValue(TypedObject.of(value, JsonShape.DEFAULT, new TypeReference<List<ConnectionValue5>>(){}));
     }
     
     /**
@@ -61,7 +61,7 @@ public class ConnectionValue {
      * <li>{@code long}</li>
      * <li>{@code double}</li>
      * <li>{@code boolean}</li>
-     * <li>{@code java.util.List<com.apideck.unify.models.components.Value5>}</li>
+     * <li>{@code java.util.List<com.apideck.unify.models.components.ConnectionValue5>}</li>
      * </ul>
      * 
      * <p>Use {@code instanceof} to determine what type is returned. For example:
@@ -101,7 +101,7 @@ public class ConnectionValue {
 
         public _Deserializer() {
             super(ConnectionValue.class, false,
-                  TypeReferenceWithShape.of(new TypeReference<List<Value5>>() {}, JsonShape.DEFAULT),
+                  TypeReferenceWithShape.of(new TypeReference<List<ConnectionValue5>>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Boolean>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Double>() {}, JsonShape.DEFAULT),
                   TypeReferenceWithShape.of(new TypeReference<Long>() {}, JsonShape.DEFAULT),

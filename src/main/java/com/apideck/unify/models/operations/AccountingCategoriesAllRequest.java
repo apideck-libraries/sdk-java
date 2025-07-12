@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.CategoriesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -13,6 +14,7 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -60,6 +62,12 @@ public class AccountingCategoriesAllRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends CategoriesFilter> filter;
+
     @JsonCreator
     public AccountingCategoriesAllRequest(
             Optional<Boolean> raw,
@@ -68,7 +76,8 @@ public class AccountingCategoriesAllRequest {
             Optional<String> serviceId,
             JsonNullable<String> cursor,
             Optional<Long> limit,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<? extends CategoriesFilter> filter) {
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
@@ -76,6 +85,7 @@ public class AccountingCategoriesAllRequest {
         Utils.checkNotNull(cursor, "cursor");
         Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(filter, "filter");
         this.raw = raw;
         this.consumerId = consumerId;
         this.appId = appId;
@@ -83,12 +93,13 @@ public class AccountingCategoriesAllRequest {
         this.cursor = cursor;
         this.limit = limit;
         this.fields = fields;
+        this.filter = filter;
     }
     
     public AccountingCategoriesAllRequest() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -145,6 +156,15 @@ public class AccountingCategoriesAllRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CategoriesFilter> filter() {
+        return (Optional<CategoriesFilter>) filter;
     }
 
     public static Builder builder() {
@@ -283,6 +303,25 @@ public class AccountingCategoriesAllRequest {
         return this;
     }
 
+    /**
+     * Apply filters
+     */
+    public AccountingCategoriesAllRequest withFilter(CategoriesFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingCategoriesAllRequest withFilter(Optional<? extends CategoriesFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -299,7 +338,8 @@ public class AccountingCategoriesAllRequest {
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.cursor, other.cursor) &&
             Utils.enhancedDeepEquals(this.limit, other.limit) &&
-            Utils.enhancedDeepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
@@ -307,7 +347,7 @@ public class AccountingCategoriesAllRequest {
         return Utils.enhancedHash(
             raw, consumerId, appId,
             serviceId, cursor, limit,
-            fields);
+            fields, filter);
     }
     
     @Override
@@ -319,7 +359,8 @@ public class AccountingCategoriesAllRequest {
                 "serviceId", serviceId,
                 "cursor", cursor,
                 "limit", limit,
-                "fields", fields);
+                "fields", fields,
+                "filter", filter);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -338,6 +379,8 @@ public class AccountingCategoriesAllRequest {
         private Optional<Long> limit;
 
         private JsonNullable<String> fields = JsonNullable.undefined();
+
+        private Optional<? extends CategoriesFilter> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -476,6 +519,25 @@ public class AccountingCategoriesAllRequest {
             return this;
         }
 
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(CategoriesFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends CategoriesFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
         public AccountingCategoriesAllRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -487,7 +549,7 @@ public class AccountingCategoriesAllRequest {
             return new AccountingCategoriesAllRequest(
                 raw, consumerId, appId,
                 serviceId, cursor, limit,
-                fields);
+                fields, filter);
         }
 
 

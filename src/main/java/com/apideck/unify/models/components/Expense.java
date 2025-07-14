@@ -137,6 +137,13 @@ public class Expense {
     @JsonProperty("reference")
     private JsonNullable<String> reference;
 
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_document_url")
+    private JsonNullable<String> sourceDocumentUrl;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("custom_fields")
@@ -210,6 +217,7 @@ public class Expense {
             @JsonProperty("total_amount") JsonNullable<Double> totalAmount,
             @JsonProperty("line_items") List<ExpenseLineItem> lineItems,
             @JsonProperty("reference") JsonNullable<String> reference,
+            @JsonProperty("source_document_url") JsonNullable<String> sourceDocumentUrl,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("updated_at") JsonNullable<OffsetDateTime> updatedAt,
@@ -235,6 +243,7 @@ public class Expense {
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(lineItems, "lineItems");
         Utils.checkNotNull(reference, "reference");
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
         Utils.checkNotNull(customFields, "customFields");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -260,6 +269,7 @@ public class Expense {
         this.totalAmount = totalAmount;
         this.lineItems = lineItems;
         this.reference = reference;
+        this.sourceDocumentUrl = sourceDocumentUrl;
         this.customFields = customFields;
         this.customMappings = customMappings;
         this.updatedAt = updatedAt;
@@ -278,10 +288,10 @@ public class Expense {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            lineItems, JsonNullable.undefined(), Optional.empty(),
+            lineItems, JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -419,6 +429,14 @@ public class Expense {
     @JsonIgnore
     public JsonNullable<String> reference() {
         return reference;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    @JsonIgnore
+    public JsonNullable<String> sourceDocumentUrl() {
+        return sourceDocumentUrl;
     }
 
     @SuppressWarnings("unchecked")
@@ -777,6 +795,24 @@ public class Expense {
         return this;
     }
 
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public Expense withSourceDocumentUrl(String sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+        return this;
+    }
+
+    /**
+     * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+     */
+    public Expense withSourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+        Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+        this.sourceDocumentUrl = sourceDocumentUrl;
+        return this;
+    }
+
     public Expense withCustomFields(List<CustomField> customFields) {
         Utils.checkNotNull(customFields, "customFields");
         this.customFields = Optional.ofNullable(customFields);
@@ -944,6 +980,7 @@ public class Expense {
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
             Utils.enhancedDeepEquals(this.reference, other.reference) &&
+            Utils.enhancedDeepEquals(this.sourceDocumentUrl, other.sourceDocumentUrl) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.updatedAt, other.updatedAt) &&
@@ -962,10 +999,10 @@ public class Expense {
             companyId, departmentId, paymentType,
             currency, currencyRate, type,
             memo, taxRate, totalAmount,
-            lineItems, reference, customFields,
-            customMappings, updatedAt, createdAt,
-            rowVersion, updatedBy, createdBy,
-            passThrough);
+            lineItems, reference, sourceDocumentUrl,
+            customFields, customMappings, updatedAt,
+            createdAt, rowVersion, updatedBy,
+            createdBy, passThrough);
     }
     
     @Override
@@ -988,6 +1025,7 @@ public class Expense {
                 "totalAmount", totalAmount,
                 "lineItems", lineItems,
                 "reference", reference,
+                "sourceDocumentUrl", sourceDocumentUrl,
                 "customFields", customFields,
                 "customMappings", customMappings,
                 "updatedAt", updatedAt,
@@ -1034,6 +1072,8 @@ public class Expense {
         private List<ExpenseLineItem> lineItems;
 
         private JsonNullable<String> reference = JsonNullable.undefined();
+
+        private JsonNullable<String> sourceDocumentUrl = JsonNullable.undefined();
 
         private Optional<? extends List<CustomField>> customFields = Optional.empty();
 
@@ -1355,6 +1395,25 @@ public class Expense {
         }
 
 
+        /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(String sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = JsonNullable.of(sourceDocumentUrl);
+            return this;
+        }
+
+        /**
+         * URL link to a source document - shown as 'Go to [appName]' in the downstream app. Currently only supported for Xero.
+         */
+        public Builder sourceDocumentUrl(JsonNullable<String> sourceDocumentUrl) {
+            Utils.checkNotNull(sourceDocumentUrl, "sourceDocumentUrl");
+            this.sourceDocumentUrl = sourceDocumentUrl;
+            return this;
+        }
+
+
         public Builder customFields(List<CustomField> customFields) {
             Utils.checkNotNull(customFields, "customFields");
             this.customFields = Optional.ofNullable(customFields);
@@ -1508,10 +1567,10 @@ public class Expense {
                 companyId, departmentId, paymentType,
                 currency, currencyRate, type,
                 memo, taxRate, totalAmount,
-                lineItems, reference, customFields,
-                customMappings, updatedAt, createdAt,
-                rowVersion, updatedBy, createdBy,
-                passThrough);
+                lineItems, reference, sourceDocumentUrl,
+                customFields, customMappings, updatedAt,
+                createdAt, rowVersion, updatedBy,
+                createdBy, passThrough);
         }
 
     }

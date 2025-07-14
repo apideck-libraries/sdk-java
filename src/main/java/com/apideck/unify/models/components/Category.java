@@ -36,6 +36,13 @@ public class Category {
     private Optional<String> name;
 
     /**
+     * The type of the category.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("type")
+    private Optional<? extends CategoryType> type;
+
+    /**
      * Based on the status some functionality is enabled or disabled.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -95,6 +102,7 @@ public class Category {
     public Category(
             @JsonProperty("id") Optional<String> id,
             @JsonProperty("name") Optional<String> name,
+            @JsonProperty("type") Optional<? extends CategoryType> type,
             @JsonProperty("status") Optional<? extends CategoryStatus> status,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("row_version") JsonNullable<String> rowVersion,
@@ -105,6 +113,7 @@ public class Category {
             @JsonProperty("pass_through") Optional<? extends List<PassThroughBody>> passThrough) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(type, "type");
         Utils.checkNotNull(status, "status");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(rowVersion, "rowVersion");
@@ -115,6 +124,7 @@ public class Category {
         Utils.checkNotNull(passThrough, "passThrough");
         this.id = id;
         this.name = name;
+        this.type = type;
         this.status = status;
         this.customMappings = customMappings;
         this.rowVersion = rowVersion;
@@ -127,9 +137,9 @@ public class Category {
     
     public Category() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -146,6 +156,15 @@ public class Category {
     @JsonIgnore
     public Optional<String> name() {
         return name;
+    }
+
+    /**
+     * The type of the category.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CategoryType> type() {
+        return (Optional<CategoryType>) type;
     }
 
     /**
@@ -255,6 +274,25 @@ public class Category {
     public Category withName(Optional<String> name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
+        return this;
+    }
+
+    /**
+     * The type of the category.
+     */
+    public Category withType(CategoryType type) {
+        Utils.checkNotNull(type, "type");
+        this.type = Optional.ofNullable(type);
+        return this;
+    }
+
+
+    /**
+     * The type of the category.
+     */
+    public Category withType(Optional<? extends CategoryType> type) {
+        Utils.checkNotNull(type, "type");
+        this.type = type;
         return this;
     }
 
@@ -416,6 +454,7 @@ public class Category {
         return 
             Utils.enhancedDeepEquals(this.id, other.id) &&
             Utils.enhancedDeepEquals(this.name, other.name) &&
+            Utils.enhancedDeepEquals(this.type, other.type) &&
             Utils.enhancedDeepEquals(this.status, other.status) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion) &&
@@ -429,10 +468,10 @@ public class Category {
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            id, name, status,
-            customMappings, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            id, name, type,
+            status, customMappings, rowVersion,
+            updatedBy, createdBy, updatedAt,
+            createdAt, passThrough);
     }
     
     @Override
@@ -440,6 +479,7 @@ public class Category {
         return Utils.toString(Category.class,
                 "id", id,
                 "name", name,
+                "type", type,
                 "status", status,
                 "customMappings", customMappings,
                 "rowVersion", rowVersion,
@@ -456,6 +496,8 @@ public class Category {
         private Optional<String> id = Optional.empty();
 
         private Optional<String> name = Optional.empty();
+
+        private Optional<? extends CategoryType> type = Optional.empty();
 
         private Optional<? extends CategoryStatus> status = Optional.empty();
 
@@ -512,6 +554,25 @@ public class Category {
         public Builder name(Optional<String> name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
+            return this;
+        }
+
+
+        /**
+         * The type of the category.
+         */
+        public Builder type(CategoryType type) {
+            Utils.checkNotNull(type, "type");
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * The type of the category.
+         */
+        public Builder type(Optional<? extends CategoryType> type) {
+            Utils.checkNotNull(type, "type");
+            this.type = type;
             return this;
         }
 
@@ -670,10 +731,10 @@ public class Category {
         public Category build() {
 
             return new Category(
-                id, name, status,
-                customMappings, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                id, name, type,
+                status, customMappings, rowVersion,
+                updatedBy, createdBy, updatedAt,
+                createdAt, passThrough);
         }
 
     }

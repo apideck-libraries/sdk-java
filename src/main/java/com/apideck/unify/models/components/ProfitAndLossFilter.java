@@ -31,21 +31,31 @@ public class ProfitAndLossFilter {
     @SpeakeasyMetadata("queryParam:name=end_date")
     private Optional<String> endDate;
 
+    /**
+     * Filter by location id
+     */
+    @SpeakeasyMetadata("queryParam:name=location_id")
+    private Optional<String> locationId;
+
     @JsonCreator
     public ProfitAndLossFilter(
             Optional<String> customerId,
             Optional<String> startDate,
-            Optional<String> endDate) {
+            Optional<String> endDate,
+            Optional<String> locationId) {
         Utils.checkNotNull(customerId, "customerId");
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
+        Utils.checkNotNull(locationId, "locationId");
         this.customerId = customerId;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.locationId = locationId;
     }
     
     public ProfitAndLossFilter() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(),
+            Optional.empty());
     }
 
     /**
@@ -70,6 +80,14 @@ public class ProfitAndLossFilter {
     @JsonIgnore
     public Optional<String> endDate() {
         return endDate;
+    }
+
+    /**
+     * Filter by location id
+     */
+    @JsonIgnore
+    public Optional<String> locationId() {
+        return locationId;
     }
 
     public static Builder builder() {
@@ -134,6 +152,25 @@ public class ProfitAndLossFilter {
         return this;
     }
 
+    /**
+     * Filter by location id
+     */
+    public ProfitAndLossFilter withLocationId(String locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = Optional.ofNullable(locationId);
+        return this;
+    }
+
+
+    /**
+     * Filter by location id
+     */
+    public ProfitAndLossFilter withLocationId(Optional<String> locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = locationId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -146,13 +183,15 @@ public class ProfitAndLossFilter {
         return 
             Utils.enhancedDeepEquals(this.customerId, other.customerId) &&
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
-            Utils.enhancedDeepEquals(this.endDate, other.endDate);
+            Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
-            customerId, startDate, endDate);
+            customerId, startDate, endDate,
+            locationId);
     }
     
     @Override
@@ -160,7 +199,8 @@ public class ProfitAndLossFilter {
         return Utils.toString(ProfitAndLossFilter.class,
                 "customerId", customerId,
                 "startDate", startDate,
-                "endDate", endDate);
+                "endDate", endDate,
+                "locationId", locationId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -171,6 +211,8 @@ public class ProfitAndLossFilter {
         private Optional<String> startDate = Optional.empty();
 
         private Optional<String> endDate = Optional.empty();
+
+        private Optional<String> locationId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -233,10 +275,30 @@ public class ProfitAndLossFilter {
             return this;
         }
 
+
+        /**
+         * Filter by location id
+         */
+        public Builder locationId(String locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = Optional.ofNullable(locationId);
+            return this;
+        }
+
+        /**
+         * Filter by location id
+         */
+        public Builder locationId(Optional<String> locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = locationId;
+            return this;
+        }
+
         public ProfitAndLossFilter build() {
 
             return new ProfitAndLossFilter(
-                customerId, startDate, endDate);
+                customerId, startDate, endDate,
+                locationId);
         }
 
     }

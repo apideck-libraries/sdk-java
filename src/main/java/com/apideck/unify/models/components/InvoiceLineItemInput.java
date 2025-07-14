@@ -108,6 +108,13 @@ public class InvoiceLineItemInput {
     private JsonNullable<Double> discountAmount;
 
     /**
+     * ID of the category of the line item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("category_id")
+    private JsonNullable<String> categoryId;
+
+    /**
      * The ID of the location
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -170,6 +177,7 @@ public class InvoiceLineItemInput {
             @JsonProperty("unit_of_measure") JsonNullable<String> unitOfMeasure,
             @JsonProperty("discount_percentage") JsonNullable<Double> discountPercentage,
             @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
+            @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
@@ -191,6 +199,7 @@ public class InvoiceLineItemInput {
         Utils.checkNotNull(unitOfMeasure, "unitOfMeasure");
         Utils.checkNotNull(discountPercentage, "discountPercentage");
         Utils.checkNotNull(discountAmount, "discountAmount");
+        Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
         Utils.checkNotNull(item, "item");
@@ -212,6 +221,7 @@ public class InvoiceLineItemInput {
         this.unitOfMeasure = unitOfMeasure;
         this.discountPercentage = discountPercentage;
         this.discountAmount = discountAmount;
+        this.categoryId = categoryId;
         this.locationId = locationId;
         this.departmentId = departmentId;
         this.item = item;
@@ -228,8 +238,9 @@ public class InvoiceLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -329,6 +340,14 @@ public class InvoiceLineItemInput {
     @JsonIgnore
     public JsonNullable<Double> discountAmount() {
         return discountAmount;
+    }
+
+    /**
+     * ID of the category of the line item
+     */
+    @JsonIgnore
+    public JsonNullable<String> categoryId() {
+        return categoryId;
     }
 
     /**
@@ -617,6 +636,24 @@ public class InvoiceLineItemInput {
     }
 
     /**
+     * ID of the category of the line item
+     */
+    public InvoiceLineItemInput withCategoryId(String categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = JsonNullable.of(categoryId);
+        return this;
+    }
+
+    /**
+     * ID of the category of the line item
+     */
+    public InvoiceLineItemInput withCategoryId(JsonNullable<String> categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = categoryId;
+        return this;
+    }
+
+    /**
      * The ID of the location
      */
     public InvoiceLineItemInput withLocationId(String locationId) {
@@ -762,6 +799,7 @@ public class InvoiceLineItemInput {
             Utils.enhancedDeepEquals(this.unitOfMeasure, other.unitOfMeasure) &&
             Utils.enhancedDeepEquals(this.discountPercentage, other.discountPercentage) &&
             Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
+            Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
@@ -779,9 +817,10 @@ public class InvoiceLineItemInput {
             lineNumber, description, type,
             taxAmount, totalAmount, quantity,
             unitPrice, unitOfMeasure, discountPercentage,
-            discountAmount, locationId, departmentId,
-            item, taxRate, trackingCategories,
-            ledgerAccount, customFields, rowVersion);
+            discountAmount, categoryId, locationId,
+            departmentId, item, taxRate,
+            trackingCategories, ledgerAccount, customFields,
+            rowVersion);
     }
     
     @Override
@@ -800,6 +839,7 @@ public class InvoiceLineItemInput {
                 "unitOfMeasure", unitOfMeasure,
                 "discountPercentage", discountPercentage,
                 "discountAmount", discountAmount,
+                "categoryId", categoryId,
                 "locationId", locationId,
                 "departmentId", departmentId,
                 "item", item,
@@ -838,6 +878,8 @@ public class InvoiceLineItemInput {
         private JsonNullable<Double> discountPercentage = JsonNullable.undefined();
 
         private JsonNullable<Double> discountAmount = JsonNullable.undefined();
+
+        private JsonNullable<String> categoryId = JsonNullable.undefined();
 
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
@@ -1096,6 +1138,25 @@ public class InvoiceLineItemInput {
 
 
         /**
+         * ID of the category of the line item
+         */
+        public Builder categoryId(String categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = JsonNullable.of(categoryId);
+            return this;
+        }
+
+        /**
+         * ID of the category of the line item
+         */
+        public Builder categoryId(JsonNullable<String> categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = categoryId;
+            return this;
+        }
+
+
+        /**
          * The ID of the location
          */
         public Builder locationId(String locationId) {
@@ -1229,9 +1290,10 @@ public class InvoiceLineItemInput {
                 lineNumber, description, type,
                 taxAmount, totalAmount, quantity,
                 unitPrice, unitOfMeasure, discountPercentage,
-                discountAmount, locationId, departmentId,
-                item, taxRate, trackingCategories,
-                ledgerAccount, customFields, rowVersion);
+                discountAmount, categoryId, locationId,
+                departmentId, item, taxRate,
+                trackingCategories, ledgerAccount, customFields,
+                rowVersion);
         }
 
     }

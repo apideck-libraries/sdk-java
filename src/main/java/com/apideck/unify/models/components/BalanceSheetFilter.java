@@ -43,25 +43,34 @@ public class BalanceSheetFilter {
     @SpeakeasyMetadata("queryParam:name=period_type")
     private Optional<? extends PeriodType> periodType;
 
+    /**
+     * The ID of the location to include in the resource.
+     */
+    @SpeakeasyMetadata("queryParam:name=location_id")
+    private Optional<String> locationId;
+
     @JsonCreator
     public BalanceSheetFilter(
             Optional<String> startDate,
             Optional<String> endDate,
             Optional<Long> periodCount,
-            Optional<? extends PeriodType> periodType) {
+            Optional<? extends PeriodType> periodType,
+            Optional<String> locationId) {
         Utils.checkNotNull(startDate, "startDate");
         Utils.checkNotNull(endDate, "endDate");
         Utils.checkNotNull(periodCount, "periodCount");
         Utils.checkNotNull(periodType, "periodType");
+        Utils.checkNotNull(locationId, "locationId");
         this.startDate = startDate;
         this.endDate = endDate;
         this.periodCount = periodCount;
         this.periodType = periodType;
+        this.locationId = locationId;
     }
     
     public BalanceSheetFilter() {
         this(Optional.empty(), Optional.empty(), Optional.empty(),
-            Optional.empty());
+            Optional.empty(), Optional.empty());
     }
 
     /**
@@ -98,6 +107,14 @@ public class BalanceSheetFilter {
     @JsonIgnore
     public Optional<PeriodType> periodType() {
         return (Optional<PeriodType>) periodType;
+    }
+
+    /**
+     * The ID of the location to include in the resource.
+     */
+    @JsonIgnore
+    public Optional<String> locationId() {
+        return locationId;
     }
 
     public static Builder builder() {
@@ -187,6 +204,25 @@ public class BalanceSheetFilter {
         return this;
     }
 
+    /**
+     * The ID of the location to include in the resource.
+     */
+    public BalanceSheetFilter withLocationId(String locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = Optional.ofNullable(locationId);
+        return this;
+    }
+
+
+    /**
+     * The ID of the location to include in the resource.
+     */
+    public BalanceSheetFilter withLocationId(Optional<String> locationId) {
+        Utils.checkNotNull(locationId, "locationId");
+        this.locationId = locationId;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -200,14 +236,15 @@ public class BalanceSheetFilter {
             Utils.enhancedDeepEquals(this.startDate, other.startDate) &&
             Utils.enhancedDeepEquals(this.endDate, other.endDate) &&
             Utils.enhancedDeepEquals(this.periodCount, other.periodCount) &&
-            Utils.enhancedDeepEquals(this.periodType, other.periodType);
+            Utils.enhancedDeepEquals(this.periodType, other.periodType) &&
+            Utils.enhancedDeepEquals(this.locationId, other.locationId);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             startDate, endDate, periodCount,
-            periodType);
+            periodType, locationId);
     }
     
     @Override
@@ -216,7 +253,8 @@ public class BalanceSheetFilter {
                 "startDate", startDate,
                 "endDate", endDate,
                 "periodCount", periodCount,
-                "periodType", periodType);
+                "periodType", periodType,
+                "locationId", locationId);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -230,6 +268,8 @@ public class BalanceSheetFilter {
         private Optional<Long> periodCount = Optional.empty();
 
         private Optional<? extends PeriodType> periodType = Optional.empty();
+
+        private Optional<String> locationId = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -317,11 +357,30 @@ public class BalanceSheetFilter {
             return this;
         }
 
+
+        /**
+         * The ID of the location to include in the resource.
+         */
+        public Builder locationId(String locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = Optional.ofNullable(locationId);
+            return this;
+        }
+
+        /**
+         * The ID of the location to include in the resource.
+         */
+        public Builder locationId(Optional<String> locationId) {
+            Utils.checkNotNull(locationId, "locationId");
+            this.locationId = locationId;
+            return this;
+        }
+
         public BalanceSheetFilter build() {
 
             return new BalanceSheetFilter(
                 startDate, endDate, periodCount,
-                periodType);
+                periodType, locationId);
         }
 
     }

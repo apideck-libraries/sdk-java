@@ -3,6 +3,7 @@
  */
 package com.apideck.unify.models.operations;
 
+import com.apideck.unify.models.components.CategoriesFilter;
 import com.apideck.unify.utils.LazySingletonValue;
 import com.apideck.unify.utils.SpeakeasyMetadata;
 import com.apideck.unify.utils.Utils;
@@ -12,6 +13,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -53,6 +55,12 @@ public class AccountingCategoriesOneRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=fields")
     private JsonNullable<String> fields;
 
+    /**
+     * Apply filters
+     */
+    @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=filter")
+    private Optional<? extends CategoriesFilter> filter;
+
     @JsonCreator
     public AccountingCategoriesOneRequest(
             String id,
@@ -60,25 +68,29 @@ public class AccountingCategoriesOneRequest {
             Optional<String> appId,
             Optional<String> serviceId,
             Optional<Boolean> raw,
-            JsonNullable<String> fields) {
+            JsonNullable<String> fields,
+            Optional<? extends CategoriesFilter> filter) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(consumerId, "consumerId");
         Utils.checkNotNull(appId, "appId");
         Utils.checkNotNull(serviceId, "serviceId");
         Utils.checkNotNull(raw, "raw");
         Utils.checkNotNull(fields, "fields");
+        Utils.checkNotNull(filter, "filter");
         this.id = id;
         this.consumerId = consumerId;
         this.appId = appId;
         this.serviceId = serviceId;
         this.raw = raw;
         this.fields = fields;
+        this.filter = filter;
     }
     
     public AccountingCategoriesOneRequest(
             String id) {
         this(id, Optional.empty(), Optional.empty(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -127,6 +139,15 @@ public class AccountingCategoriesOneRequest {
     @JsonIgnore
     public JsonNullable<String> fields() {
         return fields;
+    }
+
+    /**
+     * Apply filters
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CategoriesFilter> filter() {
+        return (Optional<CategoriesFilter>) filter;
     }
 
     public static Builder builder() {
@@ -237,6 +258,25 @@ public class AccountingCategoriesOneRequest {
         return this;
     }
 
+    /**
+     * Apply filters
+     */
+    public AccountingCategoriesOneRequest withFilter(CategoriesFilter filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = Optional.ofNullable(filter);
+        return this;
+    }
+
+
+    /**
+     * Apply filters
+     */
+    public AccountingCategoriesOneRequest withFilter(Optional<? extends CategoriesFilter> filter) {
+        Utils.checkNotNull(filter, "filter");
+        this.filter = filter;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -252,14 +292,16 @@ public class AccountingCategoriesOneRequest {
             Utils.enhancedDeepEquals(this.appId, other.appId) &&
             Utils.enhancedDeepEquals(this.serviceId, other.serviceId) &&
             Utils.enhancedDeepEquals(this.raw, other.raw) &&
-            Utils.enhancedDeepEquals(this.fields, other.fields);
+            Utils.enhancedDeepEquals(this.fields, other.fields) &&
+            Utils.enhancedDeepEquals(this.filter, other.filter);
     }
     
     @Override
     public int hashCode() {
         return Utils.enhancedHash(
             id, consumerId, appId,
-            serviceId, raw, fields);
+            serviceId, raw, fields,
+            filter);
     }
     
     @Override
@@ -270,7 +312,8 @@ public class AccountingCategoriesOneRequest {
                 "appId", appId,
                 "serviceId", serviceId,
                 "raw", raw,
-                "fields", fields);
+                "fields", fields,
+                "filter", filter);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -287,6 +330,8 @@ public class AccountingCategoriesOneRequest {
         private Optional<Boolean> raw;
 
         private JsonNullable<String> fields = JsonNullable.undefined();
+
+        private Optional<? extends CategoriesFilter> filter = Optional.empty();
 
         private Builder() {
           // force use of static builder() method
@@ -397,6 +442,25 @@ public class AccountingCategoriesOneRequest {
             return this;
         }
 
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(CategoriesFilter filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = Optional.ofNullable(filter);
+            return this;
+        }
+
+        /**
+         * Apply filters
+         */
+        public Builder filter(Optional<? extends CategoriesFilter> filter) {
+            Utils.checkNotNull(filter, "filter");
+            this.filter = filter;
+            return this;
+        }
+
         public AccountingCategoriesOneRequest build() {
             if (raw == null) {
                 raw = _SINGLETON_VALUE_Raw.value();
@@ -404,7 +468,8 @@ public class AccountingCategoriesOneRequest {
 
             return new AccountingCategoriesOneRequest(
                 id, consumerId, appId,
-                serviceId, raw, fields);
+                serviceId, raw, fields,
+                filter);
         }
 
 

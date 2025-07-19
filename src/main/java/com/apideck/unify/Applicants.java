@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AtsApplicantsOneOperation;
 import com.apideck.unify.operations.AtsApplicantsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Applicants {
     Applicants(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Applicants
      * 
@@ -71,13 +71,9 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsAllResponse list(
-            AtsApplicantsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicantsAllResponse list(AtsApplicantsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAllRequest, AtsApplicantsAllResponse> operation
-              = new AtsApplicantsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicantsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsAddResponse create(
-            AtsApplicantsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicantsAddResponse create(AtsApplicantsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsAddRequest, AtsApplicantsAddResponse> operation
-              = new AtsApplicantsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicantsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsOneResponse get(
-            AtsApplicantsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicantsOneResponse get(AtsApplicantsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsOneRequest, AtsApplicantsOneResponse> operation
-              = new AtsApplicantsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicantsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsUpdateResponse update(
-            AtsApplicantsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicantsUpdateResponse update(AtsApplicantsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsUpdateRequest, AtsApplicantsUpdateResponse> operation
-              = new AtsApplicantsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicantsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Applicants {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicantsDeleteResponse delete(
-            AtsApplicantsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicantsDeleteResponse delete(AtsApplicantsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicantsDeleteRequest, AtsApplicantsDeleteResponse> operation
-              = new AtsApplicantsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicantsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

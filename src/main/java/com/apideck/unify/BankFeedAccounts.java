@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingBankFeedAccountsOneOperation;
 import com.apideck.unify.operations.AccountingBankFeedAccountsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class BankFeedAccounts {
     BankFeedAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Bank Feed Accounts
      * 
@@ -71,13 +71,9 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsAllResponse list(
-            AccountingBankFeedAccountsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBankFeedAccountsAllResponse list(AccountingBankFeedAccountsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsAddResponse create(
-            AccountingBankFeedAccountsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBankFeedAccountsAddResponse create(AccountingBankFeedAccountsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsAddRequest, AccountingBankFeedAccountsAddResponse> operation
-              = new AccountingBankFeedAccountsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsOneResponse get(
-            AccountingBankFeedAccountsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBankFeedAccountsOneResponse get(AccountingBankFeedAccountsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsOneRequest, AccountingBankFeedAccountsOneResponse> operation
-              = new AccountingBankFeedAccountsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsUpdateResponse update(
-            AccountingBankFeedAccountsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBankFeedAccountsUpdateResponse update(AccountingBankFeedAccountsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsUpdateRequest, AccountingBankFeedAccountsUpdateResponse> operation
-              = new AccountingBankFeedAccountsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class BankFeedAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBankFeedAccountsDeleteResponse delete(
-            AccountingBankFeedAccountsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBankFeedAccountsDeleteResponse delete(AccountingBankFeedAccountsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
-              = new AccountingBankFeedAccountsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

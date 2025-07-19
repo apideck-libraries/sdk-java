@@ -12,7 +12,6 @@ import com.apideck.unify.operations.VaultConsumerRequestCountsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class ConsumerRequestCounts {
     ConsumerRequestCounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Consumer request counts
      * 
@@ -45,8 +45,7 @@ public class ConsumerRequestCounts {
      * @throws Exception if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
-            String consumerId,
-            String startDatetime,
+            String consumerId, String startDatetime,
             String endDatetime) throws Exception {
         return list(Optional.empty(), consumerId, startDatetime,
             endDatetime, Optional.empty());
@@ -66,10 +65,8 @@ public class ConsumerRequestCounts {
      * @throws Exception if the API call fails
      */
     public VaultConsumerRequestCountsAllResponse list(
-            Optional<String> appId,
-            String consumerId,
-            String startDatetime,
-            String endDatetime,
+            Optional<String> appId, String consumerId,
+            String startDatetime, String endDatetime,
             Optional<Options> options) throws Exception {
         VaultConsumerRequestCountsAllRequest request =
             VaultConsumerRequestCountsAllRequest
@@ -80,9 +77,7 @@ public class ConsumerRequestCounts {
                 .endDatetime(endDatetime)
                 .build();
         RequestOperation<VaultConsumerRequestCountsAllRequest, VaultConsumerRequestCountsAllResponse> operation
-              = new VaultConsumerRequestCountsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConsumerRequestCountsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

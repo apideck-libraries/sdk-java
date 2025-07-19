@@ -47,9 +47,7 @@ public class CrmUsersUpdateRequestBuilder {
             .build());
 
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
-              = new CrmUsersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

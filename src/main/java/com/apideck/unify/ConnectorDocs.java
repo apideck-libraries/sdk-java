@@ -12,7 +12,6 @@ import com.apideck.unify.operations.ConnectorConnectorDocsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class ConnectorDocs {
     ConnectorDocs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get Connector Doc content
      * 
@@ -43,9 +43,7 @@ public class ConnectorDocs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorConnectorDocsOneResponse get(
-            String id,
-            String docId) throws Exception {
+    public ConnectorConnectorDocsOneResponse get(String id, String docId) throws Exception {
         return get(Optional.empty(), id, docId,
             Optional.empty());
     }
@@ -63,10 +61,8 @@ public class ConnectorDocs {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorDocsOneResponse get(
-            Optional<String> appId,
-            String id,
-            String docId,
-            Optional<Options> options) throws Exception {
+            Optional<String> appId, String id,
+            String docId, Optional<Options> options) throws Exception {
         ConnectorConnectorDocsOneRequest request =
             ConnectorConnectorDocsOneRequest
                 .builder()
@@ -75,9 +71,7 @@ public class ConnectorDocs {
                 .docId(docId)
                 .build();
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
-              = new ConnectorConnectorDocsOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorDocsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

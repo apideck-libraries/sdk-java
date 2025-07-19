@@ -110,9 +110,7 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConsumersAllOperation(sdkConfiguration, options);
         VaultConsumersAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -137,9 +135,7 @@ public class VaultConsumersAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersAllRequest, VaultConsumersAllResponse> operation
-              = new VaultConsumersAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConsumersAllOperation(sdkConfiguration, options);
         VaultConsumersAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

@@ -58,9 +58,7 @@ public class HrisTimeOffRequestsAllRequestBuilder {
             .build());
 
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
-              = new HrisTimeOffRequestsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class HrisTimeOffRequestsAllRequestBuilder {
             .build());
 
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
-              = new HrisTimeOffRequestsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

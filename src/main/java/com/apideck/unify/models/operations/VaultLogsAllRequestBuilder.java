@@ -58,9 +58,7 @@ public class VaultLogsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultLogsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class VaultLogsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultLogsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

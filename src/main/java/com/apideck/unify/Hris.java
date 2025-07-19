@@ -5,13 +5,13 @@ package com.apideck.unify;
 
 public class Hris {
     private final SDKConfiguration sdkConfiguration;
-private final Employees employees;
-private final ApideckCompanies companies;
-private final ApideckDepartments departments;
-private final Payrolls payrolls;
-private final EmployeePayrolls employeePayrolls;
-private final EmployeeSchedules employeeSchedules;
-private final TimeOffRequests timeOffRequests;
+    private final Employees employees;
+    private final ApideckCompanies companies;
+    private final ApideckDepartments departments;
+    private final Payrolls payrolls;
+    private final EmployeePayrolls employeePayrolls;
+    private final EmployeeSchedules employeeSchedules;
+    private final TimeOffRequests timeOffRequests;
 
     Hris(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -23,25 +23,33 @@ private final TimeOffRequests timeOffRequests;
         this.employeeSchedules = new EmployeeSchedules(this.sdkConfiguration);
         this.timeOffRequests = new TimeOffRequests(this.sdkConfiguration);
     }
-public final Employees employees() {
+
+    public final Employees employees() {
         return employees;
     }
-public final ApideckCompanies companies() {
+
+    public final ApideckCompanies companies() {
         return companies;
     }
-public final ApideckDepartments departments() {
+
+    public final ApideckDepartments departments() {
         return departments;
     }
-public final Payrolls payrolls() {
+
+    public final Payrolls payrolls() {
         return payrolls;
     }
-public final EmployeePayrolls employeePayrolls() {
+
+    public final EmployeePayrolls employeePayrolls() {
         return employeePayrolls;
     }
-public final EmployeeSchedules employeeSchedules() {
+
+    public final EmployeeSchedules employeeSchedules() {
         return employeeSchedules;
     }
-public final TimeOffRequests timeOffRequests() {
+
+    public final TimeOffRequests timeOffRequests() {
         return timeOffRequests;
     }
+
 }

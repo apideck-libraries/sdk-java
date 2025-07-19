@@ -47,9 +47,7 @@ public class AccountingLedgerAccountsUpdateRequestBuilder {
             .build());
 
         RequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
-              = new AccountingLedgerAccountsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

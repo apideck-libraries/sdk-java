@@ -47,9 +47,7 @@ public class CrmUsersDeleteRequestBuilder {
             .build());
 
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
-              = new CrmUsersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

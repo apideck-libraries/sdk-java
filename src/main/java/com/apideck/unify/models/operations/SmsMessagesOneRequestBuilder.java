@@ -47,9 +47,7 @@ public class SmsMessagesOneRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
-              = new SmsMessagesOneOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -15,7 +15,6 @@ import com.apideck.unify.operations.VaultConnectionSettingsAllOperation;
 import com.apideck.unify.operations.VaultConnectionSettingsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class ConnectionSettings {
     ConnectionSettings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get resource settings
      * 
@@ -59,13 +59,9 @@ public class ConnectionSettings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionSettingsAllResponse list(
-            VaultConnectionSettingsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionSettingsAllResponse list(VaultConnectionSettingsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
-              = new VaultConnectionSettingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionSettingsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class ConnectionSettings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionSettingsUpdateResponse update(
-            VaultConnectionSettingsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionSettingsUpdateResponse update(VaultConnectionSettingsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionSettingsUpdateRequest, VaultConnectionSettingsUpdateResponse> operation
-              = new VaultConnectionSettingsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionSettingsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

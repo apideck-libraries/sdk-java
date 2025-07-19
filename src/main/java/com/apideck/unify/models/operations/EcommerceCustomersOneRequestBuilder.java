@@ -47,9 +47,7 @@ public class EcommerceCustomersOneRequestBuilder {
             .build());
 
         RequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
-              = new EcommerceCustomersOneOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceCustomersOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

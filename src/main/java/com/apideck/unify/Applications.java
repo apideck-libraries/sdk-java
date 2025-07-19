@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AtsApplicationsOneOperation;
 import com.apideck.unify.operations.AtsApplicationsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Applications {
     Applications(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Applications
      * 
@@ -71,13 +71,9 @@ public class Applications {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicationsAllResponse list(
-            AtsApplicationsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicationsAllResponse list(AtsApplicationsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAllRequest, AtsApplicationsAllResponse> operation
-              = new AtsApplicationsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Applications {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicationsAddResponse create(
-            AtsApplicationsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicationsAddResponse create(AtsApplicationsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsAddRequest, AtsApplicationsAddResponse> operation
-              = new AtsApplicationsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Applications {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicationsOneResponse get(
-            AtsApplicationsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicationsOneResponse get(AtsApplicationsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsOneRequest, AtsApplicationsOneResponse> operation
-              = new AtsApplicationsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Applications {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicationsUpdateResponse update(
-            AtsApplicationsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicationsUpdateResponse update(AtsApplicationsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsUpdateRequest, AtsApplicationsUpdateResponse> operation
-              = new AtsApplicationsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Applications {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsApplicationsDeleteResponse delete(
-            AtsApplicationsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsApplicationsDeleteResponse delete(AtsApplicationsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
-              = new AtsApplicationsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

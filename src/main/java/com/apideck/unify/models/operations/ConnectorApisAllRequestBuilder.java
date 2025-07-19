@@ -125,9 +125,7 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAllOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApisAllOperation(sdkConfiguration, options);
         ConnectorApisAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -152,9 +150,7 @@ public class ConnectorApisAllRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAllOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApisAllOperation(sdkConfiguration, options);
         ConnectorApisAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

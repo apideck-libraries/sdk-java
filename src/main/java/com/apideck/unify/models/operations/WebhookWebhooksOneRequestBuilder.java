@@ -70,9 +70,7 @@ public class WebhookWebhooksOneRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksOneRequest, WebhookWebhooksOneResponse> operation
-              = new WebhookWebhooksOneOperation(
-                sdkConfiguration,
-                options);
+              = new WebhookWebhooksOneOperation(sdkConfiguration, options);
         WebhookWebhooksOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

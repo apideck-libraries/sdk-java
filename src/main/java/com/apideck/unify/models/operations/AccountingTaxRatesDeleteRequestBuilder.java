@@ -47,9 +47,7 @@ public class AccountingTaxRatesDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

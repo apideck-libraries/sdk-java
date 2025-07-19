@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 38254260-287a-40b6-9ac5-c2fcb654c9cc
 management:
-  docChecksum: a309a85446f6cd9732ce34745b5f0bbd
-  docVersion: 10.18.2
-  speakeasyVersion: 1.581.0
-  generationVersion: 2.656.5
-  releaseVersion: 0.18.0
-  configChecksum: c701cd6040d8d09a52b9cd461fe0863c
+  docChecksum: 1cdf4ae41061f1f4436b2dd63e53c696
+  docVersion: 10.18.3
+  speakeasyVersion: 1.583.0
+  generationVersion: 2.658.3
+  releaseVersion: 0.18.1
+  configChecksum: db2ded9447f05b7708dbd10b6d79c92f
   repoURL: https://github.com/apideck-libraries/sdk-java.git
   published: true
 features:
@@ -678,6 +678,8 @@ generatedFiles:
   - docs/models/components/PurchaseOrdersFilter.md
   - docs/models/components/PurchaseOrdersSort.md
   - docs/models/components/PurchaseOrdersSortBy.md
+  - docs/models/components/RebillStatus.md
+  - docs/models/components/Rebilling.md
   - docs/models/components/Reports.md
   - docs/models/components/RequestCountAllocation.md
   - docs/models/components/RequestRate.md
@@ -2246,6 +2248,8 @@ generatedFiles:
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersFilter.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersSort.java
   - src/main/java/com/apideck/unify/models/components/PurchaseOrdersSortBy.java
+  - src/main/java/com/apideck/unify/models/components/RebillStatus.java
+  - src/main/java/com/apideck/unify/models/components/Rebilling.java
   - src/main/java/com/apideck/unify/models/components/Reports.java
   - src/main/java/com/apideck/unify/models/components/RequestCountAllocation.java
   - src/main/java/com/apideck/unify/models/components/RequestRate.java

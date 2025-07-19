@@ -47,9 +47,7 @@ public class AccountingCreditNotesUpdateRequestBuilder {
             .build());
 
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
-              = new AccountingCreditNotesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

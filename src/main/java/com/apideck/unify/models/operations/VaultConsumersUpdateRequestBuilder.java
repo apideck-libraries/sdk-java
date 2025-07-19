@@ -79,9 +79,7 @@ public class VaultConsumersUpdateRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersUpdateRequest, VaultConsumersUpdateResponse> operation
-              = new VaultConsumersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConsumersUpdateOperation(sdkConfiguration, options);
         VaultConsumersUpdateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

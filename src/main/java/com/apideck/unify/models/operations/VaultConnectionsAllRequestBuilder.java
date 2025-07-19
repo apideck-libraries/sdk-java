@@ -105,9 +105,7 @@ public class VaultConnectionsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsAllOperation(sdkConfiguration, options);
         VaultConnectionsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

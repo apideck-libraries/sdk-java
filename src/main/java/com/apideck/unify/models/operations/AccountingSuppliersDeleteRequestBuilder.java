@@ -47,9 +47,7 @@ public class AccountingSuppliersDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingSuppliersDeleteRequest, AccountingSuppliersDeleteResponse> operation
-              = new AccountingSuppliersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSuppliersDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

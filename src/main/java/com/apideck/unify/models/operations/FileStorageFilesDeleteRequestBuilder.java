@@ -47,9 +47,7 @@ public class FileStorageFilesDeleteRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
-              = new FileStorageFilesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

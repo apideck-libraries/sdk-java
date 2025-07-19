@@ -137,6 +137,20 @@ public class BillLineItemInput {
     private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories;
 
     /**
+     * The customer this entity is linked to.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("customer")
+    private JsonNullable<? extends LinkedCustomerInput> customer;
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("rebilling")
+    private JsonNullable<? extends Rebilling> rebilling;
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -163,6 +177,8 @@ public class BillLineItemInput {
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
+            @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
+            @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling,
             @JsonProperty("row_version") JsonNullable<String> rowVersion) {
         Utils.checkNotNull(rowId, "rowId");
         Utils.checkNotNull(code, "code");
@@ -182,6 +198,8 @@ public class BillLineItemInput {
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
+        Utils.checkNotNull(customer, "customer");
+        Utils.checkNotNull(rebilling, "rebilling");
         Utils.checkNotNull(rowVersion, "rowVersion");
         this.rowId = rowId;
         this.code = code;
@@ -201,6 +219,8 @@ public class BillLineItemInput {
         this.taxRate = taxRate;
         this.ledgerAccount = ledgerAccount;
         this.trackingCategories = trackingCategories;
+        this.customer = customer;
+        this.rebilling = rebilling;
         this.rowVersion = rowVersion;
     }
     
@@ -211,7 +231,7 @@ public class BillLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
     /**
@@ -346,6 +366,24 @@ public class BillLineItemInput {
     @JsonIgnore
     public JsonNullable<List<LinkedTrackingCategory>> trackingCategories() {
         return (JsonNullable<List<LinkedTrackingCategory>>) trackingCategories;
+    }
+
+    /**
+     * The customer this entity is linked to.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedCustomerInput> customer() {
+        return (JsonNullable<LinkedCustomerInput>) customer;
+    }
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Rebilling> rebilling() {
+        return (JsonNullable<Rebilling>) rebilling;
     }
 
     /**
@@ -659,6 +697,42 @@ public class BillLineItemInput {
     }
 
     /**
+     * The customer this entity is linked to.
+     */
+    public BillLineItemInput withCustomer(LinkedCustomerInput customer) {
+        Utils.checkNotNull(customer, "customer");
+        this.customer = JsonNullable.of(customer);
+        return this;
+    }
+
+    /**
+     * The customer this entity is linked to.
+     */
+    public BillLineItemInput withCustomer(JsonNullable<? extends LinkedCustomerInput> customer) {
+        Utils.checkNotNull(customer, "customer");
+        this.customer = customer;
+        return this;
+    }
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    public BillLineItemInput withRebilling(Rebilling rebilling) {
+        Utils.checkNotNull(rebilling, "rebilling");
+        this.rebilling = JsonNullable.of(rebilling);
+        return this;
+    }
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    public BillLineItemInput withRebilling(JsonNullable<? extends Rebilling> rebilling) {
+        Utils.checkNotNull(rebilling, "rebilling");
+        this.rebilling = rebilling;
+        return this;
+    }
+
+    /**
      * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
      */
     public BillLineItemInput withRowVersion(String rowVersion) {
@@ -704,6 +778,8 @@ public class BillLineItemInput {
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
+            Utils.enhancedDeepEquals(this.customer, other.customer) &&
+            Utils.enhancedDeepEquals(this.rebilling, other.rebilling) &&
             Utils.enhancedDeepEquals(this.rowVersion, other.rowVersion);
     }
     
@@ -716,7 +792,7 @@ public class BillLineItemInput {
             unitOfMeasure, discountPercentage, discountAmount,
             locationId, departmentId, item,
             taxRate, ledgerAccount, trackingCategories,
-            rowVersion);
+            customer, rebilling, rowVersion);
     }
     
     @Override
@@ -740,6 +816,8 @@ public class BillLineItemInput {
                 "taxRate", taxRate,
                 "ledgerAccount", ledgerAccount,
                 "trackingCategories", trackingCategories,
+                "customer", customer,
+                "rebilling", rebilling,
                 "rowVersion", rowVersion);
     }
 
@@ -781,6 +859,10 @@ public class BillLineItemInput {
         private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedCustomerInput> customer = JsonNullable.undefined();
+
+        private JsonNullable<? extends Rebilling> rebilling = JsonNullable.undefined();
 
         private JsonNullable<String> rowVersion = JsonNullable.undefined();
 
@@ -1102,6 +1184,44 @@ public class BillLineItemInput {
 
 
         /**
+         * The customer this entity is linked to.
+         */
+        public Builder customer(LinkedCustomerInput customer) {
+            Utils.checkNotNull(customer, "customer");
+            this.customer = JsonNullable.of(customer);
+            return this;
+        }
+
+        /**
+         * The customer this entity is linked to.
+         */
+        public Builder customer(JsonNullable<? extends LinkedCustomerInput> customer) {
+            Utils.checkNotNull(customer, "customer");
+            this.customer = customer;
+            return this;
+        }
+
+
+        /**
+         * Rebilling metadata for this line item.
+         */
+        public Builder rebilling(Rebilling rebilling) {
+            Utils.checkNotNull(rebilling, "rebilling");
+            this.rebilling = JsonNullable.of(rebilling);
+            return this;
+        }
+
+        /**
+         * Rebilling metadata for this line item.
+         */
+        public Builder rebilling(JsonNullable<? extends Rebilling> rebilling) {
+            Utils.checkNotNull(rebilling, "rebilling");
+            this.rebilling = rebilling;
+            return this;
+        }
+
+
+        /**
          * A binary value used to detect updates to a object and prevent data conflicts. It is incremented each time an update is made to the object.
          */
         public Builder rowVersion(String rowVersion) {
@@ -1128,7 +1248,7 @@ public class BillLineItemInput {
                 unitOfMeasure, discountPercentage, discountAmount,
                 locationId, departmentId, item,
                 taxRate, ledgerAccount, trackingCategories,
-                rowVersion);
+                customer, rebilling, rowVersion);
         }
 
     }

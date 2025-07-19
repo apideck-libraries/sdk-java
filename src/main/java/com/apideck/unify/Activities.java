@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmActivitiesOneOperation;
 import com.apideck.unify.operations.CrmActivitiesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Activities {
     Activities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List activities
      * 
@@ -71,13 +71,9 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesAllResponse list(
-            CrmActivitiesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmActivitiesAllResponse list(CrmActivitiesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAllRequest, CrmActivitiesAllResponse> operation
-              = new CrmActivitiesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmActivitiesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesAddResponse create(
-            CrmActivitiesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmActivitiesAddResponse create(CrmActivitiesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesAddRequest, CrmActivitiesAddResponse> operation
-              = new CrmActivitiesAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmActivitiesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesOneResponse get(
-            CrmActivitiesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmActivitiesOneResponse get(CrmActivitiesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesOneRequest, CrmActivitiesOneResponse> operation
-              = new CrmActivitiesOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmActivitiesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesUpdateResponse update(
-            CrmActivitiesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmActivitiesUpdateResponse update(CrmActivitiesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesUpdateRequest, CrmActivitiesUpdateResponse> operation
-              = new CrmActivitiesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmActivitiesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Activities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmActivitiesDeleteResponse delete(
-            CrmActivitiesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmActivitiesDeleteResponse delete(CrmActivitiesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmActivitiesDeleteRequest, CrmActivitiesDeleteResponse> operation
-              = new CrmActivitiesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmActivitiesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

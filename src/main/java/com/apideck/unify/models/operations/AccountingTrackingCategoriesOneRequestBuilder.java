@@ -47,9 +47,7 @@ public class AccountingTrackingCategoriesOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingTrackingCategoriesOneRequest, AccountingTrackingCategoriesOneResponse> operation
-              = new AccountingTrackingCategoriesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTrackingCategoriesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

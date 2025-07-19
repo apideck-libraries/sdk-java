@@ -103,6 +103,13 @@ public class ExpenseLineItem {
     @JsonProperty("line_number")
     private JsonNullable<Long> lineNumber;
 
+    /**
+     * Rebilling metadata for this line item.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("rebilling")
+    private JsonNullable<? extends Rebilling> rebilling;
+
     @JsonCreator
     public ExpenseLineItem(
             @JsonProperty("id") Optional<String> id,
@@ -116,7 +123,8 @@ public class ExpenseLineItem {
             @JsonProperty("description") JsonNullable<String> description,
             @JsonProperty("total_amount") Optional<Double> totalAmount,
             @JsonProperty("billable") Optional<Boolean> billable,
-            @JsonProperty("line_number") JsonNullable<Long> lineNumber) {
+            @JsonProperty("line_number") JsonNullable<Long> lineNumber,
+            @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling) {
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(accountId, "accountId");
@@ -129,6 +137,7 @@ public class ExpenseLineItem {
         Utils.checkNotNull(totalAmount, "totalAmount");
         Utils.checkNotNull(billable, "billable");
         Utils.checkNotNull(lineNumber, "lineNumber");
+        Utils.checkNotNull(rebilling, "rebilling");
         this.id = id;
         this.trackingCategories = trackingCategories;
         this.accountId = accountId;
@@ -141,13 +150,15 @@ public class ExpenseLineItem {
         this.totalAmount = totalAmount;
         this.billable = billable;
         this.lineNumber = lineNumber;
+        this.rebilling = rebilling;
     }
     
     public ExpenseLineItem() {
         this(Optional.empty(), JsonNullable.undefined(), Optional.empty(),
             Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
-            Optional.empty(), Optional.empty(), JsonNullable.undefined());
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined());
     }
 
     /**
@@ -243,6 +254,15 @@ public class ExpenseLineItem {
     @JsonIgnore
     public JsonNullable<Long> lineNumber() {
         return lineNumber;
+    }
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<Rebilling> rebilling() {
+        return (JsonNullable<Rebilling>) rebilling;
     }
 
     public static Builder builder() {
@@ -466,6 +486,24 @@ public class ExpenseLineItem {
         return this;
     }
 
+    /**
+     * Rebilling metadata for this line item.
+     */
+    public ExpenseLineItem withRebilling(Rebilling rebilling) {
+        Utils.checkNotNull(rebilling, "rebilling");
+        this.rebilling = JsonNullable.of(rebilling);
+        return this;
+    }
+
+    /**
+     * Rebilling metadata for this line item.
+     */
+    public ExpenseLineItem withRebilling(JsonNullable<? extends Rebilling> rebilling) {
+        Utils.checkNotNull(rebilling, "rebilling");
+        this.rebilling = rebilling;
+        return this;
+    }
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -487,7 +525,8 @@ public class ExpenseLineItem {
             Utils.enhancedDeepEquals(this.description, other.description) &&
             Utils.enhancedDeepEquals(this.totalAmount, other.totalAmount) &&
             Utils.enhancedDeepEquals(this.billable, other.billable) &&
-            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber);
+            Utils.enhancedDeepEquals(this.lineNumber, other.lineNumber) &&
+            Utils.enhancedDeepEquals(this.rebilling, other.rebilling);
     }
     
     @Override
@@ -496,7 +535,8 @@ public class ExpenseLineItem {
             id, trackingCategories, accountId,
             customerId, departmentId, locationId,
             subsidiaryId, taxRate, description,
-            totalAmount, billable, lineNumber);
+            totalAmount, billable, lineNumber,
+            rebilling);
     }
     
     @Override
@@ -513,7 +553,8 @@ public class ExpenseLineItem {
                 "description", description,
                 "totalAmount", totalAmount,
                 "billable", billable,
-                "lineNumber", lineNumber);
+                "lineNumber", lineNumber,
+                "rebilling", rebilling);
     }
 
     @SuppressWarnings("UnusedReturnValue")
@@ -542,6 +583,8 @@ public class ExpenseLineItem {
         private Optional<Boolean> billable = Optional.empty();
 
         private JsonNullable<Long> lineNumber = JsonNullable.undefined();
+
+        private JsonNullable<? extends Rebilling> rebilling = JsonNullable.undefined();
 
         private Builder() {
           // force use of static builder() method
@@ -769,13 +812,33 @@ public class ExpenseLineItem {
             return this;
         }
 
+
+        /**
+         * Rebilling metadata for this line item.
+         */
+        public Builder rebilling(Rebilling rebilling) {
+            Utils.checkNotNull(rebilling, "rebilling");
+            this.rebilling = JsonNullable.of(rebilling);
+            return this;
+        }
+
+        /**
+         * Rebilling metadata for this line item.
+         */
+        public Builder rebilling(JsonNullable<? extends Rebilling> rebilling) {
+            Utils.checkNotNull(rebilling, "rebilling");
+            this.rebilling = rebilling;
+            return this;
+        }
+
         public ExpenseLineItem build() {
 
             return new ExpenseLineItem(
                 id, trackingCategories, accountId,
                 customerId, departmentId, locationId,
                 subsidiaryId, taxRate, description,
-                totalAmount, billable, lineNumber);
+                totalAmount, billable, lineNumber,
+                rebilling);
         }
 
     }

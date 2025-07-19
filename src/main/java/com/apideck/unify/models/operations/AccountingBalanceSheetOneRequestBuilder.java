@@ -47,9 +47,7 @@ public class AccountingBalanceSheetOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
-              = new AccountingBalanceSheetOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBalanceSheetOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

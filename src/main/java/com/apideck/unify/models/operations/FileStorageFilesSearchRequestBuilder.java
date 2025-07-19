@@ -47,9 +47,7 @@ public class FileStorageFilesSearchRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
-              = new FileStorageFilesSearchOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesSearchOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

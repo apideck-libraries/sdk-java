@@ -47,9 +47,7 @@ public class FileStorageDrivesUpdateRequestBuilder {
             .build());
 
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
-              = new FileStorageDrivesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

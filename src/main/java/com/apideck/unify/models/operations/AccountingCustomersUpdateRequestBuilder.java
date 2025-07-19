@@ -47,9 +47,7 @@ public class AccountingCustomersUpdateRequestBuilder {
             .build());
 
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
-              = new AccountingCustomersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

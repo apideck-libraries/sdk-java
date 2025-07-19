@@ -15,7 +15,6 @@ import com.apideck.unify.operations.HrisPayrollsAllOperation;
 import com.apideck.unify.operations.HrisPayrollsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Payrolls {
     Payrolls(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Payroll
      * 
@@ -59,13 +59,9 @@ public class Payrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisPayrollsAllResponse list(
-            HrisPayrollsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisPayrollsAllResponse list(HrisPayrollsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsAllRequest, HrisPayrollsAllResponse> operation
-              = new HrisPayrollsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisPayrollsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class Payrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisPayrollsOneResponse get(
-            HrisPayrollsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisPayrollsOneResponse get(HrisPayrollsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisPayrollsOneRequest, HrisPayrollsOneResponse> operation
-              = new HrisPayrollsOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisPayrollsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -58,9 +58,7 @@ public class CrmPipelinesAllRequestBuilder {
             .build());
 
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
-              = new CrmPipelinesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class CrmPipelinesAllRequestBuilder {
             .build());
 
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
-              = new CrmPipelinesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

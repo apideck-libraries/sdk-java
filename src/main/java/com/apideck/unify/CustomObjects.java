@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCustomObjectsOneOperation;
 import com.apideck.unify.operations.CrmCustomObjectsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class CustomObjects {
     CustomObjects(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List custom objects
      * 
@@ -71,13 +71,9 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsAllResponse list(
-            CrmCustomObjectsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectsAllResponse list(CrmCustomObjectsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsAddResponse create(
-            CrmCustomObjectsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectsAddResponse create(CrmCustomObjectsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsAddRequest, CrmCustomObjectsAddResponse> operation
-              = new CrmCustomObjectsAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsOneResponse get(
-            CrmCustomObjectsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectsOneResponse get(CrmCustomObjectsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsOneRequest, CrmCustomObjectsOneResponse> operation
-              = new CrmCustomObjectsOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsUpdateResponse update(
-            CrmCustomObjectsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectsUpdateResponse update(CrmCustomObjectsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
-              = new CrmCustomObjectsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class CustomObjects {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectsDeleteResponse delete(
-            CrmCustomObjectsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectsDeleteResponse delete(CrmCustomObjectsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectsDeleteRequest, CrmCustomObjectsDeleteResponse> operation
-              = new CrmCustomObjectsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

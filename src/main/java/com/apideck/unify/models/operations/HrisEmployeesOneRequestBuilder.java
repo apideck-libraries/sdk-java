@@ -47,9 +47,7 @@ public class HrisEmployeesOneRequestBuilder {
             .build());
 
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
-              = new HrisEmployeesOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

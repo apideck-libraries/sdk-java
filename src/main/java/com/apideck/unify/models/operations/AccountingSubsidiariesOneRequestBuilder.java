@@ -47,9 +47,7 @@ public class AccountingSubsidiariesOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
-              = new AccountingSubsidiariesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

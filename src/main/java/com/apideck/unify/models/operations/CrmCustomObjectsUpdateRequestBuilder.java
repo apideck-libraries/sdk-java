@@ -47,9 +47,7 @@ public class CrmCustomObjectsUpdateRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectsUpdateRequest, CrmCustomObjectsUpdateResponse> operation
-              = new CrmCustomObjectsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

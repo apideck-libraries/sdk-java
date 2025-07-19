@@ -47,9 +47,7 @@ public class VaultConnectionsTokenRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
-              = new VaultConnectionsTokenOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsTokenOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

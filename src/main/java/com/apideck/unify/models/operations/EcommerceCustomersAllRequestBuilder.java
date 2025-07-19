@@ -58,9 +58,7 @@ public class EcommerceCustomersAllRequestBuilder {
             .build());
 
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAllOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceCustomersAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class EcommerceCustomersAllRequestBuilder {
             .build());
 
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAllOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceCustomersAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

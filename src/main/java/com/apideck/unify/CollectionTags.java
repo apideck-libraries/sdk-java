@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.IssueTrackingCollectionTagsAllRespons
 import com.apideck.unify.operations.IssueTrackingCollectionTagsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class CollectionTags {
     CollectionTags(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Tags
      * 
@@ -55,13 +55,9 @@ public class CollectionTags {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTagsAllResponse list(
-            IssueTrackingCollectionTagsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTagsAllResponse list(IssueTrackingCollectionTagsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTagsAllRequest, IssueTrackingCollectionTagsAllResponse> operation
-              = new IssueTrackingCollectionTagsAllOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTagsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

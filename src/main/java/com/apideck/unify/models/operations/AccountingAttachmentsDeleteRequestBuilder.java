@@ -47,9 +47,7 @@ public class AccountingAttachmentsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
-              = new AccountingAttachmentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

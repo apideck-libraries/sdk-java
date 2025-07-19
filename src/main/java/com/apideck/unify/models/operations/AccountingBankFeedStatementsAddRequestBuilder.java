@@ -47,9 +47,7 @@ public class AccountingBankFeedStatementsAddRequestBuilder {
             .build());
 
         RequestOperation<AccountingBankFeedStatementsAddRequest, AccountingBankFeedStatementsAddResponse> operation
-              = new AccountingBankFeedStatementsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedStatementsAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

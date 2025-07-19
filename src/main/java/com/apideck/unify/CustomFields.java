@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultCustomFieldsAllResponse;
 import com.apideck.unify.operations.VaultCustomFieldsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class CustomFields {
     CustomFields(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get resource custom fields
      * 
@@ -55,13 +55,9 @@ public class CustomFields {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultCustomFieldsAllResponse list(
-            VaultCustomFieldsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultCustomFieldsAllResponse list(VaultCustomFieldsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
-              = new VaultCustomFieldsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultCustomFieldsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

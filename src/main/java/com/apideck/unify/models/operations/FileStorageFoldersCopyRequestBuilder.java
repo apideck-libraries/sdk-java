@@ -47,9 +47,7 @@ public class FileStorageFoldersCopyRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
-              = new FileStorageFoldersCopyOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersCopyOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

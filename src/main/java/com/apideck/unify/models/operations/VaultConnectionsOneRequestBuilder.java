@@ -92,9 +92,7 @@ public class VaultConnectionsOneRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
-              = new VaultConnectionsOneOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsOneOperation(sdkConfiguration, options);
         VaultConnectionsOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

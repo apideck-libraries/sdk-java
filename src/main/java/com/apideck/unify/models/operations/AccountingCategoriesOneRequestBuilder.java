@@ -47,9 +47,7 @@ public class AccountingCategoriesOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
-              = new AccountingCategoriesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCategoriesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

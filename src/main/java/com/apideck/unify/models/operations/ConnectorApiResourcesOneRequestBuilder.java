@@ -78,9 +78,7 @@ public class ConnectorApiResourcesOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
-              = new ConnectorApiResourcesOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApiResourcesOneOperation(sdkConfiguration, options);
         ConnectorApiResourcesOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

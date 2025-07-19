@@ -13,7 +13,6 @@ import com.apideck.unify.operations.ConnectorConnectorResourcesOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -23,6 +22,7 @@ public class ConnectorResources {
     ConnectorResources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get Connector Resource
      * 
@@ -44,9 +44,7 @@ public class ConnectorResources {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorConnectorResourcesOneResponse get(
-            String id,
-            String resourceId) throws Exception {
+    public ConnectorConnectorResourcesOneResponse get(String id, String resourceId) throws Exception {
         return get(Optional.empty(), id, resourceId,
             Optional.empty(), Optional.empty());
     }
@@ -65,10 +63,8 @@ public class ConnectorResources {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorResourcesOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<? extends UnifiedApiId> unifiedApi,
+            Optional<String> appId, String id,
+            String resourceId, Optional<? extends UnifiedApiId> unifiedApi,
             Optional<Options> options) throws Exception {
         ConnectorConnectorResourcesOneRequest request =
             ConnectorConnectorResourcesOneRequest
@@ -79,9 +75,7 @@ public class ConnectorResources {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
-              = new ConnectorConnectorResourcesOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorResourcesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

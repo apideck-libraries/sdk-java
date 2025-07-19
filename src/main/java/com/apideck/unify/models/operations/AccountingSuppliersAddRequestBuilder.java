@@ -47,9 +47,7 @@ public class AccountingSuppliersAddRequestBuilder {
             .build());
 
         RequestOperation<AccountingSuppliersAddRequest, AccountingSuppliersAddResponse> operation
-              = new AccountingSuppliersAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSuppliersAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

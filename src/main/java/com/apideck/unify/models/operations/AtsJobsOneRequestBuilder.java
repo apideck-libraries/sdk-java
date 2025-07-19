@@ -47,9 +47,7 @@ public class AtsJobsOneRequestBuilder {
             .build());
 
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
-              = new AtsJobsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AtsJobsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

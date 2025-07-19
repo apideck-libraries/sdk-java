@@ -58,9 +58,7 @@ public class FileStorageFilesAllRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class FileStorageFilesAllRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

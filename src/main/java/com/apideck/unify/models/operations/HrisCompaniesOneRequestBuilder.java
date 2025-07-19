@@ -47,9 +47,7 @@ public class HrisCompaniesOneRequestBuilder {
             .build());
 
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

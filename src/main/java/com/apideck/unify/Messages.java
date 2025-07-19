@@ -27,7 +27,6 @@ import com.apideck.unify.operations.SmsMessagesOneOperation;
 import com.apideck.unify.operations.SmsMessagesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Messages {
     Messages(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Messages
      * 
@@ -71,13 +71,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesAllResponse list(
-            SmsMessagesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public SmsMessagesAllResponse list(SmsMessagesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
-              = new SmsMessagesAllOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesAddResponse create(
-            SmsMessagesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public SmsMessagesAddResponse create(SmsMessagesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesAddRequest, SmsMessagesAddResponse> operation
-              = new SmsMessagesAddOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesOneResponse get(
-            SmsMessagesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public SmsMessagesOneResponse get(SmsMessagesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesOneRequest, SmsMessagesOneResponse> operation
-              = new SmsMessagesOneOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesUpdateResponse update(
-            SmsMessagesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public SmsMessagesUpdateResponse update(SmsMessagesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
-              = new SmsMessagesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Messages {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SmsMessagesDeleteResponse delete(
-            SmsMessagesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public SmsMessagesDeleteResponse delete(SmsMessagesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
-              = new SmsMessagesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

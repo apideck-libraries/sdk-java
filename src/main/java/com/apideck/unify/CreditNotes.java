@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingCreditNotesOneOperation;
 import com.apideck.unify.operations.AccountingCreditNotesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class CreditNotes {
     CreditNotes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Credit Notes
      * 
@@ -71,13 +71,9 @@ public class CreditNotes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCreditNotesAllResponse list(
-            AccountingCreditNotesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCreditNotesAllResponse list(AccountingCreditNotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAllRequest, AccountingCreditNotesAllResponse> operation
-              = new AccountingCreditNotesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class CreditNotes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCreditNotesAddResponse create(
-            AccountingCreditNotesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCreditNotesAddResponse create(AccountingCreditNotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesAddRequest, AccountingCreditNotesAddResponse> operation
-              = new AccountingCreditNotesAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class CreditNotes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCreditNotesOneResponse get(
-            AccountingCreditNotesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCreditNotesOneResponse get(AccountingCreditNotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesOneRequest, AccountingCreditNotesOneResponse> operation
-              = new AccountingCreditNotesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class CreditNotes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCreditNotesUpdateResponse update(
-            AccountingCreditNotesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCreditNotesUpdateResponse update(AccountingCreditNotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesUpdateRequest, AccountingCreditNotesUpdateResponse> operation
-              = new AccountingCreditNotesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class CreditNotes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCreditNotesDeleteResponse delete(
-            AccountingCreditNotesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCreditNotesDeleteResponse delete(AccountingCreditNotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
-              = new AccountingCreditNotesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

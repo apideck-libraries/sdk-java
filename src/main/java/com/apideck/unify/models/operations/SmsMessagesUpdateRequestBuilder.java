@@ -47,9 +47,7 @@ public class SmsMessagesUpdateRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesUpdateRequest, SmsMessagesUpdateResponse> operation
-              = new SmsMessagesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

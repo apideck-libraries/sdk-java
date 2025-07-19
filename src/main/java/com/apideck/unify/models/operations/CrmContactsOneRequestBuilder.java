@@ -47,9 +47,7 @@ public class CrmContactsOneRequestBuilder {
             .build());
 
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
-              = new CrmContactsOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

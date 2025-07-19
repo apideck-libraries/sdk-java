@@ -47,9 +47,7 @@ public class CrmNotesDeleteRequestBuilder {
             .build());
 
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
-              = new CrmNotesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

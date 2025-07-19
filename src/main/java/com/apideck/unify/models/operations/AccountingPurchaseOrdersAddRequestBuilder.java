@@ -47,9 +47,7 @@ public class AccountingPurchaseOrdersAddRequestBuilder {
             .build());
 
         RequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
-              = new AccountingPurchaseOrdersAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

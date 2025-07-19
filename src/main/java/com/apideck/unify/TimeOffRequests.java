@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisTimeOffRequestsOneOperation;
 import com.apideck.unify.operations.HrisTimeOffRequestsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class TimeOffRequests {
     TimeOffRequests(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Time Off Requests
      * 
@@ -71,13 +71,9 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsAllResponse list(
-            HrisTimeOffRequestsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsAllResponse list(HrisTimeOffRequestsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAllRequest, HrisTimeOffRequestsAllResponse> operation
-              = new HrisTimeOffRequestsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsAddResponse create(
-            HrisTimeOffRequestsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsAddResponse create(HrisTimeOffRequestsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsAddRequest, HrisTimeOffRequestsAddResponse> operation
-              = new HrisTimeOffRequestsAddOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsOneResponse get(
-            HrisTimeOffRequestsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsOneResponse get(HrisTimeOffRequestsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsOneRequest, HrisTimeOffRequestsOneResponse> operation
-              = new HrisTimeOffRequestsOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsUpdateResponse update(
-            HrisTimeOffRequestsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsUpdateResponse update(HrisTimeOffRequestsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsUpdateRequest, HrisTimeOffRequestsUpdateResponse> operation
-              = new HrisTimeOffRequestsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class TimeOffRequests {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisTimeOffRequestsDeleteResponse delete(
-            HrisTimeOffRequestsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisTimeOffRequestsDeleteResponse delete(HrisTimeOffRequestsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisTimeOffRequestsDeleteRequest, HrisTimeOffRequestsDeleteResponse> operation
-              = new HrisTimeOffRequestsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new HrisTimeOffRequestsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

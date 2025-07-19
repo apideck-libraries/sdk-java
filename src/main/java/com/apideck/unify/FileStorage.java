@@ -5,12 +5,12 @@ package com.apideck.unify;
 
 public class FileStorage {
     private final SDKConfiguration sdkConfiguration;
-private final Files files;
-private final Folders folders;
-private final SharedLinks sharedLinks;
-private final UploadSessions uploadSessions;
-private final Drives drives;
-private final DriveGroups driveGroups;
+    private final Files files;
+    private final Folders folders;
+    private final SharedLinks sharedLinks;
+    private final UploadSessions uploadSessions;
+    private final Drives drives;
+    private final DriveGroups driveGroups;
 
     FileStorage(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -21,22 +21,29 @@ private final DriveGroups driveGroups;
         this.drives = new Drives(this.sdkConfiguration);
         this.driveGroups = new DriveGroups(this.sdkConfiguration);
     }
-public final Files files() {
+
+    public final Files files() {
         return files;
     }
-public final Folders folders() {
+
+    public final Folders folders() {
         return folders;
     }
-public final SharedLinks sharedLinks() {
+
+    public final SharedLinks sharedLinks() {
         return sharedLinks;
     }
-public final UploadSessions uploadSessions() {
+
+    public final UploadSessions uploadSessions() {
         return uploadSessions;
     }
-public final Drives drives() {
+
+    public final Drives drives() {
         return drives;
     }
-public final DriveGroups driveGroups() {
+
+    public final DriveGroups driveGroups() {
         return driveGroups;
     }
+
 }

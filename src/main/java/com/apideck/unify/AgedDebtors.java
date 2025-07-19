@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.AccountingAgedDebtorsOneResponse;
 import com.apideck.unify.operations.AccountingAgedDebtorsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class AgedDebtors {
     AgedDebtors(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get Aged Debtors
      * 
@@ -55,13 +55,9 @@ public class AgedDebtors {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAgedDebtorsOneResponse get(
-            AccountingAgedDebtorsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingAgedDebtorsOneResponse get(AccountingAgedDebtorsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAgedDebtorsOneRequest, AccountingAgedDebtorsOneResponse> operation
-              = new AccountingAgedDebtorsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAgedDebtorsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

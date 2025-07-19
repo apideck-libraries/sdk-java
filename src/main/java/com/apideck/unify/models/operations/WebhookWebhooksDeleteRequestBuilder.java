@@ -70,9 +70,7 @@ public class WebhookWebhooksDeleteRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksDeleteRequest, WebhookWebhooksDeleteResponse> operation
-              = new WebhookWebhooksDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new WebhookWebhooksDeleteOperation(sdkConfiguration, options);
         WebhookWebhooksDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

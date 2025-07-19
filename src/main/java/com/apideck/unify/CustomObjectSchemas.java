@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCustomObjectSchemasOneOperation;
 import com.apideck.unify.operations.CrmCustomObjectSchemasUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class CustomObjectSchemas {
     CustomObjectSchemas(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List custom object schemas
      * 
@@ -71,13 +71,9 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasAllResponse list(
-            CrmCustomObjectSchemasAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasAllResponse list(CrmCustomObjectSchemasAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAllRequest, CrmCustomObjectSchemasAllResponse> operation
-              = new CrmCustomObjectSchemasAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasAddResponse create(
-            CrmCustomObjectSchemasAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasAddResponse create(CrmCustomObjectSchemasAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
-              = new CrmCustomObjectSchemasAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasOneResponse get(
-            CrmCustomObjectSchemasOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasOneResponse get(CrmCustomObjectSchemasOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasOneRequest, CrmCustomObjectSchemasOneResponse> operation
-              = new CrmCustomObjectSchemasOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasUpdateResponse update(
-            CrmCustomObjectSchemasUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasUpdateResponse update(CrmCustomObjectSchemasUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasUpdateRequest, CrmCustomObjectSchemasUpdateResponse> operation
-              = new CrmCustomObjectSchemasUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class CustomObjectSchemas {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCustomObjectSchemasDeleteResponse delete(
-            CrmCustomObjectSchemasDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCustomObjectSchemasDeleteResponse delete(CrmCustomObjectSchemasDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
-              = new CrmCustomObjectSchemasDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

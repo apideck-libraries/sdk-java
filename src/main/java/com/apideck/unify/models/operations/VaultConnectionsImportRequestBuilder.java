@@ -47,9 +47,7 @@ public class VaultConnectionsImportRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
-              = new VaultConnectionsImportOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsImportOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

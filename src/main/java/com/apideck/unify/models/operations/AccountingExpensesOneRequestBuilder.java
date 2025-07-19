@@ -47,9 +47,7 @@ public class AccountingExpensesOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingExpensesOneRequest, AccountingExpensesOneResponse> operation
-              = new AccountingExpensesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingExpensesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

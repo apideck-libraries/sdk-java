@@ -5,32 +5,32 @@ package com.apideck.unify;
 
 public class Accounting {
     private final SDKConfiguration sdkConfiguration;
-private final TaxRates taxRates;
-private final Bills bills;
-private final Invoices invoices;
-private final LedgerAccounts ledgerAccounts;
-private final InvoiceItems invoiceItems;
-private final CreditNotes creditNotes;
-private final Customers customers;
-private final Suppliers suppliers;
-private final Payments payments;
-private final CompanyInfo companyInfo;
-private final BalanceSheet balanceSheet;
-private final ProfitAndLoss profitAndLoss;
-private final JournalEntries journalEntries;
-private final PurchaseOrders purchaseOrders;
-private final Subsidiaries subsidiaries;
-private final Locations locations;
-private final Departments departments;
-private final Attachments attachments;
-private final TrackingCategories trackingCategories;
-private final BillPayments billPayments;
-private final Expenses expenses;
-private final AgedCreditors agedCreditors;
-private final AgedDebtors agedDebtors;
-private final BankFeedAccounts bankFeedAccounts;
-private final BankFeedStatements bankFeedStatements;
-private final Categories categories;
+    private final TaxRates taxRates;
+    private final Bills bills;
+    private final Invoices invoices;
+    private final LedgerAccounts ledgerAccounts;
+    private final InvoiceItems invoiceItems;
+    private final CreditNotes creditNotes;
+    private final Customers customers;
+    private final Suppliers suppliers;
+    private final Payments payments;
+    private final CompanyInfo companyInfo;
+    private final BalanceSheet balanceSheet;
+    private final ProfitAndLoss profitAndLoss;
+    private final JournalEntries journalEntries;
+    private final PurchaseOrders purchaseOrders;
+    private final Subsidiaries subsidiaries;
+    private final Locations locations;
+    private final Departments departments;
+    private final Attachments attachments;
+    private final TrackingCategories trackingCategories;
+    private final BillPayments billPayments;
+    private final Expenses expenses;
+    private final AgedCreditors agedCreditors;
+    private final AgedDebtors agedDebtors;
+    private final BankFeedAccounts bankFeedAccounts;
+    private final BankFeedStatements bankFeedStatements;
+    private final Categories categories;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -61,82 +61,109 @@ private final Categories categories;
         this.bankFeedStatements = new BankFeedStatements(this.sdkConfiguration);
         this.categories = new Categories(this.sdkConfiguration);
     }
-public final TaxRates taxRates() {
+
+    public final TaxRates taxRates() {
         return taxRates;
     }
-public final Bills bills() {
+
+    public final Bills bills() {
         return bills;
     }
-public final Invoices invoices() {
+
+    public final Invoices invoices() {
         return invoices;
     }
-public final LedgerAccounts ledgerAccounts() {
+
+    public final LedgerAccounts ledgerAccounts() {
         return ledgerAccounts;
     }
-public final InvoiceItems invoiceItems() {
+
+    public final InvoiceItems invoiceItems() {
         return invoiceItems;
     }
-public final CreditNotes creditNotes() {
+
+    public final CreditNotes creditNotes() {
         return creditNotes;
     }
-public final Customers customers() {
+
+    public final Customers customers() {
         return customers;
     }
-public final Suppliers suppliers() {
+
+    public final Suppliers suppliers() {
         return suppliers;
     }
-public final Payments payments() {
+
+    public final Payments payments() {
         return payments;
     }
-public final CompanyInfo companyInfo() {
+
+    public final CompanyInfo companyInfo() {
         return companyInfo;
     }
-public final BalanceSheet balanceSheet() {
+
+    public final BalanceSheet balanceSheet() {
         return balanceSheet;
     }
-public final ProfitAndLoss profitAndLoss() {
+
+    public final ProfitAndLoss profitAndLoss() {
         return profitAndLoss;
     }
-public final JournalEntries journalEntries() {
+
+    public final JournalEntries journalEntries() {
         return journalEntries;
     }
-public final PurchaseOrders purchaseOrders() {
+
+    public final PurchaseOrders purchaseOrders() {
         return purchaseOrders;
     }
-public final Subsidiaries subsidiaries() {
+
+    public final Subsidiaries subsidiaries() {
         return subsidiaries;
     }
-public final Locations locations() {
+
+    public final Locations locations() {
         return locations;
     }
-public final Departments departments() {
+
+    public final Departments departments() {
         return departments;
     }
-public final Attachments attachments() {
+
+    public final Attachments attachments() {
         return attachments;
     }
-public final TrackingCategories trackingCategories() {
+
+    public final TrackingCategories trackingCategories() {
         return trackingCategories;
     }
-public final BillPayments billPayments() {
+
+    public final BillPayments billPayments() {
         return billPayments;
     }
-public final Expenses expenses() {
+
+    public final Expenses expenses() {
         return expenses;
     }
-public final AgedCreditors agedCreditors() {
+
+    public final AgedCreditors agedCreditors() {
         return agedCreditors;
     }
-public final AgedDebtors agedDebtors() {
+
+    public final AgedDebtors agedDebtors() {
         return agedDebtors;
     }
-public final BankFeedAccounts bankFeedAccounts() {
+
+    public final BankFeedAccounts bankFeedAccounts() {
         return bankFeedAccounts;
     }
-public final BankFeedStatements bankFeedStatements() {
+
+    public final BankFeedStatements bankFeedStatements() {
         return bankFeedStatements;
     }
-public final Categories categories() {
+
+    public final Categories categories() {
         return categories;
     }
+
 }

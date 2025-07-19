@@ -28,7 +28,6 @@ import com.apideck.unify.operations.AccountingAttachmentsUploadOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -38,6 +37,7 @@ public class Attachments {
     Attachments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Attachments
      * 
@@ -72,13 +72,9 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsAllResponse list(
-            AccountingAttachmentsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingAttachmentsAllResponse list(AccountingAttachmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsAllRequest, AccountingAttachmentsAllResponse> operation
-              = new AccountingAttachmentsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -118,14 +114,10 @@ public class Attachments {
      * @throws Exception if the API call fails
      */
     public AccountingAttachmentsUploadResponse upload(
-            AccountingAttachmentsUploadRequest request,
-            Optional<String> serverURL,
+            AccountingAttachmentsUploadRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsUploadRequest, AccountingAttachmentsUploadResponse> operation
-              = new AccountingAttachmentsUploadOperation(
-                sdkConfiguration,
-                serverURL,
-                options);
+              = new AccountingAttachmentsUploadOperation(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -163,13 +155,9 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsOneResponse get(
-            AccountingAttachmentsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingAttachmentsOneResponse get(AccountingAttachmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
-              = new AccountingAttachmentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -207,13 +195,9 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsDeleteResponse delete(
-            AccountingAttachmentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingAttachmentsDeleteResponse delete(AccountingAttachmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDeleteRequest, AccountingAttachmentsDeleteResponse> operation
-              = new AccountingAttachmentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -251,13 +235,9 @@ public class Attachments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingAttachmentsDownloadResponse download(
-            AccountingAttachmentsDownloadRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingAttachmentsDownloadResponse download(AccountingAttachmentsDownloadRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
-              = new AccountingAttachmentsDownloadOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsDownloadOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

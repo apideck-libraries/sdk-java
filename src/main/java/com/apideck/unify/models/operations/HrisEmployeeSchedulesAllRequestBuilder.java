@@ -47,9 +47,7 @@ public class HrisEmployeeSchedulesAllRequestBuilder {
             .build());
 
         RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
-              = new HrisEmployeeSchedulesAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeeSchedulesAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -47,9 +47,7 @@ public class HrisCompaniesUpdateRequestBuilder {
             .build());
 
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

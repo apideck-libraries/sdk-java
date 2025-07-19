@@ -15,7 +15,6 @@ import com.apideck.unify.operations.AtsJobsAllOperation;
 import com.apideck.unify.operations.AtsJobsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Jobs {
     Jobs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Jobs
      * 
@@ -59,13 +59,9 @@ public class Jobs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsJobsAllResponse list(
-            AtsJobsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsJobsAllResponse list(AtsJobsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsAllRequest, AtsJobsAllResponse> operation
-              = new AtsJobsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AtsJobsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class Jobs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AtsJobsOneResponse get(
-            AtsJobsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AtsJobsOneResponse get(AtsJobsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AtsJobsOneRequest, AtsJobsOneResponse> operation
-              = new AtsJobsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AtsJobsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

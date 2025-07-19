@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultConnectionCustomMappingsAllRespo
 import com.apideck.unify.operations.VaultConnectionCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class ConnectionCustomMappings {
     ConnectionCustomMappings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List connection custom mappings
      * 
@@ -55,13 +55,9 @@ public class ConnectionCustomMappings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionCustomMappingsAllResponse list(
-            VaultConnectionCustomMappingsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionCustomMappingsAllResponse list(VaultConnectionCustomMappingsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
-              = new VaultConnectionCustomMappingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionCustomMappingsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

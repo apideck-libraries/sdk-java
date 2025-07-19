@@ -47,9 +47,7 @@ public class FileStorageDrivesOneRequestBuilder {
             .build());
 
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
-              = new FileStorageDrivesOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

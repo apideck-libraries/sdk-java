@@ -58,9 +58,7 @@ public class SmsMessagesAllRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
-              = new SmsMessagesAllOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class SmsMessagesAllRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesAllRequest, SmsMessagesAllResponse> operation
-              = new SmsMessagesAllOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

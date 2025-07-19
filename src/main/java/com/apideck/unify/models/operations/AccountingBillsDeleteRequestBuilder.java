@@ -47,9 +47,7 @@ public class AccountingBillsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingBillsDeleteRequest, AccountingBillsDeleteResponse> operation
-              = new AccountingBillsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBillsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

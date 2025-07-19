@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmContactsOneOperation;
 import com.apideck.unify.operations.CrmContactsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Contacts {
     Contacts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List contacts
      * 
@@ -71,13 +71,9 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsAllResponse list(
-            CrmContactsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmContactsAllResponse list(CrmContactsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsAddResponse create(
-            CrmContactsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmContactsAddResponse create(CrmContactsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsAddRequest, CrmContactsAddResponse> operation
-              = new CrmContactsAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsOneResponse get(
-            CrmContactsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmContactsOneResponse get(CrmContactsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsOneRequest, CrmContactsOneResponse> operation
-              = new CrmContactsOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsUpdateResponse update(
-            CrmContactsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmContactsUpdateResponse update(CrmContactsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsUpdateRequest, CrmContactsUpdateResponse> operation
-              = new CrmContactsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Contacts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmContactsDeleteResponse delete(
-            CrmContactsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmContactsDeleteResponse delete(CrmContactsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmContactsDeleteRequest, CrmContactsDeleteResponse> operation
-              = new CrmContactsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -5,13 +5,15 @@ package com.apideck.unify;
 
 public class Sms {
     private final SDKConfiguration sdkConfiguration;
-private final Messages messages;
+    private final Messages messages;
 
     Sms(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.messages = new Messages(this.sdkConfiguration);
     }
-public final Messages messages() {
+
+    public final Messages messages() {
         return messages;
     }
+
 }

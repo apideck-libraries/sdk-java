@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.HrisEmployeeSchedulesAllResponse;
 import com.apideck.unify.operations.HrisEmployeeSchedulesAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class EmployeeSchedules {
     EmployeeSchedules(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Employee Schedules
      * 
@@ -55,13 +55,9 @@ public class EmployeeSchedules {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeeSchedulesAllResponse list(
-            HrisEmployeeSchedulesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeeSchedulesAllResponse list(HrisEmployeeSchedulesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeeSchedulesAllRequest, HrisEmployeeSchedulesAllResponse> operation
-              = new HrisEmployeeSchedulesAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeeSchedulesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

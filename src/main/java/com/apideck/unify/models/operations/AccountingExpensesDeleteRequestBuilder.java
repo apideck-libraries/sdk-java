@@ -47,9 +47,7 @@ public class AccountingExpensesDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingExpensesDeleteRequest, AccountingExpensesDeleteResponse> operation
-              = new AccountingExpensesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingExpensesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

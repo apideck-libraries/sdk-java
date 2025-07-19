@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.AccountingBalanceSheetOneResponse;
 import com.apideck.unify.operations.AccountingBalanceSheetOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class BalanceSheet {
     BalanceSheet(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get BalanceSheet
      * 
@@ -55,13 +55,9 @@ public class BalanceSheet {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingBalanceSheetOneResponse get(
-            AccountingBalanceSheetOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingBalanceSheetOneResponse get(AccountingBalanceSheetOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingBalanceSheetOneRequest, AccountingBalanceSheetOneResponse> operation
-              = new AccountingBalanceSheetOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBalanceSheetOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

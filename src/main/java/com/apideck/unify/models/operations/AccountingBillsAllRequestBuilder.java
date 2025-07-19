@@ -58,9 +58,7 @@ public class AccountingBillsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingBillsAllRequest, AccountingBillsAllResponse> operation
-              = new AccountingBillsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBillsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class AccountingBillsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingBillsAllRequest, AccountingBillsAllResponse> operation
-              = new AccountingBillsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBillsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

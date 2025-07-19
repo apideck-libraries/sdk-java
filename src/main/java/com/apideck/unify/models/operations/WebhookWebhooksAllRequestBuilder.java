@@ -110,9 +110,7 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAllOperation(
-                sdkConfiguration,
-                options);
+              = new WebhookWebhooksAllOperation(sdkConfiguration, options);
         WebhookWebhooksAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));
@@ -137,9 +135,7 @@ public class WebhookWebhooksAllRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksAllRequest, WebhookWebhooksAllResponse> operation
-              = new WebhookWebhooksAllOperation(
-                sdkConfiguration,
-                options);
+              = new WebhookWebhooksAllOperation(sdkConfiguration, options);
         WebhookWebhooksAllRequest request = buildRequest();
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,

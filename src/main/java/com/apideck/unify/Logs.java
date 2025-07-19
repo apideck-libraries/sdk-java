@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultLogsAllResponse;
 import com.apideck.unify.operations.VaultLogsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class Logs {
     Logs(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get all consumer request logs
      * 
@@ -55,13 +55,9 @@ public class Logs {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultLogsAllResponse list(
-            VaultLogsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultLogsAllResponse list(VaultLogsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultLogsAllRequest, VaultLogsAllResponse> operation
-              = new VaultLogsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultLogsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

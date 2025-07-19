@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingTaxRatesOneOperation;
 import com.apideck.unify.operations.AccountingTaxRatesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class TaxRates {
     TaxRates(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Tax Rates
      * 
@@ -71,13 +71,9 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesAllResponse list(
-            AccountingTaxRatesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingTaxRatesAllResponse list(AccountingTaxRatesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAllRequest, AccountingTaxRatesAllResponse> operation
-              = new AccountingTaxRatesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesAddResponse create(
-            AccountingTaxRatesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingTaxRatesAddResponse create(AccountingTaxRatesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesAddRequest, AccountingTaxRatesAddResponse> operation
-              = new AccountingTaxRatesAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesOneResponse get(
-            AccountingTaxRatesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingTaxRatesOneResponse get(AccountingTaxRatesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
-              = new AccountingTaxRatesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesUpdateResponse update(
-            AccountingTaxRatesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingTaxRatesUpdateResponse update(AccountingTaxRatesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
-              = new AccountingTaxRatesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class TaxRates {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingTaxRatesDeleteResponse delete(
-            AccountingTaxRatesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingTaxRatesDeleteResponse delete(AccountingTaxRatesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingTaxRatesDeleteRequest, AccountingTaxRatesDeleteResponse> operation
-              = new AccountingTaxRatesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

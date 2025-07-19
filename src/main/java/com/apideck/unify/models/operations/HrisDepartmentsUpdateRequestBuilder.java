@@ -47,9 +47,7 @@ public class HrisDepartmentsUpdateRequestBuilder {
             .build());
 
         RequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
-              = new HrisDepartmentsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

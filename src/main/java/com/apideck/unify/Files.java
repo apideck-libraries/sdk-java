@@ -35,7 +35,6 @@ import com.apideck.unify.operations.FileStorageFilesSearchOperation;
 import com.apideck.unify.operations.FileStorageFilesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -45,6 +44,7 @@ public class Files {
     Files(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Files
      * 
@@ -79,13 +79,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesAllResponse list(
-            FileStorageFilesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesAllResponse list(FileStorageFilesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesAllRequest, FileStorageFilesAllResponse> operation
-              = new FileStorageFilesAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -123,13 +119,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesSearchResponse search(
-            FileStorageFilesSearchRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesSearchResponse search(FileStorageFilesSearchRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesSearchRequest, FileStorageFilesSearchResponse> operation
-              = new FileStorageFilesSearchOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesSearchOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -167,13 +159,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesOneResponse get(
-            FileStorageFilesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesOneResponse get(FileStorageFilesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesOneRequest, FileStorageFilesOneResponse> operation
-              = new FileStorageFilesOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -211,13 +199,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesUpdateResponse update(
-            FileStorageFilesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesUpdateResponse update(FileStorageFilesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesUpdateRequest, FileStorageFilesUpdateResponse> operation
-              = new FileStorageFilesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -255,13 +239,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesDeleteResponse delete(
-            FileStorageFilesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesDeleteResponse delete(FileStorageFilesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDeleteRequest, FileStorageFilesDeleteResponse> operation
-              = new FileStorageFilesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -299,13 +279,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesDownloadResponse download(
-            FileStorageFilesDownloadRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesDownloadResponse download(FileStorageFilesDownloadRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
-              = new FileStorageFilesDownloadOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesDownloadOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -343,13 +319,9 @@ public class Files {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFilesExportResponse export(
-            FileStorageFilesExportRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFilesExportResponse export(FileStorageFilesExportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFilesExportRequest, FileStorageFilesExportResponse> operation
-              = new FileStorageFilesExportOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesExportOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

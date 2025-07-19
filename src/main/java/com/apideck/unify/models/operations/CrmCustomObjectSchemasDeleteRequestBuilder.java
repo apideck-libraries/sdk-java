@@ -47,9 +47,7 @@ public class CrmCustomObjectSchemasDeleteRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectSchemasDeleteRequest, CrmCustomObjectSchemasDeleteResponse> operation
-              = new CrmCustomObjectSchemasDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

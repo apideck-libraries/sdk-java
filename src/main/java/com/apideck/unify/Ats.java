@@ -5,9 +5,9 @@ package com.apideck.unify;
 
 public class Ats {
     private final SDKConfiguration sdkConfiguration;
-private final Jobs jobs;
-private final Applicants applicants;
-private final Applications applications;
+    private final Jobs jobs;
+    private final Applicants applicants;
+    private final Applications applications;
 
     Ats(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -15,13 +15,17 @@ private final Applications applications;
         this.applicants = new Applicants(this.sdkConfiguration);
         this.applications = new Applications(this.sdkConfiguration);
     }
-public final Jobs jobs() {
+
+    public final Jobs jobs() {
         return jobs;
     }
-public final Applicants applicants() {
+
+    public final Applicants applicants() {
         return applicants;
     }
-public final Applications applications() {
+
+    public final Applications applications() {
         return applications;
     }
+
 }

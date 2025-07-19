@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.AccountingProfitAndLossOneResponse;
 import com.apideck.unify.operations.AccountingProfitAndLossOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class ProfitAndLoss {
     ProfitAndLoss(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get Profit and Loss
      * 
@@ -55,13 +55,9 @@ public class ProfitAndLoss {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingProfitAndLossOneResponse get(
-            AccountingProfitAndLossOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingProfitAndLossOneResponse get(AccountingProfitAndLossOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
-              = new AccountingProfitAndLossOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingProfitAndLossOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

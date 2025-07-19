@@ -70,9 +70,7 @@ public class ConnectorConnectorsOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
-              = new ConnectorConnectorsOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorsOneOperation(sdkConfiguration, options);
         ConnectorConnectorsOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

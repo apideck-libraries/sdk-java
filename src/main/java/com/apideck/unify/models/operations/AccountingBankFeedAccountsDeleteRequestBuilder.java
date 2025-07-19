@@ -47,9 +47,7 @@ public class AccountingBankFeedAccountsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingBankFeedAccountsDeleteRequest, AccountingBankFeedAccountsDeleteResponse> operation
-              = new AccountingBankFeedAccountsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

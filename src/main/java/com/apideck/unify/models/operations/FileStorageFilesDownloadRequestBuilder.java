@@ -47,9 +47,7 @@ public class FileStorageFilesDownloadRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFilesDownloadRequest, FileStorageFilesDownloadResponse> operation
-              = new FileStorageFilesDownloadOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFilesDownloadOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

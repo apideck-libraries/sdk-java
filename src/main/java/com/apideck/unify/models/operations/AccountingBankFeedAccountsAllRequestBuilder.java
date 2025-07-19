@@ -58,9 +58,7 @@ public class AccountingBankFeedAccountsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class AccountingBankFeedAccountsAllRequestBuilder {
             .build());
 
         RequestOperation<AccountingBankFeedAccountsAllRequest, AccountingBankFeedAccountsAllResponse> operation
-              = new AccountingBankFeedAccountsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBankFeedAccountsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

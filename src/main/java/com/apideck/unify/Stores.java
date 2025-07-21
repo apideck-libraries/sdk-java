@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.EcommerceStoresOneResponse;
 import com.apideck.unify.operations.EcommerceStoresOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class Stores {
     Stores(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get Store
      * 
@@ -55,13 +55,9 @@ public class Stores {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceStoresOneResponse get(
-            EcommerceStoresOneRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceStoresOneResponse get(EcommerceStoresOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceStoresOneRequest, EcommerceStoresOneResponse> operation
-              = new EcommerceStoresOneOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceStoresOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

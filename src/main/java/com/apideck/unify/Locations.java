@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingLocationsOneOperation;
 import com.apideck.unify.operations.AccountingLocationsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Locations {
     Locations(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Locations
      * 
@@ -71,13 +71,9 @@ public class Locations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLocationsAllResponse list(
-            AccountingLocationsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLocationsAllResponse list(AccountingLocationsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAllRequest, AccountingLocationsAllResponse> operation
-              = new AccountingLocationsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Locations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLocationsAddResponse create(
-            AccountingLocationsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLocationsAddResponse create(AccountingLocationsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsAddRequest, AccountingLocationsAddResponse> operation
-              = new AccountingLocationsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Locations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLocationsOneResponse get(
-            AccountingLocationsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLocationsOneResponse get(AccountingLocationsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
-              = new AccountingLocationsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Locations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLocationsUpdateResponse update(
-            AccountingLocationsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLocationsUpdateResponse update(AccountingLocationsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsUpdateRequest, AccountingLocationsUpdateResponse> operation
-              = new AccountingLocationsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Locations {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLocationsDeleteResponse delete(
-            AccountingLocationsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLocationsDeleteResponse delete(AccountingLocationsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLocationsDeleteRequest, AccountingLocationsDeleteResponse> operation
-              = new AccountingLocationsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

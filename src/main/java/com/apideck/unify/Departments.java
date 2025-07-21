@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingDepartmentsOneOperation;
 import com.apideck.unify.operations.AccountingDepartmentsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Departments {
     Departments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Departments
      * 
@@ -71,13 +71,9 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsAllResponse list(
-            AccountingDepartmentsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingDepartmentsAllResponse list(AccountingDepartmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAllRequest, AccountingDepartmentsAllResponse> operation
-              = new AccountingDepartmentsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingDepartmentsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsAddResponse create(
-            AccountingDepartmentsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingDepartmentsAddResponse create(AccountingDepartmentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsAddRequest, AccountingDepartmentsAddResponse> operation
-              = new AccountingDepartmentsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingDepartmentsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsOneResponse get(
-            AccountingDepartmentsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingDepartmentsOneResponse get(AccountingDepartmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsOneRequest, AccountingDepartmentsOneResponse> operation
-              = new AccountingDepartmentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingDepartmentsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsUpdateResponse update(
-            AccountingDepartmentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingDepartmentsUpdateResponse update(AccountingDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsUpdateRequest, AccountingDepartmentsUpdateResponse> operation
-              = new AccountingDepartmentsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingDepartmentsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Departments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingDepartmentsDeleteResponse delete(
-            AccountingDepartmentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingDepartmentsDeleteResponse delete(AccountingDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingDepartmentsDeleteRequest, AccountingDepartmentsDeleteResponse> operation
-              = new AccountingDepartmentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingDepartmentsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

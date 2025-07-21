@@ -47,9 +47,7 @@ public class SmsMessagesDeleteRequestBuilder {
             .build());
 
         RequestOperation<SmsMessagesDeleteRequest, SmsMessagesDeleteResponse> operation
-              = new SmsMessagesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new SmsMessagesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

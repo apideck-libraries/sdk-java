@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingInvoicesOneOperation;
 import com.apideck.unify.operations.AccountingInvoicesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Invoices {
     Invoices(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Invoices
      * 
@@ -71,13 +71,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoicesAllResponse list(
-            AccountingInvoicesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingInvoicesAllResponse list(AccountingInvoicesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAllRequest, AccountingInvoicesAllResponse> operation
-              = new AccountingInvoicesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoicesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoicesAddResponse create(
-            AccountingInvoicesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingInvoicesAddResponse create(AccountingInvoicesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesAddRequest, AccountingInvoicesAddResponse> operation
-              = new AccountingInvoicesAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoicesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoicesOneResponse get(
-            AccountingInvoicesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingInvoicesOneResponse get(AccountingInvoicesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesOneRequest, AccountingInvoicesOneResponse> operation
-              = new AccountingInvoicesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoicesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoicesUpdateResponse update(
-            AccountingInvoicesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingInvoicesUpdateResponse update(AccountingInvoicesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesUpdateRequest, AccountingInvoicesUpdateResponse> operation
-              = new AccountingInvoicesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoicesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Invoices {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingInvoicesDeleteResponse delete(
-            AccountingInvoicesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingInvoicesDeleteResponse delete(AccountingInvoicesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingInvoicesDeleteRequest, AccountingInvoicesDeleteResponse> operation
-              = new AccountingInvoicesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoicesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

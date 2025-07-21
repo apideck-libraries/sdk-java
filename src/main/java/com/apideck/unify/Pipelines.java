@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmPipelinesOneOperation;
 import com.apideck.unify.operations.CrmPipelinesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Pipelines {
     Pipelines(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List pipelines
      * 
@@ -71,13 +71,9 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesAllResponse list(
-            CrmPipelinesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmPipelinesAllResponse list(CrmPipelinesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAllRequest, CrmPipelinesAllResponse> operation
-              = new CrmPipelinesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesAddResponse create(
-            CrmPipelinesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmPipelinesAddResponse create(CrmPipelinesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesAddRequest, CrmPipelinesAddResponse> operation
-              = new CrmPipelinesAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesOneResponse get(
-            CrmPipelinesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmPipelinesOneResponse get(CrmPipelinesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesOneRequest, CrmPipelinesOneResponse> operation
-              = new CrmPipelinesOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesUpdateResponse update(
-            CrmPipelinesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmPipelinesUpdateResponse update(CrmPipelinesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesUpdateRequest, CrmPipelinesUpdateResponse> operation
-              = new CrmPipelinesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Pipelines {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmPipelinesDeleteResponse delete(
-            CrmPipelinesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmPipelinesDeleteResponse delete(CrmPipelinesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmPipelinesDeleteRequest, CrmPipelinesDeleteResponse> operation
-              = new CrmPipelinesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmPipelinesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

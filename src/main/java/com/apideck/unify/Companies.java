@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmCompaniesOneOperation;
 import com.apideck.unify.operations.CrmCompaniesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Companies {
     Companies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List companies
      * 
@@ -71,13 +71,9 @@ public class Companies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCompaniesAllResponse list(
-            CrmCompaniesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCompaniesAllResponse list(CrmCompaniesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesAllRequest, CrmCompaniesAllResponse> operation
-              = new CrmCompaniesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCompaniesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Companies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCompaniesAddResponse create(
-            CrmCompaniesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCompaniesAddResponse create(CrmCompaniesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesAddRequest, CrmCompaniesAddResponse> operation
-              = new CrmCompaniesAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCompaniesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Companies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCompaniesOneResponse get(
-            CrmCompaniesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCompaniesOneResponse get(CrmCompaniesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesOneRequest, CrmCompaniesOneResponse> operation
-              = new CrmCompaniesOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCompaniesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Companies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCompaniesUpdateResponse update(
-            CrmCompaniesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCompaniesUpdateResponse update(CrmCompaniesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesUpdateRequest, CrmCompaniesUpdateResponse> operation
-              = new CrmCompaniesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCompaniesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Companies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmCompaniesDeleteResponse delete(
-            CrmCompaniesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmCompaniesDeleteResponse delete(CrmCompaniesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmCompaniesDeleteRequest, CrmCompaniesDeleteResponse> operation
-              = new CrmCompaniesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCompaniesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

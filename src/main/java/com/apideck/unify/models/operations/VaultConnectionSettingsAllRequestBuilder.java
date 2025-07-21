@@ -47,9 +47,7 @@ public class VaultConnectionSettingsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionSettingsAllRequest, VaultConnectionSettingsAllResponse> operation
-              = new VaultConnectionSettingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionSettingsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

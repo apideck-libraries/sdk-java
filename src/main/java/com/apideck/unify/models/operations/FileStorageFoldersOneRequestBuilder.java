@@ -47,9 +47,7 @@ public class FileStorageFoldersOneRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
-              = new FileStorageFoldersOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

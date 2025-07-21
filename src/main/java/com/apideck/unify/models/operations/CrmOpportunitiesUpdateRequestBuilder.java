@@ -47,9 +47,7 @@ public class CrmOpportunitiesUpdateRequestBuilder {
             .build());
 
         RequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
-              = new CrmOpportunitiesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

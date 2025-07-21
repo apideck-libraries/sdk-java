@@ -70,9 +70,7 @@ public class VaultConsumersDeleteRequestBuilder {
             .build());
 
         RequestOperation<VaultConsumersDeleteRequest, VaultConsumersDeleteResponse> operation
-              = new VaultConsumersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConsumersDeleteOperation(sdkConfiguration, options);
         VaultConsumersDeleteRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

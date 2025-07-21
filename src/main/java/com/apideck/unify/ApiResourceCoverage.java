@@ -12,7 +12,6 @@ import com.apideck.unify.operations.ConnectorApiResourceCoverageOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class ApiResourceCoverage {
     ApiResourceCoverage(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get API Resource Coverage
      * 
@@ -43,9 +43,7 @@ public class ApiResourceCoverage {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorApiResourceCoverageOneResponse get(
-            String id,
-            String resourceId) throws Exception {
+    public ConnectorApiResourceCoverageOneResponse get(String id, String resourceId) throws Exception {
         return get(Optional.empty(), id, resourceId,
             Optional.empty());
     }
@@ -63,10 +61,8 @@ public class ApiResourceCoverage {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourceCoverageOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<Options> options) throws Exception {
+            Optional<String> appId, String id,
+            String resourceId, Optional<Options> options) throws Exception {
         ConnectorApiResourceCoverageOneRequest request =
             ConnectorApiResourceCoverageOneRequest
                 .builder()
@@ -75,9 +71,7 @@ public class ApiResourceCoverage {
                 .resourceId(resourceId)
                 .build();
         RequestOperation<ConnectorApiResourceCoverageOneRequest, ConnectorApiResourceCoverageOneResponse> operation
-              = new ConnectorApiResourceCoverageOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApiResourceCoverageOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

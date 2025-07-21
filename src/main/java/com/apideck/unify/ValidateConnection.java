@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.VaultValidateConnectionStateResponse;
 import com.apideck.unify.operations.VaultValidateConnectionStateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class ValidateConnection {
     ValidateConnection(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Validate Connection State
      * 
@@ -70,13 +70,9 @@ public class ValidateConnection {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultValidateConnectionStateResponse state(
-            VaultValidateConnectionStateRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultValidateConnectionStateResponse state(VaultValidateConnectionStateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
-              = new VaultValidateConnectionStateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultValidateConnectionStateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

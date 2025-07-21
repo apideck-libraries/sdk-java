@@ -47,9 +47,7 @@ public class AccountingTaxRatesUpdateRequestBuilder {
             .build());
 
         RequestOperation<AccountingTaxRatesUpdateRequest, AccountingTaxRatesUpdateResponse> operation
-              = new AccountingTaxRatesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

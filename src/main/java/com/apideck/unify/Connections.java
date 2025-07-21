@@ -33,7 +33,6 @@ import com.apideck.unify.utils.Options;
 import java.lang.Boolean;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -43,6 +42,7 @@ public class Connections {
     Connections(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get all connections
      * 
@@ -87,10 +87,8 @@ public class Connections {
      * @throws Exception if the API call fails
      */
     public VaultConnectionsAllResponse list(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<String> api,
-            Optional<Boolean> configured,
+            Optional<String> consumerId, Optional<String> appId,
+            Optional<String> api, Optional<Boolean> configured,
             Optional<Options> options) throws Exception {
         VaultConnectionsAllRequest request =
             VaultConnectionsAllRequest
@@ -101,9 +99,7 @@ public class Connections {
                 .configured(configured)
                 .build();
         RequestOperation<VaultConnectionsAllRequest, VaultConnectionsAllResponse> operation
-              = new VaultConnectionsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -128,9 +124,7 @@ public class Connections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsOneResponse get(
-            String serviceId,
-            String unifiedApi) throws Exception {
+    public VaultConnectionsOneResponse get(String serviceId, String unifiedApi) throws Exception {
         return get(Optional.empty(), Optional.empty(), serviceId,
             unifiedApi, Optional.empty());
     }
@@ -149,10 +143,8 @@ public class Connections {
      * @throws Exception if the API call fails
      */
     public VaultConnectionsOneResponse get(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String serviceId,
-            String unifiedApi,
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi,
             Optional<Options> options) throws Exception {
         VaultConnectionsOneRequest request =
             VaultConnectionsOneRequest
@@ -163,9 +155,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsOneRequest, VaultConnectionsOneResponse> operation
-              = new VaultConnectionsOneOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +193,9 @@ public class Connections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsUpdateResponse update(
-            VaultConnectionsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionsUpdateResponse update(VaultConnectionsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsUpdateRequest, VaultConnectionsUpdateResponse> operation
-              = new VaultConnectionsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -234,9 +220,7 @@ public class Connections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsDeleteResponse delete(
-            String serviceId,
-            String unifiedApi) throws Exception {
+    public VaultConnectionsDeleteResponse delete(String serviceId, String unifiedApi) throws Exception {
         return delete(Optional.empty(), Optional.empty(), serviceId,
             unifiedApi, Optional.empty());
     }
@@ -255,10 +239,8 @@ public class Connections {
      * @throws Exception if the API call fails
      */
     public VaultConnectionsDeleteResponse delete(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String serviceId,
-            String unifiedApi,
+            Optional<String> consumerId, Optional<String> appId,
+            String serviceId, String unifiedApi,
             Optional<Options> options) throws Exception {
         VaultConnectionsDeleteRequest request =
             VaultConnectionsDeleteRequest
@@ -269,9 +251,7 @@ public class Connections {
                 .unifiedApi(unifiedApi)
                 .build();
         RequestOperation<VaultConnectionsDeleteRequest, VaultConnectionsDeleteResponse> operation
-              = new VaultConnectionsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -309,13 +289,9 @@ public class Connections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsImportResponse imports(
-            VaultConnectionsImportRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionsImportResponse imports(VaultConnectionsImportRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsImportRequest, VaultConnectionsImportResponse> operation
-              = new VaultConnectionsImportOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsImportOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -368,13 +344,9 @@ public class Connections {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultConnectionsTokenResponse token(
-            VaultConnectionsTokenRequest request,
-            Optional<Options> options) throws Exception {
+    public VaultConnectionsTokenResponse token(VaultConnectionsTokenRequest request, Optional<Options> options) throws Exception {
         RequestOperation<VaultConnectionsTokenRequest, VaultConnectionsTokenResponse> operation
-              = new VaultConnectionsTokenOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionsTokenOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

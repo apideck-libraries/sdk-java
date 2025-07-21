@@ -47,9 +47,7 @@ public class VaultCustomFieldsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultCustomFieldsAllRequest, VaultCustomFieldsAllResponse> operation
-              = new VaultCustomFieldsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultCustomFieldsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

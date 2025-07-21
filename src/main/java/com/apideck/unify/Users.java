@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmUsersOneOperation;
 import com.apideck.unify.operations.CrmUsersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Users {
     Users(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List users
      * 
@@ -71,13 +71,9 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersAllResponse list(
-            CrmUsersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmUsersAllResponse list(CrmUsersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAllRequest, CrmUsersAllResponse> operation
-              = new CrmUsersAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersAddResponse create(
-            CrmUsersAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmUsersAddResponse create(CrmUsersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersAddRequest, CrmUsersAddResponse> operation
-              = new CrmUsersAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersOneResponse get(
-            CrmUsersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmUsersOneResponse get(CrmUsersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersOneRequest, CrmUsersOneResponse> operation
-              = new CrmUsersOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersUpdateResponse update(
-            CrmUsersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmUsersUpdateResponse update(CrmUsersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersUpdateRequest, CrmUsersUpdateResponse> operation
-              = new CrmUsersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Users {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmUsersDeleteResponse delete(
-            CrmUsersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmUsersDeleteResponse delete(CrmUsersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmUsersDeleteRequest, CrmUsersDeleteResponse> operation
-              = new CrmUsersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmUsersDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

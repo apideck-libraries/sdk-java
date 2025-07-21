@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmOpportunitiesOneOperation;
 import com.apideck.unify.operations.CrmOpportunitiesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Opportunities {
     Opportunities(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List opportunities
      * 
@@ -71,13 +71,9 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesAllResponse list(
-            CrmOpportunitiesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmOpportunitiesAllResponse list(CrmOpportunitiesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAllRequest, CrmOpportunitiesAllResponse> operation
-              = new CrmOpportunitiesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesAddResponse create(
-            CrmOpportunitiesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmOpportunitiesAddResponse create(CrmOpportunitiesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesAddRequest, CrmOpportunitiesAddResponse> operation
-              = new CrmOpportunitiesAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesOneResponse get(
-            CrmOpportunitiesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmOpportunitiesOneResponse get(CrmOpportunitiesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesOneRequest, CrmOpportunitiesOneResponse> operation
-              = new CrmOpportunitiesOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesUpdateResponse update(
-            CrmOpportunitiesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmOpportunitiesUpdateResponse update(CrmOpportunitiesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesUpdateRequest, CrmOpportunitiesUpdateResponse> operation
-              = new CrmOpportunitiesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Opportunities {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmOpportunitiesDeleteResponse delete(
-            CrmOpportunitiesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmOpportunitiesDeleteResponse delete(CrmOpportunitiesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmOpportunitiesDeleteRequest, CrmOpportunitiesDeleteResponse> operation
-              = new CrmOpportunitiesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmOpportunitiesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

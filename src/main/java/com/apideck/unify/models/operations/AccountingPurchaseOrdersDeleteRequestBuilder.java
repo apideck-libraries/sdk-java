@@ -47,9 +47,7 @@ public class AccountingPurchaseOrdersDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
-              = new AccountingPurchaseOrdersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

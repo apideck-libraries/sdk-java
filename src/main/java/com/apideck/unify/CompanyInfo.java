@@ -11,7 +11,6 @@ import com.apideck.unify.models.operations.AccountingCompanyInfoOneResponse;
 import com.apideck.unify.operations.AccountingCompanyInfoOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -21,6 +20,7 @@ public class CompanyInfo {
     CompanyInfo(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get company info
      * 
@@ -55,13 +55,9 @@ public class CompanyInfo {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCompanyInfoOneResponse get(
-            AccountingCompanyInfoOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCompanyInfoOneResponse get(AccountingCompanyInfoOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCompanyInfoOneRequest, AccountingCompanyInfoOneResponse> operation
-              = new AccountingCompanyInfoOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCompanyInfoOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

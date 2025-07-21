@@ -47,9 +47,7 @@ public class CrmLeadsUpdateRequestBuilder {
             .build());
 
         RequestOperation<CrmLeadsUpdateRequest, CrmLeadsUpdateResponse> operation
-              = new CrmLeadsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmLeadsUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageFoldersOneOperation;
 import com.apideck.unify.operations.FileStorageFoldersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Folders {
     Folders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create Folder
      * 
@@ -71,13 +71,9 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersAddResponse create(
-            FileStorageFoldersAddRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFoldersAddResponse create(FileStorageFoldersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersAddRequest, FileStorageFoldersAddResponse> operation
-              = new FileStorageFoldersAddOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersOneResponse get(
-            FileStorageFoldersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFoldersOneResponse get(FileStorageFoldersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersOneRequest, FileStorageFoldersOneResponse> operation
-              = new FileStorageFoldersOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersUpdateResponse update(
-            FileStorageFoldersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFoldersUpdateResponse update(FileStorageFoldersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
-              = new FileStorageFoldersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersDeleteResponse delete(
-            FileStorageFoldersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFoldersDeleteResponse delete(FileStorageFoldersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersDeleteRequest, FileStorageFoldersDeleteResponse> operation
-              = new FileStorageFoldersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Folders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageFoldersCopyResponse copy(
-            FileStorageFoldersCopyRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageFoldersCopyResponse copy(FileStorageFoldersCopyRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageFoldersCopyRequest, FileStorageFoldersCopyResponse> operation
-              = new FileStorageFoldersCopyOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersCopyOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

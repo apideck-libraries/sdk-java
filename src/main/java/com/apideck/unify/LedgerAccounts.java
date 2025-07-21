@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingLedgerAccountsOneOperation;
 import com.apideck.unify.operations.AccountingLedgerAccountsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class LedgerAccounts {
     LedgerAccounts(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Ledger Accounts
      * 
@@ -71,13 +71,9 @@ public class LedgerAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLedgerAccountsAllResponse list(
-            AccountingLedgerAccountsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLedgerAccountsAllResponse list(AccountingLedgerAccountsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAllRequest, AccountingLedgerAccountsAllResponse> operation
-              = new AccountingLedgerAccountsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class LedgerAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLedgerAccountsAddResponse create(
-            AccountingLedgerAccountsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLedgerAccountsAddResponse create(AccountingLedgerAccountsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsAddRequest, AccountingLedgerAccountsAddResponse> operation
-              = new AccountingLedgerAccountsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class LedgerAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLedgerAccountsOneResponse get(
-            AccountingLedgerAccountsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLedgerAccountsOneResponse get(AccountingLedgerAccountsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
-              = new AccountingLedgerAccountsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class LedgerAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLedgerAccountsUpdateResponse update(
-            AccountingLedgerAccountsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLedgerAccountsUpdateResponse update(AccountingLedgerAccountsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsUpdateRequest, AccountingLedgerAccountsUpdateResponse> operation
-              = new AccountingLedgerAccountsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class LedgerAccounts {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingLedgerAccountsDeleteResponse delete(
-            AccountingLedgerAccountsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingLedgerAccountsDeleteResponse delete(AccountingLedgerAccountsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
-              = new AccountingLedgerAccountsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

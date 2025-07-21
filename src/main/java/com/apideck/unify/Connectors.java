@@ -18,7 +18,6 @@ import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -29,6 +28,7 @@ public class Connectors {
     Connectors(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Connectors
      * 
@@ -67,10 +67,8 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<? extends ConnectorsFilter> filter,
+            Optional<String> appId, JsonNullable<String> cursor,
+            Optional<Long> limit, Optional<? extends ConnectorsFilter> filter,
             Optional<Options> options) throws Exception {
         ConnectorConnectorsAllRequest request =
             ConnectorConnectorsAllRequest
@@ -81,9 +79,7 @@ public class Connectors {
                 .filter(filter)
                 .build();
         RequestOperation<ConnectorConnectorsAllRequest, ConnectorConnectorsAllResponse> operation
-              = new ConnectorConnectorsAllOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -123,8 +119,7 @@ public class Connectors {
      * @throws Exception if the API call fails
      */
     public ConnectorConnectorsOneResponse get(
-            Optional<String> appId,
-            String id,
+            Optional<String> appId, String id,
             Optional<Options> options) throws Exception {
         ConnectorConnectorsOneRequest request =
             ConnectorConnectorsOneRequest
@@ -133,9 +128,7 @@ public class Connectors {
                 .id(id)
                 .build();
         RequestOperation<ConnectorConnectorsOneRequest, ConnectorConnectorsOneResponse> operation
-              = new ConnectorConnectorsOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

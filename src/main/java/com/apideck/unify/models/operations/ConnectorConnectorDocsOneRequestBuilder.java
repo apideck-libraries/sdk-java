@@ -78,9 +78,7 @@ public class ConnectorConnectorDocsOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorDocsOneRequest, ConnectorConnectorDocsOneResponse> operation
-              = new ConnectorConnectorDocsOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorDocsOneOperation(sdkConfiguration, options);
         ConnectorConnectorDocsOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

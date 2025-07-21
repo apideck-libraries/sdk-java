@@ -47,9 +47,7 @@ public class FileStorageFoldersUpdateRequestBuilder {
             .build());
 
         RequestOperation<FileStorageFoldersUpdateRequest, FileStorageFoldersUpdateResponse> operation
-              = new FileStorageFoldersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageFoldersUpdateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

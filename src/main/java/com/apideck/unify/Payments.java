@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingPaymentsOneOperation;
 import com.apideck.unify.operations.AccountingPaymentsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Payments {
     Payments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Payments
      * 
@@ -71,13 +71,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsAllResponse list(
-            AccountingPaymentsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPaymentsAllResponse list(AccountingPaymentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAllRequest, AccountingPaymentsAllResponse> operation
-              = new AccountingPaymentsAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPaymentsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsAddResponse create(
-            AccountingPaymentsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPaymentsAddResponse create(AccountingPaymentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsAddRequest, AccountingPaymentsAddResponse> operation
-              = new AccountingPaymentsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPaymentsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsOneResponse get(
-            AccountingPaymentsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPaymentsOneResponse get(AccountingPaymentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsOneRequest, AccountingPaymentsOneResponse> operation
-              = new AccountingPaymentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPaymentsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsUpdateResponse update(
-            AccountingPaymentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPaymentsUpdateResponse update(AccountingPaymentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsUpdateRequest, AccountingPaymentsUpdateResponse> operation
-              = new AccountingPaymentsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPaymentsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Payments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPaymentsDeleteResponse delete(
-            AccountingPaymentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPaymentsDeleteResponse delete(AccountingPaymentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPaymentsDeleteRequest, AccountingPaymentsDeleteResponse> operation
-              = new AccountingPaymentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPaymentsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

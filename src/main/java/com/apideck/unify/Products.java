@@ -15,7 +15,6 @@ import com.apideck.unify.operations.EcommerceProductsAllOperation;
 import com.apideck.unify.operations.EcommerceProductsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Products {
     Products(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Products
      * 
@@ -59,13 +59,9 @@ public class Products {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceProductsAllResponse list(
-            EcommerceProductsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceProductsAllResponse list(EcommerceProductsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceProductsAllRequest, EcommerceProductsAllResponse> operation
-              = new EcommerceProductsAllOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceProductsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class Products {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceProductsOneResponse get(
-            EcommerceProductsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceProductsOneResponse get(EcommerceProductsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceProductsOneRequest, EcommerceProductsOneResponse> operation
-              = new EcommerceProductsOneOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceProductsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

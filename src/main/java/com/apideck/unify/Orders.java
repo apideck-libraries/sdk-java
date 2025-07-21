@@ -15,7 +15,6 @@ import com.apideck.unify.operations.EcommerceOrdersAllOperation;
 import com.apideck.unify.operations.EcommerceOrdersOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Orders {
     Orders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Orders
      * 
@@ -59,13 +59,9 @@ public class Orders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceOrdersAllResponse list(
-            EcommerceOrdersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceOrdersAllResponse list(EcommerceOrdersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceOrdersAllRequest, EcommerceOrdersAllResponse> operation
-              = new EcommerceOrdersAllOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceOrdersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class Orders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceOrdersOneResponse get(
-            EcommerceOrdersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceOrdersOneResponse get(EcommerceOrdersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceOrdersOneRequest, EcommerceOrdersOneResponse> operation
-              = new EcommerceOrdersOneOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceOrdersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

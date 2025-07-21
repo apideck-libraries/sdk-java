@@ -27,7 +27,6 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsOneOper
 import com.apideck.unify.operations.IssueTrackingCollectionTicketCommentsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class CollectionTicketComments {
     CollectionTicketComments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Comments
      * 
@@ -71,13 +71,9 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsAllResponse list(
-            IssueTrackingCollectionTicketCommentsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketCommentsAllResponse list(IssueTrackingCollectionTicketCommentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAllRequest, IssueTrackingCollectionTicketCommentsAllResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAllOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsAddResponse create(
-            IssueTrackingCollectionTicketCommentsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketCommentsAddResponse create(IssueTrackingCollectionTicketCommentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsAddRequest, IssueTrackingCollectionTicketCommentsAddResponse> operation
-              = new IssueTrackingCollectionTicketCommentsAddOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsOneResponse get(
-            IssueTrackingCollectionTicketCommentsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketCommentsOneResponse get(IssueTrackingCollectionTicketCommentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsOneRequest, IssueTrackingCollectionTicketCommentsOneResponse> operation
-              = new IssueTrackingCollectionTicketCommentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsUpdateResponse update(
-            IssueTrackingCollectionTicketCommentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketCommentsUpdateResponse update(IssueTrackingCollectionTicketCommentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsUpdateRequest, IssueTrackingCollectionTicketCommentsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketCommentsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class CollectionTicketComments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketCommentsDeleteResponse delete(
-            IssueTrackingCollectionTicketCommentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketCommentsDeleteResponse delete(IssueTrackingCollectionTicketCommentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

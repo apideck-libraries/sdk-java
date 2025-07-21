@@ -47,9 +47,7 @@ public class FileStorageSharedLinksAddRequestBuilder {
             .build());
 
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
-              = new FileStorageSharedLinksAddOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

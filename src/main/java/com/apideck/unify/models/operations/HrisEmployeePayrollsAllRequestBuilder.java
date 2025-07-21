@@ -47,9 +47,7 @@ public class HrisEmployeePayrollsAllRequestBuilder {
             .build());
 
         RequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
-              = new HrisEmployeePayrollsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeePayrollsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

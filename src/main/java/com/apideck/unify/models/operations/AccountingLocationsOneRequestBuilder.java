@@ -47,9 +47,7 @@ public class AccountingLocationsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingLocationsOneRequest, AccountingLocationsOneResponse> operation
-              = new AccountingLocationsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLocationsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

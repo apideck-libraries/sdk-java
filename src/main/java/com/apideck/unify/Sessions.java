@@ -13,7 +13,6 @@ import com.apideck.unify.operations.VaultSessionsCreateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -23,6 +22,7 @@ public class Sessions {
     Sessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Create Session
      * 
@@ -69,10 +69,8 @@ public class Sessions {
      * @throws Exception if the API call fails
      */
     public VaultSessionsCreateResponse create(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            Optional<? extends Session> session,
-            Optional<Options> options) throws Exception {
+            Optional<String> consumerId, Optional<String> appId,
+            Optional<? extends Session> session, Optional<Options> options) throws Exception {
         VaultSessionsCreateRequest request =
             VaultSessionsCreateRequest
                 .builder()
@@ -81,9 +79,7 @@ public class Sessions {
                 .session(session)
                 .build();
         RequestOperation<VaultSessionsCreateRequest, VaultSessionsCreateResponse> operation
-              = new VaultSessionsCreateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultSessionsCreateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

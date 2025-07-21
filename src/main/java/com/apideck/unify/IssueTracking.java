@@ -5,11 +5,11 @@ package com.apideck.unify;
 
 public class IssueTracking {
     private final SDKConfiguration sdkConfiguration;
-private final Collections collections;
-private final CollectionTickets collectionTickets;
-private final CollectionTicketComments collectionTicketComments;
-private final CollectionUsers collectionUsers;
-private final CollectionTags collectionTags;
+    private final Collections collections;
+    private final CollectionTickets collectionTickets;
+    private final CollectionTicketComments collectionTicketComments;
+    private final CollectionUsers collectionUsers;
+    private final CollectionTags collectionTags;
 
     IssueTracking(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -19,19 +19,25 @@ private final CollectionTags collectionTags;
         this.collectionUsers = new CollectionUsers(this.sdkConfiguration);
         this.collectionTags = new CollectionTags(this.sdkConfiguration);
     }
-public final Collections collections() {
+
+    public final Collections collections() {
         return collections;
     }
-public final CollectionTickets collectionTickets() {
+
+    public final CollectionTickets collectionTickets() {
         return collectionTickets;
     }
-public final CollectionTicketComments collectionTicketComments() {
+
+    public final CollectionTicketComments collectionTicketComments() {
         return collectionTicketComments;
     }
-public final CollectionUsers collectionUsers() {
+
+    public final CollectionUsers collectionUsers() {
         return collectionUsers;
     }
-public final CollectionTags collectionTags() {
+
+    public final CollectionTags collectionTags() {
         return collectionTags;
     }
+
 }

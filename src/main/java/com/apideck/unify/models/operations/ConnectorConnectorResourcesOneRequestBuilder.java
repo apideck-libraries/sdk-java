@@ -93,9 +93,7 @@ public class ConnectorConnectorResourcesOneRequestBuilder {
             .build());
 
         RequestOperation<ConnectorConnectorResourcesOneRequest, ConnectorConnectorResourcesOneResponse> operation
-              = new ConnectorConnectorResourcesOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorConnectorResourcesOneOperation(sdkConfiguration, options);
         ConnectorConnectorResourcesOneRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

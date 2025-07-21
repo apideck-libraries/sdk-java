@@ -15,7 +15,6 @@ import com.apideck.unify.operations.HrisEmployeePayrollsAllOperation;
 import com.apideck.unify.operations.HrisEmployeePayrollsOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class EmployeePayrolls {
     EmployeePayrolls(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Employee Payrolls
      * 
@@ -59,13 +59,9 @@ public class EmployeePayrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeePayrollsAllResponse list(
-            HrisEmployeePayrollsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeePayrollsAllResponse list(HrisEmployeePayrollsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeePayrollsAllRequest, HrisEmployeePayrollsAllResponse> operation
-              = new HrisEmployeePayrollsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeePayrollsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class EmployeePayrolls {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeePayrollsOneResponse get(
-            HrisEmployeePayrollsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeePayrollsOneResponse get(HrisEmployeePayrollsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeePayrollsOneRequest, HrisEmployeePayrollsOneResponse> operation
-              = new HrisEmployeePayrollsOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeePayrollsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

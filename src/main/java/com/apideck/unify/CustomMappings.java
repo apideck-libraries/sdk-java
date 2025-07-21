@@ -12,7 +12,6 @@ import com.apideck.unify.operations.VaultCustomMappingsAllOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class CustomMappings {
     CustomMappings(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List custom mappings
      * 
@@ -43,9 +43,7 @@ public class CustomMappings {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public VaultCustomMappingsAllResponse list(
-            String unifiedApi,
-            String serviceId) throws Exception {
+    public VaultCustomMappingsAllResponse list(String unifiedApi, String serviceId) throws Exception {
         return list(Optional.empty(), Optional.empty(), unifiedApi,
             serviceId, Optional.empty());
     }
@@ -64,10 +62,8 @@ public class CustomMappings {
      * @throws Exception if the API call fails
      */
     public VaultCustomMappingsAllResponse list(
-            Optional<String> consumerId,
-            Optional<String> appId,
-            String unifiedApi,
-            String serviceId,
+            Optional<String> consumerId, Optional<String> appId,
+            String unifiedApi, String serviceId,
             Optional<Options> options) throws Exception {
         VaultCustomMappingsAllRequest request =
             VaultCustomMappingsAllRequest
@@ -78,9 +74,7 @@ public class CustomMappings {
                 .serviceId(serviceId)
                 .build();
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
-              = new VaultCustomMappingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultCustomMappingsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

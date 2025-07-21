@@ -47,9 +47,7 @@ public class AccountingAttachmentsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsOneRequest, AccountingAttachmentsOneResponse> operation
-              = new AccountingAttachmentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

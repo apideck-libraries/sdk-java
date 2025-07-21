@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingJournalEntriesOneOperation;
 import com.apideck.unify.operations.AccountingJournalEntriesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class JournalEntries {
     JournalEntries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Journal Entries
      * 
@@ -71,13 +71,9 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesAllResponse list(
-            AccountingJournalEntriesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesAllResponse list(AccountingJournalEntriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAllRequest, AccountingJournalEntriesAllResponse> operation
-              = new AccountingJournalEntriesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingJournalEntriesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesAddResponse create(
-            AccountingJournalEntriesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesAddResponse create(AccountingJournalEntriesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesAddRequest, AccountingJournalEntriesAddResponse> operation
-              = new AccountingJournalEntriesAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingJournalEntriesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesOneResponse get(
-            AccountingJournalEntriesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesOneResponse get(AccountingJournalEntriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesOneRequest, AccountingJournalEntriesOneResponse> operation
-              = new AccountingJournalEntriesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingJournalEntriesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesUpdateResponse update(
-            AccountingJournalEntriesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesUpdateResponse update(AccountingJournalEntriesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesUpdateRequest, AccountingJournalEntriesUpdateResponse> operation
-              = new AccountingJournalEntriesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingJournalEntriesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class JournalEntries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingJournalEntriesDeleteResponse delete(
-            AccountingJournalEntriesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingJournalEntriesDeleteResponse delete(AccountingJournalEntriesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingJournalEntriesDeleteRequest, AccountingJournalEntriesDeleteResponse> operation
-              = new AccountingJournalEntriesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingJournalEntriesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -47,9 +47,7 @@ public class VaultConnectionCustomMappingsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultConnectionCustomMappingsAllRequest, VaultConnectionCustomMappingsAllResponse> operation
-              = new VaultConnectionCustomMappingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultConnectionCustomMappingsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

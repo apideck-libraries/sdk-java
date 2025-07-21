@@ -5,17 +5,17 @@ package com.apideck.unify;
 
 public class Vault {
     private final SDKConfiguration sdkConfiguration;
-private final Consumers consumers;
-private final ConsumerRequestCounts consumerRequestCounts;
-private final Connections connections;
-private final ValidateConnection validateConnection;
-private final CreateCallback createCallback;
-private final ConnectionSettings connectionSettings;
-private final CustomFields customFields;
-private final ConnectionCustomMappings connectionCustomMappings;
-private final CustomMappings customMappings;
-private final Sessions sessions;
-private final Logs logs;
+    private final Consumers consumers;
+    private final ConsumerRequestCounts consumerRequestCounts;
+    private final Connections connections;
+    private final ValidateConnection validateConnection;
+    private final CreateCallback createCallback;
+    private final ConnectionSettings connectionSettings;
+    private final CustomFields customFields;
+    private final ConnectionCustomMappings connectionCustomMappings;
+    private final CustomMappings customMappings;
+    private final Sessions sessions;
+    private final Logs logs;
 
     Vault(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -31,37 +31,49 @@ private final Logs logs;
         this.sessions = new Sessions(this.sdkConfiguration);
         this.logs = new Logs(this.sdkConfiguration);
     }
-public final Consumers consumers() {
+
+    public final Consumers consumers() {
         return consumers;
     }
-public final ConsumerRequestCounts consumerRequestCounts() {
+
+    public final ConsumerRequestCounts consumerRequestCounts() {
         return consumerRequestCounts;
     }
-public final Connections connections() {
+
+    public final Connections connections() {
         return connections;
     }
-public final ValidateConnection validateConnection() {
+
+    public final ValidateConnection validateConnection() {
         return validateConnection;
     }
-public final CreateCallback createCallback() {
+
+    public final CreateCallback createCallback() {
         return createCallback;
     }
-public final ConnectionSettings connectionSettings() {
+
+    public final ConnectionSettings connectionSettings() {
         return connectionSettings;
     }
-public final CustomFields customFields() {
+
+    public final CustomFields customFields() {
         return customFields;
     }
-public final ConnectionCustomMappings connectionCustomMappings() {
+
+    public final ConnectionCustomMappings connectionCustomMappings() {
         return connectionCustomMappings;
     }
-public final CustomMappings customMappings() {
+
+    public final CustomMappings customMappings() {
         return customMappings;
     }
-public final Sessions sessions() {
+
+    public final Sessions sessions() {
         return sessions;
     }
-public final Logs logs() {
+
+    public final Logs logs() {
         return logs;
     }
+
 }

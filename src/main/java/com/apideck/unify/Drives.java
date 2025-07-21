@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageDrivesOneOperation;
 import com.apideck.unify.operations.FileStorageDrivesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Drives {
     Drives(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Drives
      * 
@@ -71,13 +71,9 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesAllResponse list(
-            FileStorageDrivesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageDrivesAllResponse list(FileStorageDrivesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAllRequest, FileStorageDrivesAllResponse> operation
-              = new FileStorageDrivesAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesAddResponse create(
-            FileStorageDrivesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageDrivesAddResponse create(FileStorageDrivesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesAddRequest, FileStorageDrivesAddResponse> operation
-              = new FileStorageDrivesAddOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesOneResponse get(
-            FileStorageDrivesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageDrivesOneResponse get(FileStorageDrivesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesOneRequest, FileStorageDrivesOneResponse> operation
-              = new FileStorageDrivesOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesUpdateResponse update(
-            FileStorageDrivesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageDrivesUpdateResponse update(FileStorageDrivesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesUpdateRequest, FileStorageDrivesUpdateResponse> operation
-              = new FileStorageDrivesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Drives {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageDrivesDeleteResponse delete(
-            FileStorageDrivesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageDrivesDeleteResponse delete(FileStorageDrivesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageDrivesDeleteRequest, FileStorageDrivesDeleteResponse> operation
-              = new FileStorageDrivesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageDrivesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -47,9 +47,7 @@ public class CrmCustomObjectSchemasAddRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectSchemasAddRequest, CrmCustomObjectSchemasAddResponse> operation
-              = new CrmCustomObjectSchemasAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectSchemasAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

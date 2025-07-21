@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingCustomersOneOperation;
 import com.apideck.unify.operations.AccountingCustomersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Customers {
     Customers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Customers
      * 
@@ -71,13 +71,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersAllResponse list(
-            AccountingCustomersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCustomersAllResponse list(AccountingCustomersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAllRequest, AccountingCustomersAllResponse> operation
-              = new AccountingCustomersAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersAddResponse create(
-            AccountingCustomersAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCustomersAddResponse create(AccountingCustomersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersAddRequest, AccountingCustomersAddResponse> operation
-              = new AccountingCustomersAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersOneResponse get(
-            AccountingCustomersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCustomersOneResponse get(AccountingCustomersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersOneRequest, AccountingCustomersOneResponse> operation
-              = new AccountingCustomersOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersUpdateResponse update(
-            AccountingCustomersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCustomersUpdateResponse update(AccountingCustomersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersUpdateRequest, AccountingCustomersUpdateResponse> operation
-              = new AccountingCustomersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Customers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCustomersDeleteResponse delete(
-            AccountingCustomersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCustomersDeleteResponse delete(AccountingCustomersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCustomersDeleteRequest, AccountingCustomersDeleteResponse> operation
-              = new AccountingCustomersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCustomersDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

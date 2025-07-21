@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingSubsidiariesOneOperation;
 import com.apideck.unify.operations.AccountingSubsidiariesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Subsidiaries {
     Subsidiaries(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Subsidiaries
      * 
@@ -71,13 +71,9 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesAllResponse list(
-            AccountingSubsidiariesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesAllResponse list(AccountingSubsidiariesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAllRequest, AccountingSubsidiariesAllResponse> operation
-              = new AccountingSubsidiariesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesAddResponse create(
-            AccountingSubsidiariesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesAddResponse create(AccountingSubsidiariesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesAddRequest, AccountingSubsidiariesAddResponse> operation
-              = new AccountingSubsidiariesAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesOneResponse get(
-            AccountingSubsidiariesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesOneResponse get(AccountingSubsidiariesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesOneRequest, AccountingSubsidiariesOneResponse> operation
-              = new AccountingSubsidiariesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesUpdateResponse update(
-            AccountingSubsidiariesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesUpdateResponse update(AccountingSubsidiariesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesUpdateRequest, AccountingSubsidiariesUpdateResponse> operation
-              = new AccountingSubsidiariesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Subsidiaries {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingSubsidiariesDeleteResponse delete(
-            AccountingSubsidiariesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingSubsidiariesDeleteResponse delete(AccountingSubsidiariesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingSubsidiariesDeleteRequest, AccountingSubsidiariesDeleteResponse> operation
-              = new AccountingSubsidiariesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingSubsidiariesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -92,9 +92,7 @@ public class VaultCustomMappingsAllRequestBuilder {
             .build());
 
         RequestOperation<VaultCustomMappingsAllRequest, VaultCustomMappingsAllResponse> operation
-              = new VaultCustomMappingsAllOperation(
-                sdkConfiguration,
-                options);
+              = new VaultCustomMappingsAllOperation(sdkConfiguration, options);
         VaultCustomMappingsAllRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

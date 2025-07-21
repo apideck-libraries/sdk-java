@@ -47,9 +47,7 @@ public class FileStorageSharedLinksDeleteRequestBuilder {
             .build());
 
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
-              = new FileStorageSharedLinksDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

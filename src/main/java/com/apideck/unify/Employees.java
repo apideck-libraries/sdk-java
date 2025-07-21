@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisEmployeesOneOperation;
 import com.apideck.unify.operations.HrisEmployeesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Employees {
     Employees(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Employees
      * 
@@ -71,13 +71,9 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesAllResponse list(
-            HrisEmployeesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeesAllResponse list(HrisEmployeesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAllRequest, HrisEmployeesAllResponse> operation
-              = new HrisEmployeesAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesAddResponse create(
-            HrisEmployeesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeesAddResponse create(HrisEmployeesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesAddRequest, HrisEmployeesAddResponse> operation
-              = new HrisEmployeesAddOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesOneResponse get(
-            HrisEmployeesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeesOneResponse get(HrisEmployeesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesOneRequest, HrisEmployeesOneResponse> operation
-              = new HrisEmployeesOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesUpdateResponse update(
-            HrisEmployeesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeesUpdateResponse update(HrisEmployeesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesUpdateRequest, HrisEmployeesUpdateResponse> operation
-              = new HrisEmployeesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Employees {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisEmployeesDeleteResponse delete(
-            HrisEmployeesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisEmployeesDeleteResponse delete(HrisEmployeesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisEmployeesDeleteRequest, HrisEmployeesDeleteResponse> operation
-              = new HrisEmployeesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new HrisEmployeesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

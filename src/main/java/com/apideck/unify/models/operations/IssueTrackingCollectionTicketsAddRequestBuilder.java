@@ -47,9 +47,7 @@ public class IssueTrackingCollectionTicketsAddRequestBuilder {
             .build());
 
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
-              = new IssueTrackingCollectionTicketsAddOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

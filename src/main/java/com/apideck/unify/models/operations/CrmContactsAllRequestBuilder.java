@@ -58,9 +58,7 @@ public class CrmContactsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class CrmContactsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmContactsAllRequest, CrmContactsAllResponse> operation
-              = new CrmContactsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmContactsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

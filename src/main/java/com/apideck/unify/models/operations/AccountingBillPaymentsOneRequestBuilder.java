@@ -47,9 +47,7 @@ public class AccountingBillPaymentsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingBillPaymentsOneRequest, AccountingBillPaymentsOneResponse> operation
-              = new AccountingBillPaymentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingBillPaymentsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

@@ -15,7 +15,6 @@ import com.apideck.unify.operations.AccountingCategoriesAllOperation;
 import com.apideck.unify.operations.AccountingCategoriesOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class Categories {
     Categories(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Categories
      * 
@@ -59,13 +59,9 @@ public class Categories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCategoriesAllResponse list(
-            AccountingCategoriesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCategoriesAllResponse list(AccountingCategoriesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesAllRequest, AccountingCategoriesAllResponse> operation
-              = new AccountingCategoriesAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCategoriesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class Categories {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingCategoriesOneResponse get(
-            AccountingCategoriesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingCategoriesOneResponse get(AccountingCategoriesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingCategoriesOneRequest, AccountingCategoriesOneResponse> operation
-              = new AccountingCategoriesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCategoriesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

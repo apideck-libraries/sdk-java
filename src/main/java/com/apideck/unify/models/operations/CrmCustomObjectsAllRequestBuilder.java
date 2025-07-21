@@ -58,9 +58,7 @@ public class CrmCustomObjectsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class CrmCustomObjectsAllRequestBuilder {
             .build());
 
         RequestOperation<CrmCustomObjectsAllRequest, CrmCustomObjectsAllResponse> operation
-              = new CrmCustomObjectsAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmCustomObjectsAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

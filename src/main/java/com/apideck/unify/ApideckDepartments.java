@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisDepartmentsOneOperation;
 import com.apideck.unify.operations.HrisDepartmentsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class ApideckDepartments {
     ApideckDepartments(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Departments
      * 
@@ -71,13 +71,9 @@ public class ApideckDepartments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisDepartmentsAllResponse list(
-            HrisDepartmentsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisDepartmentsAllResponse list(HrisDepartmentsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAllRequest, HrisDepartmentsAllResponse> operation
-              = new HrisDepartmentsAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class ApideckDepartments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisDepartmentsAddResponse create(
-            HrisDepartmentsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisDepartmentsAddResponse create(HrisDepartmentsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsAddRequest, HrisDepartmentsAddResponse> operation
-              = new HrisDepartmentsAddOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class ApideckDepartments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisDepartmentsOneResponse get(
-            HrisDepartmentsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisDepartmentsOneResponse get(HrisDepartmentsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsOneRequest, HrisDepartmentsOneResponse> operation
-              = new HrisDepartmentsOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class ApideckDepartments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisDepartmentsUpdateResponse update(
-            HrisDepartmentsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisDepartmentsUpdateResponse update(HrisDepartmentsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsUpdateRequest, HrisDepartmentsUpdateResponse> operation
-              = new HrisDepartmentsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class ApideckDepartments {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisDepartmentsDeleteResponse delete(
-            HrisDepartmentsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisDepartmentsDeleteResponse delete(HrisDepartmentsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisDepartmentsDeleteRequest, HrisDepartmentsDeleteResponse> operation
-              = new HrisDepartmentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new HrisDepartmentsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

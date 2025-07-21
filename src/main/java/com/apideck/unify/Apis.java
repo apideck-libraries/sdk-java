@@ -18,7 +18,6 @@ import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 import org.openapitools.jackson.nullable.JsonNullable;
 
@@ -29,6 +28,7 @@ public class Apis {
     Apis(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List APIs
      * 
@@ -67,10 +67,8 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisAllResponse list(
-            Optional<String> appId,
-            JsonNullable<String> cursor,
-            Optional<Long> limit,
-            Optional<? extends ApisFilter> filter,
+            Optional<String> appId, JsonNullable<String> cursor,
+            Optional<Long> limit, Optional<? extends ApisFilter> filter,
             Optional<Options> options) throws Exception {
         ConnectorApisAllRequest request =
             ConnectorApisAllRequest
@@ -81,9 +79,7 @@ public class Apis {
                 .filter(filter)
                 .build();
         RequestOperation<ConnectorApisAllRequest, ConnectorApisAllResponse> operation
-              = new ConnectorApisAllOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApisAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -123,8 +119,7 @@ public class Apis {
      * @throws Exception if the API call fails
      */
     public ConnectorApisOneResponse get(
-            Optional<String> appId,
-            String id,
+            Optional<String> appId, String id,
             Optional<Options> options) throws Exception {
         ConnectorApisOneRequest request =
             ConnectorApisOneRequest
@@ -133,9 +128,7 @@ public class Apis {
                 .id(id)
                 .build();
         RequestOperation<ConnectorApisOneRequest, ConnectorApisOneResponse> operation
-              = new ConnectorApisOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApisOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

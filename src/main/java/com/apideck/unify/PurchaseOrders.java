@@ -27,7 +27,6 @@ import com.apideck.unify.operations.AccountingPurchaseOrdersOneOperation;
 import com.apideck.unify.operations.AccountingPurchaseOrdersUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class PurchaseOrders {
     PurchaseOrders(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Purchase Orders
      * 
@@ -71,13 +71,9 @@ public class PurchaseOrders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPurchaseOrdersAllResponse list(
-            AccountingPurchaseOrdersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersAllResponse list(AccountingPurchaseOrdersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAllRequest, AccountingPurchaseOrdersAllResponse> operation
-              = new AccountingPurchaseOrdersAllOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class PurchaseOrders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPurchaseOrdersAddResponse create(
-            AccountingPurchaseOrdersAddRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersAddResponse create(AccountingPurchaseOrdersAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersAddRequest, AccountingPurchaseOrdersAddResponse> operation
-              = new AccountingPurchaseOrdersAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class PurchaseOrders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPurchaseOrdersOneResponse get(
-            AccountingPurchaseOrdersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersOneResponse get(AccountingPurchaseOrdersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersOneRequest, AccountingPurchaseOrdersOneResponse> operation
-              = new AccountingPurchaseOrdersOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class PurchaseOrders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPurchaseOrdersUpdateResponse update(
-            AccountingPurchaseOrdersUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersUpdateResponse update(AccountingPurchaseOrdersUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersUpdateRequest, AccountingPurchaseOrdersUpdateResponse> operation
-              = new AccountingPurchaseOrdersUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class PurchaseOrders {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public AccountingPurchaseOrdersDeleteResponse delete(
-            AccountingPurchaseOrdersDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public AccountingPurchaseOrdersDeleteResponse delete(AccountingPurchaseOrdersDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<AccountingPurchaseOrdersDeleteRequest, AccountingPurchaseOrdersDeleteResponse> operation
-              = new AccountingPurchaseOrdersDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingPurchaseOrdersDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

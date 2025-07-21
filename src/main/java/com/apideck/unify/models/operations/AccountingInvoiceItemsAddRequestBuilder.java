@@ -47,9 +47,7 @@ public class AccountingInvoiceItemsAddRequestBuilder {
             .build());
 
         RequestOperation<AccountingInvoiceItemsAddRequest, AccountingInvoiceItemsAddResponse> operation
-              = new AccountingInvoiceItemsAddOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingInvoiceItemsAddOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

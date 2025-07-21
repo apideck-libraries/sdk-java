@@ -5,12 +5,12 @@ package com.apideck.unify;
 
 public class Connector {
     private final SDKConfiguration sdkConfiguration;
-private final Connectors connectors;
-private final ConnectorDocs connectorDocs;
-private final ConnectorResources connectorResources;
-private final Apis apis;
-private final ApiResources apiResources;
-private final ApiResourceCoverage apiResourceCoverage;
+    private final Connectors connectors;
+    private final ConnectorDocs connectorDocs;
+    private final ConnectorResources connectorResources;
+    private final Apis apis;
+    private final ApiResources apiResources;
+    private final ApiResourceCoverage apiResourceCoverage;
 
     Connector(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -21,22 +21,29 @@ private final ApiResourceCoverage apiResourceCoverage;
         this.apiResources = new ApiResources(this.sdkConfiguration);
         this.apiResourceCoverage = new ApiResourceCoverage(this.sdkConfiguration);
     }
-public final Connectors connectors() {
+
+    public final Connectors connectors() {
         return connectors;
     }
-public final ConnectorDocs connectorDocs() {
+
+    public final ConnectorDocs connectorDocs() {
         return connectorDocs;
     }
-public final ConnectorResources connectorResources() {
+
+    public final ConnectorResources connectorResources() {
         return connectorResources;
     }
-public final Apis apis() {
+
+    public final Apis apis() {
         return apis;
     }
-public final ApiResources apiResources() {
+
+    public final ApiResources apiResources() {
         return apiResources;
     }
-public final ApiResourceCoverage apiResourceCoverage() {
+
+    public final ApiResourceCoverage apiResourceCoverage() {
         return apiResourceCoverage;
     }
+
 }

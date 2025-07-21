@@ -5,16 +5,16 @@ package com.apideck.unify;
 
 public class Crm {
     private final SDKConfiguration sdkConfiguration;
-private final Companies companies;
-private final Contacts contacts;
-private final Opportunities opportunities;
-private final Leads leads;
-private final Pipelines pipelines;
-private final Notes notes;
-private final Users users;
-private final Activities activities;
-private final CustomObjectSchemas customObjectSchemas;
-private final CustomObjects customObjects;
+    private final Companies companies;
+    private final Contacts contacts;
+    private final Opportunities opportunities;
+    private final Leads leads;
+    private final Pipelines pipelines;
+    private final Notes notes;
+    private final Users users;
+    private final Activities activities;
+    private final CustomObjectSchemas customObjectSchemas;
+    private final CustomObjects customObjects;
 
     Crm(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -29,34 +29,45 @@ private final CustomObjects customObjects;
         this.customObjectSchemas = new CustomObjectSchemas(this.sdkConfiguration);
         this.customObjects = new CustomObjects(this.sdkConfiguration);
     }
-public final Companies companies() {
+
+    public final Companies companies() {
         return companies;
     }
-public final Contacts contacts() {
+
+    public final Contacts contacts() {
         return contacts;
     }
-public final Opportunities opportunities() {
+
+    public final Opportunities opportunities() {
         return opportunities;
     }
-public final Leads leads() {
+
+    public final Leads leads() {
         return leads;
     }
-public final Pipelines pipelines() {
+
+    public final Pipelines pipelines() {
         return pipelines;
     }
-public final Notes notes() {
+
+    public final Notes notes() {
         return notes;
     }
-public final Users users() {
+
+    public final Users users() {
         return users;
     }
-public final Activities activities() {
+
+    public final Activities activities() {
         return activities;
     }
-public final CustomObjectSchemas customObjectSchemas() {
+
+    public final CustomObjectSchemas customObjectSchemas() {
         return customObjectSchemas;
     }
-public final CustomObjects customObjects() {
+
+    public final CustomObjects customObjects() {
         return customObjects;
     }
+
 }

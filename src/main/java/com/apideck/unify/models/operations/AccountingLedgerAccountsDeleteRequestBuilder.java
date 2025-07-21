@@ -47,9 +47,7 @@ public class AccountingLedgerAccountsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingLedgerAccountsDeleteRequest, AccountingLedgerAccountsDeleteResponse> operation
-              = new AccountingLedgerAccountsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

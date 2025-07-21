@@ -5,13 +5,15 @@ package com.apideck.unify;
 
 public class Webhook {
     private final SDKConfiguration sdkConfiguration;
-private final Webhooks webhooks;
+    private final Webhooks webhooks;
 
     Webhook(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.webhooks = new Webhooks(this.sdkConfiguration);
     }
-public final Webhooks webhooks() {
+
+    public final Webhooks webhooks() {
         return webhooks;
     }
+
 }

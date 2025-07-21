@@ -47,9 +47,7 @@ public class AccountingAttachmentsDownloadRequestBuilder {
             .build());
 
         RequestOperation<AccountingAttachmentsDownloadRequest, AccountingAttachmentsDownloadResponse> operation
-              = new AccountingAttachmentsDownloadOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingAttachmentsDownloadOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

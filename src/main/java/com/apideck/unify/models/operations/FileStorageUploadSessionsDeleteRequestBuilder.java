@@ -47,9 +47,7 @@ public class FileStorageUploadSessionsDeleteRequestBuilder {
             .build());
 
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
-              = new FileStorageUploadSessionsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageUploadSessionsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

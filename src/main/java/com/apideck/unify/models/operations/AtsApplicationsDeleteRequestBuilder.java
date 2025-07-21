@@ -47,9 +47,7 @@ public class AtsApplicationsDeleteRequestBuilder {
             .build());
 
         RequestOperation<AtsApplicationsDeleteRequest, AtsApplicationsDeleteResponse> operation
-              = new AtsApplicationsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AtsApplicationsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

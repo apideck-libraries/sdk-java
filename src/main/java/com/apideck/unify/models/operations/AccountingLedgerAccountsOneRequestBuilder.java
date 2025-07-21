@@ -47,9 +47,7 @@ public class AccountingLedgerAccountsOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingLedgerAccountsOneRequest, AccountingLedgerAccountsOneResponse> operation
-              = new AccountingLedgerAccountsOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingLedgerAccountsOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

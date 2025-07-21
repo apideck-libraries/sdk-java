@@ -15,7 +15,6 @@ import com.apideck.unify.operations.EcommerceCustomersAllOperation;
 import com.apideck.unify.operations.EcommerceCustomersOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class ApideckCustomers {
     ApideckCustomers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Customers
      * 
@@ -59,13 +59,9 @@ public class ApideckCustomers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceCustomersAllResponse list(
-            EcommerceCustomersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceCustomersAllResponse list(EcommerceCustomersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersAllRequest, EcommerceCustomersAllResponse> operation
-              = new EcommerceCustomersAllOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceCustomersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class ApideckCustomers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public EcommerceCustomersOneResponse get(
-            EcommerceCustomersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public EcommerceCustomersOneResponse get(EcommerceCustomersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<EcommerceCustomersOneRequest, EcommerceCustomersOneResponse> operation
-              = new EcommerceCustomersOneOperation(
-                sdkConfiguration,
-                options);
+              = new EcommerceCustomersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

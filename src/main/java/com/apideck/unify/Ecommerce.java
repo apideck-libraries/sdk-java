@@ -5,10 +5,10 @@ package com.apideck.unify;
 
 public class Ecommerce {
     private final SDKConfiguration sdkConfiguration;
-private final Orders orders;
-private final Products products;
-private final ApideckCustomers customers;
-private final Stores stores;
+    private final Orders orders;
+    private final Products products;
+    private final ApideckCustomers customers;
+    private final Stores stores;
 
     Ecommerce(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -17,16 +17,21 @@ private final Stores stores;
         this.customers = new ApideckCustomers(this.sdkConfiguration);
         this.stores = new Stores(this.sdkConfiguration);
     }
-public final Orders orders() {
+
+    public final Orders orders() {
         return orders;
     }
-public final Products products() {
+
+    public final Products products() {
         return products;
     }
-public final ApideckCustomers customers() {
+
+    public final ApideckCustomers customers() {
         return customers;
     }
-public final Stores stores() {
+
+    public final Stores stores() {
         return stores;
     }
+
 }

@@ -58,9 +58,7 @@ public class FileStorageSharedLinksAllRequestBuilder {
             .build());
 
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
-              = new FileStorageSharedLinksAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksAllOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }
@@ -84,9 +82,7 @@ public class FileStorageSharedLinksAllRequestBuilder {
             .build());
 
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
-              = new FileStorageSharedLinksAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksAllOperation(sdkConfiguration, options);
         Iterator<HttpResponse<InputStream>> iterator = new Paginator<>(
             request,
             new CursorTracker<>("$.meta.cursors.next", String.class),

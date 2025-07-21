@@ -27,7 +27,6 @@ import com.apideck.unify.operations.HrisCompaniesOneOperation;
 import com.apideck.unify.operations.HrisCompaniesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class ApideckCompanies {
     ApideckCompanies(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Companies
      * 
@@ -71,13 +71,9 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesAllResponse list(
-            HrisCompaniesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisCompaniesAllResponse list(HrisCompaniesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAllRequest, HrisCompaniesAllResponse> operation
-              = new HrisCompaniesAllOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesAddResponse create(
-            HrisCompaniesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisCompaniesAddResponse create(HrisCompaniesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesAddRequest, HrisCompaniesAddResponse> operation
-              = new HrisCompaniesAddOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesOneResponse get(
-            HrisCompaniesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisCompaniesOneResponse get(HrisCompaniesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesOneRequest, HrisCompaniesOneResponse> operation
-              = new HrisCompaniesOneOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesUpdateResponse update(
-            HrisCompaniesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisCompaniesUpdateResponse update(HrisCompaniesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesUpdateRequest, HrisCompaniesUpdateResponse> operation
-              = new HrisCompaniesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class ApideckCompanies {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public HrisCompaniesDeleteResponse delete(
-            HrisCompaniesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public HrisCompaniesDeleteResponse delete(HrisCompaniesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<HrisCompaniesDeleteRequest, HrisCompaniesDeleteResponse> operation
-              = new HrisCompaniesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new HrisCompaniesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

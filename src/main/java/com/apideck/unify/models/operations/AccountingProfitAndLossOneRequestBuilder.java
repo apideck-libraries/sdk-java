@@ -47,9 +47,7 @@ public class AccountingProfitAndLossOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingProfitAndLossOneRequest, AccountingProfitAndLossOneResponse> operation
-              = new AccountingProfitAndLossOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingProfitAndLossOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

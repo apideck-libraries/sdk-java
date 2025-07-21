@@ -47,9 +47,7 @@ public class VaultValidateConnectionStateRequestBuilder {
             .build());
 
         RequestOperation<VaultValidateConnectionStateRequest, VaultValidateConnectionStateResponse> operation
-              = new VaultValidateConnectionStateOperation(
-                sdkConfiguration,
-                options);
+              = new VaultValidateConnectionStateOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

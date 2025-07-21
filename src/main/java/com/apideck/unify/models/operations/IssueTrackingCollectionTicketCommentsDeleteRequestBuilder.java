@@ -47,9 +47,7 @@ public class IssueTrackingCollectionTicketCommentsDeleteRequestBuilder {
             .build());
 
         RequestOperation<IssueTrackingCollectionTicketCommentsDeleteRequest, IssueTrackingCollectionTicketCommentsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketCommentsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketCommentsDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

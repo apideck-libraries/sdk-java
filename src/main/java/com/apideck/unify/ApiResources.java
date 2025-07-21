@@ -12,7 +12,6 @@ import com.apideck.unify.operations.ConnectorApiResourcesOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -22,6 +21,7 @@ public class ApiResources {
     ApiResources(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Get API Resource
      * 
@@ -43,9 +43,7 @@ public class ApiResources {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ConnectorApiResourcesOneResponse get(
-            String id,
-            String resourceId) throws Exception {
+    public ConnectorApiResourcesOneResponse get(String id, String resourceId) throws Exception {
         return get(Optional.empty(), id, resourceId,
             Optional.empty());
     }
@@ -63,10 +61,8 @@ public class ApiResources {
      * @throws Exception if the API call fails
      */
     public ConnectorApiResourcesOneResponse get(
-            Optional<String> appId,
-            String id,
-            String resourceId,
-            Optional<Options> options) throws Exception {
+            Optional<String> appId, String id,
+            String resourceId, Optional<Options> options) throws Exception {
         ConnectorApiResourcesOneRequest request =
             ConnectorApiResourcesOneRequest
                 .builder()
@@ -75,9 +71,7 @@ public class ApiResources {
                 .resourceId(resourceId)
                 .build();
         RequestOperation<ConnectorApiResourcesOneRequest, ConnectorApiResourcesOneResponse> operation
-              = new ConnectorApiResourcesOneOperation(
-                sdkConfiguration,
-                options);
+              = new ConnectorApiResourcesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

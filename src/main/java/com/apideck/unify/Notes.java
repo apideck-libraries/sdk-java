@@ -27,7 +27,6 @@ import com.apideck.unify.operations.CrmNotesOneOperation;
 import com.apideck.unify.operations.CrmNotesUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class Notes {
     Notes(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List notes
      * 
@@ -71,13 +71,9 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesAllResponse list(
-            CrmNotesAllRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmNotesAllResponse list(CrmNotesAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAllRequest, CrmNotesAllResponse> operation
-              = new CrmNotesAllOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesAddResponse create(
-            CrmNotesAddRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmNotesAddResponse create(CrmNotesAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesAddRequest, CrmNotesAddResponse> operation
-              = new CrmNotesAddOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesOneResponse get(
-            CrmNotesOneRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmNotesOneResponse get(CrmNotesOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesOneRequest, CrmNotesOneResponse> operation
-              = new CrmNotesOneOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesUpdateResponse update(
-            CrmNotesUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmNotesUpdateResponse update(CrmNotesUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesUpdateRequest, CrmNotesUpdateResponse> operation
-              = new CrmNotesUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class Notes {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CrmNotesDeleteResponse delete(
-            CrmNotesDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public CrmNotesDeleteResponse delete(CrmNotesDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<CrmNotesDeleteRequest, CrmNotesDeleteResponse> operation
-              = new CrmNotesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new CrmNotesDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

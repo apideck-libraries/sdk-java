@@ -79,9 +79,7 @@ public class WebhookWebhooksUpdateRequestBuilder {
             .build());
 
         RequestOperation<WebhookWebhooksUpdateRequest, WebhookWebhooksUpdateResponse> operation
-              = new WebhookWebhooksUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new WebhookWebhooksUpdateOperation(sdkConfiguration, options);
         WebhookWebhooksUpdateRequest request = buildRequest();
 
         return operation.handleResponse(operation.doRequest(request));

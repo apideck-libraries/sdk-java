@@ -27,7 +27,6 @@ import com.apideck.unify.operations.IssueTrackingCollectionTicketsOneOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionTicketsUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class CollectionTickets {
     CollectionTickets(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Tickets
      * 
@@ -71,13 +71,9 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsAllResponse list(
-            IssueTrackingCollectionTicketsAllRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsAllResponse list(IssueTrackingCollectionTicketsAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAllRequest, IssueTrackingCollectionTicketsAllResponse> operation
-              = new IssueTrackingCollectionTicketsAllOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsAddResponse create(
-            IssueTrackingCollectionTicketsAddRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsAddResponse create(IssueTrackingCollectionTicketsAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsAddRequest, IssueTrackingCollectionTicketsAddResponse> operation
-              = new IssueTrackingCollectionTicketsAddOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsOneResponse get(
-            IssueTrackingCollectionTicketsOneRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsOneResponse get(IssueTrackingCollectionTicketsOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsOneRequest, IssueTrackingCollectionTicketsOneResponse> operation
-              = new IssueTrackingCollectionTicketsOneOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsUpdateResponse update(
-            IssueTrackingCollectionTicketsUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsUpdateResponse update(IssueTrackingCollectionTicketsUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsUpdateRequest, IssueTrackingCollectionTicketsUpdateResponse> operation
-              = new IssueTrackingCollectionTicketsUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class CollectionTickets {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionTicketsDeleteResponse delete(
-            IssueTrackingCollectionTicketsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionTicketsDeleteResponse delete(IssueTrackingCollectionTicketsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionTicketsDeleteRequest, IssueTrackingCollectionTicketsDeleteResponse> operation
-              = new IssueTrackingCollectionTicketsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionTicketsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -27,7 +27,6 @@ import com.apideck.unify.operations.FileStorageSharedLinksOneOperation;
 import com.apideck.unify.operations.FileStorageSharedLinksUpdateOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -37,6 +36,7 @@ public class SharedLinks {
     SharedLinks(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List SharedLinks
      * 
@@ -71,13 +71,9 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksAllResponse list(
-            FileStorageSharedLinksAllRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksAllResponse list(FileStorageSharedLinksAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAllRequest, FileStorageSharedLinksAllResponse> operation
-              = new FileStorageSharedLinksAllOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -115,13 +111,9 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksAddResponse create(
-            FileStorageSharedLinksAddRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksAddResponse create(FileStorageSharedLinksAddRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksAddRequest, FileStorageSharedLinksAddResponse> operation
-              = new FileStorageSharedLinksAddOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksAddOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -159,13 +151,9 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksOneResponse get(
-            FileStorageSharedLinksOneRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksOneResponse get(FileStorageSharedLinksOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksOneRequest, FileStorageSharedLinksOneResponse> operation
-              = new FileStorageSharedLinksOneOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -203,13 +191,9 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksUpdateResponse update(
-            FileStorageSharedLinksUpdateRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksUpdateResponse update(FileStorageSharedLinksUpdateRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksUpdateRequest, FileStorageSharedLinksUpdateResponse> operation
-              = new FileStorageSharedLinksUpdateOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksUpdateOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -247,13 +231,9 @@ public class SharedLinks {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageSharedLinksDeleteResponse delete(
-            FileStorageSharedLinksDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageSharedLinksDeleteResponse delete(FileStorageSharedLinksDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageSharedLinksDeleteRequest, FileStorageSharedLinksDeleteResponse> operation
-              = new FileStorageSharedLinksDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageSharedLinksDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

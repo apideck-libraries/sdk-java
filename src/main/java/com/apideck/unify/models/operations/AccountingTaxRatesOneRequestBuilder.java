@@ -47,9 +47,7 @@ public class AccountingTaxRatesOneRequestBuilder {
             .build());
 
         RequestOperation<AccountingTaxRatesOneRequest, AccountingTaxRatesOneResponse> operation
-              = new AccountingTaxRatesOneOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingTaxRatesOneOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

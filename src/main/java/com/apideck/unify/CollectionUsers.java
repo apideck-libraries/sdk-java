@@ -15,7 +15,6 @@ import com.apideck.unify.operations.IssueTrackingCollectionUsersAllOperation;
 import com.apideck.unify.operations.IssueTrackingCollectionUsersOneOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -25,6 +24,7 @@ public class CollectionUsers {
     CollectionUsers(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * List Users
      * 
@@ -59,13 +59,9 @@ public class CollectionUsers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionUsersAllResponse list(
-            IssueTrackingCollectionUsersAllRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionUsersAllResponse list(IssueTrackingCollectionUsersAllRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersAllRequest, IssueTrackingCollectionUsersAllResponse> operation
-              = new IssueTrackingCollectionUsersAllOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionUsersAllOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -103,13 +99,9 @@ public class CollectionUsers {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public IssueTrackingCollectionUsersOneResponse get(
-            IssueTrackingCollectionUsersOneRequest request,
-            Optional<Options> options) throws Exception {
+    public IssueTrackingCollectionUsersOneResponse get(IssueTrackingCollectionUsersOneRequest request, Optional<Options> options) throws Exception {
         RequestOperation<IssueTrackingCollectionUsersOneRequest, IssueTrackingCollectionUsersOneResponse> operation
-              = new IssueTrackingCollectionUsersOneOperation(
-                sdkConfiguration,
-                options);
+              = new IssueTrackingCollectionUsersOneOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

@@ -47,9 +47,7 @@ public class AccountingCreditNotesDeleteRequestBuilder {
             .build());
 
         RequestOperation<AccountingCreditNotesDeleteRequest, AccountingCreditNotesDeleteResponse> operation
-              = new AccountingCreditNotesDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new AccountingCreditNotesDeleteOperation(sdkConfiguration, options);
 
         return operation.handleResponse(operation.doRequest(request));
     }

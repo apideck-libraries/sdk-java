@@ -28,7 +28,6 @@ import com.apideck.unify.operations.FileStorageUploadSessionsUploadOperation;
 import com.apideck.unify.utils.Options;
 import java.lang.Exception;
 import java.lang.String;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -38,6 +37,7 @@ public class UploadSessions {
     UploadSessions(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
     }
+
     /**
      * Start Upload Session
      * 
@@ -74,14 +74,10 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsAddResponse create(
-            FileStorageUploadSessionsAddRequest request,
-            Optional<String> serverURL,
+            FileStorageUploadSessionsAddRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsAddRequest, FileStorageUploadSessionsAddResponse> operation
-              = new FileStorageUploadSessionsAddOperation(
-                sdkConfiguration,
-                serverURL,
-                options);
+              = new FileStorageUploadSessionsAddOperation(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -121,14 +117,10 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsOneResponse get(
-            FileStorageUploadSessionsOneRequest request,
-            Optional<String> serverURL,
+            FileStorageUploadSessionsOneRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsOneRequest, FileStorageUploadSessionsOneResponse> operation
-              = new FileStorageUploadSessionsOneOperation(
-                sdkConfiguration,
-                serverURL,
-                options);
+              = new FileStorageUploadSessionsOneOperation(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -168,14 +160,10 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsUploadResponse upload(
-            FileStorageUploadSessionsUploadRequest request,
-            Optional<String> serverURL,
+            FileStorageUploadSessionsUploadRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsUploadRequest, FileStorageUploadSessionsUploadResponse> operation
-              = new FileStorageUploadSessionsUploadOperation(
-                sdkConfiguration,
-                serverURL,
-                options);
+              = new FileStorageUploadSessionsUploadOperation(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -213,13 +201,9 @@ public class UploadSessions {
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public FileStorageUploadSessionsDeleteResponse delete(
-            FileStorageUploadSessionsDeleteRequest request,
-            Optional<Options> options) throws Exception {
+    public FileStorageUploadSessionsDeleteResponse delete(FileStorageUploadSessionsDeleteRequest request, Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsDeleteRequest, FileStorageUploadSessionsDeleteResponse> operation
-              = new FileStorageUploadSessionsDeleteOperation(
-                sdkConfiguration,
-                options);
+              = new FileStorageUploadSessionsDeleteOperation(sdkConfiguration, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 
@@ -259,14 +243,10 @@ public class UploadSessions {
      * @throws Exception if the API call fails
      */
     public FileStorageUploadSessionsFinishResponse finish(
-            FileStorageUploadSessionsFinishRequest request,
-            Optional<String> serverURL,
+            FileStorageUploadSessionsFinishRequest request, Optional<String> serverURL,
             Optional<Options> options) throws Exception {
         RequestOperation<FileStorageUploadSessionsFinishRequest, FileStorageUploadSessionsFinishResponse> operation
-              = new FileStorageUploadSessionsFinishOperation(
-                sdkConfiguration,
-                serverURL,
-                options);
+              = new FileStorageUploadSessionsFinishOperation(sdkConfiguration, serverURL, options);
         return operation.handleResponse(operation.doRequest(request));
     }
 

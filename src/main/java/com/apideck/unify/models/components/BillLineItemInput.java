@@ -114,6 +114,20 @@ public class BillLineItemInput {
     @JsonProperty("department_id")
     private JsonNullable<String> departmentId;
 
+    /**
+     * The ID of the subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary_id")
+    private JsonNullable<String> subsidiaryId;
+
+    /**
+     * ID of the category of the line item
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("category_id")
+    private JsonNullable<String> categoryId;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("item")
@@ -128,6 +142,11 @@ public class BillLineItemInput {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("ledger_account")
     private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount;
+
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("purchase_order")
+    private JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder;
 
     /**
      * A list of linked tracking categories.
@@ -173,9 +192,12 @@ public class BillLineItemInput {
             @JsonProperty("discount_amount") JsonNullable<Double> discountAmount,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
+            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
+            @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount,
+            @JsonProperty("purchase_order") JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("customer") JsonNullable<? extends LinkedCustomerInput> customer,
             @JsonProperty("rebilling") JsonNullable<? extends Rebilling> rebilling,
@@ -194,9 +216,12 @@ public class BillLineItemInput {
         Utils.checkNotNull(discountAmount, "discountAmount");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(item, "item");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
+        Utils.checkNotNull(purchaseOrder, "purchaseOrder");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(customer, "customer");
         Utils.checkNotNull(rebilling, "rebilling");
@@ -215,9 +240,12 @@ public class BillLineItemInput {
         this.discountAmount = discountAmount;
         this.locationId = locationId;
         this.departmentId = departmentId;
+        this.subsidiaryId = subsidiaryId;
+        this.categoryId = categoryId;
         this.item = item;
         this.taxRate = taxRate;
         this.ledgerAccount = ledgerAccount;
+        this.purchaseOrder = purchaseOrder;
         this.trackingCategories = trackingCategories;
         this.customer = customer;
         this.rebilling = rebilling;
@@ -229,8 +257,9 @@ public class BillLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined());
     }
 
@@ -341,6 +370,22 @@ public class BillLineItemInput {
         return departmentId;
     }
 
+    /**
+     * The ID of the subsidiary
+     */
+    @JsonIgnore
+    public JsonNullable<String> subsidiaryId() {
+        return subsidiaryId;
+    }
+
+    /**
+     * ID of the category of the line item
+     */
+    @JsonIgnore
+    public JsonNullable<String> categoryId() {
+        return categoryId;
+    }
+
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<LinkedInvoiceItem> item() {
@@ -357,6 +402,12 @@ public class BillLineItemInput {
     @JsonIgnore
     public JsonNullable<LinkedLedgerAccountInput> ledgerAccount() {
         return (JsonNullable<LinkedLedgerAccountInput>) ledgerAccount;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<LinkedPurchaseOrder> purchaseOrder() {
+        return (JsonNullable<LinkedPurchaseOrder>) purchaseOrder;
     }
 
     /**
@@ -640,6 +691,42 @@ public class BillLineItemInput {
         return this;
     }
 
+    /**
+     * The ID of the subsidiary
+     */
+    public BillLineItemInput withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = JsonNullable.of(subsidiaryId);
+        return this;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    public BillLineItemInput withSubsidiaryId(JsonNullable<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
+    /**
+     * ID of the category of the line item
+     */
+    public BillLineItemInput withCategoryId(String categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = JsonNullable.of(categoryId);
+        return this;
+    }
+
+    /**
+     * ID of the category of the line item
+     */
+    public BillLineItemInput withCategoryId(JsonNullable<String> categoryId) {
+        Utils.checkNotNull(categoryId, "categoryId");
+        this.categoryId = categoryId;
+        return this;
+    }
+
     public BillLineItemInput withItem(LinkedInvoiceItem item) {
         Utils.checkNotNull(item, "item");
         this.item = Optional.ofNullable(item);
@@ -675,6 +762,18 @@ public class BillLineItemInput {
     public BillLineItemInput withLedgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         this.ledgerAccount = ledgerAccount;
+        return this;
+    }
+
+    public BillLineItemInput withPurchaseOrder(LinkedPurchaseOrder purchaseOrder) {
+        Utils.checkNotNull(purchaseOrder, "purchaseOrder");
+        this.purchaseOrder = JsonNullable.of(purchaseOrder);
+        return this;
+    }
+
+    public BillLineItemInput withPurchaseOrder(JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder) {
+        Utils.checkNotNull(purchaseOrder, "purchaseOrder");
+        this.purchaseOrder = purchaseOrder;
         return this;
     }
 
@@ -774,9 +873,12 @@ public class BillLineItemInput {
             Utils.enhancedDeepEquals(this.discountAmount, other.discountAmount) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
+            Utils.enhancedDeepEquals(this.purchaseOrder, other.purchaseOrder) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.customer, other.customer) &&
             Utils.enhancedDeepEquals(this.rebilling, other.rebilling) &&
@@ -790,8 +892,9 @@ public class BillLineItemInput {
             description, type, taxAmount,
             totalAmount, quantity, unitPrice,
             unitOfMeasure, discountPercentage, discountAmount,
-            locationId, departmentId, item,
-            taxRate, ledgerAccount, trackingCategories,
+            locationId, departmentId, subsidiaryId,
+            categoryId, item, taxRate,
+            ledgerAccount, purchaseOrder, trackingCategories,
             customer, rebilling, rowVersion);
     }
     
@@ -812,9 +915,12 @@ public class BillLineItemInput {
                 "discountAmount", discountAmount,
                 "locationId", locationId,
                 "departmentId", departmentId,
+                "subsidiaryId", subsidiaryId,
+                "categoryId", categoryId,
                 "item", item,
                 "taxRate", taxRate,
                 "ledgerAccount", ledgerAccount,
+                "purchaseOrder", purchaseOrder,
                 "trackingCategories", trackingCategories,
                 "customer", customer,
                 "rebilling", rebilling,
@@ -852,11 +958,17 @@ public class BillLineItemInput {
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
 
+        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+
+        private JsonNullable<String> categoryId = JsonNullable.undefined();
+
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
 
         private Optional<? extends LinkedTaxRateInput> taxRate = Optional.empty();
 
         private JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount = JsonNullable.undefined();
+
+        private JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder = JsonNullable.undefined();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
@@ -1125,6 +1237,44 @@ public class BillLineItemInput {
         }
 
 
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = JsonNullable.of(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
+
+        /**
+         * ID of the category of the line item
+         */
+        public Builder categoryId(String categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = JsonNullable.of(categoryId);
+            return this;
+        }
+
+        /**
+         * ID of the category of the line item
+         */
+        public Builder categoryId(JsonNullable<String> categoryId) {
+            Utils.checkNotNull(categoryId, "categoryId");
+            this.categoryId = categoryId;
+            return this;
+        }
+
+
         public Builder item(LinkedInvoiceItem item) {
             Utils.checkNotNull(item, "item");
             this.item = Optional.ofNullable(item);
@@ -1160,6 +1310,19 @@ public class BillLineItemInput {
         public Builder ledgerAccount(JsonNullable<? extends LinkedLedgerAccountInput> ledgerAccount) {
             Utils.checkNotNull(ledgerAccount, "ledgerAccount");
             this.ledgerAccount = ledgerAccount;
+            return this;
+        }
+
+
+        public Builder purchaseOrder(LinkedPurchaseOrder purchaseOrder) {
+            Utils.checkNotNull(purchaseOrder, "purchaseOrder");
+            this.purchaseOrder = JsonNullable.of(purchaseOrder);
+            return this;
+        }
+
+        public Builder purchaseOrder(JsonNullable<? extends LinkedPurchaseOrder> purchaseOrder) {
+            Utils.checkNotNull(purchaseOrder, "purchaseOrder");
+            this.purchaseOrder = purchaseOrder;
             return this;
         }
 
@@ -1246,8 +1409,9 @@ public class BillLineItemInput {
                 description, type, taxAmount,
                 totalAmount, quantity, unitPrice,
                 unitOfMeasure, discountPercentage, discountAmount,
-                locationId, departmentId, item,
-                taxRate, ledgerAccount, trackingCategories,
+                locationId, departmentId, subsidiaryId,
+                categoryId, item, taxRate,
+                ledgerAccount, purchaseOrder, trackingCategories,
                 customer, rebilling, rowVersion);
         }
 

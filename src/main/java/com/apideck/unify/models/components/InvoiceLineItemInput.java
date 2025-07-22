@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.Override;
@@ -128,6 +129,20 @@ public class InvoiceLineItemInput {
     @JsonProperty("department_id")
     private JsonNullable<String> departmentId;
 
+    /**
+     * The ID of the subsidiary
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("subsidiary_id")
+    private JsonNullable<String> subsidiaryId;
+
+    /**
+     * Whether the line item is prepaid
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("prepaid")
+    private JsonNullable<Boolean> prepaid;
+
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("item")
@@ -180,6 +195,8 @@ public class InvoiceLineItemInput {
             @JsonProperty("category_id") JsonNullable<String> categoryId,
             @JsonProperty("location_id") JsonNullable<String> locationId,
             @JsonProperty("department_id") JsonNullable<String> departmentId,
+            @JsonProperty("subsidiary_id") JsonNullable<String> subsidiaryId,
+            @JsonProperty("prepaid") JsonNullable<Boolean> prepaid,
             @JsonProperty("item") Optional<? extends LinkedInvoiceItem> item,
             @JsonProperty("tax_rate") Optional<? extends LinkedTaxRateInput> taxRate,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
@@ -202,6 +219,8 @@ public class InvoiceLineItemInput {
         Utils.checkNotNull(categoryId, "categoryId");
         Utils.checkNotNull(locationId, "locationId");
         Utils.checkNotNull(departmentId, "departmentId");
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        Utils.checkNotNull(prepaid, "prepaid");
         Utils.checkNotNull(item, "item");
         Utils.checkNotNull(taxRate, "taxRate");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
@@ -224,6 +243,8 @@ public class InvoiceLineItemInput {
         this.categoryId = categoryId;
         this.locationId = locationId;
         this.departmentId = departmentId;
+        this.subsidiaryId = subsidiaryId;
+        this.prepaid = prepaid;
         this.item = item;
         this.taxRate = taxRate;
         this.trackingCategories = trackingCategories;
@@ -238,9 +259,9 @@ public class InvoiceLineItemInput {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), Optional.empty(),
-            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            JsonNullable.undefined());
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined());
     }
 
     /**
@@ -364,6 +385,22 @@ public class InvoiceLineItemInput {
     @JsonIgnore
     public JsonNullable<String> departmentId() {
         return departmentId;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    @JsonIgnore
+    public JsonNullable<String> subsidiaryId() {
+        return subsidiaryId;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    @JsonIgnore
+    public JsonNullable<Boolean> prepaid() {
+        return prepaid;
     }
 
     @SuppressWarnings("unchecked")
@@ -689,6 +726,42 @@ public class InvoiceLineItemInput {
         return this;
     }
 
+    /**
+     * The ID of the subsidiary
+     */
+    public InvoiceLineItemInput withSubsidiaryId(String subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = JsonNullable.of(subsidiaryId);
+        return this;
+    }
+
+    /**
+     * The ID of the subsidiary
+     */
+    public InvoiceLineItemInput withSubsidiaryId(JsonNullable<String> subsidiaryId) {
+        Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+        this.subsidiaryId = subsidiaryId;
+        return this;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    public InvoiceLineItemInput withPrepaid(boolean prepaid) {
+        Utils.checkNotNull(prepaid, "prepaid");
+        this.prepaid = JsonNullable.of(prepaid);
+        return this;
+    }
+
+    /**
+     * Whether the line item is prepaid
+     */
+    public InvoiceLineItemInput withPrepaid(JsonNullable<Boolean> prepaid) {
+        Utils.checkNotNull(prepaid, "prepaid");
+        this.prepaid = prepaid;
+        return this;
+    }
+
     public InvoiceLineItemInput withItem(LinkedInvoiceItem item) {
         Utils.checkNotNull(item, "item");
         this.item = Optional.ofNullable(item);
@@ -802,6 +875,8 @@ public class InvoiceLineItemInput {
             Utils.enhancedDeepEquals(this.categoryId, other.categoryId) &&
             Utils.enhancedDeepEquals(this.locationId, other.locationId) &&
             Utils.enhancedDeepEquals(this.departmentId, other.departmentId) &&
+            Utils.enhancedDeepEquals(this.subsidiaryId, other.subsidiaryId) &&
+            Utils.enhancedDeepEquals(this.prepaid, other.prepaid) &&
             Utils.enhancedDeepEquals(this.item, other.item) &&
             Utils.enhancedDeepEquals(this.taxRate, other.taxRate) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
@@ -818,9 +893,9 @@ public class InvoiceLineItemInput {
             taxAmount, totalAmount, quantity,
             unitPrice, unitOfMeasure, discountPercentage,
             discountAmount, categoryId, locationId,
-            departmentId, item, taxRate,
-            trackingCategories, ledgerAccount, customFields,
-            rowVersion);
+            departmentId, subsidiaryId, prepaid,
+            item, taxRate, trackingCategories,
+            ledgerAccount, customFields, rowVersion);
     }
     
     @Override
@@ -842,6 +917,8 @@ public class InvoiceLineItemInput {
                 "categoryId", categoryId,
                 "locationId", locationId,
                 "departmentId", departmentId,
+                "subsidiaryId", subsidiaryId,
+                "prepaid", prepaid,
                 "item", item,
                 "taxRate", taxRate,
                 "trackingCategories", trackingCategories,
@@ -884,6 +961,10 @@ public class InvoiceLineItemInput {
         private JsonNullable<String> locationId = JsonNullable.undefined();
 
         private JsonNullable<String> departmentId = JsonNullable.undefined();
+
+        private JsonNullable<String> subsidiaryId = JsonNullable.undefined();
+
+        private JsonNullable<Boolean> prepaid = JsonNullable.undefined();
 
         private Optional<? extends LinkedInvoiceItem> item = Optional.empty();
 
@@ -1194,6 +1275,44 @@ public class InvoiceLineItemInput {
         }
 
 
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(String subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = JsonNullable.of(subsidiaryId);
+            return this;
+        }
+
+        /**
+         * The ID of the subsidiary
+         */
+        public Builder subsidiaryId(JsonNullable<String> subsidiaryId) {
+            Utils.checkNotNull(subsidiaryId, "subsidiaryId");
+            this.subsidiaryId = subsidiaryId;
+            return this;
+        }
+
+
+        /**
+         * Whether the line item is prepaid
+         */
+        public Builder prepaid(boolean prepaid) {
+            Utils.checkNotNull(prepaid, "prepaid");
+            this.prepaid = JsonNullable.of(prepaid);
+            return this;
+        }
+
+        /**
+         * Whether the line item is prepaid
+         */
+        public Builder prepaid(JsonNullable<Boolean> prepaid) {
+            Utils.checkNotNull(prepaid, "prepaid");
+            this.prepaid = prepaid;
+            return this;
+        }
+
+
         public Builder item(LinkedInvoiceItem item) {
             Utils.checkNotNull(item, "item");
             this.item = Optional.ofNullable(item);
@@ -1291,9 +1410,9 @@ public class InvoiceLineItemInput {
                 taxAmount, totalAmount, quantity,
                 unitPrice, unitOfMeasure, discountPercentage,
                 discountAmount, categoryId, locationId,
-                departmentId, item, taxRate,
-                trackingCategories, ledgerAccount, customFields,
-                rowVersion);
+                departmentId, subsidiaryId, prepaid,
+                item, taxRate, trackingCategories,
+                ledgerAccount, customFields, rowVersion);
         }
 
     }

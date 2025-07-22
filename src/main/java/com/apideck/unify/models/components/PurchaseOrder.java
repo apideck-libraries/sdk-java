@@ -197,6 +197,13 @@ public class PurchaseOrder {
     private JsonNullable<String> paymentMethod;
 
     /**
+     * Type of amortization
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("amortization_type")
+    private JsonNullable<? extends AmortizationType> amortizationType;
+
+    /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -216,6 +223,13 @@ public class PurchaseOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("memo")
     private JsonNullable<String> memo;
+
+    /**
+     * Internal notes for the purchase order.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("notes")
+    private JsonNullable<String> notes;
 
     /**
      * A list of linked tracking categories.
@@ -306,9 +320,11 @@ public class PurchaseOrder {
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("amortization_type") JsonNullable<? extends AmortizationType> amortizationType,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("memo") JsonNullable<String> memo,
+            @JsonProperty("notes") JsonNullable<String> notes,
             @JsonProperty("tracking_categories") JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories,
             @JsonProperty("custom_mappings") JsonNullable<? extends Map<String, Object>> customMappings,
             @JsonProperty("custom_fields") Optional<? extends List<CustomField>> customFields,
@@ -344,9 +360,11 @@ public class PurchaseOrder {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(amortizationType, "amortizationType");
         Utils.checkNotNull(taxCode, "taxCode");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(memo, "memo");
+        Utils.checkNotNull(notes, "notes");
         Utils.checkNotNull(trackingCategories, "trackingCategories");
         Utils.checkNotNull(customMappings, "customMappings");
         Utils.checkNotNull(customFields, "customFields");
@@ -382,9 +400,11 @@ public class PurchaseOrder {
         this.accountingByRow = accountingByRow;
         this.dueDate = dueDate;
         this.paymentMethod = paymentMethod;
+        this.amortizationType = amortizationType;
         this.taxCode = taxCode;
         this.channel = channel;
         this.memo = memo;
+        this.notes = notes;
         this.trackingCategories = trackingCategories;
         this.customMappings = customMappings;
         this.customFields = customFields;
@@ -407,9 +427,10 @@ public class PurchaseOrder {
             JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty());
+            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            Optional.empty());
     }
 
     /**
@@ -613,6 +634,15 @@ public class PurchaseOrder {
     }
 
     /**
+     * Type of amortization
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public JsonNullable<AmortizationType> amortizationType() {
+        return (JsonNullable<AmortizationType>) amortizationType;
+    }
+
+    /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
      */
     @JsonIgnore
@@ -634,6 +664,14 @@ public class PurchaseOrder {
     @JsonIgnore
     public JsonNullable<String> memo() {
         return memo;
+    }
+
+    /**
+     * Internal notes for the purchase order.
+     */
+    @JsonIgnore
+    public JsonNullable<String> notes() {
+        return notes;
     }
 
     /**
@@ -1157,6 +1195,24 @@ public class PurchaseOrder {
     }
 
     /**
+     * Type of amortization
+     */
+    public PurchaseOrder withAmortizationType(AmortizationType amortizationType) {
+        Utils.checkNotNull(amortizationType, "amortizationType");
+        this.amortizationType = JsonNullable.of(amortizationType);
+        return this;
+    }
+
+    /**
+     * Type of amortization
+     */
+    public PurchaseOrder withAmortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+        Utils.checkNotNull(amortizationType, "amortizationType");
+        this.amortizationType = amortizationType;
+        return this;
+    }
+
+    /**
      * Applicable tax id/code override if tax is not supplied on a line item basis.
      */
     public PurchaseOrder withTaxCode(String taxCode) {
@@ -1207,6 +1263,24 @@ public class PurchaseOrder {
     public PurchaseOrder withMemo(JsonNullable<String> memo) {
         Utils.checkNotNull(memo, "memo");
         this.memo = memo;
+        return this;
+    }
+
+    /**
+     * Internal notes for the purchase order.
+     */
+    public PurchaseOrder withNotes(String notes) {
+        Utils.checkNotNull(notes, "notes");
+        this.notes = JsonNullable.of(notes);
+        return this;
+    }
+
+    /**
+     * Internal notes for the purchase order.
+     */
+    public PurchaseOrder withNotes(JsonNullable<String> notes) {
+        Utils.checkNotNull(notes, "notes");
+        this.notes = notes;
         return this;
     }
 
@@ -1404,9 +1478,11 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.amortizationType, other.amortizationType) &&
             Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.memo, other.memo) &&
+            Utils.enhancedDeepEquals(this.notes, other.notes) &&
             Utils.enhancedDeepEquals(this.trackingCategories, other.trackingCategories) &&
             Utils.enhancedDeepEquals(this.customMappings, other.customMappings) &&
             Utils.enhancedDeepEquals(this.customFields, other.customFields) &&
@@ -1429,11 +1505,12 @@ public class PurchaseOrder {
             total, taxInclusive, lineItems,
             shippingAddress, ledgerAccount, templateId,
             discountPercentage, bankAccount, accountingByRow,
-            dueDate, paymentMethod, taxCode,
-            channel, memo, trackingCategories,
-            customMappings, customFields, rowVersion,
-            updatedBy, createdBy, updatedAt,
-            createdAt, passThrough);
+            dueDate, paymentMethod, amortizationType,
+            taxCode, channel, memo,
+            notes, trackingCategories, customMappings,
+            customFields, rowVersion, updatedBy,
+            createdBy, updatedAt, createdAt,
+            passThrough);
     }
     
     @Override
@@ -1465,9 +1542,11 @@ public class PurchaseOrder {
                 "accountingByRow", accountingByRow,
                 "dueDate", dueDate,
                 "paymentMethod", paymentMethod,
+                "amortizationType", amortizationType,
                 "taxCode", taxCode,
                 "channel", channel,
                 "memo", memo,
+                "notes", notes,
                 "trackingCategories", trackingCategories,
                 "customMappings", customMappings,
                 "customFields", customFields,
@@ -1534,11 +1613,15 @@ public class PurchaseOrder {
 
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
+        private JsonNullable<? extends AmortizationType> amortizationType = JsonNullable.undefined();
+
         private JsonNullable<String> taxCode = JsonNullable.undefined();
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
         private JsonNullable<String> memo = JsonNullable.undefined();
+
+        private JsonNullable<String> notes = JsonNullable.undefined();
 
         private JsonNullable<? extends List<LinkedTrackingCategory>> trackingCategories = JsonNullable.undefined();
 
@@ -2028,6 +2111,25 @@ public class PurchaseOrder {
 
 
         /**
+         * Type of amortization
+         */
+        public Builder amortizationType(AmortizationType amortizationType) {
+            Utils.checkNotNull(amortizationType, "amortizationType");
+            this.amortizationType = JsonNullable.of(amortizationType);
+            return this;
+        }
+
+        /**
+         * Type of amortization
+         */
+        public Builder amortizationType(JsonNullable<? extends AmortizationType> amortizationType) {
+            Utils.checkNotNull(amortizationType, "amortizationType");
+            this.amortizationType = amortizationType;
+            return this;
+        }
+
+
+        /**
          * Applicable tax id/code override if tax is not supplied on a line item basis.
          */
         public Builder taxCode(String taxCode) {
@@ -2080,6 +2182,25 @@ public class PurchaseOrder {
         public Builder memo(JsonNullable<String> memo) {
             Utils.checkNotNull(memo, "memo");
             this.memo = memo;
+            return this;
+        }
+
+
+        /**
+         * Internal notes for the purchase order.
+         */
+        public Builder notes(String notes) {
+            Utils.checkNotNull(notes, "notes");
+            this.notes = JsonNullable.of(notes);
+            return this;
+        }
+
+        /**
+         * Internal notes for the purchase order.
+         */
+        public Builder notes(JsonNullable<String> notes) {
+            Utils.checkNotNull(notes, "notes");
+            this.notes = notes;
             return this;
         }
 
@@ -2259,11 +2380,12 @@ public class PurchaseOrder {
                 total, taxInclusive, lineItems,
                 shippingAddress, ledgerAccount, templateId,
                 discountPercentage, bankAccount, accountingByRow,
-                dueDate, paymentMethod, taxCode,
-                channel, memo, trackingCategories,
-                customMappings, customFields, rowVersion,
-                updatedBy, createdBy, updatedAt,
-                createdAt, passThrough);
+                dueDate, paymentMethod, amortizationType,
+                taxCode, channel, memo,
+                notes, trackingCategories, customMappings,
+                customFields, rowVersion, updatedBy,
+                createdBy, updatedAt, createdAt,
+                passThrough);
         }
 
     }

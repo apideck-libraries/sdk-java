@@ -148,6 +148,11 @@ public class PurchaseOrder {
 
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("billing_address")
+    private Optional<? extends Address> billingAddress;
+
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("shipping_address")
     private Optional<? extends Address> shippingAddress;
 
@@ -197,6 +202,13 @@ public class PurchaseOrder {
     private JsonNullable<String> paymentMethod;
 
     /**
+     * Terms of payment.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("terms")
+    private JsonNullable<String> terms;
+
+    /**
      * Type of amortization
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -209,6 +221,27 @@ public class PurchaseOrder {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("tax_code")
     private JsonNullable<String> taxCode;
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("tax_method")
+    private JsonNullable<String> taxMethod;
+
+    /**
+     * Method of issuance of the purchase order
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_method")
+    private JsonNullable<String> issuedMethod;
+
+    /**
+     * Email address of the person who issued the purchase order
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("issued_email")
+    private JsonNullable<String> issuedEmail;
 
     /**
      * The channel through which the transaction is processed.
@@ -312,6 +345,7 @@ public class PurchaseOrder {
             @JsonProperty("total") JsonNullable<Double> total,
             @JsonProperty("tax_inclusive") JsonNullable<Boolean> taxInclusive,
             @JsonProperty("line_items") Optional<? extends List<InvoiceLineItem>> lineItems,
+            @JsonProperty("billing_address") Optional<? extends Address> billingAddress,
             @JsonProperty("shipping_address") Optional<? extends Address> shippingAddress,
             @JsonProperty("ledger_account") JsonNullable<? extends LinkedLedgerAccount> ledgerAccount,
             @JsonProperty("template_id") JsonNullable<String> templateId,
@@ -320,8 +354,12 @@ public class PurchaseOrder {
             @JsonProperty("accounting_by_row") JsonNullable<Boolean> accountingByRow,
             @JsonProperty("due_date") JsonNullable<LocalDate> dueDate,
             @JsonProperty("payment_method") JsonNullable<String> paymentMethod,
+            @JsonProperty("terms") JsonNullable<String> terms,
             @JsonProperty("amortization_type") JsonNullable<? extends AmortizationType> amortizationType,
             @JsonProperty("tax_code") JsonNullable<String> taxCode,
+            @JsonProperty("tax_method") JsonNullable<String> taxMethod,
+            @JsonProperty("issued_method") JsonNullable<String> issuedMethod,
+            @JsonProperty("issued_email") JsonNullable<String> issuedEmail,
             @JsonProperty("channel") JsonNullable<String> channel,
             @JsonProperty("memo") JsonNullable<String> memo,
             @JsonProperty("notes") JsonNullable<String> notes,
@@ -352,6 +390,7 @@ public class PurchaseOrder {
         Utils.checkNotNull(total, "total");
         Utils.checkNotNull(taxInclusive, "taxInclusive");
         Utils.checkNotNull(lineItems, "lineItems");
+        Utils.checkNotNull(billingAddress, "billingAddress");
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         Utils.checkNotNull(ledgerAccount, "ledgerAccount");
         Utils.checkNotNull(templateId, "templateId");
@@ -360,8 +399,12 @@ public class PurchaseOrder {
         Utils.checkNotNull(accountingByRow, "accountingByRow");
         Utils.checkNotNull(dueDate, "dueDate");
         Utils.checkNotNull(paymentMethod, "paymentMethod");
+        Utils.checkNotNull(terms, "terms");
         Utils.checkNotNull(amortizationType, "amortizationType");
         Utils.checkNotNull(taxCode, "taxCode");
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
         Utils.checkNotNull(channel, "channel");
         Utils.checkNotNull(memo, "memo");
         Utils.checkNotNull(notes, "notes");
@@ -392,6 +435,7 @@ public class PurchaseOrder {
         this.total = total;
         this.taxInclusive = taxInclusive;
         this.lineItems = lineItems;
+        this.billingAddress = billingAddress;
         this.shippingAddress = shippingAddress;
         this.ledgerAccount = ledgerAccount;
         this.templateId = templateId;
@@ -400,8 +444,12 @@ public class PurchaseOrder {
         this.accountingByRow = accountingByRow;
         this.dueDate = dueDate;
         this.paymentMethod = paymentMethod;
+        this.terms = terms;
         this.amortizationType = amortizationType;
         this.taxCode = taxCode;
+        this.taxMethod = taxMethod;
+        this.issuedMethod = issuedMethod;
+        this.issuedEmail = issuedEmail;
         this.channel = channel;
         this.memo = memo;
         this.notes = notes;
@@ -423,14 +471,15 @@ public class PurchaseOrder {
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
-            JsonNullable.undefined(), Optional.empty(), JsonNullable.undefined(),
+            Optional.empty(), Optional.empty(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(),
             JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
-            Optional.empty());
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(),
+            JsonNullable.undefined(), JsonNullable.undefined(), JsonNullable.undefined(),
+            JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty());
     }
 
     /**
@@ -577,6 +626,12 @@ public class PurchaseOrder {
 
     @SuppressWarnings("unchecked")
     @JsonIgnore
+    public Optional<Address> billingAddress() {
+        return (Optional<Address>) billingAddress;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
     public Optional<Address> shippingAddress() {
         return (Optional<Address>) shippingAddress;
     }
@@ -634,6 +689,14 @@ public class PurchaseOrder {
     }
 
     /**
+     * Terms of payment.
+     */
+    @JsonIgnore
+    public JsonNullable<String> terms() {
+        return terms;
+    }
+
+    /**
      * Type of amortization
      */
     @SuppressWarnings("unchecked")
@@ -648,6 +711,30 @@ public class PurchaseOrder {
     @JsonIgnore
     public JsonNullable<String> taxCode() {
         return taxCode;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    @JsonIgnore
+    public JsonNullable<String> taxMethod() {
+        return taxMethod;
+    }
+
+    /**
+     * Method of issuance of the purchase order
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedMethod() {
+        return issuedMethod;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order
+     */
+    @JsonIgnore
+    public JsonNullable<String> issuedEmail() {
+        return issuedEmail;
     }
 
     /**
@@ -1066,6 +1153,19 @@ public class PurchaseOrder {
         return this;
     }
 
+    public PurchaseOrder withBillingAddress(Address billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = Optional.ofNullable(billingAddress);
+        return this;
+    }
+
+
+    public PurchaseOrder withBillingAddress(Optional<? extends Address> billingAddress) {
+        Utils.checkNotNull(billingAddress, "billingAddress");
+        this.billingAddress = billingAddress;
+        return this;
+    }
+
     public PurchaseOrder withShippingAddress(Address shippingAddress) {
         Utils.checkNotNull(shippingAddress, "shippingAddress");
         this.shippingAddress = Optional.ofNullable(shippingAddress);
@@ -1195,6 +1295,24 @@ public class PurchaseOrder {
     }
 
     /**
+     * Terms of payment.
+     */
+    public PurchaseOrder withTerms(String terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = JsonNullable.of(terms);
+        return this;
+    }
+
+    /**
+     * Terms of payment.
+     */
+    public PurchaseOrder withTerms(JsonNullable<String> terms) {
+        Utils.checkNotNull(terms, "terms");
+        this.terms = terms;
+        return this;
+    }
+
+    /**
      * Type of amortization
      */
     public PurchaseOrder withAmortizationType(AmortizationType amortizationType) {
@@ -1227,6 +1345,60 @@ public class PurchaseOrder {
     public PurchaseOrder withTaxCode(JsonNullable<String> taxCode) {
         Utils.checkNotNull(taxCode, "taxCode");
         this.taxCode = taxCode;
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public PurchaseOrder withTaxMethod(String taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = JsonNullable.of(taxMethod);
+        return this;
+    }
+
+    /**
+     * Method of tax calculation
+     */
+    public PurchaseOrder withTaxMethod(JsonNullable<String> taxMethod) {
+        Utils.checkNotNull(taxMethod, "taxMethod");
+        this.taxMethod = taxMethod;
+        return this;
+    }
+
+    /**
+     * Method of issuance of the purchase order
+     */
+    public PurchaseOrder withIssuedMethod(String issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = JsonNullable.of(issuedMethod);
+        return this;
+    }
+
+    /**
+     * Method of issuance of the purchase order
+     */
+    public PurchaseOrder withIssuedMethod(JsonNullable<String> issuedMethod) {
+        Utils.checkNotNull(issuedMethod, "issuedMethod");
+        this.issuedMethod = issuedMethod;
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order
+     */
+    public PurchaseOrder withIssuedEmail(String issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = JsonNullable.of(issuedEmail);
+        return this;
+    }
+
+    /**
+     * Email address of the person who issued the purchase order
+     */
+    public PurchaseOrder withIssuedEmail(JsonNullable<String> issuedEmail) {
+        Utils.checkNotNull(issuedEmail, "issuedEmail");
+        this.issuedEmail = issuedEmail;
         return this;
     }
 
@@ -1470,6 +1642,7 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.total, other.total) &&
             Utils.enhancedDeepEquals(this.taxInclusive, other.taxInclusive) &&
             Utils.enhancedDeepEquals(this.lineItems, other.lineItems) &&
+            Utils.enhancedDeepEquals(this.billingAddress, other.billingAddress) &&
             Utils.enhancedDeepEquals(this.shippingAddress, other.shippingAddress) &&
             Utils.enhancedDeepEquals(this.ledgerAccount, other.ledgerAccount) &&
             Utils.enhancedDeepEquals(this.templateId, other.templateId) &&
@@ -1478,8 +1651,12 @@ public class PurchaseOrder {
             Utils.enhancedDeepEquals(this.accountingByRow, other.accountingByRow) &&
             Utils.enhancedDeepEquals(this.dueDate, other.dueDate) &&
             Utils.enhancedDeepEquals(this.paymentMethod, other.paymentMethod) &&
+            Utils.enhancedDeepEquals(this.terms, other.terms) &&
             Utils.enhancedDeepEquals(this.amortizationType, other.amortizationType) &&
             Utils.enhancedDeepEquals(this.taxCode, other.taxCode) &&
+            Utils.enhancedDeepEquals(this.taxMethod, other.taxMethod) &&
+            Utils.enhancedDeepEquals(this.issuedMethod, other.issuedMethod) &&
+            Utils.enhancedDeepEquals(this.issuedEmail, other.issuedEmail) &&
             Utils.enhancedDeepEquals(this.channel, other.channel) &&
             Utils.enhancedDeepEquals(this.memo, other.memo) &&
             Utils.enhancedDeepEquals(this.notes, other.notes) &&
@@ -1503,14 +1680,15 @@ public class PurchaseOrder {
             deliveryDate, expectedArrivalDate, currency,
             currencyRate, subTotal, totalTax,
             total, taxInclusive, lineItems,
-            shippingAddress, ledgerAccount, templateId,
-            discountPercentage, bankAccount, accountingByRow,
-            dueDate, paymentMethod, amortizationType,
-            taxCode, channel, memo,
-            notes, trackingCategories, customMappings,
-            customFields, rowVersion, updatedBy,
-            createdBy, updatedAt, createdAt,
-            passThrough);
+            billingAddress, shippingAddress, ledgerAccount,
+            templateId, discountPercentage, bankAccount,
+            accountingByRow, dueDate, paymentMethod,
+            terms, amortizationType, taxCode,
+            taxMethod, issuedMethod, issuedEmail,
+            channel, memo, notes,
+            trackingCategories, customMappings, customFields,
+            rowVersion, updatedBy, createdBy,
+            updatedAt, createdAt, passThrough);
     }
     
     @Override
@@ -1534,6 +1712,7 @@ public class PurchaseOrder {
                 "total", total,
                 "taxInclusive", taxInclusive,
                 "lineItems", lineItems,
+                "billingAddress", billingAddress,
                 "shippingAddress", shippingAddress,
                 "ledgerAccount", ledgerAccount,
                 "templateId", templateId,
@@ -1542,8 +1721,12 @@ public class PurchaseOrder {
                 "accountingByRow", accountingByRow,
                 "dueDate", dueDate,
                 "paymentMethod", paymentMethod,
+                "terms", terms,
                 "amortizationType", amortizationType,
                 "taxCode", taxCode,
+                "taxMethod", taxMethod,
+                "issuedMethod", issuedMethod,
+                "issuedEmail", issuedEmail,
                 "channel", channel,
                 "memo", memo,
                 "notes", notes,
@@ -1597,6 +1780,8 @@ public class PurchaseOrder {
 
         private Optional<? extends List<InvoiceLineItem>> lineItems = Optional.empty();
 
+        private Optional<? extends Address> billingAddress = Optional.empty();
+
         private Optional<? extends Address> shippingAddress = Optional.empty();
 
         private JsonNullable<? extends LinkedLedgerAccount> ledgerAccount = JsonNullable.undefined();
@@ -1613,9 +1798,17 @@ public class PurchaseOrder {
 
         private JsonNullable<String> paymentMethod = JsonNullable.undefined();
 
+        private JsonNullable<String> terms = JsonNullable.undefined();
+
         private JsonNullable<? extends AmortizationType> amortizationType = JsonNullable.undefined();
 
         private JsonNullable<String> taxCode = JsonNullable.undefined();
+
+        private JsonNullable<String> taxMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> issuedMethod = JsonNullable.undefined();
+
+        private JsonNullable<String> issuedEmail = JsonNullable.undefined();
 
         private JsonNullable<String> channel = JsonNullable.undefined();
 
@@ -1976,6 +2169,19 @@ public class PurchaseOrder {
         }
 
 
+        public Builder billingAddress(Address billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = Optional.ofNullable(billingAddress);
+            return this;
+        }
+
+        public Builder billingAddress(Optional<? extends Address> billingAddress) {
+            Utils.checkNotNull(billingAddress, "billingAddress");
+            this.billingAddress = billingAddress;
+            return this;
+        }
+
+
         public Builder shippingAddress(Address shippingAddress) {
             Utils.checkNotNull(shippingAddress, "shippingAddress");
             this.shippingAddress = Optional.ofNullable(shippingAddress);
@@ -2111,6 +2317,25 @@ public class PurchaseOrder {
 
 
         /**
+         * Terms of payment.
+         */
+        public Builder terms(String terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = JsonNullable.of(terms);
+            return this;
+        }
+
+        /**
+         * Terms of payment.
+         */
+        public Builder terms(JsonNullable<String> terms) {
+            Utils.checkNotNull(terms, "terms");
+            this.terms = terms;
+            return this;
+        }
+
+
+        /**
          * Type of amortization
          */
         public Builder amortizationType(AmortizationType amortizationType) {
@@ -2144,6 +2369,63 @@ public class PurchaseOrder {
         public Builder taxCode(JsonNullable<String> taxCode) {
             Utils.checkNotNull(taxCode, "taxCode");
             this.taxCode = taxCode;
+            return this;
+        }
+
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(String taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = JsonNullable.of(taxMethod);
+            return this;
+        }
+
+        /**
+         * Method of tax calculation
+         */
+        public Builder taxMethod(JsonNullable<String> taxMethod) {
+            Utils.checkNotNull(taxMethod, "taxMethod");
+            this.taxMethod = taxMethod;
+            return this;
+        }
+
+
+        /**
+         * Method of issuance of the purchase order
+         */
+        public Builder issuedMethod(String issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = JsonNullable.of(issuedMethod);
+            return this;
+        }
+
+        /**
+         * Method of issuance of the purchase order
+         */
+        public Builder issuedMethod(JsonNullable<String> issuedMethod) {
+            Utils.checkNotNull(issuedMethod, "issuedMethod");
+            this.issuedMethod = issuedMethod;
+            return this;
+        }
+
+
+        /**
+         * Email address of the person who issued the purchase order
+         */
+        public Builder issuedEmail(String issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = JsonNullable.of(issuedEmail);
+            return this;
+        }
+
+        /**
+         * Email address of the person who issued the purchase order
+         */
+        public Builder issuedEmail(JsonNullable<String> issuedEmail) {
+            Utils.checkNotNull(issuedEmail, "issuedEmail");
+            this.issuedEmail = issuedEmail;
             return this;
         }
 
@@ -2378,14 +2660,15 @@ public class PurchaseOrder {
                 deliveryDate, expectedArrivalDate, currency,
                 currencyRate, subTotal, totalTax,
                 total, taxInclusive, lineItems,
-                shippingAddress, ledgerAccount, templateId,
-                discountPercentage, bankAccount, accountingByRow,
-                dueDate, paymentMethod, amortizationType,
-                taxCode, channel, memo,
-                notes, trackingCategories, customMappings,
-                customFields, rowVersion, updatedBy,
-                createdBy, updatedAt, createdAt,
-                passThrough);
+                billingAddress, shippingAddress, ledgerAccount,
+                templateId, discountPercentage, bankAccount,
+                accountingByRow, dueDate, paymentMethod,
+                terms, amortizationType, taxCode,
+                taxMethod, issuedMethod, issuedEmail,
+                channel, memo, notes,
+                trackingCategories, customMappings, customFields,
+                rowVersion, updatedBy, createdBy,
+                updatedAt, createdAt, passThrough);
         }
 
     }

@@ -31,6 +31,7 @@ public class Accounting {
     private final BankFeedAccounts bankFeedAccounts;
     private final BankFeedStatements bankFeedStatements;
     private final Categories categories;
+    private final Quotes quotes;
 
     Accounting(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
@@ -60,6 +61,7 @@ public class Accounting {
         this.bankFeedAccounts = new BankFeedAccounts(this.sdkConfiguration);
         this.bankFeedStatements = new BankFeedStatements(this.sdkConfiguration);
         this.categories = new Categories(this.sdkConfiguration);
+        this.quotes = new Quotes(this.sdkConfiguration);
     }
 
     public final TaxRates taxRates() {
@@ -164,6 +166,10 @@ public class Accounting {
 
     public final Categories categories() {
         return categories;
+    }
+
+    public final Quotes quotes() {
+        return quotes;
     }
 
 }

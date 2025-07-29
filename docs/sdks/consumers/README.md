@@ -17,6 +17,7 @@ Create a consumer
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersAdd" method="post" path="/vault/consumers" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ This endpoint includes all application consumers, along with an aggregated count
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersAll" method="get" path="/vault/consumers" -->
 ```java
 package hello.world;
 
@@ -142,6 +144,7 @@ Consumer detail including their aggregated counts with the connections they have
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersOne" method="get" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 
@@ -198,6 +201,7 @@ Update consumer metadata such as name and email.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersUpdate" method="patch" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 
@@ -265,6 +269,7 @@ Delete consumer and all their connections, including credentials.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.consumersDelete" method="delete" path="/vault/consumers/{consumer_id}" -->
 ```java
 package hello.world;
 

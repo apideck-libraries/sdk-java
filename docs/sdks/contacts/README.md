@@ -17,6 +17,7 @@ List contacts
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.contactsAll" method="get" path="/crm/contacts" -->
 ```java
 package hello.world;
 
@@ -94,6 +95,7 @@ Create contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.contactsAdd" method="post" path="/crm/contacts" -->
 ```java
 package hello.world;
 
@@ -330,6 +332,7 @@ Get contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.contactsOne" method="get" path="/crm/contacts/{id}" -->
 ```java
 package hello.world;
 
@@ -401,6 +404,7 @@ Update contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.contactsUpdate" method="patch" path="/crm/contacts/{id}" -->
 ```java
 package hello.world;
 
@@ -685,6 +689,7 @@ Delete contact
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.contactsDelete" method="delete" path="/crm/contacts/{id}" -->
 ```java
 package hello.world;
 

@@ -17,6 +17,7 @@ List Locations
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.locationsAll" method="get" path="/accounting/locations" -->
 ```java
 package hello.world;
 
@@ -83,6 +84,7 @@ Create Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.locationsAdd" method="post" path="/accounting/locations" -->
 ```java
 package hello.world;
 
@@ -199,6 +201,7 @@ Get Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.locationsOne" method="get" path="/accounting/locations/{id}" -->
 ```java
 package hello.world;
 
@@ -262,6 +265,7 @@ Update Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.locationsUpdate" method="patch" path="/accounting/locations/{id}" -->
 ```java
 package hello.world;
 
@@ -446,6 +450,7 @@ Delete Location
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.locationsDelete" method="delete" path="/accounting/locations/{id}" -->
 ```java
 package hello.world;
 

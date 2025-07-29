@@ -13,6 +13,7 @@ This endpoint returns a list of custom mappings for a connection.
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.connectionCustomMappingsAll" method="get" path="/vault/connections/{unified_api}/{service_id}/{resource}/custom-mappings" -->
 ```java
 package hello.world;
 

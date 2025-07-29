@@ -17,6 +17,7 @@ List Payments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.paymentsAll" method="get" path="/accounting/payments" -->
 ```java
 package hello.world;
 
@@ -92,6 +93,7 @@ Create Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.paymentsAdd" method="post" path="/accounting/payments" -->
 ```java
 package hello.world;
 
@@ -234,6 +236,7 @@ Get Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.paymentsOne" method="get" path="/accounting/payments/{id}" -->
 ```java
 package hello.world;
 
@@ -297,6 +300,7 @@ Update Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.paymentsUpdate" method="patch" path="/accounting/payments/{id}" -->
 ```java
 package hello.world;
 
@@ -439,6 +443,7 @@ Delete Payment
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.paymentsDelete" method="delete" path="/accounting/payments/{id}" -->
 ```java
 package hello.world;
 

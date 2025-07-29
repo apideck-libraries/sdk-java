@@ -14,10 +14,12 @@ List Products
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.productsAll" method="get" path="/ecommerce/products" -->
 ```java
 package hello.world;
 
 import com.apideck.unify.Apideck;
+import com.apideck.unify.models.components.EcommerceProductsFilter;
 import com.apideck.unify.models.errors.*;
 import com.apideck.unify.models.operations.EcommerceProductsAllRequest;
 import com.apideck.unify.models.operations.EcommerceProductsAllResponse;
@@ -39,6 +41,11 @@ public class Application {
                 .passThrough(Map.ofEntries(
                     Map.entry("search", "San Francisco")))
                 .fields("id,updated_at")
+                .filter(EcommerceProductsFilter.builder()
+                    .name("Product Name")
+                    .updatedSince("2020-09-30T07:43:32.000Z")
+                    .createdSince("2020-09-30T07:43:32.000Z")
+                    .build())
                 .build();
 
         sdk.ecommerce().products().list()
@@ -79,6 +86,7 @@ Get Product
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.productsOne" method="get" path="/ecommerce/products/{id}" -->
 ```java
 package hello.world;
 

@@ -14,6 +14,7 @@ List Collections
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionsAll" method="get" path="/issue-tracking/collections" -->
 ```java
 package hello.world;
 
@@ -84,6 +85,7 @@ Get Collection
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionsOne" method="get" path="/issue-tracking/collections/{collection_id}" -->
 ```java
 package hello.world;
 

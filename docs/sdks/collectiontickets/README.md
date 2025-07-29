@@ -17,6 +17,7 @@ List Tickets
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketsAll" method="get" path="/issue-tracking/collections/{collection_id}/tickets" -->
 ```java
 package hello.world;
 
@@ -93,6 +94,7 @@ Create Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketsAdd" method="post" path="/issue-tracking/collections/{collection_id}/tickets" -->
 ```java
 package hello.world;
 
@@ -237,6 +239,7 @@ Get Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketsOne" method="get" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```java
 package hello.world;
 
@@ -301,6 +304,7 @@ Update Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketsUpdate" method="patch" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```java
 package hello.world;
 
@@ -437,6 +441,7 @@ Delete Ticket
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionTicketsDelete" method="delete" path="/issue-tracking/collections/{collection_id}/tickets/{ticket_id}" -->
 ```java
 package hello.world;
 

@@ -13,6 +13,7 @@ Get API Resource
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.apiResourcesOne" method="get" path="/connector/apis/{id}/resources/{resource_id}" -->
 ```java
 package hello.world;
 

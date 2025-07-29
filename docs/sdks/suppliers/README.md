@@ -17,6 +17,7 @@ List Suppliers
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.suppliersAll" method="get" path="/accounting/suppliers" -->
 ```java
 package hello.world;
 
@@ -96,6 +97,7 @@ Create Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.suppliersAdd" method="post" path="/accounting/suppliers" -->
 ```java
 package hello.world;
 
@@ -303,6 +305,7 @@ Get Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.suppliersOne" method="get" path="/accounting/suppliers/{id}" -->
 ```java
 package hello.world;
 
@@ -366,6 +369,7 @@ Update Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.suppliersUpdate" method="patch" path="/accounting/suppliers/{id}" -->
 ```java
 package hello.world;
 
@@ -567,6 +571,7 @@ Delete Supplier
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.suppliersDelete" method="delete" path="/accounting/suppliers/{id}" -->
 ```java
 package hello.world;
 

@@ -14,6 +14,7 @@ List Users
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionUsersAll" method="get" path="/issue-tracking/collections/{collection_id}/users" -->
 ```java
 package hello.world;
 
@@ -80,6 +81,7 @@ Get user
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="issueTracking.collectionUsersOne" method="get" path="/issue-tracking/collections/{collection_id}/users/{id}" -->
 ```java
 package hello.world;
 

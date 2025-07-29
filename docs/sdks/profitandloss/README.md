@@ -13,6 +13,7 @@ Get Profit and Loss
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.profitAndLossOne" method="get" path="/accounting/profit-and-loss" -->
 ```java
 package hello.world;
 

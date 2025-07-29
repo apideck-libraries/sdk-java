@@ -17,6 +17,7 @@ List companies
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.companiesAll" method="get" path="/crm/companies" -->
 ```java
 package hello.world;
 
@@ -90,6 +91,7 @@ Create company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.companiesAdd" method="post" path="/crm/companies" -->
 ```java
 package hello.world;
 
@@ -331,6 +333,7 @@ Get company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.companiesOne" method="get" path="/crm/companies/{id}" -->
 ```java
 package hello.world;
 
@@ -394,6 +397,7 @@ Update company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.companiesUpdate" method="patch" path="/crm/companies/{id}" -->
 ```java
 package hello.world;
 
@@ -672,6 +676,7 @@ Delete company
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="crm.companiesDelete" method="delete" path="/crm/companies/{id}" -->
 ```java
 package hello.world;
 

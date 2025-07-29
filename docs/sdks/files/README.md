@@ -19,6 +19,7 @@ List Files
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesAll" method="get" path="/file-storage/files" -->
 ```java
 package hello.world;
 
@@ -94,6 +95,7 @@ Search Files
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesSearch" method="post" path="/file-storage/files/search" -->
 ```java
 package hello.world;
 
@@ -169,6 +171,7 @@ Get File
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesOne" method="get" path="/file-storage/files/{id}" -->
 ```java
 package hello.world;
 
@@ -232,6 +235,7 @@ Rename or move File
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesUpdate" method="patch" path="/file-storage/files/{id}" -->
 ```java
 package hello.world;
 
@@ -313,6 +317,7 @@ Delete File
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesDelete" method="delete" path="/file-storage/files/{id}" -->
 ```java
 package hello.world;
 
@@ -375,6 +380,7 @@ Download File
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesDownload" method="get" path="/file-storage/files/{id}/download" -->
 ```java
 package hello.world;
 
@@ -438,6 +444,7 @@ Export File
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.filesExport" method="get" path="/file-storage/files/{id}/export" -->
 ```java
 package hello.world;
 

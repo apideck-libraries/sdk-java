@@ -13,6 +13,7 @@ Get Connector Doc content
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.connectorDocsOne" method="get" path="/connector/connectors/{id}/docs/{doc_id}" -->
 ```java
 package hello.world;
 

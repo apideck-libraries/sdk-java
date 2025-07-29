@@ -13,6 +13,7 @@ Get Aged Creditors
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.agedCreditorsOne" method="get" path="/accounting/aged-creditors" -->
 ```java
 package hello.world;
 

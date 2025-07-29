@@ -17,6 +17,7 @@ List Bills
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.billsAll" method="get" path="/accounting/bills" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.billsAdd" method="post" path="/accounting/bills" -->
 ```java
 package hello.world;
 
@@ -366,6 +368,7 @@ Get Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.billsOne" method="get" path="/accounting/bills/{id}" -->
 ```java
 package hello.world;
 
@@ -429,6 +432,7 @@ Update Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.billsUpdate" method="patch" path="/accounting/bills/{id}" -->
 ```java
 package hello.world;
 
@@ -684,6 +688,7 @@ Delete Bill
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.billsDelete" method="delete" path="/accounting/bills/{id}" -->
 ```java
 package hello.world;
 

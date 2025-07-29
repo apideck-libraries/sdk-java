@@ -17,6 +17,7 @@ Create Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.foldersAdd" method="post" path="/file-storage/folders" -->
 ```java
 package hello.world;
 
@@ -99,6 +100,7 @@ Get Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.foldersOne" method="get" path="/file-storage/folders/{id}" -->
 ```java
 package hello.world;
 
@@ -162,6 +164,7 @@ Rename or move Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.foldersUpdate" method="patch" path="/file-storage/folders/{id}" -->
 ```java
 package hello.world;
 
@@ -249,6 +252,7 @@ Delete Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.foldersDelete" method="delete" path="/file-storage/folders/{id}" -->
 ```java
 package hello.world;
 
@@ -311,6 +315,7 @@ Copy Folder
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="fileStorage.foldersCopy" method="post" path="/file-storage/folders/{id}/copy" -->
 ```java
 package hello.world;
 

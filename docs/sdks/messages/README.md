@@ -17,6 +17,7 @@ List Messages
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sms.messagesAll" method="get" path="/sms/messages" -->
 ```java
 package hello.world;
 
@@ -79,6 +80,7 @@ Create Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sms.messagesAdd" method="post" path="/sms/messages" -->
 ```java
 package hello.world;
 
@@ -188,6 +190,7 @@ Get Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sms.messagesOne" method="get" path="/sms/messages/{id}" -->
 ```java
 package hello.world;
 
@@ -251,6 +254,7 @@ Update Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sms.messagesUpdate" method="patch" path="/sms/messages/{id}" -->
 ```java
 package hello.world;
 
@@ -349,6 +353,7 @@ Delete Message
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="sms.messagesDelete" method="delete" path="/sms/messages/{id}" -->
 ```java
 package hello.world;
 

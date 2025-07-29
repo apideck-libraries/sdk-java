@@ -17,6 +17,7 @@ List Departments
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.departmentsAll" method="get" path="/hris/departments" -->
 ```java
 package hello.world;
 
@@ -82,6 +83,7 @@ Create Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.departmentsAdd" method="post" path="/hris/departments" -->
 ```java
 package hello.world;
 
@@ -182,6 +184,7 @@ Get Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.departmentsOne" method="get" path="/hris/departments/{id}" -->
 ```java
 package hello.world;
 
@@ -245,6 +248,7 @@ Update Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.departmentsUpdate" method="patch" path="/hris/departments/{id}" -->
 ```java
 package hello.world;
 
@@ -326,6 +330,7 @@ Delete Department
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.departmentsDelete" method="delete" path="/hris/departments/{id}" -->
 ```java
 package hello.world;
 

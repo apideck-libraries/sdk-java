@@ -13,6 +13,7 @@ Get Connector Resource
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="connector.connectorResourcesOne" method="get" path="/connector/connectors/{id}/resources/{resource_id}" -->
 ```java
 package hello.world;
 

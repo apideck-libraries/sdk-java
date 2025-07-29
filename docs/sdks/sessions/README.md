@@ -17,6 +17,7 @@ Note: This is a short lived token that will expire after 1 hour (TTL: 3600).
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="vault.sessionsCreate" method="post" path="/vault/sessions" -->
 ```java
 package hello.world;
 

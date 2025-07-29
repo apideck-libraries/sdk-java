@@ -17,6 +17,7 @@ List Journal Entries
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesAll" method="get" path="/accounting/journal-entries" -->
 ```java
 package hello.world;
 
@@ -91,6 +92,7 @@ Create Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesAdd" method="post" path="/accounting/journal-entries" -->
 ```java
 package hello.world;
 
@@ -315,6 +317,7 @@ Get Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesOne" method="get" path="/accounting/journal-entries/{id}" -->
 ```java
 package hello.world;
 
@@ -378,6 +381,7 @@ Update Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesUpdate" method="patch" path="/accounting/journal-entries/{id}" -->
 ```java
 package hello.world;
 
@@ -576,6 +580,7 @@ Delete Journal Entry
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="accounting.journalEntriesDelete" method="delete" path="/accounting/journal-entries/{id}" -->
 ```java
 package hello.world;
 

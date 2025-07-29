@@ -17,6 +17,7 @@ Apideck operates as a stateless Unified API, which means that the list endpoint 
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.employeesAll" method="get" path="/hris/employees" -->
 ```java
 package hello.world;
 
@@ -100,6 +101,7 @@ Create Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.employeesAdd" method="post" path="/hris/employees" -->
 ```java
 package hello.world;
 
@@ -550,6 +552,7 @@ Get Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.employeesOne" method="get" path="/hris/employees/{id}" -->
 ```java
 package hello.world;
 
@@ -620,6 +623,7 @@ Update Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.employeesUpdate" method="patch" path="/hris/employees/{id}" -->
 ```java
 package hello.world;
 
@@ -927,6 +931,7 @@ Delete Employee
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="hris.employeesDelete" method="delete" path="/hris/employees/{id}" -->
 ```java
 package hello.world;
 

@@ -14,6 +14,7 @@ List Orders
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.ordersAll" method="get" path="/ecommerce/orders" -->
 ```java
 package hello.world;
 
@@ -90,6 +91,7 @@ Get Order
 
 ### Example Usage
 
+<!-- UsageSnippet language="java" operationID="ecommerce.ordersOne" method="get" path="/ecommerce/orders/{id}" -->
 ```java
 package hello.world;
 
